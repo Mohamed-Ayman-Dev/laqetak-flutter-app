@@ -5,7 +5,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/config/routes.dart';
 import 'package:invastro/src/config/themes/theme.dart';
-
 import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
@@ -56,24 +55,25 @@ class _MyAppState extends State<MyApp> {
             return MaterialApp(
               navigatorKey: LocatorService.navigationService.navigatorKey,
               debugShowCheckedModeBanner: false,
-              builder: (context, child) {
-                return Stack(
-                  children: [
-                    // Your normal app widgets
-                    EasyLoading.init(
-                      builder: appSettings.urlType == 'production'
-                          ? null
-                          : (context, child) {
-                              return Banner(
-                                message: 'Develop',
-                                location: BannerLocation.topEnd,
-                                child: child,
-                              );
-                            },
-                    )(context, child),
-                  ],
-                );
-              },
+              // builder: (context, child) {
+              //   return Stack(
+              //     children: [
+              //       // Your normal app widgets
+              //       EasyLoading.init(
+              //         builder: appSettings.urlType == 'production'
+              //             ? null
+              //             : (context, child) {
+              //                 return Banner(
+              //                   message: 'Develop',
+              //                   location: BannerLocation.topEnd,
+              //                   child: child,
+              //                 );
+              //               },
+              //       )(context, child),
+              //     ],
+              //   );
+              // },
+              builder: EasyLoading.init(),
               localizationsDelegates: const [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "130582594168",
+    "project_id": "invastro",
+    "storage_bucket": "invastro.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130582594168:android:53ed23dca6dc813b02a38d",
+        "android_client_info": {
+          "package_name": "com.wady.invastro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1s0w7ikEtg7lSwuuz6UUx8G_XaRywnnQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
