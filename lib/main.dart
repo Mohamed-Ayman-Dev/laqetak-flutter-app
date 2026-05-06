@@ -1,11 +1,17 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:invastro/src/config/app.dart';
+import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/dependency_injection/locator.dart';
+
+import 'firebase_options.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -47,39 +53,4 @@ void main() async {
     return runApp(MyApp());
     // end existing code
   }, (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack));
-}
-
-void configLoading() {
-  EasyLoading.instance
-    ..displayDuration = const Duration(milliseconds: 3000)
-    // ..indicatorType = EasyLoadingIndicatorType.spinningCircle
-    ..loadingStyle = EasyLoadingStyle.custom
-    ..toastPosition = EasyLoadingToastPosition.bottom
-    ..indicatorColor = Colors.white
-    ..backgroundColor = AppColors.primaryColor
-    ..textColor = AppColors.primaryColor
-    ..animationStyle = EasyLoadingAnimationStyle.opacity
-    ..indicatorSize = 40.0
-    ..radius = 10.0
-    ..progressColor = Colors.white
-    // ..maskColor = Colors.black.withOpacity(0.2)
-    // ..maskType = EasyLoadingMaskType.custom
-    ..textStyle = const TextStyle(
-      fontWeight: FontWeight.w600,
-      color: Colors.white,
-      fontFamily: 'IBMPlexSansArabic',
-    )
-    // ..radius = 10.0
-    // ..progressColor = Colors.yellow
-    // ..backgroundColor = Colors.green
-    ..indicatorWidget = const SizedBox(
-      width: 40,
-      height: 40,
-      child: SpinKitSpinningLines(color: Colors.white),
-    )
-    // ..indicatorColor = Colors.yellow
-    // ..textColor = Colors.yellow
-    // ..maskColor = Colors.blue.withOpacity(0.5)
-    ..userInteractions = false
-    ..dismissOnTap = false;
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:invastro/src/core/network/status_code.dart';
 
 import '../constants/string_manager.dart';

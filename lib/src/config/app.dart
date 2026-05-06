@@ -2,9 +2,11 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/config/routes.dart';
 import 'package:invastro/src/config/themes/theme.dart';
+import 'package:navigation_history_observer/navigation_history_observer.dart';
 import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
@@ -51,30 +53,11 @@ class _MyAppState extends State<MyApp> {
 
         child: Consumer<AppSettings>(
           builder: (BuildContext context, appSettings, _) {
-            Translator.of(context).setLanguage(appSettings.language);
             return MaterialApp(
               navigatorKey: LocatorService.navigationService.navigatorKey,
               debugShowCheckedModeBanner: false,
-              // builder: (context, child) {
-              //   return Stack(
-              //     children: [
-              //       // Your normal app widgets
-              //       EasyLoading.init(
-              //         builder: appSettings.urlType == 'production'
-              //             ? null
-              //             : (context, child) {
-              //                 return Banner(
-              //                   message: 'Develop',
-              //                   location: BannerLocation.topEnd,
-              //                   child: child,
-              //                 );
-              //               },
-              //       )(context, child),
-              //     ],
-              //   );
-              // },
               builder: EasyLoading.init(),
-              localizationsDelegates: const [
+              localizationsDelegates: [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
@@ -82,7 +65,7 @@ class _MyAppState extends State<MyApp> {
               ],
               supportedLocales: S.delegate.supportedLocales,
               locale: Locale(appSettings.language, ''),
-              title: 'غيارتك',
+              title: 'Invastro',
               color: Colors.white,
               themeMode: appSettings.themeMode,
               theme: CustomTheme.lightTheme,
