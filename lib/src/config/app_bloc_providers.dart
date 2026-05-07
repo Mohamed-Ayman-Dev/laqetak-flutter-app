@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../dependency_injection/locator.dart';
 
 ///if register in locator as factory use create
 /// BlocProvider<.AddressCubit>(create: (_) => sl<.AddressCubit>()),

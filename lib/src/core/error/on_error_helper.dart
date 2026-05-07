@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:invastro/src/config/app_settings/app_settings_cubit.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
 
-import '../../features/auth/presentation/screens/login_screen.dart';
-import '../cache/cache_manager.dart';
 import '../dependency_injection/locator_service.dart';
 import '../network/end_points.dart';
 import '../network/pretty_dio_logger.dart';
@@ -16,7 +16,8 @@ class OnErrorHelper {
   void onError(
     DioException err,
     ErrorInterceptorHandler handler,
-    CacheManager cacheManager,
+    AuthCubit authCubit,
+    AppSettingsCubit appSettingsCubit,
   ) async {
     final Dio retryDio = Dio()
       ///Create NEW dio instance without main interceptors to avoid infinite loop (logger interceptors only)
@@ -29,12 +30,12 @@ class OnErrorHelper {
       ..validateStatus = (s) {
         return true;
       };
-    final token = cacheManager.token;
+    final token = authCubit.token;
 
     if (token != null) {
       options.headers['Authorization'] = 'Bearer $token';
     }
-    options.headers['language'] = cacheManager.langCode;
+    options.headers['language'] = appSettingsCubit.langCode;
 
     ///  handle internet error
     if (err.type == DioExceptionType.connectionError ||
@@ -73,9 +74,9 @@ class OnErrorHelper {
         _isRefreshing = true;
 
         /// try to refresh token and retry original request
-        final refreshToken = cacheManager.refreshToken;
+        final refreshToken = authCubit.refreshToken;
         if (refreshToken == null) {
-          await _logoutFromSession(cacheManager: cacheManager);
+          await authCubit.resetUser(navigateToLogin: true);
           return handler.next(err);
         }
         final refreshResponse = await retryDio.post(
@@ -83,13 +84,14 @@ class OnErrorHelper {
           data: {"refresh_token": refreshToken},
         );
         final newToken = refreshResponse.data['data']['token'];
-        await cacheManager.saveToken(newToken);
-
+        final user = refreshResponse.data['data'];
+        await authCubit.setUser(user);
         options.headers['Authorization'] = "Bearer $newToken";
+
         final response = await retryDio.fetch(options);
         return handler.resolve(response);
       } catch (e) {
-        await _logoutFromSession(cacheManager: cacheManager);
+        await authCubit.resetUser(navigateToLogin: true);
         return handler.next(err);
       } finally {
         _isRefreshing = false;
@@ -97,47 +99,5 @@ class OnErrorHelper {
     }
 
     return handler.next(err);
-  }
-
-  //   try {
-  //     final isAuthenticated = false;
-  //     final navigator = LocatorService.navigationService.currentState;
-  //     if (statusCode == null) {
-  //       debugPrint('AppInterceptors.onError: statusCode is null');
-  //       final bool? result = await navigator?.pushNamed(
-  //         InternetConnection.routeName,
-  //       );
-  //       if (result ?? false) {
-  //         debugPrint(
-  //           'AppInterceptors.onError: navigating to internet connection page',
-  //         );
-  //         return handler.resolve(await dio.fetch(options));
-  //       } else {
-  //         debugPrint(
-  //           'AppInterceptors.onError: navigating to internet connection page failed',
-  //         );
-  //       }
-  //       // ignore: dead_code
-  //     } else if (statusCode == StatusCode.unauthorized && isAuthenticated) {
-  //       //navigator?.pushNamedAndRemoveUntil(RouteNames.authPage);
-  //     }
-  //     if (!handler.isCompleted) {
-  //       debugPrint('AppInterceptors.onError: rejecting error');
-  //       return handler.reject(err);
-  //     }
-  //   } catch (e) {
-  //     debugPrint('AppInterceptors.onError: catch block');
-  //     return handler.reject(err);
-  //   }
-  // }
-
-  Future<void> _logoutFromSession({required CacheManager cacheManager}) async {
-    await cacheManager.clearSession();
-    LocatorService.navigationService.currentState?.pushNamedAndRemoveUntil(
-      LoginScreen.routeName,
-      (route) => false,
-    );
-
-    ///delete all cached data in bloc providers later and remove token from firebase..etc
   }
 }

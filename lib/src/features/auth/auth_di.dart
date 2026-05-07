@@ -21,6 +21,6 @@ class AuthDI {
     sl.registerLazySingleton<LoginUseCase>(() => LoginUseCase(sl()));
 
     /// ---------------- Cubit ----------------
-    sl.registerFactory<AuthCubit>(() => AuthCubit(sl()));
+    sl.registerFactory<AuthCubit>(() => AuthCubit(sl(), sl()));
   }
 }

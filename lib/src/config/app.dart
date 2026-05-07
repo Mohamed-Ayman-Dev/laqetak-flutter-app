@@ -7,11 +7,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/config/routes.dart';
 import 'package:invastro/src/config/themes/theme.dart';
 import 'package:navigation_history_observer/navigation_history_observer.dart';
-import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
-import '../core/bloc_helpers/app_bloc_providers.dart';
 import '../core/dependency_injection/locator_service.dart';
+import 'app_bloc_providers.dart';
+import 'app_settings/app_settings_cubit.dart';
+import 'app_settings/app_settings_state.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -36,7 +37,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  final FirebaseAnalytics _analytics = FirebaseAnalytics.instance; // ✅ here
+  final FirebaseAnalytics _analytics = FirebaseAnalytics.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -51,33 +52,40 @@ class _MyAppState extends State<MyApp> {
       child: MultiBlocProvider(
         providers: AppBlocProviders.providers,
 
-        child: Consumer<AppSettings>(
-          builder: (BuildContext context, appSettings, _) {
-            return MaterialApp(
-              navigatorKey: LocatorService.navigationService.navigatorKey,
-              debugShowCheckedModeBanner: false,
-              builder: EasyLoading.init(),
-              localizationsDelegates: [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-              locale: Locale(appSettings.language, ''),
-              title: 'Invastro',
-              color: Colors.white,
-              themeMode: appSettings.themeMode,
-              theme: CustomTheme.lightTheme,
-              navigatorObservers: [
-                FirebaseAnalyticsObserver(analytics: _analytics),
-                NavigationHistoryObserver(),
-              ],
-              initialRoute: Routes.initialRoute,
-              routes: Routes.routes,
-            );
-          },
-        ),
+        child:
+            BlocSelector<
+              AppSettingsCubit,
+              AppSettingsState,
+              ({String language, ThemeMode themeMode})
+            >(
+              selector: (state) =>
+                  (language: state.language, themeMode: state.themeMode),
+              builder: (context, data) {
+                return MaterialApp(
+                  navigatorKey: LocatorService.navigationService.navigatorKey,
+                  debugShowCheckedModeBanner: false,
+                  builder: EasyLoading.init(),
+                  localizationsDelegates: [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+                  locale: Locale(data.language, ''),
+                  title: 'Invastro',
+                  color: Colors.white,
+                  themeMode: data.themeMode,
+                  theme: CustomTheme.lightTheme,
+                  navigatorObservers: [
+                    FirebaseAnalyticsObserver(analytics: _analytics),
+                    NavigationHistoryObserver(),
+                  ],
+                  initialRoute: Routes.initialRoute,
+                  routes: Routes.routes,
+                );
+              },
+            ),
       ),
     );
   }

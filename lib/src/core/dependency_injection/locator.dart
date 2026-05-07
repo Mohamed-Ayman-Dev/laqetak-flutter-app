@@ -3,9 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/auth/auth_di.dart';
+import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
-import '../cache/cash_helper.dart';
-import '../cache/session_manager.dart';
 import '../error/on_error_helper.dart';
 import '../network/api_service.dart';
 import '../network/api_service_impl.dart';
@@ -24,22 +24,23 @@ Future<void> setupServices() async {
 
   /// ---------------- Cache ----------------
   sl.registerLazySingleton<CacheHelper>(() => CacheHelper(sl()));
-  sl.registerLazySingleton<CacheManager>(() => CacheManager(sl()));
-  sl.registerLazySingleton<SessionManager>(() => SessionManager());
-  await sl<CacheManager>().getCachedData();
+  sl.registerLazySingleton<CacheManager>(() => CacheManager(sl(), sl(), sl()));
+  await sl<CacheManager>().loadCachedData();
 
   /// ---------------- Remote Api ----------------
   sl.registerLazySingleton<OnErrorHelper>(() => OnErrorHelper());
   sl.registerLazySingleton<AppInterceptors>(
-    () => AppInterceptors(onErrorHelper: sl(), cacheManager: sl()),
+    () => AppInterceptors(
+      onErrorHelper: sl(),
+      cacheManager: sl(),
+      authCubit: sl(),
+      appSettingsCubit: sl(),
+    ),
   );
   sl.registerLazySingleton<ApiService>(
     () => ApiServiceImpl(dio: sl(), appInterceptors: sl()),
   );
 
   /// ---------------- Features ----------------
-  // AddressDI.init();
-  // AuthDI.init();
-
-
+  AuthDI.init();
 }

@@ -35,11 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     Widget myScreen;
     String myRoute;
-    // final appSettings = Provider.of<AppSettings>(context, listen: false);
-    // await appSettings.getStoredLanguageAndTheme();
-
     // SharedPreferences prefs = await SharedPreferences.getInstance();
-    //
     // bool hasSeenSplash = prefs.getBool('hasSeenSplash') ?? false;
     // if (hasSeenSplash) {
     //   final auth = LocatorService.auth;

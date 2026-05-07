@@ -1,9 +1,7 @@
-
+import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
-import '../cache/cash_helper.dart';
-import '../cache/session_manager.dart';
-import '../navigation_service.dart';
 import '../network/api_service.dart';
+import '../services/navigation_service.dart';
 import 'locator.dart';
 
 final class LocatorService {
@@ -14,7 +12,7 @@ final class LocatorService {
 
   static CacheManager get cacheManager => sl<CacheManager>();
 
-  static SessionManager get sessionManager => sl<SessionManager>();
+  static CacheManager get sessionManager => sl<CacheManager>();
 
   /// ---------------- Api ----------------
   static ApiService get apiService => sl<ApiService>();
@@ -22,8 +20,6 @@ final class LocatorService {
   /// ---------------- Cubits ----------------
   // static AddressCubit get addressCubit => sl<AddressCubit>();
 
- /// ---------------- Services ----------------
-  static NavigationService get navigationService =>
-      sl<NavigationService>();
-
+  /// ---------------- Services ----------------
+  static NavigationService get navigationService => sl<NavigationService>();
 }
