@@ -1,14 +1,20 @@
+import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+
+import '../core/di/locator_service.dart';
+import '../features/auth/presentation/providers/auth.dart';
+import '../features/auth/presentation/providers/auth_naviagtions.dart';
+import 'app_settings/presentation/providers/app_settings.dart';
 
 class AppProviders {
   static List<SingleChildWidget> providers = [
-    // ChangeNotifierProvider<AppSettings>(
-    //   create: (_) => LocatorService.appSettings,
-    // ),
-    // ChangeNotifierProvider<Auth>(create: (_) => LocatorService.auth),
-    // ChangeNotifierProvider<AuthNavigations>(
-    //   create: (_) => LocatorService.authNavigations,
-    // ),
+    ChangeNotifierProvider<AppSettings>(
+      create: (_) => LocatorService.appSettings,
+    ),
+    ChangeNotifierProvider<Auth>(create: (_) => LocatorService.auth),
+    ChangeNotifierProvider<AuthNavigations>(
+      create: (_) => LocatorService.authNavigations,
+    ),
     // ChangeNotifierProvider<Notifications>(
     //   create: (_) => LocatorService.notifications,
     // ),

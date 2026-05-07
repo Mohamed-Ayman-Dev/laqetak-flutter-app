@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      precacheAssets(context);
+      // precacheAssets(context);
     });
   }
 
