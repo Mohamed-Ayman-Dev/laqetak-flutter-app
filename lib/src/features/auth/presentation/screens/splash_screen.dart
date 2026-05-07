@@ -3,10 +3,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
+import 'package:invastro/src/config/app_settings/controllers/settings_controller.dart';
 import 'package:invastro/src/features/auth/presentation/screens/auth_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../../core/dependency_injection/locator_service.dart';
+import '../../../../config/app_settings/presentation/providers/app_settings.dart';
+import '../../../../core/di/locator_service.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/widgets/app_logo.dart';
 
@@ -33,22 +37,33 @@ class _SplashScreenState extends State<SplashScreen> {
         logoOpacity = 1;
       });
     });
+    // final auth = Provider.of<Auth>(context, listen: false);
+    // uncomment this to enable mode switching
+    // await auth.getStoredMode();
     Widget myScreen;
     String myRoute;
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // bool hasSeenSplash = prefs.getBool('hasSeenSplash') ?? false;
+    final appSettings = Provider.of<AppSettings>(context, listen: false);
+    await appSettings.getStoredLanguageAndTheme();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    bool hasSeenSplash = prefs.getBool('hasSeenSplash') ?? false;
+    if (LocatorService.appSettings.mySettings == null) {
+      LocatorService.appSettings.mySettings?.currentStage =
+          prefs.getString('currentStage') ?? '1';
+    }
+
     // if (hasSeenSplash) {
     //   final auth = LocatorService.auth;
-    //   if (auth.isAuth) {
-    //     myScreen = const HomeLayoutScreen();
-    //     myRoute = HomeLayoutScreen.routeName;
-    //   } else if (await AuthController.tryAutoLogin()) {
-    //     myScreen = const HomeLayoutScreen();
-    //     myRoute = HomeLayoutScreen.routeName;
-    //   } else {
-    //     myScreen = const LoginScreen();
-    //     myRoute = LoginScreen.routeName;
-    //   }
+    // if (auth.isAuth) {
+    //   myScreen = const HomeLayoutScreen();
+    //   myRoute = HomeLayoutScreen.routeName;
+    // } else if (await AuthController.tryAutoLogin()) {
+    //   myScreen = const HomeLayoutScreen();
+    //   myRoute = HomeLayoutScreen.routeName;
+    // } else {
+    //   myScreen = const LoginScreen();
+    //   myRoute = LoginScreen.routeName;
+    // }
     // } else {
     myScreen = const AuthScreen();
     myRoute = AuthScreen.routeName;
@@ -73,9 +88,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   AuthController.getGeneralSettings();
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      SettingsController.getGeneralSettings();
+      // BannersController.getPopUps();
+      // BannersController.getSliders();
+    });
     setOptimalDisplayMode();
     _hideScreen();
 

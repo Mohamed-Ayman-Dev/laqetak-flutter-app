@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:invastro/src/config/app.dart';
 import 'package:invastro/src/core/constants/app_feedback.dart';
-import 'package:invastro/src/core/dependency_injection/locator.dart';
+import 'package:invastro/src/core/di/locator.dart';
 
 import 'firebase_options.dart';
 

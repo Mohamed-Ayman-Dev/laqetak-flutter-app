@@ -1,5 +1,3 @@
-import 'package:equatable/equatable.dart';
-
 /// id : 33
 /// name : "gggg"
 /// phone : "0581687277"
@@ -10,8 +8,8 @@ import 'package:equatable/equatable.dart';
 /// default_address : {"id":36,"name":"ujuu","region":{"id":7,"name":"المدينة المنورة"},"city":{"id":39,"name":"خيبر"},"district":"jju","address":"ooo","lat":"24.713797","lng":"46.67548","is_default":1}
 /// token : "33|DA9pDJyOGAIoAPa6JeX49lYKtimuUP87Vbu7b13ea68e5061"
 
-class UserModel extends Equatable {
-  const UserModel({
+class UserModel {
+  UserModel({
     this.id,
     this.name,
     this.username,
@@ -25,41 +23,39 @@ class UserModel extends Equatable {
     this.notificationCount,
   });
 
-  factory UserModel.fromJson(dynamic json) {
-    return UserModel(
-      id: json['id'],
-      name: json['name'],
-      username: json['user_name'] ?? json['username'],
-      phone: json['phone'],
-      email: json['email'],
-      // city : json['city'] != null ? DetailsModel.fromJson(json['city']) : null,
-      photo: json['photo'],
-      // defaultCar : json['default_car'] != null
-      //     ? CarModel.fromJson(json['default_car'])
-      //     : null,
-      // defaultAddress : json['default_address'] != null
-      //     ? AddressModel.fromJson(json['default_address'])
-      //     : null,
-      token: json['token'],
-      notificationCount: json['notification_count'] is String
-          ? num.tryParse(json['notification_count'])
-          : json['notification_count'],
-    );
+  UserModel.fromJson(dynamic json) {
+    id = json['id'];
+    name = json['name'];
+    username = json['user_name'] ?? json['username'];
+    phone = json['phone'];
+    email = json['email'];
+    // city = json['city'] != null ? DetailsModel.fromJson(json['city']) : null;
+    photo = json['photo'];
+    // defaultCar = json['default_car'] != null
+    //     ? CarModel.fromJson(json['default_car'])
+    //     : null;
+    // defaultAddress = json['default_address'] != null
+    //     ? AddressModel.fromJson(json['default_address'])
+    //     : null;
+    token = json['token'];
+    notificationCount = json['notification_count'] is String
+        ? num.tryParse(json['notification_count'])
+        : json['notification_count'];
   }
 
-  final num? id;
-  final String? name;
-  final String? username;
-  final String? phone;
-  final String? email;
+  num? id;
+  String? name;
+  String? username;
+  String? phone;
+  String? email;
 
   // DetailsModel? city;
-  final String? photo;
+  String? photo;
 
   // CarModel? defaultCar;
   // AddressModel? defaultAddress;
-  final String? token;
-  final num? notificationCount;
+  String? token;
+  num? notificationCount;
 
   UserModel copyWith({
     num? id,
@@ -109,20 +105,4 @@ class UserModel extends Equatable {
 
     return map;
   }
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [
-    id,
-    name,
-    username,
-    phone,
-    email,
-    // city,
-    photo,
-    // defaultCar,
-    // defaultAddress,
-    token,
-    notificationCount,
-  ];
 }

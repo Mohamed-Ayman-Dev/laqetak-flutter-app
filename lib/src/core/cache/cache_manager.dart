@@ -1,9 +1,5 @@
-import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 
-import 'package:flutter/foundation.dart';
-import 'package:invastro/src/core/dependency_injection/locator_service.dart';
-
-import '../constants/string_manager.dart';
 import 'cache_helper.dart';
 
 /// CacheManager = persistent storage
@@ -18,19 +14,19 @@ final class CacheManager {
 
   Future<void> loadCachedData() async {
     try {
-      final userJson = await _cacheHelper.getSecureData(
-        key: StringManager.userKey,
-      );
-      final language = await _cacheHelper.getData(key: StringManager.langKey);
-      if (userJson != null) {
-        LocatorService.authCubit.setUser(jsonDecode(userJson), cacheData: true);
-      }
-      if (language != null) {
-        LocatorService.appSettingsCubit.setLanguage(
-          language ?? "ar",
-          cacheLang: false,
-        );
-      }
+      // final userJson = await _cacheHelper.getSecureData(
+      //   key: StringManager.userKey,
+      // );
+      // final language = await _cacheHelper.getData(key: StringManager.langKey);
+      // if (userJson != null) {
+      //   LocatorService.authCubit.setUser(jsonDecode(userJson), cacheData: true);
+      // }
+      // if (language != null) {
+      //   LocatorService.appSettingsCubit.setLanguage(
+      //     language ?? "ar",
+      //     cacheLang: false,
+      //   );
+      // }
     } catch (e) {
       debugPrint('Error loading cached data: $e');
     }

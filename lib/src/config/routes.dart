@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../core/dependency_injection/locator.dart' as di;
-import '../core/error/no_internet_connection_page.dart';
 import '../features/auth/presentation/screens/auth_screen.dart';
 import '../features/auth/presentation/screens/login_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
@@ -44,7 +42,5 @@ class Routes {
     // MapScreen.routeName: (_) => const MapScreen(),
     // RegisterStoreSuccessScreen.routeName: (_) =>
     //     const RegisterStoreSuccessScreen(),
-    InternetConnection.routeName: (_) =>
-        InternetConnection(internetConnectionChecker: di.sl()),
   };
 }

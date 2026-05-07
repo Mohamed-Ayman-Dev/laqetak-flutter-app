@@ -308,7 +308,7 @@ cat > $BASE/${FEATURE}_di.dart << EOF
 // import 'package:${PACKAGE}/features/${FEATURE}/domain/usecases/add_${FEATURE}_use_case.dart';
 // import 'package:${PACKAGE}/features/${FEATURE}/domain/usecases/get_${FEATURE}s_use_case.dart';
 // import 'package:${PACKAGE}/features/${FEATURE}/presentation/cubit/${FEATURE}_cubit.dart';
-// import '../../src/core/dependency_injection/locator.dart';
+// import '../../src/core/di/locator.dart';
 
 // class ${FEATURE_PASCAL}DI {
 //   static void init() {

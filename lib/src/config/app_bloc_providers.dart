@@ -1,16 +1,37 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:invastro/src/config/app_settings/presentation/app_settings_cubit.dart';
-import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:provider/single_child_widget.dart';
 
-import '../core/dependency_injection/locator.dart';
-
-///if register in locator as factory use create
-/// BlocProvider<.AddressCubit>(create: (_) => sl<.AddressCubit>()),
-///if register in locator as lazy use value (so you can use one instance of the cubit across the app and access it from locator service in any place in the app)
-/// BlocProvider<.AddressCubit>.value(value: sl<.AddressCubit>()),
-class AppBlocProviders {
-  static List<BlocProvider> providers = [
-    BlocProvider<AppSettingsCubit>.value(value: sl<AppSettingsCubit>()),
-    BlocProvider<AuthCubit>.value(value: sl<AuthCubit>()),
+class AppProviders {
+  static List<SingleChildWidget> providers = [
+    // ChangeNotifierProvider<AppSettings>(
+    //   create: (_) => LocatorService.appSettings,
+    // ),
+    // ChangeNotifierProvider<Auth>(create: (_) => LocatorService.auth),
+    // ChangeNotifierProvider<AuthNavigations>(
+    //   create: (_) => LocatorService.authNavigations,
+    // ),
+    // ChangeNotifierProvider<Notifications>(
+    //   create: (_) => LocatorService.notifications,
+    // ),
+    // ChangeNotifierProvider<Timers>(create: (_) => LocatorService.timers),
+    // ChangeNotifierProvider<Banners>(create: (_) => LocatorService.banners),
+    // ChangeNotifierProvider<Chat>(create: (_) => LocatorService.chat),
+    // ChangeNotifierProvider<Stores>(create: (_) => LocatorService.stores),
+    // ChangeNotifierProvider<Addresses>(create: (_) => LocatorService.addresses),
+    // ChangeNotifierProvider<Settings>(create: (_) => LocatorService.settingss),
+    // ChangeNotifierProvider<Wallets>(create: (_) => LocatorService.wallets),
+    // ChangeNotifierProvider<Payments>(create: (_) => LocatorService.payments),
+    // ChangeNotifierProvider<StaticPages>(
+    //   create: (_) => LocatorService.staticPages,
+    // ),
+    // ChangeNotifierProvider<Cars>(create: (_) => LocatorService.cars),
+    // ChangeNotifierProvider<QuoteRequests>(
+    //   create: (_) => LocatorService.quoteRequests,
+    // ),
+    // ChangeNotifierProvider<Complaints>(
+    //   create: (_) => LocatorService.complaints,
+    // ),
+    // ChangeNotifierProvider<Others>(create: (_) => LocatorService.others),
+    // ChangeNotifierProvider<Searches>(create: (_) => LocatorService.searches),
+    // ChangeNotifierProvider<Invoices>(create: (_) => LocatorService.invoices),
   ];
 }

@@ -1,0 +1,161 @@
+import 'package:flutter/material.dart';
+import 'package:invastro/src/config/app_settings/controllers/settings_controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../../generated/l10n.dart';
+import '../../../../core/network/api_service.dart';
+import '../../data/models/settings_model.dart';
+
+class AppSettings with ChangeNotifier {
+  String language = 'ar';
+  ThemeMode themeMode = ThemeMode.system;
+  double rating = 0.0;
+  int homeIndex = 0;
+  int ordersTabIndex = 0;
+  SettingsModel? mySettings;
+  bool loadingSettings = false;
+  String urlType = 'production'; //production or preproduction or develop
+  Future<void> setUrlType(String type) async {
+    ApiService.baseOptions.baseUrl = (type == 'develop')
+        ? 'https://ghiar-tech.dev4.wady.sa/api/v1/customer'
+        : 'https://ghyartech.com/api/v1/customer';
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('urlType', type);
+    urlType = type;
+    notifyListeners();
+    SettingsController.getGeneralSettings();
+  }
+
+  void setSettings(SettingsModel settings) {
+    mySettings = settings;
+    notifyListeners();
+  }
+
+  void setLoadingSettings(bool loading) {
+    loadingSettings = loading;
+    notifyListeners();
+  }
+
+  void changeHomeIndex(int index) {
+    if (homeIndex == index) return;
+    homeIndex = index;
+    notifyListeners();
+  }
+
+  void changeOrdersTabIndex(int index) {
+    if (ordersTabIndex == index) return;
+    ordersTabIndex = index;
+    notifyListeners();
+  }
+
+  Future<void> changeLanguage(String newLanguage) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('language', newLanguage);
+    await S.load(Locale(newLanguage));
+    language = newLanguage;
+    ApiService.setLanguage(language);
+    notifyListeners();
+  }
+
+  Future<void> getStoredLanguage() async => await _getStoredLanguage();
+
+  Future<void> getStoredLanguageAndTheme() async =>
+      await _getStoredLanguageAndTheme();
+
+  Future<void> _getStoredLanguage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('language')) {
+      language = prefs.getString('language') ?? 'ar';
+    }
+    notifyListeners();
+  }
+
+  Future<bool> hasStoredLanguage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.containsKey('language');
+  }
+
+  void setRating(double newRating) {
+    rating = newRating;
+    notifyListeners();
+  }
+
+  Future<bool> _getStoredLanguageAndTheme() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    late bool hasLanguage;
+    if (prefs.containsKey('language')) {
+      language = prefs.getString('language') ?? 'ar';
+      ApiService.setLanguage(language);
+      S.load(Locale(language));
+      hasLanguage = true;
+    } else {
+      prefs.setString('language', language);
+      ApiService.setLanguage(language);
+      S.load(Locale(language));
+      hasLanguage = false;
+    }
+    themeMode = ThemeMode.light;
+    if (prefs.containsKey('urlType')) {
+      urlType = prefs.getString('urlType') ?? 'production';
+      ApiService.baseOptions.baseUrl = (urlType == 'develop')
+          ? 'https://ghiar-tech.dev4.wady.sa/api/v1/customer'
+          : 'https://ghyartech.com/api/v1/customer';
+    }
+
+    // if (prefs.containsKey('themeMode')) {
+    //   final int tm = prefs.getInt('themeMode') ?? 0;
+    //   themeMode = tm == 0
+    //       ? ThemeMode.system
+    //       : tm == 1
+    //           ? ThemeMode.dark
+    //           : ThemeMode.light;
+    // }
+    notifyListeners();
+    return hasLanguage;
+  }
+
+  Future<void> changeThemeMode(ThemeMode tm) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt(
+      'themeMode',
+      tm == ThemeMode.system
+          ? 0
+          : tm == ThemeMode.dark
+          ? 1
+          : -1,
+    );
+    themeMode = tm;
+    notifyListeners();
+  }
+
+  Future<void> getStoredThemeMode() async => await _getStoredThemeMode();
+
+  Future<void> _getStoredThemeMode() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('themeMode')) {
+      final int? tm = prefs.getInt('themeMode');
+      if (tm != null) {
+        themeMode = tm == 0
+            ? ThemeMode.system
+            : tm == 1
+            ? ThemeMode.dark
+            : ThemeMode.light;
+      }
+    }
+    notifyListeners();
+  }
+
+  void setTextEditingControllerValue(
+    String value,
+    TextEditingController textEditingController,
+  ) {
+    value = textEditingController.text;
+    notifyListeners();
+  }
+
+  void resetAppSettingsForLogOut() {
+    homeIndex = 0;
+    ordersTabIndex = 0;
+    rating = 0.0;
+  }
+}
