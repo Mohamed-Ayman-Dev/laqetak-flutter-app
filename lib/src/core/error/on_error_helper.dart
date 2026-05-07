@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:invastro/src/config/app_settings/app_settings_cubit.dart';
-import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
 
 import '../dependency_injection/locator_service.dart';
 import '../network/end_points.dart';
@@ -13,12 +11,7 @@ import 'no_internet_connection_page.dart';
 class OnErrorHelper {
   bool _isRefreshing = false;
 
-  void onError(
-    DioException err,
-    ErrorInterceptorHandler handler,
-    AuthCubit authCubit,
-    AppSettingsCubit appSettingsCubit,
-  ) async {
+  void onError(DioException err, ErrorInterceptorHandler handler) async {
     final Dio retryDio = Dio()
       ///Create NEW dio instance without main interceptors to avoid infinite loop (logger interceptors only)
       ..interceptors.add(const PrettyDioLogger())
@@ -30,6 +23,8 @@ class OnErrorHelper {
       ..validateStatus = (s) {
         return true;
       };
+    final authCubit = LocatorService.authCubit;
+    final appSettingsCubit = LocatorService.appSettingsCubit;
     final token = authCubit.token;
 
     if (token != null) {

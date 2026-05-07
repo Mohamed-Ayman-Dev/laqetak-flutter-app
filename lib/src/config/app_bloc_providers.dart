@@ -1,4 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:invastro/src/config/app_settings/presentation/app_settings_cubit.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
+
+import '../core/dependency_injection/locator.dart';
 
 ///if register in locator as factory use create
 /// BlocProvider<.AddressCubit>(create: (_) => sl<.AddressCubit>()),
@@ -6,8 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// BlocProvider<.AddressCubit>.value(value: sl<.AddressCubit>()),
 class AppBlocProviders {
   static List<BlocProvider> providers = [
-    // BlocProvider<AddressCubit>.value(value: sl<AddressCubit>()),
-    // BlocProvider<AddressFormCubit>.value(value: sl<AddressFormCubit>()),
-    // BlocProvider<AuthBloc>.value(value: sl<AuthBloc>()),
+    BlocProvider<AppSettingsCubit>.value(value: sl<AppSettingsCubit>()),
+    BlocProvider<AuthCubit>.value(value: sl<AuthCubit>()),
   ];
 }

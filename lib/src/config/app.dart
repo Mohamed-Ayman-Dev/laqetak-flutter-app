@@ -11,8 +11,8 @@ import 'package:navigation_history_observer/navigation_history_observer.dart';
 import '../../generated/l10n.dart';
 import '../core/dependency_injection/locator_service.dart';
 import 'app_bloc_providers.dart';
-import 'app_settings/app_settings_cubit.dart';
-import 'app_settings/app_settings_state.dart';
+import 'app_settings/presentation/app_settings_cubit.dart';
+import 'app_settings/presentation/app_settings_state.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
   // separate file: core/utils/asset_precache.dart
   Future<void> precacheAssets(BuildContext context) async {
     await Future.wait([
-      precacheImage(const AssetImage('assets/images/logo.png'), context),
+      // precacheImage(const AssetImage('assets/images/logo.png'), context),
     ]);
   }
 

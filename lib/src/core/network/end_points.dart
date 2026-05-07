@@ -13,6 +13,7 @@ final class EndPoints {
   static const String logout = "/logout";
 
   /// Addresses
+  static const String getSettings = "/settings";
   static const String getAddresses = "/addresses/list";
   static const String addAddresses = "/addresses/add";
   static const String editAddresses = "/addresses/update";

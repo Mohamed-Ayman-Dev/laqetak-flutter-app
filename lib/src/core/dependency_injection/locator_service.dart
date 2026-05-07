@@ -1,3 +1,6 @@
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
+
+import '../../config/app_settings/presentation/app_settings_cubit.dart';
 import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
 import '../network/api_service.dart';
@@ -18,7 +21,9 @@ final class LocatorService {
   static ApiService get apiService => sl<ApiService>();
 
   /// ---------------- Cubits ----------------
-  // static AddressCubit get addressCubit => sl<AddressCubit>();
+  static AuthCubit get authCubit => sl<AuthCubit>();
+
+  static AppSettingsCubit get appSettingsCubit => sl<AppSettingsCubit>();
 
   /// ---------------- Services ----------------
   static NavigationService get navigationService => sl<NavigationService>();

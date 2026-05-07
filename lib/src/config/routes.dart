@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import '../features/auth/presentation/screens/splash_screen.dart';
+
 import '../core/dependency_injection/locator.dart' as di;
 import '../core/error/no_internet_connection_page.dart';
+import '../features/auth/presentation/screens/auth_screen.dart';
+import '../features/auth/presentation/screens/login_screen.dart';
+import '../features/auth/presentation/screens/splash_screen.dart';
 
 class Routes {
   static const initialRoute = SplashScreen.routeName;
 
   static final Map<String, WidgetBuilder> routes = {
     SplashScreen.routeName: (_) => const SplashScreen(),
-    // LoginScreen.routeName: (_) => const LoginScreen(),
+    LoginScreen.routeName: (_) => const LoginScreen(),
+    AuthScreen.routeName: (_) => const AuthScreen(),
     // HomeLayoutScreen.routeName: (_) => const HomeLayoutScreen(),
-    // WelcomeScreen.routeName: (_) => const WelcomeScreen(),
     // OnboardingScreen.routeName: (_) => const OnboardingScreen(),
     // ForgetPasswordScreen.routeName: (_) => const ForgetPasswordScreen(),
     // OtpScreen.routeName: (_) => const OtpScreen(),

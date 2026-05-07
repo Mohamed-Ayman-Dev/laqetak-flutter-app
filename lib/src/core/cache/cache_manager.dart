@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:invastro/src/config/app_settings/app_settings_cubit.dart';
-import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:invastro/src/core/dependency_injection/locator_service.dart';
 
 import '../constants/string_manager.dart';
 import 'cache_helper.dart';
@@ -14,20 +13,23 @@ import 'cache_helper.dart';
 
 final class CacheManager {
   final CacheHelper _cacheHelper;
-  final AppSettingsCubit _appSettingsCubit;
-  final AuthCubit _authCubit;
 
-  CacheManager(this._cacheHelper, this._appSettingsCubit, this._authCubit);
+  CacheManager(this._cacheHelper);
 
   Future<void> loadCachedData() async {
     try {
-      final userJson = await _cacheHelper.getData(key: StringManager.userKey);
+      final userJson = await _cacheHelper.getSecureData(
+        key: StringManager.userKey,
+      );
       final language = await _cacheHelper.getData(key: StringManager.langKey);
       if (userJson != null) {
-        _authCubit.setUser(jsonDecode(userJson), cacheData: true);
+        LocatorService.authCubit.setUser(jsonDecode(userJson), cacheData: true);
       }
       if (language != null) {
-        _appSettingsCubit.setLanguage(language ?? "ar", cacheLang: false);
+        LocatorService.appSettingsCubit.setLanguage(
+          language ?? "ar",
+          cacheLang: false,
+        );
       }
     } catch (e) {
       debugPrint('Error loading cached data: $e');

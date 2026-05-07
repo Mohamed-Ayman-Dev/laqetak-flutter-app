@@ -5,5 +5,4 @@ final class ImagesAssets {
   // /// Assets for assetsImagesAuthImage
   // /// assets/images/auth_image.png
   // static const String assetsImagesAuthImage = "assets/images/auth_image.png";
-  //
 }

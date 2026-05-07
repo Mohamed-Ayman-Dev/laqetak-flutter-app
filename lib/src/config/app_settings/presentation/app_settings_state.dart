@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:invastro/src/config/app_settings/settings_model.dart';
+import 'package:invastro/src/config/app_settings/data/models/settings_model.dart';
 
-import '../../core/constants/enums.dart';
+import '../../../core/constants/enums.dart';
 
 class AppSettingsState extends Equatable {
   final String language;
@@ -20,7 +20,7 @@ class AppSettingsState extends Equatable {
     this.homeIndex = 0,
     this.mySettings,
     this.settingsRequestState = RequestState.initial,
-    this.urlType = 'production', //production or preproduction or develop,
+    this.urlType = 'production',
   });
 
   AppSettingsState copyWith({
