@@ -6,8 +6,7 @@ import 'package:invastro/src/core/themes/theme.dart';
 /// All the text styles used in the application are defined here
 
 abstract class AppTextStyles {
-  ///------------------------------------
-  static TextStyle langLabelSmall = TextStyle(
+  static TextStyle langLabel = TextStyle(
     fontSize: 14.sp,
     color: Colors.black,
     fontWeight: FontWeight.w500,
@@ -15,10 +14,13 @@ abstract class AppTextStyles {
   );
   static TextStyle labelSmall = TextStyle(
     fontSize: 14.sp,
-    color: AppColors.bodySmallGreyTextColor,
+    color: AppColors.labelTextColor,
     fontWeight: FontWeight.w400,
     fontFamily: Constant.fontFamily,
   );
+
+  ///------------------------------------
+
   static TextStyle labelMedium = TextStyle(
     fontSize: 16.sp,
     color: AppColors.labelTextColor,

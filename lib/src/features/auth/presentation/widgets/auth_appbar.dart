@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/themes/colors.dart';
+import 'package:invastro/src/core/widgets/buttons_widgets/custom_text_button.dart';
 
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/widgets/buttons_widgets/svg_button.dart';
@@ -16,11 +18,20 @@ class AuthAppbar extends StatelessWidget {
       top: true,
       bottom: false,
       child: Padding(
-        padding: const EdgeInsets.only(left: 14, right: 14, top: 16).r,
+        padding: const EdgeInsets.only(
+          left: 14,
+          right: 14,
+          top: 16,
+          bottom: 24,
+        ).r,
         child: Row(
           children: [
+            CustomTextButton(
+              text: 'تخطي',
+              onPressed: () {},
+              textColor: AppColors.primaryColor,
+            ),
             Spacer(),
-
             SvgButton(
               icon: SvgAssets.assetsSvgArrowLeft,
               onTap: () {

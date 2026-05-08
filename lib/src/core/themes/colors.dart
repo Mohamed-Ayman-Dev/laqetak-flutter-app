@@ -22,9 +22,9 @@ abstract class AppColors {
   static const Color navBarBackgroundColor = Color(0xFF323539);
 
   // text colors
+  static const Color labelTextColor = Colors.black;
   static const Color buttonTextColor = Color(0xFF1D1D1D);
   static const Color bodyTextColor = Color(0xFF181818);
-  static const Color labelTextColor = Color(0XFF181818);
   static const Color hintColor = Color(0XFFABABAB);
   static const Color bodySmallGreyTextColor = Color(0XFFABABAB);
   static const Color tileTextColor = Color(0xFF333333);
