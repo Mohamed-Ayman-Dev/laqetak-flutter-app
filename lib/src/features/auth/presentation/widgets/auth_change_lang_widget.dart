@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/widgets/custom_g_radio_button.dart';
+import 'package:invastro/src/features/auth/presentation/screens/login_screen.dart';
 
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
@@ -61,7 +63,17 @@ class _AuthChangeLangWidgetState extends State<AuthChangeLangWidget> {
             onChanged: _handleRadioValueChange,
           ),
           25.heightSpace,
-          CustomElevatedButton(text: 'تأكيد', onPressed: () {}),
+          Hero(
+            tag: 'auth-button',
+            child: CustomElevatedButton(
+              text: 'تأكيد',
+              onPressed: () {
+                LocatorService.navigationService.currentState?.pushNamed(
+                  LoginScreen.routeName,
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

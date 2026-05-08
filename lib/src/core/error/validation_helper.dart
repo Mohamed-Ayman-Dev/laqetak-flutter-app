@@ -2,10 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../generated/l10n.dart';
 
-
-final class Validation {
-  Validation._();
-
+class ValidationHelper {
   static String? validateEmpty(dynamic value, {required String emptyMessage}) {
     if (value == null || value.isEmpty) {
       return emptyMessage;

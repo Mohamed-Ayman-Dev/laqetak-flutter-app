@@ -36,7 +36,7 @@ class CustomGRadioButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            CustomText(label, style: AppTextStyles.bodyLarge),
+            CustomText(label, style: AppTextStyles.langLabelSmall),
             const Spacer(),
             CustomRadioButton(
               value: value,
