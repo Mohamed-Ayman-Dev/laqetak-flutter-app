@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 
+import '../constants/constant.dart';
 import 'colors.dart';
 
 export 'colors.dart';
@@ -21,7 +22,6 @@ export 'gradients.dart';
 
 abstract class CustomTheme {
   // Contains the information about the light theme
-  static const String appFontFamily = 'IBMPlexSansArabic';
 
   static InputDecoration outlinedBorderInputDecoration = InputDecoration(
     // contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
@@ -52,7 +52,7 @@ abstract class CustomTheme {
   );
   static ThemeData lightTheme = ThemeData(
     // visualDensity: VisualDensity.adaptivePlatformDensity,
-    fontFamily: appFontFamily,
+    fontFamily: Constant.fontFamily,
     highlightColor: AppColors.primaryColor.withOpacity(0.2),
     primaryColor: AppColors.primaryColor,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -81,7 +81,7 @@ abstract class CustomTheme {
         fontSize: 20,
         color: AppColors.tileTextColor,
         fontWeight: FontWeight.bold,
-        fontFamily: appFontFamily,
+        fontFamily: Constant.fontFamily,
       ),
     ),
     listTileTheme: const ListTileThemeData(textColor: AppColors.tileTextColor),
@@ -140,32 +140,32 @@ abstract class CustomTheme {
       style: ElevatedButton.styleFrom(
         textStyle: TextStyle(
           color: AppColors.buttonTextColor,
-          fontSize: 16.sp,
-          fontFamily: appFontFamily,
-          fontWeight: FontWeight.w500,
+          fontSize: 14.sp,
+          fontFamily: Constant.fontFamily,
+          fontWeight: FontWeight.w400,
         ),
         backgroundColor: AppColors.primaryColor,
         elevation: 0,
         maximumSize: Size(double.infinity, 48.h),
         minimumSize: Size(double.infinity, 48.h),
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
+          borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         textStyle: TextStyle(
-          fontSize: 16.sp,
-          fontFamily: appFontFamily,
-          fontWeight: FontWeight.w500,
+          fontSize: 14.sp,
+          fontFamily: Constant.fontFamily,
+          fontWeight: FontWeight.w400,
           color: AppColors.primaryColor,
         ),
         elevation: 0,
         maximumSize: Size(double.infinity, 48.h),
         minimumSize: Size(double.infinity, 48.h),
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
+          borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
         side: BorderSide(color: AppColors.primaryColor),
       ),

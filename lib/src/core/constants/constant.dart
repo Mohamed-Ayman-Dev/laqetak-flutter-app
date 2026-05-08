@@ -3,8 +3,9 @@ import 'package:flutter/animation.dart';
 final class Constant {
   const Constant._();
 
-  static const String fontFamily = 'Cairo';
-  static const String appName = 'Ghiar Tik';
+  static const String fontFamily = 'IBMPlexSansArabic';
+  static const String appName = 'Invastro';
+
   static const pageTransitionDuration = Duration(milliseconds: 400);
   static const Curve pageTransitionCurve = Curves.easeInOut;
   static const loadingDuration = Duration(milliseconds: 700);

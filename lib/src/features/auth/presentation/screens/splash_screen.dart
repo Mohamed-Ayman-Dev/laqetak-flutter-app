@@ -7,11 +7,10 @@ import 'package:invastro/src/features/auth/presentation/screens/auth_screen.dart
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../generated/l10n.dart';
 import '../../../../config/app_settings/presentation/controllers/settings_controller.dart';
 import '../../../../config/app_settings/presentation/providers/app_settings.dart';
+import '../../../../core/constants/images_assets.dart';
 import '../../../../core/di/locator_service.dart';
-import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -101,24 +100,25 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isTablet = MediaQuery.of(context).size.width > 600;
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: Stack(
         children: [
-          if (isTablet) 200.heightSpace,
-          Row(
+          Image.asset(
+            ImagesAssets.assetsImagesSplashImage,
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+          ),
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
-
-            children: [const AppLogo()],
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [const AppLogo()],
+              ),
+            ],
           ),
-          if (isTablet) 160.heightSpace else 320.heightSpace,
-          Text(
-            '${S.of(context).version} 1.0.0',
-            style: TextStyle(color: Colors.black),
-          ),
-          30.heightSpace,
         ],
       ),
     );

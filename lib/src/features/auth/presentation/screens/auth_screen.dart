@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:invastro/src/core/constants/images_assets.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/widgets/app_logo.dart';
+import '../widgets/auth_change_lang_widget.dart';
 
 class AuthScreen extends StatefulWidget {
   static const routeName = '/auth_screen';
@@ -22,7 +24,7 @@ class _AuthScreenState extends State<AuthScreen> {
       body: Stack(
         children: [
           Image.asset(
-            'assets/images/background.png',
+            ImagesAssets.assetsImagesSplashImage,
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
@@ -45,8 +47,8 @@ class _AuthScreenState extends State<AuthScreen> {
                 },
                 child: const AppLogo(),
               ),
-              128.heightSpace,
-              // const AuthChangeLangWidget(),
+              202.heightSpace,
+              const AuthChangeLangWidget(),
             ],
           ),
         ],

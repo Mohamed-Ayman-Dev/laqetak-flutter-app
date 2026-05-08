@@ -1,129 +1,82 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/themes/colors.dart';
 import '../../../core/themes/text_styles.dart';
+import '../../themes/gradients.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  final void Function()? onPressed;
-  final Widget? child;
-  final String? text;
-  final String? icon;
-  final Color? shadowColor;
-  final Color? backgroundColor;
-  final Color? iconColor;
-  final bool isLoading;
-  final double? borderRadius;
-  final double? borderWidth;
-  final Size? size;
-  final double? elevation;
-  final EdgeInsetsGeometry? paddingInside;
-  final Color? borderColor;
-  final TextStyle? textStyle;
-  final ButtonStyle? style;
-  final OutlinedBorder? shape;
-
   const CustomElevatedButton({
     super.key,
-    this.onPressed,
-    this.child,
+    required this.onPressed,
     this.text,
-    this.shadowColor,
-    this.backgroundColor,
-    this.borderRadius,
-    this.paddingInside,
+    this.child,
     this.isLoading = false,
-    this.borderColor,
+    this.gradient,
+    this.backgroundColor,
     this.textStyle,
-    this.style,
-    this.shape,
-    this.borderWidth,
+    this.borderRadius = 8,
     this.size,
-    this.elevation,
-    this.icon,
-    this.iconColor = Colors.white,
+    this.borderColor,
   });
+
+  final VoidCallback? onPressed;
+  final String? text;
+  final Widget? child;
+  final bool isLoading;
+  final Gradient? gradient; // ← new
+  final Color? backgroundColor;
+  final TextStyle? textStyle;
+  final double borderRadius;
+  final Size? size;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
+    final isDisabled = onPressed == null;
+
     return ElevatedButton(
-      style:
-          style ??
-          ButtonStyle(
-            elevation: WidgetStatePropertyAll(elevation),
-
-            shadowColor: shadowColor == null
-                ? null
-                : WidgetStatePropertyAll(shadowColor),
-            minimumSize: size == null ? null : WidgetStatePropertyAll(size),
-            maximumSize: size == null ? null : WidgetStatePropertyAll(size),
-            backgroundColor: onPressed == null
-                ? WidgetStatePropertyAll(AppColors.disabledGreenColorBk)
-                : backgroundColor == null
-                ? null
-                : WidgetStatePropertyAll(backgroundColor),
-            padding: paddingInside == null
-                ? const WidgetStatePropertyAll(EdgeInsets.zero)
-                : WidgetStatePropertyAll(paddingInside),
-            shape: shape == null
-                ? borderRadius == null
-                      ? null
-                      : MaterialStatePropertyAll(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(borderRadius!),
-                          ),
-                        )
-                : WidgetStatePropertyAll(shape),
-            side: borderColor == null
-                ? null
-                : MaterialStatePropertyAll(
-                    borderWidth == null
-                        ? BorderSide(color: borderColor!)
-                        : BorderSide(color: borderColor!, width: borderWidth!),
-                  ),
-          ),
       onPressed: onPressed,
-      child: isLoading
-          ? CupertinoActivityIndicator()
-          : child ??
-                (icon != null
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            icon!,
-                            width: 18.sp,
-                            height: 18.sp,
-                            color: iconColor,
+      style: ElevatedButton.styleFrom(
+        elevation: 0,
+        padding: EdgeInsets.zero,
+        // let Ink handle padding
+        minimumSize: size,
+        maximumSize: size,
+        backgroundColor: backgroundColor ?? Colors.transparent,
+        disabledBackgroundColor: AppColors.disabledGreenColorBk,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius).r,
+          side: borderColor != null
+              ? BorderSide(color: borderColor!)
+              : BorderSide.none,
+        ),
+      ),
+      child: Ink(
+        decoration: isDisabled
+            ? null
+            : BoxDecoration(
+                gradient: AppGradients.buttonGradient,
+                borderRadius: BorderRadius.circular(borderRadius).r,
+              ),
+        child: Container(
+          width: size?.width ?? double.infinity,
+          height: size?.height ?? 48.h,
+          alignment: Alignment.center,
+          child: isLoading
+              ? const CupertinoActivityIndicator()
+              : child ??
+                    Text(
+                      text ?? '',
+                      style:
+                          textStyle ??
+                          AppTextStyles.buttonsTextStyle.copyWith(
+                            color: isDisabled ? AppColors.hintColor : null,
                           ),
-
-                          Spacer(),
-                          Text(
-                            text ?? '',
-                            style:
-                                textStyle ??
-                                AppTextStyles.buttonsTextStyle.copyWith(
-                                  color: onPressed == null
-                                      ? AppColors.hintColor
-                                      : null,
-                                ),
-                          ),
-                          Spacer(),
-                        ],
-                      )
-                    : Text(
-                        text ?? '',
-                        style:
-                            textStyle ??
-                            AppTextStyles.buttonsTextStyle.copyWith(
-                              color: onPressed == null
-                                  ? AppColors.hintColor
-                                  : null,
-                            ),
-                      )),
+                    ),
+        ),
+      ),
     );
   }
 }

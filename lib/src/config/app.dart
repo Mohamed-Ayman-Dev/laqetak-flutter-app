@@ -8,6 +8,7 @@ import 'package:navigation_history_observer/navigation_history_observer.dart';
 import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
+import '../core/constants/images_assets.dart';
 import '../core/di/locator_service.dart';
 import '../core/themes/theme.dart';
 import 'app_providers.dart';
@@ -24,7 +25,11 @@ class _MyAppState extends State<MyApp> {
   // separate file: core/utils/asset_precache.dart
   Future<void> precacheAssets(BuildContext context) async {
     await Future.wait([
-      // precacheImage(const AssetImage('assets/images/logo.png'), context),
+      precacheImage(
+        const AssetImage(ImagesAssets.assetsImagesSplashImage),
+        context,
+      ),
+      precacheImage(const AssetImage(ImagesAssets.assetsImagesLogo), context),
     ]);
   }
 
@@ -32,7 +37,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // precacheAssets(context);
+      precacheAssets(context);
     });
   }
 
@@ -42,7 +47,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       minTextAdapt: true,
-      designSize: Size(393, 852),
+      designSize: Size(375, 812),
       splitScreenMode: true,
       fontSizeResolver: (fontSize, instance) {
         final scale = instance.scaleWidth.clamp(0.85, 1.15);

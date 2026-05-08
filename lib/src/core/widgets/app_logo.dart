@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/constants/images_assets.dart';
 
 class AppLogo extends StatelessWidget {
   final double? height;
@@ -11,15 +12,13 @@ class AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isTablet = MediaQuery.of(context).size.width > 600;
-
     return Hero(
       tag: tag ?? 'logo',
       child: Image.asset(
-        'assets/images/logo.png',
+        ImagesAssets.assetsImagesLogo,
         fit: fit ?? BoxFit.cover,
-        width: width ?? (isTablet ? 120.w : 163.w),
-        height: height ?? (isTablet ? 200.h : 171.h),
+        width: width ?? 289.w,
+        height: height ?? 52.h,
       ),
     );
   }

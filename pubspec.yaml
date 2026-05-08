@@ -57,8 +57,43 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_native_splash: ^2.4.7
 
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/1024_1024.png
+  android_12:
+    image: assets/1024_1024.png
+    icon_background_color: "#FFFFFF"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/2splash.png"
+  color: "#FFFFFF"
+  remove_alpha_ios: true
+
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/svg/
+    - assets/fonts/
+  fonts:
+    - family: IBMPlexSansArabic
+      fonts:
+        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Light.ttf
+          weight: 300
+        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Bold.ttf
+          weight: 700
 flutter_intl:
   enabled: true
