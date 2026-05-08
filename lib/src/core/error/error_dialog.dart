@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../config/themes/colors.dart';
-import '../../config/themes/text_styles.dart';
+import '../themes/colors.dart';
+import '../themes/text_styles.dart';
 
 class MyAlertDialog extends StatelessWidget {
   final String message;

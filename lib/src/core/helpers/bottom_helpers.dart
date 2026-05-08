@@ -1,6 +1,4 @@
-
-
-class BottomUtils {
+class BottomHelpers {
   // static showFilterBottomSheet(BuildContext context) {
   //   return showModalBottomSheet(
   //     context: context,

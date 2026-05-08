@@ -13,7 +13,7 @@ class AuthService {
 
   Future sendBeSellerRequest(
     final data, {
-    rethrowError = false,
+    bool rethrowError = false,
     Function(int, int)? onSendProgress,
   }) async {
     return await ApiService.post(

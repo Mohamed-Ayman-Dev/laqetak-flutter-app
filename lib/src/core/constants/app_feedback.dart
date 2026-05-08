@@ -3,7 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../../generated/l10n.dart';
-import '../../config/themes/colors.dart';
+import '../themes/colors.dart';
 
 final class AppFeedback {
   AppFeedback._();

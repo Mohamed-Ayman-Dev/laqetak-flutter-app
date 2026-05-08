@@ -12,7 +12,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../config/app_settings/presentation/providers/app_settings.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/widgets/app_logo.dart';
+import '../../../../shared/widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash';

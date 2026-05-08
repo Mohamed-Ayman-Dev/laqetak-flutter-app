@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../config/themes/colors.dart';
+import '../themes/colors.dart';
 
 extension ShowMessenger on BuildContext {
   dynamic clearMaterialBanners() =>

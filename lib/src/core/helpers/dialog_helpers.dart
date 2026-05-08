@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../di/locator_service.dart';
 
-class AlertUtils {
+class DialogHelpers {
   static BuildContext currentContext =
       LocatorService.navigationService.currentState!.context;
   //

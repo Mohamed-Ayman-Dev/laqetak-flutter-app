@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../config/themes/colors.dart';
-import '../../../config/themes/text_styles.dart';
+import '../../../core/themes/colors.dart';
+import '../../../core/themes/text_styles.dart';
 
 class CustomOutlineButton extends StatelessWidget {
   final void Function()? onPressed;

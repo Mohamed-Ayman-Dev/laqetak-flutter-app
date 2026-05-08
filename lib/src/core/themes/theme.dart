@@ -12,7 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/config/themes/text_styles.dart';
+import 'package:invastro/src/core/themes/text_styles.dart';
 
 import 'colors.dart';
 

@@ -4,13 +4,13 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/config/routes.dart';
-import 'package:invastro/src/config/themes/theme.dart';
 import 'package:navigation_history_observer/navigation_history_observer.dart';
 import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
 import '../core/di/locator_service.dart';
-import 'app_bloc_providers.dart';
+import '../core/themes/theme.dart';
+import 'app_providers.dart';
 import 'app_settings/presentation/providers/app_settings.dart';
 
 class MyApp extends StatefulWidget {
