@@ -4,12 +4,13 @@ FEATURE_PASCAL=$(python3 -c "print(''.join(w.capitalize() for w in '${FEATURE}'.
 BASE="lib/src/features/$FEATURE"
 PACKAGE="invastro"
 
-mkdir -p $BASE/controllers
 mkdir -p $BASE/data/models
 mkdir -p $BASE/data/services
+mkdir -p $BASE/presentation/controllers
 mkdir -p $BASE/presentation/providers
 mkdir -p $BASE/presentation/screens
 mkdir -p $BASE/presentation/widgets
+
 
 
 # ─── Service ─────────────────────────────────────────────
@@ -22,8 +23,8 @@ class ${FEATURE_PASCAL}Service {
 EOF
 
 # ─── Controller ──────────────────────────────────────────
-cat > $BASE/controllers/${FEATURE}_controller.dart << EOF
-import '../data/services/${FEATURE}_service.dart';
+cat > $BASE/presentation/controllers/${FEATURE}_controller.dart << EOF
+import '../../data/services/${FEATURE}_service.dart';
 
 class ${FEATURE_PASCAL}Controller {
  
