@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../shared/widgets/app_logo.dart';
+import '../../../../core/widgets/app_logo.dart';
 
 class AuthScreen extends StatefulWidget {
   static const routeName = '/auth_screen';

@@ -51,7 +51,7 @@ class AuthService {
   }
 
   Future getProfile({
-    rethrowError = false,
+    bool rethrowError = false,
     bool hasMultipartData = false,
   }) async {
     return await ApiService.get('/profile/info', rethrowError: rethrowError);

@@ -1,21 +1,4 @@
-import 'dart:convert';
 
-import 'package:dio/dio.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:invastro/src/core/error/error_helper.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../generated/l10n.dart';
-import '../../../core/di/locator_service.dart';
-import '../../../core/network/api_service.dart';
-import '../presentation/providers/auth.dart';
-import '../presentation/screens/login_screen.dart';
-import '../presentation/screens/otp_screen.dart';
 
 abstract class AuthController {
   /// Login with phone and password

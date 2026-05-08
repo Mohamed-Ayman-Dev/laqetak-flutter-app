@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:invastro/src/config/app_settings/controllers/settings_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/network/api_service.dart';
 import '../../data/models/settings_model.dart';
+import '../controllers/settings_controller.dart';
 
 class AppSettings with ChangeNotifier {
   String language = 'ar';
