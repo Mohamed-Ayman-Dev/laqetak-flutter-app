@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       },
                       focusNode: _phoneFocusNode,
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.next,
                       controller: _phoneController,
                       hintText: "رقم الجوال",
@@ -109,7 +109,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     CustomTextField(
                       hintText: 'أدخل كلمة المرور',
-                      prefixIconImage: 'assets/images/pass_lock.svg',
                       textInputAction: TextInputAction.done,
                       onSaved: (val) {
                         data['password'] = val;

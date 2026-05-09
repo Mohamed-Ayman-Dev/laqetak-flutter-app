@@ -14,4 +14,7 @@ class SvgAssets {
   /// assets/svg/arrow-right.svg
   static const String assetsSvgArrowRight = "assets/svg/arrow-right.svg";
 
+  /// assets/svg/check_dropdown_icon.svg
+  static const String assetsSvgCheckDropdownIcon = "assets/svg/check_dropdown_icon.svg";
+
 }

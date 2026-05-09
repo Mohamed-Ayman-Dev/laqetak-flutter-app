@@ -1,5 +1,12 @@
+import 'package:invastro/src/core/shared/models/details_model.dart';
+
 final class MockDataForLoading {
   MockDataForLoading._();
+
+  static List<DetailsModel> mockCites = [
+    DetailsModel(id: 1, name: 'الرياض'),
+    DetailsModel(id: 2, name: 'جدة'),
+  ];
   // static const ServiceModel _mockServiceModel = ServiceModel(
   //   id: 1,
   //   isFavorite: false,

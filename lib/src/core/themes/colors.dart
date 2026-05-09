@@ -25,11 +25,11 @@ abstract class AppColors {
   static const Color labelTextColor = Colors.black;
   static const Color labelGreyTextColor = Color(0xFF8E8E93);
   static const Color headlineGreyTextColor = Color(0xFF8E8E93);
-  static const Color inputTextColor = Color(0xFF8E8E93);
+  static const Color inputTextColor = Colors.black;
   static const Color buttonTextColor = Color(0xFF1D1D1D);
+  static const Color hintColor = Color(0xFF8E8E93);
 
   static const Color bodyTextColor = Color(0xFF181818);
-  static const Color hintColor = Color(0XFFABABAB);
   static const Color bodySmallGreyTextColor = Color(0XFFABABAB);
   static const Color tileTextColor = Color(0xFF333333);
 
@@ -39,4 +39,8 @@ abstract class AppColors {
 
   // border colors
   static const Color fieldBorderColor = Color(0xFF8E8E93);
+  static const Color borderColor = Color(0xFF8E8E93);
+
+  // other colors
+  static const Color cursorColor = Color(0xFF8B8B8B);
 }

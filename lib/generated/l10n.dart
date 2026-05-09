@@ -229,11 +229,6 @@ class S {
     );
   }
 
-  /// `Version`
-  String get version {
-    return Intl.message('Version', name: 'version', desc: '', args: []);
-  }
-
   /// `Password should contain only English letters and numbers`
   String get passwordShouldContainOnlyEnglishLettersAndNumbers {
     return Intl.message(
@@ -247,6 +242,161 @@ class S {
   /// `Next`
   String get next {
     return Intl.message('Next', name: 'next', desc: '', args: []);
+  }
+
+  /// `Forgot your password?`
+  String get forgotYourPassword {
+    return Intl.message(
+      'Forgot your password?',
+      name: 'forgotYourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your phone number, username, or email to reset your password. A verification code will be sent via SMS.`
+  String get enterYourPhoneNumberUsernameOrEmailToResetYour {
+    return Intl.message(
+      'Enter your phone number, username, or email to reset your password. A verification code will be sent via SMS.',
+      name: 'enterYourPhoneNumberUsernameOrEmailToResetYour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email or mobile number or username`
+  String get emailOrMobileNumberOrUsername {
+    return Intl.message(
+      'Email or mobile number or username',
+      name: 'emailOrMobileNumberOrUsername',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your login details`
+  String get enterYourLoginDetails {
+    return Intl.message(
+      'Enter your login details',
+      name: 'enterYourLoginDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Code`
+  String get sendCode {
+    return Intl.message('Send Code', name: 'sendCode', desc: '', args: []);
+  }
+
+  /// `Don’t have an account?`
+  String get dontHaveAnAccount {
+    return Intl.message(
+      'Don’t have an account?',
+      name: 'dontHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify your identity`
+  String get verifyYourIdentity {
+    return Intl.message(
+      'Verify your identity',
+      name: 'verifyYourIdentity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify your phone number`
+  String get verifyYourPhoneNumber {
+    return Intl.message(
+      'Verify your phone number',
+      name: 'verifyYourPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue to sign in`
+  String get continueToSignIn {
+    return Intl.message(
+      'Continue to sign in',
+      name: 'continueToSignIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the verification code we sent to`
+  String get enterTheVerificationCodeWeSentTo {
+    return Intl.message(
+      'Enter the verification code we sent to',
+      name: 'enterTheVerificationCodeWeSentTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to continue resetting your password`
+  String get toContinueResettingYourPassword {
+    return Intl.message(
+      'to continue resetting your password',
+      name: 'toContinueResettingYourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to complete your account creation`
+  String get toCompleteYourAccountCreation {
+    return Intl.message(
+      'to complete your account creation',
+      name: 'toCompleteYourAccountCreation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to sign in`
+  String get toSignIn {
+    return Intl.message('to sign in', name: 'toSignIn', desc: '', args: []);
+  }
+
+  /// `Reset Password`
+  String get resetPassword {
+    return Intl.message(
+      'Reset Password',
+      name: 'resetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set a new password for your account. Choose a strong and memorable password.`
+  String get setANewPasswordForYourAccountChooseAStrong {
+    return Intl.message(
+      'Set a new password for your account. Choose a strong and memorable password.',
+      name: 'setANewPasswordForYourAccountChooseAStrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Password`
+  String get savePassword {
+    return Intl.message(
+      'Save Password',
+      name: 'savePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Version`
+  String get version {
+    return Intl.message('Version', name: 'version', desc: '', args: []);
   }
 
   /// `There are no more notifications`
@@ -394,6 +544,26 @@ class S {
     return Intl.message('Save', name: 'save', desc: '', args: []);
   }
 
+  /// `Didn’t receive the code`
+  String get didntReceiveTheCode {
+    return Intl.message(
+      'Didn’t receive the code',
+      name: 'didntReceiveTheCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
+  }
+
+  /// `Verify`
+  String get verify {
+    return Intl.message('Verify', name: 'verify', desc: '', args: []);
+  }
+
   /// `Please enter your username`
   String get pleaseEnterYourUsername {
     return Intl.message(
@@ -424,6 +594,11 @@ class S {
     );
   }
 
+  /// `Resend`
+  String get resend {
+    return Intl.message('Resend', name: 'resend', desc: '', args: []);
+  }
+
   /// `Please enter a valid email`
   String get pleaseEnterAValidEmail {
     return Intl.message(
@@ -452,6 +627,36 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Select City`
+  String get selectCity {
+    return Intl.message('Select City', name: 'selectCity', desc: '', args: []);
+  }
+
+  /// `your phone number`
+  String get yourPhoneNumber {
+    return Intl.message(
+      'your phone number',
+      name: 'yourPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification code has been sent to your phone`
+  String get verificationCodeHasBeenSentToYourPhone {
+    return Intl.message(
+      'Verification code has been sent to your phone',
+      name: 'verificationCodeHasBeenSentToYourPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City`
+  String get city {
+    return Intl.message('City', name: 'city', desc: '', args: []);
   }
 }
 

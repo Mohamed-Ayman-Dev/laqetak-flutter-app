@@ -1,12 +1,15 @@
-import 'package:invastro/src/config/app_settings/data/services/settings_service.dart';
+import 'package:invastro/src/core/shared/services/settings_service.dart';
 
-import '../../config/app_settings/presentation/providers/app_settings.dart';
 import '../../features/auth/data/services/auth_service.dart';
 import '../../features/auth/presentation/providers/auth.dart';
 import '../../features/auth/presentation/providers/auth_naviagtions.dart';
 import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
+import '../shared/providers/app_settings.dart';
+import '../shared/providers/others.dart';
+import '../shared/providers/timers.dart';
 import '../shared/services/navigation_service.dart';
+import '../shared/services/others_service.dart';
 import 'locator.dart';
 
 abstract class LocatorService {
@@ -22,6 +25,8 @@ abstract class LocatorService {
   static AuthService get authService => locator<AuthService>();
 
   static SettingsService get settingsService => locator<SettingsService>();
+
+  static OthersService get othersService => locator<OthersService>();
 
   // static NotificationService get notificationService =>
   //     locator<NotificationService>();
@@ -43,8 +48,6 @@ abstract class LocatorService {
   //
   // static OrdersService get ordersService => locator<OrdersService>();
   //
-  // static OthersService get othersService => locator<OthersService>();
-  //
   // static SearchService get searchService => locator<SearchService>();
   //
   // static SettingsService get settingsService => locator<SettingsService>();
@@ -61,10 +64,13 @@ abstract class LocatorService {
 
   //
   static AuthNavigations get authNavigations => locator<AuthNavigations>();
+
   //
+  static Others get others => locator<Others>();
+
   // static Notifications get notifications => locator<Notifications>();
   //
-  // static Timers get timers => locator<Timers>();
+  static Timers get timers => locator<Timers>();
   //
   // static Banners get banners => locator<Banners>();
   //
@@ -82,7 +88,6 @@ abstract class LocatorService {
   //
   // static StaticPages get staticPages => locator<StaticPages>();
   //
-  // static Others get others => locator<Others>();
   //
   // static Searches get searches => locator<Searches>();
   //

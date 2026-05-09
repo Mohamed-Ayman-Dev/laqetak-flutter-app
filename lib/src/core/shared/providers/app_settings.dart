@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../generated/l10n.dart';
-import '../../../../core/network/api_service.dart';
-import '../../data/models/settings_model.dart';
+import '../../../../generated/l10n.dart';
+import '../../network/api_service.dart';
 import '../controllers/settings_controller.dart';
+import '../models/settings_model.dart';
 
 class AppSettings with ChangeNotifier {
   String language = 'ar';
   ThemeMode themeMode = ThemeMode.system;
-  double rating = 0.0;
   int homeIndex = 0;
   int ordersTabIndex = 0;
   SettingsModel? mySettings;
@@ -73,11 +72,6 @@ class AppSettings with ChangeNotifier {
   Future<bool> hasStoredLanguage() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.containsKey('language');
-  }
-
-  void setRating(double newRating) {
-    rating = newRating;
-    notifyListeners();
   }
 
   Future<bool> _getStoredLanguageAndTheme() async {
@@ -156,6 +150,5 @@ class AppSettings with ChangeNotifier {
   void resetAppSettingsForLogOut() {
     homeIndex = 0;
     ordersTabIndex = 0;
-    rating = 0.0;
   }
 }

@@ -89,19 +89,11 @@ abstract class CustomTheme {
       bodySmall: AppTextStyles.bodySmall,
       bodyMedium: AppTextStyles.bodyMedium,
       titleMedium: AppTextStyles.titleMedium,
-      headlineLarge: const TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: AppColors.titleTextColor,
-      ),
+      headlineLarge: AppTextStyles.headlineLarge,
       headlineMedium: AppTextStyles.headlineMedium,
       labelMedium: AppTextStyles.labelMedium,
       labelSmall: AppTextStyles.labelSmall,
-      titleSmall: const TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.bold,
-        color: AppColors.tileTextColor,
-      ),
+      titleSmall: AppTextStyles.titleSmall,
     ),
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: Color(0xFF8B8B8B),
@@ -170,6 +162,7 @@ abstract class CustomTheme {
         side: BorderSide(color: AppColors.primaryColor),
       ),
     ),
+
     dividerTheme: DividerThemeData(color: AppColors.thirdColor),
     radioTheme: RadioThemeData(
       visualDensity: const VisualDensity(

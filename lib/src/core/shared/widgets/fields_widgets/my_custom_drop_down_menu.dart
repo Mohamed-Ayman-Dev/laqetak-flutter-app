@@ -1,27 +1,11 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../themes/colors.dart';
 import '../../../themes/text_styles.dart';
+import '../app_loading_indicator.dart';
 
 class MyCustomDropdownFormField<T> extends StatelessWidget {
-  final List<DropdownMenuItem<T>>? items;
-  final T? value;
-  final String? hint;
-  final void Function(T?)? onChanged;
-  final String? Function(T?)? validator;
-  final void Function(T?)? onSaved;
-  final bool isRequired;
-  final Color? color;
-  final Widget? icon;
-  final Widget? perfixIcon;
-  final TextStyle? hintStyle;
-
-  final bool isLoading;
-
   const MyCustomDropdownFormField({
     super.key,
     this.items,
@@ -34,16 +18,39 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
     this.isRequired = false,
     this.color,
     this.icon,
-    this.perfixIcon,
+    this.prefixIcon,
     this.hintStyle,
   });
+
+  final List<DropdownMenuItem<T>>? items;
+  final T? value;
+  final String? hint;
+  final void Function(T?)? onChanged;
+  final String? Function(T?)? validator;
+  final void Function(T?)? onSaved;
+  final bool isRequired;
+  final Color? color;
+  final Widget? icon;
+  final Widget? prefixIcon;
+  final TextStyle? hintStyle;
+  final bool isLoading;
+
+  // ← single source of truth for all borders
+  OutlineInputBorder _border(Color color) => OutlineInputBorder(
+    borderRadius: BorderRadius.circular(12).r,
+    borderSide: BorderSide(color: color, width: 1),
+  );
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<T>(
-      style: AppTextStyles.dropDownTextStyle,
-
+      style: AppTextStyles.inputTextStyle.copyWith(color: Colors.black),
       padding: EdgeInsets.zero,
+      initialValue: value,
+      items: items,
+      onChanged: onChanged,
+      onSaved: onSaved,
+      validator: validator,
       hint: Align(
         alignment: Alignment.centerLeft,
         child: Text(
@@ -51,73 +58,30 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
           style: hintStyle ?? AppTextStyles.hintTextStyle,
         ),
       ),
+      icon: isLoading
+          ? const AppLoadingIndicator()
+          : const Icon(Icons.keyboard_arrow_down_rounded),
       decoration: InputDecoration(
         prefixIconConstraints: const BoxConstraints(minWidth: 3, minHeight: 3),
         prefixIcon: isRequired
             ? const Padding(
-                padding: EdgeInsets.only(right: 10.0),
+                padding: EdgeInsets.only(right: 10),
                 child: Text('*', style: TextStyle(color: Colors.red)),
               )
-            : null,
-        prefix: perfixIcon,
+            : prefixIcon,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 15,
           vertical: 13,
         ).r,
         fillColor: color,
-        filled: color != null ? true : null,
+        filled: color != null,
         hintStyle: AppTextStyles.hintTextStyle,
-        errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: AppColors.errorTextColor,
-            width: 1,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: AppColors.errorTextColor,
-            width: 1,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(
-            color: AppColors.fieldBorderColor,
-            width: 1,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: AppColors.fieldBorderColor,
-            width: 1,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.primaryColor, width: 1),
-          borderRadius: BorderRadius.circular(16),
-        ),
+        border: _border(AppColors.fieldBorderColor),
+        enabledBorder: _border(AppColors.fieldBorderColor),
+        focusedBorder: _border(AppColors.primaryColor),
+        errorBorder: _border(AppColors.errorTextColor),
+        focusedErrorBorder: _border(AppColors.errorTextColor),
       ),
-      items: items,
-      onChanged: onChanged,
-      value: value,
-      icon: isLoading
-          ? Platform.isIOS
-                ? const CupertinoActivityIndicator(
-                    color: AppColors.primaryColor,
-                  )
-                : const SizedBox(
-                    height: 10,
-                    width: 10,
-                    child: CircularProgressIndicator(
-                      color: AppColors.primaryColor,
-                    ),
-                  )
-          : const Icon(Icons.keyboard_arrow_down_rounded),
-      onSaved: onSaved,
-      validator: validator,
     );
   }
 }

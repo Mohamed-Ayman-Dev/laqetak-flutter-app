@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../features/auth/presentation/screens/auth_screen.dart';
 import '../features/auth/presentation/screens/login_screen.dart';
+import '../features/auth/presentation/screens/otp_screen.dart';
+import '../features/auth/presentation/screens/register_password_screen.dart';
 import '../features/auth/presentation/screens/register_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
 
@@ -12,12 +14,12 @@ class Routes {
     SplashScreen.routeName: (_) => const SplashScreen(),
     LoginScreen.routeName: (_) => const LoginScreen(),
     AuthScreen.routeName: (_) => const AuthScreen(),
+    RegisterPasswordScreen.routeName: (_) => const RegisterPasswordScreen(),
     RegisterScreen.routeName: (_) => const RegisterScreen(),
+    OtpScreen.routeName: (_) => const OtpScreen(),
     // HomeLayoutScreen.routeName: (_) => const HomeLayoutScreen(),
     // OnboardingScreen.routeName: (_) => const OnboardingScreen(),
     // ForgetPasswordScreen.routeName: (_) => const ForgetPasswordScreen(),
-    // OtpScreen.routeName: (_) => const OtpScreen(),
-    // RegisterPasswordScreen.routeName: (_) => const RegisterPasswordScreen(),
     // AuthSuccessScreen.routeName: (_) => const AuthSuccessScreen(),
     // ResetPasswordScreen.routeName: (_) => const ResetPasswordScreen(),
     // StoreDetailsScreen.routeName: (_) => const StoreDetailsScreen(),

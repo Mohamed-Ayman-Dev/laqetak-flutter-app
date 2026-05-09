@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
+import 'package:invastro/src/core/shared/providers/others.dart';
+import 'package:invastro/src/features/auth/presentation/screens/register_password_screen.dart';
 import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../core/constants/mock_data_for_loading.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/models/details_model.dart';
@@ -45,10 +48,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Future<void> _register() async {
     if (_registerFormKey.currentState!.validate()) {
       _registerFormKey.currentState!.save();
-      // LocatorService.navigationService.currentState?.pushNamed(
-      //   RegisterPasswordScreen.routeName,
-      //   arguments: data,
-      // );
+      LocatorService.navigationService.currentState?.pushNamed(
+        RegisterPasswordScreen.routeName,
+        arguments: data,
+      );
     }
   }
 
@@ -65,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             CustomText('مرحبـــــاً', style: AppTextStyles.headlineMedium),
             15.heightSpace,
             CustomText(
-              'الرجاء إدخال  رقم الجوال وكلمة المرور',
+              'الرجاء إدخال ادخل بياناتك',
               style: AppTextStyles.headlineSmall,
             ),
             24.heightSpace,
@@ -114,7 +117,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         );
                       },
                       focusNode: _phoneFocusNode,
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.next,
                       controller: _phoneController,
                       hintText: "رقم الجوال",
@@ -139,7 +142,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hintText: 'أدخل بريدك الالكتروني',
                       textInputAction: TextInputAction.next,
                       maxLines: 1,
-                      controller: _nameController,
                       keyboardType: TextInputType.emailAddress,
 
                       onSaved: (val) {
@@ -154,13 +156,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                     ),
                     24.heightSpace,
-                    Selector<Addresses, List<DetailsModel>?>(
+                    LabelWidget(text: S.current.city),
+                    Selector<Others, List<DetailsModel>?>(
                       selector: (context, provider) => provider.myCities,
                       builder: (context, myCities, child) {
                         return MyCustomDropdownFormField(
-                          hint: S.current.selectCity,
-                          items: myCities
-                              ?.map<DropdownMenuItem<num>>(
+                          hint: S.of(context).city,
+                          // items: myCities
+                          items: MockDataForLoading.mockCites
+                              .map<DropdownMenuItem<num>>(
                                 (e) => DropdownMenuItem<num>(
                                   value: e.id,
                                   child: SizedBox(
@@ -190,6 +194,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         );
                       },
                     ),
+                    24.heightSpace,
+
                     Hero(
                       tag: 'auth-button',
                       child: CustomElevatedButton(

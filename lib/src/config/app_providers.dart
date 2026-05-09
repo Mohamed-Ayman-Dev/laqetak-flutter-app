@@ -1,10 +1,12 @@
+import 'package:invastro/src/core/shared/providers/timers.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 import '../core/di/locator_service.dart';
+import '../core/shared/providers/app_settings.dart';
+import '../core/shared/providers/others.dart';
 import '../features/auth/presentation/providers/auth.dart';
 import '../features/auth/presentation/providers/auth_naviagtions.dart';
-import 'app_settings/presentation/providers/app_settings.dart';
 
 class AppProviders {
   static List<SingleChildWidget> providers = [
@@ -15,6 +17,9 @@ class AppProviders {
     ChangeNotifierProvider<AuthNavigations>(
       create: (_) => LocatorService.authNavigations,
     ),
+    ChangeNotifierProvider<Others>(create: (_) => LocatorService.others),
+    ChangeNotifierProvider<Timers>(create: (_) => LocatorService.timers),
+
     // ChangeNotifierProvider<Notifications>(
     //   create: (_) => LocatorService.notifications,
     // ),
@@ -36,7 +41,6 @@ class AppProviders {
     // ChangeNotifierProvider<Complaints>(
     //   create: (_) => LocatorService.complaints,
     // ),
-    // ChangeNotifierProvider<Others>(create: (_) => LocatorService.others),
     // ChangeNotifierProvider<Searches>(create: (_) => LocatorService.searches),
     // ChangeNotifierProvider<Invoices>(create: (_) => LocatorService.invoices),
   ];

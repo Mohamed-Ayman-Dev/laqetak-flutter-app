@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../../../../core/network/api_service.dart';
+import '../../network/api_service.dart';
 
 class SettingsService {
   Future getSettings({bool rethrowError = false}) async {

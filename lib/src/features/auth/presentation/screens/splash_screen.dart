@@ -7,10 +7,10 @@ import 'package:invastro/src/features/auth/presentation/screens/auth_screen.dart
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../config/app_settings/presentation/controllers/settings_controller.dart';
-import '../../../../config/app_settings/presentation/providers/app_settings.dart';
 import '../../../../core/constants/images_assets.dart';
 import '../../../../core/di/locator_service.dart';
+import '../../../../core/shared/controllers/settings_controller.dart';
+import '../../../../core/shared/providers/app_settings.dart';
 import '../../../../core/shared/widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {

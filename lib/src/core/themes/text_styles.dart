@@ -37,6 +37,12 @@ abstract class AppTextStyles {
     color: AppColors.inputTextColor,
     fontFamily: Constant.fontFamily,
   );
+  static TextStyle hintTextStyle = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.hintColor,
+    fontFamily: Constant.fontFamily,
+  );
 
   ///------------------------------------
 
@@ -70,16 +76,16 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w500,
     fontFamily: Constant.fontFamily,
   );
+  static TextStyle titleSmall = TextStyle(
+    color: Colors.black,
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w500,
+    fontFamily: Constant.fontFamily,
+  );
   static TextStyle buttonsTextStyle = TextStyle(
     color: AppColors.buttonTextColor,
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
-  );
-  static TextStyle hintTextStyle = TextStyle(
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w500,
-    color: AppColors.hintColor,
-    fontFamily: Constant.fontFamily,
   );
 
   static TextStyle textButtonTextStyle = TextStyle(
@@ -93,12 +99,6 @@ abstract class AppTextStyles {
     color: AppColors.labelTextColor,
     fontWeight: FontWeight.w500,
     fontFamily: Constant.fontFamily,
-  );
-  static TextStyle dropDownTextStyle = TextStyle(
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w500,
-    fontFamily: Constant.fontFamily,
-    color: AppColors.labelTextColor,
   );
 
   static TextStyle headlineLarge = TextStyle(

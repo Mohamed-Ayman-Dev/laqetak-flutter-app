@@ -1,14 +1,17 @@
 import 'package:get_it/get_it.dart';
-import 'package:invastro/src/config/app_settings/data/services/settings_service.dart';
+import 'package:invastro/src/core/shared/services/settings_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../config/app_settings/presentation/providers/app_settings.dart';
 import '../../features/auth/data/services/auth_service.dart';
 import '../../features/auth/presentation/providers/auth.dart';
 import '../../features/auth/presentation/providers/auth_naviagtions.dart';
 import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
+import '../shared/providers/app_settings.dart';
+import '../shared/providers/others.dart';
+import '../shared/providers/timers.dart';
 import '../shared/services/navigation_service.dart';
+import '../shared/services/others_service.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -24,6 +27,7 @@ Future<void> setupServices() async {
   locator.registerLazySingleton<NavigationService>(() => NavigationService());
   locator.registerLazySingleton<AuthService>(() => AuthService());
   locator.registerLazySingleton<SettingsService>(() => SettingsService());
+  locator.registerLazySingleton<OthersService>(() => OthersService());
   // locator.registerLazySingleton<NotificationService>(
   //       () => NotificationService(),
   // );
@@ -35,7 +39,6 @@ Future<void> setupServices() async {
   // locator.registerLazySingleton<PaymentsService>(() => PaymentsService());
   // locator.registerLazySingleton<StaticPagesService>(() => StaticPagesService());
   // locator.registerLazySingleton<OrdersService>(() => OrdersService());
-  // locator.registerLazySingleton<OthersService>(() => OthersService());
   // locator.registerLazySingleton<SearchService>(() => SearchService());
   // locator.registerLazySingleton<StorageService>(() => StorageService());
   // locator.registerLazySingleton<SettingsService>(() => SettingsService());
@@ -45,15 +48,15 @@ Future<void> setupServices() async {
   /// register providers
   locator.registerLazySingleton<AppSettings>(() => AppSettings());
   locator.registerLazySingleton<Auth>(() => Auth());
-  // locator.registerLazySingleton<Notifications>(() => Notifications());
   locator.registerLazySingleton<AuthNavigations>(() => AuthNavigations());
-  // locator.registerLazySingleton<Timers>(() => Timers());
+  locator.registerLazySingleton<Others>(() => Others());
+  // locator.registerLazySingleton<Notifications>(() => Notifications());
+  locator.registerLazySingleton<Timers>(() => Timers());
   // locator.registerLazySingleton<Banners>(() => Banners());
   // locator.registerLazySingleton<Addresses>(() => Addresses());
   // locator.registerLazySingleton<Wallets>(() => Wallets());
   // locator.registerLazySingleton<Payments>(() => Payments());
   // locator.registerLazySingleton<StaticPages>(() => StaticPages());
-  // locator.registerLazySingleton<Others>(() => Others());
   // locator.registerLazySingleton<Searches>(() => Searches());
   // locator.registerLazySingleton<Settings>(() => Settings());
   // locator.registerLazySingleton<Invoices>(() => Invoices());

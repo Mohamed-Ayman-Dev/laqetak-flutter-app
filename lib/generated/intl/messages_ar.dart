@@ -23,10 +23,35 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
+    "city": MessageLookupByLibrary.simpleMessage("المدينة"),
+    "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
     "connectionErrorPleaseCheckYourInternetConnection":
         MessageLookupByLibrary.simpleMessage(
           "خطأ في الاتصال يرجى التحقق من اتصال الانترنت",
         ),
+    "continueToSignIn": MessageLookupByLibrary.simpleMessage(
+      "متابعة تسجيل الدخول إلى حسابك",
+    ),
+    "didntReceiveTheCode": MessageLookupByLibrary.simpleMessage(
+      "لم يصلك الرمز",
+    ),
+    "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+    "emailOrMobileNumberOrUsername": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني أو رقم الجوال أو اسم المستخدم",
+    ),
+    "enterTheVerificationCodeWeSentTo": MessageLookupByLibrary.simpleMessage(
+      "أدخل رمز التحقق الذي أرسلناه إلى",
+    ),
+    "enterYourLoginDetails": MessageLookupByLibrary.simpleMessage(
+      "أدخل بيانات الدخول الخاصة بك",
+    ),
+    "enterYourPhoneNumberUsernameOrEmailToResetYour":
+        MessageLookupByLibrary.simpleMessage(
+          "أدخل رقم جوالك أو اسم المستخدم أو البريد الإلكتروني المسجل لإعادة تعيين كلمة المرور. سنرسل لك رمز تحقق عبر رسالة نصية.",
+        ),
+    "forgotYourPassword": MessageLookupByLibrary.simpleMessage(
+      "نسيت كلمة المرور؟",
+    ),
     "fromFavoritesSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تمت الإزالة من المفضلة بنجاح",
     ),
@@ -82,13 +107,24 @@ class MessageLookup extends MessageLookupByLibrary {
       "يجب اختيار المنطقة",
     ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("الرجاء الانتظار..."),
+    "resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
+    "resetPassword": MessageLookupByLibrary.simpleMessage(
+      "إعادة تعيين كلمة المرور",
+    ),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
+    "savePassword": MessageLookupByLibrary.simpleMessage("حفظ كلمة المرور"),
     "searchForALocation": MessageLookupByLibrary.simpleMessage(
       "ابحث عن موقع..",
     ),
+    "selectCity": MessageLookupByLibrary.simpleMessage("اختر المدينة"),
+    "sendCode": MessageLookupByLibrary.simpleMessage("إرسال الرمز"),
     "sessionExpiredPleaseLoginAgain": MessageLookupByLibrary.simpleMessage(
       "انتهت الجلسة يرجى تسجيل الدخول مرة أخرى",
     ),
+    "setANewPasswordForYourAccountChooseAStrong":
+        MessageLookupByLibrary.simpleMessage(
+          "أنشئ كلمة مرور جديدة لحسابك، وتأكد من اختيار كلمة قوية وسهلة التذكر.",
+        ),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
     ),
@@ -110,12 +146,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "thereAreNoQuestionsYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد أسئلة حتى الآن",
     ),
+    "toCompleteYourAccountCreation": MessageLookupByLibrary.simpleMessage(
+      "لإكمال إنشاء حسابك",
+    ),
+    "toContinueResettingYourPassword": MessageLookupByLibrary.simpleMessage(
+      "لمتابعة إعادة تعيين كلمة المرور",
+    ),
+    "toSignIn": MessageLookupByLibrary.simpleMessage("لتسجيل الدخول"),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "اسم المستخدم او كلمة المرور غير صحيحة",
     ),
+    "verificationCodeHasBeenSentToYourPhone":
+        MessageLookupByLibrary.simpleMessage("تم إرسال رمز التحقق إلى هاتفك"),
+    "verify": MessageLookupByLibrary.simpleMessage("تحقق"),
+    "verifyYourIdentity": MessageLookupByLibrary.simpleMessage("تحقق من هويتك"),
+    "verifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "تحقق من رقمك",
+    ),
     "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
     "youLoggedInSuccessfully": MessageLookupByLibrary.simpleMessage(
-      "You logged in successfully",
+      "تم تسجيل الدخول بنجاح",
     ),
     "yourAddressHasBeenAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم اضافة العنوان الخاص بك بنجاح",
@@ -124,6 +174,9 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage("تم تعديل العنوان الخاص بك بنجاح"),
     "yourMessageHasBeenSentSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم إرسال رسالتك بنجاح",
+    ),
+    "yourPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "رقم الهاتف الخاص بك",
     ),
   };
 }

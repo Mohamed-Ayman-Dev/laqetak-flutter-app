@@ -10,9 +10,9 @@ import 'package:provider/provider.dart';
 import '../../generated/l10n.dart';
 import '../core/constants/images_assets.dart';
 import '../core/di/locator_service.dart';
+import '../core/shared/providers/app_settings.dart';
 import '../core/themes/theme.dart';
 import 'app_providers.dart';
-import 'app_settings/presentation/providers/app_settings.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});

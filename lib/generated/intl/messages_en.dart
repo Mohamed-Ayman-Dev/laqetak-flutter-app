@@ -26,10 +26,37 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancellationReasonIsRequired": MessageLookupByLibrary.simpleMessage(
       "Cancellation reason is required",
     ),
+    "city": MessageLookupByLibrary.simpleMessage("City"),
+    "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "connectionErrorPleaseCheckYourInternetConnection":
         MessageLookupByLibrary.simpleMessage(
           "Connection Error Please Check Your Internet Connection",
         ),
+    "continueToSignIn": MessageLookupByLibrary.simpleMessage(
+      "Continue to sign in",
+    ),
+    "didntReceiveTheCode": MessageLookupByLibrary.simpleMessage(
+      "Didn’t receive the code",
+    ),
+    "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
+      "Don’t have an account?",
+    ),
+    "emailOrMobileNumberOrUsername": MessageLookupByLibrary.simpleMessage(
+      "Email or mobile number or username",
+    ),
+    "enterTheVerificationCodeWeSentTo": MessageLookupByLibrary.simpleMessage(
+      "Enter the verification code we sent to",
+    ),
+    "enterYourLoginDetails": MessageLookupByLibrary.simpleMessage(
+      "Enter your login details",
+    ),
+    "enterYourPhoneNumberUsernameOrEmailToResetYour":
+        MessageLookupByLibrary.simpleMessage(
+          "Enter your phone number, username, or email to reset your password. A verification code will be sent via SMS.",
+        ),
+    "forgotYourPassword": MessageLookupByLibrary.simpleMessage(
+      "Forgot your password?",
+    ),
     "fromFavoritesSuccessfully": MessageLookupByLibrary.simpleMessage(
       "From Favorites Successfully",
     ),
@@ -92,13 +119,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please select a region",
     ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("Please Wait..."),
+    "resend": MessageLookupByLibrary.simpleMessage("Resend"),
+    "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
+    "savePassword": MessageLookupByLibrary.simpleMessage("Save Password"),
     "searchForALocation": MessageLookupByLibrary.simpleMessage(
       "Search for a location",
     ),
+    "selectCity": MessageLookupByLibrary.simpleMessage("Select City"),
+    "sendCode": MessageLookupByLibrary.simpleMessage("Send Code"),
     "sessionExpiredPleaseLoginAgain": MessageLookupByLibrary.simpleMessage(
       "Session Expired Please Login Again",
     ),
+    "setANewPasswordForYourAccountChooseAStrong":
+        MessageLookupByLibrary.simpleMessage(
+          "Set a new password for your account. Choose a strong and memorable password.",
+        ),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
     ),
@@ -120,8 +156,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "thereAreNoQuestionsYet": MessageLookupByLibrary.simpleMessage(
       "There are no questions yet",
     ),
+    "toCompleteYourAccountCreation": MessageLookupByLibrary.simpleMessage(
+      "to complete your account creation",
+    ),
+    "toContinueResettingYourPassword": MessageLookupByLibrary.simpleMessage(
+      "to continue resetting your password",
+    ),
+    "toSignIn": MessageLookupByLibrary.simpleMessage("to sign in"),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "Username Or Password Is Incorrect",
+    ),
+    "verificationCodeHasBeenSentToYourPhone":
+        MessageLookupByLibrary.simpleMessage(
+          "Verification code has been sent to your phone",
+        ),
+    "verify": MessageLookupByLibrary.simpleMessage("Verify"),
+    "verifyYourIdentity": MessageLookupByLibrary.simpleMessage(
+      "Verify your identity",
+    ),
+    "verifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "Verify your phone number",
     ),
     "version": MessageLookupByLibrary.simpleMessage("Version"),
     "writeTheReason": MessageLookupByLibrary.simpleMessage("Write the reason"),
@@ -137,6 +191,9 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
     "yourMessageHasBeenSentSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Your message has been sent successfully",
+    ),
+    "yourPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "your phone number",
     ),
   };
 }
