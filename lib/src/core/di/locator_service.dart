@@ -6,7 +6,7 @@ import '../../features/auth/presentation/providers/auth.dart';
 import '../../features/auth/presentation/providers/auth_naviagtions.dart';
 import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
-import '../services/navigation_service.dart';
+import '../shared/services/navigation_service.dart';
 import 'locator.dart';
 
 abstract class LocatorService {

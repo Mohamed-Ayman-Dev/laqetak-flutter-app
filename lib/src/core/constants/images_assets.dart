@@ -5,6 +5,12 @@
 class ImagesAssets {
   ImagesAssets._();
 
+  /// assets/images/eye_hidden_icon.png
+  static const String assetsImagesEyeHiddenIcon = "assets/images/eye_hidden_icon.png";
+
+  /// assets/images/eye_on_icon.png
+  static const String assetsImagesEyeOnIcon = "assets/images/eye_on_icon.png";
+
   /// assets/images/logo.png
   static const String assetsImagesLogo = "assets/images/logo.png";
 

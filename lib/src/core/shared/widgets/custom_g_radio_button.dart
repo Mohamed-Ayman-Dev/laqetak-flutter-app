@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../themes/text_styles.dart';
+import '../../themes/text_styles.dart';
 import 'custom_Text.dart';
 import 'custom_radio_button.dart';
 

@@ -249,6 +249,201 @@ class S {
     return Intl.message('Next', name: 'next', desc: '', args: []);
   }
 
+  /// `There are no more notifications`
+  String get thereAreNoMoreNotifications {
+    return Intl.message(
+      'There are no more notifications',
+      name: 'thereAreNoMoreNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no notifications yet`
+  String get thereAreNoNotificationsYet {
+    return Intl.message(
+      'There are no notifications yet',
+      name: 'thereAreNoNotificationsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no questions yet`
+  String get thereAreNoQuestionsYet {
+    return Intl.message(
+      'There are no questions yet',
+      name: 'thereAreNoQuestionsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no more questions yet`
+  String get thereAreNoMoreQuestionsYet {
+    return Intl.message(
+      'There are no more questions yet',
+      name: 'thereAreNoMoreQuestionsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your message has been sent successfully`
+  String get yourMessageHasBeenSentSuccessfully {
+    return Intl.message(
+      'Your message has been sent successfully',
+      name: 'yourMessageHasBeenSentSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Message is required`
+  String get messageIsRequired {
+    return Intl.message(
+      'Message is required',
+      name: 'messageIsRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no favorite stores yet`
+  String get thereAreNoFavoriteStoresYet {
+    return Intl.message(
+      'There are no favorite stores yet',
+      name: 'thereAreNoFavoriteStoresYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `From Favorites Successfully`
+  String get fromFavoritesSuccessfully {
+    return Intl.message(
+      'From Favorites Successfully',
+      name: 'fromFavoritesSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no more reviews`
+  String get thereAreNoMoreReviews {
+    return Intl.message(
+      'There are no more reviews',
+      name: 'thereAreNoMoreReviews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a region`
+  String get pleaseSelectARegion {
+    return Intl.message(
+      'Please select a region',
+      name: 'pleaseSelectARegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a city`
+  String get pleaseSelectACity {
+    return Intl.message(
+      'Please select a city',
+      name: 'pleaseSelectACity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your address has been added successfully`
+  String get yourAddressHasBeenAddedSuccessfully {
+    return Intl.message(
+      'Your address has been added successfully',
+      name: 'yourAddressHasBeenAddedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your address has been edited successfully`
+  String get yourAddressHasBeenEditedSuccessfully {
+    return Intl.message(
+      'Your address has been edited successfully',
+      name: 'yourAddressHasBeenEditedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search for a location`
+  String get searchForALocation {
+    return Intl.message(
+      'Search for a location',
+      name: 'searchForALocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message('Save', name: 'save', desc: '', args: []);
+  }
+
+  /// `Please enter your username`
+  String get pleaseEnterYourUsername {
+    return Intl.message(
+      'Please enter your username',
+      name: 'pleaseEnterYourUsername',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid name`
+  String get pleaseEnterAValidName {
+    return Intl.message(
+      'Please enter a valid name',
+      name: 'pleaseEnterAValidName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Your Email`
+  String get pleaseEnterYourEmail {
+    return Intl.message(
+      'Please Enter Your Email',
+      name: 'pleaseEnterYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email`
+  String get pleaseEnterAValidEmail {
+    return Intl.message(
+      'Please enter a valid email',
+      name: 'pleaseEnterAValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your name`
+  String get pleaseEnterYourName {
+    return Intl.message(
+      'Please enter your name',
+      name: 'pleaseEnterYourName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You logged in successfully`
   String get youLoggedInSuccessfully {
     return Intl.message(

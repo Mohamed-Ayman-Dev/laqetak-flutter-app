@@ -30,7 +30,13 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Connection Error Please Check Your Internet Connection",
         ),
+    "fromFavoritesSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "From Favorites Successfully",
+    ),
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage("Iban do not match"),
+    "messageIsRequired": MessageLookupByLibrary.simpleMessage(
+      "Message is required",
+    ),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       "Password cannot be empty",
@@ -55,6 +61,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterAPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Please enter a phone number",
     ),
+    "pleaseEnterAValidEmail": MessageLookupByLibrary.simpleMessage(
+      "Please enter a valid email",
+    ),
+    "pleaseEnterAValidName": MessageLookupByLibrary.simpleMessage(
+      "Please enter a valid name",
+    ),
     "pleaseEnterAValidPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid phone number",
     ),
@@ -64,12 +76,49 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterVerificationCode": MessageLookupByLibrary.simpleMessage(
       "Please enter verification code",
     ),
+    "pleaseEnterYourEmail": MessageLookupByLibrary.simpleMessage(
+      "Please Enter Your Email",
+    ),
+    "pleaseEnterYourName": MessageLookupByLibrary.simpleMessage(
+      "Please enter your name",
+    ),
+    "pleaseEnterYourUsername": MessageLookupByLibrary.simpleMessage(
+      "Please enter your username",
+    ),
+    "pleaseSelectACity": MessageLookupByLibrary.simpleMessage(
+      "Please select a city",
+    ),
+    "pleaseSelectARegion": MessageLookupByLibrary.simpleMessage(
+      "Please select a region",
+    ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("Please Wait..."),
+    "save": MessageLookupByLibrary.simpleMessage("Save"),
+    "searchForALocation": MessageLookupByLibrary.simpleMessage(
+      "Search for a location",
+    ),
     "sessionExpiredPleaseLoginAgain": MessageLookupByLibrary.simpleMessage(
       "Session Expired Please Login Again",
     ),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
+    ),
+    "thereAreNoFavoriteStoresYet": MessageLookupByLibrary.simpleMessage(
+      "There are no favorite stores yet",
+    ),
+    "thereAreNoMoreNotifications": MessageLookupByLibrary.simpleMessage(
+      "There are no more notifications",
+    ),
+    "thereAreNoMoreQuestionsYet": MessageLookupByLibrary.simpleMessage(
+      "There are no more questions yet",
+    ),
+    "thereAreNoMoreReviews": MessageLookupByLibrary.simpleMessage(
+      "There are no more reviews",
+    ),
+    "thereAreNoNotificationsYet": MessageLookupByLibrary.simpleMessage(
+      "There are no notifications yet",
+    ),
+    "thereAreNoQuestionsYet": MessageLookupByLibrary.simpleMessage(
+      "There are no questions yet",
     ),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "Username Or Password Is Incorrect",
@@ -78,6 +127,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "writeTheReason": MessageLookupByLibrary.simpleMessage("Write the reason"),
     "youLoggedInSuccessfully": MessageLookupByLibrary.simpleMessage(
       "You logged in successfully",
+    ),
+    "yourAddressHasBeenAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Your address has been added successfully",
+    ),
+    "yourAddressHasBeenEditedSuccessfully":
+        MessageLookupByLibrary.simpleMessage(
+          "Your address has been edited successfully",
+        ),
+    "yourMessageHasBeenSentSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Your message has been sent successfully",
     ),
   };
 }

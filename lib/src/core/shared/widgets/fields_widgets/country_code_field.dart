@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 
-import '../../extension/space_extensions_helper.dart';
-import '../../themes/colors.dart';
-import '../../themes/text_styles.dart';
+import '../../../extension/space_extensions_helper.dart';
+import '../../../themes/colors.dart';
+import '../../../themes/text_styles.dart';
 
 class CountryCodeField extends StatefulWidget {
   final void Function(CountryCode? value) onChanged;
@@ -96,6 +96,7 @@ class _CountryCodeFieldState extends State<CountryCodeField> {
                       widget.textStyle ??
                       AppTextStyles.labelSmall.copyWith(
                         color: AppColors.labelGreyTextColor,
+                        letterSpacing: 0.6,
                       ),
                 ),
                 2.widthSpace,

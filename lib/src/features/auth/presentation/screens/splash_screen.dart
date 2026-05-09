@@ -11,7 +11,7 @@ import '../../../../config/app_settings/presentation/controllers/settings_contro
 import '../../../../config/app_settings/presentation/providers/app_settings.dart';
 import '../../../../core/constants/images_assets.dart';
 import '../../../../core/di/locator_service.dart';
-import '../../../../core/widgets/app_logo.dart';
+import '../../../../core/shared/widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash';

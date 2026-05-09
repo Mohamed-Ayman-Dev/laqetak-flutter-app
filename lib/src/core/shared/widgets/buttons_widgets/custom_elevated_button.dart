@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../core/themes/colors.dart';
-import '../../../core/themes/text_styles.dart';
-import '../../themes/gradients.dart';
+import '../../../extension/space_extensions_helper.dart';
+import '../../../themes/colors.dart';
+import '../../../themes/gradients.dart';
+import '../../../themes/text_styles.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
     super.key,
-    required this.onPressed,
+    this.onPressed,
     this.text,
     this.child,
     this.isLoading = false,
@@ -19,6 +21,8 @@ class CustomElevatedButton extends StatelessWidget {
     this.borderRadius = 8,
     this.size,
     this.borderColor,
+    this.icon,
+    this.iconSize = 20,
   });
 
   final VoidCallback? onPressed;
@@ -31,6 +35,8 @@ class CustomElevatedButton extends StatelessWidget {
   final double borderRadius;
   final Size? size;
   final Color? borderColor;
+  final String? icon;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +51,7 @@ class CustomElevatedButton extends StatelessWidget {
         minimumSize: size,
         maximumSize: size,
         backgroundColor: backgroundColor ?? Colors.transparent,
-        disabledBackgroundColor: AppColors.disabledGreenColorBk,
+        disabledBackgroundColor: AppColors.disabledButtonColorBk,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius).r,
           side: borderColor != null
@@ -67,13 +73,27 @@ class CustomElevatedButton extends StatelessWidget {
           child: isLoading
               ? const CupertinoActivityIndicator()
               : child ??
-                    Text(
-                      text ?? '',
-                      style:
-                          textStyle ??
-                          AppTextStyles.buttonsTextStyle.copyWith(
-                            color: isDisabled ? AppColors.hintColor : null,
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (icon != null) ...[
+                          SvgPicture.asset(
+                            icon!,
+                            width: iconSize,
+                            height: iconSize,
                           ),
+                          8.widthSpace,
+                        ],
+                        Text(
+                          text ?? '',
+                          style:
+                              textStyle ??
+                              AppTextStyles.buttonsTextStyle.copyWith(
+                                color: isDisabled ? Colors.grey[400] : null,
+                              ),
+                        ),
+                      ],
                     ),
         ),
       ),

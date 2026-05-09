@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/widgets/custom_g_radio_button.dart';
 import 'package:invastro/src/features/auth/presentation/screens/login_screen.dart';
 
 import '../../../../core/helpers/others_helper.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/shared/widgets/custom_g_radio_button.dart';
 
 class AuthChangeLangWidget extends StatefulWidget {
   const AuthChangeLangWidget({super.key});
@@ -55,7 +55,7 @@ class _AuthChangeLangWidgetState extends State<AuthChangeLangWidget> {
             groupValue: groupValue,
             onChanged: _handleRadioValueChange,
           ),
-          Divider(indent: 25.w, endIndent: 25.w, height: 40.h),
+          Divider(indent: 25.w, endIndent: 25.w, height: 30.h),
           CustomGRadioButton(
             label: 'English',
             value: 1,

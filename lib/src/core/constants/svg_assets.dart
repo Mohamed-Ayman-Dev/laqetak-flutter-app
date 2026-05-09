@@ -11,4 +11,7 @@ class SvgAssets {
   /// assets/svg/arrow-left.svg
   static const String assetsSvgArrowLeft = "assets/svg/arrow-left.svg";
 
+  /// assets/svg/arrow-right.svg
+  static const String assetsSvgArrowRight = "assets/svg/arrow-right.svg";
+
 }

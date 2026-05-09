@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../themes/colors.dart';
-import '../../themes/text_styles.dart';
+import '../../../themes/colors.dart';
+import '../../../themes/text_styles.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
@@ -25,7 +25,7 @@ class CustomTextField extends StatefulWidget {
     this.obscureText = false,
     this.readOnly = false,
     this.enabled = true,
-    this.borderRadius = 16,
+    this.borderRadius = 12,
     this.fillColor,
     this.borderColor,
     this.focusBorderColor,

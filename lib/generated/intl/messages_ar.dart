@@ -27,9 +27,13 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "خطأ في الاتصال يرجى التحقق من اتصال الانترنت",
         ),
+    "fromFavoritesSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "تمت الإزالة من المفضلة بنجاح",
+    ),
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "رقم الآيبان غير متطابق",
     ),
+    "messageIsRequired": MessageLookupByLibrary.simpleMessage("الرسالة مطلوبة"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       " كلمة المرور لا يمكن ان تكون فارغة",
@@ -50,18 +54,61 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterAPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "رقم الجوال مطلوب",
     ),
+    "pleaseEnterAValidEmail": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال بريد إلكتروني صالح",
+    ),
+    "pleaseEnterAValidName": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال اسم صالح",
+    ),
     "pleaseEnterAValidPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "يجب أن يكون رقم الجوال صحيح",
     ),
     "pleaseEnterIbanConfirmation": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال تأكيد رقم الآيبان",
     ),
+    "pleaseEnterYourEmail": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال البريد الإلكتروني",
+    ),
+    "pleaseEnterYourName": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال الاسم",
+    ),
+    "pleaseEnterYourUsername": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال اسم المستخدم",
+    ),
+    "pleaseSelectACity": MessageLookupByLibrary.simpleMessage(
+      "يجب اختيار المدينة",
+    ),
+    "pleaseSelectARegion": MessageLookupByLibrary.simpleMessage(
+      "يجب اختيار المنطقة",
+    ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("الرجاء الانتظار..."),
+    "save": MessageLookupByLibrary.simpleMessage("حفظ"),
+    "searchForALocation": MessageLookupByLibrary.simpleMessage(
+      "ابحث عن موقع..",
+    ),
     "sessionExpiredPleaseLoginAgain": MessageLookupByLibrary.simpleMessage(
       "انتهت الجلسة يرجى تسجيل الدخول مرة أخرى",
     ),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
+    ),
+    "thereAreNoFavoriteStoresYet": MessageLookupByLibrary.simpleMessage(
+      "لا توجد متاجر مفضلة حتى الآن",
+    ),
+    "thereAreNoMoreNotifications": MessageLookupByLibrary.simpleMessage(
+      "لا توجد إشعارات أخرى",
+    ),
+    "thereAreNoMoreQuestionsYet": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أسئلة أخرى",
+    ),
+    "thereAreNoMoreReviews": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد المزيد من التقييمات",
+    ),
+    "thereAreNoNotificationsYet": MessageLookupByLibrary.simpleMessage(
+      "لا توجد إشعارات حتى الآن",
+    ),
+    "thereAreNoQuestionsYet": MessageLookupByLibrary.simpleMessage(
+      "لا توجد أسئلة حتى الآن",
     ),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "اسم المستخدم او كلمة المرور غير صحيحة",
@@ -69,6 +116,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
     "youLoggedInSuccessfully": MessageLookupByLibrary.simpleMessage(
       "You logged in successfully",
+    ),
+    "yourAddressHasBeenAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "تم اضافة العنوان الخاص بك بنجاح",
+    ),
+    "yourAddressHasBeenEditedSuccessfully":
+        MessageLookupByLibrary.simpleMessage("تم تعديل العنوان الخاص بك بنجاح"),
+    "yourMessageHasBeenSentSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "تم إرسال رسالتك بنجاح",
     ),
   };
 }

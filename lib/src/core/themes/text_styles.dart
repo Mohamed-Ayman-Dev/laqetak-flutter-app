@@ -31,6 +31,13 @@ abstract class AppTextStyles {
     fontFamily: Constant.fontFamily,
   );
 
+  static TextStyle inputTextStyle = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.inputTextColor,
+    fontFamily: Constant.fontFamily,
+  );
+
   ///------------------------------------
 
   static TextStyle labelMedium = TextStyle(
@@ -80,12 +87,6 @@ abstract class AppTextStyles {
     fontSize: 14.sp,
     fontFamily: Constant.fontFamily,
     fontWeight: FontWeight.w700,
-  );
-  static TextStyle inputTextStyle = TextStyle(
-    fontSize: 16.sp,
-    fontWeight: FontWeight.w500,
-    color: AppColors.inputTextColor,
-    fontFamily: Constant.fontFamily,
   );
   static TextStyle bodySmall = TextStyle(
     fontSize: 12.sp,

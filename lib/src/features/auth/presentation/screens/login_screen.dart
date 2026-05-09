@@ -1,15 +1,20 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/widgets/custom_Text.dart';
+import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart';
 
+import '../../../../core/di/locator_service.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/themes/colors.dart';
+import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/shared/widgets/buttons_widgets/custom_text_button.dart';
+import '../../../../core/shared/widgets/custom_Text.dart';
+import '../../../../core/shared/widgets/fields_widgets/country_code_field.dart';
+import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
+import '../../../../core/shared/widgets/fields_widgets/password_eye_toggle.dart';
+import '../../../../core/shared/widgets/label_widget.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
-import '../../../../core/widgets/fields_widgets/country_code_field.dart';
-import '../../../../core/widgets/fields_widgets/custom_textField.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login_screen';
@@ -41,9 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final TextEditingController _phoneController = TextEditingController();
   final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
-  Map<String, dynamic> data = {
-    // 'country_code': '+966'
-  };
+  Map<String, dynamic> data = {'country_code': '+966'};
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -70,8 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("رقم الجوال", style: AppTextStyles.labelSmall),
-                    8.heightSpace,
+                    LabelWidget(text: 'رقم الجوال'),
                     CustomTextField(
                       onChanged: (value) {
                         setState(() {});
@@ -80,17 +82,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         data['phone'] = val;
                       },
                       validator: (value) {
-                        return ValidationHelper.validateEmpty(
-                          value,
-                          emptyMessage:
-                              "S.of(context).phoneNumberEmailOrUsernameRequired",
+                        return ValidationHelper.validatePhoneByCountryCode(
+                          phone: value,
+                          countryCode: data['country_code'],
+                          context: context,
                         );
                       },
                       focusNode: _phoneFocusNode,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       controller: _phoneController,
-                      hintText: "S.current.enterYourLoginDetails",
+                      hintText: "رقم الجوال",
                       // textDirection: TextDirection.ltr,
                       suffixIcon: CountryCodeField(
                         focusNode: _phoneFocusNode,
@@ -103,15 +105,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     24.heightSpace,
-                    Text(
-                      "S.current.password",
-                      style: AppTextStyles.labelMedium.copyWith(
-                        fontSize: 14.sp,
-                      ),
-                    ),
-                    8.heightSpace,
+                    LabelWidget(text: 'كلمة المرور'),
+
                     CustomTextField(
-                      hintText: '  ••••••••',
+                      hintText: 'أدخل كلمة المرور',
                       prefixIconImage: 'assets/images/pass_lock.svg',
                       textInputAction: TextInputAction.done,
                       onSaved: (val) {
@@ -123,64 +120,57 @@ class _LoginScreenState extends State<LoginScreen> {
                           context,
                         );
                       },
-                      suffixIcon: IconButton(
-                        onPressed: () {
+                      suffixIcon: EyeToggleIcon(
+                        isHidden: hidePassword,
+                        onToggle: () {
                           setState(() {
                             hidePassword = !hidePassword;
                           });
                         },
-                        icon: ImageIcon(
-                          hidePassword
-                              ? const AssetImage('assets/images/eye_off.png')
-                              : const AssetImage('assets/images/eye_on.png'),
-                          color: hidePassword
-                              ? AppColors.thirdColor
-                              : AppColors.primaryColor,
-                        ),
                       ),
                       maxLines: 1,
                       obscureText: hidePassword,
                     ),
-                    16.heightSpace,
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.end,
-                    //   children: [
-                    //     CustomTextButton(
-                    //       text: S.current.forgotYourPassword,
-                    //       onPressed: () {
-                    //         // LocatorService.navigationService.currentState
-                    //         //     ?.pushNamed(ForgetPasswordScreen.routeName);
-                    //       },
-                    //     ),
-                    //   ],
-                    // ),
-                    64.heightSpace,
+                    24.heightSpace,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CustomTextButton(
+                          text: 'نسيت كلمة المرور ؟',
+                          onPressed: () {
+                            // LocatorService.navigationService.currentState
+                            //     ?.pushNamed(ForgetPasswordScreen.routeName);
+                          },
+                        ),
+                      ],
+                    ),
+                    24.heightSpace,
                     Hero(
-                      tag: 'IntroButton',
+                      tag: 'auth-button',
                       child: CustomElevatedButton(
-                        text: "S.current.logIn",
-                        onPressed: _phoneController.text.isEmpty
-                            ? null
-                            : _login,
+                        text: "دخول",
+                        onPressed: _login,
                       ),
                     ),
                     16.heightSpace,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "S.of(context).dontHaveAnAccount",
+                    Center(
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "ليس لديك حساب ؟ ",
                           style: AppTextStyles.labelSmall,
+                          children: [
+                            TextSpan(
+                              text: "سجل الأن !",
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  LocatorService.navigationService.currentState
+                                      ?.pushNamed(RegisterScreen.routeName);
+                                },
+                            ),
+                          ],
                         ),
-                        5.widthSpace,
-                        // CustomTextButton(
-                        //   text: "S.current.createNewAccount",
-                        //   onPressed: () {
-                        //     // LocatorService.navigationService.currentState
-                        //     //     ?.pushNamed(RegisterScreen.routeName);
-                        //   },
-                        // ),
-                      ],
+                      ),
                     ),
                     64.heightSpace,
                   ],
