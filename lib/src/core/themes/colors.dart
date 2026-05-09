@@ -23,6 +23,9 @@ abstract class AppColors {
 
   // text colors
   static const Color labelTextColor = Colors.black;
+  static const Color labelGreyTextColor = Color(0xFF8E8E93);
+  static const Color headlineGreyTextColor = Color(0xFF8E8E93);
+
   static const Color buttonTextColor = Color(0xFF1D1D1D);
   static const Color bodyTextColor = Color(0xFF181818);
   static const Color hintColor = Color(0XFFABABAB);

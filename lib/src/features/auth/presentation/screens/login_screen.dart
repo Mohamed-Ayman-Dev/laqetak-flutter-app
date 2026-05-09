@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/widgets/custom_Text.dart';
 import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart';
 
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../../../../core/widgets/app_logo.dart';
 import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/fields_widgets/country_code_field.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -54,15 +55,14 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             AuthAppbar(showGuestButton: true),
-            37.heightSpace,
-            AppLogo(),
-
-            32.heightSpace,
-            Text(
-              "S.current.logIn",
-              style: AppTextStyles.titleMedium.copyWith(fontSize: 24.sp),
+            24.heightSpace,
+            CustomText('مرحبـــــاً', style: AppTextStyles.headlineMedium),
+            15.heightSpace,
+            CustomText(
+              'الرجاء إدخال  رقم الجوال وكلمة المرور',
+              style: AppTextStyles.headlineSmall,
             ),
-            64.heightSpace,
+            24.heightSpace,
             Form(
               key: _loginFormKey,
               child: Padding(
@@ -70,12 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "S.current.emailOrMobileNumberOrUsername",
-                      style: AppTextStyles.labelMedium.copyWith(
-                        fontSize: 14.sp,
-                      ),
-                    ),
+                    Text("رقم الجوال", style: AppTextStyles.labelSmall),
                     8.heightSpace,
                     CustomTextField(
                       onChanged: (value) {
@@ -92,21 +87,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       },
                       focusNode: _phoneFocusNode,
-
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       controller: _phoneController,
                       hintText: "S.current.enterYourLoginDetails",
                       // textDirection: TextDirection.ltr,
-                      // prefix: CountryCodeField(
-                      //   focusNode: _phoneFocusNode,
-                      //   onChanged: (val) {
-                      //     data['country_code'] = val.toString();
-                      //   },
-                      //   onInit: (val) {
-                      //     data['country_code'] = val.toString();
-                      //   },
-                      // ),
+                      suffixIcon: CountryCodeField(
+                        focusNode: _phoneFocusNode,
+                        onChanged: (val) {
+                          data['country_code'] = val.toString();
+                        },
+                        onInit: (val) {
+                          data['country_code'] = val.toString();
+                        },
+                      ),
                     ),
                     24.heightSpace,
                     Text(

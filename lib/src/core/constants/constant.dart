@@ -3,7 +3,7 @@ import 'package:flutter/animation.dart';
 final class Constant {
   const Constant._();
 
-  static const String fontFamily = 'IBMPlexSansArabic';
+  static const String fontFamily = 'Almarai';
   static const String appName = 'Invastro';
 
   static const pageTransitionDuration = Duration(milliseconds: 400);

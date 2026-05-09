@@ -18,6 +18,18 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w400,
     fontFamily: Constant.fontFamily,
   );
+  static TextStyle headlineMedium = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.labelTextColor,
+    fontFamily: Constant.fontFamily,
+  );
+  static TextStyle headlineSmall = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.headlineGreyTextColor,
+    fontFamily: Constant.fontFamily,
+  );
 
   ///------------------------------------
 
@@ -86,12 +98,6 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w500,
     fontFamily: Constant.fontFamily,
     color: AppColors.labelTextColor,
-  );
-  static TextStyle headlineMedium = TextStyle(
-    fontSize: 24.sp,
-    fontWeight: FontWeight.w500,
-    color: AppColors.labelTextColor,
-    fontFamily: Constant.fontFamily,
   );
 
   static TextStyle headlineLarge = TextStyle(

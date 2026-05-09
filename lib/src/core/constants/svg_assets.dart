@@ -5,6 +5,9 @@
 class SvgAssets {
   SvgAssets._();
 
+  /// assets/svg/arrow-down.svg
+  static const String assetsSvgArrowDown = "assets/svg/arrow-down.svg";
+
   /// assets/svg/arrow-left.svg
   static const String assetsSvgArrowLeft = "assets/svg/arrow-left.svg";
 

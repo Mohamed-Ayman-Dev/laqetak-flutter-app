@@ -93,7 +93,7 @@ class _OtpScreenState extends State<OtpScreen> {
   //                 text: TextSpan(
   //                   style: TextStyle(
   //                     fontSize: 16,
-  //                     fontFamily: 'IBMPlexSansArabic',
+  //                     fontFamily: 'Almarai',
   //                     color: Colors.black,
   //                   ),
   //                   children: [

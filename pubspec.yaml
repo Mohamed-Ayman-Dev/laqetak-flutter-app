@@ -35,9 +35,10 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   smooth_page_indicator: ^2.0.1
   flutter_displaymode: ^0.7.0
+  country_code_picker: ^3.4.1
   image_picker: ^1.2.2
   pull_to_refresh: ^2.0.0
-  flutter_secure_storage: ^10.0.0
+  flutter_secure_storage: ^10.1.0
   internet_connection_checker: ^3.0.1
   roundcheckbox:
     git: https://github.com/Mohamed-Ayman-Dev/round_check_box_updated.git
@@ -79,21 +80,15 @@ flutter:
     - assets/svg/
     - assets/fonts/
   fonts:
-    - family: IBMPlexSansArabic
+    - family: Almarai
       fonts:
-        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Thin.ttf
-          weight: 100
-        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-ExtraLight.ttf
-          weight: 200
-        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Light.ttf
+        - asset: assets/fonts/almarai/Almarai-Light.ttf
           weight: 300
-        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Regular.ttf
+        - asset: assets/fonts/almarai/Almarai-Regular.ttf
           weight: 400
-        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-SemiBold.ttf
+        - asset: assets/fonts/almarai/Almarai-Bold.ttf
           weight: 600
-        - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Bold.ttf
+        - asset: assets/fonts/almarai/Almarai-ExtraBold.ttf
           weight: 700
 flutter_intl:
   enabled: true

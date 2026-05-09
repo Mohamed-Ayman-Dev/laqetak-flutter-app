@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:invastro/src/core/constants/constant.dart';
 
 import '../../../generated/l10n.dart';
 import '../themes/colors.dart';
@@ -62,7 +63,7 @@ void configLoading() {
     ..textStyle = const TextStyle(
       fontWeight: FontWeight.w600,
       color: Colors.white,
-      fontFamily: 'IBMPlexSansArabic',
+      fontFamily: Constant.fontFamily,
     )
     // ..radius = 10.0
     // ..progressColor = Colors.yellow
