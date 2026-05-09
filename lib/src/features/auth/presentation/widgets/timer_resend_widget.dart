@@ -1,10 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../generated/l10n.dart';
 import '../../../../core/shared/providers/timers.dart';
-import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
 
@@ -57,48 +56,64 @@ class _TimerResendWidgetState extends State<TimerResendWidget> {
         final seconds = timers.timer % 60;
         final timeString =
             '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
-
-        // Always show button with dynamic text
-        return CustomElevatedButton(
-          text: timers.isResendButtonVisible
-              ? S.of(context).resend
-              : '${S.of(context).resend} $timeString',
-          backgroundColor: AppColors.primaryColor,
-          textStyle: AppTextStyles.labelSmall.copyWith(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w500,
-            color: AppColors.textButtonTextColor,
+        return Center(
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              text: "لم تستلم الرمز ؟",
+              style: AppTextStyles.labelSmall.copyWith(
+                color: AppColors.labelGreyTextColor,
+              ),
+              children: [
+                TextSpan(text: '  '),
+                TextSpan(
+                  text: timers.isResendButtonVisible
+                      ? "أعد إرسال الرمز"
+                      : timeString,
+                  style: AppTextStyles.headlineMedium.copyWith(
+                    color: timers.isResendButtonVisible
+                        ? AppColors.primaryColor
+                        : Colors.black,
+                    fontWeight: timers.isResendButtonVisible
+                        ? null
+                        : FontWeight.w700,
+                    fontSize: 14.sp,
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      timers.isResendButtonVisible
+                          ? () async {
+                              // if (widget.previousScreenName == 'forgetPassword') {
+                              //   // Resend forget password OTP
+                              //   await AuthController.forgetPassword(context, {
+                              //     'phone': widget.phone,
+                              //   }, isRefresh: true);
+                              //   // Note: forgetPassword now handles navigation, just restart timer
+                              timerProvider.startTimer(
+                                initialSeconds: widget.remainingSeconds ?? 120,
+                              );
+                              // } else {
+                              //   // Resend registration OTP
+                              //   final response = await AuthController.registerOtpResend({
+                              //     'phone': widget.phone,
+                              //   });
+                              //
+                              //   if (response != null && response['status'] == true) {
+                              //     // Restart the timer with remaining seconds from response
+                              final remainingSeconds = 120;
+                              //         response['data']?['remainingSeconds'] ?? 120;
+                              timerProvider.startTimer(
+                                initialSeconds: remainingSeconds,
+                              );
+                              //   }
+                              // }
+                            }
+                          : null;
+                    },
+                ),
+              ],
+            ),
           ),
-          size: Size(150.w, 36.h),
-          icon: 'assets/images/refresh.svg',
-          onPressed: timers.isResendButtonVisible
-              ? () async {
-                  // if (widget.previousScreenName == 'forgetPassword') {
-                  //   // Resend forget password OTP
-                  //   await AuthController.forgetPassword(context, {
-                  //     'phone': widget.phone,
-                  //   }, isRefresh: true);
-                  //   // Note: forgetPassword now handles navigation, just restart timer
-                  //   timerProvider.startTimer(
-                  //     initialSeconds: widget.remainingSeconds ?? 120,
-                  //   );
-                  // } else {
-                  //   // Resend registration OTP
-                  //   final response = await AuthController.registerOtpResend({
-                  //     'phone': widget.phone,
-                  //   });
-                  //
-                  //   if (response != null && response['status'] == true) {
-                  //     // Restart the timer with remaining seconds from response
-                  //     final remainingSeconds =
-                  //         response['data']?['remainingSeconds'] ?? 120;
-                  //     timerProvider.startTimer(
-                  //       initialSeconds: remainingSeconds,
-                  //     );
-                  //   }
-                  // }
-                }
-              : null,
         );
       },
     );

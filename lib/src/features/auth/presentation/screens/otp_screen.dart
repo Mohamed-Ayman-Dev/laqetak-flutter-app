@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/themes/colors.dart';
+import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -98,9 +99,13 @@ class _OtpScreenState extends State<OtpScreen> {
                     children: [
                       WidgetSpan(
                         child: GestureDetector(
-                          // "تغيير الرقم" – orange + tappable
                           onTap: () {
-                            /* change number */
+                            LocatorService.navigationService.currentState
+                                ?.popUntil(
+                                  (route) =>
+                                      route.settings.name ==
+                                      RegisterScreen.routeName,
+                                );
                           },
                           child: Text(
                             'تغيير الرقم',
@@ -179,13 +184,6 @@ class _OtpScreenState extends State<OtpScreen> {
                   ),
                 ),
                 24.heightSpace,
-                Text(
-                  S.of(context).didntReceiveTheCode,
-                  style: AppTextStyles.labelSmall.copyWith(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
                 TimerResendWidget(
                   phone: phone,
                   previousScreenName: previousScreenName ?? 'register',

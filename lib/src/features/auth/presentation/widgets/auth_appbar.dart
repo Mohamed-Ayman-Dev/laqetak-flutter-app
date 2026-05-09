@@ -18,12 +18,7 @@ class AuthAppbar extends StatelessWidget {
       top: true,
       bottom: false,
       child: Padding(
-        padding: const EdgeInsets.only(
-          left: 14,
-          right: 14,
-          top: 16,
-          bottom: 24,
-        ).r,
+        padding: const EdgeInsets.only(top: 16, bottom: 24).r,
         child: Row(
           children: [
             CustomTextButton(

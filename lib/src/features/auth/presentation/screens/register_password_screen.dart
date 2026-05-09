@@ -67,6 +67,7 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 16.0).r,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,99 +83,92 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
             24.heightSpace,
             Form(
               key: _registerFormKey,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0).r,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    LabelWidget(text: 'كلمة المرور'),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  LabelWidget(text: 'كلمة المرور'),
 
-                    CustomTextField(
-                      hintText: 'أدخل كلمة المرور',
-                      textInputAction: TextInputAction.done,
-                      onSaved: (val) {
-                        _formData['password'] = val;
-                      },
-                      validator: (value) {
-                        return ValidationHelper.validatePassword(
-                          value,
-                          context,
-                        );
-                      },
-                      controller: passwordController,
+                  CustomTextField(
+                    hintText: 'أدخل كلمة المرور',
+                    textInputAction: TextInputAction.done,
+                    onSaved: (val) {
+                      _formData['password'] = val;
+                    },
+                    validator: (value) {
+                      return ValidationHelper.validatePassword(value, context);
+                    },
+                    controller: passwordController,
 
-                      suffixIcon: EyeToggleIcon(
-                        isHidden: hidePassword,
-                        onToggle: () {
-                          setState(() {
-                            hidePassword = !hidePassword;
-                          });
-                        },
-                      ),
-                      maxLines: 1,
-                      obscureText: hidePassword,
-                    ),
-                    24.heightSpace,
-                    LabelWidget(text: 'تأكيد كلمة المرور'),
-
-                    CustomTextField(
-                      hintText: 'تأكيد كلمة المرور',
-                      textInputAction: TextInputAction.done,
-                      onSaved: (val) {
-                        _formData['password_confirmation'] = val;
-                      },
-                      validator: (value) {
-                        return ValidationHelper.validatePasswordConfirmation(
-                          value,
-                          passwordController.text,
-                          context,
-                        );
-                      },
-
-                      controller: passwordConfirmController,
-                      suffixIcon: EyeToggleIcon(
-                        isHidden: hidePasswordConfirm,
-                        onToggle: () {
-                          setState(() {
-                            hidePasswordConfirm = !hidePasswordConfirm;
-                          });
-                        },
-                      ),
-                      maxLines: 1,
-                      obscureText: hidePasswordConfirm,
-                    ),
-                    24.heightSpace,
-                    AgreeTermsWidget(
-                      isChecked: _formData['agree_terms'],
-                      onTermsPressed: () {
+                    suffixIcon: EyeToggleIcon(
+                      isHidden: hidePassword,
+                      onToggle: () {
                         setState(() {
-                          _formData['agree_terms'] =
-                              !(_formData['agree_terms']);
+                          hidePassword = !hidePassword;
                         });
                       },
                     ),
-                    24.heightSpace,
-                    AgreeTermsWidget(
-                      isChecked: _formData['agree_idea'],
-                      text: 'فكرة المنصة',
-                      onTermsPressed: () {
+                    maxLines: 1,
+                    obscureText: hidePassword,
+                  ),
+                  24.heightSpace,
+                  LabelWidget(text: 'تأكيد كلمة المرور'),
+
+                  CustomTextField(
+                    hintText: 'تأكيد كلمة المرور',
+                    textInputAction: TextInputAction.done,
+                    onSaved: (val) {
+                      _formData['password_confirmation'] = val;
+                    },
+                    validator: (value) {
+                      return ValidationHelper.validatePasswordConfirmation(
+                        value,
+                        passwordController.text,
+                        context,
+                      );
+                    },
+
+                    controller: passwordConfirmController,
+                    suffixIcon: EyeToggleIcon(
+                      isHidden: hidePasswordConfirm,
+                      onToggle: () {
                         setState(() {
-                          _formData['agree_idea'] = !(_formData['agree_idea']);
+                          hidePasswordConfirm = !hidePasswordConfirm;
                         });
                       },
                     ),
-                    24.heightSpace,
-                    Hero(
-                      tag: 'auth-button',
-                      child: CustomElevatedButton(
-                        text: "التالي",
-                        icon: SvgAssets.assetsSvgArrowRight,
-                        onPressed: _register,
-                      ),
+                    maxLines: 1,
+                    obscureText: hidePasswordConfirm,
+                  ),
+                  24.heightSpace,
+                  AgreeTermsWidget(
+                    isChecked: _formData['agree_terms'],
+                    onTermsPressed: () {
+                      setState(() {
+                        _formData['agree_terms'] = !(_formData['agree_terms']);
+                      });
+                    },
+                  ),
+                  24.heightSpace,
+                  AgreeTermsWidget(
+                    isChecked: _formData['agree_idea'],
+                    text: 'فكرة المنصة',
+                    onTermsPressed: () {
+                      setState(() {
+                        _formData['agree_idea'] = !(_formData['agree_idea']);
+                      });
+                    },
+                  ),
+                  24.heightSpace,
+                  Hero(
+                    tag: 'auth-button',
+                    child: CustomElevatedButton(
+                      text: "التالي",
+                      icon: SvgAssets.assetsSvgArrowRight,
+                      onPressed: _register,
                     ),
-                    64.heightSpace,
-                  ],
-                ),
+                  ),
+                  64.heightSpace,
+                ],
               ),
             ),
           ],
