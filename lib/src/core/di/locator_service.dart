@@ -3,6 +3,8 @@ import 'package:invastro/src/core/shared/services/settings_service.dart';
 import '../../features/auth/data/services/auth_service.dart';
 import '../../features/auth/presentation/providers/auth.dart';
 import '../../features/auth/presentation/providers/auth_naviagtions.dart';
+import '../../features/static_pages/data/services/static_pages_service.dart';
+import '../../features/static_pages/presentation/providers/static_pages.dart';
 import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
 import '../shared/providers/app_settings.dart';
@@ -43,9 +45,9 @@ abstract class LocatorService {
   //
   // static PaymentsService get paymentsService => locator<PaymentsService>();
   //
-  // static StaticPagesService get staticPagesService =>
-  //     locator<StaticPagesService>();
-  //
+  static StaticPagesService get staticPagesService =>
+      locator<StaticPagesService>();
+
   // static OrdersService get ordersService => locator<OrdersService>();
   //
   // static SearchService get searchService => locator<SearchService>();
@@ -71,6 +73,7 @@ abstract class LocatorService {
   // static Notifications get notifications => locator<Notifications>();
   //
   static Timers get timers => locator<Timers>();
+
   //
   // static Banners get banners => locator<Banners>();
   //
@@ -86,7 +89,7 @@ abstract class LocatorService {
   //
   // static Payments get payments => locator<Payments>();
   //
-  // static StaticPages get staticPages => locator<StaticPages>();
+  static StaticPages get staticPages => locator<StaticPages>();
   //
   //
   // static Searches get searches => locator<Searches>();

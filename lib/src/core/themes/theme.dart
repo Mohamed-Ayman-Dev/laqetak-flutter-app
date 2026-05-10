@@ -66,6 +66,13 @@ abstract class CustomTheme {
       selectedIconTheme: IconThemeData(color: AppColors.primaryColor),
       unselectedIconTheme: IconThemeData(color: AppColors.backgroundColor),
     ),
+    scrollbarTheme: ScrollbarThemeData(
+      trackColor: WidgetStateProperty.all(AppColors.primaryColor),
+      thumbColor: WidgetStateProperty.all(
+        AppColors.primaryColor.withOpacity(0.7),
+      ),
+      trackBorderColor: WidgetStateProperty.all(AppColors.primaryColor),
+    ),
     splashColor: AppColors.primaryColor,
     colorScheme: const ColorScheme.light(primary: AppColors.primaryColor),
     scaffoldBackgroundColor: AppColors.backgroundColor,

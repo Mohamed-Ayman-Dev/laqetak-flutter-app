@@ -15,6 +15,7 @@ import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/shared/widgets/fields_widgets/password_eye_toggle.dart';
 import '../../../../core/shared/widgets/label_widget.dart';
 import '../../../../core/themes/text_styles.dart';
+import 'forget_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login_screen';
@@ -133,8 +134,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomTextButton(
                         text: 'نسيت كلمة المرور ؟',
                         onPressed: () {
-                          // LocatorService.navigationService.currentState
-                          //     ?.pushNamed(ForgetPasswordScreen.routeName);
+                          LocatorService.navigationService.currentState
+                              ?.pushNamed(ForgetPasswordScreen.routeName);
                         },
                       ),
                     ],

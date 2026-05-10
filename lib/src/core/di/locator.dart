@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../features/auth/data/services/auth_service.dart';
 import '../../features/auth/presentation/providers/auth.dart';
 import '../../features/auth/presentation/providers/auth_naviagtions.dart';
+import '../../features/static_pages/data/services/static_pages_service.dart';
+import '../../features/static_pages/presentation/providers/static_pages.dart';
 import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
 import '../shared/providers/app_settings.dart';
@@ -37,7 +39,7 @@ Future<void> setupServices() async {
   // locator.registerLazySingleton<AddressService>(() => AddressService());
   // locator.registerLazySingleton<WalletService>(() => WalletService());
   // locator.registerLazySingleton<PaymentsService>(() => PaymentsService());
-  // locator.registerLazySingleton<StaticPagesService>(() => StaticPagesService());
+  locator.registerLazySingleton<StaticPagesService>(() => StaticPagesService());
   // locator.registerLazySingleton<OrdersService>(() => OrdersService());
   // locator.registerLazySingleton<SearchService>(() => SearchService());
   // locator.registerLazySingleton<StorageService>(() => StorageService());
@@ -56,7 +58,7 @@ Future<void> setupServices() async {
   // locator.registerLazySingleton<Addresses>(() => Addresses());
   // locator.registerLazySingleton<Wallets>(() => Wallets());
   // locator.registerLazySingleton<Payments>(() => Payments());
-  // locator.registerLazySingleton<StaticPages>(() => StaticPages());
+  locator.registerLazySingleton<StaticPages>(() => StaticPages());
   // locator.registerLazySingleton<Searches>(() => Searches());
   // locator.registerLazySingleton<Settings>(() => Settings());
   // locator.registerLazySingleton<Invoices>(() => Invoices());

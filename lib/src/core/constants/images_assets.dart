@@ -14,6 +14,9 @@ class ImagesAssets {
   /// assets/images/logo.png
   static const String assetsImagesLogo = "assets/images/logo.png";
 
+  /// assets/images/reset_password_image.png
+  static const String assetsImagesResetPasswordImage = "assets/images/reset_password_image.png";
+
   /// assets/images/splash_image.png
   static const String assetsImagesSplashImage = "assets/images/splash_image.png";
 

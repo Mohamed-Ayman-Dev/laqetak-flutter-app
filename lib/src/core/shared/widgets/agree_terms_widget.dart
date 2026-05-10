@@ -8,6 +8,8 @@ import 'custom_checkbox.dart';
 
 class AgreeTermsWidget extends StatelessWidget {
   final void Function() onTermsPressed;
+  final void Function() onTextPressed;
+
   final bool isChecked;
   final String text;
 
@@ -16,6 +18,7 @@ class AgreeTermsWidget extends StatelessWidget {
     required this.onTermsPressed,
     required this.isChecked,
     this.text = 'الشروط والأحكام',
+    required this.onTextPressed,
   });
 
   @override
@@ -23,44 +26,43 @@ class AgreeTermsWidget extends StatelessWidget {
     return InkWell(
       splashColor: Colors.transparent,
       onTap: onTermsPressed,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CustomCheckbox(
-            isChecked: isChecked,
-            onTap: (val) {
-              onTermsPressed();
-            },
-          ),
-          14.widthSpace,
-          Expanded(
-            child: RichText(
-              text: TextSpan(
-                style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
-                children: [
-                  // TextSpan(
-                  //   text: S.of(context).iAgreeTo,
-                  //   style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
-                  // ),
-                  TextSpan(
-                    text: text,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        // LocatorService.navigationService.currentState
-                        //     ?.pushNamed(TermsScreen.routeName);
-                      },
-                    style: AppTextStyles.labelSmall,
-                  ),
-                  // TextSpan(
-                  //   text: S.of(context).platformSpecific,
-                  //   style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
-                  // ),
-                ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0).r,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CustomCheckbox(
+              isChecked: isChecked,
+              onTap: (val) {
+                onTermsPressed();
+              },
+            ),
+            14.widthSpace,
+            Expanded(
+              child: RichText(
+                text: TextSpan(
+                  style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
+                  children: [
+                    // TextSpan(
+                    //   text: S.of(context).iAgreeTo,
+                    //   style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
+                    // ),
+                    TextSpan(
+                      text: text,
+                      recognizer: TapGestureRecognizer()..onTap = onTextPressed,
+                      style: AppTextStyles.labelSmall,
+                    ),
+                    // TextSpan(
+                    //   text: S.of(context).platformSpecific,
+                    //   style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
+                    // ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

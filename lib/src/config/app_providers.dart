@@ -7,6 +7,7 @@ import '../core/shared/providers/app_settings.dart';
 import '../core/shared/providers/others.dart';
 import '../features/auth/presentation/providers/auth.dart';
 import '../features/auth/presentation/providers/auth_naviagtions.dart';
+import '../features/static_pages/presentation/providers/static_pages.dart';
 
 class AppProviders {
   static List<SingleChildWidget> providers = [
@@ -19,7 +20,9 @@ class AppProviders {
     ),
     ChangeNotifierProvider<Others>(create: (_) => LocatorService.others),
     ChangeNotifierProvider<Timers>(create: (_) => LocatorService.timers),
-
+    ChangeNotifierProvider<StaticPages>(
+      create: (_) => LocatorService.staticPages,
+    ),
     // ChangeNotifierProvider<Notifications>(
     //   create: (_) => LocatorService.notifications,
     // ),
@@ -31,9 +34,7 @@ class AppProviders {
     // ChangeNotifierProvider<Settings>(create: (_) => LocatorService.settingss),
     // ChangeNotifierProvider<Wallets>(create: (_) => LocatorService.wallets),
     // ChangeNotifierProvider<Payments>(create: (_) => LocatorService.payments),
-    // ChangeNotifierProvider<StaticPages>(
-    //   create: (_) => LocatorService.staticPages,
-    // ),
+
     // ChangeNotifierProvider<Cars>(create: (_) => LocatorService.cars),
     // ChangeNotifierProvider<QuoteRequests>(
     //   create: (_) => LocatorService.quoteRequests,

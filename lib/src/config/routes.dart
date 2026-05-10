@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../features/auth/presentation/screens/auth_screen.dart';
+import '../features/auth/presentation/screens/forget_password_screen.dart';
 import '../features/auth/presentation/screens/login_screen.dart';
 import '../features/auth/presentation/screens/otp_screen.dart';
 import '../features/auth/presentation/screens/register_password_screen.dart';
 import '../features/auth/presentation/screens/register_screen.dart';
+import '../features/auth/presentation/screens/reset_password_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
+import '../features/static_pages/presentation/screens/terms_screen.dart';
 
 class Routes {
   static const initialRoute = SplashScreen.routeName;
@@ -17,11 +20,12 @@ class Routes {
     RegisterPasswordScreen.routeName: (_) => const RegisterPasswordScreen(),
     RegisterScreen.routeName: (_) => const RegisterScreen(),
     OtpScreen.routeName: (_) => const OtpScreen(),
+    ForgetPasswordScreen.routeName: (_) => const ForgetPasswordScreen(),
+    ResetPasswordScreen.routeName: (_) => const ResetPasswordScreen(),
+
     // HomeLayoutScreen.routeName: (_) => const HomeLayoutScreen(),
     // OnboardingScreen.routeName: (_) => const OnboardingScreen(),
-    // ForgetPasswordScreen.routeName: (_) => const ForgetPasswordScreen(),
     // AuthSuccessScreen.routeName: (_) => const AuthSuccessScreen(),
-    // ResetPasswordScreen.routeName: (_) => const ResetPasswordScreen(),
     // StoreDetailsScreen.routeName: (_) => const StoreDetailsScreen(),
     // RequestProductScreen.routeName: (_) => const RequestProductScreen(),
     // NotificationScreen.routeName: (_) => const NotificationScreen(),
@@ -31,7 +35,7 @@ class Routes {
     // PaymentMethodsScreen.routeName: (_) => const PaymentMethodsScreen(),
     // RegisterStoreScreen.routeName: (_) => const RegisterStoreScreen(),
     // SearchScreen.routeName: (_) => const SearchScreen(),
-    // TermsScreen.routeName: (_) => const TermsScreen(),
+    TermsScreen.routeName: (_) => const TermsScreen(),
     // AboutAppScreen.routeName: (_) => const AboutAppScreen(),
     // QuestionsScreen.routeName: (_) => const QuestionsScreen(),
     // ContactUsScreen.routeName: (_) => const ContactUsScreen(),

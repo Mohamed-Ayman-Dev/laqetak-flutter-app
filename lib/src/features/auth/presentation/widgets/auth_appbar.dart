@@ -21,11 +21,12 @@ class AuthAppbar extends StatelessWidget {
         padding: const EdgeInsets.only(top: 16, bottom: 24).r,
         child: Row(
           children: [
-            CustomTextButton(
-              text: 'تخطي',
-              onPressed: () {},
-              textColor: AppColors.primaryColor,
-            ),
+            if (showGuestButton)
+              CustomTextButton(
+                text: 'تخطي',
+                onPressed: () {},
+                textColor: AppColors.primaryColor,
+              ),
             Spacer(),
             SvgButton(
               icon: SvgAssets.assetsSvgArrowLeft,

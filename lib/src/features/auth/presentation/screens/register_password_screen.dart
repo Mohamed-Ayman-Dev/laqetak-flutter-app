@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
+import 'package:invastro/src/core/helpers/dialog_helpers.dart';
 import 'package:invastro/src/features/auth/presentation/screens/otp_screen.dart';
 import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart';
 
@@ -72,7 +73,7 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AuthAppbar(showGuestButton: true),
+            AuthAppbar(),
             24.heightSpace,
             CustomText('مرحبـــــاً', style: AppTextStyles.headlineMedium),
             15.heightSpace,
@@ -147,8 +148,11 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
                         _formData['agree_terms'] = !(_formData['agree_terms']);
                       });
                     },
+                    onTextPressed: () {
+                      DialogHelpers.showTermsDialog();
+                    },
                   ),
-                  24.heightSpace,
+                  5.heightSpace,
                   AgreeTermsWidget(
                     isChecked: _formData['agree_idea'],
                     text: 'فكرة المنصة',
@@ -156,6 +160,9 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
                       setState(() {
                         _formData['agree_idea'] = !(_formData['agree_idea']);
                       });
+                    },
+                    onTextPressed: () {
+                      DialogHelpers.showTermsDialog(title: 'فكرة المنصة');
                     },
                   ),
                   24.heightSpace,

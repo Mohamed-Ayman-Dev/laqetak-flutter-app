@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/themes/colors.dart';
+import 'package:invastro/src/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
+import 'package:invastro/src/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -100,12 +102,19 @@ class _OtpScreenState extends State<OtpScreen> {
                       WidgetSpan(
                         child: GestureDetector(
                           onTap: () {
-                            LocatorService.navigationService.currentState
-                                ?.popUntil(
-                                  (route) =>
-                                      route.settings.name ==
-                                      RegisterScreen.routeName,
-                                );
+                            isForgetPassword
+                                ? LocatorService.navigationService.currentState
+                                      ?.popUntil(
+                                        (route) =>
+                                            route.settings.name ==
+                                            ForgetPasswordScreen.routeName,
+                                      )
+                                : LocatorService.navigationService.currentState
+                                      ?.popUntil(
+                                        (route) =>
+                                            route.settings.name ==
+                                            RegisterScreen.routeName,
+                                      );
                           },
                           child: Text(
                             'تغيير الرقم',
@@ -204,30 +213,33 @@ class _OtpScreenState extends State<OtpScreen> {
       LocatorService.authNavigations.setIsNotValid(false);
 
       if (isRegisterOTP) {
-        //   // Register OTP verification
-        //   await AuthController.registerOtp(context, {
-        //     'phone': phone,
-        //     'code': otp,
-        //   }, isFromLogin: false);
-        // } else if (isForgetPassword) {
-        //   // Forget password OTP verification
-        //   await AuthController.forgetPasswordOtp(context, {
-        //     'phone': phone,
-        //     'code': otp,
-        //   });
-        // } else if (isUpdatePhone) {
-        //   changePhoneData?.addAll({'otp_code': otp});
-        //   await AuthController.updateProfile(context, changePhoneData ?? {});
-        //   LocatorService.navigationService.currentState?.popUntil(
-        //     (route) => route.settings.name == HomeLayoutScreen.routeName,
-        //   );
-        //   LocatorService.appSettings.changeHomeIndex(0);
-        // } else {
-        //   // Login OTP verification (for non-activated accounts)
-        //   await AuthController.registerOtp(context, {
-        //     'phone': phone,
-        //     'code': otp,
-        //   }, isFromLogin: true);
+        // // Register OTP verification
+        // await AuthController.registerOtp(context, {
+        //   'phone': phone,
+        //   'code': otp,
+        // }, isFromLogin: false);
+      } else if (isForgetPassword) {
+        // // Forget password OTP verification
+        // await AuthController.forgetPasswordOtp(context, {
+        //   'phone': phone,
+        //   'code': otp,
+        // });
+        LocatorService.navigationService.currentState?.pushNamed(
+          ResetPasswordScreen.routeName,
+        );
+      } else if (isUpdatePhone) {
+        // changePhoneData?.addAll({'otp_code': otp});
+        // await AuthController.updateProfile(context, changePhoneData ?? {});
+        // LocatorService.navigationService.currentState?.popUntil(
+        //   (route) => route.settings.name == HomeLayoutScreen.routeName,
+        // );
+        // LocatorService.appSettings.changeHomeIndex(0);
+      } else {
+        // // Login OTP verification (for non-activated accounts)
+        // await AuthController.registerOtp(context, {
+        //   'phone': phone,
+        //   'code': otp,
+        // }, isFromLogin: true);
       }
     } else {
       HapticFeedback.heavyImpact();

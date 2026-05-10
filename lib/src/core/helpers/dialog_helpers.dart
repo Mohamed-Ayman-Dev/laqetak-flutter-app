@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/shared/widgets/dialog_content/terms_content.dart';
 
 import '../di/locator_service.dart';
 
 class DialogHelpers {
   static BuildContext currentContext =
       LocatorService.navigationService.currentState!.context;
+
   //
   // static Future<bool> showPassDialog(
   //   BuildContext context,
@@ -297,48 +300,39 @@ class DialogHelpers {
   //   );
   //   return (result as bool?) ?? false;
   // }
-  //
-  // static Future<void>? showGhiarYesOrNoDialog({
-  //   String? title,
-  //   String? description,
-  //   String? buttonText,
-  //   void Function()? onYes,
-  // }) async {
-  //   await showGeneralDialog(
-  //     context: currentContext,
-  //     barrierLabel: "Barrier",
-  //     barrierDismissible: true,
-  //     barrierColor: Colors.black.withOpacity(0.2),
-  //     transitionDuration: const Duration(milliseconds: 400),
-  //     pageBuilder: (_, __, ___) {
-  //       return AlertDialog(
-  //         backgroundColor: Colors.white,
-  //         elevation: 0,
-  //         surfaceTintColor: Colors.transparent,
-  //         contentPadding: EdgeInsets.zero,
-  //         scrollable: true,
-  //         insetPadding: const EdgeInsets.symmetric(
-  //           horizontal: 20,
-  //           vertical: 0,
-  //         ).r,
-  //         content: GhiarYesNoAlert(
-  //           title: title,
-  //           description: description,
-  //           buttonText: buttonText,
-  //           onYes: onYes ?? () {},
-  //         ),
-  //       );
-  //     },
-  //     transitionBuilder: (_, anim, __, child) {
-  //       return SlideTransition(
-  //         position: Tween<Offset>(
-  //           begin: const Offset(0, 1),
-  //           end: Offset.zero,
-  //         ).animate(CurvedAnimation(parent: anim, curve: Curves.easeInOut)),
-  //         child: FadeTransition(opacity: anim, child: child),
-  //       );
-  //     },
-  //   );
-  // }
-  //
+
+  static Future<void>? showTermsDialog({
+    String? title,
+    String? termsText,
+  }) async {
+    await showGeneralDialog(
+      context: currentContext,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.2),
+      transitionDuration: const Duration(milliseconds: 400),
+      pageBuilder: (_, __, ___) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          surfaceTintColor: Colors.transparent,
+          contentPadding: EdgeInsets.zero,
+          insetPadding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 0,
+          ).r,
+          content: TermsContent(termsText: termsText, title: title),
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, 1),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(parent: anim, curve: Curves.easeInOut)),
+          child: FadeTransition(opacity: anim, child: child),
+        );
+      },
+    );
+  }
 }
