@@ -62,14 +62,15 @@ abstract class AppTextStyles {
     fontFamily: Constant.fontFamily,
   );
 
-  ///------------------------------------
-
   static TextStyle labelLarge = TextStyle(
-    fontSize: 16.sp,
+    fontSize: 14.sp,
     color: AppColors.labelTextColor,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w700,
     fontFamily: Constant.fontFamily,
   );
+
+  ///------------------------------------
+
   static TextStyle bodyLarge = TextStyle(
     fontSize: 16.sp,
     fontFamily: Constant.fontFamily,

@@ -17,6 +17,7 @@ abstract class AppColors {
   static const Color selectedRadioBKColor = primaryColor;
   static Color? disabledButtonColorBk = Colors.grey[200];
   static const Color searchBKColor = Color(0XFFF6F6F6);
+  static const Color notificationScaffoldBKColor = Color(0XFFFBFBFB);
 
   static const Color notificationBk = Color(0XFFE0E0E0);
   static const Color appBarBackGroundColor = Colors.white;
@@ -30,7 +31,7 @@ abstract class AppColors {
   static const Color buttonTextColor = Color(0xFF1D1D1D);
   static const Color hintColor = Color(0xFF8E8E93);
   static const Color bodyGreyTextColor = Color(0xFF737373);
-
+  static const Color dateTextColor = Color(0XFF8F96A3);
   static const Color bodyTextColor = Color(0xFF181818);
   static const Color bodySmallGreyTextColor = Color(0XFFABABAB);
   static const Color tileTextColor = Color(0xFF333333);
@@ -43,6 +44,7 @@ abstract class AppColors {
   static const Color fieldBorderColor = Color(0xFF8E8E93);
   static const Color borderColor = Color(0xFF8E8E93);
   static const Color buttonBorderColor = Color(0xFFD5D5D5);
+  static const Color notificationBorderColor = Color(0xFF868686);
 
   // other colors
   static const Color cursorColor = Color(0xFF8B8B8B);

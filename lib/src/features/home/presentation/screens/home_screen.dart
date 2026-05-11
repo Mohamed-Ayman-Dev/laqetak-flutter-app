@@ -120,13 +120,13 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 return AnimationConfiguration.staggeredList(
                   position: index,
-                  delay: const Duration(milliseconds: 50),
+                  delay: const Duration(milliseconds: 40),
                   child: SlideAnimation(
                     verticalOffset: 20,
-                    duration: const Duration(milliseconds: 1500),
+                    duration: const Duration(milliseconds: 1200),
                     curve: Curves.fastLinearToSlowEaseIn,
                     child: FadeInAnimation(
-                      duration: const Duration(milliseconds: 1800),
+                      duration: const Duration(milliseconds: 1500),
                       curve: Curves.fastLinearToSlowEaseIn,
                       child: AdItem(
                         type: index == 1 || index == 3

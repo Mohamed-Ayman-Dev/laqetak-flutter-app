@@ -2,7 +2,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
-import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
 import 'package:invastro/src/features/chat/presentation/screens/conversations_screen.dart';
 import 'package:invastro/src/features/favorite/presentation/screens/favorite_screen.dart';
 import 'package:invastro/src/features/notifications/presentation/screens/notification_screen.dart';
@@ -130,22 +129,22 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: CustomAppbar(
-      //   icons: [AppbarIcons.drawer, AppbarIcons.logo],
-      //   dontShowBackButton: true,
-      //   flexLeft: 2,
-      // ),
-      extendBody: true,
-      body: Selector<AppSettings, int>(
-        selector: (_, p) => p.homeIndex,
-        builder: (context, homeIndex, _) {
-          return PopScope(canPop: true, child: screens[homeIndex]);
-        },
-      ),
-
-      // ── Bottom Nav ──────────────────────────────────────────────────
-      bottomNavigationBar: BottomNavBar(navItems: _navItems),
+    return Selector<AppSettings, int>(
+      selector: (_, p) => p.homeIndex,
+      builder: (context, homeIndex, _) {
+        return Scaffold(
+          appBar: homeIndex == 0
+              ? null
+              : CustomAppbar(
+                  icons: [AppbarIcons.drawer, AppbarIcons.logo],
+                  dontShowBackButton: true,
+                ),
+          extendBody: true,
+          body: PopScope(canPop: true, child: screens[homeIndex]),
+          // ── Bottom Nav ──────────────────────────────────────────────────
+          bottomNavigationBar: BottomNavBar(navItems: _navItems),
+        );
+      },
     );
   }
 }
