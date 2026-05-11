@@ -16,6 +16,8 @@ class AdItem extends StatelessWidget {
   final void Function() onLike;
   final bool hideDivider;
   final void Function() onTab;
+  final String type;
+  final bool expired;
 
   const AdItem({
     super.key,
@@ -24,7 +26,9 @@ class AdItem extends StatelessWidget {
     this.isLiked = false,
     required this.onTab,
     this.hideDivider = false,
+    this.expired = false,
 
+    required this.type,
     required this.onLike,
   });
 
@@ -162,8 +166,8 @@ class AdItem extends StatelessWidget {
         tag: heroTag,
         child: CustomImage(imageUrl: '', placeholder: image),
       ),
-      AdLabel(labelText: 'مستثمر'),
-      Positioned(top: 82.h, left: 72.w, child: AdExpiredLabel()),
+      AdLabel(labelText: type == 'chance' ? 'فرصة' : 'مستثمر'),
+      if (expired) Positioned(top: 82.h, left: 72.w, child: AdExpiredLabel()),
     ],
   );
 

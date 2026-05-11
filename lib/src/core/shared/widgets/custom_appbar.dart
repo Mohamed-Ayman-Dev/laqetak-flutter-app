@@ -102,12 +102,9 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
               curve: Curves.easeOutCubic,
               child: IgnorePointer(
                 ignoring: !showSearchIcon, // ✅ مش بيتضغط لما مش ظاهر
-                child: Hero(
-                  tag: 'appbar-search',
-                  child: MyIconButton(
-                    icon: SvgAssets.assetsSvgSearchIcon,
-                    onTap: onSearch,
-                  ),
+                child: MyIconButton(
+                  icon: SvgAssets.assetsSvgSearchIcon,
+                  onTap: onSearch,
                 ),
               ),
             ),

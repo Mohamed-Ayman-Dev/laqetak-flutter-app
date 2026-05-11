@@ -129,8 +129,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       duration: const Duration(milliseconds: 1800),
                       curve: Curves.fastLinearToSlowEaseIn,
                       child: AdItem(
+                        type: index == 1 || index == 3
+                            ? 'chance'
+                            : 'not-chance',
+                        expired: index == 1 || index == 3,
                         image: MockDataForLoading.mockAds[index]['image'],
                         onTab: () {},
+
                         hideDivider:
                             index == (MockDataForLoading.mockAds.length - 1),
                         heroTag:
