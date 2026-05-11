@@ -9,6 +9,8 @@ class MyIconButton extends StatelessWidget {
   final Color? iconColor;
   final Color? disableColor;
   final double? borderRadius;
+  final double width;
+  final double height;
 
   final Color? borderColor;
   final Color? bkColor;
@@ -19,6 +21,9 @@ class MyIconButton extends StatelessWidget {
     this.iconSize,
     this.onTap,
     this.iconColor,
+    this.width = 54,
+    this.height = 48,
+
     this.borderColor,
     this.disableColor,
     this.bkColor,
@@ -39,8 +44,8 @@ class MyIconButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 8)),
         ),
-        maximumSize: Size(54.w, 48.h),
-        minimumSize: Size(54.w, 48.h),
+        maximumSize: Size(width.w, height.h),
+        minimumSize: Size(width.w, height.h),
       ),
       child: SvgPicture.asset(
         icon,

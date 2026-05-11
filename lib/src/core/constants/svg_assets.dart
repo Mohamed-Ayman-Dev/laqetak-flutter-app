@@ -23,6 +23,9 @@ class SvgAssets {
   /// assets/svg/check_dropdown_icon.svg
   static const String assetsSvgCheckDropdownIcon = "assets/svg/check_dropdown_icon.svg";
 
+  /// assets/svg/delete_icon.svg
+  static const String assetsSvgDeleteIcon = "assets/svg/delete_icon.svg";
+
   /// assets/svg/drawer_icon.svg
   static const String assetsSvgDrawerIcon = "assets/svg/drawer_icon.svg";
 

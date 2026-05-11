@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/shared/widgets/buttons_widgets/my_icon_button.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/notifications/presentation/widgets/notification_item.dart';
 
@@ -24,24 +27,51 @@ class NotificationScreen extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => AnimationConfiguration.staggeredList(
                 position: index,
-                delay: const Duration(milliseconds: 30),
+                delay: const Duration(milliseconds: 10),
                 child: SlideAnimation(
-                  verticalOffset: 20,
-                  duration: const Duration(milliseconds: 1000),
+                  verticalOffset: 10,
+                  duration: const Duration(milliseconds: 800),
                   curve: Curves.fastLinearToSlowEaseIn,
                   child: FadeInAnimation(
-                    duration: const Duration(milliseconds: 1200),
+                    duration: const Duration(milliseconds: 1000),
                     curve: Curves.fastLinearToSlowEaseIn,
-                    child: NotificationItem(
-                      title: index == 0
-                          ? 'تجاوز سرعة'
-                          : 'العنوان الخاص بالإشعار',
-                      desc: index == 0
-                          ? 'محتوى تجريبي يمكن استبداله فيما بعد بالمحتوى الفعلي المتفق عليه مع فريق ادارة ووضع محتوى التطبيق'
-                          : 'محتوى تجريبي يمكن استبداله فيما بعد بالمحتوى الفعلي المتفق عليه مع فريق ادارة ووضع محتوى التطبيق',
-                      date: 'منذ 1 ساعة',
-                      messageCount: index == 0 || index == 2,
-                      isSeen: index != 4 && index != 6,
+                    child: Slidable(
+                      startActionPane: ActionPane(
+                        motion: const StretchMotion(),
+                        extentRatio: 1 / 5,
+                        children: [
+                          CustomSlidableAction(
+                            borderRadius: BorderRadius.circular(10),
+                            onPressed: (_) {},
+                            // ← delete logic here
+                            backgroundColor: Colors.white,
+                            padding: EdgeInsets.zero,
+                            child: Row(
+                              children: [
+                                10.widthSpace,
+                                MyIconButton(
+                                  width: 40,
+                                  height: 40,
+                                  onTap: () {},
+                                  bkColor: AppColors.deleteIconButtonBKColor,
+                                  icon: SvgAssets.assetsSvgDeleteIcon,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      child: NotificationItem(
+                        title: index == 0
+                            ? 'تجاوز سرعة'
+                            : 'العنوان الخاص بالإشعار',
+                        desc: index == 0
+                            ? 'محتوى تجريبي يمكن استبداله فيما بعد بالمحتوى الفعلي المتفق عليه مع فريق ادارة ووضع محتوى التطبيق'
+                            : 'محتوى تجريبي يمكن استبداله فيما بعد بالمحتوى الفعلي المتفق عليه مع فريق ادارة ووضع محتوى التطبيق',
+                        date: 'منذ 1 ساعة',
+                        messageCount: index == 0 || index == 2,
+                        isSeen: index != 4 && index != 6,
+                      ),
                     ),
                   ),
                 ),

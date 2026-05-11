@@ -18,6 +18,7 @@ abstract class AppColors {
   static Color? disabledButtonColorBk = Colors.grey[200];
   static const Color searchBKColor = Color(0XFFF6F6F6);
   static const Color notificationScaffoldBKColor = Color(0XFFFBFBFB);
+  static const Color deleteIconButtonBKColor = Color(0XFFEAEAEA);
 
   static const Color notificationBk = Color(0XFFE0E0E0);
   static const Color appBarBackGroundColor = Colors.white;
@@ -50,5 +51,6 @@ abstract class AppColors {
   static const Color cursorColor = Color(0xFF8B8B8B);
   static const Color iconUnSelectedColor = Color(0xFF838383);
   static const Color dividerColor = Color(0xFFDADADA);
+  static const Color verticalDividerColor = Color(0xFFF2F2F2);
   static const Color expiredAdLabelColor = Color(0xFFE55A5A);
 }
