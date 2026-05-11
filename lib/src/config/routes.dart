@@ -12,7 +12,7 @@ import '../features/chat/presentation/screens/chat_screen.dart';
 import '../features/chat/presentation/screens/conversations_screen.dart';
 import '../features/favorite/presentation/screens/favorite_screen.dart';
 import '../features/home/presentation/screens/home_layout_screen.dart';
-import '../features/notifications/presentation/screens/notifications_screen.dart';
+import '../features/notifications/presentation/screens/notification_screen.dart';
 import '../features/profile/presentation/screens/profile_screen.dart';
 import '../features/static_pages/presentation/screens/terms_screen.dart';
 
@@ -30,7 +30,7 @@ class Routes {
     ResetPasswordScreen.routeName: (_) => const ResetPasswordScreen(),
     HomeLayoutScreen.routeName: (_) => const HomeLayoutScreen(),
     TermsScreen.routeName: (_) => const TermsScreen(),
-    NotificationsScreen.routeName: (_) => const NotificationsScreen(),
+    NotificationScreen.routeName: (_) => const NotificationScreen(),
     ChatScreen.routeName: (_) => const ChatScreen(),
     ConversationsScreen.routeName: (_) => const ConversationsScreen(),
     ProfileScreen.routeName: (_) => const ProfileScreen(),

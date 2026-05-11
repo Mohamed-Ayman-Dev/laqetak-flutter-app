@@ -1,3 +1,4 @@
+import 'package:invastro/src/core/constants/images_assets.dart';
 import 'package:invastro/src/core/shared/models/details_model.dart';
 
 final class MockDataForLoading {
@@ -7,6 +8,14 @@ final class MockDataForLoading {
     DetailsModel(id: 1, name: 'الرياض'),
     DetailsModel(id: 2, name: 'جدة'),
   ];
+  static List<String> mockAds = [
+    ImagesAssets.assetsImagesMockAd1,
+    ImagesAssets.assetsImagesMockAd2,
+    ImagesAssets.assetsImagesMockAd3,
+    ImagesAssets.assetsImagesMockAd4,
+    ImagesAssets.assetsImagesMockAd5,
+  ];
+
   // static const ServiceModel _mockServiceModel = ServiceModel(
   //   id: 1,
   //   isFavorite: false,

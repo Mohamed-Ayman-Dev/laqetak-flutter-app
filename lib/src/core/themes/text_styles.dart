@@ -43,6 +43,12 @@ abstract class AppTextStyles {
     color: AppColors.hintColor,
     fontFamily: Constant.fontFamily,
   );
+  static TextStyle filterButtonTextStyle = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+    fontFamily: Constant.fontFamily,
+  );
 
   ///------------------------------------
 

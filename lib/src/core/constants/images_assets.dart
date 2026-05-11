@@ -11,8 +11,26 @@ class ImagesAssets {
   /// assets/images/eye_on_icon.png
   static const String assetsImagesEyeOnIcon = "assets/images/eye_on_icon.png";
 
+  /// assets/images/image_placeholder.png
+  static const String assetsImagesImagePlaceholder = "assets/images/image_placeholder.png";
+
   /// assets/images/logo.png
   static const String assetsImagesLogo = "assets/images/logo.png";
+
+  /// assets/images/mock_ad_1.png
+  static const String assetsImagesMockAd1 = "assets/images/mock_ad_1.png";
+
+  /// assets/images/mock_ad_2.png
+  static const String assetsImagesMockAd2 = "assets/images/mock_ad_2.png";
+
+  /// assets/images/mock_ad_3.png
+  static const String assetsImagesMockAd3 = "assets/images/mock_ad_3.png";
+
+  /// assets/images/mock_ad_4.png
+  static const String assetsImagesMockAd4 = "assets/images/mock_ad_4.png";
+
+  /// assets/images/mock_ad_5.png
+  static const String assetsImagesMockAd5 = "assets/images/mock_ad_5.png";
 
   /// assets/images/reset_password_image.png
   static const String assetsImagesResetPasswordImage = "assets/images/reset_password_image.png";

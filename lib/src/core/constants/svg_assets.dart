@@ -20,11 +20,17 @@ class SvgAssets {
   /// assets/svg/check_dropdown_icon.svg
   static const String assetsSvgCheckDropdownIcon = "assets/svg/check_dropdown_icon.svg";
 
+  /// assets/svg/drawer_icon.svg
+  static const String assetsSvgDrawerIcon = "assets/svg/drawer_icon.svg";
+
   /// assets/svg/fav_icon_selected.svg
   static const String assetsSvgFavIconSelected = "assets/svg/fav_icon_selected.svg";
 
   /// assets/svg/fav_icon_unselected.svg
   static const String assetsSvgFavIconUnselected = "assets/svg/fav_icon_unselected.svg";
+
+  /// assets/svg/filter_icon.svg
+  static const String assetsSvgFilterIcon = "assets/svg/filter_icon.svg";
 
   /// assets/svg/home_icon_selected.svg
   static const String assetsSvgHomeIconSelected = "assets/svg/home_icon_selected.svg";
@@ -43,5 +49,8 @@ class SvgAssets {
 
   /// assets/svg/notification_icon_unselected.svg
   static const String assetsSvgNotificationIconUnselected = "assets/svg/notification_icon_unselected.svg";
+
+  /// assets/svg/search_icon.svg
+  static const String assetsSvgSearchIcon = "assets/svg/search_icon.svg";
 
 }

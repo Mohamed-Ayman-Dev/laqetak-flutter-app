@@ -1,8 +1,14 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
+import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
+import 'package:invastro/src/features/chat/presentation/screens/conversations_screen.dart';
+import 'package:invastro/src/features/favorite/presentation/screens/favorite_screen.dart';
+import 'package:invastro/src/features/notifications/presentation/screens/notification_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/providers/app_settings.dart';
@@ -44,10 +50,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
   ];
   final List<Widget> screens = [
     HomeScreen(),
-    // OrdersScreen(),
-    // SearchScreen(),
-    // SearchScreen(),
-    // ProfileScreen(),
+    ConversationsScreen(),
+    ConversationsScreen(),
+    FavoriteScreen(),
+    NotificationScreen(),
   ];
   bool dialogShown = false;
   bool once = false;
@@ -125,6 +131,11 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: CustomAppbar(
+      //   icons: [AppbarIcons.drawer, AppbarIcons.logo],
+      //   dontShowBackButton: true,
+      //   flexLeft: 2,
+      // ),
       extendBody: true,
       body: Selector<AppSettings, int>(
         selector: (_, p) => p.homeIndex,

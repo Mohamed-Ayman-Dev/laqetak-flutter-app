@@ -1,8 +1,6 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/themes/gradients.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +26,7 @@ class BottomNavBar extends StatelessWidget {
           color: Colors.white,
           border: Border(top: BorderSide(color: Color(0xFFF3F2F8), width: 1)),
         ),
+        padding: EdgeInsets.only(bottom: 5).r,
         child: Selector<AppSettings, int>(
           selector: (_, p) => p.homeIndex,
           builder: (context, homeIndex, _) {

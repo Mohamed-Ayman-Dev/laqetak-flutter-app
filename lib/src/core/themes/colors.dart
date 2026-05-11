@@ -16,6 +16,7 @@ abstract class AppColors {
   static const Color unSelectedRadioBKColor = Color(0XFFD1D1D6);
   static const Color selectedRadioBKColor = primaryColor;
   static Color? disabledButtonColorBk = Colors.grey[200];
+  static const Color searchBKColor = Color(0XFFF6F6F6);
 
   static const Color notificationBk = Color(0XFFE0E0E0);
   static const Color appBarBackGroundColor = Colors.white;
@@ -40,6 +41,7 @@ abstract class AppColors {
   // border colors
   static const Color fieldBorderColor = Color(0xFF8E8E93);
   static const Color borderColor = Color(0xFF8E8E93);
+  static const Color buttonBorderColor = Color(0xFFD5D5D5);
 
   // other colors
   static const Color cursorColor = Color(0xFF8B8B8B);
