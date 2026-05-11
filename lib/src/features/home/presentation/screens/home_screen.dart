@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 
 import '../../../../core/constants/enums.dart';
@@ -117,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ).r.copyWith(bottom: 130.h),
             sliver: SliverList.separated(
               itemCount: MockDataForLoading.mockAds.length,
-              separatorBuilder: (_, __) => 16.heightSpace,
+              separatorBuilder: (_, __) => Divider(height: 26.h),
               itemBuilder: (context, index) {
                 return AnimationConfiguration.staggeredList(
                   position: index,

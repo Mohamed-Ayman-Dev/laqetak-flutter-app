@@ -170,7 +170,7 @@ abstract class CustomTheme {
       ),
     ),
 
-    dividerTheme: DividerThemeData(color: AppColors.thirdColor),
+    dividerTheme: DividerThemeData(color: AppColors.dividerColor),
     radioTheme: RadioThemeData(
       visualDensity: const VisualDensity(
         horizontal: VisualDensity.minimumDensity,

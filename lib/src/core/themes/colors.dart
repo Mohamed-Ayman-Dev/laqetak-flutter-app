@@ -46,4 +46,5 @@ abstract class AppColors {
   // other colors
   static const Color cursorColor = Color(0xFF8B8B8B);
   static const Color iconUnSelectedColor = Color(0xFF838383);
+  static const Color dividerColor = Color(0xFFDADADA);
 }
