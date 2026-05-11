@@ -17,11 +17,17 @@ class SvgAssets {
   /// assets/svg/arrow_down_outlined.svg
   static const String assetsSvgArrowDownOutlined = "assets/svg/arrow_down_outlined.svg";
 
+  /// assets/svg/category_icon.svg
+  static const String assetsSvgCategoryIcon = "assets/svg/category_icon.svg";
+
   /// assets/svg/check_dropdown_icon.svg
   static const String assetsSvgCheckDropdownIcon = "assets/svg/check_dropdown_icon.svg";
 
   /// assets/svg/drawer_icon.svg
   static const String assetsSvgDrawerIcon = "assets/svg/drawer_icon.svg";
+
+  /// assets/svg/fav_fill_icon.svg
+  static const String assetsSvgFavFillIcon = "assets/svg/fav_fill_icon.svg";
 
   /// assets/svg/fav_icon_selected.svg
   static const String assetsSvgFavIconSelected = "assets/svg/fav_icon_selected.svg";
@@ -50,7 +56,19 @@ class SvgAssets {
   /// assets/svg/notification_icon_unselected.svg
   static const String assetsSvgNotificationIconUnselected = "assets/svg/notification_icon_unselected.svg";
 
+  /// assets/svg/pin_fill_icon.svg
+  static const String assetsSvgPinFillIcon = "assets/svg/pin_fill_icon.svg";
+
+  /// assets/svg/sar_icon.svg
+  static const String assetsSvgSarIcon = "assets/svg/sar_icon.svg";
+
   /// assets/svg/search_icon.svg
   static const String assetsSvgSearchIcon = "assets/svg/search_icon.svg";
+
+  /// assets/svg/time_fill_icon.svg
+  static const String assetsSvgTimeFillIcon = "assets/svg/time_fill_icon.svg";
+
+  /// assets/svg/user_filled_icon.svg
+  static const String assetsSvgUserFilledIcon = "assets/svg/user_filled_icon.svg";
 
 }

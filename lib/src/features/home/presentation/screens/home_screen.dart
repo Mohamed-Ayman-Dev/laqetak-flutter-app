@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:invastro/src/core/shared/widgets/custom_image.dart';
+import 'package:invastro/src/core/shared/widgets/items_widgets/ad_item.dart';
 
 import '../../../../core/constants/enums.dart';
 import '../../../../core/constants/mock_data_for_loading.dart';
@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<String> _filters = ['الكل', 'إبحث عن فرصة', 'إبحث عن مستثمر'];
   bool _showSearchIcon = false;
   final ScrollController _scrollController = ScrollController();
+  final Set<int> _likedAds = {};
 
   @override
   void dispose() {
@@ -114,9 +115,8 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.symmetric(
               horizontal: 20,
             ).r.copyWith(bottom: 130.h),
-            sliver: SliverList.separated(
+            sliver: SliverList.builder(
               itemCount: MockDataForLoading.mockAds.length,
-              separatorBuilder: (_, __) => Divider(height: 26.h),
               itemBuilder: (context, index) {
                 return AnimationConfiguration.staggeredList(
                   position: index,
@@ -128,16 +128,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: FadeInAnimation(
                       duration: const Duration(milliseconds: 1800),
                       curve: Curves.fastLinearToSlowEaseIn,
-                      child: Row(
-                        children: [
-                          Hero(
-                            tag: '${MockDataForLoading.mockAds[index]}-$index',
-                            child: CustomImage(
-                              imageUrl: '',
-                              placeholder: MockDataForLoading.mockAds[index],
-                            ),
-                          ),
-                        ],
+                      child: AdItem(
+                        image: MockDataForLoading.mockAds[index]['image'],
+                        onTab: () {},
+                        hideDivider:
+                            index == (MockDataForLoading.mockAds.length - 1),
+                        heroTag:
+                            '${MockDataForLoading.mockAds[index]['image']}-$index',
+                        onLike: () {
+                          setState(() {
+                            if (_likedAds.contains(index)) {
+                              _likedAds.remove(index);
+                            } else {
+                              _likedAds.add(index);
+                            }
+                          });
+                        },
+                        isLiked: _likedAds.contains(index),
                       ),
                     ),
                   ),

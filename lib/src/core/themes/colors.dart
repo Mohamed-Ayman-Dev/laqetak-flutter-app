@@ -29,6 +29,7 @@ abstract class AppColors {
   static const Color inputTextColor = Colors.black;
   static const Color buttonTextColor = Color(0xFF1D1D1D);
   static const Color hintColor = Color(0xFF8E8E93);
+  static const Color bodyGreyTextColor = Color(0xFF737373);
 
   static const Color bodyTextColor = Color(0xFF181818);
   static const Color bodySmallGreyTextColor = Color(0XFFABABAB);
@@ -47,4 +48,5 @@ abstract class AppColors {
   static const Color cursorColor = Color(0xFF8B8B8B);
   static const Color iconUnSelectedColor = Color(0xFF838383);
   static const Color dividerColor = Color(0xFFDADADA);
+  static const Color expiredAdLabelColor = Color(0xFFE55A5A);
 }

@@ -97,7 +97,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             child: AnimatedSlide(
               offset: showSearchIcon
                   ? Offset.zero
-                  : const Offset(0.5, 0), // بيجي من الشمال
+                  : const Offset(0.4, 0), // بيجي من الشمال
               duration: const Duration(milliseconds: 350),
               curve: Curves.easeOutCubic,
               child: IgnorePointer(
@@ -112,6 +112,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
+
           if (canPop)
             CustomDirectionWidget(
               child: Hero(

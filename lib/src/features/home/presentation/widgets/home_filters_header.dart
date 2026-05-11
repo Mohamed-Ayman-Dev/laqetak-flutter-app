@@ -15,10 +15,10 @@ class FilterHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   // ✅ Must match exactly what the child renders
   @override
-  double get minExtent => 45.h + 16.h; // SizedBox height + vertical padding
+  double get minExtent => 42.h + 16.h; // SizedBox height + vertical padding
 
   @override
-  double get maxExtent => 45.h + 16.h;
+  double get maxExtent => 42.h + 16.h;
 
   @override
   Widget build(
@@ -31,7 +31,7 @@ class FilterHeaderDelegate extends SliverPersistentHeaderDelegate {
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
       // ← vertical padding counted above
       child: SizedBox(
-        height: 45.h,
+        height: 42.h,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemCount: filters.length,

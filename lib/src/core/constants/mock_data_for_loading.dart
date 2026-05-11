@@ -8,12 +8,52 @@ final class MockDataForLoading {
     DetailsModel(id: 1, name: 'الرياض'),
     DetailsModel(id: 2, name: 'جدة'),
   ];
-  static List<String> mockAds = [
-    ImagesAssets.assetsImagesMockAd1,
-    ImagesAssets.assetsImagesMockAd2,
-    ImagesAssets.assetsImagesMockAd3,
-    ImagesAssets.assetsImagesMockAd4,
-    ImagesAssets.assetsImagesMockAd5,
+  static List<Map<String, dynamic>> mockAds = [
+    {
+      'image': ImagesAssets.assetsImagesMockAd1,
+      'label': 'مشروع تجاري كامل',
+      'name': 'محمد الدوسري',
+      'location': 'الرياض',
+      'category': 'عقاري',
+      'price': "50,000",
+      'time': "1 ساعة",
+    },
+    {
+      'image': ImagesAssets.assetsImagesMockAd2,
+      'label': 'عمارة سكنية',
+      'name': 'محمد الدوسري',
+      'location': 'الرياض',
+      'category': 'عقاري',
+      'price': "24,000",
+      'time': "1 ساعة",
+    },
+    {
+      'image': ImagesAssets.assetsImagesMockAd3,
+      'label': 'مشروع تجاري كامل',
+      'name': 'محمد الدوسري',
+      'location': 'الرياض',
+      'category': 'عقاري',
+      'price': "50,000",
+      'time': "1 ساعة",
+    },
+    {
+      'image': ImagesAssets.assetsImagesMockAd4,
+      'label': 'مطعم مربح وكامل',
+      'name': 'محمد الدوسري',
+      'location': 'الرياض',
+      'category': 'عقاري',
+      'price': "43,000",
+      'time': "1 ساعة",
+    },
+    {
+      'image': ImagesAssets.assetsImagesMockAd5,
+      'label': 'مشروع تجاري كامل',
+      'name': 'محمد الدوسري',
+      'location': 'الرياض',
+      'category': 'عقاري',
+      'price': "30,000",
+      'time': "1 ساعة",
+    },
   ];
 
   // static const ServiceModel _mockServiceModel = ServiceModel(
