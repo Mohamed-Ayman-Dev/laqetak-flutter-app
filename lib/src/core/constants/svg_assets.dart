@@ -20,6 +20,9 @@ class SvgAssets {
   /// assets/svg/category_icon.svg
   static const String assetsSvgCategoryIcon = "assets/svg/category_icon.svg";
 
+  /// assets/svg/chance.svg
+  static const String assetsSvgChance = "assets/svg/chance.svg";
+
   /// assets/svg/check_dropdown_icon.svg
   static const String assetsSvgCheckDropdownIcon = "assets/svg/check_dropdown_icon.svg";
 
@@ -103,6 +106,9 @@ class SvgAssets {
 
   /// assets/svg/pin_fill_icon.svg
   static const String assetsSvgPinFillIcon = "assets/svg/pin_fill_icon.svg";
+
+  /// assets/svg/pin_outilned.svg
+  static const String assetsSvgPinOutilned = "assets/svg/pin_outilned.svg";
 
   /// assets/svg/readed_message_icon.svg
   static const String assetsSvgReadedMessageIcon = "assets/svg/readed_message_icon.svg";

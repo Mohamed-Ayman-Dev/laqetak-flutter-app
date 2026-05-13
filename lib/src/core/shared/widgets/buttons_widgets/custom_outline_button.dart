@@ -3,133 +3,103 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../extension/space_extensions_helper.dart';
 import '../../../themes/colors.dart';
 import '../../../themes/text_styles.dart';
 
 class CustomOutlineButton extends StatelessWidget {
-  final void Function()? onPressed;
-  final Widget? child;
-  final String? text;
-  final Color? shadowColor;
-  final Color? backgroundColor;
-  final double? borderRadius;
-  final double? borderWidth;
-  final Size? buttonSize;
-  final double? elevation;
-  final bool isLoading;
-  final String? icon;
-  final Color? iconColor;
-  final EdgeInsetsGeometry? paddingInside;
-  final Color? borderColor;
-  final TextStyle? textStyle;
-  final ButtonStyle? style;
-  final OutlinedBorder? shape;
-  final double? fontSize;
-  final double? iconSize;
-
   const CustomOutlineButton({
     super.key,
     this.onPressed,
-    this.child,
     this.text,
-    this.shadowColor,
-    this.backgroundColor,
-    this.borderRadius,
-    this.paddingInside,
-    this.borderColor,
-    this.textStyle,
-    this.style,
-    this.shape,
-    this.borderWidth,
-    this.buttonSize,
-    this.elevation,
+    this.child,
     this.isLoading = false,
+    this.backgroundColor,
+    this.textStyle,
+    this.borderRadius = 35,
+    this.size,
+    this.borderColor,
+    this.borderWidth = 1,
     this.icon,
+    this.iconSize = 20,
     this.iconColor,
     this.fontSize,
-    this.iconSize,
   });
+
+  final VoidCallback? onPressed;
+  final String? text;
+  final Widget? child;
+  final bool isLoading;
+  final Color? backgroundColor;
+  final TextStyle? textStyle;
+  final double borderRadius;
+  final Size? size;
+  final Color? borderColor;
+  final double borderWidth;
+  final String? icon;
+  final double iconSize;
+  final Color? iconColor;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
+    final isDisabled = onPressed == null;
+
     return OutlinedButton(
-      style:
-          style ??
-          ButtonStyle(
-            elevation: WidgetStatePropertyAll(elevation),
-
-            shadowColor: shadowColor == null
-                ? null
-                : WidgetStatePropertyAll(shadowColor),
-            minimumSize: buttonSize == null
-                ? null
-                : WidgetStatePropertyAll(buttonSize),
-            maximumSize: buttonSize == null
-                ? null
-                : WidgetStatePropertyAll(buttonSize),
-            backgroundColor: backgroundColor == null
-                ? null
-                : WidgetStatePropertyAll(backgroundColor),
-            padding: paddingInside == null
-                ? const WidgetStatePropertyAll(EdgeInsets.zero)
-                : WidgetStatePropertyAll(paddingInside),
-            shape: shape == null
-                ? borderRadius == null
-                      ? null
-                      : MaterialStatePropertyAll(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(borderRadius!),
-                          ),
-                        )
-                : WidgetStatePropertyAll(shape),
-            side: borderColor == null
-                ? null
-                : MaterialStatePropertyAll(
-                    borderWidth == null
-                        ? BorderSide(color: borderColor!)
-                        : BorderSide(color: borderColor!, width: borderWidth!),
-                  ),
-          ),
       onPressed: onPressed,
-      child: isLoading
-          ? CupertinoActivityIndicator()
-          : child ??
-                (icon != null
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Spacer(flex: 3),
-
-                          SvgPicture.asset(
-                            icon!,
-                            width: iconSize?.sp ?? 16.sp,
-                            height: iconSize?.sp ?? 16.sp,
-                            color: iconColor,
-                          ),
-
-                          Spacer(),
-                          Text(
-                            text ?? '',
-                            style:
-                                textStyle ??
-                                AppTextStyles.buttonsTextStyle.copyWith(
-                                  color: AppColors.primaryColor,
-                                  fontSize: fontSize?.sp,
-                                ),
-                          ),
-                          Spacer(flex: 3),
-                        ],
-                      )
-                    : Text(
+      style: OutlinedButton.styleFrom(
+        elevation: 0,
+        padding: EdgeInsets.zero,
+        minimumSize: size,
+        maximumSize: size,
+        backgroundColor: backgroundColor ?? Colors.transparent,
+        disabledBackgroundColor: AppColors.disabledButtonColorBk,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius).r,
+        ),
+        side: BorderSide(
+          color: isDisabled
+              ? AppColors.disabledButtonColorBk
+              : borderColor ?? AppColors.primaryColor,
+          width: borderWidth,
+        ),
+      ),
+      child: Container(
+        width: size?.width ?? double.infinity,
+        height: size?.height ?? 48.h,
+        alignment: Alignment.center,
+        child: isLoading
+            ? const CupertinoActivityIndicator()
+            : child ??
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (icon != null) ...[
+                        SvgPicture.asset(
+                          icon!,
+                          width: iconSize,
+                          height: iconSize,
+                          colorFilter: iconColor != null
+                              ? ColorFilter.mode(iconColor!, BlendMode.srcIn)
+                              : null,
+                        ),
+                        8.widthSpace,
+                      ],
+                      Text(
                         text ?? '',
                         style:
                             textStyle ??
                             AppTextStyles.buttonsTextStyle.copyWith(
-                              color: borderColor ?? AppColors.primaryColor,
-                              fontSize: fontSize?.sp,
+                              color: isDisabled
+                                  ? Colors.grey[400]
+                                  : borderColor ?? AppColors.primaryColor,
+                              fontSize: fontSize,
                             ),
-                      )),
+                      ),
+                    ],
+                  ),
+      ),
     );
   }
 }

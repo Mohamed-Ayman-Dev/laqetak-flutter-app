@@ -4,9 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_outline_button.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/small_icon_button.dart';
 import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
+import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_desc.dart';
+import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_points.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_image_gallery.dart';
 
 import '../../../../core/constants/svg_assets.dart';
@@ -97,6 +101,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 18, vertical: 25).r,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // AdDetailsHeader(),
             Row(
@@ -127,6 +132,27 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
               isExpired: isExpired,
             ),
             15.heightSpace,
+            AdDetailsPoints(),
+            17.heightSpace,
+            Text('تفاصيل الإعلان', style: AppTextStyles.labelMedium),
+            11.heightSpace,
+            AdDetailsDesc(),
+            16.heightSpace,
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: CustomOutlineButton(
+                text: 'الإبلاغ عن الإعلان',
+                textStyle: AppTextStyles.buttonsTextStyle.copyWith(
+                  color: AppColors.labelTextColor,
+                  fontSize: 12.sp,
+                ),
+                size: Size(123.w, 36.h),
+                borderColor: AppColors.reportBorderColor,
+                onPressed: () {},
+              ),
+            ),
+            Text('تفاصيل المعلن', style: AppTextStyles.labelMedium),
+            12.heightSpace,
           ],
         ),
       ),
