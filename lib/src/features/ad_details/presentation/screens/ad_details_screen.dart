@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_outline_button.dart';
-import 'package:invastro/src/core/shared/widgets/buttons_widgets/small_icon_button.dart';
 import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_bottom.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_desc.dart';
+import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_header.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_points.dart';
+import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_seller.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_image_gallery.dart';
-
-import '../../../../core/constants/svg_assets.dart';
 
 class AdDetailsScreen extends StatefulWidget {
   static const routeName = '/ad_details_screen';
@@ -57,40 +55,6 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
 
   bool isLiked = false;
 
-  void onLike() {
-    setState(() {
-      isLiked = !isLiked;
-    });
-  }
-
-  Widget _buildLike() => InkWell(
-    splashColor: Colors.transparent,
-    highlightColor: Colors.transparent,
-    onTap: () {
-      HapticFeedback.mediumImpact();
-      onLike();
-    },
-    child: Padding(
-      padding: const EdgeInsets.all(8.0).r,
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 100),
-        switchInCurve: Curves.elasticOut,
-        switchOutCurve: Curves.easeIn,
-        transitionBuilder: (child, animation) =>
-            ScaleTransition(scale: animation, child: child),
-        child: SvgPicture.asset(
-          isLiked
-              ? SvgAssets.assetsSvgFavFillIcon
-              : SvgAssets.assetsSvgFavIconUnselected,
-          key: ValueKey(isLiked),
-          // ← required for AnimatedSwitcher to detect change
-          width: 24.w,
-          height: 24.h,
-        ),
-      ),
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,63 +62,52 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
         icons: [AppbarIcons.logo, AppbarIcons.drawer],
         flexRight: 8,
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 18, vertical: 25).r,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // AdDetailsHeader(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 18, vertical: 20).r,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Text(
-                    'مشروع تجاري كامل',
-                    style: AppTextStyles.labelLarge.copyWith(fontSize: 15.sp),
+                AdDetailsHeader(),
+                20.heightSpace,
+                AdImageGallery(
+                  images: images,
+                  type: adType ?? '',
+                  hero: adHero ?? '',
+                  image: adImage ?? '',
+                  isExpired: isExpired,
+                ),
+                15.heightSpace,
+                AdDetailsPoints(),
+                17.heightSpace,
+                Text('تفاصيل الإعلان', style: AppTextStyles.labelMedium),
+                11.heightSpace,
+                AdDetailsDesc(),
+                16.heightSpace,
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: CustomOutlineButton(
+                    text: 'الإبلاغ عن الإعلان',
+                    textStyle: AppTextStyles.buttonsTextStyle.copyWith(
+                      color: AppColors.labelTextColor,
+                      fontSize: 12.sp,
+                    ),
+                    size: Size(123.w, 36.h),
+                    borderColor: AppColors.reportBorderColor,
+                    onPressed: () {},
                   ),
                 ),
-                5.widthSpace,
-                SmallIconButton(
-                  icon: SvgAssets.assetsSvgShareIcon,
-                  onTab: () {},
-                  width: 20,
-                  height: 20,
-                ),
-                _buildLike(),
+                Text('تفاصيل المعلن', style: AppTextStyles.labelMedium),
+                12.heightSpace,
+                AdDetailsSeller(),
+                110.heightSpace,
               ],
             ),
-            22.heightSpace,
-            AdImageGallery(
-              images: images,
-              type: adType ?? '',
-              hero: adHero ?? '',
-              image: adImage ?? '',
-              isExpired: isExpired,
-            ),
-            15.heightSpace,
-            AdDetailsPoints(),
-            17.heightSpace,
-            Text('تفاصيل الإعلان', style: AppTextStyles.labelMedium),
-            11.heightSpace,
-            AdDetailsDesc(),
-            16.heightSpace,
-            Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: CustomOutlineButton(
-                text: 'الإبلاغ عن الإعلان',
-                textStyle: AppTextStyles.buttonsTextStyle.copyWith(
-                  color: AppColors.labelTextColor,
-                  fontSize: 12.sp,
-                ),
-                size: Size(123.w, 36.h),
-                borderColor: AppColors.reportBorderColor,
-                onPressed: () {},
-              ),
-            ),
-            Text('تفاصيل المعلن', style: AppTextStyles.labelMedium),
-            12.heightSpace,
-          ],
-        ),
+          ),
+          AdDetailsBottom(),
+        ],
       ),
     );
   }

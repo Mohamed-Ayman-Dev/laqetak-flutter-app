@@ -28,7 +28,7 @@ class CustomDrawerHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              90.heightSpace,
+              100.heightSpace,
               Consumer<Auth>(
                 builder: (context, provider, child) {
                   return Row(
@@ -88,7 +88,7 @@ class CustomDrawerHeader extends StatelessWidget {
             splashColor: Colors.transparent,
             onTap: () => Navigator.pop(context),
             child: Container(
-              margin: const EdgeInsets.only(left: 22.0, right: 22, top: 35).r,
+              margin: const EdgeInsets.only(left: 22.0, right: 22, top: 40).r,
               padding: EdgeInsets.all(6).r,
               decoration: BoxDecoration(
                 color: Colors.white,

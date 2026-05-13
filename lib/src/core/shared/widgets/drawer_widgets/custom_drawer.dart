@@ -29,7 +29,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 90.0).r,
+      padding: const EdgeInsets.only(bottom: 70.0).r,
       child: Stack(
         children: [
           BackdropFilter(
@@ -66,7 +66,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 children: [
                   CustomDrawerHeader(),
                   Divider(
-                    height: 25.h,
+                    height: 40.h,
                     endIndent: 20.w,
                     indent: 20.w,
                     color: AppColors.drawerDividerColor,

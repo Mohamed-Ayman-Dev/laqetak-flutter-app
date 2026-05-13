@@ -20,6 +20,8 @@ abstract class AppColors {
   static const Color greyScaffoldBKColor = Color(0XFFFBFBFB);
   static const Color deleteIconButtonBKColor = Color(0XFFEAEAEA);
   static const Color myMessageBKColor = Color(0XFFE2E2E2);
+  static const Color sellerNumberBKColor = Color(0XFFF0F0F0);
+
   static const Color otherMessageBKColor = Color.fromRGBO(254, 224, 134, 0.56);
 
   static const Color notificationBk = Color(0XFFE0E0E0);
@@ -41,6 +43,10 @@ abstract class AppColors {
   static const Color bodyChatTextColor = Color(0XFF6E6E6E);
   static const Color drawerHeaderTextColor = Color(0xFF3A3A3C);
   static const Color descTextColor = Color(0xFF5D5D5D);
+  static const Color sellerLabelTextColor = Color(0xFF7D7D7D);
+  static const Color numberLabelTextColor = Color(0xFF212121);
+  static const Color labelBlackTextColor = Color(0XFF0D0D0E);
+  static const Color priceBlackTextColor = Color(0XFF282828);
 
   static const Color textButtonTextColor = Color(0XFF181818);
   static const Color titleTextColor = Color(0XFF1D1D1D);

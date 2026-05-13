@@ -17,11 +17,17 @@ class SvgAssets {
   /// assets/svg/arrow_down_outlined.svg
   static const String assetsSvgArrowDownOutlined = "assets/svg/arrow_down_outlined.svg";
 
+  /// assets/svg/call.svg
+  static const String assetsSvgCall = "assets/svg/call.svg";
+
   /// assets/svg/category_icon.svg
   static const String assetsSvgCategoryIcon = "assets/svg/category_icon.svg";
 
   /// assets/svg/chance.svg
   static const String assetsSvgChance = "assets/svg/chance.svg";
+
+  /// assets/svg/chat_icon.svg
+  static const String assetsSvgChatIcon = "assets/svg/chat_icon.svg";
 
   /// assets/svg/check_dropdown_icon.svg
   static const String assetsSvgCheckDropdownIcon = "assets/svg/check_dropdown_icon.svg";
