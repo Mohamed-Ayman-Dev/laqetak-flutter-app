@@ -16,12 +16,21 @@ class ChatHeaderWidget extends StatelessWidget {
       children: [
         8.widthSpace,
 
-        CustomImage(
-          imageUrl: '',
-          borderRadius: 100,
-          height: 45,
-          width: 45,
-          placeholder: ImagesAssets.assetsImagesMockPersonImage2,
+        // CustomImage(
+        //   imageUrl: '',
+        //   borderRadius: 100,
+        //   height: 45,
+        //   width: 45,
+        //   placeholder: ImagesAssets.assetsImagesMockPersonImage2,
+        // ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: Image.asset(
+            ImagesAssets.assetsImagesMockPersonImage2,
+            fit: BoxFit.cover,
+            width: 45.w,
+            height: 45.h,
+          ),
         ),
         8.widthSpace,
         Column(

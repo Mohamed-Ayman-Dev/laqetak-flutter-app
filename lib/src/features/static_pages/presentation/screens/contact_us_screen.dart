@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/enums.dart';
+import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:invastro/src/core/themes/colors.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
@@ -8,6 +11,7 @@ import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/custom_appbar.dart';
+import '../../../../core/shared/widgets/fields_widgets/country_code_field.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_note_field.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/themes/text_styles.dart';
@@ -28,7 +32,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
 
-  final Map<String, dynamic> _formData = {};
+  final Map<String, dynamic> _formData = {'country_code': '+966'};
 
   Future<void> _send() async {
     if (_formKey.currentState?.validate() ?? false) {
@@ -65,101 +69,154 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: Align(
-      //   alignment: Alignment.bottomRight,
-      //   child: Padding(
-      //     padding:
-      //         const EdgeInsets.symmetric(vertical: 130.0, horizontal: 30).r,
-      //     child: FloatingActionButton(
-      //       onPressed: () {},
-      //       shape: const CircleBorder(),
-      //       child: Image.asset(
-      //         'assets/images/chatting.png',
-      //         width: 24.w,
-      //         height: 24.h,
-      //       ),
-      //     ),
-      //   ),
-      // ),
-      appBar: CustomAppbar(icons: [AppbarIcons.logo], flexRight: 8),
-      body: SafeArea(
-        bottom: true,
-        top: false,
-        right: false,
-        left: false,
-        child: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16).r,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                16.heightSpace,
-                Text('الإسم', style: AppTextStyles.labelMedium),
-                8.heightSpace,
-                CustomTextField(
-                  hintText: 'الإسم',
-                  controller: _nameController,
-                  prefixIconImage: 'assets/images/user.svg',
-                  onSaved: (val) {
-                    _formData['name'] = val;
-                  },
-                  keyboardType: TextInputType.name,
-
-                  validator: (value) {
-                    return ValidationHelper.validateName(
-                      value,
-                      emptyMessage: 'S.of(context).youMustEnterYourName',
-                      invalidMessage: S.of(context).pleaseEnterAValidName,
-                    );
-                  },
-                  textInputAction: TextInputAction.next,
-                  maxLines: 1,
+      appBar: CustomAppbar(
+        icons: [AppbarIcons.logo, AppbarIcons.drawer],
+        flexRight: 8,
+      ),
+      drawer: CustomDrawer(),
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 16).r,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              20.heightSpace,
+              Text(
+                'اتصل بنا',
+                style: AppTextStyles.headlineMedium.copyWith(
+                  color: AppColors.titleTextColor,
+                  fontSize: 16.sp,
                 ),
-                16.heightSpace,
-                Text('رقم الجوال', style: AppTextStyles.labelMedium),
-                8.heightSpace,
-                CustomTextField(
+              ),
+              30.heightSpace,
+              Text(
+                'الإسم',
+                style: AppTextStyles.headlineSmall.copyWith(
+                  color: AppColors.labelTextColor,
+                ),
+              ),
+              8.heightSpace,
+              CustomTextField(
+                hintText: 'الإسم',
+                controller: _nameController,
+                prefixIconImage: 'assets/images/user.svg',
+                onSaved: (val) {
+                  _formData['name'] = val;
+                },
+                keyboardType: TextInputType.name,
+
+                validator: (value) {
+                  return ValidationHelper.validateName(
+                    value,
+                    emptyMessage: 'S.of(context).youMustEnterYourName',
+                    invalidMessage: S.of(context).pleaseEnterAValidName,
+                  );
+                },
+                textInputAction: TextInputAction.next,
+                maxLines: 1,
+              ),
+              24.heightSpace,
+              Text(
+                'رقم الجوال',
+                style: AppTextStyles.headlineSmall.copyWith(
+                  color: AppColors.labelTextColor,
+                ),
+              ),
+              8.heightSpace,
+              CustomTextField(
+                onChanged: (value) {
+                  setState(() {});
+                },
+                onSaved: (val) {
+                  _formData['phone'] = val;
+                },
+                validator: (value) {
+                  return ValidationHelper.validatePhoneByCountryCode(
+                    phone: value,
+                    countryCode: _formData['country_code'],
+                    context: context,
+                  );
+                },
+                focusNode: _phoneFocusNode,
+                keyboardType: TextInputType.phone,
+                textInputAction: TextInputAction.next,
+                controller: _phoneController,
+                hintText: "رقم الجوال",
+                // textDirection: TextDirection.ltr,
+                suffixIcon: CountryCodeField(
                   focusNode: _phoneFocusNode,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.phone,
-                  onSaved: (val) {
-                    _formData['phone'] = val;
+                  onChanged: (val) {
+                    _formData['country_code'] = val.toString();
                   },
-                  controller: _phoneController,
-                  hintText: 'رقم الجوال',
-                  validator: (value) {
-                    return ValidationHelper.validatePhone(value, context);
+                  onInit: (val) {
+                    _formData['country_code'] = val.toString();
                   },
                 ),
-                16.heightSpace,
-                Text('موضوع الرسالة', style: AppTextStyles.bodyLarge),
-                8.heightSpace,
-                CustomNoteField(
-                  hint: 'أكتب رسالتك',
-                  keyboardType: TextInputType.text,
-                  validator: (value) {
-                    return ValidationHelper.validateEmpty(
-                      value,
-                      emptyMessage: S.of(context).messageIsRequired,
-                    );
-                  },
-                  onSaved: (val) {
-                    _formData['message'] = val;
-                  },
+              ),
+              24.heightSpace,
+              Text(
+                'البريد الإلكتروني',
+                style: AppTextStyles.headlineSmall.copyWith(
+                  color: AppColors.labelTextColor,
                 ),
+              ),
+              8.heightSpace,
+              CustomTextField(
+                onChanged: (value) {
+                  setState(() {});
+                },
 
-                24.heightSpace,
-                SocialWidgets(),
-                193.heightSpace,
-                CustomElevatedButton(
-                  text: 'S.of(context).send',
-                  onPressed: () {
-                    _send();
-                  },
+                hintText: 'أدخل بريدك الالكتروني',
+                textInputAction: TextInputAction.next,
+                maxLines: 1,
+                keyboardType: TextInputType.emailAddress,
+
+                onSaved: (val) {
+                  _formData['email'] = val;
+                },
+                validator: (value) {
+                  return ValidationHelper.validateEmail(
+                    value,
+                    emptyMessage: S.of(context).pleaseEnterYourEmail,
+                    invalidMessage: S.of(context).pleaseEnterAValidEmail,
+                  );
+                },
+              ),
+              24.heightSpace,
+              Text(
+                'موضوع الرسالة',
+                style: AppTextStyles.headlineSmall.copyWith(
+                  color: AppColors.labelTextColor,
                 ),
-              ],
-            ),
+              ),
+              8.heightSpace,
+              CustomNoteField(
+                hint: 'أكتب رسالتك',
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  return ValidationHelper.validateEmpty(
+                    value,
+                    emptyMessage: S.of(context).messageIsRequired,
+                  );
+                },
+                onSaved: (val) {
+                  _formData['message'] = val;
+                },
+              ),
+
+              24.heightSpace,
+              CustomElevatedButton(
+                text: 'إرسال',
+                icon: SvgAssets.assetsSvgArrowRight,
+                onPressed: () {
+                  _send();
+                },
+              ),
+              33.heightSpace,
+              SocialWidgets(),
+              100.heightSpace,
+            ],
           ),
         ),
       ),

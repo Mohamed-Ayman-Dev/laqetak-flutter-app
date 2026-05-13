@@ -6,13 +6,20 @@ import '../../../themes/text_styles.dart';
 
 class AdLabel extends StatelessWidget {
   final String labelText;
+  final EdgeInsets? padding;
+  final double? fontSize;
 
-  const AdLabel({super.key, required this.labelText});
+  const AdLabel({
+    super.key,
+    required this.labelText,
+    this.padding,
+    this.fontSize,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(14, 9, 14, 7).r,
+      padding: padding ?? EdgeInsets.fromLTRB(14, 9, 14, 7).r,
 
       decoration: BoxDecoration(
         color: AppColors.primaryColor.withOpacity(0.8),
@@ -22,7 +29,7 @@ class AdLabel extends StatelessWidget {
         labelText,
         style: AppTextStyles.labelSmall.copyWith(
           color: Colors.white,
-          fontSize: 12.sp,
+          fontSize: fontSize?.sp ?? 12.sp,
         ),
       ),
     );

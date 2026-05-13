@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../features/auth/presentation/providers/auth.dart';
@@ -29,17 +28,26 @@ class CustomDrawerHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              100.heightSpace,
+              90.heightSpace,
               Consumer<Auth>(
                 builder: (context, provider, child) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      CustomImage(
-                        imageUrl: '',
-                        width: 52.w,
-                        height: 52.h,
-                        placeholder: ImagesAssets.assetsImagesMockProfileImage,
+                      // CustomImage(
+                      //   imageUrl: '',
+                      //   width: 52.w,
+                      //   height: 52.h,
+                      //   placeholder: ImagesAssets.assetsImagesMockProfileImage,
+                      // ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image.asset(
+                          ImagesAssets.assetsImagesMockProfileImage,
+                          fit: BoxFit.cover,
+                          width: 52.w,
+                          height: 52.h,
+                        ),
                       ),
                       13.widthSpace,
                       Column(
@@ -80,7 +88,7 @@ class CustomDrawerHeader extends StatelessWidget {
             splashColor: Colors.transparent,
             onTap: () => Navigator.pop(context),
             child: Container(
-              margin: const EdgeInsets.only(left: 22.0, right: 22, top: 45).r,
+              margin: const EdgeInsets.only(left: 22.0, right: 22, top: 35).r,
               padding: EdgeInsets.all(6).r,
               decoration: BoxDecoration(
                 color: Colors.white,

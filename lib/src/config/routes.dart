@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 
+import '../features/ad_details/presentation/screens/ad_details_screen.dart';
 import '../features/auth/presentation/screens/auth_screen.dart';
 import '../features/auth/presentation/screens/forget_password_screen.dart';
 import '../features/auth/presentation/screens/login_screen.dart';
@@ -17,6 +18,7 @@ import '../features/notifications/presentation/screens/notification_screen.dart'
 import '../features/profile/presentation/screens/profile_screen.dart';
 import '../features/static_pages/presentation/screens/about_app_screen.dart';
 import '../features/static_pages/presentation/screens/contact_us_screen.dart';
+import '../features/static_pages/presentation/screens/questions_screen.dart';
 import '../features/static_pages/presentation/screens/terms_screen.dart';
 
 class Routes {
@@ -41,6 +43,8 @@ class Routes {
     MyAdsScreen.routeName: (_) => const MyAdsScreen(),
     AboutAppScreen.routeName: (_) => const AboutAppScreen(),
     ContactUsScreen.routeName: (_) => const ContactUsScreen(),
+    QuestionsScreen.routeName: (_) => const QuestionsScreen(),
+    AdDetailsScreen.routeName: (_) => const AdDetailsScreen(),
 
     // OnboardingScreen.routeName: (_) => const OnboardingScreen(),
     // AuthSuccessScreen.routeName: (_) => const AuthSuccessScreen(),

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 import 'package:invastro/src/core/shared/widgets/labels_widgets/ad_expired_label.dart';
 import 'package:invastro/src/core/shared/widgets/labels_widgets/ad_label.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
@@ -159,16 +158,24 @@ class AdItem extends StatelessWidget {
     ),
   );
 
-  Widget _buildImage() => Stack(
-    alignment: Alignment.topCenter,
-    children: [
-      Hero(
-        tag: heroTag,
-        child: CustomImage(imageUrl: '', placeholder: image),
-      ),
-      AdLabel(labelText: type == 'chance' ? 'فرصة' : 'مستثمر'),
-      if (expired) Positioned(top: 82.h, left: 72.w, child: AdExpiredLabel()),
-    ],
+  Widget _buildImage() => Hero(
+    tag: heroTag,
+    child: Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            image,
+            fit: BoxFit.cover,
+            height: 108.h,
+            width: 133.w,
+          ),
+        ),
+        AdLabel(labelText: type == 'chance' ? 'فرصة' : 'مستثمر'),
+        if (expired) Positioned(top: 82.h, left: 72.w, child: AdExpiredLabel()),
+      ],
+    ),
   );
 
   Widget _buildDetailItem({

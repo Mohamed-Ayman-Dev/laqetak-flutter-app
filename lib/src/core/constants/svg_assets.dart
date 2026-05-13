@@ -59,6 +59,12 @@ class SvgAssets {
   /// assets/svg/drawer_terms.svg
   static const String assetsSvgDrawerTerms = "assets/svg/drawer_terms.svg";
 
+  /// assets/svg/expand_arrow_up.svg
+  static const String assetsSvgExpandArrowUp = "assets/svg/expand_arrow_up.svg";
+
+  /// assets/svg/expand_arrowdown.svg
+  static const String assetsSvgExpandArrowdown = "assets/svg/expand_arrowdown.svg";
+
   /// assets/svg/fav_fill_icon.svg
   static const String assetsSvgFavFillIcon = "assets/svg/fav_fill_icon.svg";
 
@@ -79,6 +85,9 @@ class SvgAssets {
 
   /// assets/svg/home_icon_unselected.svg
   static const String assetsSvgHomeIconUnselected = "assets/svg/home_icon_unselected.svg";
+
+  /// assets/svg/insta.svg
+  static const String assetsSvgInsta = "assets/svg/insta.svg";
 
   /// assets/svg/message_icon_selected.svg
   static const String assetsSvgMessageIconSelected = "assets/svg/message_icon_selected.svg";
@@ -107,10 +116,25 @@ class SvgAssets {
   /// assets/svg/send_icon.svg
   static const String assetsSvgSendIcon = "assets/svg/send_icon.svg";
 
+  /// assets/svg/share_icon.svg
+  static const String assetsSvgShareIcon = "assets/svg/share_icon.svg";
+
+  /// assets/svg/snapchat.svg
+  static const String assetsSvgSnapchat = "assets/svg/snapchat.svg";
+
+  /// assets/svg/tiktok.svg
+  static const String assetsSvgTiktok = "assets/svg/tiktok.svg";
+
   /// assets/svg/time_fill_icon.svg
   static const String assetsSvgTimeFillIcon = "assets/svg/time_fill_icon.svg";
 
   /// assets/svg/user_filled_icon.svg
   static const String assetsSvgUserFilledIcon = "assets/svg/user_filled_icon.svg";
+
+  /// assets/svg/whatsapp.svg
+  static const String assetsSvgWhatsapp = "assets/svg/whatsapp.svg";
+
+  /// assets/svg/x.svg
+  static const String assetsSvgX = "assets/svg/x.svg";
 
 }

@@ -8,6 +8,12 @@ final class MockDataForLoading {
     DetailsModel(id: 1, name: 'الرياض'),
     DetailsModel(id: 2, name: 'جدة'),
   ];
+  static List<String> detailsImages = [
+    ImagesAssets.assetsImagesMockDetailsImage1,
+    ImagesAssets.assetsImagesMockDetailsImage2,
+    ImagesAssets.assetsImagesMockAd4,
+    ImagesAssets.assetsImagesMockAd5,
+  ];
   static List<Map<String, dynamic>> mockAds = [
     {
       'image': ImagesAssets.assetsImagesMockAd1,

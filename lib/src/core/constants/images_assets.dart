@@ -32,6 +32,12 @@ class ImagesAssets {
   /// assets/images/mock_ad_5.png
   static const String assetsImagesMockAd5 = "assets/images/mock_ad_5.png";
 
+  /// assets/images/mock_details_image1.png
+  static const String assetsImagesMockDetailsImage1 = "assets/images/mock_details_image1.png";
+
+  /// assets/images/mock_details_image2.png
+  static const String assetsImagesMockDetailsImage2 = "assets/images/mock_details_image2.png";
+
   /// assets/images/mock_person_image.png
   static const String assetsImagesMockPersonImage = "assets/images/mock_person_image.png";
 

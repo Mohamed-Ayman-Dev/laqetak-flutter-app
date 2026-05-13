@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/di/locator_service.dart';
-import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
-import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/widgets/unread_messages_counter.dart';
@@ -87,12 +84,21 @@ class ConversationItem extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(color: AppColors.conversationBorderColor),
           ),
-          child: CustomImage(
-            imageUrl: '',
-            placeholder: image,
-            width: 45.w,
-            height: 45.h,
-            borderRadius: 100,
+          // child: CustomImage(
+          //   imageUrl: '',
+          //   placeholder: image,
+          //   width: 45.w,
+          //   height: 45.h,
+          //   borderRadius: 100,
+          // ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: Image.asset(
+              image,
+              fit: BoxFit.cover,
+              width: 45.w,
+              height: 45.h,
+            ),
           ),
         ),
         if (messageCount) UnreadMessagesCounter(),

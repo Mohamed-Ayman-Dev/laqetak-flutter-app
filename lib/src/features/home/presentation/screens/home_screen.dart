@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/shared/widgets/items_widgets/ad_item.dart';
+import 'package:invastro/src/features/ad_details/presentation/screens/ad_details_screen.dart';
 
 import '../../../../core/constants/enums.dart';
 import '../../../../core/constants/mock_data_for_loading.dart';
@@ -137,7 +139,25 @@ class _HomeScreenState extends State<HomeScreen> {
                             : 'not-chance',
                         expired: index == 1 || index == 3,
                         image: MockDataForLoading.mockAds[index]['image'],
-                        onTab: () {},
+                        onTab: () {
+                          LocatorService.navigationService.currentState?.pushNamed(
+                            AdDetailsScreen.routeName,
+                            arguments: {
+                              'hero':
+                                  '${MockDataForLoading.mockAds[index]['image']}-$index-home',
+                              'type': index == 1 || index == 3
+                                  ? 'chance'
+                                  : 'not-chance',
+                              'image':
+                                  MockDataForLoading.mockAds[index]['image'],
+                              'isExpired': index == 1 || index == 3,
+                              'images': <String>[
+                                MockDataForLoading.mockAds[index]['image'],
+                                ...MockDataForLoading.detailsImages,
+                              ],
+                            },
+                          );
+                        },
 
                         hideDivider:
                             index == (MockDataForLoading.mockAds.length - 1),

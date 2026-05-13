@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/features/static_pages/presentation/widgets/social_button.dart';
 import 'package:provider/provider.dart';
 
@@ -20,19 +21,23 @@ class SocialWidgets extends StatelessWidget {
             children: [
               SocialButton(
                 link: socialLinks?.aboutUs ?? '',
-                icon: 'assets/images/x_icon.svg',
+                icon: SvgAssets.assetsSvgWhatsapp,
               ),
               SocialButton(
                 link: socialLinks?.aboutUs ?? '',
-                icon: 'assets/images/insta_icon.svg',
+                icon: SvgAssets.assetsSvgX,
               ),
               SocialButton(
                 link: socialLinks?.aboutUs ?? '',
-                icon: 'assets/images/tiktok_icon.svg',
+                icon: SvgAssets.assetsSvgInsta,
               ),
               SocialButton(
                 link: socialLinks?.aboutUs ?? '',
-                icon: 'assets/images/snap_icon.svg',
+                icon: SvgAssets.assetsSvgTiktok,
+              ),
+              SocialButton(
+                link: socialLinks?.aboutUs ?? '',
+                icon: SvgAssets.assetsSvgSnapchat,
               ),
             ],
           ),

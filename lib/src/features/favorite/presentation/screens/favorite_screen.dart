@@ -5,7 +5,9 @@ import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 
 import '../../../../core/constants/mock_data_for_loading.dart';
+import '../../../../core/di/locator_service.dart';
 import '../../../../core/shared/widgets/items_widgets/ad_item.dart';
+import '../../../ad_details/presentation/screens/ad_details_screen.dart';
 
 class FavoriteScreen extends StatefulWidget {
   static const routeName = '/favorite_screen';
@@ -51,7 +53,27 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                               : 'not-chance',
                           expired: index == 1 || index == 3,
                           image: MockDataForLoading.mockAds[index]['image'],
-                          onTab: () {},
+                          onTab: () {
+                            LocatorService.navigationService.currentState
+                                ?.pushNamed(
+                                  AdDetailsScreen.routeName,
+                                  arguments: {
+                                    'hero':
+                                        '${MockDataForLoading.mockAds[index]['image']}-$index-home',
+                                    'type': index == 1 || index == 3
+                                        ? 'chance'
+                                        : 'not-chance',
+                                    'image': MockDataForLoading
+                                        .mockAds[index]['image'],
+                                    'isExpired': index == 1 || index == 3,
+                                    'images': <String>[
+                                      MockDataForLoading
+                                          .mockAds[index]['image'],
+                                      ...MockDataForLoading.detailsImages,
+                                    ],
+                                  },
+                                );
+                          },
 
                           hideDivider:
                               index == (MockDataForLoading.mockAds.length - 1),

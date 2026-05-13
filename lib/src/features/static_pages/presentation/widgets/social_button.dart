@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/themes/colors.dart';
-
 class SocialButton extends StatelessWidget {
   final String link;
   final String icon;
@@ -25,9 +23,10 @@ class SocialButton extends StatelessWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: AppColors.secondaryColor.withOpacity(0.2),
-              offset: const Offset(0, 3),
+              color: Color(0x29000000),
+              offset: Offset(0, 0),
               blurRadius: 40,
+              spreadRadius: 0,
             ),
           ],
           shape: BoxShape.circle,

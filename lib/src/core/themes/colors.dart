@@ -52,6 +52,7 @@ abstract class AppColors {
   static const Color notificationBorderColor = Color(0xFF868686);
   static const Color conversationBorderColor = Color(0xFFC5C5C5);
   static const Color chatFieldBorderColor = Color(0xFFD9D9D9);
+  static const Color questionBorderColor = Color(0xFFBFBFBF);
 
   // other colors
   static const Color cursorColor = Color(0xFF8B8B8B);

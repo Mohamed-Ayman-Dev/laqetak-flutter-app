@@ -11,6 +11,7 @@ import 'package:invastro/src/features/auth/presentation/screens/login_screen.dar
 import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 import 'package:invastro/src/features/static_pages/presentation/screens/about_app_screen.dart';
 import 'package:invastro/src/features/static_pages/presentation/screens/contact_us_screen.dart';
+import 'package:invastro/src/features/static_pages/presentation/screens/questions_screen.dart';
 
 import '../../../../features/home/presentation/screens/home_layout_screen.dart';
 import '../../../helpers/others_helper.dart';
@@ -42,7 +43,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           Drawer(
             elevation: 20,
             backgroundColor: Colors.white,
-            width: 280.w,
+            width: 270.w,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topLeft: isArabic
@@ -124,6 +125,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           },
                           image: SvgAssets.assetsSvgDrawerAbout,
                         ),
+
                         DrawerItem(
                           title: 'اللغة',
                           onTap: () {
@@ -144,6 +146,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           title: 'الأسئلة المتكررة',
                           onTap: () {
                             Navigator.of(context).pop();
+                            LocatorService.navigationService.currentState
+                                ?.pushNamed(QuestionsScreen.routeName);
                           },
                           image: SvgAssets.assetsSvgDrawerQuestions,
                         ),

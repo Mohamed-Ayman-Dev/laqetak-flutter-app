@@ -25,7 +25,7 @@ class DrawerItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15.0).r,
+        padding: const EdgeInsets.symmetric(vertical: 12.0).r,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
