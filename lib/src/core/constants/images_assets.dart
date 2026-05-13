@@ -35,6 +35,24 @@ class ImagesAssets {
   /// assets/images/mock_person_image.png
   static const String assetsImagesMockPersonImage = "assets/images/mock_person_image.png";
 
+  /// assets/images/mock_person_image2.png
+  static const String assetsImagesMockPersonImage2 = "assets/images/mock_person_image2.png";
+
+  /// assets/images/mock_person_image3.png
+  static const String assetsImagesMockPersonImage3 = "assets/images/mock_person_image3.png";
+
+  /// assets/images/mock_person_image4.png
+  static const String assetsImagesMockPersonImage4 = "assets/images/mock_person_image4.png";
+
+  /// assets/images/mock_person_image5.png
+  static const String assetsImagesMockPersonImage5 = "assets/images/mock_person_image5.png";
+
+  /// assets/images/mock_person_image6.png
+  static const String assetsImagesMockPersonImage6 = "assets/images/mock_person_image6.png";
+
+  /// assets/images/mock_profile_image.png
+  static const String assetsImagesMockProfileImage = "assets/images/mock_profile_image.png";
+
   /// assets/images/reset_password_image.png
   static const String assetsImagesResetPasswordImage = "assets/images/reset_password_image.png";
 

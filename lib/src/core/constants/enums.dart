@@ -2,7 +2,7 @@
 
 enum RequestState { loading, success, error, initial }
 
-enum AppbarIcons { logo, drawer, search }
+enum AppbarIcons { logo, drawer, search, chat }
 
 /// Generated enums derived from const.php to provide strong typing in the app.
 ///

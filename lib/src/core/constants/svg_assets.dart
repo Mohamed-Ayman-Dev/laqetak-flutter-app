@@ -23,11 +23,41 @@ class SvgAssets {
   /// assets/svg/check_dropdown_icon.svg
   static const String assetsSvgCheckDropdownIcon = "assets/svg/check_dropdown_icon.svg";
 
+  /// assets/svg/close_drawer_icon.svg
+  static const String assetsSvgCloseDrawerIcon = "assets/svg/close_drawer_icon.svg";
+
   /// assets/svg/delete_icon.svg
   static const String assetsSvgDeleteIcon = "assets/svg/delete_icon.svg";
 
+  /// assets/svg/drawer_about.svg
+  static const String assetsSvgDrawerAbout = "assets/svg/drawer_about.svg";
+
+  /// assets/svg/drawer_contactus.svg
+  static const String assetsSvgDrawerContactus = "assets/svg/drawer_contactus.svg";
+
   /// assets/svg/drawer_icon.svg
   static const String assetsSvgDrawerIcon = "assets/svg/drawer_icon.svg";
+
+  /// assets/svg/drawer_lang.svg
+  static const String assetsSvgDrawerLang = "assets/svg/drawer_lang.svg";
+
+  /// assets/svg/drawer_messages.svg
+  static const String assetsSvgDrawerMessages = "assets/svg/drawer_messages.svg";
+
+  /// assets/svg/drawer_myads.svg
+  static const String assetsSvgDrawerMyads = "assets/svg/drawer_myads.svg";
+
+  /// assets/svg/drawer_profile.svg
+  static const String assetsSvgDrawerProfile = "assets/svg/drawer_profile.svg";
+
+  /// assets/svg/drawer_questions.svg
+  static const String assetsSvgDrawerQuestions = "assets/svg/drawer_questions.svg";
+
+  /// assets/svg/drawer_signout.svg
+  static const String assetsSvgDrawerSignout = "assets/svg/drawer_signout.svg";
+
+  /// assets/svg/drawer_terms.svg
+  static const String assetsSvgDrawerTerms = "assets/svg/drawer_terms.svg";
 
   /// assets/svg/fav_fill_icon.svg
   static const String assetsSvgFavFillIcon = "assets/svg/fav_fill_icon.svg";
@@ -37,6 +67,9 @@ class SvgAssets {
 
   /// assets/svg/fav_icon_unselected.svg
   static const String assetsSvgFavIconUnselected = "assets/svg/fav_icon_unselected.svg";
+
+  /// assets/svg/file_icon.svg
+  static const String assetsSvgFileIcon = "assets/svg/file_icon.svg";
 
   /// assets/svg/filter_icon.svg
   static const String assetsSvgFilterIcon = "assets/svg/filter_icon.svg";
@@ -62,11 +95,17 @@ class SvgAssets {
   /// assets/svg/pin_fill_icon.svg
   static const String assetsSvgPinFillIcon = "assets/svg/pin_fill_icon.svg";
 
+  /// assets/svg/readed_message_icon.svg
+  static const String assetsSvgReadedMessageIcon = "assets/svg/readed_message_icon.svg";
+
   /// assets/svg/sar_icon.svg
   static const String assetsSvgSarIcon = "assets/svg/sar_icon.svg";
 
   /// assets/svg/search_icon.svg
   static const String assetsSvgSearchIcon = "assets/svg/search_icon.svg";
+
+  /// assets/svg/send_icon.svg
+  static const String assetsSvgSendIcon = "assets/svg/send_icon.svg";
 
   /// assets/svg/time_fill_icon.svg
   static const String assetsSvgTimeFillIcon = "assets/svg/time_fill_icon.svg";

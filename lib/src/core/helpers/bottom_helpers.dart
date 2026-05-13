@@ -1,4 +1,24 @@
+import 'package:flutter/material.dart';
+
+import '../shared/widgets/bottom_sheet_content/language_bottom.dart';
+
 class BottomHelpers {
+  static void showLanguageBottomSheet(
+    BuildContext context, {
+    bool showSplash = true,
+  }) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      ),
+      builder: (context) {
+        return LanguageBottom(showSplash: showSplash);
+      },
+    );
+  }
+
   // static showFilterBottomSheet(BuildContext context) {
   //   return showModalBottomSheet(
   //     context: context,

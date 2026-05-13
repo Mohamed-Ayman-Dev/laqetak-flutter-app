@@ -30,9 +30,10 @@ class _FilterButtonState extends State<FilterButton> {
       overlayColor: const WidgetStatePropertyAll(Colors.transparent),
       onTap: widget.onTap,
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 200),
+        duration: Duration(milliseconds: 170),
         curve: Curves.easeIn,
         alignment: Alignment.center,
+        
         padding: const EdgeInsets.symmetric(horizontal: 16).r,
         decoration: BoxDecoration(
           border: widget.isSelected

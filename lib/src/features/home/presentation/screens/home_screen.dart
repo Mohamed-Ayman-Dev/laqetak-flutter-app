@@ -59,9 +59,12 @@ class _HomeScreenState extends State<HomeScreen> {
           );
           focusNode.requestFocus();
         },
+
         showSearchIcon: _showSearchIcon,
         dontShowBackButton: true,
       ),
+
+      // drawer: const CustomDrawer(),
       body: CustomScrollView(
         controller: _scrollController,
 
@@ -139,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         hideDivider:
                             index == (MockDataForLoading.mockAds.length - 1),
                         heroTag:
-                            '${MockDataForLoading.mockAds[index]['image']}-$index',
+                            '${MockDataForLoading.mockAds[index]['image']}-$index-home',
                         onLike: () {
                           setState(() {
                             if (_likedAds.contains(index)) {

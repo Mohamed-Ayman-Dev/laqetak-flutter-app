@@ -10,12 +10,14 @@ class CustomGRadioButton extends StatelessWidget {
     super.key,
     required this.label,
     required this.value,
+    this.padding,
     required this.groupValue,
     required this.onChanged,
   });
 
   final String label;
   final int value;
+  final EdgeInsetsGeometry? padding;
   final int groupValue;
   final ValueChanged<int> onChanged;
 
@@ -26,7 +28,7 @@ class CustomGRadioButton extends StatelessWidget {
       onTap: () => onChanged(value),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.only(left: 20, right: 35).r,
+        padding: padding ?? const EdgeInsets.only(left: 20, right: 35).r,
         alignment: Alignment.center,
         height: 40.h,
         decoration: BoxDecoration(

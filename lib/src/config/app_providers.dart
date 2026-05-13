@@ -1,4 +1,5 @@
 import 'package:invastro/src/core/shared/providers/timers.dart';
+import 'package:invastro/src/features/my_ads/presentation/providers/my_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -23,6 +24,7 @@ class AppProviders {
     ChangeNotifierProvider<StaticPages>(
       create: (_) => LocatorService.staticPages,
     ),
+    ChangeNotifierProvider<MyAds>(create: (_) => LocatorService.myAds),
     // ChangeNotifierProvider<Notifications>(
     //   create: (_) => LocatorService.notifications,
     // ),

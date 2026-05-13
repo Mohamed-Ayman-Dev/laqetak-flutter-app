@@ -1,4 +1,6 @@
 import 'package:invastro/src/core/shared/services/settings_service.dart';
+import 'package:invastro/src/features/my_ads/data/services/my_ads_service.dart';
+import 'package:invastro/src/features/my_ads/presentation/providers/my_ads.dart';
 
 import '../../features/auth/data/services/auth_service.dart';
 import '../../features/auth/presentation/providers/auth.dart';
@@ -25,6 +27,8 @@ abstract class LocatorService {
       locator<NavigationService>();
 
   static AuthService get authService => locator<AuthService>();
+
+  static MyAdsService get myAdsService => locator<MyAdsService>();
 
   static SettingsService get settingsService => locator<SettingsService>();
 
@@ -69,6 +73,8 @@ abstract class LocatorService {
 
   //
   static Others get others => locator<Others>();
+
+  static MyAds get myAds => locator<MyAds>();
 
   // static Notifications get notifications => locator<Notifications>();
   //

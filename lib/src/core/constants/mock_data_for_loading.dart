@@ -54,6 +54,15 @@ final class MockDataForLoading {
       'price': "30,000",
       'time': "1 ساعة",
     },
+    {
+      'image': ImagesAssets.assetsImagesMockAd2,
+      'label': 'عمارة سكنية',
+      'name': 'محمد الدوسري',
+      'location': 'الرياض',
+      'category': 'عقاري',
+      'price': "24,000",
+      'time': "1 ساعة",
+    },
   ];
 
   // static const ServiceModel _mockServiceModel = ServiceModel(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart';
+import 'package:invastro/src/features/home/presentation/screens/home_layout_screen.dart';
 
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/error/validation_helper.dart';
@@ -33,6 +34,12 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_loginFormKey.currentState!.validate()) {
       _loginFormKey.currentState!.save();
       // await AuthController.login(context, data);
+      LocatorService.navigationService.currentState?.pushNamed(
+        HomeLayoutScreen.routeName,
+      );
+      if (LocatorService.appSettings.homeIndex != 0) {
+        LocatorService.appSettings.homeIndex = 0;
+      }
     }
   }
 

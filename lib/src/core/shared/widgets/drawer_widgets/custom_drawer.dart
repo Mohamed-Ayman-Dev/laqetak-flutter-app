@@ -1,0 +1,171 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/di/locator_service.dart';
+import 'package:invastro/src/core/helpers/bottom_helpers.dart';
+import 'package:invastro/src/core/helpers/dialog_helpers.dart';
+import 'package:invastro/src/core/themes/colors.dart';
+import 'package:invastro/src/features/auth/presentation/screens/login_screen.dart';
+import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
+import 'package:invastro/src/features/static_pages/presentation/screens/about_app_screen.dart';
+import 'package:invastro/src/features/static_pages/presentation/screens/contact_us_screen.dart';
+
+import '../../../../features/home/presentation/screens/home_layout_screen.dart';
+import '../../../helpers/others_helper.dart';
+import 'custom_drawer_header.dart';
+import 'drawer_item.dart';
+
+class CustomDrawer extends StatefulWidget {
+  const CustomDrawer({super.key});
+
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 90.0).r,
+      child: Stack(
+        children: [
+          BackdropFilter(
+            filter: ImageFilter.blur(
+              sigmaX: 5,
+              sigmaY: 5,
+              tileMode: TileMode.decal,
+            ),
+            child: const SizedBox.expand(),
+          ),
+          Drawer(
+            elevation: 20,
+            backgroundColor: Colors.white,
+            width: 280.w,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: isArabic
+                    ? const Radius.circular(0)
+                    : const Radius.circular(0),
+                bottomLeft: isArabic
+                    ? const Radius.circular(50)
+                    : const Radius.circular(0),
+                topRight: isArabic
+                    ? const Radius.circular(0)
+                    : const Radius.circular(0),
+                bottomRight: isArabic
+                    ? const Radius.circular(0)
+                    : const Radius.circular(50),
+              ),
+            ),
+            child: Container(
+              color: Colors.white,
+              child: Column(
+                children: [
+                  CustomDrawerHeader(),
+                  Divider(
+                    height: 25.h,
+                    endIndent: 20.w,
+                    indent: 20.w,
+                    color: AppColors.drawerDividerColor,
+                  ),
+                  Padding(
+                    padding: isArabic
+                        ? const EdgeInsets.only(right: 26).r
+                        : const EdgeInsets.only(left: 26).r,
+                    child: Column(
+                      children: [
+                        DrawerItem(
+                          title: 'الملف الشخصي',
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          image: SvgAssets.assetsSvgDrawerProfile,
+                        ),
+                        DrawerItem(
+                          title: 'إعلاناتي',
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            LocatorService.navigationService.currentState
+                                ?.pushNamed(MyAdsScreen.routeName);
+                          },
+                          image: SvgAssets.assetsSvgDrawerMyads,
+                        ),
+                        DrawerItem(
+                          title: 'الرسائل',
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            LocatorService.navigationService.currentState
+                                ?.popUntil(
+                                  (route) =>
+                                      route.settings.name ==
+                                      HomeLayoutScreen.routeName,
+                                );
+                            LocatorService.appSettings.changeHomeIndex(1);
+                          },
+                          image: SvgAssets.assetsSvgDrawerMessages,
+                        ),
+                        DrawerItem(
+                          title: 'اتصل بنا',
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            LocatorService.navigationService.currentState
+                                ?.pushNamed(ContactUsScreen.routeName);
+                          },
+                          image: SvgAssets.assetsSvgDrawerContactus,
+                        ),
+                        DrawerItem(
+                          title: 'عن المنصة',
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            LocatorService.navigationService.currentState
+                                ?.pushNamed(AboutAppScreen.routeName);
+                          },
+                          image: SvgAssets.assetsSvgDrawerAbout,
+                        ),
+                        DrawerItem(
+                          title: 'اللغة',
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            BottomHelpers.showLanguageBottomSheet(context);
+                          },
+                          image: SvgAssets.assetsSvgDrawerLang,
+                        ),
+                        DrawerItem(
+                          title: 'الشروط والأحكام',
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            DialogHelpers.showTermsDialog();
+                          },
+                          image: SvgAssets.assetsSvgDrawerTerms,
+                        ),
+                        DrawerItem(
+                          title: 'الأسئلة المتكررة',
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          image: SvgAssets.assetsSvgDrawerQuestions,
+                        ),
+                        DrawerItem(
+                          title: 'تسجيل خروج',
+                          onTap: () {
+                            Navigator.of(context).popUntil(
+                              (route) =>
+                                  route.settings.name == LoginScreen.routeName,
+                            );
+                          },
+                          image: SvgAssets.assetsSvgDrawerSignout,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

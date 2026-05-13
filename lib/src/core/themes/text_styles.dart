@@ -68,6 +68,12 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w700,
     fontFamily: Constant.fontFamily,
   );
+  static TextStyle bodyMedium = TextStyle(
+    fontSize: 12.sp,
+    color: AppColors.labelTextColor,
+    fontWeight: FontWeight.w400,
+    fontFamily: Constant.fontFamily,
+  );
 
   ///------------------------------------
 
@@ -77,12 +83,7 @@ abstract class AppTextStyles {
     color: AppColors.bodyTextColor,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle bodyMedium = TextStyle(
-    fontSize: 14.sp,
-    color: AppColors.labelTextColor,
-    fontWeight: FontWeight.w500,
-    fontFamily: Constant.fontFamily,
-  );
+
   static TextStyle titleMedium = TextStyle(
     color: Colors.black,
     fontSize: 18.sp,

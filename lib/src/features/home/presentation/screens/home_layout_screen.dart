@@ -12,10 +12,13 @@ import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/providers/app_settings.dart';
 import '../../../../core/shared/widgets/bottom_nav_bar.dart';
+import '../../../../core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'home_screen.dart';
 
 class HomeLayoutScreen extends StatefulWidget {
   static const routeName = '/home_layout_screen';
+  static final GlobalKey<ScaffoldState> scaffoldKey =
+      GlobalKey<ScaffoldState>();
 
   const HomeLayoutScreen({super.key});
 
@@ -133,6 +136,8 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
       selector: (_, p) => p.homeIndex,
       builder: (context, homeIndex, _) {
         return Scaffold(
+          key: HomeLayoutScreen.scaffoldKey,
+          // ← أضف الـ key
           appBar: homeIndex == 0
               ? null
               : CustomAppbar(
@@ -140,6 +145,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                   dontShowBackButton: true,
                 ),
           extendBody: true,
+          drawer: const CustomDrawer(),
           body: PopScope(canPop: true, child: screens[homeIndex]),
           // ── Bottom Nav ──────────────────────────────────────────────────
           bottomNavigationBar: BottomNavBar(navItems: _navItems),

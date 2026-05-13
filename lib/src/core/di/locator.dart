@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:invastro/src/core/shared/services/settings_service.dart';
+import 'package:invastro/src/features/my_ads/data/services/my_ads_service.dart';
+import 'package:invastro/src/features/my_ads/presentation/providers/my_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/auth/data/services/auth_service.dart';
@@ -33,7 +35,7 @@ Future<void> setupServices() async {
   // locator.registerLazySingleton<NotificationService>(
   //       () => NotificationService(),
   // );
-  // locator.registerLazySingleton<BannersService>(() => BannersService());
+  locator.registerLazySingleton<MyAdsService>(() => MyAdsService());
   // locator.registerLazySingleton<ProductsService>(() => ProductsService());
   // locator.registerLazySingleton<StoresService>(() => StoresService());
   // locator.registerLazySingleton<AddressService>(() => AddressService());
@@ -52,6 +54,7 @@ Future<void> setupServices() async {
   locator.registerLazySingleton<Auth>(() => Auth());
   locator.registerLazySingleton<AuthNavigations>(() => AuthNavigations());
   locator.registerLazySingleton<Others>(() => Others());
+  locator.registerLazySingleton<MyAds>(() => MyAds());
   // locator.registerLazySingleton<Notifications>(() => Notifications());
   locator.registerLazySingleton<Timers>(() => Timers());
   // locator.registerLazySingleton<Banners>(() => Banners());

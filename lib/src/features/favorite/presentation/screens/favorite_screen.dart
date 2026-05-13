@@ -56,7 +56,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           hideDivider:
                               index == (MockDataForLoading.mockAds.length - 1),
                           heroTag:
-                              '${MockDataForLoading.mockAds[index]['image']}-$index',
+                              '${MockDataForLoading.mockAds[index]['image']}-$index-home',
                           onLike: () {
                             setState(() {
                               if (_likedAds.contains(index)) {
