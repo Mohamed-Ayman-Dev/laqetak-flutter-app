@@ -5,6 +5,9 @@
 class SvgAssets {
   SvgAssets._();
 
+  /// assets/svg/Favorite_light.svg
+  static const String assetsSvgFavoriteLight = "assets/svg/Favorite_light.svg";
+
   /// assets/svg/add_round.svg
   static const String assetsSvgAddRound = "assets/svg/add_round.svg";
 
@@ -83,14 +86,23 @@ class SvgAssets {
   /// assets/svg/expand_arrowdown.svg
   static const String assetsSvgExpandArrowdown = "assets/svg/expand_arrowdown.svg";
 
+  /// assets/svg/fav2.svg
+  static const String assetsSvgFav2 = "assets/svg/fav2.svg";
+
   /// assets/svg/fav_fill_icon.svg
   static const String assetsSvgFavFillIcon = "assets/svg/fav_fill_icon.svg";
+
+  /// assets/svg/fav_filled_icon.svg
+  static const String assetsSvgFavFilledIcon = "assets/svg/fav_filled_icon.svg";
 
   /// assets/svg/fav_icon_selected.svg
   static const String assetsSvgFavIconSelected = "assets/svg/fav_icon_selected.svg";
 
   /// assets/svg/fav_icon_unselected.svg
   static const String assetsSvgFavIconUnselected = "assets/svg/fav_icon_unselected.svg";
+
+  /// assets/svg/favourite.svg
+  static const String assetsSvgFavourite = "assets/svg/favourite.svg";
 
   /// assets/svg/file_icon.svg
   static const String assetsSvgFileIcon = "assets/svg/file_icon.svg";
