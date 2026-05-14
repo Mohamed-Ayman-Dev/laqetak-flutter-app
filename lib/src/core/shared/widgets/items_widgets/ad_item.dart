@@ -18,6 +18,10 @@ class AdItem extends StatelessWidget {
   final void Function() onTab;
   final String type;
   final bool expired;
+  final bool isMyAd;
+  final void Function()? onDelete;
+  final void Function()? onEdit;
+  final int? views;
 
   const AdItem({
     super.key,
@@ -28,6 +32,10 @@ class AdItem extends StatelessWidget {
     this.hideDivider = false,
     this.expired = false,
 
+    this.isMyAd = false,
+    this.onDelete,
+    this.onEdit,
+    this.views,
     required this.type,
     required this.onLike,
   });
@@ -57,13 +65,41 @@ class AdItem extends StatelessWidget {
                           ),
                         ),
                         2.widthSpace,
-                        _buildLike(),
+                        isMyAd
+                            ? _buildButton(
+                                onTap: () {
+                                  onEdit!();
+                                },
+                                icon: SvgAssets.assetsSvgEditIcon,
+                              )
+                            : _buildLike(),
+                        if (isMyAd)
+                          _buildButton(
+                            onTap: () {
+                              onDelete!();
+                            },
+                            icon: SvgAssets.assetsSvgDeleteIcon,
+                          ),
                       ],
                     ),
                     9.heightSpace,
-                    DetailItem(
-                      icon: SvgAssets.assetsSvgUserFilledIcon,
-                      text: 'محمد الدوسري',
+                    Row(
+                      children: [
+                        Expanded(
+                          child: DetailItem(
+                            icon: SvgAssets.assetsSvgUserFilledIcon,
+                            text: 'محمد الدوسري',
+                          ),
+                        ),
+                        if (isMyAd)
+                          DetailItem(
+                            isFlexible: true,
+                            icon: SvgAssets.assetsSvgView,
+                            iconSize: 21,
+                            text: (views ?? 0).toString(),
+                          ),
+                        if (isMyAd) 37.widthSpace,
+                      ],
                     ),
                     4.heightSpace,
                     Row(
@@ -158,6 +194,19 @@ class AdItem extends StatelessWidget {
       ),
     ),
   );
+
+  Widget _buildButton({required VoidCallback onTap, required String icon}) =>
+      InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onTap: () {
+          onTap();
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(3.0).r,
+          child: SvgPicture.asset(icon, width: 24.w, height: 24.h),
+        ),
+      );
 
   Widget _buildImage() => Stack(
     alignment: Alignment.topCenter,

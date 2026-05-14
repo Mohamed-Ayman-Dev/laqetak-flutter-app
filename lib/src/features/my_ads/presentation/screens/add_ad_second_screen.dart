@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
+import 'package:invastro/src/core/helpers/dialog_helpers.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/shared/widgets/fields_widgets/custom_note_field.dart';
 import 'package:invastro/src/core/themes/colors.dart';
@@ -33,6 +34,17 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
   final Map<String, dynamic> _formData = {};
   final FocusNode _phoneFocusNode = FocusNode();
   bool _isRequired = false;
+  bool _isEdit = false;
+  bool once = false;
+
+  @override
+  void didChangeDependencies() {
+    if (!once) {
+      _isEdit = ModalRoute.of(context)?.settings.arguments as bool? ?? false;
+      once = true;
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,14 +140,21 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
                     size: Size(163.w, 48.h),
                     onPressed: () {
                       // _send();
-                      LocatorService.navigationService.currentState?.pushNamed(
-                        OtpScreen.routeName,
-                        arguments: {
-                          'phone': "058168722",
-                          'from': 'add-ad',
-                          'remainingSeconds': 120,
-                        },
-                      );
+                      if (_isEdit) {
+                        DialogHelpers.showSuccessDialog(
+                          title: 'تهانينا لقد تم تعديل الإعلان بنجاح',
+                        );
+                      } else {
+                        LocatorService.navigationService.currentState
+                            ?.pushNamed(
+                              OtpScreen.routeName,
+                              arguments: {
+                                'phone': "058168722",
+                                'from': 'add-ad',
+                                'remainingSeconds': 120,
+                              },
+                            );
+                      }
                     },
                   ),
                   16.widthSpace,

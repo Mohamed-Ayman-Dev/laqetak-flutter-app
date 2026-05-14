@@ -16,6 +16,10 @@ final class MockDataForLoading {
     DetailsModel(id: 1, name: 'عقاري'),
     DetailsModel(id: 2, name: 'عقاري2'),
   ];
+  static List<DetailsModel> mockPrices = [
+    DetailsModel(id: 1, name: ' 500.000  :  100.000'),
+    DetailsModel(id: 2, name: ' 800.000  :  500.000'),
+  ];
   static List<String> detailsImages = [
     ImagesAssets.assetsImagesMockDetailsImage1,
     ImagesAssets.assetsImagesMockDetailsImage2,

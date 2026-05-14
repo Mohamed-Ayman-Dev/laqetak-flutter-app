@@ -34,6 +34,17 @@ class _AddAdScreenState extends State<AddAdScreen> {
   final _formKey = GlobalKey<FormState>();
 
   final Map<String, dynamic> _formData = {};
+  bool _isEdit = false;
+  bool once = false;
+
+  @override
+  void didChangeDependencies() {
+    if (!once) {
+      _isEdit = ModalRoute.of(context)?.settings.arguments as bool? ?? false;
+      once = true;
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -235,6 +246,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
                   // _send();
                   LocatorService.navigationService.currentState?.pushNamed(
                     AddAdSecondScreen.routeName,
+                    arguments: _isEdit,
                   );
                 },
               ),

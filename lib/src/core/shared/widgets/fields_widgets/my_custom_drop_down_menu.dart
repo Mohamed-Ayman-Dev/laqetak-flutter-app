@@ -18,6 +18,7 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
     this.isRequired = false,
     this.color,
     this.icon,
+    this.suffix,
     this.prefixIcon,
     this.hintStyle,
     this.contentPadding,
@@ -34,6 +35,8 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
   final bool isRequired;
   final Color? color;
   final Widget? icon;
+  final Widget? suffix;
+
   final double borderRadius;
   final EdgeInsets? contentPadding;
   final Color? borderColor;
@@ -80,6 +83,7 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
             contentPadding ??
             const EdgeInsets.symmetric(horizontal: 15, vertical: 13).r,
         fillColor: color,
+        suffix: suffix,
         filled: color != null,
         hintStyle: AppTextStyles.hintTextStyle,
         border: _border(AppColors.fieldBorderColor),

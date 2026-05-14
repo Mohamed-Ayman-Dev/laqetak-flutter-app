@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/helpers/dialog_helpers.dart';
 import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_screen.dart';
 
 import '../../../../core/constants/mock_data_for_loading.dart';
 import '../../../../core/di/locator_service.dart';
@@ -55,6 +57,18 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                               ? 'chance'
                               : 'not-chance',
                           expired: index == 1 || index == 3,
+                          onDelete: () {
+                            DialogHelpers.showSuccessDialog(title: 'title');
+                          },
+                          onEdit: () {
+                            LocatorService.navigationService.currentState
+                                ?.pushNamed(
+                                  AddAdScreen.routeName,
+                                  arguments: true,
+                                );
+                          },
+                          views: 1200,
+                          isMyAd: true,
                           image: MockDataForLoading.mockAds[index]['image'],
                           onTab: () {
                             LocatorService.navigationService.currentState
@@ -68,6 +82,7 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                                         : 'not-chance',
                                     'image': MockDataForLoading
                                         .mockAds[index]['image'],
+                                    'isMyAd': true,
                                     'isExpired': index == 1 || index == 3,
                                     'images': <String>[
                                       MockDataForLoading

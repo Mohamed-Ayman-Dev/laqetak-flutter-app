@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/enums.dart';
+import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/helpers/dialog_helpers.dart';
+import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_outline_button.dart';
 import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
 import 'package:invastro/src/core/themes/colors.dart';
@@ -12,6 +15,7 @@ import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_points.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_seller.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_image_gallery.dart';
+import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_screen.dart';
 
 class AdDetailsScreen extends StatefulWidget {
   static const routeName = '/ad_details_screen';
@@ -24,7 +28,7 @@ class AdDetailsScreen extends StatefulWidget {
 
 class _AdDetailsScreenState extends State<AdDetailsScreen> {
   String? adType;
-
+  bool isMyAd = false;
   String? adImage;
 
   String? adHero;
@@ -45,6 +49,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
         adType = args['type'];
         adImage = args['image'];
         adHero = args['hero'];
+        isMyAd = args['isMyAd'] ?? false;
         isExpired = args['isExpired'] ?? false;
       }
       once = true;
@@ -70,7 +75,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AdDetailsHeader(),
+                AdDetailsHeader(isMyAd: isMyAd),
                 20.heightSpace,
                 AdImageGallery(
                   images: images,
@@ -102,6 +107,35 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                 Text('تفاصيل المعلن', style: AppTextStyles.labelMedium),
                 12.heightSpace,
                 AdDetailsSeller(),
+                if (isMyAd) 22.heightSpace,
+                if (isMyAd)
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomElevatedButton(
+                          text: 'تعديل الإعلان',
+                          onPressed: () {
+                            LocatorService.navigationService.currentState
+                                ?.pushNamed(
+                                  AddAdScreen.routeName,
+                                  arguments: true,
+                                );
+                          },
+                        ),
+                      ),
+                      11.widthSpace,
+                      Expanded(
+                        child: CustomOutlineButton(
+                          text: 'إعلان منتهي',
+                          borderRadius: 8,
+                          borderColor: AppColors.reportBorderColor,
+                          onPressed: () {
+                            DialogHelpers.showSuccessDialog(title: 'title');
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 110.heightSpace,
               ],
             ),

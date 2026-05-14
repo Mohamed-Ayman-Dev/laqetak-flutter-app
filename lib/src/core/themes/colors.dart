@@ -51,6 +51,7 @@ abstract class AppColors {
   static const Color priceBlackTextColor = Color(0XFF282828);
   static const Color labelSmallGreyTextColor = Color(0XFF888888);
   static const Color priceTextColor = Color(0XFF727272);
+  static const Color textGrey1Color = Color(0xFF7B7B7B);
 
   static const Color textButtonTextColor = Color(0XFF181818);
   static const Color titleTextColor = Color(0XFF1D1D1D);

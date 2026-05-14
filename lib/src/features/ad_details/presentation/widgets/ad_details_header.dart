@@ -4,12 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/small_icon_button.dart';
+import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 
 import '../../../../core/constants/svg_assets.dart';
 
 class AdDetailsHeader extends StatefulWidget {
-  const AdDetailsHeader({super.key});
+  final bool isMyAd;
+
+  const AdDetailsHeader({super.key, this.isMyAd = false});
 
   @override
   State<AdDetailsHeader> createState() => _AdDetailsHeaderState();
@@ -64,6 +67,19 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
           ),
         ),
         5.widthSpace,
+        Text(
+          '1200',
+          style: AppTextStyles.labelSmall.copyWith(
+            fontSize: 13.sp,
+            color: AppColors.textGrey1Color,
+          ),
+        ),
+        if (widget.isMyAd) ...[
+          7.widthSpace,
+          SvgPicture.asset(SvgAssets.assetsSvgView, height: 32.h, width: 32.w),
+          7.widthSpace,
+        ],
+
         SmallIconButton(
           icon: SvgAssets.assetsSvgShareIcon,
           onTab: () {},

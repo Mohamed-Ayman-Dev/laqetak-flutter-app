@@ -161,6 +161,9 @@ class SvgAssets {
   /// assets/svg/user_filled_icon.svg
   static const String assetsSvgUserFilledIcon = "assets/svg/user_filled_icon.svg";
 
+  /// assets/svg/view.svg
+  static const String assetsSvgView = "assets/svg/view.svg";
+
   /// assets/svg/whatsapp.svg
   static const String assetsSvgWhatsapp = "assets/svg/whatsapp.svg";
 

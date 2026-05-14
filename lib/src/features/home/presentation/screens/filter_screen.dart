@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/shared/widgets/custom_radio_button.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
-import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -82,18 +81,15 @@ class _FilterScreenState extends State<FilterScreen> {
                                 .map<DropdownMenuItem<num>>(
                                   (e) => DropdownMenuItem<num>(
                                     value: e.id,
-                                    child: SizedBox(
-                                      width: 100.w,
-                                      child: Text(
-                                        e.name ?? '',
-                                        style: AppTextStyles.inputTextStyle,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
+                                    child: Text(
+                                      e.name ?? '',
+                                      style: AppTextStyles.inputTextStyle,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                 )
                                 .toList(),
-                            value: _formData['city_id'],
+                            value: _formData['cat_id'],
                             validator: (value) {
                               if (value == null) {
                                 return S.of(context).pleaseSelectACity;
@@ -101,10 +97,10 @@ class _FilterScreenState extends State<FilterScreen> {
                               return null;
                             },
                             onChanged: (val) {
-                              _formData['city_id'] = val;
+                              _formData['cat_id'] = val;
                             },
                             onSaved: (val) {
-                              _formData['city_id'] = val;
+                              _formData['cat_id'] = val;
                             },
                           );
                         },
@@ -129,7 +125,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   Text('المدينة', style: AppTextStyles.labelLarge),
                 ],
               ),
-              8.heightSpace,
+              10.heightSpace,
               Row(
                 children: [
                   34.widthSpace,
@@ -146,13 +142,10 @@ class _FilterScreenState extends State<FilterScreen> {
                                 .map<DropdownMenuItem<num>>(
                                   (e) => DropdownMenuItem<num>(
                                     value: e.id,
-                                    child: SizedBox(
-                                      width: 100.w,
-                                      child: Text(
-                                        e.name ?? '',
-                                        style: AppTextStyles.inputTextStyle,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
+                                    child: Text(
+                                      e.name ?? '',
+                                      style: AppTextStyles.inputTextStyle,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                 )
@@ -177,20 +170,127 @@ class _FilterScreenState extends State<FilterScreen> {
                   ),
                 ],
               ),
+              Divider(height: 30.h),
+              Row(
+                children: [
+                  CustomRadioButton(onChanged: (p0) {}, isSelected: false),
+                  14.widthSpace,
+                  Text('قطاع الإستثمار', style: AppTextStyles.labelLarge),
+                ],
+              ),
+              10.heightSpace,
+              Row(
+                children: [
+                  34.widthSpace,
 
-              27.heightSpace,
+                  Expanded(
+                    child: SizedBox(
+                      height: 44.h,
+                      child: Selector<Others, List<DetailsModel>?>(
+                        selector: (context, provider) => provider.myCities,
+                        builder: (context, myCities, child) {
+                          return MyCustomDropdownFormField(
+                            hint: "اختر القطاع",
+                            // items: myCities
+                            items: MockDataForLoading.mockBusiness
+                                .map<DropdownMenuItem<num>>(
+                                  (e) => DropdownMenuItem<num>(
+                                    value: e.id,
+                                    child: Text(
+                                      e.name ?? '',
+                                      style: AppTextStyles.inputTextStyle,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                            value: _formData['bys_id'],
+                            validator: (value) {
+                              if (value == null) {
+                                return S.of(context).pleaseSelectACity;
+                              }
+                              return null;
+                            },
+                            onChanged: (val) {
+                              _formData['bys_id'] = val;
+                            },
+                            onSaved: (val) {
+                              _formData['bys_id'] = val;
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Divider(height: 30.h),
+              Row(
+                children: [
+                  CustomRadioButton(onChanged: (p0) {}, isSelected: false),
+                  14.widthSpace,
+                  Text('متوسط رأس المال ', style: AppTextStyles.labelLarge),
+                ],
+              ),
+              10.heightSpace,
+              Row(
+                children: [
+                  34.widthSpace,
+
+                  Expanded(
+                    child: SizedBox(
+                      height: 44.h,
+                      child: Selector<Others, List<DetailsModel>?>(
+                        selector: (context, provider) => provider.myCities,
+                        builder: (context, myCities, child) {
+                          return MyCustomDropdownFormField(
+                            hint: "500.000  :  100.000",
+                            // items: myCities
+                            items: MockDataForLoading.mockPrices
+                                .map<DropdownMenuItem<num>>(
+                                  (e) => DropdownMenuItem<num>(
+                                    value: e.id,
+                                    child: Text(
+                                      e.name ?? '',
+                                      style: AppTextStyles.inputTextStyle,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                            value: _formData['price_id'],
+                            validator: (value) {
+                              if (value == null) {
+                                return S.of(context).pleaseSelectACity;
+                              }
+                              return null;
+                            },
+                            onChanged: (val) {
+                              _formData['price_id'] = val;
+                            },
+                            suffix: SvgPicture.asset(
+                              SvgAssets.assetsSvgSarIcon,
+                            ),
+                            onSaved: (val) {
+                              _formData['price_id'] = val;
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              30.heightSpace,
               CustomElevatedButton(
                 text: 'التالي',
                 icon: SvgAssets.assetsSvgArrowRight,
-                size: Size(163.w, 48.h),
                 onPressed: () {
                   // _send();
-                  LocatorService.navigationService.currentState?.pushNamed(
-                    AddAdSecondScreen.routeName,
-                  );
+                  Navigator.of(context).pop();
                 },
               ),
-              100.heightSpace,
+              50.heightSpace,
             ],
           ),
         ),
