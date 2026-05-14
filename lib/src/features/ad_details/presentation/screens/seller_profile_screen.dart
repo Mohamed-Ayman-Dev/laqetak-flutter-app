@@ -10,12 +10,14 @@ import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/small_icon_button.dart';
 import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
 import 'package:invastro/src/core/shared/widgets/custom_asset_image.dart';
+import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/ad_details/presentation/screens/ad_details_screen.dart';
 import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
 
 import '../../../../core/constants/mock_data_for_loading.dart';
+import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/shared/widgets/items_widgets/ad_item.dart';
 
 class SellerProfileScreen extends StatefulWidget {
@@ -37,6 +39,7 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
         icons: [AppbarIcons.logo, AppbarIcons.drawer],
         flexRight: 8,
       ),
+      drawer: CustomDrawer(),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -80,7 +83,9 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
                       icon: SvgAssets.assetsSvgReportCircle,
                       height: 34.h,
                       width: 34.w,
-                      onTab: () {},
+                      onTab: () {
+                        DialogHelpers.showReportDialog();
+                      },
                     ),
                     45.widthSpace,
                   ],

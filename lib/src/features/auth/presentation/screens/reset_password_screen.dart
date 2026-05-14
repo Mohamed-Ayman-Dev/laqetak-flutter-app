@@ -7,6 +7,7 @@ import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
+import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/shared/widgets/fields_widgets/password_eye_toggle.dart';
@@ -55,8 +56,18 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       //   'phone': _formData['phone'],
       //   'code': _formData['code'],
       // });
-      LocatorService.navigationService.currentState?.popUntil(
-        (route) => route.settings.name == LoginScreen.routeName,
+      await DialogHelpers.showSuccessDialog(
+        title: 'تم تغيير كلمة المرور بنجاح',
+        buttonText: 'تسجيل الدخول',
+        onButtonTap: () {
+          LocatorService.navigationService.currentState?.popUntil(
+            (route) => route.settings.name == LoginScreen.routeName,
+          );
+        },
+      )?.then(
+        (value) => LocatorService.navigationService.currentState?.popUntil(
+          (route) => route.settings.name == LoginScreen.routeName,
+        ),
       );
     }
   }

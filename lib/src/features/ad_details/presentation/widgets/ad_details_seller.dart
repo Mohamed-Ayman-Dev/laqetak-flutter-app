@@ -10,6 +10,7 @@ import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/ad_details/presentation/screens/seller_profile_screen.dart';
 import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
 
+import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_outline_button.dart';
 import '../../../../core/themes/theme.dart';
 
@@ -132,7 +133,9 @@ class AdDetailsSeller extends StatelessWidget {
                 ),
                 size: Size(97.w, 36.h),
                 borderColor: AppColors.reportBorderColor,
-                onPressed: () {},
+                onPressed: () {
+                  DialogHelpers.showReportDialog();
+                },
               ),
               6.widthSpace,
             ],

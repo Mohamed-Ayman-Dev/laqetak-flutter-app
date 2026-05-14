@@ -39,6 +39,7 @@ class _FilterScreenState extends State<FilterScreen> {
         icons: [AppbarIcons.logo, AppbarIcons.drawer],
         flexRight: 8,
       ),
+
       drawer: CustomDrawer(),
       body: Form(
         key: _formKey,

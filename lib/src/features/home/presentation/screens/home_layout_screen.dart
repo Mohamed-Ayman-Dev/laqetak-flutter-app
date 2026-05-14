@@ -141,11 +141,13 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
           appBar: homeIndex == 0
               ? null
               : CustomAppbar(
+                  ishHomeLayoutDrawer: true,
                   icons: [AppbarIcons.drawer, AppbarIcons.logo],
                   dontShowBackButton: true,
                 ),
           extendBody: true,
           drawer: const CustomDrawer(),
+
           body: PopScope(canPop: true, child: screens[homeIndex]),
           // ── Bottom Nav ──────────────────────────────────────────────────
           bottomNavigationBar: BottomNavBar(navItems: _navItems),

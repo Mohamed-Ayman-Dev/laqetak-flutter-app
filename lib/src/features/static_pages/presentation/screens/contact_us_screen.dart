@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/helpers/dialog_helpers.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 
@@ -37,6 +38,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
   Future<void> _send() async {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState!.save();
+      DialogHelpers.showSuccessDialog(title: 'تم ارسال رسالتك بنجاح');
       // StaticPagesController.sendContactUs(_formData);
     }
   }

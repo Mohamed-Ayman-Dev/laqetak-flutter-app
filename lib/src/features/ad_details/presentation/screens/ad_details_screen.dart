@@ -7,6 +7,7 @@ import 'package:invastro/src/core/helpers/dialog_helpers.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_outline_button.dart';
 import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
+import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_bottom.dart';
@@ -67,6 +68,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
         icons: [AppbarIcons.logo, AppbarIcons.drawer],
         flexRight: 8,
       ),
+      drawer: CustomDrawer(),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -101,7 +103,9 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                     ),
                     size: Size(123.w, 36.h),
                     borderColor: AppColors.reportBorderColor,
-                    onPressed: () {},
+                    onPressed: () {
+                      DialogHelpers.showReportDialog();
+                    },
                   ),
                 ),
                 Text('تفاصيل المعلن', style: AppTextStyles.labelMedium),

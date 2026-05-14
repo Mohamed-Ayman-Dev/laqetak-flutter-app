@@ -26,6 +26,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   final int flexRight;
   final void Function()? onSearch;
+  final bool ishHomeLayoutDrawer;
 
   const CustomAppbar({
     super.key,
@@ -42,6 +43,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.flexRight = 1,
     this.connectionStatus,
     this.onSearch,
+    this.ishHomeLayoutDrawer = false,
   });
 
   @override
@@ -64,7 +66,9 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
               child: MyIconButton(
                 icon: SvgAssets.assetsSvgDrawerIcon,
                 onTap: () {
-                  HomeLayoutScreen.scaffoldKey.currentState?.openDrawer();
+                  ishHomeLayoutDrawer
+                      ? HomeLayoutScreen.scaffoldKey.currentState?.openDrawer()
+                      : Scaffold.of(context).openDrawer();
                 },
               ),
             ),

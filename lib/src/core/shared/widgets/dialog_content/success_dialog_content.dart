@@ -13,7 +13,7 @@ class SuccessDialogContent extends StatelessWidget {
   final String title;
   final String? subtitle;
   final String? buttonText;
-  final VoidCallback? onButtonTap;
+  final void Function()? onButtonTap;
 
   const SuccessDialogContent({
     super.key,
@@ -25,52 +25,57 @@ class SuccessDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(34, 31, 34, 36).r,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // ─── Check Icon ───
-          Image.asset(
-            ImagesAssets.assetsImagesCheckRingRound,
+    return SizedBox(
+      width: 200.w,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(34, 31, 34, 36).r,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // ─── Check Icon ───
+            Image.asset(
+              ImagesAssets.assetsImagesCheckRingRound,
 
-            height: 112.h,
-            width: 112.w,
-          ),
-          24.heightSpace,
-
-          // ─── Title ───
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: AppTextStyles.labelSmall.copyWith(fontSize: 20.sp),
-          ),
-          10.heightSpace,
-
-          // ─── Subtitle ───
-          if (subtitle != null)
-            Text(
-              subtitle!,
-              textAlign: TextAlign.center,
-              style: AppTextStyles.labelLarge.copyWith(fontSize: 15.sp),
+              height: 112.h,
+              width: 112.w,
             ),
-          24.heightSpace,
+            24.heightSpace,
 
-          // ─── Button ───
-          CustomElevatedButton(
-            text: buttonText ?? 'الرئيسية',
-            icon: SvgAssets.assetsSvgArrowRight,
-            size: Size(163.w, 48.h),
-            onPressed:
-                onButtonTap ??
-                () {
-                  LocatorService.navigationService.currentState?.popUntil(
-                    (route) =>
-                        route.settings.name == HomeLayoutScreen.routeName,
-                  );
-                },
-          ),
-        ],
+            // ─── Title ───
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.labelSmall.copyWith(fontSize: 20.sp),
+            ),
+            10.heightSpace,
+
+            // ─── Subtitle ───
+            if (subtitle != null)
+              Text(
+                subtitle!,
+                textAlign: TextAlign.center,
+                style: AppTextStyles.labelLarge.copyWith(fontSize: 15.sp),
+              ),
+            24.heightSpace,
+
+            // ─── Button ───
+            CustomElevatedButton(
+              text: buttonText ?? 'الرئيسية',
+              icon: SvgAssets.assetsSvgArrowRight,
+              size: Size(163.w, 48.h),
+              onPressed: onButtonTap != null
+                  ? () {
+                      onButtonTap!();
+                    }
+                  : () {
+                      LocatorService.navigationService.currentState?.popUntil(
+                        (route) =>
+                            route.settings.name == HomeLayoutScreen.routeName,
+                      );
+                    },
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -61,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
           focusNode.requestFocus();
         },
+        ishHomeLayoutDrawer: true,
 
         showSearchIcon: _showSearchIcon,
         dontShowBackButton: true,

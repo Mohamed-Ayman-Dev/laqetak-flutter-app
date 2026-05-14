@@ -8,6 +8,7 @@ import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/notifications/presentation/widgets/notification_item.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
+import '../../../../core/helpers/dialog_helpers.dart';
 
 class NotificationScreen extends StatelessWidget {
   static const routeName = '/notifications_screen';
@@ -52,7 +53,18 @@ class NotificationScreen extends StatelessWidget {
                                 MyIconButton(
                                   width: 40,
                                   height: 40,
-                                  onTap: () {},
+                                  onTap: () {
+                                    DialogHelpers.showYesNoDialog(
+                                      title: 'تأكيد الإجراء',
+                                      subtitle:
+                                          'هل أنت متأكد من حذف هذا التنبيه؟',
+                                      onButtonTap: () {
+                                        DialogHelpers.showSuccessDialog(
+                                          title: "تم حذف التنبيه بنجاح",
+                                        );
+                                      },
+                                    );
+                                  },
                                   bkColor: AppColors.deleteIconButtonBKColor,
                                   icon: SvgAssets.assetsSvgDeleteIcon,
                                 ),

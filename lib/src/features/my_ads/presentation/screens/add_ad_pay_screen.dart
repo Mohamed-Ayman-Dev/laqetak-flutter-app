@@ -39,6 +39,7 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
     return Scaffold(
       appBar: CustomAppbar(
         icons: [AppbarIcons.logo, AppbarIcons.drawer],
+
         flexRight: 8,
       ),
       drawer: CustomDrawer(),

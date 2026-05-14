@@ -4,11 +4,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/helpers/dialog_helpers.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_outline_button.dart';
 import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
 import 'package:invastro/src/core/shared/widgets/custom_asset_image.dart';
+import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +25,7 @@ import '../../../../core/shared/widgets/fields_widgets/country_code_field.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/shared/widgets/fields_widgets/my_custom_drop_down_menu.dart';
 import '../../../../core/shared/widgets/fields_widgets/password_eye_toggle.dart';
+import '../../../auth/presentation/screens/login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const routeName = '/profile_screen';
@@ -46,6 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         icons: [AppbarIcons.logo, AppbarIcons.drawer],
         flexRight: 8,
       ),
+      drawer: CustomDrawer(),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -255,6 +260,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ? CustomElevatedButton(
                         text: 'حفظ',
                         onPressed: () {
+                          DialogHelpers.showSuccessDialog(
+                            title: 'تهانينا لقد تم تعديل الملف الشخصي بنجاح',
+                          );
                           setState(() {
                             isEditMode = false;
                           });
@@ -280,7 +288,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               borderRadius: 8,
                               borderColor: AppColors.deleteBorderColor,
                               icon: SvgAssets.assetsSvgDeleteIcon,
-                              onPressed: () {},
+                              onPressed: () {
+                                DialogHelpers.showYesNoDialog(
+                                  title: 'تأكيد الإجراء',
+                                  subtitle: 'هل انت متأكد من حذف الحساب؟',
+                                  onButtonTap: () {
+                                    DialogHelpers.showSuccessDialog(
+                                      title: "تم حذف الحساب بنجاح",
+                                      buttonText: 'تسجيل الدخول',
+                                      onButtonTap: () {
+                                        LocatorService
+                                            .navigationService
+                                            .currentState
+                                            ?.popUntil(
+                                              (route) =>
+                                                  route.settings.name ==
+                                                  LoginScreen.routeName,
+                                            );
+                                      },
+                                    );
+                                  },
+                                );
+                              },
                             ),
                           ),
                         ],

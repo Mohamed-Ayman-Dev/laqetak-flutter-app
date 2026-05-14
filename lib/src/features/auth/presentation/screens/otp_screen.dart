@@ -5,12 +5,14 @@ import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:invastro/src/features/auth/presentation/screens/reset_password_screen.dart';
+import 'package:invastro/src/features/home/presentation/screens/home_layout_screen.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_pay_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
+import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/custom_Text.dart';
 import '../../../../core/shared/widgets/fields_widgets/pin_code_widget.dart';
@@ -216,6 +218,19 @@ class _OtpScreenState extends State<OtpScreen> {
       LocatorService.authNavigations.setIsNotValid(false);
 
       if (isRegisterOTP) {
+        await DialogHelpers.showSuccessDialog(
+          title: 'تم التسجيل بنجاح',
+          buttonText: 'تسجيل الدخول',
+          onButtonTap: () {
+            LocatorService.navigationService.currentState?.pushNamed(
+              HomeLayoutScreen.routeName,
+            );
+          },
+        )?.then(
+          (value) => LocatorService.navigationService.currentState?.pushNamed(
+            HomeLayoutScreen.routeName,
+          ),
+        );
         // // Register OTP verification
         // await AuthController.registerOtp(context, {
         //   'phone': phone,
@@ -242,6 +257,18 @@ class _OtpScreenState extends State<OtpScreen> {
           AddAdPayScreen.routeName,
         );
       } else {
+        await DialogHelpers.showSuccessDialog(
+          title: 'تهانينا لقد تم تسجيل حسابك بنجاح',
+          onButtonTap: () {
+            LocatorService.navigationService.currentState?.pushNamed(
+              HomeLayoutScreen.routeName,
+            );
+          },
+        )?.then(
+          (value) => LocatorService.navigationService.currentState?.pushNamed(
+            HomeLayoutScreen.routeName,
+          ),
+        );
         // // Login OTP verification (for non-activated accounts)
         // await AuthController.registerOtp(context, {
         //   'phone': phone,

@@ -62,18 +62,17 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: assets/1024_1024.png
+  image: assets/1024-backround.png
   android_12:
-    image: assets/1024_1024.png
+    image: assets/1024-backround.png
     icon_background_color: "#FFFFFF"
 
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/2splash.png"
+  image_path: "assets/1024-backround.png"
   color: "#FFFFFF"
   remove_alpha_ios: true
-
 
 flutter:
   uses-material-design: true
@@ -81,6 +80,7 @@ flutter:
     - assets/images/
     - assets/svg/
     - assets/fonts/
+    - assets/
   fonts:
     - family: Almarai
       fonts:

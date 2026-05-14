@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/shared/widgets/dialog_content/report_dialog_content.dart';
 import 'package:invastro/src/core/shared/widgets/dialog_content/terms_content.dart';
+import 'package:invastro/src/core/shared/widgets/dialog_content/yes_no_dialog_content.dart';
 
 import '../di/locator_service.dart';
 import '../shared/widgets/dialog_content/success_dialog_content.dart';
@@ -104,7 +106,7 @@ class DialogHelpers {
     required String title,
     String? subtitle,
     String? buttonText,
-    VoidCallback? onButtonTap,
+    void Function()? onButtonTap,
     bool pop = false,
   }) async {
     await showGeneralDialog(
@@ -158,6 +160,112 @@ class DialogHelpers {
         LocatorService.navigationService.currentState?.pop();
       }
     });
+  }
+
+  static Future<void>? showYesNoDialog({
+    required String title,
+    String? subtitle,
+    String? buttonText,
+    void Function()? onButtonTap,
+    bool pop = false,
+  }) async {
+    await showGeneralDialog(
+      context: LocatorService.navigationService.currentState!.context,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.2),
+      transitionDuration: const Duration(milliseconds: 400),
+      pageBuilder: (_, __, ___) {
+        return Stack(
+          children: [
+            BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 5,
+                sigmaY: 5,
+                tileMode: TileMode.decal,
+              ),
+              child: const SizedBox.expand(),
+            ),
+            AlertDialog(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              surfaceTintColor: Colors.transparent,
+              contentPadding: EdgeInsets.zero,
+              scrollable: true,
+              insetPadding: const EdgeInsets.symmetric(
+                horizontal: 0,
+                vertical: 0,
+              ).r,
+              content: YesNoDialogContent(
+                title: title,
+                buttonText: buttonText,
+                subtitle: subtitle,
+                onButtonTap: onButtonTap,
+              ),
+            ),
+          ],
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, 1),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(parent: anim, curve: Curves.easeInOut)),
+          child: FadeTransition(opacity: anim, child: child),
+        );
+      },
+    ).then((value) {
+      if (pop) {
+        LocatorService.navigationService.currentState?.pop();
+      }
+    });
+  }
+
+  static Future<void>? showReportDialog() async {
+    await showGeneralDialog(
+      context: LocatorService.navigationService.currentState!.context,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.2),
+      transitionDuration: const Duration(milliseconds: 400),
+      pageBuilder: (_, __, ___) {
+        return Stack(
+          children: [
+            BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 5,
+                sigmaY: 5,
+                tileMode: TileMode.decal,
+              ),
+              child: const SizedBox.expand(),
+            ),
+            AlertDialog(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              surfaceTintColor: Colors.transparent,
+              contentPadding: EdgeInsets.zero,
+              scrollable: true,
+
+              insetPadding: const EdgeInsets.symmetric(
+                horizontal: 0,
+                vertical: 0,
+              ).r,
+              content: ReportDialogContent(),
+            ),
+          ],
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, 1),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(parent: anim, curve: Curves.easeInOut)),
+          child: FadeTransition(opacity: anim, child: child),
+        );
+      },
+    );
   }
 
   //

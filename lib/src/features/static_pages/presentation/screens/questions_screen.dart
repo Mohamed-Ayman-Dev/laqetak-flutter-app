@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/enums.dart';
+import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
@@ -50,6 +51,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         icons: [AppbarIcons.logo, AppbarIcons.drawer],
         flexRight: 8,
       ),
+      drawer: CustomDrawer(),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
