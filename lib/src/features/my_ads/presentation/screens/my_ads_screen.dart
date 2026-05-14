@@ -58,7 +58,15 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                               : 'not-chance',
                           expired: index == 1 || index == 3,
                           onDelete: () {
-                            DialogHelpers.showSuccessDialog(title: 'title');
+                            DialogHelpers.showYesNoDialog(
+                              title: 'تأكيد الإجراء',
+                              subtitle: 'هل أنت متأكد من حذف هذا الاعلان؟',
+                              onButtonTap: () {
+                                DialogHelpers.showSuccessDialog(
+                                  title: "تم حذف الاعلان بنجاح",
+                                );
+                              },
+                            );
                           },
                           onEdit: () {
                             LocatorService.navigationService.currentState

@@ -25,8 +25,8 @@ class SuccessDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 200.w,
+    return Container(
+      constraints: BoxConstraints(minWidth: 270.w),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(34, 31, 34, 36).r,
         child: Column(
