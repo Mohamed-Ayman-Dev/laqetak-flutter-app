@@ -5,7 +5,9 @@ import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/my_icon_button.dart';
 import 'package:invastro/src/core/themes/colors.dart';
+import 'package:invastro/src/features/home/presentation/screens/filter_screen.dart';
 
+import '../../../di/locator_service.dart';
 import '../fields_widgets/custom_textField.dart';
 
 class SearchField extends StatelessWidget {
@@ -78,7 +80,11 @@ class SearchField extends StatelessWidget {
           6.widthSpace,
           MyIconButton(
             icon: SvgAssets.assetsSvgFilterIcon,
-            onTap: () {},
+            onTap: () {
+              LocatorService.navigationService.currentState?.pushNamed(
+                FilterScreen.routeName,
+              );
+            },
             borderRadius: 20,
             bkColor: AppColors.searchBKColor,
           ),

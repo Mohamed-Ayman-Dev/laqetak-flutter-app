@@ -8,6 +8,14 @@ final class MockDataForLoading {
     DetailsModel(id: 1, name: 'الرياض'),
     DetailsModel(id: 2, name: 'جدة'),
   ];
+  static List<DetailsModel> mockCategories = [
+    DetailsModel(id: 1, name: 'فرصة'),
+    DetailsModel(id: 2, name: 'مستثمر'),
+  ];
+  static List<DetailsModel> mockBusiness = [
+    DetailsModel(id: 1, name: 'عقاري'),
+    DetailsModel(id: 2, name: 'عقاري2'),
+  ];
   static List<String> detailsImages = [
     ImagesAssets.assetsImagesMockDetailsImage1,
     ImagesAssets.assetsImagesMockDetailsImage2,

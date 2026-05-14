@@ -20,6 +20,9 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
     this.icon,
     this.prefixIcon,
     this.hintStyle,
+    this.contentPadding,
+    this.borderRadius = 12,
+    this.borderColor,
   });
 
   final List<DropdownMenuItem<T>>? items;
@@ -31,14 +34,17 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
   final bool isRequired;
   final Color? color;
   final Widget? icon;
+  final double borderRadius;
+  final EdgeInsets? contentPadding;
+  final Color? borderColor;
   final Widget? prefixIcon;
   final TextStyle? hintStyle;
   final bool isLoading;
 
   // ← single source of truth for all borders
   OutlineInputBorder _border(Color color) => OutlineInputBorder(
-    borderRadius: BorderRadius.circular(12).r,
-    borderSide: BorderSide(color: color, width: 1),
+    borderRadius: BorderRadius.circular(borderRadius).r,
+    borderSide: BorderSide(color: borderColor ?? color, width: 1),
   );
 
   @override
@@ -48,6 +54,7 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
       padding: EdgeInsets.zero,
       initialValue: value,
       items: items,
+
       onChanged: onChanged,
       onSaved: onSaved,
       validator: validator,
@@ -69,10 +76,9 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
                 child: Text('*', style: TextStyle(color: Colors.red)),
               )
             : prefixIcon,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 13,
-        ).r,
+        contentPadding:
+            contentPadding ??
+            const EdgeInsets.symmetric(horizontal: 15, vertical: 13).r,
         fillColor: color,
         filled: color != null,
         hintStyle: AppTextStyles.hintTextStyle,

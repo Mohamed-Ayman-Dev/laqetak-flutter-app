@@ -40,13 +40,16 @@ class CustomDrawerHeader extends StatelessWidget {
                       //   height: 52.h,
                       //   placeholder: ImagesAssets.assetsImagesMockProfileImage,
                       // ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.asset(
-                          ImagesAssets.assetsImagesMockProfileImage,
-                          fit: BoxFit.cover,
-                          width: 52.w,
-                          height: 52.h,
+                      Hero(
+                        tag: 'profile_image',
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.asset(
+                            ImagesAssets.assetsImagesMockProfileImage,
+                            fit: BoxFit.cover,
+                            width: 52.w,
+                            height: 52.h,
+                          ),
                         ),
                       ),
                       13.widthSpace,

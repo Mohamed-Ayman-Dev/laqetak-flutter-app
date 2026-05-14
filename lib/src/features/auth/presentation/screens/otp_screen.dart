@@ -5,6 +5,7 @@ import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:invastro/src/features/auth/presentation/screens/reset_password_screen.dart';
+import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_pay_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -32,6 +33,7 @@ class _OtpScreenState extends State<OtpScreen> {
   bool isRegisterOTP = false;
   bool isForgetPassword = false;
   bool isUpdatePhone = false;
+  bool isAddAd = false;
 
   int? remainingSeconds;
   String otp = '';
@@ -50,6 +52,7 @@ class _OtpScreenState extends State<OtpScreen> {
         isRegisterOTP = arguments?['from'] == 'register';
         isForgetPassword = arguments?['from'] == 'forgetPassword';
         isUpdatePhone = arguments?['from'] == 'updatePhone';
+        isAddAd = arguments?['from'] == 'add-ad';
         changePhoneData = arguments?['data'];
         if (arguments?['remainingSeconds'] != null) {
           remainingSeconds = arguments?['remainingSeconds'];
@@ -234,6 +237,10 @@ class _OtpScreenState extends State<OtpScreen> {
         //   (route) => route.settings.name == HomeLayoutScreen.routeName,
         // );
         // LocatorService.appSettings.changeHomeIndex(0);
+      } else if (isAddAd) {
+        LocatorService.navigationService.currentState?.pushNamed(
+          AddAdPayScreen.routeName,
+        );
       } else {
         // // Login OTP verification (for non-activated accounts)
         // await AuthController.registerOtp(context, {

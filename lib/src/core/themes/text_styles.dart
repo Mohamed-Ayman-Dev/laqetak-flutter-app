@@ -74,6 +74,11 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w400,
     fontFamily: Constant.fontFamily,
   );
+  static TextStyle buttonsTextStyle = TextStyle(
+    color: AppColors.buttonTextColor,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+  );
 
   ///------------------------------------
 
@@ -95,11 +100,6 @@ abstract class AppTextStyles {
     fontSize: 18.sp,
     fontWeight: FontWeight.w500,
     fontFamily: Constant.fontFamily,
-  );
-  static TextStyle buttonsTextStyle = TextStyle(
-    color: AppColors.buttonTextColor,
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w400,
   );
 
   static TextStyle textButtonTextStyle = TextStyle(

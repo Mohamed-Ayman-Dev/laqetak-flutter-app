@@ -44,6 +44,7 @@ class ChatScreen extends StatelessWidget {
                     : index == 4
                     ? 'نعم ياصديقي ماذال متوفر'
                     : "شكرا لك ",
+                heroImage: '$index-"messageBody"-chat',
                 isUser: index == 1 || index == 4 ? false : true,
                 image: index == 3 ? ImagesAssets.assetsImagesMockAd4 : null,
               ),

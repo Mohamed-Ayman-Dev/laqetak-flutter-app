@@ -5,21 +5,23 @@ import 'package:invastro/src/core/themes/colors.dart';
 class CustomRadioButton extends StatelessWidget {
   const CustomRadioButton({
     super.key,
-    required this.value,
-    required this.groupValue,
+    this.value,
+    this.groupValue,
+    this.isSelected,
     required this.onChanged,
   });
 
-  final int value;
-  final int groupValue;
+  final int? value;
+  final int? groupValue;
+  final bool? isSelected;
   final void Function(int) onChanged;
 
-  bool get _isSelected => value == groupValue;
+  bool get _isSelected => isSelected ?? (value == groupValue);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onChanged(value),
+      onTap: () => onChanged(isSelected != null ? 0 : value!),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,

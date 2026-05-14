@@ -63,7 +63,9 @@ class CustomElevatedButton extends StatelessWidget {
         decoration: isDisabled
             ? null
             : BoxDecoration(
-                gradient: AppGradients.buttonGradient,
+                gradient: backgroundColor != null
+                    ? null
+                    : AppGradients.buttonGradient,
                 borderRadius: BorderRadius.circular(borderRadius).r,
               ),
         child: Container(

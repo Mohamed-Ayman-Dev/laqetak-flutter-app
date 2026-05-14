@@ -5,6 +5,9 @@
 class ImagesAssets {
   ImagesAssets._();
 
+  /// assets/images/check_ring_round.png
+  static const String assetsImagesCheckRingRound = "assets/images/check_ring_round.png";
+
   /// assets/images/eye_hidden_icon.png
   static const String assetsImagesEyeHiddenIcon = "assets/images/eye_hidden_icon.png";
 
@@ -16,6 +19,9 @@ class ImagesAssets {
 
   /// assets/images/logo.png
   static const String assetsImagesLogo = "assets/images/logo.png";
+
+  /// assets/images/master.png
+  static const String assetsImagesMaster = "assets/images/master.png";
 
   /// assets/images/mock_ad_1.png
   static const String assetsImagesMockAd1 = "assets/images/mock_ad_1.png";

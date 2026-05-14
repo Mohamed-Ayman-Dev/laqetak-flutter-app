@@ -5,6 +5,9 @@
 class SvgAssets {
   SvgAssets._();
 
+  /// assets/svg/add_round.svg
+  static const String assetsSvgAddRound = "assets/svg/add_round.svg";
+
   /// assets/svg/arrow-down.svg
   static const String assetsSvgArrowDown = "assets/svg/arrow-down.svg";
 
@@ -25,6 +28,9 @@ class SvgAssets {
 
   /// assets/svg/chance.svg
   static const String assetsSvgChance = "assets/svg/chance.svg";
+
+  /// assets/svg/chat_dots_icon.svg
+  static const String assetsSvgChatDotsIcon = "assets/svg/chat_dots_icon.svg";
 
   /// assets/svg/chat_icon.svg
   static const String assetsSvgChatIcon = "assets/svg/chat_icon.svg";
@@ -67,6 +73,9 @@ class SvgAssets {
 
   /// assets/svg/drawer_terms.svg
   static const String assetsSvgDrawerTerms = "assets/svg/drawer_terms.svg";
+
+  /// assets/svg/edit_icon.svg
+  static const String assetsSvgEditIcon = "assets/svg/edit_icon.svg";
 
   /// assets/svg/expand_arrow_up.svg
   static const String assetsSvgExpandArrowUp = "assets/svg/expand_arrow_up.svg";
@@ -119,6 +128,9 @@ class SvgAssets {
   /// assets/svg/readed_message_icon.svg
   static const String assetsSvgReadedMessageIcon = "assets/svg/readed_message_icon.svg";
 
+  /// assets/svg/report-circle.svg
+  static const String assetsSvgReportCircle = "assets/svg/report-circle.svg";
+
   /// assets/svg/sar_icon.svg
   static const String assetsSvgSarIcon = "assets/svg/sar_icon.svg";
 
@@ -139,6 +151,12 @@ class SvgAssets {
 
   /// assets/svg/time_fill_icon.svg
   static const String assetsSvgTimeFillIcon = "assets/svg/time_fill_icon.svg";
+
+  /// assets/svg/trash_bold.svg
+  static const String assetsSvgTrashBold = "assets/svg/trash_bold.svg";
+
+  /// assets/svg/upload_image.svg
+  static const String assetsSvgUploadImage = "assets/svg/upload_image.svg";
 
   /// assets/svg/user_filled_icon.svg
   static const String assetsSvgUserFilledIcon = "assets/svg/user_filled_icon.svg";

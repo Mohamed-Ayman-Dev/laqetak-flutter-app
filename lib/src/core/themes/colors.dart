@@ -21,6 +21,8 @@ abstract class AppColors {
   static const Color deleteIconButtonBKColor = Color(0XFFEAEAEA);
   static const Color myMessageBKColor = Color(0XFFE2E2E2);
   static const Color sellerNumberBKColor = Color(0XFFF0F0F0);
+  static const Color buttonBackBKColor = Color(0xFFE4E4E4);
+  static const Color uploadImageBKColor = Color(0xFFEFEFEF);
 
   static const Color otherMessageBKColor = Color.fromRGBO(254, 224, 134, 0.56);
 
@@ -47,6 +49,8 @@ abstract class AppColors {
   static const Color numberLabelTextColor = Color(0xFF212121);
   static const Color labelBlackTextColor = Color(0XFF0D0D0E);
   static const Color priceBlackTextColor = Color(0XFF282828);
+  static const Color labelSmallGreyTextColor = Color(0XFF888888);
+  static const Color priceTextColor = Color(0XFF727272);
 
   static const Color textButtonTextColor = Color(0XFF181818);
   static const Color titleTextColor = Color(0XFF1D1D1D);
@@ -55,6 +59,7 @@ abstract class AppColors {
   // border colors
   static const Color fieldBorderColor = Color(0xFF8E8E93);
   static const Color borderColor = Color(0xFF8E8E93);
+  static const Color dottedBorderColor = Color(0xFFC3C3C3);
   static const Color buttonBorderColor = Color(0xFFD5D5D5);
   static const Color notificationBorderColor = Color(0xFF868686);
   static const Color conversationBorderColor = Color(0xFFC5C5C5);
@@ -62,6 +67,8 @@ abstract class AppColors {
   static const Color questionBorderColor = Color(0xFFBFBFBF);
   static const Color containerBorderColor = Color(0xFF818181);
   static const Color reportBorderColor = Color(0xFFBD3636);
+  static const Color deleteBorderColor = Color(0xFFD52F2F);
+  static const Color priceBorderColor = Color(0xFF8F8F8F);
 
   // other colors
   static const Color cursorColor = Color(0xFF8B8B8B);

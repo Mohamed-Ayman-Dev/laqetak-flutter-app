@@ -100,7 +100,6 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               CustomTextField(
                 hintText: 'الإسم',
                 controller: _nameController,
-                prefixIconImage: 'assets/images/user.svg',
                 onSaved: (val) {
                   _formData['name'] = val;
                 },

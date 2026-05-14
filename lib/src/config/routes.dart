@@ -14,7 +14,11 @@ import '../features/auth/presentation/screens/splash_screen.dart';
 import '../features/chat/presentation/screens/chat_screen.dart';
 import '../features/chat/presentation/screens/conversations_screen.dart';
 import '../features/favorite/presentation/screens/favorite_screen.dart';
+import '../features/home/presentation/screens/filter_screen.dart';
 import '../features/home/presentation/screens/home_layout_screen.dart';
+import '../features/my_ads/presentation/screens/add_ad_pay_screen.dart';
+import '../features/my_ads/presentation/screens/add_ad_screen.dart';
+import '../features/my_ads/presentation/screens/add_ad_second_screen.dart';
 import '../features/notifications/presentation/screens/notification_screen.dart';
 import '../features/profile/presentation/screens/profile_screen.dart';
 import '../features/static_pages/presentation/screens/about_app_screen.dart';
@@ -47,29 +51,9 @@ class Routes {
     QuestionsScreen.routeName: (_) => const QuestionsScreen(),
     AdDetailsScreen.routeName: (_) => const AdDetailsScreen(),
     SellerProfileScreen.routeName: (_) => const SellerProfileScreen(),
-
-    // OnboardingScreen.routeName: (_) => const OnboardingScreen(),
-    // AuthSuccessScreen.routeName: (_) => const AuthSuccessScreen(),
-    // StoreDetailsScreen.routeName: (_) => const StoreDetailsScreen(),
-    // RequestProductScreen.routeName: (_) => const RequestProductScreen(),
-    // OrdersOffersScreen.routeName: (_) => const OrdersOffersScreen(),
-    // OrderDetailsScreen.routeName: (_) => const OrderDetailsScreen(),
-    // ChatScreen.routeName: (_) => const ChatScreen(),
-    // PaymentMethodsScreen.routeName: (_) => const PaymentMethodsScreen(),
-    // RegisterStoreScreen.routeName: (_) => const RegisterStoreScreen(),
-    // SearchScreen.routeName: (_) => const SearchScreen(),
-    // AboutAppScreen.routeName: (_) => const AboutAppScreen(),
-    // QuestionsScreen.routeName: (_) => const QuestionsScreen(),
-    // ContactUsScreen.routeName: (_) => const ContactUsScreen(),
-    // InvoicesScreen.routeName: (_) => const InvoicesScreen(),
-    // FavScreen.routeName: (_) => const FavScreen(),
-    // AddressesScreen.routeName: (_) => const AddressesScreen(),
-    // PDFViewerScreen.routeName: (_) => const PDFViewerScreen(),
-    // OrdersScreen.routeName: (_) => const OrdersScreen(),
-    // ComplaintsScreen.routeName: (_) => const ComplaintsScreen(),
-    // CarsScreen.routeName: (_) => const CarsScreen(),
-    // MapScreen.routeName: (_) => const MapScreen(),
-    // RegisterStoreSuccessScreen.routeName: (_) =>
-    //     const RegisterStoreSuccessScreen(),
+    AddAdScreen.routeName: (_) => const AddAdScreen(),
+    AddAdSecondScreen.routeName: (_) => const AddAdSecondScreen(),
+    AddAdPayScreen.routeName: (_) => const AddAdPayScreen(),
+    FilterScreen.routeName: (_) => const FilterScreen(),
   };
 }
