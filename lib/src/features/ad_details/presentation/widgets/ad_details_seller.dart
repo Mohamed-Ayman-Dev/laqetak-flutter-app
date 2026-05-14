@@ -3,9 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:invastro/src/features/ad_details/presentation/screens/seller_profile_screen.dart';
+import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
 
 import '../../../../core/shared/widgets/buttons_widgets/custom_outline_button.dart';
 import '../../../../core/themes/theme.dart';
@@ -26,37 +29,46 @@ class AdDetailsSeller extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              6.widthSpace,
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  ImagesAssets.assetsImagesMockPersonImage,
-                  fit: BoxFit.cover,
-                  height: 39.h,
-                  width: 39.w,
+          InkWell(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () {
+              LocatorService.navigationService.currentState?.pushNamed(
+                SellerProfileScreen.routeName,
+              );
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                6.widthSpace,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    ImagesAssets.assetsImagesMockPersonImage,
+                    fit: BoxFit.cover,
+                    height: 39.h,
+                    width: 39.w,
+                  ),
                 ),
-              ),
-              8.widthSpace,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'المعلن',
-                    style: AppTextStyles.labelSmall.copyWith(
-                      fontSize: 10.sp,
-                      color: AppColors.sellerLabelTextColor,
+                8.widthSpace,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'المعلن',
+                      style: AppTextStyles.labelSmall.copyWith(
+                        fontSize: 10.sp,
+                        color: AppColors.sellerLabelTextColor,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'محمد الدوسري',
-                    style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
-                  ),
-                ],
-              ),
-            ],
+                    Text(
+                      'محمد الدوسري',
+                      style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           13.heightSpace,
           Container(
@@ -105,7 +117,11 @@ class AdDetailsSeller extends StatelessWidget {
                 icon: SvgAssets.assetsSvgChatIcon,
                 size: Size(97.w, 36.h),
                 borderColor: AppColors.reportBorderColor,
-                onPressed: () {},
+                onPressed: () {
+                  LocatorService.navigationService.currentState?.pushNamed(
+                    ChatScreen.routeName,
+                  );
+                },
               ),
               7.widthSpace,
               CustomOutlineButton(

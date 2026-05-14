@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 
 import '../features/ad_details/presentation/screens/ad_details_screen.dart';
+import '../features/ad_details/presentation/screens/seller_profile_screen.dart';
 import '../features/auth/presentation/screens/auth_screen.dart';
 import '../features/auth/presentation/screens/forget_password_screen.dart';
 import '../features/auth/presentation/screens/login_screen.dart';
@@ -45,6 +46,7 @@ class Routes {
     ContactUsScreen.routeName: (_) => const ContactUsScreen(),
     QuestionsScreen.routeName: (_) => const QuestionsScreen(),
     AdDetailsScreen.routeName: (_) => const AdDetailsScreen(),
+    SellerProfileScreen.routeName: (_) => const SellerProfileScreen(),
 
     // OnboardingScreen.routeName: (_) => const OnboardingScreen(),
     // AuthSuccessScreen.routeName: (_) => const AuthSuccessScreen(),
