@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/shared/models/redirect_model.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
@@ -10,6 +11,7 @@ import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_pay_scr
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
@@ -17,6 +19,7 @@ import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.d
 import '../../../../core/shared/widgets/custom_Text.dart';
 import '../../../../core/shared/widgets/fields_widgets/pin_code_widget.dart';
 import '../../../../core/themes/text_styles.dart';
+import '../controllers/auth_controller.dart';
 import '../providers/auth_naviagtions.dart';
 import '../widgets/auth_appbar.dart';
 import '../widgets/timer_resend_widget.dart';
@@ -32,38 +35,28 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   bool once = false;
-  bool isRegisterOTP = false;
-  bool isForgetPassword = false;
-  bool isUpdatePhone = false;
-  bool isAddAd = false;
-
-  int? remainingSeconds;
   String otp = '';
-  String phone = '';
-  Map<String, dynamic>? changePhoneData;
-
-  String? previousScreenName;
+  late final OtpFlow _flow;
+  late final RedirectModel? _redirectData;
 
   @override
   void didChangeDependencies() {
     if (!once) {
       final arguments =
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
-      if (arguments?['from'] != null) {
-        previousScreenName = arguments?['from'];
-        isRegisterOTP = arguments?['from'] == 'register';
-        isForgetPassword = arguments?['from'] == 'forgetPassword';
-        isUpdatePhone = arguments?['from'] == 'updatePhone';
-        isAddAd = arguments?['from'] == 'add-ad';
-        changePhoneData = arguments?['data'];
-        if (arguments?['remainingSeconds'] != null) {
-          remainingSeconds = arguments?['remainingSeconds'];
-        }
-        phone = arguments?['phone'] ?? '';
-      }
+      _flow = switch (arguments?['from']) {
+        'register' => OtpFlow.register,
+        'forgetPassword' => OtpFlow.forgetPassword,
+        'updatePhone' => OtpFlow.updatePhone,
+        'add-ad' => OtpFlow.addAd,
+        _ => OtpFlow.login,
+      };
+      _redirectData = arguments?['redirectData'];
 
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        LocatorService.timers.startTimer(initialSeconds: remainingSeconds);
+        LocatorService.timers.startTimer(
+          initialSeconds: _redirectData?.remainingSeconds ?? 119,
+        );
       });
       once = true;
     }
@@ -107,7 +100,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       WidgetSpan(
                         child: GestureDetector(
                           onTap: () {
-                            isForgetPassword
+                            _flow == OtpFlow.forgetPassword
                                 ? LocatorService.navigationService.currentState
                                       ?.popUntil(
                                         (route) =>
@@ -138,7 +131,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                       ),
                       TextSpan(
-                        text: "096600000000+",
+                        text: _redirectData?.phone,
                         style: AppTextStyles.headlineMedium.copyWith(
                           color: AppColors.labelTextColor,
                           fontSize: 16.sp,
@@ -187,7 +180,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 Hero(
                   tag: 'auth-button',
                   child: CustomElevatedButton(
-                    text: isForgetPassword
+                    text: _flow == OtpFlow.forgetPassword
                         ? S.of(context).verify
                         : S.of(context).confirm,
                     onPressed: () {
@@ -199,8 +192,8 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
                 24.heightSpace,
                 TimerResendWidget(
-                  phone: phone,
-                  previousScreenName: previousScreenName ?? 'register',
+                  phone: _redirectData?.phone ?? '',
+                  flow: _flow,
                 ),
               ],
             );
@@ -216,64 +209,72 @@ class _OtpScreenState extends State<OtpScreen> {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       LocatorService.authNavigations.setIsNotValid(false);
+      switch (_flow) {
+        case OtpFlow.register:
+          await DialogHelpers.showSuccessDialog(
+            title: 'تم التسجيل بنجاح',
+            buttonText: 'تسجيل الدخول',
+            onButtonTap: () {
+              LocatorService.navigationService.currentState?.pushNamed(
+                HomeLayoutScreen.routeName,
+              );
+            },
+          )?.then(
+            (value) => LocatorService.navigationService.currentState?.pushNamed(
+              HomeLayoutScreen.routeName,
+            ),
+          );
+          // Register OTP verification
+          await AuthController.registerOtp(context, {
+            'phone': _redirectData?.phone,
+            'code': otp,
+          }, isFromLogin: false);
+          break;
 
-      if (isRegisterOTP) {
-        await DialogHelpers.showSuccessDialog(
-          title: 'تم التسجيل بنجاح',
-          buttonText: 'تسجيل الدخول',
-          onButtonTap: () {
-            LocatorService.navigationService.currentState?.pushNamed(
+        case OtpFlow.forgetPassword:
+          // // Forget password OTP verification
+          // await AuthController.forgetPasswordOtp(context, {
+          //   'phone': phone,
+          //   'code': otp,
+          // });
+          LocatorService.navigationService.currentState?.pushNamed(
+            ResetPasswordScreen.routeName,
+          );
+          break;
+
+        case OtpFlow.updatePhone:
+          // changePhoneData?.addAll({'otp_code': otp});
+          // await AuthController.updateProfile(context, changePhoneData ?? {});
+          // LocatorService.navigationService.currentState?.popUntil(
+          //   (route) => route.settings.name == HomeLayoutScreen.routeName,
+          // );
+          // LocatorService.appSettings.changeHomeIndex(0);
+          break;
+        case OtpFlow.addAd:
+          LocatorService.navigationService.currentState?.pushNamed(
+            AddAdPayScreen.routeName,
+          );
+          break;
+
+        case OtpFlow.login:
+          await DialogHelpers.showSuccessDialog(
+            title: 'تهانينا لقد تم تسجيل حسابك بنجاح',
+            onButtonTap: () {
+              LocatorService.navigationService.currentState?.pushNamed(
+                HomeLayoutScreen.routeName,
+              );
+            },
+          )?.then(
+            (value) => LocatorService.navigationService.currentState?.pushNamed(
               HomeLayoutScreen.routeName,
-            );
-          },
-        )?.then(
-          (value) => LocatorService.navigationService.currentState?.pushNamed(
-            HomeLayoutScreen.routeName,
-          ),
-        );
-        // // Register OTP verification
-        // await AuthController.registerOtp(context, {
-        //   'phone': phone,
-        //   'code': otp,
-        // }, isFromLogin: false);
-      } else if (isForgetPassword) {
-        // // Forget password OTP verification
-        // await AuthController.forgetPasswordOtp(context, {
-        //   'phone': phone,
-        //   'code': otp,
-        // });
-        LocatorService.navigationService.currentState?.pushNamed(
-          ResetPasswordScreen.routeName,
-        );
-      } else if (isUpdatePhone) {
-        // changePhoneData?.addAll({'otp_code': otp});
-        // await AuthController.updateProfile(context, changePhoneData ?? {});
-        // LocatorService.navigationService.currentState?.popUntil(
-        //   (route) => route.settings.name == HomeLayoutScreen.routeName,
-        // );
-        // LocatorService.appSettings.changeHomeIndex(0);
-      } else if (isAddAd) {
-        LocatorService.navigationService.currentState?.pushNamed(
-          AddAdPayScreen.routeName,
-        );
-      } else {
-        await DialogHelpers.showSuccessDialog(
-          title: 'تهانينا لقد تم تسجيل حسابك بنجاح',
-          onButtonTap: () {
-            LocatorService.navigationService.currentState?.pushNamed(
-              HomeLayoutScreen.routeName,
-            );
-          },
-        )?.then(
-          (value) => LocatorService.navigationService.currentState?.pushNamed(
-            HomeLayoutScreen.routeName,
-          ),
-        );
-        // // Login OTP verification (for non-activated accounts)
-        // await AuthController.registerOtp(context, {
-        //   'phone': phone,
-        //   'code': otp,
-        // }, isFromLogin: true);
+            ),
+          );
+          // // Login OTP verification (for non-activated accounts)
+          // await AuthController.registerOtp(context, {
+          //   'phone': phone,
+          //   'code': otp,
+          // }, isFromLogin: true);
+          break;
       }
     } else {
       HapticFeedback.heavyImpact();

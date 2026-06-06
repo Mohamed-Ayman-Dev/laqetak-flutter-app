@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class Timers with ChangeNotifier {
-  int timer = 60;
+  num timer = 60;
   bool isResendButtonVisible = false;
   Timer? _timer;
 
-  void startTimer({int? initialSeconds}) {
+  void startTimer({num? initialSeconds}) {
     // Use the provided initial seconds from the backend if available, otherwise default to 60
     timer = initialSeconds ?? 60;
     isResendButtonVisible = false;

@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/constants/enums.dart';
 import '../../../../core/shared/providers/timers.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
 
 class TimerResendWidget extends StatefulWidget {
   final String phone;
-  final String previousScreenName;
+  final OtpFlow flow;
   final int? remainingSeconds;
 
   const TimerResendWidget({
     super.key,
     required this.phone,
-    required this.previousScreenName,
+    required this.flow,
     this.remainingSeconds,
   });
 

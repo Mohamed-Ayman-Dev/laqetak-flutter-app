@@ -158,6 +158,9 @@ class SvgAssets {
   /// assets/svg/snapchat.svg
   static const String assetsSvgSnapchat = "assets/svg/snapchat.svg";
 
+  /// assets/svg/success_icon.svg
+  static const String assetsSvgSuccessIcon = "assets/svg/success_icon.svg";
+
   /// assets/svg/tiktok.svg
   static const String assetsSvgTiktok = "assets/svg/tiktok.svg";
 

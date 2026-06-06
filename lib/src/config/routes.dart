@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 
+import '../core/shared/widgets/timeout_splashscreen.dart';
 import '../features/ad_details/presentation/screens/ad_details_screen.dart';
 import '../features/ad_details/presentation/screens/seller_profile_screen.dart';
 import '../features/auth/presentation/screens/auth_screen.dart';
@@ -55,5 +56,6 @@ class Routes {
     AddAdSecondScreen.routeName: (_) => const AddAdSecondScreen(),
     AddAdPayScreen.routeName: (_) => const AddAdPayScreen(),
     FilterScreen.routeName: (_) => const FilterScreen(),
+    TimeoutSplashScreen.routeName: (_) => const TimeoutSplashScreen(),
   };
 }

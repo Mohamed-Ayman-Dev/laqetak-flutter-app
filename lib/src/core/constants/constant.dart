@@ -5,7 +5,6 @@ final class Constant {
 
   static const String fontFamily = 'Almarai';
   static const String appName = 'Invastro';
-
   static const pageTransitionDuration = Duration(milliseconds: 400);
   static const Curve pageTransitionCurve = Curves.easeInOut;
   static const loadingDuration = Duration(milliseconds: 700);

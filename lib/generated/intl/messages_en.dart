@@ -26,6 +26,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancellationReasonIsRequired": MessageLookupByLibrary.simpleMessage(
       "Cancellation reason is required",
     ),
+    "changesHaveBeenSavedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Changes have been saved successfully",
+    ),
     "city": MessageLookupByLibrary.simpleMessage("City"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "connectionErrorPleaseCheckYourInternetConnection":
@@ -118,6 +121,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseSelectARegion": MessageLookupByLibrary.simpleMessage(
       "Please select a region",
     ),
+    "pleaseVerifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "Please verify your phone number",
+    ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("Please Wait..."),
     "resend": MessageLookupByLibrary.simpleMessage("Resend"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
@@ -128,6 +134,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "selectCity": MessageLookupByLibrary.simpleMessage("Select City"),
     "sendCode": MessageLookupByLibrary.simpleMessage("Send Code"),
+    "sendingRequest": MessageLookupByLibrary.simpleMessage(
+      "Sending Request...",
+    ),
     "sessionExpiredPleaseLoginAgain": MessageLookupByLibrary.simpleMessage(
       "Session Expired Please Login Again",
     ),

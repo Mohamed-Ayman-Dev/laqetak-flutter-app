@@ -23,6 +23,8 @@ abstract class AppColors {
   static const Color sellerNumberBKColor = Color(0XFFF0F0F0);
   static const Color buttonBackBKColor = Color(0xFFE4E4E4);
   static const Color uploadImageBKColor = Color(0xFFEFEFEF);
+  static const Color appFeedbackBKColor = Color(0xFFC49A48);
+  static const Color appFeedSuccessBKColor = Color(0xFF2E7D32);
 
   static const Color otherMessageBKColor = Color.fromRGBO(254, 224, 134, 0.56);
 

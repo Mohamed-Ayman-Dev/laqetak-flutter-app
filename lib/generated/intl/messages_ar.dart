@@ -23,6 +23,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
+    "changesHaveBeenSavedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "تم حفظ التغييرات بنجاح",
+    ),
     "city": MessageLookupByLibrary.simpleMessage("المدينة"),
     "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
     "connectionErrorPleaseCheckYourInternetConnection":
@@ -106,6 +109,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseSelectARegion": MessageLookupByLibrary.simpleMessage(
       "يجب اختيار المنطقة",
     ),
+    "pleaseVerifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "يرجى التحقق من رقم هاتفك",
+    ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("الرجاء الانتظار..."),
     "resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
     "resetPassword": MessageLookupByLibrary.simpleMessage(
@@ -118,6 +124,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "selectCity": MessageLookupByLibrary.simpleMessage("اختر المدينة"),
     "sendCode": MessageLookupByLibrary.simpleMessage("إرسال الرمز"),
+    "sendingRequest": MessageLookupByLibrary.simpleMessage(
+      "جارٍ إرسال الطلب...",
+    ),
     "sessionExpiredPleaseLoginAgain": MessageLookupByLibrary.simpleMessage(
       "انتهت الجلسة يرجى تسجيل الدخول مرة أخرى",
     ),

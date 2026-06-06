@@ -68,14 +68,6 @@ class AuthService {
     );
   }
 
-  Future checkOtp(Map<String, dynamic> data, {rethrowError = false}) async {
-    return await ApiService.post(
-      '/check-otp',
-      data: data,
-      rethrowError: rethrowError,
-    );
-  }
-
   Future registerOtpResend(
     Map<String, dynamic> data, {
     rethrowError = false,

@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
 
-import '../di/locator_service.dart';
 import '../error/error_helper.dart';
 
 abstract class ApiService {
-  static String apiUrl = 'https://ghyartech.com/api/v1/customer';
+  static String apiUrl = 'https://invastro.dev4.wady.sa/api/v1/customer';
 
   // static final ApiService _singleton = ApiService._();
   // static const String apiUrl = '$url/api/v1/customer';
@@ -15,7 +14,7 @@ abstract class ApiService {
     headers: {'Accept': 'application/json'},
   );
 
-  static Dio get dio => Dio(baseOptions);
+  static final Dio dio = Dio(baseOptions);
 
   // static ApiService get instance => _singleton;
   // ApiService._();
@@ -51,20 +50,7 @@ abstract class ApiService {
     Function(int, int)? onSendProgress,
   }) async {
     try {
-      String baseUrl = useDefaultUrl
-          ? LocatorService.appSettings.urlType == 'production'
-                ? 'https://ghyartech.com/api/v1'
-                : 'https://ghiar-tech.dev4.wady.sa/api/v1'
-          : dio.options.baseUrl;
-      final Dio customDio = useDefaultUrl
-          ? Dio(
-              BaseOptions(
-                baseUrl: baseUrl,
-                headers: dio.options.headers, // Use existing headers
-              ),
-            )
-          : dio;
-      Map<String, dynamic> myHeaders = {...customDio.options.headers};
+      Map<String, dynamic> myHeaders = {...dio.options.headers};
       if (hasMultipartData) {
         headers = headers ?? {};
         headers['Content-Type'] = 'multipart/form-data';
@@ -92,8 +78,10 @@ abstract class ApiService {
         formData.files.removeWhere((e) => e.key.contains('[photos[]]'));
         formData.files.addAll(newFiles);
       }
-      final response = await customDio.post(
-        endPoint,
+      final response = await dio.post(
+        useDefaultUrl
+            ? 'https://invastro.dev4.wady.sa/api/v1$endPoint'
+            : endPoint,
         queryParameters: queryParameters,
         onSendProgress: onSendProgress,
         options: Options(
@@ -126,27 +114,16 @@ abstract class ApiService {
     Map<String, dynamic>? headers,
   }) async {
     try {
-      String baseUrl = useDefaultUrl
-          ? LocatorService.appSettings.urlType == 'production'
-                ? 'https://ghyartech.com/api/v1'
-                : 'https://ghiar-tech.dev4.wady.sa/api/v1'
-          : dio.options.baseUrl;
-      final Dio customDio = useDefaultUrl
-          ? Dio(
-              BaseOptions(
-                baseUrl: baseUrl,
-                headers: dio.options.headers, // Use existing headers
-              ),
-            )
-          : dio;
-      Map<String, dynamic> myHeaders = {...customDio.options.headers};
+      Map<String, dynamic> myHeaders = {...dio.options.headers};
       if (headers != null) {
         headers.forEach((key, value) {
           myHeaders[key] = value;
         });
       }
-      final response = await customDio.get(
-        endPoint,
+      final response = await dio.get(
+        useDefaultUrl
+            ? 'https://invastro.dev4.wady.sa/api/v1$endPoint'
+            : endPoint,
         queryParameters: queryParameters,
         options: Options(
           headers: myHeaders,

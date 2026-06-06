@@ -20,7 +20,7 @@ extension FormatDateTimeOnDateTime on DateTime {
   //   final monthName = context.translate(
   //     'months_${month - 1}',
   //   ); // Fetch month name from localization
-  //   return context.localeCode == 'ar'
+  //    return context.localeCode ==StringManager.arLanguageCode
   //       ? '$day $monthName $year'
   //       : '$monthName $day, $year';
   // }

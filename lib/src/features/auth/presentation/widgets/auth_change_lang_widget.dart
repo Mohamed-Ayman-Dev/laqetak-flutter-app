@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/constants/string_manager.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/features/auth/presentation/screens/login_screen.dart';
@@ -71,6 +72,19 @@ class _AuthChangeLangWidgetState extends State<AuthChangeLangWidget> {
                 LocatorService.navigationService.currentState?.pushNamed(
                   LoginScreen.routeName,
                 );
+                if (groupValue == 0) {
+                  LocatorService.appSettings.changeLanguageInUi(
+                    context,
+                    StringManager.arLanguageCode,
+                    showSplashScreen: false,
+                  );
+                } else {
+                  LocatorService.appSettings.changeLanguageInUi(
+                    context,
+                    StringManager.enLanguageCode,
+                    showSplashScreen: false,
+                  );
+                }
               },
             ),
           ),

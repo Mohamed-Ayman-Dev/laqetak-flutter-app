@@ -244,6 +244,16 @@ class S {
     return Intl.message('Next', name: 'next', desc: '', args: []);
   }
 
+  /// `Sending Request...`
+  String get sendingRequest {
+    return Intl.message(
+      'Sending Request...',
+      name: 'sendingRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Forgot your password?`
   String get forgotYourPassword {
     return Intl.message(
@@ -304,6 +314,26 @@ class S {
     return Intl.message(
       'Verify your identity',
       name: 'verifyYourIdentity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please verify your phone number`
+  String get pleaseVerifyYourPhoneNumber {
+    return Intl.message(
+      'Please verify your phone number',
+      name: 'pleaseVerifyYourPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Changes have been saved successfully`
+  String get changesHaveBeenSavedSuccessfully {
+    return Intl.message(
+      'Changes have been saved successfully',
+      name: 'changesHaveBeenSavedSuccessfully',
       desc: '',
       args: [],
     );

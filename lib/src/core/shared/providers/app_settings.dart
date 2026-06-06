@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:invastro/src/core/constants/string_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../generated/l10n.dart';
+import '../../../features/home/presentation/screens/home_layout_screen.dart';
+import '../../di/locator_service.dart';
+import '../../helpers/navigation_helper.dart';
 import '../../network/api_service.dart';
 import '../controllers/settings_controller.dart';
 import '../models/settings_model.dart';
+import '../widgets/timeout_splashscreen.dart';
 
 class AppSettings with ChangeNotifier {
-  String language = 'ar';
+  String language = StringManager.arLanguageCode;
   ThemeMode themeMode = ThemeMode.system;
   int homeIndex = 0;
   int ordersTabIndex = 0;
@@ -47,6 +53,41 @@ class AppSettings with ChangeNotifier {
     notifyListeners();
   }
 
+  void changeLanguageInUi(
+    BuildContext context,
+    String languageCode, {
+    bool showSplashScreen = true,
+  }) {
+    if (Intl.getCurrentLocale() != languageCode) {
+      if (showSplashScreen) {
+        Navigator.of(context)
+            .push(
+              NavigationHelper.slideRightRouteBuilder(
+                context,
+                const TimeoutSplashScreen(),
+                const Duration(milliseconds: 600),
+                {'timeout': const Duration(seconds: 1)},
+                TimeoutSplashScreen.routeName,
+              ),
+            )
+            .then((_) async {
+              await changeLanguage(languageCode);
+              LocatorService.navigationService.currentState!
+                  .pushNamedAndRemoveUntil(
+                    HomeLayoutScreen.routeName,
+                    (route) => false,
+                  );
+              //make to do
+              // TODO:
+              // PackagesController.getOneWashPackages();
+              // PackagesController.getPackages();
+            });
+      } else {
+        changeLanguage(languageCode);
+      }
+    }
+  }
+
   Future<void> changeLanguage(String newLanguage) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('language', newLanguage);
@@ -64,7 +105,7 @@ class AppSettings with ChangeNotifier {
   Future<void> _getStoredLanguage() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.containsKey('language')) {
-      language = prefs.getString('language') ?? 'ar';
+      language = prefs.getString('language') ?? StringManager.arLanguageCode;
     }
     notifyListeners();
   }
@@ -78,7 +119,7 @@ class AppSettings with ChangeNotifier {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     late bool hasLanguage;
     if (prefs.containsKey('language')) {
-      language = prefs.getString('language') ?? 'ar';
+      language = prefs.getString('language') ?? StringManager.arLanguageCode;
       ApiService.setLanguage(language);
       S.load(Locale(language));
       hasLanguage = true;
