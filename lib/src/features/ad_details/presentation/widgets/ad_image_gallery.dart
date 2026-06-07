@@ -6,6 +6,7 @@ import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/shared/widgets/photoview.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/shared/models/photo_model.dart';
 import '../../../../core/shared/widgets/labels_widgets/ad_expired_label.dart';
 import '../../../../core/shared/widgets/labels_widgets/ad_label.dart';
@@ -33,6 +34,30 @@ class _AdImageGalleryState extends State<AdImageGallery> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.images.isEmpty) {
+      return Container(
+        height: 237.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.grey.shade200,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Icon(Icons.image_not_supported),
+            10.heightSpace,
+            Text(
+              S.of(context).thisAdHasNoImages,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black54, fontSize: 14.sp),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Column(
       children: [
         // ── Main Image ──────────────────────────────────────────────────
@@ -138,22 +163,19 @@ class _AdImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (url.startsWith('http')) {
-      return CachedNetworkImage(
-        imageUrl: url,
-        fit: BoxFit.cover,
-        placeholder: (context, url) => Container(
-          color: Colors.grey[200],
-          child: const Center(
-            child: CircularProgressIndicator(
-              strokeWidth: 2.5,
-              color: AppColors.primaryColor,
-            ),
+    return CachedNetworkImage(
+      imageUrl: url,
+      fit: BoxFit.cover,
+      placeholder: (context, url) => Container(
+        color: Colors.grey[200],
+        child: const Center(
+          child: CircularProgressIndicator(
+            strokeWidth: 2.5,
+            color: AppColors.primaryColor,
           ),
         ),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
-      );
-    }
-    return Image.asset(url, fit: BoxFit.cover);
+      ),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+    );
   }
 }

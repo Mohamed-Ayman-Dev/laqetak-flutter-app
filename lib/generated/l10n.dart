@@ -768,6 +768,26 @@ class S {
       args: [],
     );
   }
+
+  /// `There are no ads yet.`
+  String get thereAreNoAdsYet {
+    return Intl.message(
+      'There are no ads yet.',
+      name: 'thereAreNoAdsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This ad has no images`
+  String get thisAdHasNoImages {
+    return Intl.message(
+      'This ad has no images',
+      name: 'thisAdHasNoImages',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

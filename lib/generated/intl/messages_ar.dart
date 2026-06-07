@@ -36,7 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "متابعة تسجيل الدخول إلى حسابك",
     ),
     "deletingNotification": MessageLookupByLibrary.simpleMessage(
-      "Deleting notification...",
+      "جاري حذف الإشعار...",
     ),
     "didntReceiveTheCode": MessageLookupByLibrary.simpleMessage(
       "لم يصلك الرمز",
@@ -68,7 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageIsRequired": MessageLookupByLibrary.simpleMessage("الرسالة مطلوبة"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
     "notificationDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
-      "Notification deleted successfully",
+      "تم حذف الإشعار بنجاح",
     ),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       " كلمة المرور لا يمكن ان تكون فارغة",
@@ -154,14 +154,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
     ),
+    "thereAreNoAdsYet": MessageLookupByLibrary.simpleMessage(
+      "لا توجد إعلانات حتى الآن.",
+    ),
     "thereAreNoDescription": MessageLookupByLibrary.simpleMessage(
-      "There are no description.",
+      "لا يوجد وصف.",
     ),
     "thereAreNoFavoriteStoresYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد متاجر مفضلة حتى الآن",
     ),
     "thereAreNoMoreAds": MessageLookupByLibrary.simpleMessage(
-      "There are no more ads..",
+      "لا توجد إعلانات أخرى.",
     ),
     "thereAreNoMoreNotifications": MessageLookupByLibrary.simpleMessage(
       "لا توجد إشعارات أخرى",
@@ -177,6 +180,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "thereAreNoQuestionsYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد أسئلة حتى الآن",
+    ),
+    "thisAdHasNoImages": MessageLookupByLibrary.simpleMessage(
+      "هذا الإعلان لا يحتوي على صور",
     ),
     "toCompleteYourAccountCreation": MessageLookupByLibrary.simpleMessage(
       "لإكمال إنشاء حسابك",

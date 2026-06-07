@@ -6,6 +6,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/shared/models/pagination_list.dart';
 import 'package:invastro/src/core/shared/widgets/items_widgets/ad_item.dart';
+import 'package:invastro/src/core/shared/widgets/lists_widgets/empty_list_placeholder_widget.dart';
 import 'package:invastro/src/core/shared/widgets/lists_widgets/list_sliver_loading_end_widget.dart';
 import 'package:invastro/src/core/shared/widgets/shimmers/items/ad_item_shimmer.dart';
 import 'package:invastro/src/features/ad_details/presentation/screens/ad_details_screen.dart';
@@ -171,66 +172,78 @@ class _HomeScreenState extends State<HomeScreen> {
                 selector: (context, provider) => provider.myAds?.data,
                 shouldRebuild: (previous, next) => true,
                 builder: (context, ads, child) {
-                  return SliverList.builder(
-                    itemCount: ads?.length ?? 6,
-                    itemBuilder: (context, index) {
-                      return AnimationConfiguration.staggeredList(
-                        position: index,
-                        delay: const Duration(milliseconds: 10),
-                        child: SlideAnimation(
-                          verticalOffset: 20,
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.fastLinearToSlowEaseIn,
-                          child: FadeInAnimation(
-                            duration: const Duration(milliseconds: 1000),
-                            curve: Curves.fastLinearToSlowEaseIn,
-                            child: ads == null
-                                ? AdItemShimmer()
-                                : AdItem(
-                                    category: ads[index].category?.name ?? '',
-                                    expired: index == 1 || index == 3,
-                                    image: ads[index].mainPhoto ?? '',
-                                    onTab: () {
-                                      LocatorService
-                                          .navigationService
-                                          .currentState
-                                          ?.pushNamed(
-                                            AdDetailsScreen.routeName,
-                                            arguments: {
-                                              'hero':
-                                                  '${ads[index].mainPhoto}-$index-home',
-                                              'ad': ads[index],
-                                            },
-                                          );
-                                    },
-
-                                    hideDivider: index == (ads.length - 1),
-                                    heroTag:
-                                        '${ads[index].mainPhoto}-$index-home',
-                                    customerName:
-                                        ads[index].customer?.name ?? '',
-                                    location: ads[index].customer?.name ?? '',
-                                    name: ads[index].title ?? '',
-                                    price: ads[index].investmentAmount ?? '',
-                                    time: ads[index].publishedAt ?? '',
-                                    sector: ads[index].sector?.name ?? '',
-                                    onLike: () {
-                                      setState(() {
-                                        if (_likedAds.contains(index)) {
-                                          _likedAds.remove(index);
-                                        } else {
-                                          _likedAds.add(index);
-                                        }
-                                      });
-                                    },
-
-                                    isLiked: ads[index].isFavorite ?? false,
-                                  ),
+                  return ads != null && ads.isEmpty
+                      ? SliverToBoxAdapter(
+                          child: EmptyListPlaceholderWidget(
+                            text: S.of(context).thereAreNoAdsYet,
+                            paddingTop: 200,
                           ),
-                        ),
-                      );
-                    },
-                  );
+                        )
+                      : SliverList.builder(
+                          itemCount: ads?.length ?? 6,
+                          itemBuilder: (context, index) {
+                            return AnimationConfiguration.staggeredList(
+                              position: index,
+                              delay: const Duration(milliseconds: 10),
+                              child: SlideAnimation(
+                                verticalOffset: 20,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                child: FadeInAnimation(
+                                  duration: const Duration(milliseconds: 1000),
+                                  curve: Curves.fastLinearToSlowEaseIn,
+                                  child: ads == null
+                                      ? AdItemShimmer()
+                                      : AdItem(
+                                          category:
+                                              ads[index].category?.name ?? '',
+                                          expired: index == 1 || index == 3,
+                                          image: ads[index].mainPhoto ?? '',
+                                          onTab: () {
+                                            LocatorService
+                                                .navigationService
+                                                .currentState
+                                                ?.pushNamed(
+                                                  AdDetailsScreen.routeName,
+                                                  arguments: {
+                                                    'hero':
+                                                        '${ads[index].mainPhoto}-$index-home',
+                                                    'ad': ads[index],
+                                                  },
+                                                );
+                                          },
+
+                                          hideDivider:
+                                              index == (ads.length - 1),
+                                          heroTag:
+                                              '${ads[index].mainPhoto}-$index-home',
+                                          customerName:
+                                              ads[index].customer?.name ?? '',
+                                          location:
+                                              ads[index].customer?.name ?? '',
+                                          name: ads[index].title ?? '',
+                                          price:
+                                              ads[index].investmentAmount ?? '',
+                                          time: ads[index].publishedAt ?? '',
+                                          sector: ads[index].sector?.name ?? '',
+                                          onLike: () {
+                                            setState(() {
+                                              if (_likedAds.contains(index)) {
+                                                _likedAds.remove(index);
+                                              } else {
+                                                _likedAds.add(index);
+                                              }
+                                            });
+                                          },
+
+                                          isLiked:
+                                              ads[index].isFavorite ?? false,
+                                        ),
+                                ),
+                              ),
+                            );
+                          },
+                        );
                 },
               ),
             ),

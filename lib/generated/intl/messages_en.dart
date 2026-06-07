@@ -164,6 +164,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
     ),
+    "thereAreNoAdsYet": MessageLookupByLibrary.simpleMessage(
+      "There are no ads yet.",
+    ),
     "thereAreNoDescription": MessageLookupByLibrary.simpleMessage(
       "There are no description.",
     ),
@@ -187,6 +190,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "thereAreNoQuestionsYet": MessageLookupByLibrary.simpleMessage(
       "There are no questions yet",
+    ),
+    "thisAdHasNoImages": MessageLookupByLibrary.simpleMessage(
+      "This ad has no images",
     ),
     "toCompleteYourAccountCreation": MessageLookupByLibrary.simpleMessage(
       "to complete your account creation",

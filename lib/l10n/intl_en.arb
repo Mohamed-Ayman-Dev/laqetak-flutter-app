@@ -75,5 +75,7 @@
   "deletingNotification": "Deleting notification...",
   "notificationDeletedSuccessfully": "Notification deleted successfully",
   "thereAreNoMoreAds": "There are no more ads..",
-  "thereAreNoDescription": "There are no description."
+  "thereAreNoDescription": "There are no description.",
+  "thereAreNoAdsYet": "There are no ads yet.",
+  "thisAdHasNoImages": "This ad has no images"
 }

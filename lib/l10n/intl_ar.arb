@@ -75,8 +75,10 @@
   "pleaseAllowNotificationsPermissionToGetUpdatesInSettings": "من فضلك قم بتفعيل اذن الاشعارات في الاعدادات للحصول على التحديثات.",
   "pleaseAgreeToTheTermsAndConditions": "يرجى الموافقة على الشروط والأحكام",
   "pleaseAgreeToTheIdea": "يرجى الموافقة على الفكرة",
-  "deletingNotification": "Deleting notification...",
-  "notificationDeletedSuccessfully": "Notification deleted successfully",
-  "thereAreNoMoreAds": "There are no more ads..",
-  "thereAreNoDescription": "There are no description."
+  "deletingNotification": "جاري حذف الإشعار...",
+  "notificationDeletedSuccessfully": "تم حذف الإشعار بنجاح",
+  "thereAreNoMoreAds": "لا توجد إعلانات أخرى.",
+  "thereAreNoDescription": "لا يوجد وصف.",
+  "thereAreNoAdsYet": "لا توجد إعلانات حتى الآن.",
+  "thisAdHasNoImages": "هذا الإعلان لا يحتوي على صور"
 }

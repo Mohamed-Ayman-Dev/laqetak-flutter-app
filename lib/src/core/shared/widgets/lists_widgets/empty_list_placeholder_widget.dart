@@ -28,7 +28,7 @@ class EmptyListPlaceholderWidget extends StatelessWidget {
         child: Text(
           text ?? '',
           textAlign: TextAlign.center,
-          style: style ?? TextStyle(color: Colors.black54, fontSize: 16.sp),
+          style: style ?? TextStyle(color: Colors.black54, fontSize: 14.sp),
         ),
       ),
     );
