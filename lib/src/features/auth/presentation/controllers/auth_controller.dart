@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/error/error_helper.dart';
 import 'package:invastro/src/core/shared/models/redirect_model.dart';
 import 'package:provider/provider.dart';
@@ -14,8 +15,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
+import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/network/api_service.dart';
-import '../../../../core/shared/models/settings_model.dart';
 import '../../../home/presentation/screens/home_layout_screen.dart';
 import '../providers/auth.dart';
 import '../screens/login_screen.dart';
@@ -46,14 +47,9 @@ abstract class AuthController {
     } catch (e) {
       if (e is DioException) {
         final responseData = e.response?.data;
-        final redirect = RedirectModel.fromJson(responseData);
-        if (redirect.redirect != null && redirect.redirect == 'register-otp') {
-          EasyLoading.showToast(
-            S.current.pleaseVerifyYourPhoneNumber,
-            dismissOnTap: true,
-            toastPosition: EasyLoadingToastPosition.bottom,
-            duration: const Duration(seconds: 3),
-          );
+        if (responseData['data'] != null) {
+          final redirect = RedirectModel.fromJson(responseData['data']);
+          AppFeedback.showToast(S.current.pleaseVerifyYourPhoneNumber);
           LocatorService.navigationService.currentState?.pushNamed(
             OtpScreen.routeName,
             arguments: {'redirectData': redirect, 'from': OtpFlow.login},
@@ -80,23 +76,14 @@ abstract class AuthController {
       );
       EasyLoading.dismiss();
 
-      if (response != null && response['status'] == true) {
-        // Registration successful - navigate to OTP verification
-        final responseData = response['data'];
-
-        if (!context.mounted) return;
-        LocatorService.navigationService.currentState?.pushNamed(
-          OtpScreen.routeName,
-          arguments: {
-            'from': 'register',
-            'phone': responseData['phone'] ?? data['phone'],
-            'customer_id': responseData['customer_id'],
-            'remainingSeconds': responseData['remainingSeconds'] ?? 120,
-          },
-        );
-      }
+      // Registration successful - navigate to OTP verification
+      final redirect = RedirectModel.fromJson(response['data']);
+      if (!context.mounted) return;
+      LocatorService.navigationService.currentState?.pushNamed(
+        OtpScreen.routeName,
+        arguments: {'redirectData': redirect, 'from': OtpFlow.register},
+      );
     } catch (e) {
-      EasyLoading.dismiss();
       ErrorHelper.handleApiError(e);
     }
   }
@@ -115,39 +102,43 @@ abstract class AuthController {
         rethrowError: true,
       );
       EasyLoading.dismiss();
-
-      if (response != null && response['status'] == true) {
-        // OTP verified - save user data and token
-        if (!context.mounted) return;
-        final authProvider = Provider.of<Auth>(context, listen: false);
-        final userData = response['data'];
-
-        // Set token first
-        if (userData['token'] != null) {
-          authProvider.setToken(userData['token']);
-        }
-
-        // Set user data and store in preferences
-        await authProvider.setUser(userData, store: true);
-
-        // Navigate based on source
-        if (isFromLogin) {
-          // From login - go to home screen
+      await DialogHelpers.showSuccessDialog(
+        title: 'تهانينا لقد تم تسجيل حسابك بنجاح',
+        onButtonTap: () {
+          LocatorService.navigationService.currentState?.pop();
+        },
+      )?.then((value) async {
+        if (response != null && response['status'] == true) {
+          // OTP verified - save user data and token
+          if (!context.mounted) return;
+          final authProvider = Provider.of<Auth>(context, listen: false);
+          final userData = response['data'];
+          // Set token first
+          if (userData['token'] != null) {
+            authProvider.setToken(userData['token']);
+          }
+          // Set user data and store in preferences
+          await authProvider.setUser(userData, store: true);
+          // Navigate based on source
           LocatorService.navigationService.currentState
               ?.pushNamedAndRemoveUntil(
                 HomeLayoutScreen.routeName,
                 (route) => false,
               );
-        } else {
-          // From registration - go to success screen
-          // LocatorService.navigationService.currentState?.pushNamed(
-          //   AuthSuccessScreen.routeName,
-          // );
         }
-      }
+      });
     } catch (e) {
-      EasyLoading.dismiss();
-      ErrorHelper.handleApiError(e);
+      if (e is DioException) {
+        final responseData = e.response?.data;
+        EasyLoading.dismiss();
+        LocatorService.authNavigations.setWrongVerificationCode(
+          responseData['message'],
+        );
+        Future.delayed(const Duration(milliseconds: 100), () {
+          LocatorService.authNavigations.activationFormKey.currentState
+              ?.validate();
+        });
+      }
     }
   }
 
@@ -176,8 +167,8 @@ abstract class AuthController {
 
   static void resetAccount() {
     LocatorService.auth.resetUserForLogOut();
-    // LocatorService.addresses.clearAddressForLogOut();
     LocatorService.appSettings.resetAppSettingsForLogOut();
+    // LocatorService.addresses.clearAddressForLogOut();
     // LocatorService.chat.clearMessagesForLogOut();
     // LocatorService.invoices.clearAllInvoices();
     // LocatorService.notifications.clearNotificationsForLogOut();
@@ -190,16 +181,12 @@ abstract class AuthController {
 
   /// Logout user
   /// Clears local storage, resets auth state, and navigates to login
-  static Future<void> logout({
-    Map<String, dynamic>? data,
-    bool sessionExpired = false,
-  }) async {
+  static Future<void> logout({bool sessionExpired = false}) async {
     try {
       EasyLoading.show(status: S.current.pleaseWait);
       if (!sessionExpired) {
         final deviceToken = await getDeviceToken();
-
-        final response = await LocatorService.authService.logout(
+        await LocatorService.authService.logout(
           // TODO: implement device token
           data: {'device_token': deviceToken},
           rethrowError: true,
@@ -209,13 +196,10 @@ abstract class AuthController {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove('token');
       await prefs.remove('user');
-
       // Reset Auth provider state
       resetAccount();
-
       // Remove token from ApiService headers
       ApiService.removeToken();
-
       // Navigate to login screen
       LocatorService.navigationService.currentState?.pushNamedAndRemoveUntil(
         LoginScreen.routeName,
@@ -223,12 +207,7 @@ abstract class AuthController {
       );
       EasyLoading.dismiss();
     } catch (e) {
-      EasyLoading.dismiss();
       ErrorHelper.handleApiError(e);
-      if (kDebugMode) {
-        print(e);
-      }
-      return null;
     }
   }
 
@@ -247,29 +226,23 @@ abstract class AuthController {
         data,
         rethrowError: true,
       );
-      if (!isRefresh) {
-        EasyLoading.dismiss();
-      }
-      EasyLoading.showToast(
-        S.of(context).verificationCodeHasBeenSentToYourPhone,
-        dismissOnTap: true,
-        toastPosition: EasyLoadingToastPosition.bottom,
-        duration: const Duration(seconds: 3),
-      );
+      EasyLoading.dismiss();
+      AppFeedback.showToast(S.current.verificationCodeHasBeenSentToYourPhone);
       if (!isRefresh && response != null && response['status'] == true) {
         // Navigate to OTP screen for password reset verification
         if (!context.mounted) return;
         LocatorService.navigationService.currentState?.pushNamed(
           OtpScreen.routeName,
           arguments: {
-            'phone': data['phone'],
-            'from': 'forgetPassword',
-            'remainingSeconds': response['data']?['remainingSeconds'] ?? 120,
+            'redirectData': RedirectModel(
+              phone: data['phone'],
+              remainingSeconds: 120,
+            ),
+            'from': OtpFlow.forgetPassword,
           },
         );
       }
     } catch (e) {
-      EasyLoading.dismiss();
       ErrorHelper.handleApiError(e);
     }
   }
@@ -282,20 +255,16 @@ abstract class AuthController {
   ) async {
     try {
       EasyLoading.show(status: S.current.pleaseWait);
-      final response = await LocatorService.authService.checkForgetPasswordOTP(
+      await LocatorService.authService.checkForgetPasswordOTP(
         data,
         rethrowError: true,
       );
       EasyLoading.dismiss();
-
-      if (response != null && response['status'] == true) {
-        // OTP verified - navigate to reset password screen
-        if (!context.mounted) return;
-        LocatorService.navigationService.currentState?.pushNamed(
-          ResetPasswordScreen.routeName,
-          arguments: {'phone': data['phone'], 'code': data['code']},
-        );
-      }
+      if (!context.mounted) return;
+      LocatorService.navigationService.currentState?.pushNamed(
+        ResetPasswordScreen.routeName,
+        arguments: {'phone': data['phone'], 'code': data['code']},
+      );
     } catch (e) {
       EasyLoading.dismiss();
       ErrorHelper.handleApiError(e);
@@ -310,22 +279,22 @@ abstract class AuthController {
   ) async {
     try {
       EasyLoading.show(status: S.current.pleaseWait);
-      final response = await LocatorService.authService.changePassword(
-        data,
-        rethrowError: true,
+      await LocatorService.authService.changePassword(data, rethrowError: true);
+      EasyLoading.dismiss();
+      // Password reset successful - navigate to success screen
+      if (!context.mounted) return;
+      await DialogHelpers.showSuccessDialog(
+        title: 'تم تغيير كلمة المرور بنجاح',
+        buttonText: 'تسجيل الدخول',
+        onButtonTap: () {
+          LocatorService.navigationService.currentState?.pop();
+        },
+      )?.then(
+        (value) => LocatorService.navigationService.currentState?.popUntil(
+          (route) => route.settings.name == LoginScreen.routeName,
+        ),
       );
-      EasyLoading.dismiss();
-
-      if (response != null && response['status'] == true) {
-        // Password reset successful - navigate to success screen
-        if (!context.mounted) return;
-        // LocatorService.navigationService.currentState?.pushNamed(
-        //   AuthSuccessScreen.routeName,
-        //   arguments: {'from': 'resetPassword'},
-        // );
-      }
     } catch (e) {
-      EasyLoading.dismiss();
       ErrorHelper.handleApiError(e);
     }
   }
@@ -337,9 +306,14 @@ abstract class AuthController {
         data: {'device_token': token},
         rethrowError: true,
       );
-      print('✅ Device token sent to the server successfully');
+      if (kDebugMode) {
+        print('✅ Device token sent to the server successfully');
+      }
     } catch (e) {
-      ErrorHelper.handleApiError(e);
+      if (kDebugMode) {
+        print("sendDeviceToken:${e.toString()}");
+      }
+      // ErrorHelper.handleApiError(e);
     }
   }
 
@@ -420,19 +394,10 @@ abstract class AuthController {
       final response = await LocatorService.authService.getProfile(
         rethrowError: true,
       );
-      if (response != null && response['status'] == true) {
-        await LocatorService.auth.setUser(
-          response['data'] as Map<String, dynamic>,
-          store: true,
-        );
-        return response['data'];
-      }
-      return null;
+      _saveUserData(userData: response['data']);
+      return response['data'];
     } catch (e) {
       ErrorHelper.handleApiError(e);
-      if (kDebugMode) {
-        print(e);
-      }
       return null;
     }
   }
@@ -510,29 +475,6 @@ abstract class AuthController {
       if (kDebugMode) {
         print(e);
       }
-    }
-  }
-
-  ///get general settings
-  static Future<void> getGeneralSettings() async {
-    try {
-      LocatorService.appSettings.setLoadingSettings(true);
-
-      final response = await LocatorService.authService.getSettings(
-        rethrowError: true,
-      );
-      final settings = SettingsModel.fromJson(response['data']);
-      LocatorService.appSettings.setSettings(settings);
-
-      // Save the current stage to SharedPreferences
-      final prefs = await SharedPreferences.getInstance();
-      if (settings.currentStage != null) {
-        await prefs.setString('currentStage', settings.currentStage!);
-      }
-    } catch (e) {
-      ErrorHelper.handleApiError(e);
-    } finally {
-      LocatorService.appSettings.setLoadingSettings(false);
     }
   }
 

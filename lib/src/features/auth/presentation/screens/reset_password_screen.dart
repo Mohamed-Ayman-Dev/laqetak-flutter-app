@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
-import 'package:invastro/src/features/auth/presentation/screens/login_screen.dart';
 
 import '../../../../core/constants/svg_assets.dart';
-import '../../../../core/di/locator_service.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/shared/widgets/fields_widgets/password_eye_toggle.dart';
 import '../../../../core/shared/widgets/label_widget.dart';
+import '../controllers/auth_controller.dart';
 import '../widgets/auth_appbar.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -50,25 +48,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     if (_resetPasswordFormKey.currentState!.validate()) {
       _resetPasswordFormKey.currentState!.save();
 
-      // await AuthController.forgetPasswordReset(context, {
-      //   'password': _formData['password'],
-      //   'password_confirmation': _formData['password_confirmation'],
-      //   'phone': _formData['phone'],
-      //   'code': _formData['code'],
-      // });
-      await DialogHelpers.showSuccessDialog(
-        title: 'تم تغيير كلمة المرور بنجاح',
-        buttonText: 'تسجيل الدخول',
-        onButtonTap: () {
-          LocatorService.navigationService.currentState?.popUntil(
-            (route) => route.settings.name == LoginScreen.routeName,
-          );
-        },
-      )?.then(
-        (value) => LocatorService.navigationService.currentState?.popUntil(
-          (route) => route.settings.name == LoginScreen.routeName,
-        ),
-      );
+      await AuthController.forgetPasswordReset(context, {
+        'password': _formData['password'],
+        'password_confirmation': _formData['password_confirmation'],
+        'phone': _formData['phone'],
+        'code': _formData['code'],
+      });
     }
   }
 

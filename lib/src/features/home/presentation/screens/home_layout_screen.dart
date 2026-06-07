@@ -1,6 +1,6 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/shared/controllers/settings_controller.dart';
 import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
 import 'package:invastro/src/features/chat/presentation/screens/conversations_screen.dart';
 import 'package:invastro/src/features/favorite/presentation/screens/favorite_screen.dart';
@@ -13,6 +13,7 @@ import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/providers/app_settings.dart';
 import '../../../../core/shared/widgets/bottom_nav_bar.dart';
 import '../../../../core/shared/widgets/drawer_widgets/custom_drawer.dart';
+import '../../../auth/presentation/controllers/auth_controller.dart';
 import 'home_screen.dart';
 
 class HomeLayoutScreen extends StatefulWidget {
@@ -57,7 +58,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     FavoriteScreen(),
     NotificationScreen(),
   ];
-  bool dialogShown = false;
   bool once = false;
 
   @override
@@ -65,69 +65,17 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     if (!once) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         if (isAuth) {
-          // AuthController.getProfile();
+          AuthController.getProfile();
         }
-        if (LocatorService.appSettings.mySettings?.currentStage == null) {
-          // AuthController.getGeneralSettings();
+        if (LocatorService.appSettings.mySettings == null) {
+          SettingsController.getGeneralSettings();
         }
-        // LocatorService.notificationService.initializeFCM();
-        initPermission();
-        askNotificationPermission();
-        if (isAuth) {
-          // final token = await AuthController.getDeviceToken();
-          // if (token != null) {
-          //   AuthController.sendDeviceToken(token);
-          // }
-        }
+        LocatorService.notificationService.initializeFCM();
       });
 
       once = true;
     }
     super.didChangeDependencies();
-  }
-
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
-
-  Future<void> initPermission() async {
-    await messaging.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
-  }
-
-  bool permissionChecked = false;
-
-  Future<void> askNotificationPermission() async {
-    // if (permissionChecked) return;
-    // permissionChecked = true; // Mark as checked
-    //
-    // final PermissionStatus currentStatus = await Permission.notification.status;
-    // if (currentStatus.isGranted) {
-    //   return;
-    // }
-    // if (currentStatus.isDenied || currentStatus.isPermanentlyDenied) {
-    //   final PermissionStatus newStatus = await Permission.notification
-    //       .request();
-    //   if (newStatus.isGranted) {
-    //     initPermission();
-    //   } else if (newStatus.isDenied) {
-    //     if (mounted) {
-    //       EasyLoading.showToast(
-    //         S
-    //             .of(context)
-    //             .pleaseAllowNotificationsPermissionToGetUpdatesInSettings,
-    //         dismissOnTap: true,
-    //         toastPosition: EasyLoadingToastPosition.bottom,
-    //         duration: const Duration(seconds: 3),
-    //       );
-    //     }
-    //   } else if (newStatus.isPermanentlyDenied) {}
-    // }
   }
 
   @override

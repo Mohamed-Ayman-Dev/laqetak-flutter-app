@@ -22,8 +22,8 @@ class AppSettings with ChangeNotifier {
   String urlType = 'production'; //production or preproduction or develop
   Future<void> setUrlType(String type) async {
     ApiService.baseOptions.baseUrl = (type == 'develop')
-        ? 'https://ghiar-tech.dev4.wady.sa/api/v1/customer'
-        : 'https://ghyartech.com/api/v1/customer';
+        ? 'https://invastro.dev4.wady.sa/api/v1/customer'
+        : 'https://invastro.dev4.wady.sa/api/v1/customer';
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('urlType', type);
     urlType = type;
@@ -133,8 +133,8 @@ class AppSettings with ChangeNotifier {
     if (prefs.containsKey('urlType')) {
       urlType = prefs.getString('urlType') ?? 'production';
       ApiService.baseOptions.baseUrl = (urlType == 'develop')
-          ? 'https://ghiar-tech.dev4.wady.sa/api/v1/customer'
-          : 'https://ghyartech.com/api/v1/customer';
+          ? 'https://invastro.dev4.wady.sa/api/v1/customer'
+          : 'https://invastro.dev4.wady.sa/api/v1/customer';
     }
 
     // if (prefs.containsKey('themeMode')) {

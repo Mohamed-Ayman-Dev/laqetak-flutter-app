@@ -133,14 +133,6 @@ class AuthService {
     );
   }
 
-  Future getSettings({bool rethrowError = false}) async {
-    return await ApiService.get(
-      '/settings',
-      useDefaultUrl: true,
-      rethrowError: rethrowError,
-    );
-  }
-
   Future sendDeviceToken({
     bool rethrowError = false,
     Map<String, dynamic>? data,

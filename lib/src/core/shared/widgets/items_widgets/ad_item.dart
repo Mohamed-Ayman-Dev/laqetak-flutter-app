@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,9 +17,16 @@ class AdItem extends StatelessWidget {
   final void Function() onLike;
   final bool hideDivider;
   final void Function() onTab;
-  final String type;
+  final String category;
   final bool expired;
   final bool isMyAd;
+  final String? name;
+  final String? location;
+  final String? sector;
+
+  final String? price;
+  final String? time;
+  final String? customerName;
   final void Function()? onDelete;
   final void Function()? onEdit;
   final int? views;
@@ -28,15 +36,20 @@ class AdItem extends StatelessWidget {
     required this.image,
     required this.heroTag,
     this.isLiked = false,
+    this.sector,
     required this.onTab,
     this.hideDivider = false,
     this.expired = false,
-
+    this.name,
+    this.location,
+    this.price,
+    this.time,
+    this.customerName,
     this.isMyAd = false,
     this.onDelete,
     this.onEdit,
     this.views,
-    required this.type,
+    required this.category,
     required this.onLike,
   });
 
@@ -60,7 +73,7 @@ class AdItem extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'مشروع تجاري كامل',
+                            name ?? '',
                             style: AppTextStyles.labelMedium,
                           ),
                         ),
@@ -85,18 +98,17 @@ class AdItem extends StatelessWidget {
                     9.heightSpace,
                     Row(
                       children: [
-                        Expanded(
-                          child: DetailItem(
-                            icon: SvgAssets.assetsSvgUserFilledIcon,
-                            text: 'محمد الدوسري',
-                          ),
+                        DetailItem(
+                          icon: SvgAssets.assetsSvgUserFilledIcon,
+                          text: customerName ?? ';',
+                          maxLines: 2,
                         ),
                         if (isMyAd)
                           DetailItem(
-                            isFlexible: true,
                             icon: SvgAssets.assetsSvgView,
                             iconSize: 21,
                             text: (views ?? 0).toString(),
+                            maxLines: 2,
                           ),
                         if (isMyAd) 37.widthSpace,
                       ],
@@ -105,54 +117,63 @@ class AdItem extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          flex: 4,
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               DetailItem(
                                 icon: SvgAssets.assetsSvgPinFillIcon,
                                 iconSize: 18,
-                                text: 'الرياض',
+                                maxLines: 2,
+                                text: location ?? '',
                               ),
                               4.heightSpace,
 
                               DetailItem(
                                 icon: SvgAssets.assetsSvgCategoryIcon,
                                 iconSize: 14,
-                                text: 'عقاري',
+                                text: sector ?? '',
+                                maxLines: 2,
                               ),
                             ],
                           ),
                         ),
                         5.widthSpace,
-                        Expanded(
-                          flex: 3,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              DetailItem(
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 70.w,
+                              child: DetailItem(
                                 icon: SvgAssets.assetsSvgTimeFillIcon,
-                                text: '1 ساعة',
+                                text: time ?? '',
+                                maxLines: 2,
                               ),
-                              4.heightSpace,
+                            ),
+                            4.heightSpace,
 
-                              Row(
-                                children: [
-                                  Text(
-                                    '50,000',
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+
+                              children: [
+                                SizedBox(
+                                  width: 70.w,
+
+                                  child: Text(
+                                    price ?? '',
                                     style: AppTextStyles.labelMedium.copyWith(
                                       fontSize: 15.sp,
                                     ),
+                                    maxLines: 2,
                                   ),
-                                  7.widthSpace,
-                                  SvgPicture.asset(
-                                    SvgAssets.assetsSvgSarIcon,
-                                    width: 12.w,
-                                    height: 12.h,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                                SvgPicture.asset(
+                                  SvgAssets.assetsSvgSarIcon,
+                                  width: 12.w,
+                                  height: 12.h,
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -213,14 +234,14 @@ class AdItem extends StatelessWidget {
     children: [
       ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          image,
+        child: CachedNetworkImage(
+          imageUrl: image,
           fit: BoxFit.cover,
           height: 108.h,
           width: 133.w,
         ),
       ),
-      AdLabel(labelText: type == 'chance' ? 'فرصة' : 'مستثمر'),
+      AdLabel(labelText: category ?? ''),
       if (expired) Positioned(top: 82.h, left: 72.w, child: AdExpiredLabel()),
     ],
   );

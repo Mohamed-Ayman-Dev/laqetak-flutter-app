@@ -35,7 +35,6 @@ class AdDetailsPoints extends StatelessWidget {
               DetailItem(
                 icon: SvgAssets.assetsSvgTimeFillIcon,
                 iconSize: 18,
-                isFlexible: true,
                 text: '1 ساعة',
               ),
               6.widthSpace,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,7 +6,7 @@ import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/shared/widgets/photoview.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 
-import '../../../../core/shared/models/app_photo.dart';
+import '../../../../core/shared/models/photo_model.dart';
 import '../../../../core/shared/widgets/labels_widgets/ad_expired_label.dart';
 import '../../../../core/shared/widgets/labels_widgets/ad_label.dart';
 
@@ -13,7 +14,6 @@ class AdImageGallery extends StatefulWidget {
   final String type;
   final bool isExpired;
   final String hero;
-  final String image;
   final List<String> images;
 
   const AdImageGallery({
@@ -22,7 +22,6 @@ class AdImageGallery extends StatefulWidget {
     required this.images,
     required this.type,
     required this.hero,
-    required this.image,
   });
 
   @override
@@ -44,7 +43,7 @@ class _AdImageGalleryState extends State<AdImageGallery> {
               PhotoView(
                 heroTag: widget.hero,
                 photoList: widget.images
-                    .map((e) => AppPhoto(url: e, source: 'asset'))
+                    .map((e) => PhotoModel(url: e, source: 'asset'))
                     .toList(),
               ),
             );
@@ -70,7 +69,7 @@ class _AdImageGalleryState extends State<AdImageGallery> {
                   textDirection: Directionality.of(context),
                   end: 22.w,
                   child: AdLabel(
-                    labelText: widget.type == 'chance' ? 'فرصة' : 'مستثمر',
+                    labelText: widget.type,
                     padding: EdgeInsets.fromLTRB(42, 9, 42, 9).r,
                     fontSize: 14,
                   ),
@@ -140,7 +139,20 @@ class _AdImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (url.startsWith('http')) {
-      return Image.network(url, fit: BoxFit.cover);
+      return CachedNetworkImage(
+        imageUrl: url,
+        fit: BoxFit.cover,
+        placeholder: (context, url) => Container(
+          color: Colors.grey[200],
+          child: const Center(
+            child: CircularProgressIndicator(
+              strokeWidth: 2.5,
+              color: Color(0xFF4CAF50),
+            ),
+          ),
+        ),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+      );
     }
     return Image.asset(url, fit: BoxFit.cover);
   }

@@ -4,13 +4,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:invastro/src/core/shared/models/app_photo.dart';
+import 'package:invastro/src/core/shared/models/photo_model.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
 class PhotoView extends StatefulWidget {
   static const routeName = '/photo-view';
-  final List<AppPhoto> photoList;
+  final List<PhotoModel> photoList;
   final String? heroTag;
 
   const PhotoView({super.key, this.photoList = const [], this.heroTag});
@@ -27,7 +27,8 @@ class _PhotoViewState extends State<PhotoView> {
     PageController phController = PageController();
     final deviceSize = MediaQuery.of(context).size;
     final args = ModalRoute.of(context)?.settings.arguments as Map? ?? {};
-    final photoList = args['photoList'] as List<AppPhoto>? ?? widget.photoList;
+    final photoList =
+        args['photoList'] as List<PhotoModel>? ?? widget.photoList;
     final heroTag = args['heroTag'] ?? widget.heroTag;
     List<Widget> getDots() {
       List<Widget> myList = [];

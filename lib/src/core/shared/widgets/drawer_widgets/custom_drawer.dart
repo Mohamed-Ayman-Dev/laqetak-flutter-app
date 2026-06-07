@@ -7,7 +7,7 @@ import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/helpers/bottom_helpers.dart';
 import 'package:invastro/src/core/helpers/dialog_helpers.dart';
 import 'package:invastro/src/core/themes/colors.dart';
-import 'package:invastro/src/features/auth/presentation/screens/login_screen.dart';
+import 'package:invastro/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 import 'package:invastro/src/features/profile/presentation/screens/profile_screen.dart';
 import 'package:invastro/src/features/static_pages/presentation/screens/about_app_screen.dart';
@@ -157,10 +157,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         DrawerItem(
                           title: 'تسجيل خروج',
                           onTap: () {
-                            Navigator.of(context).popUntil(
-                              (route) =>
-                                  route.settings.name == LoginScreen.routeName,
-                            );
+                            AuthController.logout();
                           },
                           image: SvgAssets.assetsSvgDrawerSignout,
                         ),

@@ -3,15 +3,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:invastro/src/features/auth/presentation/screens/auth_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/constants/images_assets.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/shared/controllers/settings_controller.dart';
 import '../../../../core/shared/providers/app_settings.dart';
 import '../../../../core/shared/widgets/app_logo.dart';
+import '../../../home/presentation/screens/home_layout_screen.dart';
+import '../controllers/auth_controller.dart';
+import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash';
@@ -43,30 +44,18 @@ class _SplashScreenState extends State<SplashScreen> {
     String myRoute;
     final appSettings = Provider.of<AppSettings>(context, listen: false);
     await appSettings.getStoredLanguageAndTheme();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final auth = LocatorService.auth;
 
-    bool hasSeenSplash = prefs.getBool('hasSeenSplash') ?? false;
-    if (LocatorService.appSettings.mySettings == null) {
-      LocatorService.appSettings.mySettings?.currentStage =
-          prefs.getString('currentStage') ?? '1';
+    if (auth.isAuth) {
+      myScreen = const HomeLayoutScreen();
+      myRoute = HomeLayoutScreen.routeName;
+    } else if (await AuthController.tryAutoLogin()) {
+      myScreen = const HomeLayoutScreen();
+      myRoute = HomeLayoutScreen.routeName;
+    } else {
+      myScreen = const LoginScreen();
+      myRoute = LoginScreen.routeName;
     }
-
-    // if (hasSeenSplash) {
-    //   final auth = LocatorService.auth;
-    // if (auth.isAuth) {
-    //   myScreen = const HomeLayoutScreen();
-    //   myRoute = HomeLayoutScreen.routeName;
-    // } else if (await AuthController.tryAutoLogin()) {
-    //   myScreen = const HomeLayoutScreen();
-    //   myRoute = HomeLayoutScreen.routeName;
-    // } else {
-    //   myScreen = const LoginScreen();
-    //   myRoute = LoginScreen.routeName;
-    // }
-    // } else {
-    myScreen = const AuthScreen();
-    myRoute = AuthScreen.routeName;
-    // }
 
     Timer(const Duration(milliseconds: 1000), () async {
       await LocatorService.navigationService.currentState!.pushReplacement(

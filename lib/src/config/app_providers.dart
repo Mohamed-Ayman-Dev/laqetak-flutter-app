@@ -8,6 +8,8 @@ import '../core/shared/providers/app_settings.dart';
 import '../core/shared/providers/others.dart';
 import '../features/auth/presentation/providers/auth.dart';
 import '../features/auth/presentation/providers/auth_naviagtions.dart';
+import '../features/home/presentation/providers/ads.dart';
+import '../features/notifications/presentation/providers/notifications.dart';
 import '../features/static_pages/presentation/providers/static_pages.dart';
 
 class AppProviders {
@@ -25,9 +27,10 @@ class AppProviders {
       create: (_) => LocatorService.staticPages,
     ),
     ChangeNotifierProvider<MyAds>(create: (_) => LocatorService.myAds),
-    // ChangeNotifierProvider<Notifications>(
-    //   create: (_) => LocatorService.notifications,
-    // ),
+    ChangeNotifierProvider<Notifications>(
+      create: (_) => LocatorService.notifications,
+    ),
+    ChangeNotifierProvider<Ads>(create: (_) => LocatorService.ads),
     // ChangeNotifierProvider<Timers>(create: (_) => LocatorService.timers),
     // ChangeNotifierProvider<Banners>(create: (_) => LocatorService.banners),
     // ChangeNotifierProvider<Chat>(create: (_) => LocatorService.chat),

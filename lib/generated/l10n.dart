@@ -179,6 +179,16 @@ class S {
     return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
   }
 
+  /// `Please allow notifications permission to get updates in settings`
+  String get pleaseAllowNotificationsPermissionToGetUpdatesInSettings {
+    return Intl.message(
+      'Please allow notifications permission to get updates in settings',
+      name: 'pleaseAllowNotificationsPermissionToGetUpdatesInSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Write the reason`
   String get writeTheReason {
     return Intl.message(
@@ -687,6 +697,66 @@ class S {
   /// `City`
   String get city {
     return Intl.message('City', name: 'city', desc: '', args: []);
+  }
+
+  /// `Invastro User`
+  String get invastroUser {
+    return Intl.message(
+      'Invastro User',
+      name: 'invastroUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please agree to the terms and conditions`
+  String get pleaseAgreeToTheTermsAndConditions {
+    return Intl.message(
+      'Please agree to the terms and conditions',
+      name: 'pleaseAgreeToTheTermsAndConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please agree to the idea`
+  String get pleaseAgreeToTheIdea {
+    return Intl.message(
+      'Please agree to the idea',
+      name: 'pleaseAgreeToTheIdea',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleting notification...`
+  String get deletingNotification {
+    return Intl.message(
+      'Deleting notification...',
+      name: 'deletingNotification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification deleted successfully`
+  String get notificationDeletedSuccessfully {
+    return Intl.message(
+      'Notification deleted successfully',
+      name: 'notificationDeletedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no more ads..`
+  String get thereAreNoMoreAds {
+    return Intl.message(
+      'There are no more ads..',
+      name: 'thereAreNoMoreAds',
+      desc: '',
+      args: [],
+    );
   }
 }
 

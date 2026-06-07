@@ -18,9 +18,9 @@ final class AppFeedback {
   static BuildContext get _ctx =>
       LocatorService.navigationService.currentState!.overlay!.context;
 
-  static void successToast(String message) {
+  static void showToast(String message, {bool isError = false}) {
     EasyLoading.dismiss();
-    _AppToast.show(_ctx, message: message, isError: false);
+    _AppToast.show(_ctx, message: message, isError: isError);
   }
 
   // static void successPopUp(String message, {String? desc}) {

@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
+import 'package:invastro/src/core/shared/controllers/others_controller.dart';
 import 'package:invastro/src/core/shared/providers/others.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_password_screen.dart';
 import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../../core/constants/mock_data_for_loading.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/models/details_model.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_text_button.dart';
 import '../../../../core/shared/widgets/custom_Text.dart';
-import '../../../../core/shared/widgets/fields_widgets/country_code_field.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/shared/widgets/fields_widgets/my_custom_drop_down_menu.dart';
 import '../../../../core/shared/widgets/label_widget.dart';
@@ -31,19 +30,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _phoneController.dispose();
-    super.dispose();
-  }
-
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-
   Map<String, dynamic> data = {};
   final GlobalKey<FormState> _registerFormKey = GlobalKey<FormState>();
-  final FocusNode _phoneFocusNode = FocusNode();
 
   Future<void> _register() async {
     if (_registerFormKey.currentState!.validate()) {
@@ -53,6 +41,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
         arguments: data,
       );
     }
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      OthersController.getCities();
+    });
+    super.initState();
   }
 
   @override
@@ -81,9 +77,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   LabelWidget(text: 'أسم المستخدم'),
                   CustomTextField(
-                    onChanged: (value) {
-                      setState(() {});
-                    },
                     onSaved: (val) {
                       data['name'] = val;
                     },
@@ -98,39 +91,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     textInputAction: TextInputAction.next,
                     maxLines: 1,
                     keyboardType: TextInputType.name,
-                    controller: _nameController,
                   ),
                   24.heightSpace,
                   LabelWidget(text: 'رقم الجوال'),
                   CustomTextField(
-                    onChanged: (value) {
-                      setState(() {});
-                    },
                     onSaved: (val) {
                       data['phone'] = val;
                     },
                     validator: (value) {
-                      return ValidationHelper.validatePhoneByCountryCode(
-                        phone: value,
-                        countryCode: data['country_code'],
-                        context: context,
-                      );
+                      return ValidationHelper.validatePhone(value, context);
                     },
-                    focusNode: _phoneFocusNode,
                     keyboardType: TextInputType.phone,
                     textInputAction: TextInputAction.next,
-                    controller: _phoneController,
                     hintText: "رقم الجوال",
-                    // textDirection: TextDirection.ltr,
-                    suffixIcon: CountryCodeField(
-                      focusNode: _phoneFocusNode,
-                      onChanged: (val) {
-                        data['country_code'] = val.toString();
-                      },
-                      onInit: (val) {
-                        data['country_code'] = val.toString();
-                      },
-                    ),
+                    // suffixIcon: CountryCodeField(
+                    //   focusNode: _phoneFocusNode,
+                    //   onChanged: (val) {
+                    //     data['country_code'] = val.toString();
+                    //   },
+                    //   onInit: (val) {
+                    //     data['country_code'] = val.toString();
+                    //   },
+                    // ),
                   ),
                   24.heightSpace,
                   LabelWidget(text: 'البريد الإلكتروني'),
@@ -162,9 +144,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     builder: (context, myCities, child) {
                       return MyCustomDropdownFormField(
                         hint: S.of(context).city,
-                        // items: myCities
-                        items: MockDataForLoading.mockCites
-                            .map<DropdownMenuItem<num>>(
+                        items: myCities
+                            ?.map<DropdownMenuItem<num>>(
                               (e) => DropdownMenuItem<num>(
                                 value: e.id,
                                 child: SizedBox(

@@ -38,6 +38,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "continueToSignIn": MessageLookupByLibrary.simpleMessage(
       "Continue to sign in",
     ),
+    "deletingNotification": MessageLookupByLibrary.simpleMessage(
+      "Deleting notification...",
+    ),
     "didntReceiveTheCode": MessageLookupByLibrary.simpleMessage(
       "Didn’t receive the code",
     ),
@@ -64,10 +67,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "From Favorites Successfully",
     ),
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage("Iban do not match"),
+    "invastroUser": MessageLookupByLibrary.simpleMessage("Invastro User"),
     "messageIsRequired": MessageLookupByLibrary.simpleMessage(
       "Message is required",
     ),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
+    "notificationDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Notification deleted successfully",
+    ),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       "Password cannot be empty",
     ),
@@ -84,6 +91,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "phoneNumberShouldBeAtLeast9Characters":
         MessageLookupByLibrary.simpleMessage(
           "Phone number should be at least 9 characters",
+        ),
+    "pleaseAgreeToTheIdea": MessageLookupByLibrary.simpleMessage(
+      "Please agree to the idea",
+    ),
+    "pleaseAgreeToTheTermsAndConditions": MessageLookupByLibrary.simpleMessage(
+      "Please agree to the terms and conditions",
+    ),
+    "pleaseAllowNotificationsPermissionToGetUpdatesInSettings":
+        MessageLookupByLibrary.simpleMessage(
+          "Please allow notifications permission to get updates in settings",
         ),
     "pleaseEnterAPasswordConfirmation": MessageLookupByLibrary.simpleMessage(
       "Please enter a password confirmation",
@@ -149,6 +166,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "thereAreNoFavoriteStoresYet": MessageLookupByLibrary.simpleMessage(
       "There are no favorite stores yet",
+    ),
+    "thereAreNoMoreAds": MessageLookupByLibrary.simpleMessage(
+      "There are no more ads..",
     ),
     "thereAreNoMoreNotifications": MessageLookupByLibrary.simpleMessage(
       "There are no more notifications",

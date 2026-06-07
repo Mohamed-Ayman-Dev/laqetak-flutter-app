@@ -48,7 +48,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         duration: const Duration(milliseconds: 1000),
                         curve: Curves.fastLinearToSlowEaseIn,
                         child: AdItem(
-                          type: index == 1 || index == 3
+                          category: index == 1 || index == 3
                               ? 'chance'
                               : 'not-chance',
                           expired: index == 1 || index == 3,

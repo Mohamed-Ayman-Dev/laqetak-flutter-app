@@ -5,7 +5,6 @@ import 'package:invastro/src/core/shared/models/redirect_model.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
-import 'package:invastro/src/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:invastro/src/features/home/presentation/screens/home_layout_screen.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_pay_screen.dart';
 import 'package:provider/provider.dart';
@@ -44,13 +43,7 @@ class _OtpScreenState extends State<OtpScreen> {
     if (!once) {
       final arguments =
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
-      _flow = switch (arguments?['from']) {
-        'register' => OtpFlow.register,
-        'forgetPassword' => OtpFlow.forgetPassword,
-        'updatePhone' => OtpFlow.updatePhone,
-        'add-ad' => OtpFlow.addAd,
-        _ => OtpFlow.login,
-      };
+      _flow = arguments?['from'];
       _redirectData = arguments?['redirectData'];
 
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -211,19 +204,6 @@ class _OtpScreenState extends State<OtpScreen> {
       LocatorService.authNavigations.setIsNotValid(false);
       switch (_flow) {
         case OtpFlow.register:
-          await DialogHelpers.showSuccessDialog(
-            title: 'تم التسجيل بنجاح',
-            buttonText: 'تسجيل الدخول',
-            onButtonTap: () {
-              LocatorService.navigationService.currentState?.pushNamed(
-                HomeLayoutScreen.routeName,
-              );
-            },
-          )?.then(
-            (value) => LocatorService.navigationService.currentState?.pushNamed(
-              HomeLayoutScreen.routeName,
-            ),
-          );
           // Register OTP verification
           await AuthController.registerOtp(context, {
             'phone': _redirectData?.phone,
@@ -232,14 +212,11 @@ class _OtpScreenState extends State<OtpScreen> {
           break;
 
         case OtpFlow.forgetPassword:
-          // // Forget password OTP verification
-          // await AuthController.forgetPasswordOtp(context, {
-          //   'phone': phone,
-          //   'code': otp,
-          // });
-          LocatorService.navigationService.currentState?.pushNamed(
-            ResetPasswordScreen.routeName,
-          );
+          // Forget password OTP verification
+          await AuthController.forgetPasswordOtp(context, {
+            'phone': _redirectData?.phone,
+            'code': otp,
+          });
           break;
 
         case OtpFlow.updatePhone:
@@ -255,25 +232,12 @@ class _OtpScreenState extends State<OtpScreen> {
             AddAdPayScreen.routeName,
           );
           break;
-
         case OtpFlow.login:
-          await DialogHelpers.showSuccessDialog(
-            title: 'تهانينا لقد تم تسجيل حسابك بنجاح',
-            onButtonTap: () {
-              LocatorService.navigationService.currentState?.pushNamed(
-                HomeLayoutScreen.routeName,
-              );
-            },
-          )?.then(
-            (value) => LocatorService.navigationService.currentState?.pushNamed(
-              HomeLayoutScreen.routeName,
-            ),
-          );
           // // Login OTP verification (for non-activated accounts)
-          // await AuthController.registerOtp(context, {
-          //   'phone': phone,
-          //   'code': otp,
-          // }, isFromLogin: true);
+          await AuthController.registerOtp(context, {
+            'phone': _redirectData?.phone,
+            'code': otp,
+          }, isFromLogin: true);
           break;
       }
     } else {

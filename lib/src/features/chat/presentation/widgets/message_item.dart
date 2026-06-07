@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/shared/models/app_photo.dart';
+import '../../../../core/shared/models/photo_model.dart';
 import '../../../../core/shared/widgets/photoview.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
@@ -39,7 +39,7 @@ class MessageItem extends StatelessWidget {
                 heroTag: heroImage,
                 photoList: [
                   image,
-                ].map((e) => AppPhoto(url: e, source: 'asset')).toList(),
+                ].map((e) => PhotoModel(url: e, source: 'asset')).toList(),
               ),
             ),
             child: Column(

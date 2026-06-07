@@ -1,108 +1,85 @@
-/// id : 33
-/// name : "gggg"
+import 'package:invastro/src/core/shared/models/details_model.dart';
+
+/// id : 31
+/// name : "John Cuza"
+/// email : "test@test.com"
 /// phone : "0581687277"
-/// email : "fcc@gjm.hj"
-/// city : {"id":34,"name":"السليل"}
-/// photo : "http://ghiar-tech.dev4.wady.sa/storage/37/image_cropper_1765778969411.jpg"
-/// default_car : {"id":31,"car_brand":{"id":36,"name":"دودج","photo":"https://ghiar-tech.dev4.wady.sa/no-image.png"},"car_model":{"id":216,"name":"نيون"},"photo":"http://ghiar-tech.dev4.wady.sa/storage/9/image_cropper_1764378379797.jpg","year":"2018","chassis_num":"tfgfg","serial_num":"ggg","is_default":1}
-/// default_address : {"id":36,"name":"ujuu","region":{"id":7,"name":"المدينة المنورة"},"city":{"id":39,"name":"خيبر"},"district":"jju","address":"ooo","lat":"24.713797","lng":"46.67548","is_default":1}
-/// token : "33|DA9pDJyOGAIoAPa6JeX49lYKtimuUP87Vbu7b13ea68e5061"
+/// avatar : "https://invastro.dev4.wady.sa/no-image.png"
+/// city : {"id":1,"name":"الحدود الشمالية"}
+/// token : "dasdasads"
+/// created_at : "2026-05-18T18:19:47.000000Z"
 
 class UserModel {
   UserModel({
     this.id,
     this.name,
-    this.username,
-    this.phone,
     this.email,
-    // this.city,
-    this.photo,
-    // this.defaultCar,
-    // this.defaultAddress,
-    this.token,
+    this.phone,
+    this.avatar,
     this.notificationCount,
+    this.city,
+    this.token,
+    this.createdAt,
   });
 
   UserModel.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
-    username = json['user_name'] ?? json['username'];
-    phone = json['phone'];
     email = json['email'];
-    // city = json['city'] != null ? DetailsModel.fromJson(json['city']) : null;
-    photo = json['photo'];
-    // defaultCar = json['default_car'] != null
-    //     ? CarModel.fromJson(json['default_car'])
-    //     : null;
-    // defaultAddress = json['default_address'] != null
-    //     ? AddressModel.fromJson(json['default_address'])
-    //     : null;
+    phone = json['phone'];
+    avatar = json['avatar'];
+    city = json['city'] != null ? DetailsModel.fromJson(json['city']) : null;
     token = json['token'];
-    notificationCount = json['notification_count'] is String
-        ? num.tryParse(json['notification_count'])
-        : json['notification_count'];
+    notificationCount = json['notification_count'];
+    createdAt = json['created_at'];
   }
 
   num? id;
   String? name;
-  String? username;
-  String? phone;
   String? email;
-
-  // DetailsModel? city;
-  String? photo;
-
-  // CarModel? defaultCar;
-  // AddressModel? defaultAddress;
+  String? phone;
+  String? avatar;
+  DetailsModel? city;
   String? token;
+  String? createdAt;
   num? notificationCount;
 
   UserModel copyWith({
     num? id,
     String? name,
-    String? username,
-    String? phone,
     String? email,
-    // DetailsModel? city,
-    String? photo,
-    // CarModel? defaultCar,
-    // AddressModel? defaultAddress,
+    String? phone,
+    String? avatar,
+    DetailsModel? city,
     String? token,
     num? notificationCount,
+    String? createdAt,
   }) => UserModel(
     id: id ?? this.id,
     name: name ?? this.name,
-    username: username ?? this.username,
-    phone: phone ?? this.phone,
     email: email ?? this.email,
-    // city: city ?? this.city,
-    photo: photo ?? this.photo,
-    // defaultCar: defaultCar ?? this.defaultCar,
-    // defaultAddress: defaultAddress ?? this.defaultAddress,
+    phone: phone ?? this.phone,
+    avatar: avatar ?? this.avatar,
+    city: city ?? this.city,
     token: token ?? this.token,
     notificationCount: notificationCount ?? this.notificationCount,
+    createdAt: createdAt ?? this.createdAt,
   );
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
     map['name'] = name;
-    map['user_name'] = username;
-    map['phone'] = phone;
     map['email'] = email;
-    // if (city != null) {
-    //   map['city'] = city?.toJson();
-    // }
-    map['photo'] = photo;
-    // if (defaultCar != null) {
-    //   map['default_car'] = defaultCar?.toJson();
-    // }
-    // if (defaultAddress != null) {
-    //   map['default_address'] = defaultAddress?.toJson();
-    // }
-    map['token'] = token;
+    map['phone'] = phone;
+    map['avatar'] = avatar;
+    if (city != null) {
+      map['city'] = city?.toJson();
+    }
     map['notification_count'] = notificationCount;
 
+    map['token'] = token;
+    map['created_at'] = createdAt;
     return map;
   }
 }

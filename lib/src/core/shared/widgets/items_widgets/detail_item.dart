@@ -9,22 +9,23 @@ class DetailItem extends StatelessWidget {
   final String icon;
   final String text;
   final double? iconSize;
-  final bool isFlexible;
-
+  final int? maxLines;
   final int flex;
 
   const DetailItem({
     super.key,
     required this.icon,
     required this.text,
+    this.maxLines,
     this.flex = 1,
-    this.isFlexible = false,
     this.iconSize,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
+
       children: [
         SvgPicture.asset(
           icon,
@@ -32,12 +33,10 @@ class DetailItem extends StatelessWidget {
           width: iconSize?.w ?? 16.w,
         ),
         3.widthSpace,
-        isFlexible
-            ? Text(text, style: AppTextStyles.bodySmall)
-            : Expanded(
-                flex: flex,
-                child: Text(text, style: AppTextStyles.bodySmall),
-              ),
+        Flexible(
+          flex: flex,
+          child: Text(text, style: AppTextStyles.bodySmall, maxLines: maxLines),
+        ),
       ],
     );
   }

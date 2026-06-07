@@ -12,6 +12,7 @@
   "passwordsDoNotMatch": "Passwords do not match",
   "pleaseEnterAPasswordConfirmation": "Please enter a password confirmation",
   "cancel": "Cancel",
+  "pleaseAllowNotificationsPermissionToGetUpdatesInSettings": "Please allow notifications permission to get updates in settings",
   "writeTheReason": "Write the reason",
   "ibanDoNotMatch": "Iban do not match",
   "pleaseEnterIbanConfirmation": "Please enter iban confirmation",
@@ -67,5 +68,11 @@
   "selectCity": "Select City",
   "yourPhoneNumber": "your phone number",
   "verificationCodeHasBeenSentToYourPhone": "Verification code has been sent to your phone",
-  "city": "City"
+  "city": "City",
+  "invastroUser": "Invastro User",
+  "pleaseAgreeToTheTermsAndConditions": "Please agree to the terms and conditions",
+  "pleaseAgreeToTheIdea": "Please agree to the idea",
+  "deletingNotification": "Deleting notification...",
+  "notificationDeletedSuccessfully": "Notification deleted successfully",
+  "thereAreNoMoreAds": "There are no more ads.."
 }

@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/features/auth/data/models/user_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../features/auth/presentation/providers/auth.dart';
 import '../../../extension/space_extensions_helper.dart';
 import '../../../helpers/others_helper.dart';
@@ -29,17 +31,12 @@ class CustomDrawerHeader extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               100.heightSpace,
-              Consumer<Auth>(
-                builder: (context, provider, child) {
+              Selector<Auth, UserModel?>(
+                selector: (context, provider) => provider.user,
+                builder: (context, user, child) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      // CustomImage(
-                      //   imageUrl: '',
-                      //   width: 52.w,
-                      //   height: 52.h,
-                      //   placeholder: ImagesAssets.assetsImagesMockProfileImage,
-                      // ),
                       Hero(
                         tag: 'profile_image',
                         child: ClipRRect(
@@ -57,18 +54,19 @@ class CustomDrawerHeader extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomText(
-                            '09600000000',
-                            style: AppTextStyles.labelSmall.copyWith(
-                              color: AppColors.labelGreyTextColor,
-                              fontSize: 11.sp,
+                          if (user?.phone != null)
+                            CustomText(
+                              user?.phone ?? '',
+                              style: AppTextStyles.labelSmall.copyWith(
+                                color: AppColors.labelGreyTextColor,
+                                fontSize: 11.sp,
+                              ),
                             ),
-                          ),
-                          4.heightSpace,
+                          if (user?.phone != null) 4.heightSpace,
                           SizedBox(
                             width: 150.w,
                             child: CustomText(
-                              'مصطفي عبد الرحمن',
+                              user?.name ?? S.of(context).invastroUser,
                               style: AppTextStyles.headlineMedium.copyWith(
                                 color: AppColors.drawerHeaderTextColor,
                                 fontSize: 12.sp,

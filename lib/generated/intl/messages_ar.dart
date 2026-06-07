@@ -35,6 +35,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "continueToSignIn": MessageLookupByLibrary.simpleMessage(
       "متابعة تسجيل الدخول إلى حسابك",
     ),
+    "deletingNotification": MessageLookupByLibrary.simpleMessage(
+      "Deleting notification...",
+    ),
     "didntReceiveTheCode": MessageLookupByLibrary.simpleMessage(
       "لم يصلك الرمز",
     ),
@@ -61,8 +64,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "رقم الآيبان غير متطابق",
     ),
+    "invastroUser": MessageLookupByLibrary.simpleMessage("مستخدم انفاسترو"),
     "messageIsRequired": MessageLookupByLibrary.simpleMessage("الرسالة مطلوبة"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
+    "notificationDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Notification deleted successfully",
+    ),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       " كلمة المرور لا يمكن ان تكون فارغة",
     ),
@@ -75,6 +82,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "phoneNumberShouldBeAtLeast9Characters":
         MessageLookupByLibrary.simpleMessage(
           "رقم الجوال يجب ان يكون على الاقل 9 احرف",
+        ),
+    "pleaseAgreeToTheIdea": MessageLookupByLibrary.simpleMessage(
+      "يرجى الموافقة على الفكرة",
+    ),
+    "pleaseAgreeToTheTermsAndConditions": MessageLookupByLibrary.simpleMessage(
+      "يرجى الموافقة على الشروط والأحكام",
+    ),
+    "pleaseAllowNotificationsPermissionToGetUpdatesInSettings":
+        MessageLookupByLibrary.simpleMessage(
+          "من فضلك قم بتفعيل اذن الاشعارات في الاعدادات للحصول على التحديثات.",
         ),
     "pleaseEnterAPasswordConfirmation": MessageLookupByLibrary.simpleMessage(
       "يرجى ادخال تاكيد كلمة المرور",
@@ -139,6 +156,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "thereAreNoFavoriteStoresYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد متاجر مفضلة حتى الآن",
+    ),
+    "thereAreNoMoreAds": MessageLookupByLibrary.simpleMessage(
+      "There are no more ads..",
     ),
     "thereAreNoMoreNotifications": MessageLookupByLibrary.simpleMessage(
       "لا توجد إشعارات أخرى",

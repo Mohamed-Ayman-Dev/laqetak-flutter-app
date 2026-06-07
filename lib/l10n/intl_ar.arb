@@ -70,5 +70,12 @@
   "resetPassword": "إعادة تعيين كلمة المرور",
   "setANewPasswordForYourAccountChooseAStrong": "أنشئ كلمة مرور جديدة لحسابك، وتأكد من اختيار كلمة قوية وسهلة التذكر.",
   "savePassword": "حفظ كلمة المرور",
-  "city": "المدينة"
+  "city": "المدينة",
+  "invastroUser": "مستخدم انفاسترو",
+  "pleaseAllowNotificationsPermissionToGetUpdatesInSettings": "من فضلك قم بتفعيل اذن الاشعارات في الاعدادات للحصول على التحديثات.",
+  "pleaseAgreeToTheTermsAndConditions": "يرجى الموافقة على الشروط والأحكام",
+  "pleaseAgreeToTheIdea": "يرجى الموافقة على الفكرة",
+  "deletingNotification": "Deleting notification...",
+  "notificationDeletedSuccessfully": "Notification deleted successfully",
+  "thereAreNoMoreAds": "There are no more ads.."
 }

@@ -16,7 +16,10 @@ import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_points.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_seller.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_image_gallery.dart';
+import 'package:invastro/src/features/ad_details/presentation/widgets/shimmers/ad_image_gallery_shimmer.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_screen.dart';
+
+import '../../../../core/shared/models/ad_model.dart';
 
 class AdDetailsScreen extends StatefulWidget {
   static const routeName = '/ad_details_screen';
@@ -28,30 +31,20 @@ class AdDetailsScreen extends StatefulWidget {
 }
 
 class _AdDetailsScreenState extends State<AdDetailsScreen> {
-  String? adType;
   bool isMyAd = false;
-  String? adImage;
-
   String? adHero;
-
-  bool isExpired = false;
   bool once = false;
-
-  List<String> images = [];
+  AdModel? ad;
 
   @override
   void didChangeDependencies() {
     if (!once) {
       final args =
           ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-
       if (args != null) {
-        images = args['images'];
-        adType = args['type'];
-        adImage = args['image'];
         adHero = args['hero'];
+        ad = args['ad'];
         isMyAd = args['isMyAd'] ?? false;
-        isExpired = args['isExpired'] ?? false;
       }
       once = true;
     }
@@ -79,13 +72,15 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
               children: [
                 AdDetailsHeader(isMyAd: isMyAd),
                 20.heightSpace,
-                AdImageGallery(
-                  images: images,
-                  type: adType ?? '',
-                  hero: adHero ?? '',
-                  image: adImage ?? '',
-                  isExpired: isExpired,
-                ),
+                ad?.photos == null
+                    ? AdImageGalleryShimmer()
+                    : AdImageGallery(
+                        images:
+                            ad?.photos?.map((e) => e.url ?? '').toList() ?? [],
+                        type: ad?.category?.name ?? '',
+                        hero: adHero ?? '',
+                        isExpired: false,
+                      ),
                 15.heightSpace,
                 AdDetailsPoints(),
                 17.heightSpace,

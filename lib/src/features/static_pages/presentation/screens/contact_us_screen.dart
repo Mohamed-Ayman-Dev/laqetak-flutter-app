@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/helpers/dialog_helpers.dart';
+import 'package:invastro/src/core/shared/controllers/settings_controller.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 
@@ -12,10 +12,10 @@ import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/custom_appbar.dart';
-import '../../../../core/shared/widgets/fields_widgets/country_code_field.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_note_field.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/themes/text_styles.dart';
+import '../controllers/static_pages_controller.dart';
 import '../widgets/social_widgets.dart';
 
 class ContactUsScreen extends StatefulWidget {
@@ -28,25 +28,24 @@ class ContactUsScreen extends StatefulWidget {
 }
 
 class _ContactUsScreenState extends State<ContactUsScreen> {
-  final FocusNode _phoneFocusNode = FocusNode();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
-  final Map<String, dynamic> _formData = {'country_code': '+966'};
+  final Map<String, dynamic> _formData = {};
 
   Future<void> _send() async {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState!.save();
-      DialogHelpers.showSuccessDialog(title: 'تم ارسال رسالتك بنجاح');
-      // StaticPagesController.sendContactUs(_formData);
+      StaticPagesController.sendContactUs(_formData);
     }
   }
 
   @override
   void dispose() {
-    _phoneFocusNode.dispose();
     _phoneController.dispose();
+    _emailController.dispose();
     _nameController.dispose();
     super.dispose();
   }
@@ -59,10 +58,10 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
       if (LocatorService.auth.user != null && LocatorService.auth.isAuth) {
         _nameController.text = LocatorService.auth.user?.name ?? '';
         _phoneController.text = LocatorService.auth.user?.phone ?? '';
+        _emailController.text = LocatorService.auth.user?.email ?? '';
       }
-      if (LocatorService.appSettings.mySettings == null) {
-        // AuthController.getGeneralSettings();
-      }
+      SettingsController.getGeneralSettings();
+
       once = true;
     }
     super.didChangeDependencies();
@@ -126,34 +125,26 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
               8.heightSpace,
               CustomTextField(
-                onChanged: (value) {
-                  setState(() {});
-                },
                 onSaved: (val) {
                   _formData['phone'] = val;
                 },
                 validator: (value) {
-                  return ValidationHelper.validatePhoneByCountryCode(
-                    phone: value,
-                    countryCode: _formData['country_code'],
-                    context: context,
-                  );
+                  return ValidationHelper.validatePhone(value, context);
                 },
-                focusNode: _phoneFocusNode,
                 keyboardType: TextInputType.phone,
                 textInputAction: TextInputAction.next,
                 controller: _phoneController,
                 hintText: "رقم الجوال",
                 // textDirection: TextDirection.ltr,
-                suffixIcon: CountryCodeField(
-                  focusNode: _phoneFocusNode,
-                  onChanged: (val) {
-                    _formData['country_code'] = val.toString();
-                  },
-                  onInit: (val) {
-                    _formData['country_code'] = val.toString();
-                  },
-                ),
+                // suffixIcon: CountryCodeField(
+                //   focusNode: _phoneFocusNode,
+                //   onChanged: (val) {
+                //     _formData['country_code'] = val.toString();
+                //   },
+                //   onInit: (val) {
+                //     _formData['country_code'] = val.toString();
+                //   },
+                // ),
               ),
               24.heightSpace,
               Text(
@@ -164,15 +155,11 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
               8.heightSpace,
               CustomTextField(
-                onChanged: (value) {
-                  setState(() {});
-                },
-
                 hintText: 'أدخل بريدك الالكتروني',
                 textInputAction: TextInputAction.next,
                 maxLines: 1,
                 keyboardType: TextInputType.emailAddress,
-
+                controller: _emailController,
                 onSaved: (val) {
                   _formData['email'] = val;
                 },
@@ -195,6 +182,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               CustomNoteField(
                 hint: 'أكتب رسالتك',
                 keyboardType: TextInputType.text,
+
                 validator: (value) {
                   return ValidationHelper.validateEmpty(
                     value,
