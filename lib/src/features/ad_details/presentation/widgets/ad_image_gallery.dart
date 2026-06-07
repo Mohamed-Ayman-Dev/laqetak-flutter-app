@@ -147,7 +147,7 @@ class _AdImage extends StatelessWidget {
           child: const Center(
             child: CircularProgressIndicator(
               strokeWidth: 2.5,
-              color: Color(0xFF4CAF50),
+              color: AppColors.primaryColor,
             ),
           ),
         ),

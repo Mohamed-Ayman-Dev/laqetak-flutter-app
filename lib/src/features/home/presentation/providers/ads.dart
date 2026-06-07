@@ -7,9 +7,22 @@ import '../../../../core/shared/models/pagination_list.dart';
 class Ads with ChangeNotifier {
   AdsLoadingModel adsLoadingModel = AdsLoadingModel();
   PaginationList<AdModel>? myAds;
+  Map<num, AdModel> myAdDetails = {};
 
   void updateLoading(String key, dynamic value) {
     adsLoadingModel.updateValue(key, value);
+    notifyListeners();
+  }
+
+  void setAdDetail(num adId, AdModel ad) {
+    if (myAdDetails[adId] == ad) {
+      return;
+    }
+    if (myAdDetails.containsKey(adId)) {
+      myAdDetails.update(adId, (_) => ad);
+    } else {
+      myAdDetails[adId] = ad;
+    }
     notifyListeners();
   }
 

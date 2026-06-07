@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/shared/models/ad_model.dart';
 
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/shared/widgets/items_widgets/detail_item.dart';
 import '../../../../core/themes/theme.dart';
 
 class AdDetailsPoints extends StatelessWidget {
-  const AdDetailsPoints({super.key});
+  final AdModel? ad;
+
+  const AdDetailsPoints({super.key, this.ad});
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +32,13 @@ class AdDetailsPoints extends StatelessWidget {
                 child: DetailItem(
                   icon: SvgAssets.assetsSvgPinOutilned,
                   iconSize: 18,
-                  text: 'الرياض',
+                  text: ad?.city?.name ?? '',
                 ),
               ),
               DetailItem(
                 icon: SvgAssets.assetsSvgTimeFillIcon,
                 iconSize: 18,
-                text: '1 ساعة',
+                text: ad?.publishedAt ?? '',
               ),
               6.widthSpace,
             ],
@@ -48,7 +51,7 @@ class AdDetailsPoints extends StatelessWidget {
                 child: DetailItem(
                   icon: SvgAssets.assetsSvgChance,
                   iconSize: 20,
-                  text: 'فرصة',
+                  text: ad?.category?.name ?? '',
                 ),
               ),
             ],
@@ -61,7 +64,7 @@ class AdDetailsPoints extends StatelessWidget {
                 child: DetailItem(
                   icon: SvgAssets.assetsSvgCategoryIcon,
                   iconSize: 14,
-                  text: 'عقاري',
+                  text: ad?.sector?.name ?? '',
                 ),
               ),
             ],

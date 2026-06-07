@@ -77,5 +77,6 @@
   "pleaseAgreeToTheIdea": "يرجى الموافقة على الفكرة",
   "deletingNotification": "Deleting notification...",
   "notificationDeletedSuccessfully": "Notification deleted successfully",
-  "thereAreNoMoreAds": "There are no more ads.."
+  "thereAreNoMoreAds": "There are no more ads..",
+  "thereAreNoDescription": "There are no description."
 }

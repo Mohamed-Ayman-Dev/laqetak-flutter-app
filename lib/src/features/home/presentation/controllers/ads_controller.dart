@@ -26,4 +26,19 @@ class AdsController {
       LocatorService.ads.updateLoading('loadingAds', false);
     }
   }
+
+  static Future<void> getAdDetails(num adId) async {
+    try {
+      LocatorService.ads.updateLoading('loadingAdDetails', true);
+      final response = await LocatorService.adsService.getAdDetails(
+        id: adId,
+        rethrowError: true,
+      );
+      LocatorService.ads.setAdDetail(adId, AdModel.fromJson(response['data']));
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
+    } finally {
+      LocatorService.ads.updateLoading('loadingAdDetails', false);
+    }
+  }
 }

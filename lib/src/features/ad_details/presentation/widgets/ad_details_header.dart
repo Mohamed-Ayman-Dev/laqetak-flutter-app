@@ -3,16 +3,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/shared/models/ad_model.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/small_icon_button.dart';
-import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:invastro/src/features/home/presentation/providers/ads.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/constants/svg_assets.dart';
 
 class AdDetailsHeader extends StatefulWidget {
   final bool isMyAd;
+  final AdModel? ad;
 
-  const AdDetailsHeader({super.key, this.isMyAd = false});
+  const AdDetailsHeader({super.key, this.isMyAd = false, this.ad});
 
   @override
   State<AdDetailsHeader> createState() => _AdDetailsHeaderState();
@@ -57,37 +60,48 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Expanded(
-          child: Text(
-            'مشروع تجاري كامل',
-            style: AppTextStyles.labelLarge.copyWith(fontSize: 15.sp),
-          ),
-        ),
-        5.widthSpace,
-        Text(
-          '1200',
-          style: AppTextStyles.labelSmall.copyWith(
-            fontSize: 13.sp,
-            color: AppColors.textGrey1Color,
-          ),
-        ),
-        if (widget.isMyAd) ...[
-          7.widthSpace,
-          SvgPicture.asset(SvgAssets.assetsSvgView, height: 32.h, width: 32.w),
-          7.widthSpace,
-        ],
+    return Selector<Ads, AdModel?>(
+      selector: (context, provider) => provider.myAdDetails[widget.ad?.id],
+      shouldRebuild: (previous, next) => true,
+      builder: (context, myAdDetail, child) {
+        final adDetail = myAdDetail ?? widget.ad;
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Text(
+                adDetail?.title ?? '',
+                style: AppTextStyles.labelLarge.copyWith(fontSize: 15.sp),
+              ),
+            ),
+            // 5.widthSpace,
+            // Text(
+            //   '1200',
+            //   style: AppTextStyles.labelSmall.copyWith(
+            //     fontSize: 13.sp,
+            //     color: AppColors.textGrey1Color,
+            //   ),
+            // ),
+            if (widget.isMyAd) ...[
+              7.widthSpace,
+              SvgPicture.asset(
+                SvgAssets.assetsSvgView,
+                height: 32.h,
+                width: 32.w,
+              ),
+              7.widthSpace,
+            ],
 
-        SmallIconButton(
-          icon: SvgAssets.assetsSvgShareIcon,
-          onTab: () {},
-          width: 20,
-          height: 20,
-        ),
-        _buildLike(),
-      ],
+            SmallIconButton(
+              icon: SvgAssets.assetsSvgShareIcon,
+              onTab: () {},
+              width: 20,
+              height: 20,
+            ),
+            _buildLike(),
+          ],
+        );
+      },
     );
   }
 }

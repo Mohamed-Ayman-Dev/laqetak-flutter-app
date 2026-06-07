@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 
 class AdDetailsBottom extends StatefulWidget {
-  const AdDetailsBottom({super.key});
+  final String? price;
+
+  const AdDetailsBottom({super.key, this.price});
 
   @override
   State<AdDetailsBottom> createState() => _AdDetailsBottomState();
@@ -76,12 +79,13 @@ class _AdDetailsBottomState extends State<AdDetailsBottom>
               ),
               Spacer(),
               Text(
-                '75,000',
+                widget.price ?? '',
                 style: AppTextStyles.headlineMedium.copyWith(
                   fontSize: 24.sp,
                   color: AppColors.priceBlackTextColor,
                 ),
               ),
+              10.widthSpace,
               SvgPicture.asset(
                 SvgAssets.assetsSvgSarIcon,
                 color: AppColors.primaryColor,

@@ -164,6 +164,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
     ),
+    "thereAreNoDescription": MessageLookupByLibrary.simpleMessage(
+      "There are no description.",
+    ),
     "thereAreNoFavoriteStoresYet": MessageLookupByLibrary.simpleMessage(
       "There are no favorite stores yet",
     ),

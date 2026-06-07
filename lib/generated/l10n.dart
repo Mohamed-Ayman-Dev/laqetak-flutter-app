@@ -758,6 +758,16 @@ class S {
       args: [],
     );
   }
+
+  /// `There are no description.`
+  String get thereAreNoDescription {
+    return Intl.message(
+      'There are no description.',
+      name: 'thereAreNoDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:invastro/src/core/constants/images_assets.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/shared/models/customer_model.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
+import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/ad_details/presentation/screens/seller_profile_screen.dart';
 import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
@@ -15,7 +16,10 @@ import '../../../../core/shared/widgets/buttons_widgets/custom_outline_button.da
 import '../../../../core/themes/theme.dart';
 
 class AdDetailsSeller extends StatelessWidget {
-  const AdDetailsSeller({super.key});
+  final CustomerModel? customer;
+  final String? phone;
+
+  const AdDetailsSeller({super.key, this.customer, this.phone});
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +46,13 @@ class AdDetailsSeller extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 6.widthSpace,
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    ImagesAssets.assetsImagesMockPersonImage,
-                    fit: BoxFit.cover,
-                    height: 39.h,
-                    width: 39.w,
-                  ),
+                CustomImage(
+                  imageUrl: customer?.avatar ?? '',
+                  height: 39.h,
+                  width: 39.w,
+                  borderRadius: 100,
                 ),
+
                 8.widthSpace,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +65,7 @@ class AdDetailsSeller extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'محمد الدوسري',
+                      customer?.name ?? '',
                       style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
                     ),
                   ],
@@ -92,7 +94,7 @@ class AdDetailsSeller extends StatelessWidget {
                 ),
                 Spacer(),
                 Text(
-                  '0966 000 0000',
+                  phone ?? '',
                   style: AppTextStyles.labelSmall.copyWith(
                     fontSize: 15.sp,
                     color: AppColors.numberLabelTextColor,

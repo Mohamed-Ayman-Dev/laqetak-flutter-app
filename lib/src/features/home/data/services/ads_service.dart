@@ -11,4 +11,8 @@ class AdsService {
       queryParameters: queryParameters,
     );
   }
+
+  Future getAdDetails({bool rethrowError = false, required num id}) async {
+    return await ApiService.get('/ads/detail/$id', rethrowError: rethrowError);
+  }
 }
