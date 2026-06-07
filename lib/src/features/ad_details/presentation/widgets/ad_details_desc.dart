@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/shimmers/ad_details_shimmer.dart';
 
@@ -26,8 +27,8 @@ class AdDetailsDesc extends StatelessWidget {
                 width: 1,
               ),
             ),
-            child: Text(
-              style: AppTextStyles.bodyMedium.copyWith(
+            child: HtmlWidget(
+              textStyle: AppTextStyles.bodyMedium.copyWith(
                 color: AppColors.descTextColor,
                 fontSize: 13.sp,
               ),
