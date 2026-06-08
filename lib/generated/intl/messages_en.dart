@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Changes have been saved successfully",
     ),
     "city": MessageLookupByLibrary.simpleMessage("City"),
+    "complaintReason": MessageLookupByLibrary.simpleMessage("Complaint Reason"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "connectionErrorPleaseCheckYourInternetConnection":
         MessageLookupByLibrary.simpleMessage(
@@ -49,6 +50,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "emailOrMobileNumberOrUsername": MessageLookupByLibrary.simpleMessage(
       "Email or mobile number or username",
+    ),
+    "enterComplaintDetails": MessageLookupByLibrary.simpleMessage(
+      "Enter complaint details",
     ),
     "enterTheVerificationCodeWeSentTo": MessageLookupByLibrary.simpleMessage(
       "Enter the verification code we sent to",
@@ -117,6 +121,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterAValidPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid phone number",
     ),
+    "pleaseEnterComplaintDetails": MessageLookupByLibrary.simpleMessage(
+      "Please enter complaint details",
+    ),
     "pleaseEnterIbanConfirmation": MessageLookupByLibrary.simpleMessage(
       "Please enter iban confirmation",
     ),
@@ -135,6 +142,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseSelectACity": MessageLookupByLibrary.simpleMessage(
       "Please select a city",
     ),
+    "pleaseSelectAComplaintReason": MessageLookupByLibrary.simpleMessage(
+      "Please select a complaint reason",
+    ),
     "pleaseSelectARegion": MessageLookupByLibrary.simpleMessage(
       "Please select a region",
     ),
@@ -142,6 +152,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please verify your phone number",
     ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("Please Wait..."),
+    "pressToChat": MessageLookupByLibrary.simpleMessage("Press to chat"),
     "resend": MessageLookupByLibrary.simpleMessage("Resend"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
@@ -150,6 +161,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Search for a location",
     ),
     "selectCity": MessageLookupByLibrary.simpleMessage("Select City"),
+    "selectComplaintReason": MessageLookupByLibrary.simpleMessage(
+      "Select Complaint Reason",
+    ),
     "sendCode": MessageLookupByLibrary.simpleMessage("Send Code"),
     "sendingRequest": MessageLookupByLibrary.simpleMessage(
       "Sending Request...",
@@ -164,8 +178,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
     ),
+    "submitComplaint": MessageLookupByLibrary.simpleMessage("Submit Complaint"),
     "thereAreNoAdsYet": MessageLookupByLibrary.simpleMessage(
       "There are no ads yet.",
+    ),
+    "thereAreNoConversationsYet": MessageLookupByLibrary.simpleMessage(
+      "There are no conversations yet.",
     ),
     "thereAreNoDescription": MessageLookupByLibrary.simpleMessage(
       "There are no description.",
@@ -175,6 +193,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "thereAreNoMoreAds": MessageLookupByLibrary.simpleMessage(
       "There are no more ads..",
+    ),
+    "thereAreNoMoreConversations": MessageLookupByLibrary.simpleMessage(
+      "There are no more conversations.",
     ),
     "thereAreNoMoreNotifications": MessageLookupByLibrary.simpleMessage(
       "There are no more notifications",
@@ -216,6 +237,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Verify your phone number",
     ),
     "version": MessageLookupByLibrary.simpleMessage("Version"),
+    "writeComplaintDetailsHere": MessageLookupByLibrary.simpleMessage(
+      "Write complaint details here...",
+    ),
     "writeTheReason": MessageLookupByLibrary.simpleMessage("Write the reason"),
     "youLoggedInSuccessfully": MessageLookupByLibrary.simpleMessage(
       "You logged in successfully",

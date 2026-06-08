@@ -1,24 +1,32 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart'
     show AnimationConfiguration, SlideAnimation, FadeInAnimation;
 import 'package:invastro/src/core/constants/enums.dart';
-import 'package:invastro/src/core/constants/images_assets.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/shared/widgets/buttons_widgets/small_icon_button.dart';
+import 'package:invastro/src/core/shared/models/customer_model.dart';
+import 'package:invastro/src/core/shared/models/pagination_list.dart';
 import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
-import 'package:invastro/src/core/shared/widgets/custom_asset_image.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
-import 'package:invastro/src/core/themes/colors.dart';
+import 'package:invastro/src/core/shared/widgets/lists_widgets/list_loading_end_widget.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:invastro/src/features/ad_details/presentation/providers/ad_details.dart';
 import 'package:invastro/src/features/ad_details/presentation/screens/ad_details_screen.dart';
-import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
+import 'package:invastro/src/features/ad_details/presentation/widgets/customer_header.dart';
+import 'package:invastro/src/features/ad_details/presentation/widgets/shimmers/customer_header_shimmer.dart';
+import 'package:provider/provider.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../../../../core/constants/mock_data_for_loading.dart';
-import '../../../../core/helpers/dialog_helpers.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/widgets/items_widgets/ad_item.dart';
+import '../../../../core/shared/widgets/lists_widgets/empty_list_placeholder_widget.dart';
+import '../../../../core/shared/widgets/lists_widgets/smart_refresher_header.dart';
+import '../../../../core/shared/widgets/shimmers/items/ad_item_shimmer.dart';
+import '../controllers/ad_details_controller.dart';
 
 class SellerProfileScreen extends StatefulWidget {
   static const routeName = '/seller_profile_screen';
@@ -31,6 +39,70 @@ class SellerProfileScreen extends StatefulWidget {
 
 class _SellerProfileScreenState extends State<SellerProfileScreen> {
   final Set<int> _likedAds = {};
+  CustomerModel? _customer;
+
+  @override
+  void didChangeDependencies() {
+    final argsCustomer =
+        ModalRoute.of(context)?.settings.arguments as CustomerModel?;
+    if (argsCustomer != null) {
+      _customer = argsCustomer;
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      AdDetailsController.getCustomerAds(refresh: true, id: _customer?.id ?? 0);
+    });
+    super.didChangeDependencies();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.addListener(() {
+        _onStoresListener();
+      });
+    });
+  }
+
+  final RefreshController _refreshController = RefreshController(
+    initialRefresh: false,
+  );
+  final ScrollController _scrollController = ScrollController();
+  Timer? _debounce;
+  bool _gettingData = false;
+
+  Future<void> _refresh() async {
+    final refreshController = _refreshController;
+    await AdDetailsController.getCustomerAds(
+      refresh: true,
+      id: _customer?.id ?? 0,
+    );
+    refreshController.refreshCompleted();
+  }
+
+  void _onStoresListener() async {
+    if (_scrollController.position.pixels >=
+            _scrollController.position.maxScrollExtent - 50.0 &&
+        _gettingData == false) {
+      _debounce?.cancel();
+      _debounce = Timer(const Duration(milliseconds: 200), () async {
+        _gettingData = true;
+        await AdDetailsController.getCustomerAds(
+          refresh: false,
+          id: _customer?.id ?? 0,
+        );
+        _gettingData = false;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _refreshController.dispose();
+    _debounce?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,134 +115,174 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          SingleChildScrollView(
-            padding: EdgeInsets.symmetric(vertical: 28).r,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+          SmartRefresher(
+            scrollController: _scrollController,
+            controller: _refreshController,
+            onRefresh: _refresh,
+            header: const SmartRefresherHeader(),
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(vertical: 28).r,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
 
-              children: [
-                CustomAssetImage(
-                  image: ImagesAssets.assetsImagesMockProfileImage,
-                  width: 122,
-                  height: 122,
-                ),
-                17.heightSpace,
-                Text('محمد الدوسري', style: AppTextStyles.labelLarge),
-                12.heightSpace,
-                Text(
-                  'mohamed000@gmail',
-                  style: AppTextStyles.labelMedium.copyWith(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 11.sp,
-                    color: AppColors.labelSmallGreyTextColor,
-                  ),
-                ),
-                24.heightSpace,
-                Row(
-                  children: [
-                    45.widthSpace,
-                    SmallIconButton(
-                      icon: SvgAssets.assetsSvgChatDotsIcon,
-                      height: 34.h,
-                      width: 34.w,
-                      onTab: () {
-                        LocatorService.navigationService.currentState
-                            ?.pushNamed(ChatScreen.routeName);
-                      },
-                    ),
-                    Spacer(),
-                    SmallIconButton(
-                      icon: SvgAssets.assetsSvgReportCircle,
-                      height: 34.h,
-                      width: 34.w,
-                      onTab: () {
-                        DialogHelpers.showReportDialog();
-                      },
-                    ),
-                    45.widthSpace,
-                  ],
-                ),
-                10.heightSpace,
-                Divider(height: 40.h, endIndent: 22.w, indent: 22.w),
-                Align(
-                  alignment: AlignmentGeometry.centerStart,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 19.0).r,
-                    child: Text(
-                      'إعلانات',
-                      style: AppTextStyles.labelMedium.copyWith(
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                  ),
-                ),
-                ListView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 17, vertical: 24).r,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return AnimationConfiguration.staggeredList(
-                      position: index,
-                      delay: const Duration(milliseconds: 10),
-                      child: SlideAnimation(
-                        verticalOffset: 10,
-                        duration: const Duration(milliseconds: 800),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                        child: FadeInAnimation(
-                          duration: const Duration(milliseconds: 1000),
-                          curve: Curves.fastLinearToSlowEaseIn,
-                          child: AdItem(
-                            category: index == 1 || index == 3
-                                ? 'chance'
-                                : 'not-chance',
-                            expired: index == 1 || index == 3,
-                            image: MockDataForLoading.mockAds[index]['image'],
-                            onTab: () {
-                              LocatorService.navigationService.currentState
-                                  ?.pushNamed(
-                                    AdDetailsScreen.routeName,
-                                    arguments: {
-                                      'hero':
-                                          '${MockDataForLoading.mockAds[index]['image']}-$index-home',
-                                      'type': index == 1 || index == 3
-                                          ? 'chance'
-                                          : 'not-chance',
-                                      'image': MockDataForLoading
-                                          .mockAds[index]['image'],
-                                      'isExpired': index == 1 || index == 3,
-                                      'images': <String>[
-                                        MockDataForLoading
-                                            .mockAds[index]['image'],
-                                        ...MockDataForLoading.detailsImages,
-                                      ],
-                                    },
-                                  );
-                            },
+                children: [
+                  if (_customer == null)
+                    CustomerHeaderShimmer()
+                  else
+                    CustomerHeader(customer: _customer),
 
-                            hideDivider:
-                                index ==
-                                (MockDataForLoading.mockAds.length - 1),
-                            heroTag:
-                                '${MockDataForLoading.mockAds[index]['image']}-$index-home',
-                            onLike: () {
-                              setState(() {
-                                if (_likedAds.contains(index)) {
-                                  _likedAds.remove(index);
-                                } else {
-                                  _likedAds.add(index);
-                                }
-                              });
-                            },
-                            isLiked: _likedAds.contains(index),
-                          ),
+                  10.heightSpace,
+                  Divider(height: 40.h, endIndent: 22.w, indent: 22.w),
+                  Align(
+                    alignment: AlignmentGeometry.centerStart,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 19.0).r,
+                      child: Text(
+                        'إعلانات',
+                        style: AppTextStyles.labelMedium.copyWith(
+                          fontSize: 16.sp,
                         ),
                       ),
-                    );
-                  },
+                    ),
+                  ),
+                  Selector<AdDetails, PaginationList<AdModel>?>(
+                    selector: (context, provider) =>
+                        provider.myCustomerAds[_customer?.id ?? 0],
+                    shouldRebuild: (previous, next) => true,
 
-                  itemCount: MockDataForLoading.mockAds.length,
-                  shrinkWrap: true,
-                ),
-              ],
+                    builder: (context, listProvider, child) {
+                      List<AdModel>? ads = listProvider?.data;
+                      return ads != null && ads.isEmpty
+                          ? EmptyListPlaceholderWidget(
+                              text: S.of(context).thereAreNoAdsYet,
+                              paddingTop: 200,
+                            )
+                          : Column(
+                              children: [
+                                ListView.builder(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 17,
+                                    vertical: 24,
+                                  ).r,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    return AnimationConfiguration.staggeredList(
+                                      position: index,
+                                      delay: const Duration(milliseconds: 10),
+                                      child: SlideAnimation(
+                                        verticalOffset: 20,
+                                        duration: const Duration(
+                                          milliseconds: 500,
+                                        ),
+                                        curve: Curves.fastLinearToSlowEaseIn,
+                                        child: FadeInAnimation(
+                                          duration: const Duration(
+                                            milliseconds: 1000,
+                                          ),
+                                          curve: Curves.fastLinearToSlowEaseIn,
+                                          child: ads == null
+                                              ? AdItemShimmer()
+                                              : AdItem(
+                                                  category:
+                                                      ads[index]
+                                                          .category
+                                                          ?.name ??
+                                                      '',
+                                                  expired:
+                                                      index == 1 || index == 3,
+                                                  image:
+                                                      ads[index].mainPhoto ??
+                                                      '',
+                                                  onTab: () {
+                                                    LocatorService
+                                                        .navigationService
+                                                        .currentState
+                                                        ?.pushNamed(
+                                                          AdDetailsScreen
+                                                              .routeName,
+                                                          arguments: {
+                                                            'hero':
+                                                                '${ads[index].mainPhoto}-$index-customer',
+                                                            'ad': ads[index],
+                                                          },
+                                                        );
+                                                  },
+
+                                                  hideDivider:
+                                                      index == (ads.length - 1),
+                                                  heroTag:
+                                                      '${ads[index].mainPhoto}-$index-customer',
+                                                  customerName:
+                                                      ads[index]
+                                                          .customer
+                                                          ?.name ??
+                                                      '',
+                                                  location:
+                                                      ads[index]
+                                                          .customer
+                                                          ?.name ??
+                                                      '',
+                                                  name: ads[index].title ?? '',
+                                                  price:
+                                                      ads[index]
+                                                          .investmentAmount ??
+                                                      '',
+                                                  time:
+                                                      ads[index].publishedAt ??
+                                                      '',
+                                                  sector:
+                                                      ads[index].sector?.name ??
+                                                      '',
+                                                  onLike: () {
+                                                    setState(() {
+                                                      if (_likedAds.contains(
+                                                        index,
+                                                      )) {
+                                                        _likedAds.remove(index);
+                                                      } else {
+                                                        _likedAds.add(index);
+                                                      }
+                                                    });
+                                                  },
+
+                                                  isLiked:
+                                                      ads[index].isFavorite ??
+                                                      false,
+                                                ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+
+                                  itemCount: ads?.length ?? 6,
+                                  shrinkWrap: true,
+                                ),
+                                Selector<AdDetails, bool>(
+                                  selector: (context, provider) =>
+                                      provider.loadingAds,
+                                  shouldRebuild: (old, newData) =>
+                                      old != newData,
+                                  builder: (context, loadingAds, child) {
+                                    return ListLoadingEndWidget(
+                                      lastPage: listProvider?.lastPage ?? 1,
+                                      currentPage:
+                                          listProvider?.currentPage ?? 1,
+                                      isLoading: loadingAds,
+                                      listLessThan:
+                                          listProvider?.data != null &&
+                                          listProvider!.data!.length > 4,
+                                      noMoreText: S
+                                          .of(context)
+                                          .thereAreNoMoreAds,
+                                    );
+                                  },
+                                ),
+                              ],
+                            );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ],

@@ -77,5 +77,15 @@
   "thereAreNoMoreAds": "There are no more ads..",
   "thereAreNoDescription": "There are no description.",
   "thereAreNoAdsYet": "There are no ads yet.",
-  "thisAdHasNoImages": "This ad has no images"
+  "thisAdHasNoImages": "This ad has no images",
+  "submitComplaint": "Submit Complaint",
+  "selectComplaintReason": "Select Complaint Reason",
+  "complaintReason": "Complaint Reason",
+  "pleaseSelectAComplaintReason": "Please select a complaint reason",
+  "enterComplaintDetails": "Enter complaint details",
+  "writeComplaintDetailsHere": "Write complaint details here...",
+  "pleaseEnterComplaintDetails": "Please enter complaint details",
+  "thereAreNoConversationsYet": "There are no conversations yet.",
+  "thereAreNoMoreConversations": "There are no more conversations.",
+  "pressToChat": "Press to chat"
 }

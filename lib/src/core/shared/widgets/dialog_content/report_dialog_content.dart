@@ -1,15 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/helpers/dialog_helpers.dart';
 import 'package:invastro/src/core/shared/widgets/fields_widgets/custom_note_field.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:invastro/src/features/home/presentation/controllers/ads_controller.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../constants/svg_assets.dart';
 import '../../../extension/space_extensions_helper.dart';
 import '../buttons_widgets/custom_elevated_button.dart';
 
-class ReportDialogContent extends StatelessWidget {
-  const ReportDialogContent({super.key});
+class ReportDialogContent extends StatefulWidget {
+  final num id;
+  final bool isCustomerReport;
+
+  const ReportDialogContent({
+    super.key,
+    required this.id,
+    this.isCustomerReport = false,
+  });
+
+  @override
+  State<ReportDialogContent> createState() => _ReportDialogContentState();
+}
+
+class _ReportDialogContentState extends State<ReportDialogContent> {
+  final _formKey = GlobalKey<FormState>();
+  final _reasonController = TextEditingController();
+
+  @override
+  void dispose() {
+    _reasonController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _send() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      Navigator.pop(context);
+      widget.isCustomerReport
+          ? AdsController.sendCustomerComplaint(
+              data: {
+                'customer_id': widget.id,
+                'reason': _reasonController.text,
+              },
+            )
+          : AdsController.sendAdComplaint(
+              data: {'ad_id': widget.id, 'reason': _reasonController.text},
+            );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +66,19 @@ class ReportDialogContent extends StatelessWidget {
             10.heightSpace,
 
             // ─── Subtitle ───
-            CustomNoteField(hint: 'أكتب السبب'),
+            Form(
+              key: _formKey,
+              child: CustomNoteField(
+                hint: 'أكتب السبب',
+                controller: _reasonController,
+                validator: (val) {
+                  if (val == null || val.trim().isEmpty) {
+                    return S.of(context).pleaseEnterComplaintDetails;
+                  }
+                  return null;
+                },
+              ),
+            ),
             24.heightSpace,
 
             // ─── Button ───
@@ -35,11 +86,7 @@ class ReportDialogContent extends StatelessWidget {
               text: 'إرسال',
               icon: SvgAssets.assetsSvgArrowRight,
               size: Size(163.w, 48.h),
-              onPressed: () {
-                DialogHelpers.showSuccessDialog(
-                  title: 'تم ارسال الابلاغ بنجاح',
-                );
-              },
+              onPressed: _send,
             ),
           ],
         ),

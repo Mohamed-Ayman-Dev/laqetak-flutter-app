@@ -112,7 +112,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                         size: Size(123.w, 36.h),
                         borderColor: AppColors.reportBorderColor,
                         onPressed: () {
-                          DialogHelpers.showReportDialog();
+                          DialogHelpers.showReportDialog(ad?.id ?? 0);
                         },
                       ),
                     ),

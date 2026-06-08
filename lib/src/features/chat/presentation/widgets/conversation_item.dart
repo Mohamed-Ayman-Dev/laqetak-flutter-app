@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
@@ -11,7 +12,7 @@ class ConversationItem extends StatelessWidget {
   final String desc;
   final String date;
   final String image;
-  final bool messageCount;
+  final num? messageCount;
   final void Function() onTab;
 
   const ConversationItem({
@@ -21,7 +22,7 @@ class ConversationItem extends StatelessWidget {
     required this.onTab,
     required this.date,
     required this.image,
-    this.messageCount = false,
+    this.messageCount,
   });
 
   @override
@@ -84,24 +85,14 @@ class ConversationItem extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(color: AppColors.conversationBorderColor),
           ),
-          // child: CustomImage(
-          //   imageUrl: '',
-          //   placeholder: image,
-          //   width: 45.w,
-          //   height: 45.h,
-          //   borderRadius: 100,
-          // ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: Image.asset(
-              image,
-              fit: BoxFit.cover,
-              width: 45.w,
-              height: 45.h,
-            ),
+          child: CustomImage(
+            imageUrl: image,
+            borderRadius: 100,
+            width: 45,
+            height: 45,
           ),
         ),
-        if (messageCount) UnreadMessagesCounter(),
+        UnreadMessagesCounter(messageCount: messageCount),
       ],
     );
   }

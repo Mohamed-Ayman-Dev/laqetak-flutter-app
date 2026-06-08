@@ -1,5 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:invastro/src/core/shared/models/customer_model.dart';
+
+import '../../../../core/shared/models/ad_model.dart';
+import '../../../../core/shared/models/pagination_list.dart';
 
 class AdDetails with ChangeNotifier {
- 
+  Map<num, PaginationList<AdModel>?> myCustomerAds = {};
+  Map<num, CustomerModel> myCustomerDetails = {};
+  bool loadingAds = false;
+
+  void setLoadingAds(bool value) {
+    loadingAds = value;
+    notifyListeners();
+  }
+
+  void setCustomerAds(dynamic data, bool refresh, {required num customerId}) {
+    if (myCustomerAds[customerId] == null || refresh) {
+      myCustomerAds[customerId] = PaginationList.fromJson(data);
+    } else {
+      myCustomerAds[customerId]?.addItemsToList(data);
+    }
+    notifyListeners();
+  }
 }

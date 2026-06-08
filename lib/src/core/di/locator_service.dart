@@ -5,9 +5,13 @@ import 'package:invastro/src/features/my_ads/data/services/my_ads_service.dart';
 import 'package:invastro/src/features/my_ads/presentation/providers/my_ads.dart';
 import 'package:invastro/src/features/notifications/data/services/notifications_service.dart';
 
+import '../../features/ad_details/data/services/ad_details_service.dart';
+import '../../features/ad_details/presentation/providers/ad_details.dart';
 import '../../features/auth/data/services/auth_service.dart';
 import '../../features/auth/presentation/providers/auth.dart';
 import '../../features/auth/presentation/providers/auth_naviagtions.dart';
+import '../../features/chat/data/services/chat_service.dart';
+import '../../features/chat/presentation/providers/chat.dart';
 import '../../features/notifications/presentation/providers/notifications.dart';
 import '../../features/static_pages/data/services/static_pages_service.dart';
 import '../../features/static_pages/presentation/providers/static_pages.dart';
@@ -42,6 +46,10 @@ abstract class LocatorService {
       locator<NotificationsService>();
 
   static AdsService get adsService => locator<AdsService>();
+
+  static ChatService get chatService => locator<ChatService>();
+
+  static AdDetailsService get adDetailsService => locator<AdDetailsService>();
 
   //
   // static ProductsService get productsService => locator<ProductsService>();
@@ -84,6 +92,10 @@ abstract class LocatorService {
   static Notifications get notifications => locator<Notifications>();
 
   static Ads get ads => locator<Ads>();
+
+  static Chat get chat => locator<Chat>();
+
+  static AdDetails get adDetails => locator<AdDetails>();
 
   //
   static Timers get timers => locator<Timers>();

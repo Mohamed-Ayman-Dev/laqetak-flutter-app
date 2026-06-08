@@ -46,7 +46,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      LocatorService.auth.clearNotificationsCount();
       AdsController.getAds(refresh: true);
       _scrollController.addListener(() {
         final shouldShow = _scrollController.offset > 64.h;
@@ -249,7 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Selector<Ads, PaginationList<AdModel>?>(
               selector: (context, provider) => provider.myAds,
-              shouldRebuild: (previous, next) => true,
+              shouldRebuild: (old, newData) => old != newData,
 
               builder: (context, listProvider, child) {
                 return Selector<Ads, bool>(

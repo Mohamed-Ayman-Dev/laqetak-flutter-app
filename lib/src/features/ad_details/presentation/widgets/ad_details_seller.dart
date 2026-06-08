@@ -40,6 +40,7 @@ class AdDetailsSeller extends StatelessWidget {
             onTap: () {
               LocatorService.navigationService.currentState?.pushNamed(
                 SellerProfileScreen.routeName,
+                arguments: customer,
               );
             },
             child: Row(
@@ -48,8 +49,8 @@ class AdDetailsSeller extends StatelessWidget {
                 6.widthSpace,
                 CustomImage(
                   imageUrl: customer?.avatar ?? '',
-                  height: 39.h,
-                  width: 39.w,
+                  height: 39,
+                  width: 39,
                   borderRadius: 100,
                 ),
 
@@ -136,7 +137,10 @@ class AdDetailsSeller extends StatelessWidget {
                 size: Size(97.w, 36.h),
                 borderColor: AppColors.reportBorderColor,
                 onPressed: () {
-                  DialogHelpers.showReportDialog();
+                  DialogHelpers.showReportDialog(
+                    customer?.id ?? 0,
+                    isCustomerReport: true,
+                  );
                 },
               ),
               6.widthSpace,

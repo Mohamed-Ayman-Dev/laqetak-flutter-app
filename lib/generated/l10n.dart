@@ -788,6 +788,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Submit Complaint`
+  String get submitComplaint {
+    return Intl.message(
+      'Submit Complaint',
+      name: 'submitComplaint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Complaint Reason`
+  String get selectComplaintReason {
+    return Intl.message(
+      'Select Complaint Reason',
+      name: 'selectComplaintReason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complaint Reason`
+  String get complaintReason {
+    return Intl.message(
+      'Complaint Reason',
+      name: 'complaintReason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a complaint reason`
+  String get pleaseSelectAComplaintReason {
+    return Intl.message(
+      'Please select a complaint reason',
+      name: 'pleaseSelectAComplaintReason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter complaint details`
+  String get enterComplaintDetails {
+    return Intl.message(
+      'Enter complaint details',
+      name: 'enterComplaintDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write complaint details here...`
+  String get writeComplaintDetailsHere {
+    return Intl.message(
+      'Write complaint details here...',
+      name: 'writeComplaintDetailsHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter complaint details`
+  String get pleaseEnterComplaintDetails {
+    return Intl.message(
+      'Please enter complaint details',
+      name: 'pleaseEnterComplaintDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no conversations yet.`
+  String get thereAreNoConversationsYet {
+    return Intl.message(
+      'There are no conversations yet.',
+      name: 'thereAreNoConversationsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no more conversations.`
+  String get thereAreNoMoreConversations {
+    return Intl.message(
+      'There are no more conversations.',
+      name: 'thereAreNoMoreConversations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Press to chat`
+  String get pressToChat {
+    return Intl.message(
+      'Press to chat',
+      name: 'pressToChat',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

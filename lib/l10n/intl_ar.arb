@@ -80,5 +80,15 @@
   "thereAreNoMoreAds": "لا توجد إعلانات أخرى.",
   "thereAreNoDescription": "لا يوجد وصف.",
   "thereAreNoAdsYet": "لا توجد إعلانات حتى الآن.",
-  "thisAdHasNoImages": "هذا الإعلان لا يحتوي على صور"
+  "thisAdHasNoImages": "هذا الإعلان لا يحتوي على صور",
+  "submitComplaint": "تقديم شكوى",
+  "selectComplaintReason": "إختر سبب الشكوى",
+  "complaintReason": "سبب الشكوى",
+  "pleaseSelectAComplaintReason": "الرجاء اختيار سبب الشكوى",
+  "enterComplaintDetails": "أدخل تفاصيل الشكوى",
+  "writeComplaintDetailsHere": "اكتب تفاصيل الشكوى هنا..",
+  "pleaseEnterComplaintDetails": "الرجاء إدخال تفاصيل الشكوى",
+  "thereAreNoConversationsYet": "لا توجد محادثات حتى الآن.",
+  "thereAreNoMoreConversations": "لا توجد المزيد من المحادثات.",
+  "pressToChat": "اضغط لبدء المحادثه"
 }

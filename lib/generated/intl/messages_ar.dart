@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم حفظ التغييرات بنجاح",
     ),
     "city": MessageLookupByLibrary.simpleMessage("المدينة"),
+    "complaintReason": MessageLookupByLibrary.simpleMessage("سبب الشكوى"),
     "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
     "connectionErrorPleaseCheckYourInternetConnection":
         MessageLookupByLibrary.simpleMessage(
@@ -44,6 +45,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
     "emailOrMobileNumberOrUsername": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني أو رقم الجوال أو اسم المستخدم",
+    ),
+    "enterComplaintDetails": MessageLookupByLibrary.simpleMessage(
+      "أدخل تفاصيل الشكوى",
     ),
     "enterTheVerificationCodeWeSentTo": MessageLookupByLibrary.simpleMessage(
       "أدخل رمز التحقق الذي أرسلناه إلى",
@@ -108,6 +112,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterAValidPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "يجب أن يكون رقم الجوال صحيح",
     ),
+    "pleaseEnterComplaintDetails": MessageLookupByLibrary.simpleMessage(
+      "الرجاء إدخال تفاصيل الشكوى",
+    ),
     "pleaseEnterIbanConfirmation": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال تأكيد رقم الآيبان",
     ),
@@ -123,6 +130,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseSelectACity": MessageLookupByLibrary.simpleMessage(
       "يجب اختيار المدينة",
     ),
+    "pleaseSelectAComplaintReason": MessageLookupByLibrary.simpleMessage(
+      "الرجاء اختيار سبب الشكوى",
+    ),
     "pleaseSelectARegion": MessageLookupByLibrary.simpleMessage(
       "يجب اختيار المنطقة",
     ),
@@ -130,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى التحقق من رقم هاتفك",
     ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("الرجاء الانتظار..."),
+    "pressToChat": MessageLookupByLibrary.simpleMessage("اضغط لبدء المحادثه"),
     "resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
     "resetPassword": MessageLookupByLibrary.simpleMessage(
       "إعادة تعيين كلمة المرور",
@@ -140,6 +151,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "ابحث عن موقع..",
     ),
     "selectCity": MessageLookupByLibrary.simpleMessage("اختر المدينة"),
+    "selectComplaintReason": MessageLookupByLibrary.simpleMessage(
+      "إختر سبب الشكوى",
+    ),
     "sendCode": MessageLookupByLibrary.simpleMessage("إرسال الرمز"),
     "sendingRequest": MessageLookupByLibrary.simpleMessage(
       "جارٍ إرسال الطلب...",
@@ -154,8 +168,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
     ),
+    "submitComplaint": MessageLookupByLibrary.simpleMessage("تقديم شكوى"),
     "thereAreNoAdsYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد إعلانات حتى الآن.",
+    ),
+    "thereAreNoConversationsYet": MessageLookupByLibrary.simpleMessage(
+      "لا توجد محادثات حتى الآن.",
     ),
     "thereAreNoDescription": MessageLookupByLibrary.simpleMessage(
       "لا يوجد وصف.",
@@ -165,6 +183,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "thereAreNoMoreAds": MessageLookupByLibrary.simpleMessage(
       "لا توجد إعلانات أخرى.",
+    ),
+    "thereAreNoMoreConversations": MessageLookupByLibrary.simpleMessage(
+      "لا توجد المزيد من المحادثات.",
     ),
     "thereAreNoMoreNotifications": MessageLookupByLibrary.simpleMessage(
       "لا توجد إشعارات أخرى",
@@ -202,6 +223,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "تحقق من رقمك",
     ),
     "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
+    "writeComplaintDetailsHere": MessageLookupByLibrary.simpleMessage(
+      "اكتب تفاصيل الشكوى هنا..",
+    ),
     "youLoggedInSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم تسجيل الدخول بنجاح",
     ),

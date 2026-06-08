@@ -15,4 +15,26 @@ class AdsService {
   Future getAdDetails({bool rethrowError = false, required num id}) async {
     return await ApiService.get('/ads/detail/$id', rethrowError: rethrowError);
   }
+
+  Future sendAdComplaint({
+    bool rethrowError = false,
+    Map<String, dynamic>? data,
+  }) async {
+    return await ApiService.post(
+      '/ads/complaint',
+      rethrowError: rethrowError,
+      data: data,
+    );
+  }
+
+  Future sendCustomerComplaint({
+    bool rethrowError = false,
+    Map<String, dynamic>? data,
+  }) async {
+    return await ApiService.post(
+      '/advertisor/complaint',
+      rethrowError: rethrowError,
+      data: data,
+    );
+  }
 }

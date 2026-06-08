@@ -1,7 +1,10 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/error/error_helper.dart';
 import 'package:invastro/src/core/shared/models/ad_model.dart';
 
 import '../../../../core/di/locator_service.dart';
+import '../../../../core/helpers/dialog_helpers.dart';
 
 class AdsController {
   static Future<void> getAds({bool refresh = false}) async {
@@ -39,6 +42,38 @@ class AdsController {
       ErrorHelper.handleApiError(e);
     } finally {
       LocatorService.ads.updateLoading('loadingAdDetails', false);
+    }
+  }
+
+  static Future<void> sendAdComplaint({
+    required Map<String, dynamic> data,
+  }) async {
+    try {
+      AppFeedback.loadingMessage();
+      await LocatorService.adsService.sendAdComplaint(
+        rethrowError: true,
+        data: data,
+      );
+      EasyLoading.dismiss();
+      DialogHelpers.showSuccessDialog(title: 'تم ارسال الابلاغ بنجاح');
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
+    }
+  }
+
+  static Future<void> sendCustomerComplaint({
+    required Map<String, dynamic> data,
+  }) async {
+    try {
+      AppFeedback.loadingMessage();
+      await LocatorService.adsService.sendCustomerComplaint(
+        rethrowError: true,
+        data: data,
+      );
+      EasyLoading.dismiss();
+      DialogHelpers.showSuccessDialog(title: 'تم ارسال الابلاغ بنجاح');
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
     }
   }
 }

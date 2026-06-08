@@ -222,7 +222,10 @@ class DialogHelpers {
     });
   }
 
-  static Future<void>? showReportDialog() async {
+  static Future<void>? showReportDialog(
+    num id, {
+    bool isCustomerReport = false,
+  }) async {
     await showGeneralDialog(
       context: LocatorService.navigationService.currentState!.context,
       barrierLabel: "Barrier",
@@ -251,7 +254,10 @@ class DialogHelpers {
                 horizontal: 0,
                 vertical: 0,
               ).r,
-              content: ReportDialogContent(),
+              content: ReportDialogContent(
+                id: id,
+                isCustomerReport: isCustomerReport,
+              ),
             ),
           ],
         );
