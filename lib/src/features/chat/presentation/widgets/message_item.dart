@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/extension/format_date_time_on_date_time.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
@@ -48,109 +49,107 @@ class MessageItem extends StatelessWidget {
       child: Wrap(
         alignment: WrapAlignment.end,
         children: [
-          InkWell(
-            splashColor: Colors.transparent,
-            onTap: () {},
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Container(
-                  constraints: BoxConstraints(
-                    maxWidth: 260.w,
-                    minWidth: 50.w,
-                    minHeight: 34.h,
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                constraints: BoxConstraints(
+                  maxWidth: 260.w,
+                  minWidth: 50.w,
+                  minHeight: 34.h,
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8).r,
+                decoration: BoxDecoration(
+                  color: isMine
+                      ? AppColors.myMessageBKColor
+                      : AppColors.otherMessageBKColor,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(isMine ? 0 : 12),
+                    topLeft: Radius.circular(isMine ? 12 : 0),
+                    bottomLeft: Radius.circular(12),
+                    bottomRight: Radius.circular(12),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8).r,
-                  decoration: BoxDecoration(
-                    color: isMine
-                        ? AppColors.myMessageBKColor
-                        : AppColors.otherMessageBKColor,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(isMine ? 0 : 12),
-                      topLeft: Radius.circular(isMine ? 12 : 0),
-                      bottomLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (message.isNotEmpty)
                       Text(
                         message,
                         style: AppTextStyles.bodySmall.copyWith(
                           color: AppColors.labelTextColor,
                         ),
                       ),
-                      if (images != null && images!.isNotEmpty) 8.heightSpace,
-                      if (images != null && images!.isNotEmpty)
-                        _buildImagesSection(context),
-                      // if (image != null) 8.heightSpace,
-                      // if (image != null)
-                      //   Hero(
-                      //     tag: heroImage!,
-                      //     child: Image.asset(
-                      //       image!,
-                      //       width: 140.w,
-                      //       height: 137.h,
-                      //       fit: BoxFit.cover,
-                      //     ),
-                      //   ),
+                    if (images != null && images!.isNotEmpty) 8.heightSpace,
+                    if (images != null && images!.isNotEmpty)
+                      _buildImagesSection(context),
+                    // if (image != null) 8.heightSpace,
+                    // if (image != null)
+                    //   Hero(
+                    //     tag: heroImage!,
+                    //     child: Image.asset(
+                    //       image!,
+                    //       width: 140.w,
+                    //       height: 137.h,
+                    //       fit: BoxFit.cover,
+                    //     ),
+                    //   ),
+                  ],
+                ),
+              ),
+              if (status == MessageStatus.sending)
+                Padding(
+                  padding: EdgeInsets.only(top: 4).r,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        width: 12.w,
+                        height: 12.h,
+                        child: const CircularProgressIndicator(strokeWidth: 2),
+                      ),
+                      4.widthSpace,
+                      Text(
+                        S.of(context).sending,
+                        style: AppTextStyles.labelSmall.copyWith(
+                          fontSize: 8.sp,
+                          color: Colors.grey,
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                if (status == MessageStatus.sending)
-                  Padding(
-                    padding: EdgeInsets.only(top: 4.h),
+              if (status == MessageStatus.failed && onRetry != null)
+                Padding(
+                  padding: EdgeInsets.only(top: 4).r,
+                  child: GestureDetector(
+                    onTap: onRetry,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(
-                          width: 12.w,
-                          height: 12.h,
-                          child: const CircularProgressIndicator(
-                            strokeWidth: 2,
-                          ),
+                        Icon(
+                          Icons.error_outline,
+                          size: 12.sp,
+                          color: Colors.red,
                         ),
                         4.widthSpace,
                         Text(
-                          'Sending...',
+                          S.of(context).tapToRetry,
                           style: AppTextStyles.labelSmall.copyWith(
                             fontSize: 8.sp,
-                            color: Colors.grey,
+                            color: Colors.red,
                           ),
                         ),
                       ],
                     ),
                   ),
-                if (status == MessageStatus.failed && onRetry != null)
-                  Padding(
-                    padding: EdgeInsets.only(top: 4.h),
-                    child: GestureDetector(
-                      onTap: onRetry,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.error_outline,
-                            size: 12.sp,
-                            color: Colors.red,
-                          ),
-                          4.widthSpace,
-                          Text(
-                            S.of(context).tapToRetry,
-                            style: AppTextStyles.labelSmall.copyWith(
-                              fontSize: 8.sp,
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                if (status == MessageStatus.sent)
-                  Row(
+                ),
+              if (status == MessageStatus.sent)
+                Padding(
+                  padding: const EdgeInsets.only(top: 4.0).r,
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -167,7 +166,7 @@ class MessageItem extends StatelessWidget {
                       if (isMine) 7.widthSpace,
                       Text(
                         (!isMine || seenAt == null)
-                            ? createdAt
+                            ? DateTime.parse(createdAt).timeAgo
                             : 'تم القراءة -  $seenAt',
                         style: AppTextStyles.labelSmall.copyWith(
                           fontSize: 8.sp,
@@ -177,8 +176,8 @@ class MessageItem extends StatelessWidget {
                       12.widthSpace,
                     ],
                   ),
-              ],
-            ),
+                ),
+            ],
           ),
         ],
       ),
@@ -186,25 +185,30 @@ class MessageItem extends StatelessWidget {
   }
 
   Widget _buildImagesSection(BuildContext context) {
-    if (images == null || images!.isEmpty) return const SizedBox.shrink();
+    if (images == null || images!.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
-    final imageCount = images!.length;
+    final count = images!.length;
 
-    if (imageCount == 1) {
+    if (count == 1) {
       return _buildSingleImage(context, images![0], 0);
     }
 
-    return SizedBox(
-      height: 137.h,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: imageCount,
-        separatorBuilder: (context, index) => 8.widthSpace,
-        itemBuilder: (context, index) {
-          return _buildSingleImage(context, images![index], index);
-        },
+    return GridView.builder(
+      shrinkWrap: true,
+      padding: EdgeInsets.zero,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: count > 4 ? 4 : count,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 8,
+        childAspectRatio: 80 / 100,
+        mainAxisSpacing: 8,
       ),
+      itemBuilder: (context, index) {
+        return _buildSingleImage(context, images![index], index);
+      },
     );
   }
 
@@ -226,7 +230,7 @@ class MessageItem extends StatelessWidget {
               .map<PhotoModel>(
                 (e) => PhotoModel(
                   source: isTemp || e.isFile ? 'file' : 'network',
-                  url: e.preview ?? e.original ?? '',
+                  url: e.original ?? e.preview ?? '',
                 ),
               )
               .toList();

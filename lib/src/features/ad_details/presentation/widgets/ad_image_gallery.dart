@@ -68,7 +68,7 @@ class _AdImageGalleryState extends State<AdImageGallery> {
               PhotoView(
                 heroTag: widget.hero,
                 photoList: widget.images
-                    .map((e) => PhotoModel(url: e, source: 'asset'))
+                    .map((e) => PhotoModel(url: e, source: 'network'))
                     .toList(),
               ),
             );

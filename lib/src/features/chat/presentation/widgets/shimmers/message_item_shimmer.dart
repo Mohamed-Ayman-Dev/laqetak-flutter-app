@@ -25,9 +25,7 @@ class MessageItemShimmer extends StatelessWidget {
               constraints: BoxConstraints(maxWidth: 260.w, minWidth: 120.w),
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8).r,
               decoration: BoxDecoration(
-                color: isMine
-                    ? AppColors.myMessageBKColor
-                    : AppColors.otherMessageBKColor,
+                color: AppColors.myMessageBKColor,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(isMine ? 0 : 12),
                   topLeft: Radius.circular(isMine ? 12 : 0),
@@ -38,8 +36,8 @@ class MessageItemShimmer extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextShimmer(width: 180.w, height: 8.h),
-                  TextShimmer(width: 140.w, height: 8.h, paddingUnder: 0),
+                  TextShimmer(width: 180, height: 8),
+                  TextShimmer(width: 140, height: 8, paddingUnder: 0),
                 ],
               ),
             ),

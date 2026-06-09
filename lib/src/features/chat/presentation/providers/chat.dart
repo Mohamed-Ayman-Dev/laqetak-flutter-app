@@ -31,6 +31,16 @@ class Chat with ChangeNotifier {
     notifyListeners();
   }
 
+  void setConversationAsZeroSeen({required num conversationId}) {
+    final index =
+        myConversations?.data?.indexWhere((e) => e.id == conversationId) ?? -1;
+
+    if (index != -1) {
+      myConversations!.data![index].unseenCount = 0;
+    }
+    // notifyListeners();
+  }
+
   void setIsLoadingChat(num conversationId, bool isLoading) {
     isLoadingChat[conversationId] = isLoading;
     notifyListeners();
@@ -108,6 +118,12 @@ class Chat with ChangeNotifier {
 
       // Create event handler for this offerId
       void listener(PusherEvent event) {
+        print('================');
+        print('EVENT: ${event.eventName}');
+        print('CHANNEL: ${event.channelName}');
+        print('DATA: ${event.data}');
+        print('================');
+
         _handlePusherEvent(conversationId, event);
       }
 
@@ -127,6 +143,12 @@ class Chat with ChangeNotifier {
   /// Handle incoming Pusher events
   void _handlePusherEvent(num conversationId, PusherEvent event) {
     try {
+      debugPrint('Pusher Event: ${event.eventName} - Data: ${event.data}');
+
+      if (event.eventName == 'pusher:subscription_succeeded') {
+        return;
+      }
+
       final messageData = jsonDecode(event.data);
       final currentOfferId = messageData['quoteOfferId'].toString();
       final message = MessageModel.fromPusher(messageData);

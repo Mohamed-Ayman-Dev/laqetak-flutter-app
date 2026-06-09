@@ -24,10 +24,13 @@ class AttachmentPreview extends StatelessWidget {
     if (filePaths.isEmpty) return const SizedBox.shrink();
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12).r,
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10).r,
       decoration: BoxDecoration(
         color: AppColors.greyScaffoldBKColor,
-        border: Border(top: BorderSide(color: AppColors.borderColor, width: 1)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)).r,
+        border: Border(
+          top: BorderSide(color: AppColors.dividerColor, width: 1),
+        ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -59,7 +62,7 @@ class AttachmentPreview extends StatelessWidget {
               ),
             ],
           ),
-          12.heightSpace,
+          10.heightSpace,
           SizedBox(
             height: 80.h,
             child: ListView.separated(
@@ -73,12 +76,12 @@ class AttachmentPreview extends StatelessWidget {
                     children: [
                       Image.file(
                         File(filePaths[index]),
-                        width: 80.w,
+                        width: 90.w,
                         height: 80.h,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
-                            width: 80.w,
+                            width: 90.w,
                             height: 80.h,
                             color: Colors.grey.shade300,
                             child: Icon(Icons.broken_image, color: Colors.grey),

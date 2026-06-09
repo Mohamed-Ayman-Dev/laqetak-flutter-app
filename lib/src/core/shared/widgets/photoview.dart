@@ -95,6 +95,7 @@ class _PhotoViewState extends State<PhotoView> {
                 initialScale: PhotoViewComputedScale.contained,
                 minScale: PhotoViewComputedScale.contained,
                 maxScale: PhotoViewComputedScale.covered * 2,
+
                 imageProvider: _resolveImageProvider(photoList[index]),
               ),
               onPageChanged: _onPageChanged,
@@ -117,7 +118,7 @@ class _PhotoViewState extends State<PhotoView> {
             Positioned(
               left: 0,
               right: 0,
-              bottom: 150,
+              bottom: 120,
               child: _ThumbnailStrip(
                 photoList: photoList,
                 activeIndex: _activeIndex,
@@ -178,10 +179,10 @@ class _TopBar extends StatelessWidget {
         children: [
           Text(
             '${current + 1} / $total',
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w600,
               letterSpacing: 0.5,
             ),
           ),
@@ -222,12 +223,30 @@ class _ThumbnailStrip extends StatelessWidget {
     required this.onTap,
   });
 
+  Widget _buildImage(PhotoModel photo) {
+    switch (photo.source) {
+      case 'file':
+        return Image.file(File(photo.url ?? ''), fit: BoxFit.cover);
+
+      case 'asset':
+        return Image.asset(photo.url ?? '', fit: BoxFit.cover);
+
+      default:
+        return CachedNetworkImage(
+          imageUrl: photo.url ?? '',
+          fit: BoxFit.cover,
+          placeholder: (_, __) => Container(color: Colors.white12),
+          errorWidget: (_, __, ___) => Container(color: Colors.white10),
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: 85.h,
       color: Colors.black.withOpacity(0.75),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10).r,
       child: ListView.separated(
         controller: scrollController,
         scrollDirection: Axis.horizontal,
@@ -239,8 +258,8 @@ class _ThumbnailStrip extends StatelessWidget {
             onTap: () => onTap(index),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              width: 70,
-              height: 60,
+              width: 75.w,
+              height: 65.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(6),
                 border: Border.all(
@@ -252,13 +271,7 @@ class _ThumbnailStrip extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
                 child: Opacity(
                   opacity: isActive ? 1.0 : 0.5,
-                  child: CachedNetworkImage(
-                    imageUrl: photoList[index].url ?? '',
-                    fit: BoxFit.cover,
-                    placeholder: (_, __) => Container(color: Colors.white12),
-                    errorWidget: (_, __, ___) =>
-                        Container(color: Colors.white10),
-                  ),
+                  child: _buildImage(photoList[index]),
                 ),
               ),
             ),

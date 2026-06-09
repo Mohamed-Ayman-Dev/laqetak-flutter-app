@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:invastro/src/features/chat/data/models/conversations_model.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/error/error_helper.dart';
@@ -83,7 +84,7 @@ class ChatController {
           )
           .toList(),
       isMine: true,
-      createdAt: 'الآن',
+      createdAtHuman: S.current.now,
       status: MessageStatus.sending,
     );
 
@@ -99,11 +100,12 @@ class ChatController {
       );
 
       // Update with real message from server
-      // final sentMessage = MessageModel.fromJson(response['data']);
+      final sentMessage = MessageModel.fromJson(response['data']);
       LocatorService.chat.updateMessageStatus(
         conversationId,
         tempMessage.id!,
-        tempMessage.copyWith(status: MessageStatus.sent),
+        sentMessage.copyWith(status: MessageStatus.sent),
+        // tempMessage.copyWith(status: MessageStatus.sent),
       );
 
       return true;
@@ -171,7 +173,10 @@ class ChatController {
     try {
       await LocatorService.chatService.leaveChat(
         conversationId: conversationId,
-
+        rethrowError: false,
+      );
+      await LocatorService.chatService.markAsRead(
+        conversationId: conversationId,
         rethrowError: false,
       );
     } catch (e) {

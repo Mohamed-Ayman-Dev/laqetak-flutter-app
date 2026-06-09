@@ -94,5 +94,7 @@
   "thereAreNoConversationsYet": "There are no conversations yet.",
   "thereAreNoMoreConversations": "There are no more conversations.",
   "pressToChat": "Press to chat",
-  "thereAreNoMessagesYetStartAConversation": "There are no messages yet, start a conversation"
+  "thereAreNoMessagesYetStartAConversation": "There are no messages yet, start a conversation",
+  "now": "Now",
+  "sending": "Sending..."
 }

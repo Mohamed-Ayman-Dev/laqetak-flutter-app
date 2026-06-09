@@ -76,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "notificationDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم حذف الإشعار بنجاح",
     ),
+    "now": MessageLookupByLibrary.simpleMessage("الآن"),
     "openSettings": MessageLookupByLibrary.simpleMessage("فتح الإعدادات"),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       " كلمة المرور لا يمكن ان تكون فارغة",
@@ -165,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "إختر سبب الشكوى",
     ),
     "sendCode": MessageLookupByLibrary.simpleMessage("إرسال الرمز"),
+    "sending": MessageLookupByLibrary.simpleMessage("جارٍ الإرسال..."),
     "sendingRequest": MessageLookupByLibrary.simpleMessage(
       "جارٍ إرسال الطلب...",
     ),
@@ -194,7 +196,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "thereAreNoMessagesYetStartAConversation":
         MessageLookupByLibrary.simpleMessage(
-          "There are no messages yet, start a conversation",
+          "لا توجد رسائل حتى الآن، ابدأ محادثة",
         ),
     "thereAreNoMoreAds": MessageLookupByLibrary.simpleMessage(
       "لا توجد إعلانات أخرى.",

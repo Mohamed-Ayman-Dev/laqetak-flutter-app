@@ -948,6 +948,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Now`
+  String get now {
+    return Intl.message('Now', name: 'now', desc: '', args: []);
+  }
+
+  /// `Sending...`
+  String get sending {
+    return Intl.message('Sending...', name: 'sending', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -55,32 +55,51 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           args?['conversation'] ?? ConversationsModel(otherUser: _receiver);
       _conversationId = _conversation?.id;
       //getting conversation Id and details if its null and only _receiver is passed
-      if (_receiver?.id != null && _conversation == null) {
-        _getConversationDetails();
-      }
-      if (_conversationId != null) {
-        // Load messages
-        Future.delayed(Duration.zero, () {
-          ChatController.getMessages(
-            conversationId: _conversationId!,
-            refresh: true,
-          );
+      if (_receiver?.id != null) {
+        // _getConversationDetails();
+        ChatController.getConversationDetails(_receiver!.id!).then((value) {
+          final updateConversationDetail =
+              LocatorService.chat.conversationDetails[_receiver!.id!];
+          if (updateConversationDetail != null) {
+            setState(() {
+              _conversation = updateConversationDetail;
+              _conversationId = _conversation?.id;
+            });
+          }
+          _initChat();
         });
-
-        // Initialize Pusher
-        ChatController.initPusher(
-          conversationId: _conversationId!,
-          pusherKey: '18e688d12badb9fd7978',
-          cluster: 'eu',
-        );
-
-        // Start presence timer
-        _startPresenceTimer();
+      } else {
+        _initChat();
       }
 
       once = true;
     }
     super.didChangeDependencies();
+  }
+
+  void _initChat() {
+    if (_conversationId != null) {
+      // Load messages
+      Future.delayed(Duration.zero, () {
+        LocatorService.chat.setConversationAsZeroSeen(
+          conversationId: _conversationId!,
+        );
+        ChatController.getMessages(
+          conversationId: _conversationId!,
+          refresh: true,
+        );
+      });
+
+      // Initialize Pusher
+      ChatController.initPusher(
+        conversationId: _conversationId!,
+        pusherKey: '18e688d12badb9fd7978',
+        cluster: 'eu',
+      );
+
+      // Start presence timer
+      _startPresenceTimer();
+    }
   }
 
   @override
@@ -128,15 +147,17 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     _presenceTimer = null;
   }
 
-  void _getConversationDetails() async {
-    await ChatController.getConversationDetails(_receiver!.id!);
-    final updateConversationDetail =
-        LocatorService.chat.conversationDetails[_receiver!.id!];
-    if (updateConversationDetail != null) {
-      _conversation = updateConversationDetail;
-      _conversationId = _conversation?.id;
-    }
-  }
+  // void _getConversationDetails() async {
+  //   await ChatController.getConversationDetails(_receiver!.id!);
+  //   final updateConversationDetail =
+  //       LocatorService.chat.conversationDetails[_receiver!.id!];
+  //   if (updateConversationDetail != null) {
+  //     setState(() {
+  //       _conversation = updateConversationDetail;
+  //       _conversationId = _conversation?.id;
+  //     });
+  //   }
+  // }
 
   void _updatePresence() {
     if (_conversationId != null) {
@@ -146,7 +167,9 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
   void _leaveChat() {
     if (_conversationId != null) {
-      ChatController.leaveChat(conversationId: _conversationId!);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ChatController.leaveChat(conversationId: _conversationId!);
+      });
     }
   }
 
@@ -171,97 +194,120 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
         chatReceiver: _conversation?.otherUser,
         backgroundColor: Colors.white,
       ),
-      body: Column(
+      body: Stack(
+        alignment: Alignment.topCenter,
         children: [
-          10.heightSpace,
-          Align(alignment: Alignment.center, child: ChatTime()),
-          10.heightSpace,
-          Selector<Chat, PaginationList<MessageModel>?>(
-            selector: (context, provider) =>
-                provider.messagesMap[_conversationId],
-            shouldRebuild: (previous, next) => true,
-            builder: (context, list, child) {
-              final messages = list?.data;
-              return messages != null && messages.isEmpty
-                  ? EmptyListPlaceholderWidget(
-                      text: S
-                          .of(context)
-                          .thereAreNoMessagesYetStartAConversation,
-                    )
-                  : Expanded(
-                      child: ListView.separated(
-                        padding: EdgeInsets.fromLTRB(18, 33, 18, 18).r,
-                        itemBuilder: (context, index) => messages == null
-                            ? index == 0
-                                  ? MessageItemShimmer(isMine: true)
-                                  : index == 1
-                                  ? MessageItemShimmer(isMine: false)
-                                  : MessageItemShimmer(isMine: false)
-                            : MessageItem(
-                                message: messages[index].message ?? '',
-                                isMine: messages[index].isMine ?? false,
-                                heroImage: '$index-"messageBody"-chat',
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              10.heightSpace,
 
-                                images: messages[index].files,
-                                createdAt: messages[index].createdAtHuman ?? '',
-                                seenAt: messages[index].seenAtHuman,
-                                status: messages[index].status,
-                                onRetry:
-                                    messages[index].status ==
-                                        MessageStatus.failed
-                                    ? () => ChatController.retryMessage(
-                                        conversationId: _conversationId!,
-                                        message: messages[index],
-                                      )
-                                    : null,
-                                isTemp: messages[index].isTemp,
-                              ),
-                        separatorBuilder: (context, index) => 16.heightSpace,
-                        itemCount: messages?.length ?? 8,
-                      ),
+              Expanded(
+                child: Selector<Chat, PaginationList<MessageModel>?>(
+                  selector: (context, provider) =>
+                      provider.messagesMap[_conversationId],
+                  shouldRebuild: (previous, next) => true,
+                  builder: (context, list, child) {
+                    final scrollController = LocatorService.chat
+                        .getScrollController(_conversationId!);
+                    final messages = list?.data;
+                    return messages != null && messages.isEmpty
+                        ? EmptyListPlaceholderWidget(
+                            text: S
+                                .of(context)
+                                .thereAreNoMessagesYetStartAConversation,
+                          )
+                        : NotificationListener<ScrollNotification>(
+                            onNotification: (scrollInfo) {
+                              // Load more when scrolled to top (older messages)
+                              if (scrollInfo.metrics.pixels >=
+                                  scrollInfo.metrics.maxScrollExtent - 200) {
+                                ChatController.getMessages(
+                                  conversationId: _conversationId!,
+                                );
+                              }
+                              return false;
+                            },
+                            child: ListView.separated(
+                              padding: EdgeInsets.fromLTRB(18, 33, 18, 18).r,
+                              reverse: true,
+                              controller: scrollController,
+
+                              itemBuilder: (context, index) => messages == null
+                                  ? MessageItemShimmer(isMine: index % 2 == 0)
+                                  : MessageItem(
+                                      message: messages[index].message ?? '',
+                                      isMine: messages[index].isMine ?? false,
+                                      heroImage: '$index-"messageBody"-chat',
+
+                                      images: messages[index].files,
+                                      createdAt:
+                                          messages[index].createdAt ?? '',
+                                      seenAt: messages[index].seenAtHuman,
+                                      status: messages[index].status,
+                                      onRetry:
+                                          messages[index].status ==
+                                              MessageStatus.failed
+                                          ? () => ChatController.retryMessage(
+                                              conversationId: _conversationId!,
+                                              message: messages[index],
+                                            )
+                                          : null,
+                                      isTemp: messages[index].isTemp,
+                                    ),
+                              separatorBuilder: (context, index) =>
+                                  16.heightSpace,
+                              itemCount: messages?.length ?? 9,
+                            ),
+                          );
+                  },
+                ),
+              ),
+              AttachmentPreview(
+                filePaths: attachmentPaths,
+                onClear: () {
+                  setState(() {
+                    attachmentPaths.clear();
+                  });
+                },
+                onRemoveAt: (index) {
+                  setState(() {
+                    attachmentPaths.removeAt(index);
+                  });
+                },
+              ),
+              ChatBottomField(
+                onSend: () async {
+                  final text = controller.text.trim();
+                  if (text.isNotEmpty || attachmentPaths.isNotEmpty) {
+                    ChatController.sendMessage(
+                      conversationId: _conversationId ?? 0,
+                      message: text.isNotEmpty ? text : null,
+                      filePaths: attachmentPaths.isNotEmpty
+                          ? attachmentPaths
+                          : null,
                     );
-            },
+                    controller.clear();
+                    setState(() {
+                      attachmentPaths.clear();
+                    });
+                  }
+                },
+                onAttachment: () async {
+                  final pickedImage = await ImageUtils.openPickingOptions(
+                    context,
+                  );
+                  if (pickedImage != null) {
+                    setState(() {
+                      attachmentPaths.add(pickedImage.path);
+                    });
+                  }
+                },
+                controller: controller,
+              ),
+            ],
           ),
-          AttachmentPreview(
-            filePaths: attachmentPaths,
-            onClear: () {
-              setState(() {
-                attachmentPaths.clear();
-              });
-            },
-            onRemoveAt: (index) {
-              setState(() {
-                attachmentPaths.removeAt(index);
-              });
-            },
-          ),
-          ChatBottomField(
-            onSend: () async {
-              final text = controller.text.trim();
-              if (text.isNotEmpty || attachmentPaths.isNotEmpty) {
-                ChatController.sendMessage(
-                  conversationId: _conversationId ?? 0,
-                  message: text.isNotEmpty ? text : null,
-                  filePaths: attachmentPaths.isNotEmpty
-                      ? attachmentPaths
-                      : null,
-                );
-                controller.clear();
-                setState(() {
-                  attachmentPaths.clear();
-                });
-              }
-            },
-            onAttachment: () async {
-              final pickedImage = await ImageUtils.openPickingOptions(context);
-              if (pickedImage != null) {
-                setState(() {
-                  attachmentPaths.add(pickedImage.path);
-                });
-              }
-            },
-            controller: controller,
-          ),
+          Padding(padding: const EdgeInsets.all(16).r, child: ChatTime()),
         ],
       ),
     );

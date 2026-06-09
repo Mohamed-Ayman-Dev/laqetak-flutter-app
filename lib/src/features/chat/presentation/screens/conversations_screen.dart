@@ -86,6 +86,7 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
         child: SingleChildScrollView(
           child: Selector<Chat, PaginationList<ConversationsModel>?>(
             selector: (context, provider) => provider.myConversations,
+            shouldRebuild: (oldWidget, newWidget) => true,
             builder: (context, listProvider, child) {
               List<ConversationsModel>? conversations = listProvider?.data;
 

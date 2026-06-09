@@ -1,6 +1,34 @@
-
-
 extension FormatDateTimeOnDateTime on DateTime {
+  String get timeAgo {
+    final diff = DateTime.now().difference(this);
+
+    if (diff.inSeconds < 5) {
+      return 'الآن';
+    }
+
+    if (diff.inSeconds < 60) {
+      return '${diff.inSeconds} ثانية';
+    }
+
+    if (diff.inMinutes < 60) {
+      return '${diff.inMinutes} دقيقة';
+    }
+
+    if (diff.inHours < 24) {
+      return '${diff.inHours} ساعة';
+    }
+
+    if (diff.inDays < 30) {
+      return '${diff.inDays} يوم';
+    }
+
+    if (diff.inDays < 365) {
+      return '${(diff.inDays / 30).floor()} شهر';
+    }
+
+    return '${(diff.inDays / 365).floor()} سنة';
+  }
+
   // // Format time in 12-hour format with AM/PM
   // String formatTime(BuildContext context) {
   //   final isAm = hour < 12;

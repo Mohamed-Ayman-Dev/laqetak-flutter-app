@@ -85,6 +85,17 @@ class ChatService {
     );
   }
 
+  Future markAsRead({
+    required num conversationId,
+    bool rethrowError = false,
+  }) async {
+    return await ApiService.post(
+      '/conversations/mark-as-read',
+      data: {'conversation_id': conversationId},
+      rethrowError: rethrowError,
+    );
+  }
+
   Future updateConversationsDetails({
     required num receiverId,
     bool rethrowError = false,

@@ -81,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "notificationDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Notification deleted successfully",
     ),
+    "now": MessageLookupByLibrary.simpleMessage("Now"),
     "openSettings": MessageLookupByLibrary.simpleMessage("Open Settings"),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       "Password cannot be empty",
@@ -175,6 +176,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Select Complaint Reason",
     ),
     "sendCode": MessageLookupByLibrary.simpleMessage("Send Code"),
+    "sending": MessageLookupByLibrary.simpleMessage("Sending..."),
     "sendingRequest": MessageLookupByLibrary.simpleMessage(
       "Sending Request...",
     ),

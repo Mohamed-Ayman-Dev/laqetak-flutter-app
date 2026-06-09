@@ -93,5 +93,7 @@
   "thereAreNoConversationsYet": "لا توجد محادثات حتى الآن.",
   "thereAreNoMoreConversations": "لا توجد المزيد من المحادثات.",
   "pressToChat": "اضغط لبدء المحادثه",
-  "thereAreNoMessagesYetStartAConversation": "There are no messages yet, start a conversation"
+  "thereAreNoMessagesYetStartAConversation": "لا توجد رسائل حتى الآن، ابدأ محادثة",
+  "now": "الآن",
+  "sending": "جارٍ الإرسال..."
 }
