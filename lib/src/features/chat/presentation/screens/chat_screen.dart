@@ -23,6 +23,7 @@ import '../widgets/attachment_preview.dart';
 import '../widgets/chat_bottom_field.dart';
 import '../widgets/chat_time.dart';
 import '../widgets/message_item.dart';
+import '../widgets/shimmers/chat_list_shimmer.dart';
 
 class ChatScreen extends StatefulWidget {
   static const routeName = '/chat_screen';
@@ -201,68 +202,72 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             mainAxisSize: MainAxisSize.min,
             children: [
               10.heightSpace,
+              if (_conversationId == null)
+                ChatListShimmer()
+              else
+                Expanded(
+                  child: Selector<Chat, PaginationList<MessageModel>?>(
+                    selector: (context, provider) =>
+                        provider.messagesMap[_conversationId],
+                    shouldRebuild: (previous, next) => true,
+                    builder: (context, list, child) {
+                      final scrollController = LocatorService.chat
+                          .getScrollController(_conversationId!);
+                      final messages = list?.data;
+                      return messages != null && messages.isEmpty
+                          ? EmptyListPlaceholderWidget(
+                              text: S
+                                  .of(context)
+                                  .thereAreNoMessagesYetStartAConversation,
+                            )
+                          : NotificationListener<ScrollNotification>(
+                              onNotification: (scrollInfo) {
+                                // Load more when scrolled to top (older messages)
+                                if (scrollInfo.metrics.pixels >=
+                                    scrollInfo.metrics.maxScrollExtent - 200) {
+                                  ChatController.getMessages(
+                                    conversationId: _conversationId!,
+                                  );
+                                }
+                                return false;
+                              },
+                              child: ListView.separated(
+                                padding: EdgeInsets.fromLTRB(18, 33, 18, 18).r,
+                                reverse: true,
+                                controller: scrollController,
 
-              Expanded(
-                child: Selector<Chat, PaginationList<MessageModel>?>(
-                  selector: (context, provider) =>
-                      provider.messagesMap[_conversationId],
-                  shouldRebuild: (previous, next) => true,
-                  builder: (context, list, child) {
-                    final scrollController = LocatorService.chat
-                        .getScrollController(_conversationId!);
-                    final messages = list?.data;
-                    return messages != null && messages.isEmpty
-                        ? EmptyListPlaceholderWidget(
-                            text: S
-                                .of(context)
-                                .thereAreNoMessagesYetStartAConversation,
-                          )
-                        : NotificationListener<ScrollNotification>(
-                            onNotification: (scrollInfo) {
-                              // Load more when scrolled to top (older messages)
-                              if (scrollInfo.metrics.pixels >=
-                                  scrollInfo.metrics.maxScrollExtent - 200) {
-                                ChatController.getMessages(
-                                  conversationId: _conversationId!,
-                                );
-                              }
-                              return false;
-                            },
-                            child: ListView.separated(
-                              padding: EdgeInsets.fromLTRB(18, 33, 18, 18).r,
-                              reverse: true,
-                              controller: scrollController,
+                                itemBuilder: (context, index) =>
+                                    messages == null
+                                    ? MessageItemShimmer(isMine: index % 2 == 0)
+                                    : MessageItem(
+                                        message: messages[index].message ?? '',
+                                        isMine: messages[index].isMine ?? false,
+                                        heroImage: '$index-"messageBody"-chat',
 
-                              itemBuilder: (context, index) => messages == null
-                                  ? MessageItemShimmer(isMine: index % 2 == 0)
-                                  : MessageItem(
-                                      message: messages[index].message ?? '',
-                                      isMine: messages[index].isMine ?? false,
-                                      heroImage: '$index-"messageBody"-chat',
-
-                                      images: messages[index].files,
-                                      createdAt:
-                                          messages[index].createdAt ?? '',
-                                      seenAt: messages[index].seenAtHuman,
-                                      status: messages[index].status,
-                                      onRetry:
-                                          messages[index].status ==
-                                              MessageStatus.failed
-                                          ? () => ChatController.retryMessage(
-                                              conversationId: _conversationId!,
-                                              message: messages[index],
-                                            )
-                                          : null,
-                                      isTemp: messages[index].isTemp,
-                                    ),
-                              separatorBuilder: (context, index) =>
-                                  16.heightSpace,
-                              itemCount: messages?.length ?? 9,
-                            ),
-                          );
-                  },
+                                        images: messages[index].files,
+                                        createdAt:
+                                            messages[index].createdAt ?? '',
+                                        seenAt: messages[index].seenAtHuman,
+                                        status: messages[index].status,
+                                        onRetry:
+                                            messages[index].status ==
+                                                MessageStatus.failed
+                                            ? () => ChatController.retryMessage(
+                                                conversationId:
+                                                    _conversationId!,
+                                                message: messages[index],
+                                              )
+                                            : null,
+                                        isTemp: messages[index].isTemp,
+                                      ),
+                                separatorBuilder: (context, index) =>
+                                    16.heightSpace,
+                                itemCount: messages?.length ?? 9,
+                              ),
+                            );
+                    },
+                  ),
                 ),
-              ),
               AttachmentPreview(
                 filePaths: attachmentPaths,
                 onClear: () {
