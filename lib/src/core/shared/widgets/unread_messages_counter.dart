@@ -24,7 +24,7 @@ class UnreadMessagesCounter extends StatelessWidget {
       child: hide
           ? null
           : Text(
-              '2',
+              (messageCount ?? 0).toString(),
               style: AppTextStyles.labelMedium.copyWith(
                 fontSize: 10.sp,
                 color: Colors.white,
