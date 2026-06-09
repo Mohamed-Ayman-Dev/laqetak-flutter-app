@@ -699,11 +699,41 @@ class S {
     return Intl.message('City', name: 'city', desc: '', args: []);
   }
 
+  /// `Attachments`
+  String get attachments {
+    return Intl.message('Attachments', name: 'attachments', desc: '', args: []);
+  }
+
   /// `Invastro User`
   String get invastroUser {
     return Intl.message(
       'Invastro User',
       name: 'invastroUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open Settings`
+  String get openSettings {
+    return Intl.message(
+      'Open Settings',
+      name: 'openSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to retry`
+  String get tapToRetry {
+    return Intl.message('Tap to retry', name: 'tapToRetry', desc: '', args: []);
+  }
+
+  /// `Adjust Image`
+  String get adjustImage {
+    return Intl.message(
+      'Adjust Image',
+      name: 'adjustImage',
       desc: '',
       args: [],
     );
@@ -799,6 +829,26 @@ class S {
     );
   }
 
+  /// `Permission Required`
+  String get permissionRequired {
+    return Intl.message(
+      'Permission Required',
+      name: 'permissionRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please allow access to the gallery in settings.`
+  String get pleaseAllowAccessToTheGalleryInSettings {
+    return Intl.message(
+      'Please allow access to the gallery in settings.',
+      name: 'pleaseAllowAccessToTheGalleryInSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Select Complaint Reason`
   String get selectComplaintReason {
     return Intl.message(
@@ -884,6 +934,16 @@ class S {
     return Intl.message(
       'Press to chat',
       name: 'pressToChat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no messages yet, start a conversation`
+  String get thereAreNoMessagesYetStartAConversation {
+    return Intl.message(
+      'There are no messages yet, start a conversation',
+      name: 'thereAreNoMessagesYetStartAConversation',
       desc: '',
       args: [],
     );

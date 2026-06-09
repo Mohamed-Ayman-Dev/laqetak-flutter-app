@@ -15,12 +15,13 @@ class ShimmerWrapper extends StatelessWidget {
       direction: Intl.getCurrentLocale() == StringManager.arLanguageCode
           ? ShimmerDirection.rtl
           : ShimmerDirection.ltr,
+      period: const Duration(milliseconds: 1400),
       baseColor: Theme.of(context).brightness == Brightness.dark
-          ? Colors.grey[900]!
-          : Colors.grey[300]!,
+          ? const Color(0xFF2A2A2A)
+          : const Color(0xFFEAEAEA),
       highlightColor: Theme.of(context).brightness == Brightness.dark
-          ? Colors.grey[800]!
-          : Colors.grey[100]!,
+          ? const Color(0xFF3A3A3A)
+          : const Color(0xFFF7F7F7),
       child: child,
     );
   }

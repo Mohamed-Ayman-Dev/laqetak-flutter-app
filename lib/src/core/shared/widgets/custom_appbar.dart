@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/shared/models/customer_model.dart';
 import 'package:invastro/src/features/chat/presentation/widgets/chat_header_widget.dart';
 
 import '../../../features/home/presentation/screens/home_layout_screen.dart';
@@ -23,7 +24,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Color? titleColor;
   final int flexLeft;
   final bool showSearchIcon; // ✅ أضفه
-
+  final CustomerModel? chatReceiver;
   final int flexRight;
   final void Function()? onSearch;
   final bool ishHomeLayoutDrawer;
@@ -32,6 +33,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.orderStatus,
     this.showSearchIcon = false,
+    this.chatReceiver,
 
     this.title,
     required this.icons,
@@ -72,7 +74,8 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                 },
               ),
             ),
-          if (icons.contains(AppbarIcons.chat)) ChatHeaderWidget(),
+          if (icons.contains(AppbarIcons.chat))
+            ChatHeaderWidget(chatReceiver: chatReceiver),
           Spacer(flex: flexRight),
 
           if (title != null)

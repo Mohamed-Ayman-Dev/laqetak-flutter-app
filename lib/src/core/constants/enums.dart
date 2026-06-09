@@ -8,6 +8,8 @@ enum CardType { mastercard, visa }
 
 enum OtpFlow { register, forgetPassword, updatePhone, addAd, login }
 
+enum MessageStatus { sending, sent, failed }
+
 /// Generated enums derived from const.php to provide strong typing in the app.
 ///
 /// Notes:

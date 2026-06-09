@@ -29,17 +29,6 @@ class ConversationItemShimmer extends StatelessWidget {
                   ),
                 ),
               ),
-
-              ShimmerWrapper(
-                child: Container(
-                  width: 16.w,
-                  height: 16.h,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
             ],
           ),
 
@@ -51,21 +40,19 @@ class ConversationItemShimmer extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Expanded(
-                      child: TextShimmer(width: 120.w, height: 12.h),
-                    ),
+                    Expanded(child: TextShimmer(width: 120, height: 12)),
 
                     8.widthSpace,
 
-                    TextShimmer(width: 45.w, height: 8.h, paddingUnder: 0),
+                    TextShimmer(width: 45, height: 12, paddingUnder: 0),
                   ],
                 ),
 
                 5.heightSpace,
 
-                TextShimmer(width: double.infinity, height: 8.h),
+                TextShimmer(width: double.infinity, height: 8),
 
-                TextShimmer(width: 180.w, height: 8.h, paddingUnder: 0),
+                TextShimmer(width: 180, height: 8, paddingUnder: 0),
               ],
             ),
           ),

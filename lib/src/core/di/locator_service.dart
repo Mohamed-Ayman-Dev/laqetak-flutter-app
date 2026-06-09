@@ -116,6 +116,7 @@ abstract class LocatorService {
   // static Payments get payments => locator<Payments>();
   //
   static StaticPages get staticPages => locator<StaticPages>();
+
   //
   //
   // static Searches get searches => locator<Searches>();

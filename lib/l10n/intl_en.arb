@@ -69,7 +69,11 @@
   "yourPhoneNumber": "your phone number",
   "verificationCodeHasBeenSentToYourPhone": "Verification code has been sent to your phone",
   "city": "City",
+  "attachments": "Attachments",
   "invastroUser": "Invastro User",
+  "openSettings": "Open Settings",
+  "tapToRetry": "Tap to retry",
+  "adjustImage": "Adjust Image",
   "pleaseAgreeToTheTermsAndConditions": "Please agree to the terms and conditions",
   "pleaseAgreeToTheIdea": "Please agree to the idea",
   "deletingNotification": "Deleting notification...",
@@ -79,6 +83,8 @@
   "thereAreNoAdsYet": "There are no ads yet.",
   "thisAdHasNoImages": "This ad has no images",
   "submitComplaint": "Submit Complaint",
+  "permissionRequired": "Permission Required",
+  "pleaseAllowAccessToTheGalleryInSettings": "Please allow access to the gallery in settings.",
   "selectComplaintReason": "Select Complaint Reason",
   "complaintReason": "Complaint Reason",
   "pleaseSelectAComplaintReason": "Please select a complaint reason",
@@ -87,5 +93,6 @@
   "pleaseEnterComplaintDetails": "Please enter complaint details",
   "thereAreNoConversationsYet": "There are no conversations yet.",
   "thereAreNoMoreConversations": "There are no more conversations.",
-  "pressToChat": "Press to chat"
+  "pressToChat": "Press to chat",
+  "thereAreNoMessagesYetStartAConversation": "There are no messages yet, start a conversation"
 }

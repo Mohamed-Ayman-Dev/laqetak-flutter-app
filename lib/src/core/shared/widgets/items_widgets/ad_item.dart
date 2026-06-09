@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 import 'package:invastro/src/core/shared/widgets/items_widgets/detail_item.dart';
 import 'package:invastro/src/core/shared/widgets/labels_widgets/ad_expired_label.dart';
 import 'package:invastro/src/core/shared/widgets/labels_widgets/ad_label.dart';
@@ -232,15 +232,8 @@ class AdItem extends StatelessWidget {
   Widget _buildImage() => Stack(
     alignment: Alignment.topCenter,
     children: [
-      ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: CachedNetworkImage(
-          imageUrl: image,
-          fit: BoxFit.cover,
-          height: 108.h,
-          width: 133.w,
-        ),
-      ),
+      CustomImage(imageUrl: image, height: 108, width: 133, borderRadius: 10),
+
       AdLabel(labelText: category ?? ''),
       if (expired) Positioned(top: 82.h, left: 72.w, child: AdExpiredLabel()),
     ],

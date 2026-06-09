@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "adjustImage": MessageLookupByLibrary.simpleMessage("تعديل الصورة"),
+    "attachments": MessageLookupByLibrary.simpleMessage("المرفقات"),
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "changesHaveBeenSavedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم حفظ التغييرات بنجاح",
@@ -74,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "notificationDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم حذف الإشعار بنجاح",
     ),
+    "openSettings": MessageLookupByLibrary.simpleMessage("فتح الإعدادات"),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       " كلمة المرور لا يمكن ان تكون فارغة",
     ),
@@ -82,6 +85,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "كلمات المرور غير متطابقة",
+    ),
+    "permissionRequired": MessageLookupByLibrary.simpleMessage(
+      "الصلاحية مطلوبة",
     ),
     "phoneNumberShouldBeAtLeast9Characters":
         MessageLookupByLibrary.simpleMessage(
@@ -93,6 +99,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseAgreeToTheTermsAndConditions": MessageLookupByLibrary.simpleMessage(
       "يرجى الموافقة على الشروط والأحكام",
     ),
+    "pleaseAllowAccessToTheGalleryInSettings":
+        MessageLookupByLibrary.simpleMessage(
+          "للمتابعة، يرجى منح الوصول إلى المعرض من إعدادات الجهاز.",
+        ),
     "pleaseAllowNotificationsPermissionToGetUpdatesInSettings":
         MessageLookupByLibrary.simpleMessage(
           "من فضلك قم بتفعيل اذن الاشعارات في الاعدادات للحصول على التحديثات.",
@@ -169,6 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Something went wrong",
     ),
     "submitComplaint": MessageLookupByLibrary.simpleMessage("تقديم شكوى"),
+    "tapToRetry": MessageLookupByLibrary.simpleMessage("اضغط لإعادة المحاولة"),
     "thereAreNoAdsYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد إعلانات حتى الآن.",
     ),
@@ -181,6 +192,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "thereAreNoFavoriteStoresYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد متاجر مفضلة حتى الآن",
     ),
+    "thereAreNoMessagesYetStartAConversation":
+        MessageLookupByLibrary.simpleMessage(
+          "There are no messages yet, start a conversation",
+        ),
     "thereAreNoMoreAds": MessageLookupByLibrary.simpleMessage(
       "لا توجد إعلانات أخرى.",
     ),

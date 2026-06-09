@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "adjustImage": MessageLookupByLibrary.simpleMessage("Adjust Image"),
+    "attachments": MessageLookupByLibrary.simpleMessage("Attachments"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancellationReasonIsRequired": MessageLookupByLibrary.simpleMessage(
       "Cancellation reason is required",
@@ -79,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "notificationDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Notification deleted successfully",
     ),
+    "openSettings": MessageLookupByLibrary.simpleMessage("Open Settings"),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       "Password cannot be empty",
     ),
@@ -92,6 +95,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "Passwords do not match",
     ),
+    "permissionRequired": MessageLookupByLibrary.simpleMessage(
+      "Permission Required",
+    ),
     "phoneNumberShouldBeAtLeast9Characters":
         MessageLookupByLibrary.simpleMessage(
           "Phone number should be at least 9 characters",
@@ -102,6 +108,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseAgreeToTheTermsAndConditions": MessageLookupByLibrary.simpleMessage(
       "Please agree to the terms and conditions",
     ),
+    "pleaseAllowAccessToTheGalleryInSettings":
+        MessageLookupByLibrary.simpleMessage(
+          "Please allow access to the gallery in settings.",
+        ),
     "pleaseAllowNotificationsPermissionToGetUpdatesInSettings":
         MessageLookupByLibrary.simpleMessage(
           "Please allow notifications permission to get updates in settings",
@@ -179,6 +189,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Something went wrong",
     ),
     "submitComplaint": MessageLookupByLibrary.simpleMessage("Submit Complaint"),
+    "tapToRetry": MessageLookupByLibrary.simpleMessage("Tap to retry"),
     "thereAreNoAdsYet": MessageLookupByLibrary.simpleMessage(
       "There are no ads yet.",
     ),
@@ -191,6 +202,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "thereAreNoFavoriteStoresYet": MessageLookupByLibrary.simpleMessage(
       "There are no favorite stores yet",
     ),
+    "thereAreNoMessagesYetStartAConversation":
+        MessageLookupByLibrary.simpleMessage(
+          "There are no messages yet, start a conversation",
+        ),
     "thereAreNoMoreAds": MessageLookupByLibrary.simpleMessage(
       "There are no more ads..",
     ),

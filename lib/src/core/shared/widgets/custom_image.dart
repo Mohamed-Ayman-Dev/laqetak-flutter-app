@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
-import 'package:invastro/src/core/shared/widgets/app_loading_indicator.dart';
+import 'package:invastro/src/core/shared/widgets/shimmer_wrapper.dart';
 
 class CustomImage extends StatelessWidget {
   final String imageUrl;
@@ -16,7 +16,7 @@ class CustomImage extends StatelessWidget {
     super.key,
     required this.imageUrl,
     this.placeholder,
-    this.showLoading = false,
+    this.showLoading = true,
     this.borderRadius = 10,
     this.width = 133,
     this.height = 108,
@@ -31,12 +31,22 @@ class CustomImage extends StatelessWidget {
         height: height.h,
         width: width.w,
         fit: BoxFit.cover,
+
+        // placeholder: showLoading
+        //     ? (context, url) => Container(
+        //         height: height.h,
+        //         width: width.w,
+        //         color: Colors.grey[200],
+        //         child: const Center(child: AppLoadingIndicator()),
+        //       )
+        //     : null,
         placeholder: showLoading
-            ? (context, url) => Container(
-                height: height.h,
-                width: width.w,
-                color: Colors.grey[200],
-                child: const Center(child: AppLoadingIndicator()),
+            ? (context, url) => ShimmerWrapper(
+                child: Container(
+                  height: height.h,
+                  width: width.w,
+                  color: Colors.grey.shade200,
+                ),
               )
             : null,
         errorWidget: (context, url, error) => Container(

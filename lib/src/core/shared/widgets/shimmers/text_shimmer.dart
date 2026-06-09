@@ -26,13 +26,12 @@ class TextShimmer extends StatelessWidget {
     return ShimmerWrapper(
       child: Container(
         width: width ?? double.infinity,
-        margin:
-            EdgeInsets.only(
-              top: paddingTop ?? 8,
-              bottom: paddingUnder ?? 8,
-              right: paddingRight ?? 0,
-              left: paddingLeft ?? 0,
-            ).r,
+        margin: EdgeInsets.only(
+          top: paddingTop ?? 2,
+          bottom: paddingUnder ?? 2,
+          right: paddingRight ?? 0,
+          left: paddingLeft ?? 0,
+        ).r,
         height: height?.h ?? 7.h,
         decoration: BoxDecoration(
           color: Colors.white,

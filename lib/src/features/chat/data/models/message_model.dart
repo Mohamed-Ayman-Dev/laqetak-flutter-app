@@ -1,5 +1,6 @@
-import 'package:invastro/src/features/chat/data/models/file_model.dart';
+import 'package:invastro/src/features/chat/data/models/message_file_model.dart';
 
+import '../../../../core/constants/enums.dart';
 import '../../../../core/shared/models/customer_model.dart';
 
 /// id : 4
@@ -25,32 +26,57 @@ class MessageModel {
     this.sender,
     this.createdAt,
     this.createdAtHuman,
+    this.isTemp = false,
+    this.status = MessageStatus.sent,
   });
 
-  MessageModel.fromJson(dynamic json) {
-    id = json['id'];
-    message = json['message'];
-    if (json['files'] != null) {
-      files = [];
-      json['files'].forEach((v) {
-        files?.add(FileModel.fromJson(v));
-      });
-    }
-    isMine = json['is_mine'];
-    isSeen = json['is_seen'];
-    seenAt = json['seen_at'];
-    seenAtHuman = json['seen_at_human'];
-    sender = json['sender'] != null
-        ? CustomerModel.fromJson(json['sender'])
-        : null;
-    createdAt = json['created_at'];
-    createdAtHuman = json['created_at_human'];
+  factory MessageModel.fromJson(dynamic json) {
+    return MessageModel(
+      id: json['id'],
+      message: json['message'],
+      files: json['files'] != null
+          ? (json['files'] as List)
+                .map((file) => MessageFileModel.fromJson(file))
+                .toList()
+          : null,
+      isMine: json['is_mine'],
+      isSeen: json['is_seen'],
+      seenAt: json['seen_at'],
+      seenAtHuman: json['seen_at_human'],
+      sender: json['sender'] != null
+          ? CustomerModel.fromJson(json['sender'])
+          : null,
+      createdAt: json['created_at'],
+      createdAtHuman: json['created_at_human'],
+      status: MessageStatus.sent,
+      isTemp: json['isTemp'] ?? false,
+    );
+  }
+
+  factory MessageModel.fromPusher(Map<String, dynamic> json) {
+    return MessageModel(
+      id: json['messageId'],
+      message: json['message'],
+      isTemp: json['isTemp'] ?? false,
+      // messageOwner: json['whoSent'] == 'customer',
+      // seen: 0,
+      seenAt: null,
+      createdAt: json['time'],
+      files: json['files'] != null
+          ? (json['files'] as List)
+                .map((file) => MessageFileModel.fromJson(file))
+                .toList()
+          : null,
+      status: MessageStatus.sent,
+    );
   }
 
   num? id;
   String? message;
-  List<FileModel>? files;
+  List<MessageFileModel>? files;
   bool? isMine;
+  MessageStatus status;
+  late bool isTemp;
   bool? isSeen;
   dynamic seenAt;
   dynamic seenAtHuman;
@@ -61,7 +87,7 @@ class MessageModel {
   MessageModel copyWith({
     num? id,
     String? message,
-    List<FileModel>? files,
+    List<MessageFileModel>? files,
     bool? isMine,
     bool? isSeen,
     dynamic seenAt,
@@ -69,6 +95,8 @@ class MessageModel {
     CustomerModel? sender,
     String? createdAt,
     String? createdAtHuman,
+    MessageStatus? status,
+    bool? isTemp,
   }) => MessageModel(
     id: id ?? this.id,
     message: message ?? this.message,
@@ -77,27 +105,25 @@ class MessageModel {
     isSeen: isSeen ?? this.isSeen,
     seenAt: seenAt ?? this.seenAt,
     seenAtHuman: seenAtHuman ?? this.seenAtHuman,
+    isTemp: isTemp ?? this.isTemp,
+    status: status ?? this.status,
     sender: sender ?? this.sender,
     createdAt: createdAt ?? this.createdAt,
     createdAtHuman: createdAtHuman ?? this.createdAtHuman,
   );
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['message'] = message;
-    if (files != null) {
-      map['files'] = files?.map((v) => v.toJson()).toList();
-    }
-    map['is_mine'] = isMine;
-    map['is_seen'] = isSeen;
-    map['seen_at'] = seenAt;
-    map['seen_at_human'] = seenAtHuman;
-    if (sender != null) {
-      map['sender'] = sender?.toJson();
-    }
-    map['created_at'] = createdAt;
-    map['created_at_human'] = createdAtHuman;
-    return map;
+    return {
+      'id': id,
+      'message': message,
+      if (files != null) 'files': files!.map((v) => v.toJson()).toList(),
+      'is_mine': isMine,
+      'is_seen': isSeen,
+      'seen_at': seenAt,
+      'seen_at_human': seenAtHuman,
+      if (sender != null) 'sender': sender!.toJson(),
+      'created_at': createdAt,
+      'created_at_human': createdAtHuman,
+    };
   }
 }

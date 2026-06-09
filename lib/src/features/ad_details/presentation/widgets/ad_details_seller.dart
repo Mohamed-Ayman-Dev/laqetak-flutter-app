@@ -124,6 +124,7 @@ class AdDetailsSeller extends StatelessWidget {
                 onPressed: () {
                   LocatorService.navigationService.currentState?.pushNamed(
                     ChatScreen.routeName,
+                    arguments: {'receiver': customer},
                   );
                 },
               ),

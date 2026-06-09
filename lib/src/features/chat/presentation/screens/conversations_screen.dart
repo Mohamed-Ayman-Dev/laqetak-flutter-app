@@ -126,6 +126,10 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
                                                   .currentState
                                                   ?.pushNamed(
                                                     ChatScreen.routeName,
+                                                    arguments: {
+                                                      'conversation':
+                                                          conversations[index],
+                                                    },
                                                   );
                                             },
                                             desc:

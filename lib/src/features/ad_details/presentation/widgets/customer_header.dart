@@ -49,6 +49,7 @@ class CustomerHeader extends StatelessWidget {
               onTab: () {
                 LocatorService.navigationService.currentState?.pushNamed(
                   ChatScreen.routeName,
+                  arguments: {'receiver': customer},
                 );
               },
             ),

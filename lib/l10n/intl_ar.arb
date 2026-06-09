@@ -17,7 +17,9 @@
   "pleaseAllowAccessToTheGalleryInSettings": "للمتابعة، يرجى منح الوصول إلى المعرض من إعدادات الجهاز.",
   "openSettings": "فتح الإعدادات",
   "cancel": "الغاء",
+  "attachments": "المرفقات",
   "version": "الإصدار",
+  "tapToRetry": "اضغط لإعادة المحاولة",
   "adjustImage": "تعديل الصورة",
   "pleaseEnterIbanConfirmation": "يرجى إدخال تأكيد رقم الآيبان",
   "ibanDoNotMatch": "رقم الآيبان غير متطابق",
@@ -90,5 +92,6 @@
   "pleaseEnterComplaintDetails": "الرجاء إدخال تفاصيل الشكوى",
   "thereAreNoConversationsYet": "لا توجد محادثات حتى الآن.",
   "thereAreNoMoreConversations": "لا توجد المزيد من المحادثات.",
-  "pressToChat": "اضغط لبدء المحادثه"
+  "pressToChat": "اضغط لبدء المحادثه",
+  "thereAreNoMessagesYetStartAConversation": "There are no messages yet, start a conversation"
 }

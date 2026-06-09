@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 import 'package:invastro/src/core/shared/widgets/photoview.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 
@@ -86,7 +86,10 @@ class _AdImageGalleryState extends State<AdImageGallery> {
                       key: ValueKey(_selectedIndex),
                       width: double.infinity,
                       height: 237.h,
-                      child: _AdImage(url: widget.images[_selectedIndex]),
+                      child: _AdImage(
+                        url: widget.images[_selectedIndex],
+                        borderRadius: 10,
+                      ),
                     ),
                   ),
                 ),
@@ -142,7 +145,7 @@ class _AdImageGalleryState extends State<AdImageGallery> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(5),
-                    child: _AdImage(url: widget.images[i]),
+                    child: _AdImage(url: widget.images[i], borderRadius: 5),
                   ),
                 ),
               );
@@ -157,25 +160,28 @@ class _AdImageGalleryState extends State<AdImageGallery> {
 // ─── helper: handles both asset & network ──────────────────────────────────
 
 class _AdImage extends StatelessWidget {
-  const _AdImage({required this.url});
+  const _AdImage({required this.url, required this.borderRadius});
 
   final String url;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: url,
-      fit: BoxFit.cover,
-      placeholder: (context, url) => Container(
-        color: Colors.grey[200],
-        child: const Center(
-          child: CircularProgressIndicator(
-            strokeWidth: 2.5,
-            color: AppColors.primaryColor,
-          ),
-        ),
-      ),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
-    );
+    return CustomImage(imageUrl: url, borderRadius: borderRadius);
   }
+
+  // return CachedNetworkImage(
+  // imageUrl: url,
+  // fit: BoxFit.cover,
+  // placeholder: (context, url) => Container(
+  // color: Colors.grey[200],
+  // child: const Center(
+  // child: CircularProgressIndicator(
+  // strokeWidth: 2.5,
+  // color: AppColors.primaryColor,
+  // ),
+  // ),
+  // ),
+  // errorWidget: (context, url, error) => const Icon(Icons.error),
+  // );
 }
