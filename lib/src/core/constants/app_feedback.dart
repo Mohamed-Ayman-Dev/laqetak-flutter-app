@@ -167,7 +167,10 @@ class _ToastWidgetState extends State<_ToastWidget>
           child: FadeTransition(
             opacity: _opacity,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 14,
+              ).r,
               decoration: BoxDecoration(
                 color: bgColor,
                 borderRadius: BorderRadius.circular(14),
@@ -180,6 +183,7 @@ class _ToastWidgetState extends State<_ToastWidget>
                 ],
               ),
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   // Icon(icon, color: Colors.white, size: 22),
                   !isError
@@ -191,7 +195,7 @@ class _ToastWidgetState extends State<_ToastWidget>
                         )
                       : Icon(icon, color: Colors.white, size: 22),
                   const SizedBox(width: 12),
-                  Expanded(
+                  Flexible(
                     child: Text(
                       widget.message,
                       style: const TextStyle(

@@ -10,6 +10,8 @@ import 'package:invastro/src/features/home/presentation/providers/ads.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/svg_assets.dart';
+import '../../../../core/helpers/others_helper.dart';
+import '../../../home/presentation/controllers/ads_controller.dart';
 
 class AdDetailsHeader extends StatefulWidget {
   final bool isMyAd;
@@ -22,20 +24,17 @@ class AdDetailsHeader extends StatefulWidget {
 }
 
 class _AdDetailsHeaderState extends State<AdDetailsHeader> {
-  void onLike() {
-    setState(() {
-      isLiked = !isLiked;
-    });
-  }
-
-  bool isLiked = false;
-
   Widget _buildLike() => InkWell(
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     onTap: () {
-      HapticFeedback.mediumImpact();
-      onLike();
+      if (isAuth) {
+        HapticFeedback.heavyImpact();
+        AdsController.addOrRemoveAdFromFavorites(ad: widget.ad ?? AdModel());
+      } else {
+        ///guest bottom sheet
+        ///
+      }
     },
     child: Padding(
       padding: const EdgeInsets.all(8.0).r,
@@ -46,10 +45,9 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
         transitionBuilder: (child, animation) =>
             ScaleTransition(scale: animation, child: child),
         child: SvgPicture.asset(
-          isLiked
+          (widget.ad?.isFavorite ?? false)
               ? SvgAssets.assetsSvgFavFillIcon
               : SvgAssets.assetsSvgFavIconUnselected,
-          key: ValueKey(isLiked),
           // ← required for AnimatedSwitcher to detect change
           width: 24.w,
           height: 24.h,

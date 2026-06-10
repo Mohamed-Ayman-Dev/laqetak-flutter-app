@@ -47,6 +47,9 @@
   "yourAddressHasBeenAddedSuccessfully": "تم اضافة العنوان الخاص بك بنجاح",
   "yourAddressHasBeenEditedSuccessfully": "تم تعديل العنوان الخاص بك بنجاح",
   "searchForALocation": "ابحث عن موقع..",
+  "removed": "تم الإزالة",
+  "added": "تمت الإضافة",
+  "toFavoritesSuccessfully": "إلى المفضلة بنجاح",
   "save": "حفظ",
   "youLoggedInSuccessfully": "تم تسجيل الدخول بنجاح",
   "selectCity": "اختر المدينة",
@@ -97,5 +100,6 @@
   "now": "الآن",
   "sending": "جارٍ الإرسال...",
   "apply": "تطبيق",
-  "reset": "إعادة تعيين"
+  "reset": "إعادة تعيين",
+  "thereAreNoFavoriteAdsYet": "There are no favorite ads yet"
 }

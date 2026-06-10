@@ -729,6 +729,26 @@ class S {
     return Intl.message('Tap to retry', name: 'tapToRetry', desc: '', args: []);
   }
 
+  /// `Removed`
+  String get removed {
+    return Intl.message('Removed', name: 'removed', desc: '', args: []);
+  }
+
+  /// `Added`
+  String get added {
+    return Intl.message('Added', name: 'added', desc: '', args: []);
+  }
+
+  /// `To Favorites Successfully`
+  String get toFavoritesSuccessfully {
+    return Intl.message(
+      'To Favorites Successfully',
+      name: 'toFavoritesSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Adjust Image`
   String get adjustImage {
     return Intl.message(
@@ -967,6 +987,16 @@ class S {
   /// `Reset`
   String get reset {
     return Intl.message('Reset', name: 'reset', desc: '', args: []);
+  }
+
+  /// `There are no favorite ads yet`
+  String get thereAreNoFavoriteAdsYet {
+    return Intl.message(
+      'There are no favorite ads yet',
+      name: 'thereAreNoFavoriteAdsYet',
+      desc: '',
+      args: [],
+    );
   }
 }
 

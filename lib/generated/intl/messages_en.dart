@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "added": MessageLookupByLibrary.simpleMessage("Added"),
     "adjustImage": MessageLookupByLibrary.simpleMessage("Adjust Image"),
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),
     "attachments": MessageLookupByLibrary.simpleMessage("Attachments"),
@@ -165,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("Please Wait..."),
     "pressToChat": MessageLookupByLibrary.simpleMessage("Press to chat"),
+    "removed": MessageLookupByLibrary.simpleMessage("Removed"),
     "resend": MessageLookupByLibrary.simpleMessage("Resend"),
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
@@ -203,6 +205,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "thereAreNoDescription": MessageLookupByLibrary.simpleMessage(
       "There are no description.",
     ),
+    "thereAreNoFavoriteAdsYet": MessageLookupByLibrary.simpleMessage(
+      "There are no favorite ads yet",
+    ),
     "thereAreNoFavoriteStoresYet": MessageLookupByLibrary.simpleMessage(
       "There are no favorite stores yet",
     ),
@@ -239,6 +244,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "toContinueResettingYourPassword": MessageLookupByLibrary.simpleMessage(
       "to continue resetting your password",
+    ),
+    "toFavoritesSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "To Favorites Successfully",
     ),
     "toSignIn": MessageLookupByLibrary.simpleMessage("to sign in"),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(

@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "added": MessageLookupByLibrary.simpleMessage("تمت الإضافة"),
     "adjustImage": MessageLookupByLibrary.simpleMessage("تعديل الصورة"),
     "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
     "attachments": MessageLookupByLibrary.simpleMessage("المرفقات"),
@@ -153,6 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("الرجاء الانتظار..."),
     "pressToChat": MessageLookupByLibrary.simpleMessage("اضغط لبدء المحادثه"),
+    "removed": MessageLookupByLibrary.simpleMessage("تم الإزالة"),
     "resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
     "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
     "resetPassword": MessageLookupByLibrary.simpleMessage(
@@ -193,6 +195,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "thereAreNoDescription": MessageLookupByLibrary.simpleMessage(
       "لا يوجد وصف.",
     ),
+    "thereAreNoFavoriteAdsYet": MessageLookupByLibrary.simpleMessage(
+      "There are no favorite ads yet",
+    ),
     "thereAreNoFavoriteStoresYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد متاجر مفضلة حتى الآن",
     ),
@@ -229,6 +234,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "toContinueResettingYourPassword": MessageLookupByLibrary.simpleMessage(
       "لمتابعة إعادة تعيين كلمة المرور",
+    ),
+    "toFavoritesSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "إلى المفضلة بنجاح",
     ),
     "toSignIn": MessageLookupByLibrary.simpleMessage("لتسجيل الدخول"),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(

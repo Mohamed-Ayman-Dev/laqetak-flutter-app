@@ -73,6 +73,9 @@
   "invastroUser": "Invastro User",
   "openSettings": "Open Settings",
   "tapToRetry": "Tap to retry",
+  "removed": "Removed",
+  "added": "Added",
+  "toFavoritesSuccessfully": "To Favorites Successfully",
   "adjustImage": "Adjust Image",
   "pleaseAgreeToTheTermsAndConditions": "Please agree to the terms and conditions",
   "pleaseAgreeToTheIdea": "Please agree to the idea",
@@ -98,5 +101,6 @@
   "now": "Now",
   "sending": "Sending...",
   "apply": "Apply",
-  "reset": "Reset"
+  "reset": "Reset",
+  "thereAreNoFavoriteAdsYet": "There are no favorite ads yet"
 }

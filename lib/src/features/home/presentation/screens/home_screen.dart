@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
@@ -18,6 +19,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/helpers/debouncer.dart';
+import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/widgets/custom_appbar.dart';
 import '../../../../core/shared/widgets/fields_widgets/search_field.dart';
@@ -42,7 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<String> _filters = ['الكل', 'إبحث عن فرصة', 'إبحث عن مستثمر'];
   bool _showSearchIcon = false;
-  final Set<int> _likedAds = {};
   Map<String, dynamic> _filtersData = {};
 
   @override
@@ -295,13 +296,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                           time: ads[index].publishedAt ?? '',
                                           sector: ads[index].sector?.name ?? '',
                                           onLike: () {
-                                            setState(() {
-                                              if (_likedAds.contains(index)) {
-                                                _likedAds.remove(index);
-                                              } else {
-                                                _likedAds.add(index);
-                                              }
-                                            });
+                                            if (isAuth) {
+                                              HapticFeedback.heavyImpact();
+                                              AdsController.addOrRemoveAdFromFavorites(
+                                                ad: ads[index],
+                                              );
+                                            } else {
+                                              ///guest bottom sheet
+                                              ///
+                                            }
                                           },
 
                                           isLiked:
