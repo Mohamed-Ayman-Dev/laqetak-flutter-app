@@ -7,7 +7,11 @@ import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
 
 class AdsController {
-  static Future<void> getAds({bool refresh = false}) async {
+  static Future<void> getAds({
+    bool refresh = false,
+    num? typeId,
+    String? search,
+  }) async {
     LocatorService.ads.updateLoading('loadingAds', true);
 
     try {
@@ -16,7 +20,11 @@ class AdsController {
       int nextPage = refresh ? 1 : ((currentPage ?? 0) + 1);
       if (!refresh && currentPage != null && currentPage == lastPage) return;
       final response = await LocatorService.adsService.getAds(
-        queryParameters: {'page': nextPage},
+        queryParameters: {
+          'page': nextPage,
+          'category_id': typeId,
+          'search': search,
+        },
         rethrowError: true,
       );
       response["data"] = response["data"]

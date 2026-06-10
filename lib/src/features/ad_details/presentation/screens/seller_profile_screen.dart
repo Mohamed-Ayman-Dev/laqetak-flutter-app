@@ -218,9 +218,7 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
                                                           ?.name ??
                                                       '',
                                                   location:
-                                                      ads[index]
-                                                          .customer
-                                                          ?.name ??
+                                                      ads[index].city?.name ??
                                                       '',
                                                   name: ads[index].title ?? '',
                                                   price:

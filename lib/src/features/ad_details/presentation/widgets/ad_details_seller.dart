@@ -23,6 +23,7 @@ class AdDetailsSeller extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMe = customer?.id == LocatorService.auth.user?.id;
     return Container(
       padding: EdgeInsets.fromLTRB(10, 8, 10, 20).r,
       decoration: BoxDecoration(
@@ -75,78 +76,83 @@ class AdDetailsSeller extends StatelessWidget {
             ),
           ),
           13.heightSpace,
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.sellerNumberBKColor.withOpacity(0.5),
-              borderRadius: BorderRadius.circular(10),
-            ),
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {},
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.sellerNumberBKColor.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(10),
+              ),
 
-            margin: EdgeInsets.symmetric(horizontal: 6).r,
-            padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18).r,
-            child: Row(
+              margin: EdgeInsets.symmetric(horizontal: 6).r,
+              padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18).r,
+              child: Row(
+                children: [
+                  Text(
+                    'رقم التواصل',
+                    style: AppTextStyles.bodyMedium.copyWith(
+                      color: AppColors.numberLabelTextColor,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    phone ?? '',
+                    style: AppTextStyles.labelSmall.copyWith(
+                      fontSize: 15.sp,
+                      color: AppColors.numberLabelTextColor,
+                    ),
+                  ),
+                  12.widthSpace,
+                  SvgPicture.asset(
+                    SvgAssets.assetsSvgCall,
+                    height: 18.h,
+                    width: 18.w,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          if (!isMe) Divider(height: 30.h),
+          if (!isMe)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  'رقم التواصل',
-                  style: AppTextStyles.bodyMedium.copyWith(
-                    color: AppColors.numberLabelTextColor,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w300,
+                CustomElevatedButton(
+                  text: 'مراسلة',
+                  textStyle: AppTextStyles.labelLarge.copyWith(fontSize: 12.sp),
+                  borderRadius: 35,
+                  icon: SvgAssets.assetsSvgChatIcon,
+                  size: Size(97.w, 36.h),
+                  borderColor: AppColors.reportBorderColor,
+                  onPressed: () {
+                    LocatorService.navigationService.currentState?.pushNamed(
+                      ChatScreen.routeName,
+                      arguments: {'receiver': customer},
+                    );
+                  },
+                ),
+                7.widthSpace,
+                CustomOutlineButton(
+                  text: 'الإبلاغ',
+                  textStyle: AppTextStyles.buttonsTextStyle.copyWith(
+                    color: AppColors.labelTextColor,
+                    fontSize: 12.sp,
                   ),
+                  size: Size(97.w, 36.h),
+                  borderColor: AppColors.reportBorderColor,
+                  onPressed: () {
+                    DialogHelpers.showReportDialog(
+                      customer?.id ?? 0,
+                      isCustomerReport: true,
+                    );
+                  },
                 ),
-                Spacer(),
-                Text(
-                  phone ?? '',
-                  style: AppTextStyles.labelSmall.copyWith(
-                    fontSize: 15.sp,
-                    color: AppColors.numberLabelTextColor,
-                  ),
-                ),
-                12.widthSpace,
-                SvgPicture.asset(
-                  SvgAssets.assetsSvgCall,
-                  height: 18.h,
-                  width: 18.w,
-                ),
+                6.widthSpace,
               ],
             ),
-          ),
-          Divider(height: 30.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              CustomElevatedButton(
-                text: 'مراسلة',
-                textStyle: AppTextStyles.labelLarge.copyWith(fontSize: 12.sp),
-                borderRadius: 35,
-                icon: SvgAssets.assetsSvgChatIcon,
-                size: Size(97.w, 36.h),
-                borderColor: AppColors.reportBorderColor,
-                onPressed: () {
-                  LocatorService.navigationService.currentState?.pushNamed(
-                    ChatScreen.routeName,
-                    arguments: {'receiver': customer},
-                  );
-                },
-              ),
-              7.widthSpace,
-              CustomOutlineButton(
-                text: 'الإبلاغ',
-                textStyle: AppTextStyles.buttonsTextStyle.copyWith(
-                  color: AppColors.labelTextColor,
-                  fontSize: 12.sp,
-                ),
-                size: Size(97.w, 36.h),
-                borderColor: AppColors.reportBorderColor,
-                onPressed: () {
-                  DialogHelpers.showReportDialog(
-                    customer?.id ?? 0,
-                    isCustomerReport: true,
-                  );
-                },
-              ),
-              6.widthSpace,
-            ],
-          ),
         ],
       ),
     );

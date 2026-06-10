@@ -19,6 +19,8 @@ class CustomerHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMe = customer?.id == LocatorService.auth.user?.id;
+
     return Column(
       children: [
         CustomImage(
@@ -38,36 +40,38 @@ class CustomerHeader extends StatelessWidget {
             color: AppColors.labelSmallGreyTextColor,
           ),
         ),
-        24.heightSpace,
-        Row(
-          children: [
-            45.widthSpace,
-            SmallIconButton(
-              icon: SvgAssets.assetsSvgChatDotsIcon,
-              height: 34.h,
-              width: 34.w,
-              onTab: () {
-                LocatorService.navigationService.currentState?.pushNamed(
-                  ChatScreen.routeName,
-                  arguments: {'receiver': customer},
-                );
-              },
-            ),
-            Spacer(),
-            SmallIconButton(
-              icon: SvgAssets.assetsSvgReportCircle,
-              height: 34.h,
-              width: 34.w,
-              onTab: () {
-                DialogHelpers.showReportDialog(
-                  customer?.id ?? 0,
-                  isCustomerReport: true,
-                );
-              },
-            ),
-            45.widthSpace,
-          ],
-        ),
+        if (!isMe) 24.heightSpace,
+
+        if (!isMe)
+          Row(
+            children: [
+              45.widthSpace,
+              SmallIconButton(
+                icon: SvgAssets.assetsSvgChatDotsIcon,
+                height: 34.h,
+                width: 34.w,
+                onTab: () {
+                  LocatorService.navigationService.currentState?.pushNamed(
+                    ChatScreen.routeName,
+                    arguments: {'receiver': customer},
+                  );
+                },
+              ),
+              Spacer(),
+              SmallIconButton(
+                icon: SvgAssets.assetsSvgReportCircle,
+                height: 34.h,
+                width: 34.w,
+                onTab: () {
+                  DialogHelpers.showReportDialog(
+                    customer?.id ?? 0,
+                    isCustomerReport: true,
+                  );
+                },
+              ),
+              45.widthSpace,
+            ],
+          ),
       ],
     );
   }

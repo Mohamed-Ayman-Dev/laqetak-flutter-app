@@ -37,7 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchController = TextEditingController();
   final _searchDeBouncer = Debouncer(milliseconds: 300);
   final FocusNode focusNode = FocusNode();
-  int _selectedFilterIndex = 0;
+  int? _selectedFilterIndex;
+
   final List<String> _filters = ['الكل', 'إبحث عن فرصة', 'إبحث عن مستثمر'];
   bool _showSearchIcon = false;
   final Set<int> _likedAds = {};
@@ -46,7 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      AdsController.getAds(refresh: true);
+      AdsController.getAds(
+        refresh: true,
+        typeId: _selectedFilterIndex,
+        search: searchController.text,
+      );
       _scrollController.addListener(() {
         final shouldShow = _scrollController.offset > 64.h;
         if (shouldShow != _showSearchIcon) {
@@ -66,7 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _refresh() async {
     final refreshController = _refreshController;
-    await AdsController.getAds(refresh: true);
+    await AdsController.getAds(
+      refresh: true,
+      typeId: _selectedFilterIndex,
+      search: searchController.text,
+    );
     refreshController.refreshCompleted();
   }
 
@@ -77,7 +86,11 @@ class _HomeScreenState extends State<HomeScreen> {
       _debounce?.cancel();
       _debounce = Timer(const Duration(milliseconds: 200), () async {
         _gettingData = true;
-        await AdsController.getAds(refresh: false);
+        await AdsController.getAds(
+          refresh: false,
+          typeId: _selectedFilterIndex,
+          search: searchController.text,
+        );
         _gettingData = false;
       });
     }
@@ -87,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     _scrollController.dispose();
     _refreshController.dispose();
+    searchController.dispose();
     _debounce?.cancel();
     super.dispose();
   }
@@ -110,7 +124,6 @@ class _HomeScreenState extends State<HomeScreen> {
         dontShowBackButton: true,
       ),
 
-      // drawer: const CustomDrawer(),
       body: SmartRefresher(
         scrollController: _scrollController,
         controller: _refreshController,
@@ -139,7 +152,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: SearchField(
                       searchController: searchController,
                       focusNode: focusNode,
-                      onSubmittedSearch: (val) => _searchDeBouncer.run(() {}),
+                      onChanged: (val) {
+                        _searchDeBouncer.run(() {
+                          AdsController.getAds(
+                            refresh: true,
+                            search: searchController.text,
+                            typeId: _selectedFilterIndex,
+                          );
+                        });
+                      },
                       onFilterSearch: (form) {},
                     ),
                   ),
@@ -153,9 +174,20 @@ class _HomeScreenState extends State<HomeScreen> {
               pinned: true,
               delegate: FilterHeaderDelegate(
                 filters: _filters,
-                selectedIndex: _selectedFilterIndex,
+                selectedIndex: _selectedFilterIndex ?? 0,
                 onFilterTap: (index) {
-                  setState(() => _selectedFilterIndex = index);
+                  setState(() {
+                    if (index == 0) {
+                      _selectedFilterIndex = null;
+                    } else {
+                      _selectedFilterIndex = index;
+                    }
+                  });
+                  AdsController.getAds(
+                    refresh: true,
+                    search: searchController.text,
+                    typeId: _selectedFilterIndex,
+                  );
                 },
               ),
             ),
@@ -218,8 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               '${ads[index].mainPhoto}-$index-home',
                                           customerName:
                                               ads[index].customer?.name ?? '',
-                                          location:
-                                              ads[index].customer?.name ?? '',
+                                          location: ads[index].city?.name ?? '',
                                           name: ads[index].title ?? '',
                                           price:
                                               ads[index].investmentAmount ?? '',

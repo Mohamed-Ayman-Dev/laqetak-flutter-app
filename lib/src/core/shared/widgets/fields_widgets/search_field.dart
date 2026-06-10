@@ -11,14 +11,14 @@ import '../../../di/locator_service.dart';
 import '../fields_widgets/custom_textField.dart';
 
 class SearchField extends StatelessWidget {
-  final void Function(String?)? onSubmittedSearch;
+  final void Function(String?)? onChanged;
   final void Function(Map<String, dynamic>)? onFilterSearch;
   final TextEditingController? searchController;
   final FocusNode? focusNode;
 
   const SearchField({
     super.key,
-    this.onSubmittedSearch,
+    this.onChanged,
     this.searchController,
     this.onFilterSearch,
     this.focusNode,
@@ -35,8 +35,8 @@ class SearchField extends StatelessWidget {
               tag: 'appbar-search',
               child: CustomTextField(
                 borderColor: Colors.transparent,
-                onSubmitted: onSubmittedSearch,
-                onChanged: onSubmittedSearch,
+                onSubmitted: onChanged,
+                onChanged: onChanged,
                 focusNode: focusNode,
                 controller: searchController,
                 hintText: "البحث",
@@ -46,7 +46,7 @@ class SearchField extends StatelessWidget {
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () {
-                    onSubmittedSearch!(searchController?.text);
+                    onChanged!(searchController?.text);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(14.0).r,
