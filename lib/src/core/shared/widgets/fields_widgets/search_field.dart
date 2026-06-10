@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -5,16 +6,18 @@ import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/my_icon_button.dart';
 import 'package:invastro/src/core/themes/colors.dart';
-import 'package:invastro/src/features/home/presentation/screens/filter_screen.dart';
+import 'package:invastro/src/features/home/presentation/providers/ads.dart';
+import 'package:provider/provider.dart';
 
-import '../../../di/locator_service.dart';
 import '../fields_widgets/custom_textField.dart';
+import '../notify_circle.dart';
 
 class SearchField extends StatelessWidget {
   final void Function(String?)? onChanged;
-  final void Function(Map<String, dynamic>)? onFilterSearch;
+  final void Function()? onFilterSearch;
   final TextEditingController? searchController;
   final FocusNode? focusNode;
+  final bool loadingAds;
 
   const SearchField({
     super.key,
@@ -22,6 +25,7 @@ class SearchField extends StatelessWidget {
     this.searchController,
     this.onFilterSearch,
     this.focusNode,
+    this.loadingAds = false,
   });
 
   @override
@@ -42,21 +46,23 @@ class SearchField extends StatelessWidget {
                 hintText: "البحث",
                 borderRadius: 20,
                 fillColor: AppColors.searchBKColor,
-                suffixIcon: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () {
-                    onChanged!(searchController?.text);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(14.0).r,
-                    child: SvgPicture.asset(
-                      SvgAssets.assetsSvgSearchIcon,
-                      height: 24.h,
-                      width: 24.w,
-                    ),
-                  ),
-                ),
+                suffixIcon: loadingAds
+                    ? const CupertinoActivityIndicator()
+                    : InkWell(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () {
+                          onChanged!(searchController?.text);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(14.0).r,
+                          child: SvgPicture.asset(
+                            SvgAssets.assetsSvgSearchIcon,
+                            height: 24.h,
+                            width: 24.w,
+                          ),
+                        ),
+                      ),
                 // suffix: InkWell(
                 //   splashColor: Colors.transparent,
                 //   onTap: () {
@@ -78,15 +84,24 @@ class SearchField extends StatelessWidget {
             ),
           ),
           6.widthSpace,
-          MyIconButton(
-            icon: SvgAssets.assetsSvgFilterIcon,
-            onTap: () {
-              LocatorService.navigationService.currentState?.pushNamed(
-                FilterScreen.routeName,
-              );
-            },
-            borderRadius: 20,
-            bkColor: AppColors.searchBKColor,
+          Stack(
+            children: [
+              MyIconButton(
+                icon: SvgAssets.assetsSvgFilterIcon,
+                onTap: onFilterSearch,
+                borderRadius: 20,
+                bkColor: AppColors.searchBKColor,
+              ),
+              Selector<Ads, Map?>(
+                selector: (context, provider) => provider.filters,
+                builder: (context, filters, child) {
+                  return NotifyCircle(
+                    showNotify:
+                        filters != null && filters.values.any((e) => e != null),
+                  );
+                },
+              ),
+            ],
           ),
         ],
       ),

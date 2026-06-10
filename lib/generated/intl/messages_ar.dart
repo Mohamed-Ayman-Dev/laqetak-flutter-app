@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "adjustImage": MessageLookupByLibrary.simpleMessage("تعديل الصورة"),
+    "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
     "attachments": MessageLookupByLibrary.simpleMessage("المرفقات"),
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "changesHaveBeenSavedSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -153,6 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseWait": MessageLookupByLibrary.simpleMessage("الرجاء الانتظار..."),
     "pressToChat": MessageLookupByLibrary.simpleMessage("اضغط لبدء المحادثه"),
     "resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
+    "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
     "resetPassword": MessageLookupByLibrary.simpleMessage(
       "إعادة تعيين كلمة المرور",
     ),

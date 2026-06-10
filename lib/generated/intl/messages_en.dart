@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "adjustImage": MessageLookupByLibrary.simpleMessage("Adjust Image"),
+    "apply": MessageLookupByLibrary.simpleMessage("Apply"),
     "attachments": MessageLookupByLibrary.simpleMessage("Attachments"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancellationReasonIsRequired": MessageLookupByLibrary.simpleMessage(
@@ -165,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseWait": MessageLookupByLibrary.simpleMessage("Please Wait..."),
     "pressToChat": MessageLookupByLibrary.simpleMessage("Press to chat"),
     "resend": MessageLookupByLibrary.simpleMessage("Resend"),
+    "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "savePassword": MessageLookupByLibrary.simpleMessage("Save Password"),

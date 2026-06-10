@@ -8,9 +8,15 @@ class Ads with ChangeNotifier {
   AdsLoadingModel adsLoadingModel = AdsLoadingModel();
   PaginationList<AdModel>? myAds;
   Map<num, AdModel> myAdDetails = {};
+  Map<String, dynamic> filters = {};
 
   void updateLoading(String key, dynamic value) {
     adsLoadingModel.updateValue(key, value);
+    notifyListeners();
+  }
+
+  void setFilters(Map<String, dynamic> data) {
+    filters = data;
     notifyListeners();
   }
 

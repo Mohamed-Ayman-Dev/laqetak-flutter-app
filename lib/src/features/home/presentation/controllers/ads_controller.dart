@@ -9,11 +9,15 @@ import '../../../../core/helpers/dialog_helpers.dart';
 class AdsController {
   static Future<void> getAds({
     bool refresh = false,
+    bool showLoadingSearch = false,
+    Map<String, dynamic>? filters,
     num? typeId,
     String? search,
   }) async {
     LocatorService.ads.updateLoading('loadingAds', true);
-
+    if (showLoadingSearch) {
+      LocatorService.ads.updateLoading('loadingSearch', true);
+    }
     try {
       int? currentPage = LocatorService.ads.myAds?.currentPage;
       int? lastPage = LocatorService.ads.myAds?.lastPage;
@@ -24,6 +28,7 @@ class AdsController {
           'page': nextPage,
           'category_id': typeId,
           'search': search,
+          ...?filters,
         },
         rethrowError: true,
       );
@@ -35,6 +40,9 @@ class AdsController {
       ErrorHelper.handleApiError(e);
     } finally {
       LocatorService.ads.updateLoading('loadingAds', false);
+      if (showLoadingSearch) {
+        LocatorService.ads.updateLoading('loadingSearch', false);
+      }
     }
   }
 

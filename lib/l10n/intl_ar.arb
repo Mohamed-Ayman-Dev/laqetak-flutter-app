@@ -95,5 +95,7 @@
   "pressToChat": "اضغط لبدء المحادثه",
   "thereAreNoMessagesYetStartAConversation": "لا توجد رسائل حتى الآن، ابدأ محادثة",
   "now": "الآن",
-  "sending": "جارٍ الإرسال..."
+  "sending": "جارٍ الإرسال...",
+  "apply": "تطبيق",
+  "reset": "إعادة تعيين"
 }

@@ -23,6 +23,7 @@ import '../../../../core/shared/widgets/custom_appbar.dart';
 import '../../../../core/shared/widgets/fields_widgets/search_field.dart';
 import '../../../../core/shared/widgets/lists_widgets/smart_refresher_header.dart';
 import '../widgets/home_filters_header.dart';
+import 'filter_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home_screen';
@@ -42,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<String> _filters = ['الكل', 'إبحث عن فرصة', 'إبحث عن مستثمر'];
   bool _showSearchIcon = false;
   final Set<int> _likedAds = {};
+  Map<String, dynamic> _filtersData = {};
 
   @override
   void initState() {
@@ -49,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       AdsController.getAds(
         refresh: true,
+        filters: _filtersData,
         typeId: _selectedFilterIndex,
         search: searchController.text,
       );
@@ -73,6 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final refreshController = _refreshController;
     await AdsController.getAds(
       refresh: true,
+      filters: _filtersData,
+
       typeId: _selectedFilterIndex,
       search: searchController.text,
     );
@@ -89,6 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
         await AdsController.getAds(
           refresh: false,
           typeId: _selectedFilterIndex,
+          filters: _filtersData,
+
           search: searchController.text,
         );
         _gettingData = false;
@@ -149,19 +156,48 @@ class _HomeScreenState extends State<HomeScreen> {
                   ).copyWith(bottom: 8.h),
                   child: Align(
                     alignment: Alignment.bottomCenter,
-                    child: SearchField(
-                      searchController: searchController,
-                      focusNode: focusNode,
-                      onChanged: (val) {
-                        _searchDeBouncer.run(() {
-                          AdsController.getAds(
-                            refresh: true,
-                            search: searchController.text,
-                            typeId: _selectedFilterIndex,
-                          );
-                        });
+                    child: Selector<Ads, bool>(
+                      selector: (context, provider) =>
+                          provider.adsLoadingModel.loadingSearch,
+                      builder: (context, loadingAds, child) {
+                        return SearchField(
+                          searchController: searchController,
+                          focusNode: focusNode,
+                          loadingAds: loadingAds,
+                          onChanged: (val) {
+                            _searchDeBouncer.run(() {
+                              AdsController.getAds(
+                                refresh: true,
+                                showLoadingSearch: true,
+                                filters: _filtersData,
+                                search: searchController.text,
+                                typeId: _selectedFilterIndex,
+                              );
+                            });
+                          },
+                          onFilterSearch: () async {
+                            final filters =
+                                await LocatorService
+                                        .navigationService
+                                        .currentState
+                                        ?.pushNamed(
+                                          FilterScreen.routeName,
+                                          arguments: _filtersData,
+                                        )
+                                    as Map<String, dynamic>?;
+
+                            if (filters == null) return;
+                            _filtersData = filters;
+                            AdsController.getAds(
+                              refresh: true,
+                              showLoadingSearch: true,
+                              filters: _filtersData,
+                              search: searchController.text,
+                              typeId: _selectedFilterIndex,
+                            );
+                          },
+                        );
                       },
-                      onFilterSearch: (form) {},
                     ),
                   ),
                 ),
@@ -185,6 +221,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   });
                   AdsController.getAds(
                     refresh: true,
+                    filters: _filtersData,
+
                     search: searchController.text,
                     typeId: _selectedFilterIndex,
                   );

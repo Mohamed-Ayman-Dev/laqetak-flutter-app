@@ -96,5 +96,7 @@
   "pressToChat": "Press to chat",
   "thereAreNoMessagesYetStartAConversation": "There are no messages yet, start a conversation",
   "now": "Now",
-  "sending": "Sending..."
+  "sending": "Sending...",
+  "apply": "Apply",
+  "reset": "Reset"
 }

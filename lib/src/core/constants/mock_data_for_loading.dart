@@ -12,13 +12,23 @@ final class MockDataForLoading {
     DetailsModel(id: 1, name: 'فرصة'),
     DetailsModel(id: 2, name: 'مستثمر'),
   ];
+
   static List<DetailsModel> mockBusiness = [
     DetailsModel(id: 1, name: 'عقاري'),
     DetailsModel(id: 2, name: 'عقاري2'),
   ];
   static List<DetailsModel> mockPrices = [
-    DetailsModel(id: 1, name: ' 500.000  :  100.000'),
-    DetailsModel(id: 2, name: ' 800.000  :  500.000'),
+    DetailsModel(id: 1, name: '100.000 : 500.000 ريال', key: 100000.toString()),
+    DetailsModel(
+      id: 2,
+      name: '500.000 : 1.000.000 ريال',
+      key: 500000.toString(),
+    ),
+    DetailsModel(
+      id: 3,
+      name: ' أكثر من 1.000.000 ريال',
+      key: 1000000.toString(),
+    ),
   ];
   static List<String> detailsImages = [
     ImagesAssets.assetsImagesMockDetailsImage1,
