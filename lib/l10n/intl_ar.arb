@@ -101,5 +101,11 @@
   "sending": "جارٍ الإرسال...",
   "apply": "تطبيق",
   "reset": "إعادة تعيين",
-  "thereAreNoFavoriteAdsYet": "There are no favorite ads yet"
+  "thereAreNoFavoriteAdsYet": "لا توجد إعلانات مفضلة حتى الآن",
+  "pleaseSelectACategory": "يرجى اختيار فئة",
+  "pleaseSelectASector": "يرجى اختيار قطاع",
+  "pleaseEnterYourPrice": "يرجى إدخال السعر",
+  "pleaseEnterAdName": "يرجى إدخال اسم الإعلان",
+  "detailsAreRequired": "Details are required",
+  "numberHasBeenVerifiedSuccessfully": "Number has been verified successfully."
 }

@@ -29,10 +29,22 @@ class AddAdPayScreen extends StatefulWidget {
 class _AddAdPayScreenState extends State<AddAdPayScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  final Map<String, dynamic> _formData = {};
-  final FocusNode _phoneFocusNode = FocusNode();
-  bool _isRequired = false;
   int _selectedCard = 0;
+  bool once = false;
+  Map<String, dynamic>? _formData = {};
+
+  @override
+  void didChangeDependencies() {
+    if (!once) {
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      if (args != null) {
+        _formData = args['data'];
+      }
+      once = true;
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -44,7 +44,6 @@ Future<void> setupServices() async {
     () => NotificationsService(),
   );
   locator.registerLazySingleton<AdDetailsService>(() => AdDetailsService());
-
   locator.registerLazySingleton<MyAdsService>(() => MyAdsService());
   locator.registerLazySingleton<AdsService>(() => AdsService());
   // locator.registerLazySingleton<StoresService>(() => StoresService());
@@ -65,11 +64,11 @@ Future<void> setupServices() async {
   locator.registerLazySingleton<Auth>(() => Auth());
   locator.registerLazySingleton<AuthNavigations>(() => AuthNavigations());
   locator.registerLazySingleton<Others>(() => Others());
-  locator.registerLazySingleton<MyAds>(() => MyAds());
   locator.registerLazySingleton<Notifications>(() => Notifications());
   locator.registerLazySingleton<Timers>(() => Timers());
   locator.registerLazySingleton<Ads>(() => Ads());
   locator.registerLazySingleton<AdDetails>(() => AdDetails());
+  locator.registerLazySingleton<MyAds>(() => MyAds());
   locator.registerLazySingleton<Chat>(() => Chat());
   // locator.registerLazySingleton<Addresses>(() => Addresses());
   // locator.registerLazySingleton<Wallets>(() => Wallets());

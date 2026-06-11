@@ -4,15 +4,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
+import 'package:invastro/src/core/shared/controllers/others_controller.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../../core/constants/mock_data_for_loading.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
+import '../../../../core/shared/models/category_model.dart';
 import '../../../../core/shared/models/details_model.dart';
 import '../../../../core/shared/providers/others.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
@@ -41,9 +42,23 @@ class _AddAdScreenState extends State<AddAdScreen> {
   void didChangeDependencies() {
     if (!once) {
       _isEdit = ModalRoute.of(context)?.settings.arguments as bool? ?? false;
+      OthersController.getCities();
+      OthersController.getSectors();
+      OthersController.getCategories();
+
       once = true;
     }
     super.didChangeDependencies();
+  }
+
+  Future<void> _send() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      LocatorService.navigationService.currentState?.pushNamed(
+        AddAdSecondScreen.routeName,
+        arguments: {'isEdit': _isEdit, 'data': _formData},
+      );
+    }
   }
 
   @override
@@ -76,19 +91,16 @@ class _AddAdScreenState extends State<AddAdScreen> {
                 selector: (context, provider) => provider.myCities,
                 builder: (context, myCities, child) {
                   return MyCustomDropdownFormField(
-                    hint: S.of(context).city,
+                    hint: "اختر المدينة",
                     // items: myCities
-                    items: MockDataForLoading.mockCites
-                        .map<DropdownMenuItem<num>>(
+                    items: myCities
+                        ?.map<DropdownMenuItem<num>>(
                           (e) => DropdownMenuItem<num>(
                             value: e.id,
-                            child: SizedBox(
-                              width: 100.w,
-                              child: Text(
-                                e.name ?? '',
-                                style: AppTextStyles.inputTextStyle,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                            child: Text(
+                              e.name ?? '',
+                              style: AppTextStyles.inputTextStyle,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         )
@@ -103,26 +115,25 @@ class _AddAdScreenState extends State<AddAdScreen> {
                     onChanged: (val) {
                       _formData['city_id'] = val;
                     },
-                    onSaved: (val) {
-                      _formData['city_id'] = val;
-                    },
+                    onSaved: (val) {},
                   );
                 },
               ),
+
               28.heightSpace,
               Text('أدخل عنوان الإعلان', style: AppTextStyles.labelSmall),
               8.heightSpace,
               CustomTextField(
                 hintText: 'اكتب عنوان للإعلان',
                 onSaved: (val) {
-                  _formData['address'] = val;
+                  _formData['title'] = val;
                 },
                 keyboardType: TextInputType.name,
 
                 validator: (value) {
                   return ValidationHelper.validateEmpty(
                     value,
-                    emptyMessage: 'Please enter your address',
+                    emptyMessage: S.of(context).pleaseEnterAdName,
                   );
                 },
                 textInputAction: TextInputAction.next,
@@ -131,40 +142,35 @@ class _AddAdScreenState extends State<AddAdScreen> {
               23.heightSpace,
               Text('إختر القسم الرئيسي', style: AppTextStyles.labelSmall),
               8.heightSpace,
-              Selector<Others, List<DetailsModel>?>(
-                selector: (context, provider) => provider.myCities,
-                builder: (context, myCities, child) {
+              Selector<Others, List<CategoryModel>?>(
+                selector: (context, provider) => provider.myCategories,
+                builder: (context, myCategories, child) {
                   return MyCustomDropdownFormField(
-                    hint: 'القسم',
+                    hint: "اختر القسم",
                     // items: myCities
-                    items: MockDataForLoading.mockCategories
-                        .map<DropdownMenuItem<num>>(
+                    items: myCategories
+                        ?.map<DropdownMenuItem<num>>(
                           (e) => DropdownMenuItem<num>(
                             value: e.id,
-                            child: SizedBox(
-                              width: 100.w,
-                              child: Text(
-                                e.name ?? '',
-                                style: AppTextStyles.inputTextStyle,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                            child: Text(
+                              e.name ?? '',
+                              style: AppTextStyles.inputTextStyle,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         )
                         .toList(),
-                    value: _formData['category_id'],
                     validator: (value) {
                       if (value == null) {
-                        return S.of(context).pleaseSelectACity;
+                        return S.of(context).pleaseSelectACategory;
                       }
                       return null;
                     },
+                    value: _formData['category_id'],
                     onChanged: (val) {
                       _formData['category_id'] = val;
                     },
-                    onSaved: (val) {
-                      _formData['category_id'] = val;
-                    },
+                    onSaved: (val) {},
                   );
                 },
               ),
@@ -172,39 +178,34 @@ class _AddAdScreenState extends State<AddAdScreen> {
               Text('إختر قطاع الإستثمار', style: AppTextStyles.labelSmall),
               8.heightSpace,
               Selector<Others, List<DetailsModel>?>(
-                selector: (context, provider) => provider.myCities,
-                builder: (context, myCities, child) {
+                selector: (context, provider) => provider.mySectors,
+                builder: (context, mySectors, child) {
                   return MyCustomDropdownFormField(
-                    hint: 'القطاع',
+                    hint: "اختر القطاع",
                     // items: myCities
-                    items: MockDataForLoading.mockBusiness
-                        .map<DropdownMenuItem<num>>(
+                    items: mySectors
+                        ?.map<DropdownMenuItem<num>>(
                           (e) => DropdownMenuItem<num>(
                             value: e.id,
-                            child: SizedBox(
-                              width: 100.w,
-                              child: Text(
-                                e.name ?? '',
-                                style: AppTextStyles.inputTextStyle,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                            child: Text(
+                              e.name ?? '',
+                              style: AppTextStyles.inputTextStyle,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         )
                         .toList(),
-                    value: _formData['business_id'],
+                    value: _formData['sector_id'],
                     validator: (value) {
                       if (value == null) {
-                        return S.of(context).pleaseSelectACity;
+                        return S.of(context).pleaseSelectASector;
                       }
                       return null;
                     },
                     onChanged: (val) {
-                      _formData['business_id'] = val;
+                      _formData['sector_id'] = val;
                     },
-                    onSaved: (val) {
-                      _formData['business_id'] = val;
-                    },
+                    onSaved: (val) {},
                   );
                 },
               ),
@@ -212,16 +213,13 @@ class _AddAdScreenState extends State<AddAdScreen> {
               Text('أدخل رأس المال', style: AppTextStyles.labelSmall),
               8.heightSpace,
               CustomTextField(
-                onChanged: (value) {
-                  setState(() {});
-                },
                 onSaved: (val) {
-                  _formData['price'] = val;
+                  _formData['investment_amount'] = val;
                 },
                 validator: (value) {
                   return ValidationHelper.validateEmpty(
                     value,
-                    emptyMessage: 'S.of(context).pleaseEnterYourPrice',
+                    emptyMessage: S.of(context).pleaseEnterYourPrice,
                   );
                 },
                 keyboardType: TextInputType.number,
@@ -243,11 +241,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
                 icon: SvgAssets.assetsSvgArrowRight,
                 size: Size(163.w, 48.h),
                 onPressed: () {
-                  // _send();
-                  LocatorService.navigationService.currentState?.pushNamed(
-                    AddAdSecondScreen.routeName,
-                    arguments: _isEdit,
-                  );
+                  _send();
                 },
               ),
               100.heightSpace,

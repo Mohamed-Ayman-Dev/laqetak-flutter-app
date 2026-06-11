@@ -43,6 +43,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "deletingNotification": MessageLookupByLibrary.simpleMessage(
       "جاري حذف الإشعار...",
     ),
+    "detailsAreRequired": MessageLookupByLibrary.simpleMessage(
+      "Details are required",
+    ),
     "didntReceiveTheCode": MessageLookupByLibrary.simpleMessage(
       "لم يصلك الرمز",
     ),
@@ -79,6 +82,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم حذف الإشعار بنجاح",
     ),
     "now": MessageLookupByLibrary.simpleMessage("الآن"),
+    "numberHasBeenVerifiedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Number has been verified successfully.",
+    ),
     "openSettings": MessageLookupByLibrary.simpleMessage("فتح الإعدادات"),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       " كلمة المرور لا يمكن ان تكون فارغة",
@@ -125,6 +131,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterAValidPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "يجب أن يكون رقم الجوال صحيح",
     ),
+    "pleaseEnterAdName": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال اسم الإعلان",
+    ),
     "pleaseEnterComplaintDetails": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال تفاصيل الشكوى",
     ),
@@ -137,8 +146,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterYourName": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال الاسم",
     ),
+    "pleaseEnterYourPrice": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال السعر",
+    ),
     "pleaseEnterYourUsername": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال اسم المستخدم",
+    ),
+    "pleaseSelectACategory": MessageLookupByLibrary.simpleMessage(
+      "يرجى اختيار فئة",
     ),
     "pleaseSelectACity": MessageLookupByLibrary.simpleMessage(
       "يجب اختيار المدينة",
@@ -148,6 +163,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pleaseSelectARegion": MessageLookupByLibrary.simpleMessage(
       "يجب اختيار المنطقة",
+    ),
+    "pleaseSelectASector": MessageLookupByLibrary.simpleMessage(
+      "يرجى اختيار قطاع",
     ),
     "pleaseVerifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "يرجى التحقق من رقم هاتفك",
@@ -196,7 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا يوجد وصف.",
     ),
     "thereAreNoFavoriteAdsYet": MessageLookupByLibrary.simpleMessage(
-      "There are no favorite ads yet",
+      "لا توجد إعلانات مفضلة حتى الآن",
     ),
     "thereAreNoFavoriteStoresYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد متاجر مفضلة حتى الآن",

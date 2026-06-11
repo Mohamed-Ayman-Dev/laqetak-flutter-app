@@ -5,15 +5,13 @@ import 'package:invastro/src/core/shared/models/redirect_model.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
-import 'package:invastro/src/features/home/presentation/screens/home_layout_screen.dart';
-import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_pay_screen.dart';
+import 'package:invastro/src/features/my_ads/presentation/controllers/my_ads_controller.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/custom_Text.dart';
 import '../../../../core/shared/widgets/fields_widgets/pin_code_widget.dart';
@@ -37,6 +35,7 @@ class _OtpScreenState extends State<OtpScreen> {
   String otp = '';
   late final OtpFlow _flow;
   late final RedirectModel? _redirectData;
+  Map<String, dynamic>? _argsFormData;
 
   @override
   void didChangeDependencies() {
@@ -45,6 +44,7 @@ class _OtpScreenState extends State<OtpScreen> {
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
       _flow = arguments?['from'];
       _redirectData = arguments?['redirectData'];
+      _argsFormData = arguments?['data'];
 
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         LocatorService.timers.startTimer(
@@ -228,9 +228,7 @@ class _OtpScreenState extends State<OtpScreen> {
           // LocatorService.appSettings.changeHomeIndex(0);
           break;
         case OtpFlow.addAd:
-          LocatorService.navigationService.currentState?.pushNamed(
-            AddAdPayScreen.routeName,
-          );
+          MyAdsController.addAdOtp(_argsFormData);
           break;
         case OtpFlow.login:
           // // Login OTP verification (for non-activated accounts)

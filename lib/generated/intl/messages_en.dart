@@ -46,6 +46,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "deletingNotification": MessageLookupByLibrary.simpleMessage(
       "Deleting notification...",
     ),
+    "detailsAreRequired": MessageLookupByLibrary.simpleMessage(
+      "Details are required",
+    ),
     "didntReceiveTheCode": MessageLookupByLibrary.simpleMessage(
       "Didn’t receive the code",
     ),
@@ -84,6 +87,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Notification deleted successfully",
     ),
     "now": MessageLookupByLibrary.simpleMessage("Now"),
+    "numberHasBeenVerifiedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Number has been verified successfully.",
+    ),
     "openSettings": MessageLookupByLibrary.simpleMessage("Open Settings"),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       "Password cannot be empty",
@@ -134,6 +140,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterAValidPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid phone number",
     ),
+    "pleaseEnterAdName": MessageLookupByLibrary.simpleMessage(
+      "Please enter ad name",
+    ),
     "pleaseEnterComplaintDetails": MessageLookupByLibrary.simpleMessage(
       "Please enter complaint details",
     ),
@@ -149,8 +158,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterYourName": MessageLookupByLibrary.simpleMessage(
       "Please enter your name",
     ),
+    "pleaseEnterYourPrice": MessageLookupByLibrary.simpleMessage(
+      "Please enter your price",
+    ),
     "pleaseEnterYourUsername": MessageLookupByLibrary.simpleMessage(
       "Please enter your username",
+    ),
+    "pleaseSelectACategory": MessageLookupByLibrary.simpleMessage(
+      "Please select a category",
     ),
     "pleaseSelectACity": MessageLookupByLibrary.simpleMessage(
       "Please select a city",
@@ -160,6 +175,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pleaseSelectARegion": MessageLookupByLibrary.simpleMessage(
       "Please select a region",
+    ),
+    "pleaseSelectASector": MessageLookupByLibrary.simpleMessage(
+      "Please select a sector",
     ),
     "pleaseVerifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Please verify your phone number",

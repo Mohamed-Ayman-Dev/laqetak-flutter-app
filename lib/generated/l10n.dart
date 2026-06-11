@@ -998,6 +998,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Please select a category`
+  String get pleaseSelectACategory {
+    return Intl.message(
+      'Please select a category',
+      name: 'pleaseSelectACategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a sector`
+  String get pleaseSelectASector {
+    return Intl.message(
+      'Please select a sector',
+      name: 'pleaseSelectASector',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your price`
+  String get pleaseEnterYourPrice {
+    return Intl.message(
+      'Please enter your price',
+      name: 'pleaseEnterYourPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter ad name`
+  String get pleaseEnterAdName {
+    return Intl.message(
+      'Please enter ad name',
+      name: 'pleaseEnterAdName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details are required`
+  String get detailsAreRequired {
+    return Intl.message(
+      'Details are required',
+      name: 'detailsAreRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number has been verified successfully.`
+  String get numberHasBeenVerifiedSuccessfully {
+    return Intl.message(
+      'Number has been verified successfully.',
+      name: 'numberHasBeenVerifiedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

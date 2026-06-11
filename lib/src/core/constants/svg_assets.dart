@@ -110,6 +110,18 @@ class SvgAssets {
   /// assets/svg/filter_icon.svg
   static const String assetsSvgFilterIcon = "assets/svg/filter_icon.svg";
 
+  /// assets/svg/heart-svgrepo-com.svg
+  static const String assetsSvgHeartSvgrepoCom = "assets/svg/heart-svgrepo-com.svg";
+
+  /// assets/svg/heart.svg
+  static const String assetsSvgHeart = "assets/svg/heart.svg";
+
+  /// assets/svg/heartfill-svgrepo-com.svg
+  static const String assetsSvgHeartfillSvgrepoCom = "assets/svg/heartfill-svgrepo-com.svg";
+
+  /// assets/svg/heartfill.svg
+  static const String assetsSvgHeartfill = "assets/svg/heartfill.svg";
+
   /// assets/svg/home_icon_selected.svg
   static const String assetsSvgHomeIconSelected = "assets/svg/home_icon_selected.svg";
 

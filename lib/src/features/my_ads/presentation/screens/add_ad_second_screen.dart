@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/helpers/dialog_helpers.dart';
+import 'package:invastro/src/core/shared/models/redirect_model.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/shared/widgets/fields_widgets/custom_note_field.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/auth/presentation/screens/otp_screen.dart';
 import 'package:invastro/src/features/my_ads/presentation/widgets/ad_image_picker.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/custom_appbar.dart';
 import '../../../../core/shared/widgets/custom_switch.dart';
-import '../../../../core/shared/widgets/fields_widgets/country_code_field.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/themes/text_styles.dart';
 
@@ -31,8 +33,7 @@ class AddAdSecondScreen extends StatefulWidget {
 class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  final Map<String, dynamic> _formData = {};
-  final FocusNode _phoneFocusNode = FocusNode();
+  Map<String, dynamic> _formData = {};
   bool _isRequired = false;
   bool _isEdit = false;
   bool once = false;
@@ -40,10 +41,42 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
   @override
   void didChangeDependencies() {
     if (!once) {
-      _isEdit = ModalRoute.of(context)?.settings.arguments as bool? ?? false;
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      if (args != null) {
+        _isEdit = args['isEdit'];
+        _formData = args['data'];
+      }
       once = true;
     }
     super.didChangeDependencies();
+  }
+
+  Future<void> _send() async {
+    if (_formData['photos[]'] == null || _formData['photos[]'].isEmpty) {
+      AppFeedback.showToast('الرجاء اختيار صورة علي الأقل', isError: true);
+      return;
+    }
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      if (_isEdit) {
+        DialogHelpers.showSuccessDialog(
+          title: 'تهانينا لقد تم تعديل الإعلان بنجاح',
+        );
+      } else {
+        LocatorService.navigationService.currentState?.pushNamed(
+          OtpScreen.routeName,
+          arguments: {
+            'redirectData': RedirectModel(
+              phone: _formData['contact_phone'],
+              remainingSeconds: 120,
+            ),
+            'data': _formData,
+            'from': OtpFlow.addAd,
+          },
+        );
+      }
+    }
   }
 
   @override
@@ -74,7 +107,7 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
               8.heightSpace,
               AdImagePicker(
                 onImagesChanged: (images) {
-                  _formData['images'] = images;
+                  _formData['photos[]'] = images;
                 },
               ),
               17.heightSpace,
@@ -86,45 +119,26 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
                 validator: (value) {
                   return ValidationHelper.validateEmpty(
                     value,
-                    emptyMessage: "S.of(context).messageIsRequired",
+                    emptyMessage: S.of(context).detailsAreRequired,
                   );
                 },
                 onSaved: (val) {
-                  _formData['message'] = val;
+                  _formData['description'] = val;
                 },
               ),
               9.heightSpace,
               Text('رقم التواصل', style: AppTextStyles.labelSmall),
               8.heightSpace,
               CustomTextField(
-                onChanged: (value) {
-                  setState(() {});
-                },
                 onSaved: (val) {
-                  // _data['phone'] = val;
+                  _formData['contact_phone'] = val;
                 },
                 validator: (value) {
-                  // return ValidationHelper.validatePhoneByCountryCode(
-                  //   phone: value,
-                  //   countryCode: data['country_code'],
-                  //   context: context,
-                  // );
+                  return ValidationHelper.validatePhone(value, context);
                 },
-                focusNode: _phoneFocusNode,
                 keyboardType: TextInputType.phone,
-                textInputAction: TextInputAction.next,
-                // controller: _phoneController,
+                textInputAction: TextInputAction.done,
                 hintText: "رقم الجوال",
-                // textDirection: TextDirection.ltr,
-                suffixIcon: CountryCodeField(
-                  focusNode: _phoneFocusNode,
-                  onChanged: (val) {
-                    // data['country_code'] = val.toString();
-                  },
-                  onInit: (val) {
-                    // data['country_code'] = val.toString();
-                  },
-                ),
               ),
               15.heightSpace,
               CustomSwitch(
@@ -139,25 +153,10 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
                     icon: SvgAssets.assetsSvgArrowRight,
                     size: Size(163.w, 48.h),
                     onPressed: () {
-                      // _send();
-                      if (_isEdit) {
-                        DialogHelpers.showSuccessDialog(
-                          title: 'تهانينا لقد تم تعديل الإعلان بنجاح',
-                        );
-                      } else {
-                        LocatorService.navigationService.currentState
-                            ?.pushNamed(
-                              OtpScreen.routeName,
-                              arguments: {
-                                'phone': "058168722",
-                                'from': 'add-ad',
-                                'remainingSeconds': 120,
-                              },
-                            );
-                      }
+                      _send();
                     },
                   ),
-                  16.widthSpace,
+                  12.widthSpace,
                   CustomElevatedButton(
                     text: 'السابق',
                     icon: SvgAssets.assetsSvgArrowLeft,

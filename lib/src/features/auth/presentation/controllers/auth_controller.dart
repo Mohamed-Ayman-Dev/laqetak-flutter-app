@@ -88,8 +88,6 @@ abstract class AuthController {
     }
   }
 
-  /// Verify OTP after registration or login
-  /// Handles token storage and navigation to success screen or home screen
   static Future<void> registerOtp(
     BuildContext context,
     Map<String, dynamic> data, {

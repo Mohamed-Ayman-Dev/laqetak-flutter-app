@@ -102,5 +102,11 @@
   "sending": "Sending...",
   "apply": "Apply",
   "reset": "Reset",
-  "thereAreNoFavoriteAdsYet": "There are no favorite ads yet"
+  "thereAreNoFavoriteAdsYet": "There are no favorite ads yet",
+  "pleaseSelectACategory": "Please select a category",
+  "pleaseSelectASector": "Please select a sector",
+  "pleaseEnterYourPrice": "Please enter your price",
+  "pleaseEnterAdName": "Please enter ad name",
+  "detailsAreRequired": "Details are required",
+  "numberHasBeenVerifiedSuccessfully": "Number has been verified successfully."
 }
