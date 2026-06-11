@@ -10,6 +10,7 @@ import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.da
 import 'package:invastro/src/core/shared/widgets/fields_widgets/custom_note_field.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/auth/presentation/screens/otp_screen.dart';
+import 'package:invastro/src/features/my_ads/presentation/controllers/my_ads_controller.dart';
 import 'package:invastro/src/features/my_ads/presentation/widgets/ad_image_picker.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -33,8 +34,7 @@ class AddAdSecondScreen extends StatefulWidget {
 class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  Map<String, dynamic> _formData = {};
-  bool _isRequired = false;
+  Map<String, dynamic> _formData = {'hide_phone': 0};
   bool _isEdit = false;
   bool once = false;
 
@@ -64,6 +64,10 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
           title: 'تهانينا لقد تم تعديل الإعلان بنجاح',
         );
       } else {
+        // LocatorService.navigationService.currentState?.pushNamed(
+        //   AddAdPayScreen.routeName,
+        //   arguments: data,
+        // );
         LocatorService.navigationService.currentState?.pushNamed(
           OtpScreen.routeName,
           arguments: {
@@ -141,9 +145,15 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
                 hintText: "رقم الجوال",
               ),
               15.heightSpace,
-              CustomSwitch(
-                value: _isRequired,
-                onChanged: (val) => setState(() => _isRequired = val),
+              Row(
+                children: [
+                  CustomSwitch(
+                    value: _formData['hide_phone'] == 1,
+                    onChanged: (val) =>
+                        setState(() => _formData['hide_phone'] = val ? 1 : 0),
+                  ),
+                  Text(S.of(context).hidePhoneNumber),
+                ],
               ),
               10.heightSpace,
               Row(

@@ -1058,6 +1058,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Hide phone number`
+  String get hidePhoneNumber {
+    return Intl.message(
+      'Hide phone number',
+      name: 'hidePhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

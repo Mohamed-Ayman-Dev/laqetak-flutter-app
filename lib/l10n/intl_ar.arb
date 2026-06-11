@@ -107,5 +107,6 @@
   "pleaseEnterYourPrice": "يرجى إدخال السعر",
   "pleaseEnterAdName": "يرجى إدخال اسم الإعلان",
   "detailsAreRequired": "Details are required",
-  "numberHasBeenVerifiedSuccessfully": "Number has been verified successfully."
+  "numberHasBeenVerifiedSuccessfully": "Number has been verified successfully.",
+  "hidePhoneNumber": "Hide phone number"
 }

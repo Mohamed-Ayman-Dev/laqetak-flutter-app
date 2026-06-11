@@ -77,6 +77,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "fromFavoritesSuccessfully": MessageLookupByLibrary.simpleMessage(
       "From Favorites Successfully",
     ),
+    "hidePhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "Hide phone number",
+    ),
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage("Iban do not match"),
     "invastroUser": MessageLookupByLibrary.simpleMessage("Invastro User"),
     "messageIsRequired": MessageLookupByLibrary.simpleMessage(

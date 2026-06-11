@@ -106,4 +106,17 @@ class ChatService {
       rethrowError: rethrowError,
     );
   }
+
+  /// Get Pusher channel authorization for private channels
+  Future<Map<String, dynamic>> getPusherChannelAuth({
+    required String socketId,
+    required String channelName,
+    bool rethrowError = false,
+  }) async {
+    return await ApiService.post(
+      '/pusher/auth',
+      data: {'socket_id': socketId, 'channel_name': channelName},
+      rethrowError: rethrowError,
+    );
+  }
 }

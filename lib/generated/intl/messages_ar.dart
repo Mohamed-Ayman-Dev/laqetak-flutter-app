@@ -72,6 +72,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "fromFavoritesSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تمت الإزالة من المفضلة بنجاح",
     ),
+    "hidePhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "Hide phone number",
+    ),
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "رقم الآيبان غير متطابق",
     ),

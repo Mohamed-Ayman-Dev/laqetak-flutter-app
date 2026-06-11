@@ -132,7 +132,7 @@ class Chat with ChangeNotifier {
 
       // Subscribe to channel
       await pusherService.subscribe(
-        channelName: 'chatting-offer-channel-$conversationId',
+        channelName: 'private-conversation-$conversationId',
         onEvent: listener,
       );
     } catch (e) {
@@ -203,7 +203,7 @@ class Chat with ChangeNotifier {
       final listener = _pusherListeners[conversationId];
 
       await pusherService.unsubscribe(
-        channelName: 'chatting-offer-channel-$conversationId',
+        channelName: 'private-conversation-$conversationId',
         listener: listener,
       );
 

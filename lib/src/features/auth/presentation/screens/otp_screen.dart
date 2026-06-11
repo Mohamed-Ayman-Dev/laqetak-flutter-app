@@ -228,7 +228,7 @@ class _OtpScreenState extends State<OtpScreen> {
           // LocatorService.appSettings.changeHomeIndex(0);
           break;
         case OtpFlow.addAd:
-          MyAdsController.addAdOtp(_argsFormData);
+          MyAdsController.addAd(_argsFormData);
           break;
         case OtpFlow.login:
           // // Login OTP verification (for non-activated accounts)

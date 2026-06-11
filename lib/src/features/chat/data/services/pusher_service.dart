@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
+import 'package:invastro/src/core/di/locator_service.dart';
 
 /// Centralized Pusher service for managing WebSocket connections
 /// Can be used across the app for different features (chat, notifications, order updates, etc.)
@@ -17,7 +18,7 @@ class PusherService {
     return _instance!;
   }
 
-  /// Initialize Pusher connection
+  /// Initialize Pusher connection with channel authorizer for private channels
   Future<void> init({
     required String apiKey,
     required String cluster,
@@ -27,6 +28,7 @@ class PusherService {
 
     try {
       _pusher = PusherChannelsFlutter.getInstance();
+
       await _pusher!.init(
         apiKey: apiKey,
         cluster: cluster,
@@ -41,6 +43,7 @@ class PusherService {
           );
           _isConnected = currentState == 'CONNECTED';
         },
+        onAuthorizer: _onChannelAuthorizer,
       );
 
       await _pusher!.connect();
@@ -51,9 +54,32 @@ class PusherService {
     }
   }
 
+  /// Channel authorizer callback for private and presence channels
+  dynamic _onChannelAuthorizer(
+    String channelName,
+    String socketId,
+    dynamic options,
+  ) async {
+    try {
+      debugPrint('Authorizing channel: $channelName');
+      
+      final response = await LocatorService.chatService.getPusherChannelAuth(
+        socketId: socketId,
+        channelName: channelName,
+        rethrowError: true,
+      );
+
+      debugPrint('Channel authorized successfully: $channelName');
+      return response;
+    } catch (e) {
+      debugPrint('Error authorizing channel $channelName: $e');
+      rethrow;
+    }
+  }
+
   /// Handle incoming Pusher events and route to appropriate listeners
   void _handlePusherEvent(PusherEvent event) {
-    print('pusher event received ${event.data}');
+    debugPrint('Pusher event received ${event.data}');
     final channelName = event.channelName;
     if (_channelListeners.containsKey(channelName)) {
       for (final listener in _channelListeners[channelName]!) {

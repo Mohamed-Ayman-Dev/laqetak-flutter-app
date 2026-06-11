@@ -108,5 +108,6 @@
   "pleaseEnterYourPrice": "Please enter your price",
   "pleaseEnterAdName": "Please enter ad name",
   "detailsAreRequired": "Details are required",
-  "numberHasBeenVerifiedSuccessfully": "Number has been verified successfully."
+  "numberHasBeenVerifiedSuccessfully": "Number has been verified successfully.",
+  "hidePhoneNumber": "Hide phone number"
 }

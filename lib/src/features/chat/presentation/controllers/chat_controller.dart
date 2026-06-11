@@ -107,7 +107,6 @@ class ChatController {
         sentMessage.copyWith(status: MessageStatus.sent),
         // tempMessage.copyWith(status: MessageStatus.sent),
       );
-
       return true;
     } catch (e) {
       // Mark as failed
