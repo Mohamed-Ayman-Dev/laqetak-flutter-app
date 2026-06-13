@@ -186,7 +186,10 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                                                     arguments: true,
                                                   );
                                             },
-                                            views: 1200,
+                                            views:
+                                                ads[index].viewsCount
+                                                    ?.toInt() ??
+                                                0,
                                             isMyAd: true,
                                           ),
                                   ),

@@ -121,6 +121,8 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                     AdDetailsSeller(
                       customer: adDetail?.customer,
                       phone: adDetail?.contactPhone,
+                      isMyAd: isMyAd,
+                      hidePhone: adDetail?.hidePhone == 1,
                     ),
                     if (isMyAd) 22.heightSpace,
                     if (isMyAd)

@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/helpers/others_helper.dart';
+import '../../../../core/themes/colors.dart';
 import '../../../home/presentation/controllers/ads_controller.dart';
 
 class AdDetailsHeader extends StatefulWidget {
@@ -72,16 +73,17 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
                 style: AppTextStyles.labelLarge.copyWith(fontSize: 15.sp),
               ),
             ),
-            // 5.widthSpace,
-            // Text(
-            //   '1200',
-            //   style: AppTextStyles.labelSmall.copyWith(
-            //     fontSize: 13.sp,
-            //     color: AppColors.textGrey1Color,
-            //   ),
-            // ),
+            5.widthSpace,
+            if (widget.isMyAd)
+              Text(
+                adDetail?.viewsCount.toString() ?? '0',
+                style: AppTextStyles.labelSmall.copyWith(
+                  fontSize: 13.sp,
+                  color: AppColors.textGrey1Color,
+                ),
+              ),
             if (widget.isMyAd) ...[
-              7.widthSpace,
+              5.widthSpace,
               SvgPicture.asset(
                 SvgAssets.assetsSvgView,
                 height: 32.h,

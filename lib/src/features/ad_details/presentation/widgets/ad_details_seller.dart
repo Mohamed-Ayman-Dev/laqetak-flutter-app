@@ -13,17 +13,26 @@ import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart
 
 import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_outline_button.dart';
+import '../../../../core/shared/widgets/custom_switch.dart';
 import '../../../../core/themes/theme.dart';
 
 class AdDetailsSeller extends StatelessWidget {
   final CustomerModel? customer;
   final String? phone;
+  final bool hidePhone;
+  final bool isMyAd;
 
-  const AdDetailsSeller({super.key, this.customer, this.phone});
+  const AdDetailsSeller({
+    super.key,
+    this.customer,
+    this.phone,
+    this.isMyAd = false,
+    this.hidePhone = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    bool isMe = customer?.id == LocatorService.auth.user?.id;
+    bool isMe = (customer?.id == LocatorService.auth.user?.id) || isMyAd;
     return Container(
       padding: EdgeInsets.fromLTRB(10, 8, 10, 20).r,
       decoration: BoxDecoration(
@@ -56,22 +65,27 @@ class AdDetailsSeller extends StatelessWidget {
                 ),
 
                 8.widthSpace,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'المعلن',
-                      style: AppTextStyles.labelSmall.copyWith(
-                        fontSize: 10.sp,
-                        color: AppColors.sellerLabelTextColor,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'المعلن',
+                        style: AppTextStyles.labelSmall.copyWith(
+                          fontSize: 10.sp,
+                          color: AppColors.sellerLabelTextColor,
+                        ),
                       ),
-                    ),
-                    Text(
-                      customer?.name ?? '',
-                      style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
-                    ),
-                  ],
+                      Text(
+                        customer?.name ?? '',
+                        style: AppTextStyles.labelSmall.copyWith(
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                if (isMe) CustomSwitch(value: hidePhone, onChanged: (val) {}),
               ],
             ),
           ),
