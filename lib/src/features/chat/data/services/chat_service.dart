@@ -113,9 +113,11 @@ class ChatService {
     required String channelName,
     bool rethrowError = false,
   }) async {
-    return await ApiService.post(
-      '/pusher/auth',
-      data: {'socket_id': socketId, 'channel_name': channelName},
+    return await ApiService.get(
+      '/broadcasting/auth',
+      useDefaultUrl: true,
+      customUrl: 'http://invastro.dev4.wady.sa',
+      queryParameters: {'socket_id': socketId, 'channel_name': channelName},
       rethrowError: rethrowError,
     );
   }

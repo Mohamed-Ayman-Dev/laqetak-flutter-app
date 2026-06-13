@@ -132,7 +132,7 @@ class Chat with ChangeNotifier {
 
       // Subscribe to channel
       await pusherService.subscribe(
-        channelName: 'private-conversation-$conversationId',
+        channelName: 'private-conversation.$conversationId',
         onEvent: listener,
       );
     } catch (e) {
@@ -150,11 +150,13 @@ class Chat with ChangeNotifier {
       }
 
       final messageData = jsonDecode(event.data);
-      final currentOfferId = messageData['quoteOfferId'].toString();
+      final currentConversationId = num.tryParse(
+        messageData['conversation_id'].toString(),
+      );
       final message = MessageModel.fromPusher(messageData);
 
       // Add message to the beginning of the list (newest first)
-      if (messagesMap[currentOfferId]?.data != null) {
+      if (messagesMap[currentConversationId]?.data != null) {
         int messageIndex = -1;
         for (int i = 0; i < messagesMap[conversationId]!.data!.length; i++) {
           if (messagesMap[conversationId]!.data![i].isTemp &&
@@ -171,9 +173,9 @@ class Chat with ChangeNotifier {
           );
         }
         if (messageIndex == -1) {
-          messagesMap[currentOfferId]!.data!.insert(0, message);
+          messagesMap[currentConversationId]!.data!.insert(0, message);
         } else {
-          messagesMap[currentOfferId]!.data![messageIndex] = message;
+          messagesMap[currentConversationId]!.data![messageIndex] = message;
           notifyListeners();
         }
 
@@ -203,7 +205,7 @@ class Chat with ChangeNotifier {
       final listener = _pusherListeners[conversationId];
 
       await pusherService.unsubscribe(
-        channelName: 'private-conversation-$conversationId',
+        channelName: 'private-conversation.$conversationId',
         listener: listener,
       );
 

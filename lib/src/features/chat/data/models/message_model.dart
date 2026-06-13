@@ -1,3 +1,4 @@
+import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/features/chat/data/models/message_file_model.dart';
 
 import '../../../../core/constants/enums.dart';
@@ -55,13 +56,15 @@ class MessageModel {
 
   factory MessageModel.fromPusher(Map<String, dynamic> json) {
     return MessageModel(
-      id: json['messageId'],
+      id: num.tryParse(json['id'].toString()),
       message: json['message'],
       isTemp: json['isTemp'] ?? false,
-      // messageOwner: json['whoSent'] == 'customer',
-      // seen: 0,
-      seenAt: null,
-      createdAt: json['time'],
+      isMine:
+          num.tryParse(json['customer_id'].toString()) ==
+          LocatorService.auth.user?.id,
+      isSeen: json['is_seen'] ?? false,
+      seenAt: json['seen_at'],
+      createdAt: json['created_at'],
       files: json['files'] != null
           ? (json['files'] as List)
                 .map((file) => MessageFileModel.fromJson(file))

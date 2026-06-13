@@ -112,6 +112,7 @@ abstract class ApiService {
     bool useDefaultUrl = false,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
+    String? customUrl,
   }) async {
     try {
       Map<String, dynamic> myHeaders = {...dio.options.headers};
@@ -122,7 +123,7 @@ abstract class ApiService {
       }
       final response = await dio.get(
         useDefaultUrl
-            ? 'https://invastro.dev4.wady.sa/api/v1$endPoint'
+            ? '${customUrl ?? 'https://invastro.dev4.wady.sa/api/v1'}$endPoint'
             : endPoint,
         queryParameters: queryParameters,
         options: Options(
