@@ -106,7 +106,9 @@
   "pleaseSelectASector": "يرجى اختيار قطاع",
   "pleaseEnterYourPrice": "يرجى إدخال السعر",
   "pleaseEnterAdName": "يرجى إدخال اسم الإعلان",
-  "detailsAreRequired": "Details are required",
-  "numberHasBeenVerifiedSuccessfully": "Number has been verified successfully.",
-  "hidePhoneNumber": "Hide phone number"
+  "detailsAreRequired": "التفاصيل مطلوبة",
+  "numberHasBeenVerifiedSuccessfully": "تم التحقق من الرقم بنجاح",
+  "hidePhoneNumber": "إخفاء رقم الهاتف",
+  "cash": "كاش",
+  "card": "البطاقة الائتمانية"
 }

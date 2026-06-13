@@ -6,8 +6,9 @@ import '../../../../core/shared/models/pagination_list.dart';
 
 class Ads with ChangeNotifier {
   AdsLoadingModel adsLoadingModel = AdsLoadingModel();
-  PaginationList<AdModel>? myAds;
+  PaginationList<AdModel>? ads;
   PaginationList<AdModel>? myFavAds;
+
 
   Map<num, AdModel> myAdDetails = {};
   Map<String, dynamic> filters = {};
@@ -18,7 +19,7 @@ class Ads with ChangeNotifier {
   }
 
   void changeStoreState(num id, {bool? isFavorite}) {
-    final list = myAds?.data;
+    final list = ads?.data;
     if (list != null) {
       // نجيب الـ index
       final index = list.indexWhere((element) => element.id == id);
@@ -67,10 +68,10 @@ class Ads with ChangeNotifier {
   }
 
   void setAds(dynamic data, bool refresh) {
-    if (myAds == null || refresh) {
-      myAds = PaginationList.fromJson(data);
+    if (ads == null || refresh) {
+      ads = PaginationList.fromJson(data);
     } else {
-      myAds?.addItemsToList(data);
+      ads?.addItemsToList(data);
     }
     notifyListeners();
   }

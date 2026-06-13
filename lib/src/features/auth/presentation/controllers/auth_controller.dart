@@ -400,31 +400,59 @@ abstract class AuthController {
     }
   }
 
+  static Future<void> sendPhoneOtp(Map<String, dynamic>? data) async {
+    try {
+      RedirectModel redirect = RedirectModel();
+      AppFeedback.loadingMessage(message: S.current.pleaseWait);
+      final response = await LocatorService.authService.sendPhoneOtp({
+        'phone': data?['phone'],
+      }, rethrowError: true);
+      if (response['data'] != null) {
+        AppFeedback.showToast(response['message'] ?? '');
+        redirect = RedirectModel.fromJson(response['data']);
+        redirect.phone = data?['phone'];
+      } else {
+        EasyLoading.showError(response['message'], dismissOnTap: true);
+        return;
+      }
+      LocatorService.navigationService.currentState?.pushNamed(
+        OtpScreen.routeName,
+        arguments: {
+          'redirectData': redirect,
+          'data': data,
+          'from': OtpFlow.updatePhone,
+        },
+      );
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
+    }
+  }
+
   /// Update user profile with automatic photo conversion
   /// Handles XFile to MultipartFile conversion and loading states
-  static Future<void> updateProfile(
+  static Future<bool> updateProfile(
     BuildContext context,
     Map<String, dynamic> data, {
     bool hasMultipartData = false,
   }) async {
     try {
       // Show loading
-      EasyLoading.show(status: S.current.pleaseWait);
+      AppFeedback.loadingMessage(message: S.current.pleaseWait);
 
       // Convert photo from XFile to MultipartFile if needed
-      if (data['photo'] != null && data['photo'] is! MultipartFile) {
+      if (data['avatar'] != null && data['avatar'] is! MultipartFile) {
         String imagePath;
 
-        if (data['photo'] is XFile) {
-          imagePath = (data['photo'] as XFile).path;
-        } else if (data['photo'] is String) {
-          imagePath = data['photo'];
+        if (data['avatar'] is XFile) {
+          imagePath = (data['avatar'] as XFile).path;
+        } else if (data['avatar'] is String) {
+          imagePath = data['avatar'];
         } else {
           throw Exception("Invalid photo format");
         }
 
         String imageName = imagePath.split('/').last;
-        data['photo'] = await MultipartFile.fromFile(
+        data['avatar'] = await MultipartFile.fromFile(
           imagePath,
           filename: imageName,
         );
@@ -437,42 +465,18 @@ abstract class AuthController {
         hasMultipartData: hasMultipartData,
       );
       EasyLoading.dismiss();
-      if (response != null &&
-          response['data']['redirect'] == "update-phone-check-otp") {
-        LocatorService.navigationService.currentState?.pushNamed(
-          OtpScreen.routeName,
-          arguments: {
-            'phone': data['phone'],
-            'data': data,
-            'from': 'updatePhone',
-            if (response['data'] != null &&
-                response['data']['remainingSeconds'] != null)
-              'remainingSeconds': response['data']['remainingSeconds'],
-          },
-        );
-      } else {
-        if (response != null && response['status'] == true) {
-          // Update successful - update local user data
-          if (!context.mounted) return;
-          final authProvider = Provider.of<Auth>(context, listen: false);
-          final userData = response['data'];
-
-          // Update user data in provider and store in preferences
-          await authProvider.setUser(userData, store: true, notify: true);
-
-          // Show success message
-          EasyLoading.showSuccess(
-            response['message'] ?? S.current.changesHaveBeenSavedSuccessfully,
-            dismissOnTap: true,
-          );
-        }
-      }
-    } catch (e) {
+      getProfile();
+      // LocatorService.navigationService.currentState?.popUntil(
+      //   (route) => route.settings.name == HomeLayoutScreen.routeName,
+      // );
       EasyLoading.dismiss();
+      DialogHelpers.showSuccessDialog(
+        title: response['message'] ?? 'تهانينا لقد تم تعديل الملف الشخصي بنجاح',
+      );
+      return true;
+    } catch (e) {
       ErrorHelper.handleApiError(e);
-      if (kDebugMode) {
-        print(e);
-      }
+      return false;
     }
   }
 

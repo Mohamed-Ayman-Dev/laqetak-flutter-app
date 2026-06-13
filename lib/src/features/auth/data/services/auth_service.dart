@@ -11,6 +11,14 @@ class AuthService {
     );
   }
 
+  Future sendPhoneOtp(Map<String, dynamic> data, {rethrowError = false}) async {
+    return await ApiService.post(
+      '/profile/phone-otp',
+      data: data,
+      rethrowError: rethrowError,
+    );
+  }
+
   Future sendBeSellerRequest(
     final data, {
     bool rethrowError = false,
@@ -121,7 +129,7 @@ class AuthService {
   }
 
   Future editProfile({
-    rethrowError = false,
+    bool rethrowError = false,
     Map<String, dynamic>? data,
     bool hasMultipartData = false,
   }) async {

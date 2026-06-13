@@ -239,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 horizontal: 20,
               ).r.copyWith(bottom: 30.h),
               sliver: Selector<Ads, List<AdModel>?>(
-                selector: (context, provider) => provider.myAds?.data,
+                selector: (context, provider) => provider.ads?.data,
                 shouldRebuild: (previous, next) => true,
                 builder: (context, ads, child) {
                   return ads != null && ads.isEmpty
@@ -319,7 +319,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Selector<Ads, PaginationList<AdModel>?>(
-              selector: (context, provider) => provider.myAds,
+              selector: (context, provider) => provider.ads,
               shouldRebuild: (old, newData) => old != newData,
 
               builder: (context, listProvider, child) {

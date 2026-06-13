@@ -16,6 +16,14 @@ class Auth with ChangeNotifier {
   Map<String, dynamic> storeRegisterData = {};
 
   bool get isAuth => user != null && token != null;
+  String? imagePath;
+
+  void setImagePath(String? path, {bool notify = true}) {
+    imagePath = path;
+    if (notify) {
+      notifyListeners();
+    }
+  }
 
   void setCommRegImagePicturePath(String? imagePath) {
     commRegImagePicturePath = imagePath;

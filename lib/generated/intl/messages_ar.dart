@@ -27,6 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
     "attachments": MessageLookupByLibrary.simpleMessage("المرفقات"),
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
+    "card": MessageLookupByLibrary.simpleMessage("البطاقة الائتمانية"),
+    "cash": MessageLookupByLibrary.simpleMessage("كاش"),
     "changesHaveBeenSavedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم حفظ التغييرات بنجاح",
     ),
@@ -44,7 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "جاري حذف الإشعار...",
     ),
     "detailsAreRequired": MessageLookupByLibrary.simpleMessage(
-      "Details are required",
+      "التفاصيل مطلوبة",
     ),
     "didntReceiveTheCode": MessageLookupByLibrary.simpleMessage(
       "لم يصلك الرمز",
@@ -72,9 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fromFavoritesSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تمت الإزالة من المفضلة بنجاح",
     ),
-    "hidePhoneNumber": MessageLookupByLibrary.simpleMessage(
-      "Hide phone number",
-    ),
+    "hidePhoneNumber": MessageLookupByLibrary.simpleMessage("إخفاء رقم الهاتف"),
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "رقم الآيبان غير متطابق",
     ),
@@ -86,7 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "now": MessageLookupByLibrary.simpleMessage("الآن"),
     "numberHasBeenVerifiedSuccessfully": MessageLookupByLibrary.simpleMessage(
-      "Number has been verified successfully.",
+      "تم التحقق من الرقم بنجاح",
     ),
     "openSettings": MessageLookupByLibrary.simpleMessage("فتح الإعدادات"),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(

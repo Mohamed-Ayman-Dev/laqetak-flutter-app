@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancellationReasonIsRequired": MessageLookupByLibrary.simpleMessage(
       "Cancellation reason is required",
     ),
+    "card": MessageLookupByLibrary.simpleMessage("Card"),
+    "cash": MessageLookupByLibrary.simpleMessage("Cash"),
     "changesHaveBeenSavedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Changes have been saved successfully",
     ),

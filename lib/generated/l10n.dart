@@ -1068,6 +1068,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Cash`
+  String get cash {
+    return Intl.message('Cash', name: 'cash', desc: '', args: []);
+  }
+
+  /// `Card`
+  String get card {
+    return Intl.message('Card', name: 'card', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

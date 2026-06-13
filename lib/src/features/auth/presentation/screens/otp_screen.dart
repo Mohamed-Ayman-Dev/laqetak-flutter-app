@@ -6,6 +6,8 @@ import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:invastro/src/features/my_ads/presentation/controllers/my_ads_controller.dart';
+import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
+import 'package:invastro/src/features/profile/presentation/screens/profile_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -99,6 +101,20 @@ class _OtpScreenState extends State<OtpScreen> {
                                         (route) =>
                                             route.settings.name ==
                                             ForgetPasswordScreen.routeName,
+                                      )
+                                : _flow == OtpFlow.addAd
+                                ? LocatorService.navigationService.currentState
+                                      ?.popUntil(
+                                        (route) =>
+                                            route.settings.name ==
+                                            AddAdSecondScreen.routeName,
+                                      )
+                                : _flow == OtpFlow.updatePhone
+                                ? LocatorService.navigationService.currentState
+                                      ?.popUntil(
+                                        (route) =>
+                                            route.settings.name ==
+                                            ProfileScreen.routeName,
                                       )
                                 : LocatorService.navigationService.currentState
                                       ?.popUntil(
@@ -220,14 +236,15 @@ class _OtpScreenState extends State<OtpScreen> {
           break;
 
         case OtpFlow.updatePhone:
-          // changePhoneData?.addAll({'otp_code': otp});
-          // await AuthController.updateProfile(context, changePhoneData ?? {});
-          // LocatorService.navigationService.currentState?.popUntil(
-          //   (route) => route.settings.name == HomeLayoutScreen.routeName,
-          // );
-          // LocatorService.appSettings.changeHomeIndex(0);
+          _argsFormData?['phone_otp'] = int.tryParse(otp);
+          AuthController.updateProfile(
+            context,
+            _argsFormData!,
+            hasMultipartData: _argsFormData?['avatar'] != null,
+          );
           break;
         case OtpFlow.addAd:
+          _argsFormData?['contact_phone_otp'] = int.tryParse(otp);
           MyAdsController.addAd(_argsFormData);
           break;
         case OtpFlow.login:

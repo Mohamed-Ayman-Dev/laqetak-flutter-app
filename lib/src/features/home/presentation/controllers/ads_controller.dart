@@ -20,8 +20,8 @@ class AdsController {
       LocatorService.ads.updateLoading('loadingSearch', true);
     }
     try {
-      int? currentPage = LocatorService.ads.myAds?.currentPage;
-      int? lastPage = LocatorService.ads.myAds?.lastPage;
+      int? currentPage = LocatorService.ads.ads?.currentPage;
+      int? lastPage = LocatorService.ads.ads?.lastPage;
       int nextPage = refresh ? 1 : ((currentPage ?? 0) + 1);
       if (!refresh && currentPage != null && currentPage == lastPage) return;
       final response = await LocatorService.adsService.getAds(

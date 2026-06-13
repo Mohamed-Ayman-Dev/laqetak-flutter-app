@@ -5,12 +5,11 @@ import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/helpers/dialog_helpers.dart';
-import 'package:invastro/src/core/shared/models/redirect_model.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/shared/widgets/fields_widgets/custom_note_field.dart';
 import 'package:invastro/src/core/themes/colors.dart';
-import 'package:invastro/src/features/auth/presentation/screens/otp_screen.dart';
 import 'package:invastro/src/features/my_ads/presentation/controllers/my_ads_controller.dart';
+import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_pay_screen.dart';
 import 'package:invastro/src/features/my_ads/presentation/widgets/ad_image_picker.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -64,20 +63,9 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
           title: 'تهانينا لقد تم تعديل الإعلان بنجاح',
         );
       } else {
-        // LocatorService.navigationService.currentState?.pushNamed(
-        //   AddAdPayScreen.routeName,
-        //   arguments: data,
-        // );
         LocatorService.navigationService.currentState?.pushNamed(
-          OtpScreen.routeName,
-          arguments: {
-            'redirectData': RedirectModel(
-              phone: _formData['contact_phone'],
-              remainingSeconds: 120,
-            ),
-            'data': _formData,
-            'from': OtpFlow.addAd,
-          },
+          AddAdPayScreen.routeName,
+          arguments: _formData,
         );
       }
     }

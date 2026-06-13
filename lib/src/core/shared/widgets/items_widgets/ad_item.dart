@@ -14,7 +14,7 @@ class AdItem extends StatelessWidget {
   final String image;
   final String heroTag;
   final bool isLiked;
-  final void Function() onLike;
+  final void Function()? onLike;
   final bool hideDivider;
   final void Function() onTab;
   final String category;
@@ -50,7 +50,7 @@ class AdItem extends StatelessWidget {
     this.onEdit,
     this.views,
     required this.category,
-    required this.onLike,
+    this.onLike,
   });
 
   @override
@@ -98,11 +98,14 @@ class AdItem extends StatelessWidget {
                     9.heightSpace,
                     Row(
                       children: [
-                        DetailItem(
-                          icon: SvgAssets.assetsSvgUserFilledIcon,
-                          text: customerName ?? ';',
-                          maxLines: 2,
+                        Expanded(
+                          child: DetailItem(
+                            icon: SvgAssets.assetsSvgUserFilledIcon,
+                            text: customerName ?? ';',
+                            maxLines: 2,
+                          ),
                         ),
+                        if (isMyAd) 5.widthSpace,
                         if (isMyAd)
                           DetailItem(
                             icon: SvgAssets.assetsSvgView,
@@ -182,7 +185,7 @@ class AdItem extends StatelessWidget {
               ),
             ],
           ),
-          if (!hideDivider) Divider(height: 24.h, thickness: 1),
+          if (!hideDivider) Divider(height: 20.h, thickness: 1),
         ],
       ),
     );
@@ -193,7 +196,7 @@ class AdItem extends StatelessWidget {
     highlightColor: Colors.transparent,
     onTap: () {
       HapticFeedback.mediumImpact();
-      onLike();
+      onLike?.call();
     },
     child: Padding(
       padding: const EdgeInsets.all(8.0).r,

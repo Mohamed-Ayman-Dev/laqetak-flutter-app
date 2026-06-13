@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:invastro/src/core/constants/images_assets.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 import 'package:invastro/src/features/auth/data/models/user_model.dart';
 import 'package:provider/provider.dart';
 
@@ -39,14 +39,11 @@ class CustomDrawerHeader extends StatelessWidget {
                     children: [
                       Hero(
                         tag: 'profile_image',
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: Image.asset(
-                            ImagesAssets.assetsImagesMockProfileImage,
-                            fit: BoxFit.cover,
-                            width: 52.w,
-                            height: 52.h,
-                          ),
+                        child: CustomImage(
+                          imageUrl: user?.avatar ?? '',
+                          width: 52,
+                          height: 52,
+                          borderRadius: 100,
                         ),
                       ),
                       13.widthSpace,

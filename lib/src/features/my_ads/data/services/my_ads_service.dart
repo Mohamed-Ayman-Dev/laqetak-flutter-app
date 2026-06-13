@@ -5,6 +5,7 @@ class MyAdsService {
     return await ApiService.post(
       '/my-ads/create',
       data: data,
+      hasMultipartData: true,
       rethrowError: rethrowError,
     );
   }
@@ -14,6 +15,17 @@ class MyAdsService {
       '/my-ads/contact-phone-otp',
       data: data,
       rethrowError: rethrowError,
+    );
+  }
+
+  Future getMyAds({
+    bool rethrowError = false,
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    return await ApiService.get(
+      '/my-ads/list',
+      rethrowError: rethrowError,
+      queryParameters: queryParameters,
     );
   }
 }

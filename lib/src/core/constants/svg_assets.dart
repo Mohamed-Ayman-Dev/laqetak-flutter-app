@@ -26,6 +26,9 @@ class SvgAssets {
   /// assets/svg/call.svg
   static const String assetsSvgCall = "assets/svg/call.svg";
 
+  /// assets/svg/cash.svg
+  static const String assetsSvgCash = "assets/svg/cash.svg";
+
   /// assets/svg/category_icon.svg
   static const String assetsSvgCategoryIcon = "assets/svg/category_icon.svg";
 
@@ -109,6 +112,9 @@ class SvgAssets {
 
   /// assets/svg/filter_icon.svg
   static const String assetsSvgFilterIcon = "assets/svg/filter_icon.svg";
+
+  /// assets/svg/heart-01-svgrepo-com.svg
+  static const String assetsSvgHeart01SvgrepoCom = "assets/svg/heart-01-svgrepo-com.svg";
 
   /// assets/svg/heart-svgrepo-com.svg
   static const String assetsSvgHeartSvgrepoCom = "assets/svg/heart-svgrepo-com.svg";

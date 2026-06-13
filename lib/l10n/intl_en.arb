@@ -109,5 +109,7 @@
   "pleaseEnterAdName": "Please enter ad name",
   "detailsAreRequired": "Details are required",
   "numberHasBeenVerifiedSuccessfully": "Number has been verified successfully.",
-  "hidePhoneNumber": "Hide phone number"
+  "hidePhoneNumber": "Hide phone number",
+  "cash": "Cash",
+  "card": "Card"
 }

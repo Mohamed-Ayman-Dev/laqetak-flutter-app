@@ -132,18 +132,22 @@ class ValidationHelper {
     return null; // No errors
   }
 
-  static validatePasswordConfirmation(
+  static String? validatePasswordConfirmation(
     String? value,
     String password,
-    BuildContext context,
-  ) {
+    BuildContext context, {
+    bool validateEmptyEnabled = true,
+  }) {
     if (value != password) {
       return S.of(context).passwordsDoNotMatch;
     }
-    return validateEmpty(
-      value,
-      emptyMessage: S.of(context).pleaseEnterAPasswordConfirmation,
-    );
+    if (validateEmptyEnabled) {
+      return validateEmpty(
+        value,
+        emptyMessage: S.of(context).pleaseEnterAPasswordConfirmation,
+      );
+    }
+    return null;
     // var validator = Validator(
     //   validators: [
     //     const RequiredValidator(),

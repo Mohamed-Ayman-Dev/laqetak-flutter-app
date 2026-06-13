@@ -42,9 +42,11 @@ class _AddAdScreenState extends State<AddAdScreen> {
   void didChangeDependencies() {
     if (!once) {
       _isEdit = ModalRoute.of(context)?.settings.arguments as bool? ?? false;
-      OthersController.getCities();
-      OthersController.getSectors();
-      OthersController.getCategories();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        OthersController.getCities();
+        OthersController.getSectors();
+        OthersController.getCategories();
+      });
 
       once = true;
     }

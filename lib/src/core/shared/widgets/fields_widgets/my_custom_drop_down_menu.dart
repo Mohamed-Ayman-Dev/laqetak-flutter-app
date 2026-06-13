@@ -16,6 +16,7 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
     this.onSaved,
     this.hint,
     this.isRequired = false,
+    this.enabled = true,
     this.color,
     this.icon,
     this.suffix,
@@ -38,6 +39,7 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
   final Widget? suffix;
 
   final double borderRadius;
+  final bool enabled;
   final EdgeInsets? contentPadding;
   final Color? borderColor;
   final Widget? prefixIcon;
@@ -57,8 +59,7 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
       padding: EdgeInsets.zero,
       initialValue: value,
       items: items,
-
-      onChanged: onChanged,
+      onChanged: enabled ? onChanged : null,
       onSaved: onSaved,
       validator: validator,
       hint: Align(
@@ -84,6 +85,7 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
             const EdgeInsets.symmetric(horizontal: 15, vertical: 13).r,
         fillColor: color,
         suffix: suffix,
+
         filled: color != null,
         hintStyle: AppTextStyles.hintTextStyle,
         border: _border(AppColors.fieldBorderColor),

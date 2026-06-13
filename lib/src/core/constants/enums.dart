@@ -6,6 +6,8 @@ enum AppbarIcons { logo, drawer, search, chat }
 
 enum CardType { mastercard, visa }
 
+enum PaymentMethods { card, cash }
+
 enum OtpFlow { register, forgetPassword, updatePhone, addAd, login }
 
 enum MessageStatus { sending, sent, failed }
