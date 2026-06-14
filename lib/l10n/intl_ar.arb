@@ -17,6 +17,13 @@
   "pleaseAllowAccessToTheGalleryInSettings": "للمتابعة، يرجى منح الوصول إلى المعرض من إعدادات الجهاز.",
   "openSettings": "فتح الإعدادات",
   "cancel": "الغاء",
+  "areYouSureYouWantToCloseTheApp": "هل انت متاكد انك تريد اغلاق التطبيق؟",
+  "closeApp": "اغلاق التطبيق",
+  "deletingAccount": "جاري حذف الحساب...",
+  "yourAccountHasBeenDeletedSuccessfully": "تم حذف الحساب بنجاح",
+  "deleteAccount": "حذف الحساب",
+  "areYouSureYouWantToDeleteYourAccount": "هل أنت متأكد أنك تريد حذف حسابك؟",
+  "yes": "نعم",
   "attachments": "المرفقات",
   "version": "الإصدار",
   "tapToRetry": "اضغط لإعادة المحاولة",
@@ -110,5 +117,10 @@
   "numberHasBeenVerifiedSuccessfully": "تم التحقق من الرقم بنجاح",
   "hidePhoneNumber": "إخفاء رقم الهاتف",
   "cash": "كاش",
-  "card": "البطاقة الائتمانية"
+  "card": "البطاقة الائتمانية",
+  "pleaseLogInFirstToViewTheContentOfThis": "قم بتسجيل الدخول أولا لعرض محتوي هذه الصفحة",
+  "loginToContinue": "قم بتسجيل الدخول لتتمكن من المتابعة",
+  "logIn": "تسجيل الدخول",
+  "youNeedToSignInToViewThisPageIf": "يجب عليك تسجيل الدخول لعرض هذه الصفحة. إذا لم يكن لديك حساب، يمكنك إنشاء واحد مجانًا",
+  "byLoggingInYouCanAccessAllTheFeaturesOf": "By logging in, you can access all the features of the app and enjoy a personalized experience."
 }

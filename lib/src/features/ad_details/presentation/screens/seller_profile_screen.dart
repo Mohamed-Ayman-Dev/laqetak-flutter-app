@@ -189,7 +189,8 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
                                                           ?.name ??
                                                       '',
                                                   expired:
-                                                      index == 1 || index == 3,
+                                                      ads[index].status ==
+                                                      'closed',
                                                   image:
                                                       ads[index].mainPhoto ??
                                                       '',

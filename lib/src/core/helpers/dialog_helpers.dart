@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/shared/widgets/dialog_content/confirm_alert.dart';
 import 'package:invastro/src/core/shared/widgets/dialog_content/report_dialog_content.dart';
 import 'package:invastro/src/core/shared/widgets/dialog_content/terms_content.dart';
 import 'package:invastro/src/core/shared/widgets/dialog_content/yes_no_dialog_content.dart';
@@ -160,6 +161,53 @@ class DialogHelpers {
         LocatorService.navigationService.currentState?.pop();
       }
     });
+  }
+
+  static Future<bool>? showConfirmDialog({
+    required BuildContext context,
+    required String title,
+    required String description,
+    required String buttonText,
+    required void Function()? onYes,
+    Color? color,
+  }) async {
+    final result = await showGeneralDialog(
+      context: context,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.2),
+      transitionDuration: const Duration(milliseconds: 400),
+      pageBuilder: (_, __, ___) {
+        return AlertDialog(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          surfaceTintColor: Colors.transparent,
+          contentPadding: EdgeInsets.zero,
+          scrollable: true,
+          insetPadding: const EdgeInsets.symmetric(
+            horizontal: 0,
+            vertical: 0,
+          ).r,
+          content: ConfirmAlert(
+            title: title,
+            description: description,
+            yesText: buttonText,
+            yesColor: color,
+            onYes: onYes ?? () {},
+          ),
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, 1),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(parent: anim, curve: Curves.easeInOut)),
+          child: FadeTransition(opacity: anim, child: child),
+        );
+      },
+    );
+    return (result as bool?) ?? false;
   }
 
   static Future<void>? showYesNoDialog({

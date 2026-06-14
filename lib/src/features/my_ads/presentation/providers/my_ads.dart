@@ -20,4 +20,10 @@ class MyAds with ChangeNotifier {
     loadingMyAds = value;
     notifyListeners();
   }
+
+  void resetForLogout() {
+    myAds = null;
+    loadingMyAds = false;
+    notifyListeners();
+  }
 }

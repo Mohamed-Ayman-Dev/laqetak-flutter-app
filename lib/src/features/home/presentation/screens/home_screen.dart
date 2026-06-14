@@ -18,6 +18,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
+import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/debouncer.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
@@ -267,7 +268,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       : AdItem(
                                           category:
                                               ads[index].category?.name ?? '',
-                                          expired: index == 1 || index == 3,
+                                          expired:
+                                              ads[index].status == 'closed',
                                           image: ads[index].mainPhoto ?? '',
                                           onTab: () {
                                             LocatorService
@@ -302,8 +304,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ad: ads[index],
                                               );
                                             } else {
-                                              ///guest bottom sheet
-                                              ///
+                                              BottomHelpers.showGuestBottomSheet(
+                                                context,
+                                              );
                                             }
                                           },
 

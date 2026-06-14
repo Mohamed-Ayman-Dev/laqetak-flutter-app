@@ -288,11 +288,11 @@ class NotificationsService {
   }
 
   Future setDeleteNotification({
-    rethrowError = false,
+    bool rethrowError = false,
     required num notificationId,
   }) async {
     return await ApiService.get(
-      '/deleteNotification/$notificationId',
+      '/notifications/delete/$notificationId',
       rethrowError: rethrowError,
     );
   }

@@ -231,9 +231,12 @@ class Chat with ChangeNotifier {
 
   void clearMessagesForLogOut() {
     messagesMap = {};
+    conversationDetails = {};
+    myConversations = null;
     isLoadingChat = {};
     scrollControllers = {};
     _pusherListeners = {};
+    isLoadingConversations = false;
   }
 
   @override

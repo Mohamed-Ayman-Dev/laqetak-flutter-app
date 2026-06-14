@@ -20,23 +20,23 @@ class SocialWidgets extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SocialButton(
-                link: socialLinks?.aboutUs ?? '',
+                link: socialLinks?.whatsapp ?? '',
                 icon: SvgAssets.assetsSvgWhatsapp,
               ),
               SocialButton(
-                link: socialLinks?.aboutUs ?? '',
+                link: socialLinks?.twitter ?? '',
                 icon: SvgAssets.assetsSvgX,
               ),
               SocialButton(
-                link: socialLinks?.aboutUs ?? '',
+                link: socialLinks?.instagram ?? '',
                 icon: SvgAssets.assetsSvgInsta,
               ),
               SocialButton(
-                link: socialLinks?.aboutUs ?? '',
+                link: socialLinks?.tiktok ?? '',
                 icon: SvgAssets.assetsSvgTiktok,
               ),
               SocialButton(
-                link: socialLinks?.aboutUs ?? '',
+                link: socialLinks?.snapchat ?? '',
                 icon: SvgAssets.assetsSvgSnapchat,
               ),
             ],

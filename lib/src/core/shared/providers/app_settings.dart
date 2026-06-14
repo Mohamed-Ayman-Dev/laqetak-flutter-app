@@ -16,7 +16,6 @@ class AppSettings with ChangeNotifier {
   String language = StringManager.arLanguageCode;
   ThemeMode themeMode = ThemeMode.system;
   int homeIndex = 0;
-  int ordersTabIndex = 0;
   SettingsModel? mySettings;
   bool loadingSettings = false;
   String urlType = 'production'; //production or preproduction or develop
@@ -44,12 +43,6 @@ class AppSettings with ChangeNotifier {
   void changeHomeIndex(int index) {
     if (homeIndex == index) return;
     homeIndex = index;
-    notifyListeners();
-  }
-
-  void changeOrdersTabIndex(int index) {
-    if (ordersTabIndex == index) return;
-    ordersTabIndex = index;
     notifyListeners();
   }
 
@@ -190,6 +183,5 @@ class AppSettings with ChangeNotifier {
 
   void resetAppSettingsForLogOut() {
     homeIndex = 0;
-    ordersTabIndex = 0;
   }
 }

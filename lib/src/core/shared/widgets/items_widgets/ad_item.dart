@@ -4,11 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/helpers/others_helper.dart';
 import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 import 'package:invastro/src/core/shared/widgets/items_widgets/detail_item.dart';
 import 'package:invastro/src/core/shared/widgets/labels_widgets/ad_expired_label.dart';
 import 'package:invastro/src/core/shared/widgets/labels_widgets/ad_label.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
+
+import '../../../helpers/bottom_helpers.dart';
 
 class AdItem extends StatelessWidget {
   final String image;
@@ -85,7 +88,7 @@ class AdItem extends StatelessWidget {
                                 },
                                 icon: SvgAssets.assetsSvgEditIcon,
                               )
-                            : _buildLike(),
+                            : _buildLike(context),
                         if (isMyAd)
                           _buildButton(
                             onTap: () {
@@ -191,12 +194,12 @@ class AdItem extends StatelessWidget {
     );
   }
 
-  Widget _buildLike() => InkWell(
+  Widget _buildLike(BuildContext context) => InkWell(
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     onTap: () {
       HapticFeedback.mediumImpact();
-      onLike?.call();
+      isAuth ? onLike?.call() : BottomHelpers.showGuestBottomSheet(context);
     },
     child: Padding(
       padding: const EdgeInsets.all(8.0).r,

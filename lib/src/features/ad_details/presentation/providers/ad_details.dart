@@ -22,4 +22,9 @@ class AdDetails with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void resetForLogout() {
+    loadingAds = false;
+    notifyListeners();
+  }
 }

@@ -9,12 +9,20 @@ class Ads with ChangeNotifier {
   PaginationList<AdModel>? ads;
   PaginationList<AdModel>? myFavAds;
 
-
   Map<num, AdModel> myAdDetails = {};
   Map<String, dynamic> filters = {};
 
   void updateLoading(String key, dynamic value) {
     adsLoadingModel.updateValue(key, value);
+    notifyListeners();
+  }
+
+  void changeHidePhoneState(num id, {num? hide}) {
+    if (myAdDetails[id] != null) {
+      final detailsAd = myAdDetails[id]!;
+      final currentDetails = detailsAd.hidePhone ?? 0;
+      detailsAd.hidePhone = hide ?? (currentDetails == 1 ? 0 : 1);
+    }
     notifyListeners();
   }
 
@@ -83,5 +91,11 @@ class Ads with ChangeNotifier {
       myFavAds?.addItemsToList(data);
     }
     notifyListeners();
+  }
+
+  void resetForLogout() {
+    myFavAds = null;
+    filters = {};
+    adsLoadingModel = AdsLoadingModel();
   }
 }

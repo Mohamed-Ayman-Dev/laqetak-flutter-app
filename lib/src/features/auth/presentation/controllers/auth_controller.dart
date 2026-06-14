@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -166,15 +168,11 @@ abstract class AuthController {
   static void resetAccount() {
     LocatorService.auth.resetUserForLogOut();
     LocatorService.appSettings.resetAppSettingsForLogOut();
-    // LocatorService.addresses.clearAddressForLogOut();
-    // LocatorService.chat.clearMessagesForLogOut();
-    // LocatorService.invoices.clearAllInvoices();
-    // LocatorService.notifications.clearNotificationsForLogOut();
-    // LocatorService.quoteRequests.clearAllOrdersForLogOut();
-    // LocatorService.cars.clearMyCarsForLogOut();
-    // LocatorService.complaints.clearAll();
-    // LocatorService.stores.clearStoresForLogOut();
-    // LocatorService.payments.resetPayments();
+    LocatorService.ads.resetForLogout();
+    LocatorService.myAds.resetForLogout();
+    LocatorService.adDetails.resetForLogout();
+    LocatorService.chat.clearMessagesForLogOut();
+    LocatorService.notifications.clearNotificationsForLogOut();
   }
 
   /// Logout user
@@ -206,6 +204,47 @@ abstract class AuthController {
       EasyLoading.dismiss();
     } catch (e) {
       ErrorHelper.handleApiError(e);
+    }
+  }
+
+  static Future<void> deleteAccount({BuildContext? context}) async {
+    try {
+      LocatorService.navigationService.currentState?.pop();
+
+      EasyLoading.show(status: S.current.deletingAccount);
+      await LocatorService.authService.deleteAccount();
+      // Clear local storage
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('token');
+      await prefs.remove('user');
+      // Reset Auth provider state
+      resetAccount();
+      // Remove token from ApiService headers
+      ApiService.removeToken();
+      FirebaseMessaging messaging = FirebaseMessaging.instance;
+      await messaging.deleteToken();
+      LocatorService.navigationService.currentState!.pushNamedAndRemoveUntil(
+        LoginScreen.routeName,
+        (route) => false,
+      );
+      await FirebaseAnalytics.instance.setUserId(id: null);
+      await FirebaseCrashlytics.instance.setUserIdentifier('');
+      EasyLoading.dismiss();
+      DialogHelpers.showSuccessDialog(
+        title: "تم حذف الحساب بنجاح",
+        buttonText: 'تسجيل الدخول',
+        onButtonTap: () {
+          LocatorService.navigationService.currentState?.popUntil(
+            (route) => route.settings.name == LoginScreen.routeName,
+          );
+        },
+      );
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
+
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 

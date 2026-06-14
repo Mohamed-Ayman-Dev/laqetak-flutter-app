@@ -8,6 +8,7 @@ import 'package:invastro/src/core/helpers/bottom_helpers.dart';
 import 'package:invastro/src/core/helpers/dialog_helpers.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:invastro/src/features/auth/presentation/screens/login_screen.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 import 'package:invastro/src/features/profile/presentation/screens/profile_screen.dart';
 import 'package:invastro/src/features/static_pages/presentation/screens/about_app_screen.dart';
@@ -78,24 +79,26 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         : const EdgeInsets.only(left: 26).r,
                     child: Column(
                       children: [
-                        DrawerItem(
-                          title: 'الملف الشخصي',
-                          onTap: () {
-                            Navigator.of(context).pop();
-                            LocatorService.navigationService.currentState
-                                ?.pushNamed(ProfileScreen.routeName);
-                          },
-                          image: SvgAssets.assetsSvgDrawerProfile,
-                        ),
-                        DrawerItem(
-                          title: 'إعلاناتي',
-                          onTap: () {
-                            Navigator.of(context).pop();
-                            LocatorService.navigationService.currentState
-                                ?.pushNamed(MyAdsScreen.routeName);
-                          },
-                          image: SvgAssets.assetsSvgDrawerMyads,
-                        ),
+                        if (isAuth)
+                          DrawerItem(
+                            title: 'الملف الشخصي',
+                            onTap: () {
+                              Navigator.of(context).pop();
+                              LocatorService.navigationService.currentState
+                                  ?.pushNamed(ProfileScreen.routeName);
+                            },
+                            image: SvgAssets.assetsSvgDrawerProfile,
+                          ),
+                        if (isAuth)
+                          DrawerItem(
+                            title: 'إعلاناتي',
+                            onTap: () {
+                              Navigator.of(context).pop();
+                              LocatorService.navigationService.currentState
+                                  ?.pushNamed(MyAdsScreen.routeName);
+                            },
+                            image: SvgAssets.assetsSvgDrawerMyads,
+                          ),
                         DrawerItem(
                           title: 'الرسائل',
                           onTap: () {
@@ -155,9 +158,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           image: SvgAssets.assetsSvgDrawerQuestions,
                         ),
                         DrawerItem(
-                          title: 'تسجيل خروج',
+                          title: isAuth ? 'تسجيل خروج' : 'تسجيل دخول',
                           onTap: () {
-                            AuthController.logout();
+                            isAuth
+                                ? AuthController.logout()
+                                : LocatorService.navigationService.currentState
+                                      ?.popUntil(
+                                        (route) =>
+                                            route.settings.name ==
+                                            LoginScreen.routeName,
+                                      );
                           },
                           image: SvgAssets.assetsSvgDrawerSignout,
                         ),

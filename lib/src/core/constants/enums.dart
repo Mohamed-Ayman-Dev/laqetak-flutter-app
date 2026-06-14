@@ -8,7 +8,7 @@ enum CardType { mastercard, visa }
 
 enum PaymentMethods { card, cash }
 
-enum OtpFlow { register, forgetPassword, updatePhone, addAd, login }
+enum OtpFlow { register, forgetPassword, updatePhone, addAd, editAd, login }
 
 enum MessageStatus { sending, sent, failed }
 

@@ -22,7 +22,10 @@ import 'package:invastro/src/features/home/presentation/providers/ads.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/helpers/bottom_helpers.dart';
+import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
+import '../../../my_ads/presentation/controllers/my_ads_controller.dart';
 
 class AdDetailsScreen extends StatefulWidget {
   static const routeName = '/ad_details_screen';
@@ -48,6 +51,9 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
         adHero = args['hero'];
         ad = args['ad'];
         isMyAd = args['isMyAd'] ?? false;
+        if (isMyAd != true) {
+          isMyAd = (LocatorService.auth.user?.id == ad?.customer?.id);
+        }
       }
       WidgetsBinding.instance.addPostFrameCallback((_) {
         AdsController.getAdDetails(ad?.id ?? 0);
@@ -57,8 +63,6 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
 
     super.didChangeDependencies();
   }
-
-  bool isLiked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +76,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
         selector: (context, provider) => provider.myAdDetails[ad?.id],
         builder: (context, updatedAdDetail, child) {
           final adDetail = updatedAdDetail ?? ad;
+          final isExpired = adDetail?.status == 'closed';
           return Stack(
             alignment: Alignment.bottomCenter,
             children: [
@@ -92,7 +97,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                                 [],
                             type: adDetail?.category?.name ?? '',
                             hero: adHero ?? '',
-                            isExpired: false,
+                            isExpired: isExpired,
                           ),
                     15.heightSpace,
                     AdDetailsPoints(ad: adDetail),
@@ -112,7 +117,9 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                         size: Size(123.w, 36.h),
                         borderColor: AppColors.reportBorderColor,
                         onPressed: () {
-                          DialogHelpers.showReportDialog(ad?.id ?? 0);
+                          isAuth
+                              ? DialogHelpers.showReportDialog(ad?.id ?? 0)
+                              : BottomHelpers.showGuestBottomSheet(context);
                         },
                       ),
                     ),
@@ -122,10 +129,11 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                       customer: adDetail?.customer,
                       phone: adDetail?.contactPhone,
                       isMyAd: isMyAd,
+                      ad: adDetail,
                       hidePhone: adDetail?.hidePhone == 1,
                     ),
-                    if (isMyAd) 22.heightSpace,
-                    if (isMyAd)
+                    if (isMyAd && !isExpired) 22.heightSpace,
+                    if (isMyAd && !isExpired)
                       Row(
                         children: [
                           Expanded(
@@ -135,7 +143,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                                 LocatorService.navigationService.currentState
                                     ?.pushNamed(
                                       AddAdScreen.routeName,
-                                      arguments: true,
+                                      arguments: adDetail,
                                     );
                               },
                             ),
@@ -147,7 +155,15 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                               borderRadius: 8,
                               borderColor: AppColors.reportBorderColor,
                               onPressed: () {
-                                DialogHelpers.showSuccessDialog(title: 'title');
+                                DialogHelpers.showYesNoDialog(
+                                  title: 'تأكيد الإجراء',
+                                  subtitle:
+                                      'هل أنت متأكد من انهاء هذا الاعلان؟',
+                                  onButtonTap: () {
+                                    Navigator.of(context).pop();
+                                    MyAdsController.closeAd(adDetail?.id ?? 0);
+                                  },
+                                );
                               },
                             ),
                           ),

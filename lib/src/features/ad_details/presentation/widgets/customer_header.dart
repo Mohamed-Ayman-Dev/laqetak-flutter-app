@@ -5,7 +5,9 @@ import 'package:invastro/src/core/shared/models/customer_model.dart';
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
+import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
+import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/widgets/buttons_widgets/small_icon_button.dart';
 import '../../../../core/shared/widgets/custom_image.dart';
 import '../../../../core/themes/colors.dart';
@@ -51,10 +53,13 @@ class CustomerHeader extends StatelessWidget {
                 height: 34.h,
                 width: 34.w,
                 onTab: () {
-                  LocatorService.navigationService.currentState?.pushNamed(
-                    ChatScreen.routeName,
-                    arguments: {'receiver': customer},
-                  );
+                  isAuth
+                      ? LocatorService.navigationService.currentState
+                            ?.pushNamed(
+                              ChatScreen.routeName,
+                              arguments: {'receiver': customer},
+                            )
+                      : BottomHelpers.showGuestBottomSheet(context);
                 },
               ),
               Spacer(),
@@ -63,10 +68,12 @@ class CustomerHeader extends StatelessWidget {
                 height: 34.h,
                 width: 34.w,
                 onTab: () {
-                  DialogHelpers.showReportDialog(
-                    customer?.id ?? 0,
-                    isCustomerReport: true,
-                  );
+                  isAuth
+                      ? DialogHelpers.showReportDialog(
+                          customer?.id ?? 0,
+                          isCustomerReport: true,
+                        )
+                      : BottomHelpers.showGuestBottomSheet(context);
                 },
               ),
               45.widthSpace,

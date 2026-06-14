@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:invastro/src/core/helpers/bottom_helpers.dart';
 import 'package:invastro/src/core/themes/gradients.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_screen.dart';
 import 'package:provider/provider.dart';
@@ -42,9 +43,10 @@ class BottomNavBar extends StatelessWidget {
                 if (isFab) {
                   return GestureDetector(
                     onTap: () {
-                      LocatorService.navigationService.currentState?.pushNamed(
-                        AddAdScreen.routeName,
-                      );
+                      !isAuth
+                          ? BottomHelpers.showGuestBottomSheet(context)
+                          : LocatorService.navigationService.currentState
+                                ?.pushNamed(AddAdScreen.routeName);
                     },
                     child: SizedBox(
                       width: 71.w,

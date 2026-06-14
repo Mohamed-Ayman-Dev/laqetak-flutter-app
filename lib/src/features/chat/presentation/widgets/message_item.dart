@@ -166,7 +166,10 @@ class MessageItem extends StatelessWidget {
                       if (isMine) 7.widthSpace,
                       Text(
                         (!isMine || seenAt == null)
-                            ? DateTime.parse(createdAt).timeAgo
+                            ? DateTime.parse(
+                                createdAt +
+                                    (createdAt.endsWith('Z') ? '' : 'Z'),
+                              ).timeAgo
                             : 'تم القراءة -  $seenAt',
                         style: AppTextStyles.labelSmall.copyWith(
                           fontSize: 8.sp,

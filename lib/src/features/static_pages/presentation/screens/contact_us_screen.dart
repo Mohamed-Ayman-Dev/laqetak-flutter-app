@@ -60,8 +60,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
         _phoneController.text = LocatorService.auth.user?.phone ?? '';
         _emailController.text = LocatorService.auth.user?.email ?? '';
       }
-      SettingsController.getGeneralSettings();
-
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        SettingsController.getGeneralSettings();
+      });
       once = true;
     }
     super.didChangeDependencies();

@@ -131,7 +131,8 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                                         : AdItem(
                                             category:
                                                 ads[index].category?.name ?? '',
-                                            expired: index == 1 || index == 3,
+                                            expired:
+                                                ads[index].status == 'closed',
                                             image: ads[index].mainPhoto ?? '',
                                             onTab: () {
                                               LocatorService
@@ -170,9 +171,9 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                                                 subtitle:
                                                     'هل أنت متأكد من حذف هذا الاعلان؟',
                                                 onButtonTap: () {
-                                                  DialogHelpers.showSuccessDialog(
-                                                    title:
-                                                        "تم حذف الاعلان بنجاح",
+                                                  Navigator.of(context).pop();
+                                                  MyAdsController.deleteAd(
+                                                    ads[index].id ?? 0,
                                                   );
                                                 },
                                               );
@@ -183,7 +184,7 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                                                   .currentState
                                                   ?.pushNamed(
                                                     AddAdScreen.routeName,
-                                                    arguments: true,
+                                                    arguments: ads[index],
                                                   );
                                             },
                                             views:

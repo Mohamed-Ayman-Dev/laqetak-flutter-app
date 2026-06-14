@@ -30,7 +30,7 @@ class UserModel {
     avatar = json['avatar'];
     city = json['city'] != null ? DetailsModel.fromJson(json['city']) : null;
     token = json['token'];
-    notificationCount = json['notification_count'];
+    notificationCount = json['unread_notifications_count'];
     createdAt = json['created_at'];
   }
 
@@ -76,7 +76,7 @@ class UserModel {
     if (city != null) {
       map['city'] = city?.toJson();
     }
-    map['notification_count'] = notificationCount;
+    map['unread_notifications_count'] = notificationCount;
 
     map['token'] = token;
     map['created_at'] = createdAt;

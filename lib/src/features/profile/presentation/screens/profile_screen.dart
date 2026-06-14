@@ -31,7 +31,6 @@ import '../../../../core/shared/widgets/custom_image.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/shared/widgets/fields_widgets/my_custom_drop_down_menu.dart';
 import '../../../../core/shared/widgets/fields_widgets/password_eye_toggle.dart';
-import '../../../auth/presentation/screens/login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const routeName = '/profile_screen';
@@ -416,19 +415,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         title: 'تأكيد الإجراء',
                                         subtitle: 'هل انت متأكد من حذف الحساب؟',
                                         onButtonTap: () {
-                                          DialogHelpers.showSuccessDialog(
-                                            title: "تم حذف الحساب بنجاح",
-                                            buttonText: 'تسجيل الدخول',
-                                            onButtonTap: () {
-                                              LocatorService
-                                                  .navigationService
-                                                  .currentState
-                                                  ?.popUntil(
-                                                    (route) =>
-                                                        route.settings.name ==
-                                                        LoginScreen.routeName,
-                                                  );
-                                            },
+                                          Navigator.of(context).pop();
+                                          AuthController.deleteAccount(
+                                            context: context,
                                           );
                                         },
                                       );

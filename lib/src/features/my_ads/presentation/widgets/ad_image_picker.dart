@@ -1,6 +1,7 @@
 // ─── Image Picker Widget ───────────────────────────────
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,12 +10,23 @@ import 'package:image_picker/image_picker.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
+import '../../../../core/shared/models/photo_model.dart';
 import '../../../../core/themes/colors.dart';
+import 'ad_image_item.dart';
 
 class AdImagePicker extends StatefulWidget {
-  const AdImagePicker({super.key, required this.onImagesChanged});
+  const AdImagePicker({
+    super.key,
+    required this.onChanged,
+    this.initialPhotos = const [],
+  });
 
-  final void Function(List<XFile>) onImagesChanged;
+  final List<PhotoModel> initialPhotos;
+  final void Function({
+    required List<XFile> newPhotos,
+    required List<num> photosToRemove,
+  })
+  onChanged;
 
   @override
   State<AdImagePicker> createState() => _AdImagePickerState();
@@ -23,8 +35,28 @@ class AdImagePicker extends StatefulWidget {
 class _AdImagePickerState extends State<AdImagePicker> {
   static const int _maxImages = 4;
   final ImagePicker _picker = ImagePicker();
-  final List<XFile> _images = [];
+
+  late final List<AdImageItem> _images;
+  final List<num> _removedIds = []; // IDs اللي اتمسحت
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _images = widget.initialPhotos
+        .map<AdImageItem>((p) => AdImageItemNetwork(p))
+        .toList();
+  }
+
+  void _notify() {
+    widget.onChanged(
+      newPhotos: _images
+          .whereType<AdImageItemLocal>()
+          .map((e) => e.file)
+          .toList(),
+      photosToRemove: List.unmodifiable(_removedIds),
+    );
+  }
 
   Future<void> _pickImages() async {
     final remaining = _maxImages - _images.length;
@@ -34,21 +66,32 @@ class _AdImagePickerState extends State<AdImagePicker> {
     if (picked.isEmpty) return;
 
     setState(() {
-      _images.addAll(picked.take(remaining));
+      _images.addAll(picked.take(remaining).map((f) => AdImageItemLocal(f)));
       _selectedIndex = _images.length - 1;
     });
-    widget.onImagesChanged(_images);
+    _notify();
   }
 
   void _removeImage(int index) {
+    final item = _images[index];
+
+    // لو network → حفظ الـ ID للحذف
+    if (item is AdImageItemNetwork && item.photo.id != null) {
+      _removedIds.add(item.photo.id!);
+    }
+
     setState(() {
       _images.removeAt(index);
-      if (_selectedIndex >= _images.length) {
-        _selectedIndex = (_images.length - 1).clamp(0, _maxImages);
-      }
+      _selectedIndex = (_images.isEmpty
+          ? 0
+          : (_selectedIndex >= _images.length
+                ? _images.length - 1
+                : _selectedIndex));
     });
-    widget.onImagesChanged(_images);
+    _notify();
   }
+
+  // ─── Build ───
 
   @override
   Widget build(BuildContext context) {
@@ -58,27 +101,17 @@ class _AdImagePickerState extends State<AdImagePicker> {
     );
   }
 
-  // ─── Main Preview ───
   Widget _buildMainPreview() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10).r,
       child: Stack(
         children: [
-          // Image or placeholder
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 250),
             child: _images.isEmpty
                 ? _buildEmptyPreview()
-                : Image.file(
-                    File(_images[_selectedIndex].path),
-                    key: ValueKey(_images[_selectedIndex].path),
-                    width: double.infinity,
-                    height: 180.h,
-                    fit: BoxFit.cover,
-                  ),
+                : _buildItemImage(_images[_selectedIndex], height: 180.h),
           ),
-
-          // Delete button (top-left)
           if (_images.isNotEmpty)
             Positioned(
               bottom: 12.h,
@@ -89,6 +122,120 @@ class _AdImagePickerState extends State<AdImagePicker> {
               ),
             ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildItemImage(AdImageItem item, {required double height}) {
+    return switch (item) {
+      AdImageItemLocal(:final file) => Image.file(
+        File(file.path),
+        key: ValueKey('local_${file.path}'),
+        width: double.infinity,
+        height: height,
+        fit: BoxFit.cover,
+      ),
+      AdImageItemNetwork(:final photo) => CachedNetworkImage(
+        key: ValueKey('network_${photo.id}'),
+        imageUrl: photo.url ?? '',
+        width: double.infinity,
+        height: height,
+        fit: BoxFit.cover,
+      ),
+    };
+  }
+
+  Widget _buildThumbnailRow() {
+    return SizedBox(
+      height: 53.h,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: _maxImages + 1,
+        separatorBuilder: (_, __) => 8.widthSpace,
+        itemBuilder: (context, index) {
+          if (index == 0) return _buildAddThumbnail();
+          final imageIndex = index - 1;
+          if (imageIndex < _images.length) {
+            return _buildImageThumbnail(
+              imageIndex,
+              imageIndex == _selectedIndex,
+            );
+          }
+          return _buildEmptyThumbnail();
+        },
+      ),
+    );
+  }
+
+  Widget _buildImageThumbnail(int index, bool isSelected) {
+    return GestureDetector(
+      onTap: () => setState(() => _selectedIndex = index),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: 61.w,
+        height: 53.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10).r,
+          border: Border.all(
+            color: isSelected ? AppColors.primaryColor : Colors.transparent,
+            width: 2,
+          ),
+        ),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(9).r,
+              child: switch (_images[index]) {
+                AdImageItemLocal(:final file) => Image.file(
+                  File(file.path),
+                  fit: BoxFit.cover,
+                ),
+                AdImageItemNetwork(:final photo) => CachedNetworkImage(
+                  imageUrl: photo.url ?? '',
+                  fit: BoxFit.cover,
+                ),
+              },
+            ),
+            Positioned(
+              bottom: 4.h,
+              right: 4.w,
+              child: _DeleteButton(size: 22, onTap: () => _removeImage(index)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // باقي الـ widgets زي ما هي (_buildEmptyPreview, _buildEmptyThumbnail, _buildAddThumbnail)
+
+  Widget _buildAddThumbnail() {
+    return GestureDetector(
+      onTap: _pickImages,
+      child: DottedBorder(
+        options: RoundedRectDottedBorderOptions(
+          dashPattern: const [3, 3],
+          strokeWidth: 1,
+          color: AppColors.dottedBorderColor,
+          radius: Radius.circular(10.r),
+          padding: EdgeInsets.all(1).r,
+        ),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          width: 61.w,
+          height: 53.h,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10).r),
+          child: Center(
+            child: Center(
+              child: SvgPicture.asset(
+                SvgAssets.assetsSvgAddRound,
+                width: 24.w,
+                height: 24.h,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -123,128 +270,35 @@ class _AdImagePickerState extends State<AdImagePicker> {
       ),
     );
   }
-
-  // ─── Thumbnail Row ───
-  // ─── Thumbnail Row ───
-  Widget _buildThumbnailRow() {
-    return SizedBox(
-      height: 53.h,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: _maxImages + 1,
-        // 5 placeholders + 1 add button = دايمًا ثابت
-        separatorBuilder: (_, __) => 8.widthSpace,
-        itemBuilder: (context, index) {
-          // index 0 (آخر واحد بسبب reverse) = add button
-          if (index == 0) return _buildAddThumbnail();
-
-          // باقي الـ slots (1 → 5)
-          final imageIndex = index - 1;
-
-          if (imageIndex < _images.length) {
-            return _buildImageThumbnail(
-              imageIndex,
-              imageIndex == _selectedIndex,
-            );
-          }
-
-          return _buildEmptyThumbnail();
-        },
-      ),
-    );
-  }
-
-  // ─── Empty Placeholder Thumbnail ───
-  Widget _buildEmptyThumbnail() {
-    return DottedBorder(
-      options: RoundedRectDottedBorderOptions(
-        dashPattern: const [3, 3],
-        strokeWidth: 1,
-        color: AppColors.dottedBorderColor,
-        radius: Radius.circular(10.r),
-        padding: EdgeInsets.all(1).r,
-      ),
-      child: Container(
-        width: 61.w,
-        height: 53.h,
-        decoration: BoxDecoration(
-          color: AppColors.uploadImageBKColor,
-          borderRadius: BorderRadius.circular(10).r,
-        ),
-        child: Center(
-          child: SvgPicture.asset(
-            SvgAssets.assetsSvgUploadImage,
-            width: 24.w,
-            height: 24.h,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAddThumbnail() {
-    return GestureDetector(
-      onTap: _pickImages,
-      child: DottedBorder(
-        options: RoundedRectDottedBorderOptions(
-          dashPattern: const [3, 3],
-          strokeWidth: 1,
-          color: AppColors.dottedBorderColor,
-          radius: Radius.circular(10.r),
-          padding: EdgeInsets.all(1).r,
-        ),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          width: 61.w,
-          height: 53.h,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10).r),
-          child: Center(
-            child: Center(
-              child: SvgPicture.asset(
-                SvgAssets.assetsSvgAddRound,
-                width: 24.w,
-                height: 24.h,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildImageThumbnail(int index, bool isSelected) {
-    return GestureDetector(
-      onTap: () => setState(() => _selectedIndex = index),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: 61.w,
-        height: 53.h,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10).r,
-          border: Border.all(
-            color: isSelected ? AppColors.primaryColor : Colors.transparent,
-            width: 2,
-          ),
-        ),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(9).r,
-              child: Image.file(File(_images[index].path), fit: BoxFit.cover),
-            ),
-            Positioned(
-              bottom: 4.h,
-              right: 4.w,
-              child: _DeleteButton(size: 22, onTap: () => _removeImage(index)),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
 
+// ─── Empty Placeholder Thumbnail ───
+Widget _buildEmptyThumbnail() {
+  return DottedBorder(
+    options: RoundedRectDottedBorderOptions(
+      dashPattern: const [3, 3],
+      strokeWidth: 1,
+      color: AppColors.dottedBorderColor,
+      radius: Radius.circular(10.r),
+      padding: EdgeInsets.all(1).r,
+    ),
+    child: Container(
+      width: 61.w,
+      height: 53.h,
+      decoration: BoxDecoration(
+        color: AppColors.uploadImageBKColor,
+        borderRadius: BorderRadius.circular(10).r,
+      ),
+      child: Center(
+        child: SvgPicture.asset(
+          SvgAssets.assetsSvgUploadImage,
+          width: 24.w,
+          height: 24.h,
+        ),
+      ),
+    ),
+  );
+}
 // ─── Reusable Delete Button ────────────────────────────
 
 class _DeleteButton extends StatelessWidget {

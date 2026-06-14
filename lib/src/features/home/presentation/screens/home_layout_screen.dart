@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/helpers/dialog_helpers.dart';
 import 'package:invastro/src/core/shared/controllers/settings_controller.dart';
 import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
+import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/chat/presentation/screens/conversations_screen.dart';
 import 'package:invastro/src/features/favorite/presentation/screens/favorite_screen.dart';
 import 'package:invastro/src/features/notifications/presentation/screens/notification_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/others_helper.dart';
@@ -96,7 +99,27 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
           extendBody: true,
           drawer: const CustomDrawer(),
 
-          body: PopScope(canPop: true, child: screens[homeIndex]),
+          body: WillPopScope(
+            onWillPop: () async {
+              if (homeIndex == 0) {
+                bool? shouldClose = await DialogHelpers.showConfirmDialog(
+                  context: context,
+                  title: S.of(context).closeApp,
+                  description: S.of(context).areYouSureYouWantToCloseTheApp,
+                  buttonText: S.of(context).yes,
+                  color: AppColors.primaryColor,
+                  onYes: () {
+                    LocatorService.navigationService.currentState!.pop(true);
+                  },
+                );
+                return Future.value(shouldClose ?? false);
+              } else {
+                LocatorService.appSettings.changeHomeIndex(0);
+                return Future.value(false);
+              }
+            },
+            child: screens[homeIndex],
+          ),
           // ── Bottom Nav ──────────────────────────────────────────────────
           bottomNavigationBar: BottomNavBar(navItems: _navItems),
         );

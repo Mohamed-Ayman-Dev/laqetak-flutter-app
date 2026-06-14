@@ -12,4 +12,11 @@ class AdDetailsService {
       queryParameters: queryParameters,
     );
   }
+
+  Future toggleHidePhone({bool rethrowError = false, num? adId}) async {
+    return await ApiService.get(
+      '/my-ads/toggle-contact-phone/$adId',
+      rethrowError: rethrowError,
+    );
+  }
 }

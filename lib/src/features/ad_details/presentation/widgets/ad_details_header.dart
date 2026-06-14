@@ -8,8 +8,10 @@ import 'package:invastro/src/core/shared/widgets/buttons_widgets/small_icon_butt
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/home/presentation/providers/ads.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../../core/constants/svg_assets.dart';
+import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../home/presentation/controllers/ads_controller.dart';
@@ -33,8 +35,7 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
         HapticFeedback.heavyImpact();
         AdsController.addOrRemoveAdFromFavorites(ad: widget.ad ?? AdModel());
       } else {
-        ///guest bottom sheet
-        ///
+        BottomHelpers.showGuestBottomSheet(context);
       }
     },
     child: Padding(
@@ -94,7 +95,14 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
 
             SmallIconButton(
               icon: SvgAssets.assetsSvgShareIcon,
-              onTab: () {},
+              onTab: () {
+                SharePlus.instance.share(
+                  ShareParams(
+                    text:
+                        '${"check out this ad"} https://invastro.dev4.wady.sa/ad/${adDetail?.id ?? ''}',
+                  ),
+                );
+              },
               width: 20,
               height: 20,
             ),

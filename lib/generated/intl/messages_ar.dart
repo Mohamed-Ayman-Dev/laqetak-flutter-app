@@ -25,7 +25,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "added": MessageLookupByLibrary.simpleMessage("تمت الإضافة"),
     "adjustImage": MessageLookupByLibrary.simpleMessage("تعديل الصورة"),
     "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
+    "areYouSureYouWantToCloseTheApp": MessageLookupByLibrary.simpleMessage(
+      "هل انت متاكد انك تريد اغلاق التطبيق؟",
+    ),
+    "areYouSureYouWantToDeleteYourAccount":
+        MessageLookupByLibrary.simpleMessage(
+          "هل أنت متأكد أنك تريد حذف حسابك؟",
+        ),
     "attachments": MessageLookupByLibrary.simpleMessage("المرفقات"),
+    "byLoggingInYouCanAccessAllTheFeaturesOf": MessageLookupByLibrary.simpleMessage(
+      "By logging in, you can access all the features of the app and enjoy a personalized experience.",
+    ),
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "card": MessageLookupByLibrary.simpleMessage("البطاقة الائتمانية"),
     "cash": MessageLookupByLibrary.simpleMessage("كاش"),
@@ -33,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم حفظ التغييرات بنجاح",
     ),
     "city": MessageLookupByLibrary.simpleMessage("المدينة"),
+    "closeApp": MessageLookupByLibrary.simpleMessage("اغلاق التطبيق"),
     "complaintReason": MessageLookupByLibrary.simpleMessage("سبب الشكوى"),
     "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
     "connectionErrorPleaseCheckYourInternetConnection":
@@ -41,6 +52,10 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
     "continueToSignIn": MessageLookupByLibrary.simpleMessage(
       "متابعة تسجيل الدخول إلى حسابك",
+    ),
+    "deleteAccount": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
+    "deletingAccount": MessageLookupByLibrary.simpleMessage(
+      "جاري حذف الحساب...",
     ),
     "deletingNotification": MessageLookupByLibrary.simpleMessage(
       "جاري حذف الإشعار...",
@@ -79,6 +94,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "رقم الآيبان غير متطابق",
     ),
     "invastroUser": MessageLookupByLibrary.simpleMessage("مستخدم انفاسترو"),
+    "logIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "loginToContinue": MessageLookupByLibrary.simpleMessage(
+      "قم بتسجيل الدخول لتتمكن من المتابعة",
+    ),
     "messageIsRequired": MessageLookupByLibrary.simpleMessage("الرسالة مطلوبة"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
     "notificationDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -155,6 +174,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterYourUsername": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال اسم المستخدم",
     ),
+    "pleaseLogInFirstToViewTheContentOfThis":
+        MessageLookupByLibrary.simpleMessage(
+          "قم بتسجيل الدخول أولا لعرض محتوي هذه الصفحة",
+        ),
     "pleaseSelectACategory": MessageLookupByLibrary.simpleMessage(
       "يرجى اختيار فئة",
     ),
@@ -274,9 +297,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "writeComplaintDetailsHere": MessageLookupByLibrary.simpleMessage(
       "اكتب تفاصيل الشكوى هنا..",
     ),
+    "yes": MessageLookupByLibrary.simpleMessage("نعم"),
     "youLoggedInSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم تسجيل الدخول بنجاح",
     ),
+    "youNeedToSignInToViewThisPageIf": MessageLookupByLibrary.simpleMessage(
+      "يجب عليك تسجيل الدخول لعرض هذه الصفحة. إذا لم يكن لديك حساب، يمكنك إنشاء واحد مجانًا",
+    ),
+    "yourAccountHasBeenDeletedSuccessfully":
+        MessageLookupByLibrary.simpleMessage("تم حذف الحساب بنجاح"),
     "yourAddressHasBeenAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم اضافة العنوان الخاص بك بنجاح",
     ),

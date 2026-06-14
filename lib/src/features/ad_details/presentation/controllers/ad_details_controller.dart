@@ -1,8 +1,31 @@
+import '../../../../core/constants/app_feedback.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/error/error_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
 
 class AdDetailsController {
+  static Future<void> toggleHidePhone({required AdModel ad}) async {
+    try {
+      // الحالة الجديدة المطلوبة (عكس الحالية)
+      final num newState = ad.hidePhone == 1 ? 0 : 1;
+
+      // UI Update سريع (قبل ما نكلم السيرفر)
+      LocatorService.ads.changeHidePhoneState(ad.id ?? 0, hide: newState);
+
+      AppFeedback.showToast(
+        "${newState == 1 ? "تم تفعيل" : "تم تعطيل"} إخفاء رقم الهاتف بنجاح ",
+      );
+
+      // API Call
+      await LocatorService.adDetailsService.toggleHidePhone(
+        rethrowError: true,
+        adId: ad.id,
+      );
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
+    }
+  }
+
   static Future<void> getCustomerAds({
     required num id,
     bool refresh = false,

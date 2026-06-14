@@ -65,7 +65,37 @@ class MyAdsController {
     }
   }
 
-  static Future<void> sendAdOtp(Map<String, dynamic>? data) async {
+  static Future<void> deleteAd(num id) async {
+    try {
+      AppFeedback.loadingMessage(message: S.current.pleaseWait);
+      await LocatorService.myAdsService.deleteAd(id, rethrowError: true);
+      await getMyAds(refresh: true);
+      AdsController.getAds(refresh: true);
+      EasyLoading.dismiss();
+      DialogHelpers.showSuccessDialog(title: "تم حذف الاعلان بنجاح");
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
+    }
+  }
+
+  static Future<void> closeAd(num id) async {
+    try {
+      AppFeedback.loadingMessage(message: S.current.pleaseWait);
+      await LocatorService.myAdsService.closeAd(id, rethrowError: true);
+      await AdsController.getAdDetails(id);
+      getMyAds(refresh: true);
+      AdsController.getAds(refresh: true);
+      EasyLoading.dismiss();
+      DialogHelpers.showSuccessDialog(title: "تم انهاء الاعلان بنجاح");
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
+    }
+  }
+
+  static Future<void> sendAdOtp(
+    Map<String, dynamic>? data, {
+    bool edit = false,
+  }) async {
     try {
       RedirectModel redirect = RedirectModel();
 
@@ -83,7 +113,7 @@ class MyAdsController {
         arguments: {
           'redirectData': redirect,
           'data': data,
-          'from': OtpFlow.addAd,
+          'from': edit ? OtpFlow.editAd : OtpFlow.addAd,
         },
       );
     } catch (e) {
@@ -110,6 +140,56 @@ class MyAdsController {
       ErrorHelper.handleApiError(e);
     } finally {
       LocatorService.myAds.updateLoading(false);
+    }
+  }
+
+  static Future<void> editAd(Map<String, dynamic>? data) async {
+    try {
+      final readyData = Map<String, dynamic>.from(data ?? {});
+      AppFeedback.loadingMessage(message: S.current.pleaseWait);
+      // Add files as multipart array
+      if (readyData['photos[]'] != null && readyData['photos[]'].isNotEmpty) {
+        final files = <MultipartFile>[];
+        for (final path in readyData['photos[]']) {
+          if (path is MultipartFile) {
+            files.add(path);
+            continue;
+          }
+          if (path is XFile) {
+            files.add(
+              MultipartFile.fromFileSync(path.path, filename: path.name),
+            );
+            continue;
+          }
+        }
+        if (files.isNotEmpty) {
+          readyData['photos[]'] = files;
+        }
+      }
+      await LocatorService.myAdsService.editAd(readyData, rethrowError: true);
+      EasyLoading.dismiss();
+      DialogHelpers.showSuccessDialog(
+        title: 'تهانينا لقد تم ارسال طلب تعديل الإعلان بنجاح',
+        subtitle:
+            'سيتم مراجعة طلبك من قبل الإدارة وإذا تم الموافقة عليه سيتم تعديل الإعلان',
+      );
+    } catch (e, s) {
+      if (e is DioException) {
+        final responseData = e.response?.data;
+        EasyLoading.dismiss();
+        LocatorService.authNavigations.setWrongVerificationCode(
+          responseData['message'],
+        );
+        Future.delayed(const Duration(milliseconds: 100), () {
+          LocatorService.authNavigations.activationFormKey.currentState
+              ?.validate();
+        });
+      } else {
+        debugPrint(e.toString());
+        debugPrintStack(stackTrace: s);
+      }
+    } finally {
+      EasyLoading.dismiss();
     }
   }
 }

@@ -12,4 +12,12 @@ class StaticPagesService {
       rethrowError: rethrowError,
     );
   }
+
+  Future getFaqs({bool rethrowError = false}) async {
+    return await ApiService.get(
+      '/faqs',
+      rethrowError: rethrowError,
+      useDefaultUrl: true,
+    );
+  }
 }

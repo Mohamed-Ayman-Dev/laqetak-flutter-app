@@ -18,6 +18,7 @@ import '../../../../core/shared/widgets/items_widgets/ad_item.dart';
 import '../../../../core/shared/widgets/lists_widgets/empty_list_placeholder_widget.dart';
 import '../../../../core/shared/widgets/lists_widgets/list_loading_end_widget.dart';
 import '../../../../core/shared/widgets/lists_widgets/smart_refresher_header.dart';
+import '../../../../core/shared/widgets/login_first_widget.dart';
 import '../../../../core/shared/widgets/shimmers/items/ad_item_shimmer.dart';
 import '../../../ad_details/presentation/screens/ad_details_screen.dart';
 import '../../../home/presentation/controllers/ads_controller.dart';
@@ -36,8 +37,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      AdsController.getFavAds(refresh: true);
-      _scrollController.addListener(_onFavListener);
+      if (isAuth) {
+        AdsController.getFavAds(refresh: true);
+        _scrollController.addListener(_onFavListener);
+      }
     });
     super.initState();
   }
@@ -51,7 +54,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
   Future<void> _refresh() async {
     final refreshController = _refreshController;
-    await AdsController.getFavAds(refresh: true);
+    if (isAuth) {
+      await AdsController.getFavAds(refresh: true);
+    }
     refreshController.refreshCompleted();
   }
 
@@ -81,130 +86,151 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15).r,
-        child: SmartRefresher(
-          scrollController: _scrollController,
-          controller: _refreshController,
-          onRefresh: _refresh,
-          header: const SmartRefresherHeader(),
-          child: SingleChildScrollView(
-            child: Selector<Ads, PaginationList<AdModel>?>(
-              selector: (context, provider) => provider.myFavAds,
-              shouldRebuild: (previous, next) => true,
-              builder: (context, listProvider, child) {
-                final ads = listProvider?.data;
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'الإعلانات المفضلة',
-                      style: AppTextStyles.labelMedium.copyWith(
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                    16.heightSpace,
-                    ads != null && ads.isEmpty
-                        ? EmptyListPlaceholderWidget(
-                            text: S.of(context).thereAreNoFavoriteAdsYet,
-                            paddingTop: 0,
-                            paddingBottom: 100,
-                          )
-                        : ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
+        child: !isAuth
+            ? const LoginFirstWidget()
+            : SmartRefresher(
+                scrollController: _scrollController,
+                controller: _refreshController,
+                onRefresh: _refresh,
+                header: const SmartRefresherHeader(),
+                child: SingleChildScrollView(
+                  child: Selector<Ads, PaginationList<AdModel>?>(
+                    selector: (context, provider) => provider.myFavAds,
+                    shouldRebuild: (previous, next) => true,
+                    builder: (context, listProvider, child) {
+                      final ads = listProvider?.data;
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'الإعلانات المفضلة',
+                            style: AppTextStyles.labelMedium.copyWith(
+                              fontSize: 16.sp,
+                            ),
+                          ),
+                          16.heightSpace,
+                          ads != null && ads.isEmpty
+                              ? EmptyListPlaceholderWidget(
+                                  text: S.of(context).thereAreNoFavoriteAdsYet,
+                                  paddingTop: 0,
+                                  paddingBottom: 100,
+                                )
+                              : ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
 
-                            itemBuilder: (context, index) {
-                              return AnimationConfiguration.staggeredList(
-                                position: index,
-                                delay: const Duration(milliseconds: 10),
-                                child: SlideAnimation(
-                                  verticalOffset: 10,
-                                  duration: const Duration(milliseconds: 800),
-                                  curve: Curves.fastLinearToSlowEaseIn,
-                                  child: FadeInAnimation(
-                                    duration: const Duration(
-                                      milliseconds: 1000,
-                                    ),
-                                    curve: Curves.fastLinearToSlowEaseIn,
-                                    child: ads == null
-                                        ? AdItemShimmer()
-                                        : AdItem(
-                                            category:
-                                                ads[index].category?.name ?? '',
-                                            expired: index == 1 || index == 3,
-                                            image: ads[index].mainPhoto ?? '',
-                                            onTab: () {
-                                              LocatorService
-                                                  .navigationService
-                                                  .currentState
-                                                  ?.pushNamed(
-                                                    AdDetailsScreen.routeName,
-                                                    arguments: {
-                                                      'hero':
-                                                          '${ads[index].mainPhoto}-$index-home',
-                                                      'ad': ads[index],
-                                                    },
-                                                  );
-                                            },
-
-                                            hideDivider:
-                                                index == (ads.length - 1),
-                                            heroTag:
-                                                '${ads[index].mainPhoto}-$index-home',
-                                            customerName:
-                                                ads[index].customer?.name ?? '',
-                                            location:
-                                                ads[index].city?.name ?? '',
-                                            name: ads[index].title ?? '',
-                                            price:
-                                                ads[index].investmentAmount ??
-                                                '',
-                                            time: ads[index].publishedAt ?? '',
-                                            sector:
-                                                ads[index].sector?.name ?? '',
-                                            onLike: () {
-                                              if (isAuth) {
-                                                HapticFeedback.heavyImpact();
-                                                AdsController.addOrRemoveAdFromFavorites(
-                                                  ad: ads[index],
-                                                );
-                                              } else {
-                                                ///guest bottom sheet
-                                                ///
-                                              }
-                                            },
-
-                                            isLiked:
-                                                ads[index].isFavorite ?? false,
+                                  itemBuilder: (context, index) {
+                                    return AnimationConfiguration.staggeredList(
+                                      position: index,
+                                      delay: const Duration(milliseconds: 10),
+                                      child: SlideAnimation(
+                                        verticalOffset: 10,
+                                        duration: const Duration(
+                                          milliseconds: 800,
+                                        ),
+                                        curve: Curves.fastLinearToSlowEaseIn,
+                                        child: FadeInAnimation(
+                                          duration: const Duration(
+                                            milliseconds: 1000,
                                           ),
-                                  ),
+                                          curve: Curves.fastLinearToSlowEaseIn,
+                                          child: ads == null
+                                              ? AdItemShimmer()
+                                              : AdItem(
+                                                  category:
+                                                      ads[index]
+                                                          .category
+                                                          ?.name ??
+                                                      '',
+                                                  expired:
+                                                      ads[index].status ==
+                                                      'closed',
+                                                  image:
+                                                      ads[index].mainPhoto ??
+                                                      '',
+                                                  onTab: () {
+                                                    LocatorService
+                                                        .navigationService
+                                                        .currentState
+                                                        ?.pushNamed(
+                                                          AdDetailsScreen
+                                                              .routeName,
+                                                          arguments: {
+                                                            'hero':
+                                                                '${ads[index].mainPhoto}-$index-home',
+                                                            'ad': ads[index],
+                                                          },
+                                                        );
+                                                  },
+
+                                                  hideDivider:
+                                                      index == (ads.length - 1),
+                                                  heroTag:
+                                                      '${ads[index].mainPhoto}-$index-home',
+                                                  customerName:
+                                                      ads[index]
+                                                          .customer
+                                                          ?.name ??
+                                                      '',
+                                                  location:
+                                                      ads[index].city?.name ??
+                                                      '',
+                                                  name: ads[index].title ?? '',
+                                                  price:
+                                                      ads[index]
+                                                          .investmentAmount ??
+                                                      '',
+                                                  time:
+                                                      ads[index].publishedAt ??
+                                                      '',
+                                                  sector:
+                                                      ads[index].sector?.name ??
+                                                      '',
+                                                  onLike: () {
+                                                    if (isAuth) {
+                                                      HapticFeedback.heavyImpact();
+                                                      AdsController.addOrRemoveAdFromFavorites(
+                                                        ad: ads[index],
+                                                      );
+                                                    } else {
+                                                      ///guest bottom sheet
+                                                      ///
+                                                    }
+                                                  },
+
+                                                  isLiked:
+                                                      ads[index].isFavorite ??
+                                                      false,
+                                                ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+
+                                  itemCount: ads?.length ?? 6,
+                                  shrinkWrap: true,
                                 ),
+                          Selector<Ads, bool>(
+                            selector: (context, provider) =>
+                                provider.adsLoadingModel.loadingFavAds,
+                            shouldRebuild: (old, newData) => old != newData,
+                            builder: (context, loadingAds, child) {
+                              return ListLoadingEndWidget(
+                                lastPage: listProvider?.lastPage ?? 1,
+                                currentPage: listProvider?.currentPage ?? 1,
+                                isLoading: loadingAds,
+                                listLessThan:
+                                    listProvider?.data != null &&
+                                    listProvider!.data!.length > 4,
+                                noMoreText: S.of(context).thereAreNoMoreAds,
                               );
                             },
-
-                            itemCount: ads?.length ?? 6,
-                            shrinkWrap: true,
                           ),
-                    Selector<Ads, bool>(
-                      selector: (context, provider) =>
-                          provider.adsLoadingModel.loadingFavAds,
-                      shouldRebuild: (old, newData) => old != newData,
-                      builder: (context, loadingAds, child) {
-                        return ListLoadingEndWidget(
-                          lastPage: listProvider?.lastPage ?? 1,
-                          currentPage: listProvider?.currentPage ?? 1,
-                          isLoading: loadingAds,
-                          listLessThan:
-                              listProvider?.data != null &&
-                              listProvider!.data!.length > 4,
-                          noMoreText: S.of(context).thereAreNoMoreAds,
-                        );
-                      },
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-        ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
       ),
     );
   }

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../core/constants/svg_assets.dart';
+import '../../../../core/helpers/urlHelper.dart';
+
 class SocialButton extends StatelessWidget {
   final String link;
   final String icon;
@@ -12,7 +15,11 @@ class SocialButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // UrlHelper.launchSocialLink(link);
+        if (icon == SvgAssets.assetsSvgWhatsapp) {
+          UrlHelper.openWhatsApp(link);
+        } else {
+          UrlHelper.launchSocialLink(link);
+        }
       },
       splashColor: Colors.transparent,
       child: Container(

@@ -35,7 +35,7 @@ class NotificationsController {
             rethrowError: true,
             notificationId: notificationId,
           );
-      getNotifications();
+      await getNotifications(refresh: true);
       AppFeedback.showToast(S.current.notificationDeletedSuccessfully);
     } catch (e) {
       ErrorHelper.handleApiError(e);

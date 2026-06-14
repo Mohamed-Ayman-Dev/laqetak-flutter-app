@@ -7,6 +7,7 @@ import 'package:invastro/src/features/auth/presentation/screens/forget_password_
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:invastro/src/features/my_ads/presentation/controllers/my_ads_controller.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
+import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 import 'package:invastro/src/features/profile/presentation/screens/profile_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -108,6 +109,13 @@ class _OtpScreenState extends State<OtpScreen> {
                                         (route) =>
                                             route.settings.name ==
                                             AddAdSecondScreen.routeName,
+                                      )
+                                : _flow == OtpFlow.editAd
+                                ? LocatorService.navigationService.currentState
+                                      ?.popUntil(
+                                        (route) =>
+                                            route.settings.name ==
+                                            MyAdsScreen.routeName,
                                       )
                                 : _flow == OtpFlow.updatePhone
                                 ? LocatorService.navigationService.currentState
@@ -246,6 +254,10 @@ class _OtpScreenState extends State<OtpScreen> {
         case OtpFlow.addAd:
           _argsFormData?['contact_phone_otp'] = int.tryParse(otp);
           MyAdsController.addAd(_argsFormData);
+          break;
+        case OtpFlow.editAd:
+          _argsFormData?['contact_phone_otp'] = int.tryParse(otp);
+          MyAdsController.editAd(_argsFormData);
           break;
         case OtpFlow.login:
           // // Login OTP verification (for non-activated accounts)

@@ -20,6 +20,14 @@
   "pleaseEnterVerificationCode": "Please enter verification code",
   "passwordShouldContainOnlyEnglishLettersAndNumbers": "Password should contain only English letters and numbers",
   "next": "Next",
+  "logIn": "Log In",
+  "deletingAccount": "Deleting Account",
+  "deleteAccount": "Delete Account",
+  "areYouSureYouWantToDeleteYourAccount": "Are you sure you want to delete your account?",
+  "yourAccountHasBeenDeletedSuccessfully": "Your account has been deleted successfully",
+  "areYouSureYouWantToCloseTheApp": "Are you sure you want to close the app?",
+  "closeApp": "Close App",
+  "yes": "Yes",
   "sendingRequest": "Sending Request...",
   "forgotYourPassword": "Forgot your password?",
   "enterYourPhoneNumberUsernameOrEmailToResetYour": "Enter your phone number, username, or email to reset your password. A verification code will be sent via SMS.",
@@ -111,5 +119,9 @@
   "numberHasBeenVerifiedSuccessfully": "Number has been verified successfully.",
   "hidePhoneNumber": "Hide phone number",
   "cash": "Cash",
-  "card": "Card"
+  "card": "Card",
+  "loginToContinue": "Login to continue",
+  "pleaseLogInFirstToViewTheContentOfThis": "Please log in first to view the content of this page",
+  "youNeedToSignInToViewThisPageIf": "You need to sign in to view this page. If you dont have an account, you can create one for free.",
+  "byLoggingInYouCanAccessAllTheFeaturesOf": "By logging in, you can access all the features of the app and enjoy a personalized experience."
 }

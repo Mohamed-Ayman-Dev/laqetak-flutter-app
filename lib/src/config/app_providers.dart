@@ -35,24 +35,5 @@ class AppProviders {
     ChangeNotifierProvider<Ads>(create: (_) => LocatorService.ads),
     ChangeNotifierProvider<AdDetails>(create: (_) => LocatorService.adDetails),
     ChangeNotifierProvider<Chat>(create: (_) => LocatorService.chat),
-
-    // ChangeNotifierProvider<Timers>(create: (_) => LocatorService.timers),
-    // ChangeNotifierProvider<Banners>(create: (_) => LocatorService.banners),
-    // ChangeNotifierProvider<Chat>(create: (_) => LocatorService.chat),
-    // ChangeNotifierProvider<Stores>(create: (_) => LocatorService.stores),
-    // ChangeNotifierProvider<Addresses>(create: (_) => LocatorService.addresses),
-    // ChangeNotifierProvider<Settings>(create: (_) => LocatorService.settingss),
-    // ChangeNotifierProvider<Wallets>(create: (_) => LocatorService.wallets),
-    // ChangeNotifierProvider<Payments>(create: (_) => LocatorService.payments),
-
-    // ChangeNotifierProvider<Cars>(create: (_) => LocatorService.cars),
-    // ChangeNotifierProvider<QuoteRequests>(
-    //   create: (_) => LocatorService.quoteRequests,
-    // ),
-    // ChangeNotifierProvider<Complaints>(
-    //   create: (_) => LocatorService.complaints,
-    // ),
-    // ChangeNotifierProvider<Searches>(create: (_) => LocatorService.searches),
-    // ChangeNotifierProvider<Invoices>(create: (_) => LocatorService.invoices),
   ];
 }

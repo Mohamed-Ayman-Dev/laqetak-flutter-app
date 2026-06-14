@@ -11,6 +11,10 @@ class AuthService {
     );
   }
 
+  Future deleteAccount({bool rethrowError = false}) async {
+    return await ApiService.post('/profile/delete', rethrowError: rethrowError);
+  }
+
   Future sendPhoneOtp(Map<String, dynamic> data, {rethrowError = false}) async {
     return await ApiService.post(
       '/profile/phone-otp',

@@ -25,7 +25,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "added": MessageLookupByLibrary.simpleMessage("Added"),
     "adjustImage": MessageLookupByLibrary.simpleMessage("Adjust Image"),
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),
+    "areYouSureYouWantToCloseTheApp": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to close the app?",
+    ),
+    "areYouSureYouWantToDeleteYourAccount":
+        MessageLookupByLibrary.simpleMessage(
+          "Are you sure you want to delete your account?",
+        ),
     "attachments": MessageLookupByLibrary.simpleMessage("Attachments"),
+    "byLoggingInYouCanAccessAllTheFeaturesOf": MessageLookupByLibrary.simpleMessage(
+      "By logging in, you can access all the features of the app and enjoy a personalized experience.",
+    ),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancellationReasonIsRequired": MessageLookupByLibrary.simpleMessage(
       "Cancellation reason is required",
@@ -36,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Changes have been saved successfully",
     ),
     "city": MessageLookupByLibrary.simpleMessage("City"),
+    "closeApp": MessageLookupByLibrary.simpleMessage("Close App"),
     "complaintReason": MessageLookupByLibrary.simpleMessage("Complaint Reason"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "connectionErrorPleaseCheckYourInternetConnection":
@@ -45,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "continueToSignIn": MessageLookupByLibrary.simpleMessage(
       "Continue to sign in",
     ),
+    "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete Account"),
+    "deletingAccount": MessageLookupByLibrary.simpleMessage("Deleting Account"),
     "deletingNotification": MessageLookupByLibrary.simpleMessage(
       "Deleting notification...",
     ),
@@ -84,6 +97,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage("Iban do not match"),
     "invastroUser": MessageLookupByLibrary.simpleMessage("Invastro User"),
+    "logIn": MessageLookupByLibrary.simpleMessage("Log In"),
+    "loginToContinue": MessageLookupByLibrary.simpleMessage(
+      "Login to continue",
+    ),
     "messageIsRequired": MessageLookupByLibrary.simpleMessage(
       "Message is required",
     ),
@@ -169,6 +186,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterYourUsername": MessageLookupByLibrary.simpleMessage(
       "Please enter your username",
     ),
+    "pleaseLogInFirstToViewTheContentOfThis":
+        MessageLookupByLibrary.simpleMessage(
+          "Please log in first to view the content of this page",
+        ),
     "pleaseSelectACategory": MessageLookupByLibrary.simpleMessage(
       "Please select a category",
     ),
@@ -291,9 +312,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "Write complaint details here...",
     ),
     "writeTheReason": MessageLookupByLibrary.simpleMessage("Write the reason"),
+    "yes": MessageLookupByLibrary.simpleMessage("Yes"),
     "youLoggedInSuccessfully": MessageLookupByLibrary.simpleMessage(
       "You logged in successfully",
     ),
+    "youNeedToSignInToViewThisPageIf": MessageLookupByLibrary.simpleMessage(
+      "You need to sign in to view this page. If you dont have an account, you can create one for free.",
+    ),
+    "yourAccountHasBeenDeletedSuccessfully":
+        MessageLookupByLibrary.simpleMessage(
+          "Your account has been deleted successfully",
+        ),
     "yourAddressHasBeenAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Your address has been added successfully",
     ),

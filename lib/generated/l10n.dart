@@ -254,6 +254,71 @@ class S {
     return Intl.message('Next', name: 'next', desc: '', args: []);
   }
 
+  /// `Log In`
+  String get logIn {
+    return Intl.message('Log In', name: 'logIn', desc: '', args: []);
+  }
+
+  /// `Deleting Account`
+  String get deletingAccount {
+    return Intl.message(
+      'Deleting Account',
+      name: 'deletingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Account`
+  String get deleteAccount {
+    return Intl.message(
+      'Delete Account',
+      name: 'deleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete your account?`
+  String get areYouSureYouWantToDeleteYourAccount {
+    return Intl.message(
+      'Are you sure you want to delete your account?',
+      name: 'areYouSureYouWantToDeleteYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account has been deleted successfully`
+  String get yourAccountHasBeenDeletedSuccessfully {
+    return Intl.message(
+      'Your account has been deleted successfully',
+      name: 'yourAccountHasBeenDeletedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to close the app?`
+  String get areYouSureYouWantToCloseTheApp {
+    return Intl.message(
+      'Are you sure you want to close the app?',
+      name: 'areYouSureYouWantToCloseTheApp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close App`
+  String get closeApp {
+    return Intl.message('Close App', name: 'closeApp', desc: '', args: []);
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message('Yes', name: 'yes', desc: '', args: []);
+  }
+
   /// `Sending Request...`
   String get sendingRequest {
     return Intl.message(
@@ -1077,6 +1142,46 @@ class S {
   /// `Card`
   String get card {
     return Intl.message('Card', name: 'card', desc: '', args: []);
+  }
+
+  /// `Login to continue`
+  String get loginToContinue {
+    return Intl.message(
+      'Login to continue',
+      name: 'loginToContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please log in first to view the content of this page`
+  String get pleaseLogInFirstToViewTheContentOfThis {
+    return Intl.message(
+      'Please log in first to view the content of this page',
+      name: 'pleaseLogInFirstToViewTheContentOfThis',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You need to sign in to view this page. If you dont have an account, you can create one for free.`
+  String get youNeedToSignInToViewThisPageIf {
+    return Intl.message(
+      'You need to sign in to view this page. If you dont have an account, you can create one for free.',
+      name: 'youNeedToSignInToViewThisPageIf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `By logging in, you can access all the features of the app and enjoy a personalized experience.`
+  String get byLoggingInYouCanAccessAllTheFeaturesOf {
+    return Intl.message(
+      'By logging in, you can access all the features of the app and enjoy a personalized experience.',
+      name: 'byLoggingInYouCanAccessAllTheFeaturesOf',
+      desc: '',
+      args: [],
+    );
   }
 }
 

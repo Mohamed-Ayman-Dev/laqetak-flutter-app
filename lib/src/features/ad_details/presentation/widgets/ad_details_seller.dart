@@ -8,19 +8,27 @@ import 'package:invastro/src/core/shared/models/customer_model.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:invastro/src/features/ad_details/presentation/controllers/ad_details_controller.dart';
 import 'package:invastro/src/features/ad_details/presentation/screens/seller_profile_screen.dart';
 import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
+import '../../../../core/helpers/others_helper.dart';
+import '../../../../core/helpers/urlHelper.dart';
+import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_outline_button.dart';
 import '../../../../core/shared/widgets/custom_switch.dart';
 import '../../../../core/themes/theme.dart';
+import '../../../home/presentation/providers/ads.dart';
 
 class AdDetailsSeller extends StatelessWidget {
   final CustomerModel? customer;
   final String? phone;
   final bool hidePhone;
   final bool isMyAd;
+  final AdModel? ad;
 
   const AdDetailsSeller({
     super.key,
@@ -28,6 +36,7 @@ class AdDetailsSeller extends StatelessWidget {
     this.phone,
     this.isMyAd = false,
     this.hidePhone = false,
+    this.ad,
   });
 
   @override
@@ -85,50 +94,70 @@ class AdDetailsSeller extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (isMe) CustomSwitch(value: hidePhone, onChanged: (val) {}),
+                if (isMe)
+                  Selector<Ads, AdModel?>(
+                    selector: (context, provider) =>
+                        provider.myAdDetails[ad?.id],
+                    shouldRebuild: (previous, next) => true,
+                    builder: (context, updatedAdDetail, child) {
+                      return CustomSwitch(
+                        value: updatedAdDetail?.hidePhone == 1,
+                        onChanged: (val) {
+                          AdDetailsController.toggleHidePhone(
+                            ad: ad ?? AdModel(),
+                          );
+                        },
+                      );
+                    },
+                  ),
               ],
             ),
           ),
           13.heightSpace,
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () {},
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppColors.sellerNumberBKColor.withOpacity(0.5),
-                borderRadius: BorderRadius.circular(10),
-              ),
+          if (isMe || !hidePhone)
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                if (phone != null && phone!.isNotEmpty) {
+                  UrlHelper.openDialer(phone!);
+                }
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.sellerNumberBKColor.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(10),
+                ),
 
-              margin: EdgeInsets.symmetric(horizontal: 6).r,
-              padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18).r,
-              child: Row(
-                children: [
-                  Text(
-                    'رقم التواصل',
-                    style: AppTextStyles.bodyMedium.copyWith(
-                      color: AppColors.numberLabelTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w300,
+                margin: EdgeInsets.symmetric(horizontal: 6).r,
+                padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18).r,
+                child: Row(
+                  children: [
+                    Text(
+                      'رقم التواصل',
+                      style: AppTextStyles.bodyMedium.copyWith(
+                        color: AppColors.numberLabelTextColor,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
-                  ),
-                  Spacer(),
-                  Text(
-                    phone ?? '',
-                    style: AppTextStyles.labelSmall.copyWith(
-                      fontSize: 15.sp,
-                      color: AppColors.numberLabelTextColor,
+                    Spacer(),
+                    Text(
+                      phone ?? '',
+                      style: AppTextStyles.labelSmall.copyWith(
+                        fontSize: 15.sp,
+                        color: AppColors.numberLabelTextColor,
+                      ),
                     ),
-                  ),
-                  12.widthSpace,
-                  SvgPicture.asset(
-                    SvgAssets.assetsSvgCall,
-                    height: 18.h,
-                    width: 18.w,
-                  ),
-                ],
+                    12.widthSpace,
+                    SvgPicture.asset(
+                      SvgAssets.assetsSvgCall,
+                      height: 18.h,
+                      width: 18.w,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
           if (!isMe) Divider(height: 30.h),
           if (!isMe)
             Row(
@@ -142,10 +171,14 @@ class AdDetailsSeller extends StatelessWidget {
                   size: Size(97.w, 36.h),
                   borderColor: AppColors.reportBorderColor,
                   onPressed: () {
-                    LocatorService.navigationService.currentState?.pushNamed(
-                      ChatScreen.routeName,
-                      arguments: {'receiver': customer},
-                    );
+                    isAuth
+                        ? LocatorService.navigationService.currentState
+                              ?.pushNamed(
+                                ChatScreen.routeName,
+                                arguments: {'receiver': customer},
+                              )
+                        : BottomHelpers.showGuestBottomSheet(context);
+                    ;
                   },
                 ),
                 7.widthSpace,
@@ -158,10 +191,13 @@ class AdDetailsSeller extends StatelessWidget {
                   size: Size(97.w, 36.h),
                   borderColor: AppColors.reportBorderColor,
                   onPressed: () {
-                    DialogHelpers.showReportDialog(
-                      customer?.id ?? 0,
-                      isCustomerReport: true,
-                    );
+                    isAuth
+                        ? DialogHelpers.showReportDialog(
+                            customer?.id ?? 0,
+                            isCustomerReport: true,
+                          )
+                        : BottomHelpers.showGuestBottomSheet(context);
+                    ;
                   },
                 ),
                 6.widthSpace,

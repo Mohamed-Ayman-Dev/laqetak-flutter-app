@@ -5,6 +5,7 @@ import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/shared/controllers/others_controller.dart';
+import 'package:invastro/src/core/shared/models/ad_model.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
@@ -35,13 +36,24 @@ class _AddAdScreenState extends State<AddAdScreen> {
   final _formKey = GlobalKey<FormState>();
 
   final Map<String, dynamic> _formData = {};
-  bool _isEdit = false;
   bool once = false;
+  AdModel? ad;
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _investmentAmountController =
+      TextEditingController();
 
   @override
   void didChangeDependencies() {
     if (!once) {
-      _isEdit = ModalRoute.of(context)?.settings.arguments as bool? ?? false;
+      ad = ModalRoute.of(context)?.settings.arguments as AdModel?;
+      if (ad != null) {
+        _formData['city_id'] = ad?.city?.id;
+        _formData['category_id'] = ad?.category?.id;
+        _formData['sector_id'] = ad?.sector?.id;
+        _titleController.text = ad?.title ?? '';
+        _investmentAmountController.text =
+            ad?.investmentAmount?.toString() ?? '';
+      }
       WidgetsBinding.instance.addPostFrameCallback((_) {
         OthersController.getCities();
         OthersController.getSectors();
@@ -58,9 +70,16 @@ class _AddAdScreenState extends State<AddAdScreen> {
       _formKey.currentState!.save();
       LocatorService.navigationService.currentState?.pushNamed(
         AddAdSecondScreen.routeName,
-        arguments: {'isEdit': _isEdit, 'data': _formData},
+        arguments: {'ad': ad, 'data': _formData},
       );
     }
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _investmentAmountController.dispose();
+    super.dispose();
   }
 
   @override
@@ -94,7 +113,6 @@ class _AddAdScreenState extends State<AddAdScreen> {
                 builder: (context, myCities, child) {
                   return MyCustomDropdownFormField(
                     hint: "اختر المدينة",
-                    // items: myCities
                     items: myCities
                         ?.map<DropdownMenuItem<num>>(
                           (e) => DropdownMenuItem<num>(
@@ -130,6 +148,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
                 onSaved: (val) {
                   _formData['title'] = val;
                 },
+                controller: _titleController,
                 keyboardType: TextInputType.name,
 
                 validator: (value) {
@@ -224,6 +243,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
                     emptyMessage: S.of(context).pleaseEnterYourPrice,
                   );
                 },
+                controller: _investmentAmountController,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
                 hintText: "000.000",
@@ -234,8 +254,6 @@ class _AddAdScreenState extends State<AddAdScreen> {
                     color: AppColors.primaryColor,
                   ),
                 ),
-
-                // textDirection: TextDirection.ltr,
               ),
               27.heightSpace,
               CustomElevatedButton(
