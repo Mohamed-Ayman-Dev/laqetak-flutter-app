@@ -15,7 +15,9 @@ class StaticPagesController {
         rethrowError: true,
       );
       EasyLoading.dismiss();
-      DialogHelpers.showSuccessDialog(title: 'تم ارسال رسالتك بنجاح');
+      DialogHelpers.showSuccessDialog(
+        title: S.current.yourMessageHasBeenSentSuccessfully,
+      );
     } catch (e) {
       ErrorHelper.handleApiError(e);
     }

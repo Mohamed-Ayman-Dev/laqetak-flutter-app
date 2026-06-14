@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/themes/colors.dart';
 
@@ -41,7 +42,7 @@ class ChatBottomField extends StatelessWidget {
           ),
           Expanded(
             child: CustomTextField(
-              hintText: 'اكتب رسالة ...',
+              hintText: S.of(context).writeAMessage,
               borderRadius: 80,
               controller: controller,
               borderColor: AppColors.chatFieldBorderColor,

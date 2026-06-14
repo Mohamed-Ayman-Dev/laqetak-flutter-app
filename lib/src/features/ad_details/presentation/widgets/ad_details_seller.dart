@@ -13,6 +13,7 @@ import 'package:invastro/src/features/ad_details/presentation/screens/seller_pro
 import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
@@ -79,7 +80,7 @@ class AdDetailsSeller extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'المعلن',
+                        S.of(context).advertiser,
                         style: AppTextStyles.labelSmall.copyWith(
                           fontSize: 10.sp,
                           color: AppColors.sellerLabelTextColor,
@@ -133,7 +134,7 @@ class AdDetailsSeller extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'رقم التواصل',
+                      S.of(context).contactNumber,
                       style: AppTextStyles.bodyMedium.copyWith(
                         color: AppColors.numberLabelTextColor,
                         fontSize: 13.sp,
@@ -164,7 +165,7 @@ class AdDetailsSeller extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 CustomElevatedButton(
-                  text: 'مراسلة',
+                  text: S.of(context).chat,
                   textStyle: AppTextStyles.labelLarge.copyWith(fontSize: 12.sp),
                   borderRadius: 35,
                   icon: SvgAssets.assetsSvgChatIcon,
@@ -183,7 +184,7 @@ class AdDetailsSeller extends StatelessWidget {
                 ),
                 7.widthSpace,
                 CustomOutlineButton(
-                  text: 'الإبلاغ',
+                  text: S.of(context).report,
                   textStyle: AppTextStyles.buttonsTextStyle.copyWith(
                     color: AppColors.labelTextColor,
                     fontSize: 12.sp,

@@ -22,17 +22,52 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "aboutThePlatform": MessageLookupByLibrary.simpleMessage(
+      "About the Platform",
+    ),
+    "accountDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Account deleted successfully",
+    ),
+    "activated": MessageLookupByLibrary.simpleMessage("Activated"),
+    "adDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Ad deleted successfully.",
+    ),
+    "adDetails": MessageLookupByLibrary.simpleMessage("Ad Details"),
+    "adEndedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Ad ended successfully.",
+    ),
+    "adImages": MessageLookupByLibrary.simpleMessage("Ad Images"),
+    "addYourAd": MessageLookupByLibrary.simpleMessage("Add Your Ad"),
     "added": MessageLookupByLibrary.simpleMessage("Added"),
     "adjustImage": MessageLookupByLibrary.simpleMessage("Adjust Image"),
+    "ads": MessageLookupByLibrary.simpleMessage("Ads"),
+    "advertiser": MessageLookupByLibrary.simpleMessage("Advertiser"),
+    "advertiserDetails": MessageLookupByLibrary.simpleMessage(
+      "Advertiser Details",
+    ),
+    "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
+      "Already have an account",
+    ),
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),
     "areYouSureYouWantToCloseTheApp": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to close the app?",
     ),
+    "areYouSureYouWantToDeleteThisAd": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to delete this ad?",
+    ),
+    "areYouSureYouWantToDeleteThisNotification":
+        MessageLookupByLibrary.simpleMessage(
+          "Are you sure you want to delete this notification?",
+        ),
     "areYouSureYouWantToDeleteYourAccount":
         MessageLookupByLibrary.simpleMessage(
           "Are you sure you want to delete your account?",
         ),
+    "areYouSureYouWantToEndThisAd": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to end this ad?",
+    ),
     "attachments": MessageLookupByLibrary.simpleMessage("Attachments"),
+    "averageCapital": MessageLookupByLibrary.simpleMessage("Average Capital"),
     "byLoggingInYouCanAccessAllTheFeaturesOf": MessageLookupByLibrary.simpleMessage(
       "By logging in, you can access all the features of the app and enjoy a personalized experience.",
     ),
@@ -42,20 +77,50 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "card": MessageLookupByLibrary.simpleMessage("Card"),
     "cash": MessageLookupByLibrary.simpleMessage("Cash"),
+    "category": MessageLookupByLibrary.simpleMessage("Category"),
+    "changeNumber": MessageLookupByLibrary.simpleMessage("Change Number"),
     "changesHaveBeenSavedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Changes have been saved successfully",
     ),
+    "chat": MessageLookupByLibrary.simpleMessage("Chat"),
+    "chattingWith": MessageLookupByLibrary.simpleMessage("Chatting with"),
+    "checkConnection": MessageLookupByLibrary.simpleMessage("Check Connection"),
+    "checkOutThisAd": MessageLookupByLibrary.simpleMessage("check out this ad"),
+    "chooseLanguage": MessageLookupByLibrary.simpleMessage("Choose Language"),
     "city": MessageLookupByLibrary.simpleMessage("City"),
     "closeApp": MessageLookupByLibrary.simpleMessage("Close App"),
+    "commissionPrice": MessageLookupByLibrary.simpleMessage("Commission Price"),
     "complaintReason": MessageLookupByLibrary.simpleMessage("Complaint Reason"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+    "confirmAction": MessageLookupByLibrary.simpleMessage("Confirm Action"),
+    "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
+    "congratulationsPaymentCompletedSuccessfully":
+        MessageLookupByLibrary.simpleMessage(
+          "Congratulations! Payment completed successfully.",
+        ),
+    "congratulationsYourAccountHasBeenRegisteredSuccessfully":
+        MessageLookupByLibrary.simpleMessage(
+          "Congratulations! Your account has been registered successfully.",
+        ),
+    "congratulationsYourAdEditRequestHasBeenSubmittedSuccessfully":
+        MessageLookupByLibrary.simpleMessage(
+          "Congratulations! Your ad edit request has been submitted successfully.",
+        ),
+    "congratulationsYourProfileHasBeenUpdatedSuccessfully":
+        MessageLookupByLibrary.simpleMessage(
+          "Congratulations! Your profile has been updated successfully.",
+        ),
     "connectionErrorPleaseCheckYourInternetConnection":
         MessageLookupByLibrary.simpleMessage(
           "Connection Error Please Check Your Internet Connection",
         ),
+    "contactNumber": MessageLookupByLibrary.simpleMessage("Contact Number"),
+    "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
     "continueToSignIn": MessageLookupByLibrary.simpleMessage(
       "Continue to sign in",
     ),
+    "day": MessageLookupByLibrary.simpleMessage("day"),
+    "deactivated": MessageLookupByLibrary.simpleMessage("Deactivated"),
     "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete Account"),
     "deletingAccount": MessageLookupByLibrary.simpleMessage("Deleting Account"),
     "deletingNotification": MessageLookupByLibrary.simpleMessage(
@@ -70,15 +135,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Don’t have an account?",
     ),
+    "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+    "editAd": MessageLookupByLibrary.simpleMessage("Edit Ad"),
+    "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
     "emailOrMobileNumberOrUsername": MessageLookupByLibrary.simpleMessage(
       "Email or mobile number or username",
     ),
+    "enterAdTitle": MessageLookupByLibrary.simpleMessage("Enter Ad Title"),
+    "enterCapital": MessageLookupByLibrary.simpleMessage("Enter Capital"),
     "enterComplaintDetails": MessageLookupByLibrary.simpleMessage(
       "Enter complaint details",
+    ),
+    "enterPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
+    "enterTheReportReason": MessageLookupByLibrary.simpleMessage(
+      "Enter the report reason",
     ),
     "enterTheVerificationCodeWeSentTo": MessageLookupByLibrary.simpleMessage(
       "Enter the verification code we sent to",
     ),
+    "enterUsername": MessageLookupByLibrary.simpleMessage("Enter Username"),
+    "enterYourEmail": MessageLookupByLibrary.simpleMessage("Enter Your Email"),
     "enterYourLoginDetails": MessageLookupByLibrary.simpleMessage(
       "Enter your login details",
     ),
@@ -86,8 +162,16 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Enter your phone number, username, or email to reset your password. A verification code will be sent via SMS.",
         ),
+    "expired": MessageLookupByLibrary.simpleMessage("Expired"),
+    "expiredAd": MessageLookupByLibrary.simpleMessage("Expired Ad"),
+    "favoriteAds": MessageLookupByLibrary.simpleMessage("Favorite Ads"),
+    "filter": MessageLookupByLibrary.simpleMessage("Filter"),
+    "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "forgotYourPassword": MessageLookupByLibrary.simpleMessage(
       "Forgot your password?",
+    ),
+    "frequentlyAskedQuestions": MessageLookupByLibrary.simpleMessage(
+      "Frequently Asked Questions",
     ),
     "fromFavoritesSuccessfully": MessageLookupByLibrary.simpleMessage(
       "From Favorites Successfully",
@@ -95,16 +179,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "hidePhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Hide phone number",
     ),
+    "homeScreen": MessageLookupByLibrary.simpleMessage("Home Screen"),
+    "hour": MessageLookupByLibrary.simpleMessage("hour"),
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage("Iban do not match"),
     "invastroUser": MessageLookupByLibrary.simpleMessage("Invastro User"),
+    "investmentCapital": MessageLookupByLibrary.simpleMessage(
+      "Investment Capital",
+    ),
+    "investmentSector": MessageLookupByLibrary.simpleMessage(
+      "Investment Sector",
+    ),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
     "logIn": MessageLookupByLibrary.simpleMessage("Log In"),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
     "loginToContinue": MessageLookupByLibrary.simpleMessage(
       "Login to continue",
     ),
+    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "messageIsRequired": MessageLookupByLibrary.simpleMessage(
       "Message is required",
     ),
+    "messageSubject": MessageLookupByLibrary.simpleMessage("Message Subject"),
+    "messages": MessageLookupByLibrary.simpleMessage("Messages"),
+    "minute": MessageLookupByLibrary.simpleMessage("minute"),
+    "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
+    "month": MessageLookupByLibrary.simpleMessage("month"),
+    "moreThan": MessageLookupByLibrary.simpleMessage("More than"),
+    "myAds": MessageLookupByLibrary.simpleMessage("My Ads"),
+    "name": MessageLookupByLibrary.simpleMessage("Name"),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
+    "noInternetConnection": MessageLookupByLibrary.simpleMessage(
+      "No Internet Connection",
+    ),
     "notificationDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Notification deleted successfully",
     ),
@@ -113,8 +219,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Number has been verified successfully.",
     ),
     "openSettings": MessageLookupByLibrary.simpleMessage("Open Settings"),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       "Password cannot be empty",
+    ),
+    "passwordChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Password changed successfully",
     ),
     "passwordShouldBeAtLeast8Characters": MessageLookupByLibrary.simpleMessage(
       "Password should be at least 8 characters",
@@ -126,13 +236,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "Passwords do not match",
     ),
+    "payNow": MessageLookupByLibrary.simpleMessage("Pay Now"),
     "permissionRequired": MessageLookupByLibrary.simpleMessage(
       "Permission Required",
+    ),
+    "phoneNumberHiddenSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Phone number hidden successfully",
     ),
     "phoneNumberShouldBeAtLeast9Characters":
         MessageLookupByLibrary.simpleMessage(
           "Phone number should be at least 9 characters",
         ),
+    "platformIdea": MessageLookupByLibrary.simpleMessage("Platform Idea"),
     "pleaseAgreeToTheIdea": MessageLookupByLibrary.simpleMessage(
       "Please agree to the idea",
     ),
@@ -171,12 +286,25 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterIbanConfirmation": MessageLookupByLibrary.simpleMessage(
       "Please enter iban confirmation",
     ),
+    "pleaseEnterThe4digitCode": MessageLookupByLibrary.simpleMessage(
+      "Please enter the 4-digit code",
+    ),
     "pleaseEnterVerificationCode": MessageLookupByLibrary.simpleMessage(
       "Please enter verification code",
+    ),
+    "pleaseEnterYourDetails": MessageLookupByLibrary.simpleMessage(
+      "Please enter your details",
     ),
     "pleaseEnterYourEmail": MessageLookupByLibrary.simpleMessage(
       "Please Enter Your Email",
     ),
+    "pleaseEnterYourMobileNumber": MessageLookupByLibrary.simpleMessage(
+      "Please enter your mobile number",
+    ),
+    "pleaseEnterYourMobileNumberAndPassword":
+        MessageLookupByLibrary.simpleMessage(
+          "Please enter your mobile number and password",
+        ),
     "pleaseEnterYourName": MessageLookupByLibrary.simpleMessage(
       "Please enter your name",
     ),
@@ -205,24 +333,56 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseSelectASector": MessageLookupByLibrary.simpleMessage(
       "Please select a sector",
     ),
+    "pleaseSelectAtLeastOneImage": MessageLookupByLibrary.simpleMessage(
+      "Please select at least one image",
+    ),
     "pleaseVerifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Please verify your phone number",
     ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("Please Wait..."),
     "pressToChat": MessageLookupByLibrary.simpleMessage("Press to chat"),
+    "previous": MessageLookupByLibrary.simpleMessage("Previous"),
+    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "read": MessageLookupByLibrary.simpleMessage("Read"),
+    "registerNow": MessageLookupByLibrary.simpleMessage("Register Now!"),
     "removed": MessageLookupByLibrary.simpleMessage("Removed"),
+    "report": MessageLookupByLibrary.simpleMessage("Report"),
+    "reportAd": MessageLookupByLibrary.simpleMessage("Report Ad"),
+    "reportSentSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Report sent successfully",
+    ),
+    "reportSubmittedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Report submitted successfully",
+    ),
     "resend": MessageLookupByLibrary.simpleMessage("Resend"),
+    "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
+    "retry": MessageLookupByLibrary.simpleMessage("Retry"),
+    "sar": MessageLookupByLibrary.simpleMessage("SAR"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "savePassword": MessageLookupByLibrary.simpleMessage("Save Password"),
+    "search": MessageLookupByLibrary.simpleMessage("Search"),
     "searchForALocation": MessageLookupByLibrary.simpleMessage(
       "Search for a location",
     ),
+    "second": MessageLookupByLibrary.simpleMessage("second"),
+    "selectCategory": MessageLookupByLibrary.simpleMessage("Select Category"),
     "selectCity": MessageLookupByLibrary.simpleMessage("Select City"),
     "selectComplaintReason": MessageLookupByLibrary.simpleMessage(
       "Select Complaint Reason",
     ),
+    "selectInvestmentSector": MessageLookupByLibrary.simpleMessage(
+      "Select Investment Sector",
+    ),
+    "selectMainCategory": MessageLookupByLibrary.simpleMessage(
+      "Select Main Category",
+    ),
+    "selectPaymentMethod": MessageLookupByLibrary.simpleMessage(
+      "Select Payment Method",
+    ),
+    "selectSector": MessageLookupByLibrary.simpleMessage("Select Sector"),
+    "send": MessageLookupByLibrary.simpleMessage("Send"),
     "sendCode": MessageLookupByLibrary.simpleMessage("Send Code"),
     "sending": MessageLookupByLibrary.simpleMessage("Sending..."),
     "sendingRequest": MessageLookupByLibrary.simpleMessage(
@@ -238,8 +398,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
     ),
+    "stillNoInternetConnectionPleaseTryAgain":
+        MessageLookupByLibrary.simpleMessage(
+          "Still no internet connection. Please try again.",
+        ),
     "submitComplaint": MessageLookupByLibrary.simpleMessage("Submit Complaint"),
     "tapToRetry": MessageLookupByLibrary.simpleMessage("Tap to retry"),
+    "termsConditions": MessageLookupByLibrary.simpleMessage(
+      "Terms & Conditions",
+    ),
     "thereAreNoAdsYet": MessageLookupByLibrary.simpleMessage(
       "There are no ads yet.",
     ),
@@ -293,6 +460,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "To Favorites Successfully",
     ),
     "toSignIn": MessageLookupByLibrary.simpleMessage("to sign in"),
+    "today": MessageLookupByLibrary.simpleMessage("Today"),
+    "username": MessageLookupByLibrary.simpleMessage("Username"),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "Username Or Password Is Incorrect",
     ),
@@ -308,13 +477,26 @@ class MessageLookup extends MessageLookupByLibrary {
       "Verify your phone number",
     ),
     "version": MessageLookupByLibrary.simpleMessage("Version"),
+    "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
+    "writeAMessage": MessageLookupByLibrary.simpleMessage("Write a message..."),
+    "writeATitleForTheAd": MessageLookupByLibrary.simpleMessage(
+      "Write a Title for the Ad",
+    ),
+    "writeAdDetails": MessageLookupByLibrary.simpleMessage("Write Ad Details"),
     "writeComplaintDetailsHere": MessageLookupByLibrary.simpleMessage(
       "Write complaint details here...",
     ),
     "writeTheReason": MessageLookupByLibrary.simpleMessage("Write the reason"),
+    "writeYourMessage": MessageLookupByLibrary.simpleMessage(
+      "Write your message",
+    ),
+    "year": MessageLookupByLibrary.simpleMessage("year"),
     "yes": MessageLookupByLibrary.simpleMessage("Yes"),
     "youLoggedInSuccessfully": MessageLookupByLibrary.simpleMessage(
       "You logged in successfully",
+    ),
+    "youMustEnterYourName": MessageLookupByLibrary.simpleMessage(
+      "You must enter your name",
     ),
     "youNeedToSignInToViewThisPageIf": MessageLookupByLibrary.simpleMessage(
       "You need to sign in to view this page. If you dont have an account, you can create one for free.",
@@ -323,6 +505,9 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Your account has been deleted successfully",
         ),
+    "yourAdHasBeenPublishedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Your ad has been published successfully.",
+    ),
     "yourAddressHasBeenAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Your address has been added successfully",
     ),
@@ -336,5 +521,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "yourPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "your phone number",
     ),
+    "yourRequestWillBeReviewedByTheAdministrationAndIf":
+        MessageLookupByLibrary.simpleMessage(
+          "Your request will be reviewed by the administration, and if approved, the ad will be updated.",
+        ),
   };
 }

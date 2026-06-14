@@ -119,7 +119,9 @@ class AdsController {
         data: data,
       );
       EasyLoading.dismiss();
-      DialogHelpers.showSuccessDialog(title: 'تم ارسال الابلاغ بنجاح');
+      DialogHelpers.showSuccessDialog(
+        title: S.current.reportSubmittedSuccessfully,
+      );
     } catch (e) {
       ErrorHelper.handleApiError(e);
     }
@@ -135,7 +137,7 @@ class AdsController {
         data: data,
       );
       EasyLoading.dismiss();
-      DialogHelpers.showSuccessDialog(title: 'تم ارسال الابلاغ بنجاح');
+      DialogHelpers.showSuccessDialog(title: S.current.reportSentSuccessfully);
     } catch (e) {
       ErrorHelper.handleApiError(e);
     }

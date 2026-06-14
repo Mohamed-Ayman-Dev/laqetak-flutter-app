@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../di/locator_service.dart';
 import '../../../extension/space_extensions_helper.dart';
 import '../../../helpers/others_helper.dart';
@@ -70,7 +71,7 @@ class _LanguageBottomState extends State<LanguageBottom> {
 
                     const Spacer(),
                     CustomText(
-                      "إختر اللغة",
+                      S.of(context).chooseLanguage,
                       style: AppTextStyles.titleMedium.copyWith(fontSize: 16),
                     ),
                     const Spacer(),

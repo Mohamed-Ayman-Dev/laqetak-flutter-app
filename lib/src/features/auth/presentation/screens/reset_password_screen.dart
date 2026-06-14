@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
@@ -80,10 +81,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LabelWidget(text: 'كلمة المرور'),
+                  LabelWidget(text: S.of(context).password),
 
                   CustomTextField(
-                    hintText: 'أدخل كلمة المرور',
+                    hintText: S.of(context).enterPassword,
                     textInputAction: TextInputAction.done,
                     onSaved: (val) {
                       _formData['password'] = val;
@@ -105,10 +106,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     obscureText: hidePassword,
                   ),
                   24.heightSpace,
-                  LabelWidget(text: 'تأكيد كلمة المرور'),
+                  LabelWidget(text: S.of(context).confirmPassword),
 
                   CustomTextField(
-                    hintText: 'تأكيد كلمة المرور',
+                    hintText: S.of(context).confirmPassword,
                     textInputAction: TextInputAction.done,
                     onSaved: (val) {
                       _formData['password_confirmation'] = val;
@@ -137,7 +138,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   Hero(
                     tag: 'auth-button',
                     child: CustomElevatedButton(
-                      text: "التالي",
+                      text: S.of(context).next,
                       icon: SvgAssets.assetsSvgArrowRight,
 
                       onPressed: _submit,

@@ -25,7 +25,7 @@ class ReportDialogContent extends StatefulWidget {
 
 class _ReportDialogContentState extends State<ReportDialogContent> {
   final _formKey = GlobalKey<FormState>();
-  final _reasonController = TextEditingController();
+  late final _reasonController = TextEditingController();
 
   @override
   void dispose() {
@@ -60,7 +60,7 @@ class _ReportDialogContentState extends State<ReportDialogContent> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'أدخل سبب الابلاغ',
+              S.of(context).enterTheReportReason,
               style: AppTextStyles.labelSmall.copyWith(fontSize: 16.sp),
             ),
             10.heightSpace,
@@ -69,7 +69,7 @@ class _ReportDialogContentState extends State<ReportDialogContent> {
             Form(
               key: _formKey,
               child: CustomNoteField(
-                hint: 'أكتب السبب',
+                hint: S.of(context).writeTheReason,
                 controller: _reasonController,
                 validator: (val) {
                   if (val == null || val.trim().isEmpty) {
@@ -83,7 +83,7 @@ class _ReportDialogContentState extends State<ReportDialogContent> {
 
             // ─── Button ───
             CustomElevatedButton(
-              text: 'إرسال',
+              text: S.of(context).send,
               icon: SvgAssets.assetsSvgArrowRight,
               size: Size(163.w, 48.h),
               onPressed: _send,

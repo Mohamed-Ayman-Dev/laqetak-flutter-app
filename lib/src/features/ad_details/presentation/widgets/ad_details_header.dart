@@ -10,6 +10,7 @@ import 'package:invastro/src/features/home/presentation/providers/ads.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
@@ -99,7 +100,7 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
                 SharePlus.instance.share(
                   ShareParams(
                     text:
-                        '${"check out this ad"} https://invastro.dev4.wady.sa/ad/${adDetail?.id ?? ''}',
+                        '${S.of(context).checkOutThisAd} https://invastro.dev4.wady.sa/ad/${adDetail?.id ?? ''}',
                   ),
                 );
               },

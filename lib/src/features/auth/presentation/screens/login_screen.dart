@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
@@ -63,11 +64,14 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             AuthAppbar(showGuestButton: true),
             24.heightSpace,
-            CustomText('مرحبـــــاً', style: AppTextStyles.headlineMedium),
+            CustomText(
+              S.of(context).welcome,
+              style: AppTextStyles.headlineMedium,
+            ),
 
             15.heightSpace,
             CustomText(
-              'الرجاء إدخال  رقم الجوال وكلمة المرور',
+              S.of(context).pleaseEnterYourMobileNumberAndPassword,
               style: AppTextStyles.headlineSmall,
             ),
             24.heightSpace,
@@ -76,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LabelWidget(text: 'رقم الجوال'),
+                  LabelWidget(text: S.of(context).mobileNumber),
                   CustomTextField(
                     onSaved: (val) {
                       data['phone'] = val;
@@ -88,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     keyboardType: TextInputType.phone,
                     textInputAction: TextInputAction.next,
                     controller: _phoneController,
-                    hintText: "رقم الجوال",
+                    hintText: S.of(context).mobileNumber,
                     // suffixIcon: CountryCodeField(
                     //   focusNode: _phoneFocusNode,
                     //   onChanged: (val) {
@@ -100,9 +104,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     // ),
                   ),
                   24.heightSpace,
-                  LabelWidget(text: 'كلمة المرور'),
+                  LabelWidget(text: S.of(context).password),
                   CustomTextField(
-                    hintText: 'أدخل كلمة المرور',
+                    hintText: S.of(context).enterPassword,
                     textInputAction: TextInputAction.done,
                     onSaved: (val) {
                       data['password'] = val;
@@ -126,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       CustomTextButton(
-                        text: 'نسيت كلمة المرور ؟',
+                        text: S.of(context).forgotPassword,
                         onPressed: () {
                           LocatorService.navigationService.currentState
                               ?.pushNamed(ForgetPasswordScreen.routeName);
@@ -138,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Hero(
                     tag: 'auth-button',
                     child: CustomElevatedButton(
-                      text: "دخول",
+                      text: S.of(context).login,
                       onPressed: _login,
                     ),
                   ),
@@ -147,11 +151,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                        text: "ليس لديك حساب ؟ ",
+                        text: S.of(context).dontHaveAnAccount,
                         style: AppTextStyles.labelSmall,
                         children: [
                           TextSpan(
-                            text: "سجل الأن !",
+                            text: S.of(context).registerNow,
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 LocatorService.navigationService.currentState

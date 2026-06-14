@@ -87,10 +87,13 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
           children: [
             AuthAppbar(),
             24.heightSpace,
-            CustomText('مرحبـــــاً', style: AppTextStyles.headlineMedium),
+            CustomText(
+              S.of(context).welcome,
+              style: AppTextStyles.headlineMedium,
+            ),
             15.heightSpace,
             CustomText(
-              'الرجاء إدخال ادخل بياناتك',
+              S.of(context).pleaseEnterYourDetails,
               style: AppTextStyles.headlineSmall,
             ),
             24.heightSpace,
@@ -99,10 +102,10 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LabelWidget(text: 'كلمة المرور'),
+                  LabelWidget(text: S.of(context).password),
 
                   CustomTextField(
-                    hintText: 'أدخل كلمة المرور',
+                    hintText: S.of(context).enterPassword,
                     textInputAction: TextInputAction.done,
                     onSaved: (val) {
                       _formData['password'] = val;
@@ -124,10 +127,10 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
                     obscureText: hidePassword,
                   ),
                   24.heightSpace,
-                  LabelWidget(text: 'تأكيد كلمة المرور'),
+                  LabelWidget(text: S.of(context).confirmPassword),
 
                   CustomTextField(
-                    hintText: 'تأكيد كلمة المرور',
+                    hintText: S.of(context).confirmPassword,
                     textInputAction: TextInputAction.done,
                     onSaved: (val) {
                       _formData['password_confirmation'] = val;
@@ -167,21 +170,23 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
                   5.heightSpace,
                   AgreeTermsWidget(
                     isChecked: _formData['agree_idea'],
-                    text: 'فكرة المنصة',
+                    text: S.of(context).platformIdea,
                     onTermsPressed: () {
                       setState(() {
                         _formData['agree_idea'] = !(_formData['agree_idea']);
                       });
                     },
                     onTextPressed: () {
-                      DialogHelpers.showTermsDialog(title: 'فكرة المنصة');
+                      DialogHelpers.showTermsDialog(
+                        title: S.of(context).platformIdea,
+                      );
                     },
                   ),
                   24.heightSpace,
                   Hero(
                     tag: 'auth-button',
                     child: CustomElevatedButton(
-                      text: "التالي",
+                      text: S.current.next,
                       icon: SvgAssets.assetsSvgArrowRight,
                       onPressed: _register,
                     ),

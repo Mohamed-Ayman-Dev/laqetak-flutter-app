@@ -1,3 +1,4 @@
+import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/app_feedback.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/error/error_helper.dart';
@@ -13,7 +14,7 @@ class AdDetailsController {
       LocatorService.ads.changeHidePhoneState(ad.id ?? 0, hide: newState);
 
       AppFeedback.showToast(
-        "${newState == 1 ? "تم تفعيل" : "تم تعطيل"} إخفاء رقم الهاتف بنجاح ",
+        "${newState == 1 ? S.current.activated : S.current.deactivated} ${S.current.phoneNumberHiddenSuccessfully} ",
       );
 
       // API Call

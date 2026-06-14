@@ -6,6 +6,8 @@ import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 
+import '../../../../../generated/l10n.dart';
+
 class AdDetailsBottom extends StatefulWidget {
   final String? price;
 
@@ -71,7 +73,7 @@ class _AdDetailsBottomState extends State<AdDetailsBottom>
           child: Row(
             children: [
               Text(
-                'رأس المال',
+                S.of(context).investmentCapital,
                 style: AppTextStyles.labelSmall.copyWith(
                   fontSize: 13.sp,
                   color: AppColors.labelBlackTextColor,

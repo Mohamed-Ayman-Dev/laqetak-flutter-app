@@ -71,7 +71,10 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
     final totalPhotos = newPhotos.length + existingCount;
 
     if (totalPhotos == 0) {
-      AppFeedback.showToast('الرجاء اختيار صورة علي الأقل', isError: true);
+      AppFeedback.showToast(
+        S.of(context).pleaseSelectAtLeastOneImage,
+        isError: true,
+      );
       return;
     }
     if (_formKey.currentState!.validate()) {
@@ -112,14 +115,14 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
             children: [
               20.heightSpace,
               Text(
-                'أضف إعلانك',
+                S.of(context).addYourAd,
                 style: AppTextStyles.headlineMedium.copyWith(
                   color: AppColors.titleTextColor,
                   fontSize: 16.sp,
                 ),
               ),
               25.heightSpace,
-              Text('صور الإعلان', style: AppTextStyles.labelSmall),
+              Text(S.of(context).adImages, style: AppTextStyles.labelSmall),
               8.heightSpace,
               // في الـ widget
               AdImagePicker(
@@ -130,10 +133,10 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
                 },
               ),
               17.heightSpace,
-              Text('تفاصيل الإعلان', style: AppTextStyles.labelSmall),
+              Text(S.of(context).adDetails, style: AppTextStyles.labelSmall),
               8.heightSpace,
               CustomNoteField(
-                hint: 'اكتب تفاصيل الإعلان',
+                hint: S.of(context).writeAdDetails,
                 keyboardType: TextInputType.text,
                 controller: _descController,
                 validator: (value) {
@@ -147,7 +150,10 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
                 },
               ),
               9.heightSpace,
-              Text('رقم التواصل', style: AppTextStyles.labelSmall),
+              Text(
+                S.of(context).contactNumber,
+                style: AppTextStyles.labelSmall,
+              ),
               8.heightSpace,
               CustomTextField(
                 onSaved: (val) {
@@ -160,7 +166,7 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
                 },
                 keyboardType: TextInputType.phone,
                 textInputAction: TextInputAction.done,
-                hintText: "رقم الجوال",
+                hintText: S.of(context).mobileNumber,
               ),
               15.heightSpace,
               Row(
@@ -177,7 +183,7 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
               Row(
                 children: [
                   CustomElevatedButton(
-                    text: 'التالي',
+                    text: S.current.next,
                     icon: SvgAssets.assetsSvgArrowRight,
                     size: Size(163.w, 48.h),
                     onPressed: () {
@@ -186,7 +192,7 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
                   ),
                   12.widthSpace,
                   CustomElevatedButton(
-                    text: 'السابق',
+                    text: S.of(context).previous,
                     icon: SvgAssets.assetsSvgArrowLeft,
                     size: Size(163.w, 48.h),
                     backgroundColor: AppColors.buttonBackBKColor,

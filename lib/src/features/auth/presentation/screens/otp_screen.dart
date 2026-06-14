@@ -132,7 +132,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                       );
                           },
                           child: Text(
-                            'تغيير الرقم',
+                            S.of(context).changeNumber,
                             style: AppTextStyles.headlineMedium.copyWith(
                               color: AppColors.primaryColor,
                               fontSize: 16.sp,
@@ -176,7 +176,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           if (value == null || value.isEmpty) {
                             return S.of(context).pleaseEnterVerificationCode;
                           } else if (value.length < 4) {
-                            return 'S.of(context).pleaseEnter4DigitCode';
+                            return S.of(context).pleaseEnterThe4digitCode;
                           } else if (wrongVerificationError != null) {
                             return wrongVerificationError;
                           }

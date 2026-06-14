@@ -15,6 +15,7 @@ import 'package:invastro/src/features/static_pages/presentation/screens/about_ap
 import 'package:invastro/src/features/static_pages/presentation/screens/contact_us_screen.dart';
 import 'package:invastro/src/features/static_pages/presentation/screens/questions_screen.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../features/home/presentation/screens/home_layout_screen.dart';
 import '../../../helpers/others_helper.dart';
 import 'custom_drawer_header.dart';
@@ -81,7 +82,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       children: [
                         if (isAuth)
                           DrawerItem(
-                            title: 'الملف الشخصي',
+                            title: S.of(context).profile,
                             onTap: () {
                               Navigator.of(context).pop();
                               LocatorService.navigationService.currentState
@@ -91,7 +92,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           ),
                         if (isAuth)
                           DrawerItem(
-                            title: 'إعلاناتي',
+                            title: S.of(context).myAds,
                             onTap: () {
                               Navigator.of(context).pop();
                               LocatorService.navigationService.currentState
@@ -100,7 +101,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                             image: SvgAssets.assetsSvgDrawerMyads,
                           ),
                         DrawerItem(
-                          title: 'الرسائل',
+                          title: S.of(context).messages,
                           onTap: () {
                             Navigator.of(context).pop();
                             LocatorService.navigationService.currentState
@@ -114,7 +115,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           image: SvgAssets.assetsSvgDrawerMessages,
                         ),
                         DrawerItem(
-                          title: 'اتصل بنا',
+                          title: S.of(context).contactUs,
                           onTap: () {
                             Navigator.of(context).pop();
                             LocatorService.navigationService.currentState
@@ -123,7 +124,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           image: SvgAssets.assetsSvgDrawerContactus,
                         ),
                         DrawerItem(
-                          title: 'عن المنصة',
+                          title: S.of(context).aboutThePlatform,
                           onTap: () {
                             Navigator.of(context).pop();
                             LocatorService.navigationService.currentState
@@ -133,7 +134,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         ),
 
                         DrawerItem(
-                          title: 'اللغة',
+                          title: S.of(context).language,
                           onTap: () {
                             Navigator.of(context).pop();
                             BottomHelpers.showLanguageBottomSheet(context);
@@ -141,7 +142,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           image: SvgAssets.assetsSvgDrawerLang,
                         ),
                         DrawerItem(
-                          title: 'الشروط والأحكام',
+                          title: S.of(context).termsConditions,
                           onTap: () {
                             Navigator.of(context).pop();
                             DialogHelpers.showTermsDialog();
@@ -149,7 +150,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           image: SvgAssets.assetsSvgDrawerTerms,
                         ),
                         DrawerItem(
-                          title: 'الأسئلة المتكررة',
+                          title: S.of(context).frequentlyAskedQuestions,
                           onTap: () {
                             Navigator.of(context).pop();
                             LocatorService.navigationService.currentState
@@ -158,7 +159,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           image: SvgAssets.assetsSvgDrawerQuestions,
                         ),
                         DrawerItem(
-                          title: isAuth ? 'تسجيل خروج' : 'تسجيل دخول',
+                          title: isAuth
+                              ? S.of(context).logout
+                              : S.of(context).login,
                           onTap: () {
                             isAuth
                                 ? AuthController.logout()

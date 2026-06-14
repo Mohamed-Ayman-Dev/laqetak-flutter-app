@@ -99,20 +99,20 @@ class _AddAdScreenState extends State<AddAdScreen> {
             children: [
               20.heightSpace,
               Text(
-                'أضف إعلانك',
+                S.of(context).addYourAd,
                 style: AppTextStyles.headlineMedium.copyWith(
                   color: AppColors.titleTextColor,
                   fontSize: 16.sp,
                 ),
               ),
               25.heightSpace,
-              Text('المدينة', style: AppTextStyles.labelSmall),
+              Text(S.of(context).city, style: AppTextStyles.labelSmall),
               8.heightSpace,
               Selector<Others, List<DetailsModel>?>(
                 selector: (context, provider) => provider.myCities,
                 builder: (context, myCities, child) {
                   return MyCustomDropdownFormField(
-                    hint: "اختر المدينة",
+                    hint: S.of(context).selectCity,
                     items: myCities
                         ?.map<DropdownMenuItem<num>>(
                           (e) => DropdownMenuItem<num>(
@@ -141,10 +141,10 @@ class _AddAdScreenState extends State<AddAdScreen> {
               ),
 
               28.heightSpace,
-              Text('أدخل عنوان الإعلان', style: AppTextStyles.labelSmall),
+              Text(S.of(context).enterAdTitle, style: AppTextStyles.labelSmall),
               8.heightSpace,
               CustomTextField(
-                hintText: 'اكتب عنوان للإعلان',
+                hintText: S.of(context).writeATitleForTheAd,
                 onSaved: (val) {
                   _formData['title'] = val;
                 },
@@ -161,14 +161,16 @@ class _AddAdScreenState extends State<AddAdScreen> {
                 maxLines: 1,
               ),
               23.heightSpace,
-              Text('إختر القسم الرئيسي', style: AppTextStyles.labelSmall),
+              Text(
+                S.of(context).selectMainCategory,
+                style: AppTextStyles.labelSmall,
+              ),
               8.heightSpace,
               Selector<Others, List<CategoryModel>?>(
                 selector: (context, provider) => provider.myCategories,
                 builder: (context, myCategories, child) {
                   return MyCustomDropdownFormField(
-                    hint: "اختر القسم",
-                    // items: myCities
+                    hint: S.of(context).selectCategory,
                     items: myCategories
                         ?.map<DropdownMenuItem<num>>(
                           (e) => DropdownMenuItem<num>(
@@ -196,13 +198,16 @@ class _AddAdScreenState extends State<AddAdScreen> {
                 },
               ),
               7.heightSpace,
-              Text('إختر قطاع الإستثمار', style: AppTextStyles.labelSmall),
+              Text(
+                S.of(context).selectInvestmentSector,
+                style: AppTextStyles.labelSmall,
+              ),
               8.heightSpace,
               Selector<Others, List<DetailsModel>?>(
                 selector: (context, provider) => provider.mySectors,
                 builder: (context, mySectors, child) {
                   return MyCustomDropdownFormField(
-                    hint: "اختر القطاع",
+                    hint: S.of(context).selectSector,
                     // items: myCities
                     items: mySectors
                         ?.map<DropdownMenuItem<num>>(
@@ -231,7 +236,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
                 },
               ),
               27.heightSpace,
-              Text('أدخل رأس المال', style: AppTextStyles.labelSmall),
+              Text(S.of(context).enterCapital, style: AppTextStyles.labelSmall),
               8.heightSpace,
               CustomTextField(
                 onSaved: (val) {
@@ -257,7 +262,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
               ),
               27.heightSpace,
               CustomElevatedButton(
-                text: 'التالي',
+                text: S.current.next,
                 icon: SvgAssets.assetsSvgArrowRight,
                 size: Size(163.w, 48.h),
                 onPressed: () {

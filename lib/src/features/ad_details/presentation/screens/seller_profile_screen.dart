@@ -138,7 +138,7 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 19.0).r,
                       child: Text(
-                        'إعلانات',
+                        S.of(context).ads,
                         style: AppTextStyles.labelMedium.copyWith(
                           fontSize: 16.sp,
                         ),

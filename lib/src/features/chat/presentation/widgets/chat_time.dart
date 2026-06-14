@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
 
@@ -17,7 +18,7 @@ class ChatTime extends StatelessWidget {
       ),
 
       child: Text(
-        'اليوم',
+        S.of(context).today,
         style: AppTextStyles.bodySmall.copyWith(
           color: AppColors.labelTextColor,
         ),

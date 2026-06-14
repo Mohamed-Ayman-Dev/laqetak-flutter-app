@@ -63,10 +63,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: [
             AuthAppbar(showGuestButton: true),
             24.heightSpace,
-            CustomText('مرحبـــــاً', style: AppTextStyles.headlineMedium),
+            CustomText(S.current.welcome, style: AppTextStyles.headlineMedium),
             15.heightSpace,
             CustomText(
-              'الرجاء إدخال ادخل بياناتك',
+              S.current.pleaseEnterYourDetails,
               style: AppTextStyles.headlineSmall,
             ),
             24.heightSpace,
@@ -75,7 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LabelWidget(text: 'أسم المستخدم'),
+                  LabelWidget(text: S.of(context).username),
                   CustomTextField(
                     onSaved: (val) {
                       data['name'] = val;
@@ -87,13 +87,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         invalidMessage: S.of(context).pleaseEnterAValidName,
                       );
                     },
-                    hintText: 'اكتب اسم المستخدم',
+                    hintText: S.of(context).enterUsername,
                     textInputAction: TextInputAction.next,
                     maxLines: 1,
                     keyboardType: TextInputType.name,
                   ),
                   24.heightSpace,
-                  LabelWidget(text: 'رقم الجوال'),
+                  LabelWidget(text: S.current.mobileNumber),
                   CustomTextField(
                     onSaved: (val) {
                       data['phone'] = val;
@@ -103,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     keyboardType: TextInputType.phone,
                     textInputAction: TextInputAction.next,
-                    hintText: "رقم الجوال",
+                    hintText: S.current.mobileNumber,
                     // suffixIcon: CountryCodeField(
                     //   focusNode: _phoneFocusNode,
                     //   onChanged: (val) {
@@ -115,13 +115,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     // ),
                   ),
                   24.heightSpace,
-                  LabelWidget(text: 'البريد الإلكتروني'),
+                  LabelWidget(text: S.of(context).emailAddress),
                   CustomTextField(
                     onChanged: (value) {
                       setState(() {});
                     },
 
-                    hintText: 'أدخل بريدك الالكتروني',
+                    hintText: S.of(context).enterYourEmail,
                     textInputAction: TextInputAction.next,
                     maxLines: 1,
                     keyboardType: TextInputType.emailAddress,
@@ -180,7 +180,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Hero(
                     tag: 'auth-button',
                     child: CustomElevatedButton(
-                      text: "التالي",
+                      text: S.of(context).next,
                       icon: SvgAssets.assetsSvgArrowRight,
                       onPressed: _register,
                     ),
@@ -188,7 +188,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   16.heightSpace,
                   Center(
                     child: CustomTextButton(
-                      text: "لدي حساب بالفعل",
+                      text: S.of(context).alreadyHaveAnAccount,
                       onPressed: () {
                         LocatorService.navigationService.currentState?.pop();
                       },

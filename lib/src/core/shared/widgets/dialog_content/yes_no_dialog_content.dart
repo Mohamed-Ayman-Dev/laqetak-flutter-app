@@ -7,6 +7,7 @@ import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/home/presentation/screens/home_layout_screen.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../constants/svg_assets.dart';
 import '../../../extension/space_extensions_helper.dart';
 import '../buttons_widgets/custom_elevated_button.dart';
@@ -87,7 +88,7 @@ class YesNoDialogContent extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomElevatedButton(
-                    text: buttonText ?? 'تأكيد',
+                    text: buttonText ?? S.of(context).confirm,
                     onPressed: onButtonTap != null
                         ? () {
                             onButtonTap!();
@@ -105,7 +106,7 @@ class YesNoDialogContent extends StatelessWidget {
                 11.widthSpace,
                 Expanded(
                   child: CustomOutlineButton(
-                    text: 'إلغاء',
+                    text: S.of(context).cancel,
                     borderRadius: 8,
                     borderColor: AppColors.reportBorderColor,
 

@@ -43,7 +43,11 @@ class _HomeScreenState extends State<HomeScreen> {
   final FocusNode focusNode = FocusNode();
   int? _selectedFilterIndex;
 
-  final List<String> _filters = ['الكل', 'إبحث عن فرصة', 'إبحث عن مستثمر'];
+  final List<String> _filters = [
+    isArabic ? 'الكل' : 'All',
+    isArabic ? 'إبحث عن فرصة' : 'Search for Opportunity',
+    isArabic ? 'إبحث عن مستثمر' : 'Search for Investor',
+  ];
   bool _showSearchIcon = false;
   Map<String, dynamic> _filtersData = {};
 

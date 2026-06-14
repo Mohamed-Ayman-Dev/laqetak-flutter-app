@@ -33,23 +33,23 @@ class HomeLayoutScreen extends StatefulWidget {
 class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
   final List<Map<String, dynamic>> _navItems = [
     {
-      'name': 'الرئيسية',
+      'name': isArabic ? 'الرئيسية' : 'Home',
       'activeIcon': SvgAssets.assetsSvgHomeIconSelected, // ملون
       'inactiveIcon': SvgAssets.assetsSvgHomeIconUnselected, // رمادي
     },
     {
-      'name': 'الرسائل',
+      'name': isArabic ? 'الرسائل' : 'Chat',
       'activeIcon': SvgAssets.assetsSvgMessageIconSelected,
       'inactiveIcon': SvgAssets.assetsSvgMessageIconUnselected,
     },
     {'name': 'add', 'activeIcon': null, 'inactiveIcon': null},
     {
-      'name': 'المفضلة',
+      'name': isArabic ? 'المفضلة' : 'Favorites',
       'activeIcon': SvgAssets.assetsSvgFavIconSelected,
       'inactiveIcon': SvgAssets.assetsSvgFavIconUnselected,
     },
     {
-      'name': 'الإشعارات',
+      'name': isArabic ? 'الإشعارات' : 'Notifications',
       'activeIcon': SvgAssets.assetsSvgNotificationIconSelected,
       'inactiveIcon': SvgAssets.assetsSvgNotificationIconUnselected,
     },

@@ -170,7 +170,7 @@ class MessageItem extends StatelessWidget {
                                 createdAt +
                                     (createdAt.endsWith('Z') ? '' : 'Z'),
                               ).timeAgo
-                            : 'تم القراءة -  $seenAt',
+                            : '${S.of(context).read} -  $seenAt',
                         style: AppTextStyles.labelSmall.copyWith(
                           fontSize: 8.sp,
                           color: AppColors.bodySmallGreyTextColor,

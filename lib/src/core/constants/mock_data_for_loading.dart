@@ -1,97 +1,103 @@
-import 'package:invastro/src/core/constants/images_assets.dart';
 import 'package:invastro/src/core/shared/models/details_model.dart';
+
+import '../../../generated/l10n.dart';
 
 final class MockDataForLoading {
   MockDataForLoading._();
 
-  static List<DetailsModel> mockCites = [
-    DetailsModel(id: 1, name: 'الرياض'),
-    DetailsModel(id: 2, name: 'جدة'),
-  ];
-  static List<DetailsModel> mockCategories = [
-    DetailsModel(id: 1, name: 'فرصة'),
-    DetailsModel(id: 2, name: 'مستثمر'),
-  ];
-
-  static List<DetailsModel> mockBusiness = [
-    DetailsModel(id: 1, name: 'عقاري'),
-    DetailsModel(id: 2, name: 'عقاري2'),
-  ];
   static List<DetailsModel> mockPrices = [
-    DetailsModel(id: 1, name: '100.000 : 500.000 ريال', key: 100000.toString()),
+    DetailsModel(
+      id: 1,
+      name: '100.000 : 500.000 ${S.current.sar}',
+      key: 100000.toString(),
+    ),
     DetailsModel(
       id: 2,
-      name: '500.000 : 1.000.000 ريال',
+      name: '500.000 : 1.000.000 ${S.current.sar}',
       key: 500000.toString(),
     ),
     DetailsModel(
       id: 3,
-      name: ' أكثر من 1.000.000 ريال',
+      name: ' ${S.current.moreThan} 1.000.000 ${S.current.sar}',
       key: 1000000.toString(),
     ),
   ];
-  static List<String> detailsImages = [
-    ImagesAssets.assetsImagesMockDetailsImage1,
-    ImagesAssets.assetsImagesMockDetailsImage2,
-    ImagesAssets.assetsImagesMockAd4,
-    ImagesAssets.assetsImagesMockAd5,
-  ];
-  static List<Map<String, dynamic>> mockAds = [
-    {
-      'image': ImagesAssets.assetsImagesMockAd1,
-      'label': 'مشروع تجاري كامل',
-      'name': 'محمد الدوسري',
-      'location': 'الرياض',
-      'category': 'عقاري',
-      'price': "50,000",
-      'time': "1 ساعة",
-    },
-    {
-      'image': ImagesAssets.assetsImagesMockAd2,
-      'label': 'عمارة سكنية',
-      'name': 'محمد الدوسري',
-      'location': 'الرياض',
-      'category': 'عقاري',
-      'price': "24,000",
-      'time': "1 ساعة",
-    },
-    {
-      'image': ImagesAssets.assetsImagesMockAd3,
-      'label': 'مشروع تجاري كامل',
-      'name': 'محمد الدوسري',
-      'location': 'الرياض',
-      'category': 'عقاري',
-      'price': "50,000",
-      'time': "1 ساعة",
-    },
-    {
-      'image': ImagesAssets.assetsImagesMockAd4,
-      'label': 'مطعم مربح وكامل',
-      'name': 'محمد الدوسري',
-      'location': 'الرياض',
-      'category': 'عقاري',
-      'price': "43,000",
-      'time': "1 ساعة",
-    },
-    {
-      'image': ImagesAssets.assetsImagesMockAd5,
-      'label': 'مشروع تجاري كامل',
-      'name': 'محمد الدوسري',
-      'location': 'الرياض',
-      'category': 'عقاري',
-      'price': "30,000",
-      'time': "1 ساعة",
-    },
-    {
-      'image': ImagesAssets.assetsImagesMockAd2,
-      'label': 'عمارة سكنية',
-      'name': 'محمد الدوسري',
-      'location': 'الرياض',
-      'category': 'عقاري',
-      'price': "24,000",
-      'time': "1 ساعة",
-    },
-  ];
+
+  // static List<DetailsModel> mockCites = [
+  //   DetailsModel(id: 1, name: 'الرياض'),
+  //   DetailsModel(id: 2, name: 'جدة'),
+  // ];
+  // static List<DetailsModel> mockCategories = [
+  //   DetailsModel(id: 1, name: 'فرصة'),
+  //   DetailsModel(id: 2, name: 'مستثمر'),
+  // ];
+  //
+  // static List<DetailsModel> mockBusiness = [
+  //   DetailsModel(id: 1, name: 'عقاري'),
+  //   DetailsModel(id: 2, name: 'عقاري2'),
+  // ];
+  // static List<String> detailsImages = [
+  //   ImagesAssets.assetsImagesMockDetailsImage1,
+  //   ImagesAssets.assetsImagesMockDetailsImage2,
+  //   ImagesAssets.assetsImagesMockAd4,
+  //   ImagesAssets.assetsImagesMockAd5,
+  // ];
+  // static List<Map<String, dynamic>> mockAds = [
+  //   {
+  //     'image': ImagesAssets.assetsImagesMockAd1,
+  //     'label': 'مشروع تجاري كامل',
+  //     'name': 'محمد الدوسري',
+  //     'location': 'الرياض',
+  //     'category': 'عقاري',
+  //     'price': "50,000",
+  //     'time': "1 ساعة",
+  //   },
+  //   {
+  //     'image': ImagesAssets.assetsImagesMockAd2,
+  //     'label': 'عمارة سكنية',
+  //     'name': 'محمد الدوسري',
+  //     'location': 'الرياض',
+  //     'category': 'عقاري',
+  //     'price': "24,000",
+  //     'time': "1 ساعة",
+  //   },
+  //   {
+  //     'image': ImagesAssets.assetsImagesMockAd3,
+  //     'label': 'مشروع تجاري كامل',
+  //     'name': 'محمد الدوسري',
+  //     'location': 'الرياض',
+  //     'category': 'عقاري',
+  //     'price': "50,000",
+  //     'time': "1 ساعة",
+  //   },
+  //   {
+  //     'image': ImagesAssets.assetsImagesMockAd4,
+  //     'label': 'مطعم مربح وكامل',
+  //     'name': 'محمد الدوسري',
+  //     'location': 'الرياض',
+  //     'category': 'عقاري',
+  //     'price': "43,000",
+  //     'time': "1 ساعة",
+  //   },
+  //   {
+  //     'image': ImagesAssets.assetsImagesMockAd5,
+  //     'label': 'مشروع تجاري كامل',
+  //     'name': 'محمد الدوسري',
+  //     'location': 'الرياض',
+  //     'category': 'عقاري',
+  //     'price': "30,000",
+  //     'time': "1 ساعة",
+  //   },
+  //   {
+  //     'image': ImagesAssets.assetsImagesMockAd2,
+  //     'label': 'عمارة سكنية',
+  //     'name': 'محمد الدوسري',
+  //     'location': 'الرياض',
+  //     'category': 'عقاري',
+  //     'price': "24,000",
+  //     'time': "1 ساعة",
+  //   },
+  // ];
 
   // static const ServiceModel _mockServiceModel = ServiceModel(
   //   id: 1,

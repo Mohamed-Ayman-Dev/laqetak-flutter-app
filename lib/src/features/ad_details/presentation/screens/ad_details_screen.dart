@@ -22,6 +22,7 @@ import 'package:invastro/src/features/home/presentation/providers/ads.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
@@ -102,14 +103,17 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                     15.heightSpace,
                     AdDetailsPoints(ad: adDetail),
                     17.heightSpace,
-                    Text('تفاصيل الإعلان', style: AppTextStyles.labelMedium),
+                    Text(
+                      S.of(context).adDetails,
+                      style: AppTextStyles.labelMedium,
+                    ),
                     11.heightSpace,
                     AdDetailsDesc(desc: adDetail?.description),
                     16.heightSpace,
                     Align(
                       alignment: AlignmentDirectional.centerEnd,
                       child: CustomOutlineButton(
-                        text: 'الإبلاغ عن الإعلان',
+                        text: S.of(context).reportAd,
                         textStyle: AppTextStyles.buttonsTextStyle.copyWith(
                           color: AppColors.labelTextColor,
                           fontSize: 12.sp,
@@ -123,7 +127,10 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                         },
                       ),
                     ),
-                    Text('تفاصيل المعلن', style: AppTextStyles.labelMedium),
+                    Text(
+                      S.of(context).advertiserDetails,
+                      style: AppTextStyles.labelMedium,
+                    ),
                     12.heightSpace,
                     AdDetailsSeller(
                       customer: adDetail?.customer,
@@ -138,7 +145,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                         children: [
                           Expanded(
                             child: CustomElevatedButton(
-                              text: 'تعديل الإعلان',
+                              text: S.of(context).editAd,
                               onPressed: () {
                                 LocatorService.navigationService.currentState
                                     ?.pushNamed(
@@ -151,14 +158,15 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                           11.widthSpace,
                           Expanded(
                             child: CustomOutlineButton(
-                              text: 'إعلان منتهي',
+                              text: S.of(context).expiredAd,
                               borderRadius: 8,
                               borderColor: AppColors.reportBorderColor,
                               onPressed: () {
                                 DialogHelpers.showYesNoDialog(
-                                  title: 'تأكيد الإجراء',
-                                  subtitle:
-                                      'هل أنت متأكد من انهاء هذا الاعلان؟',
+                                  title: S.of(context).confirmAction,
+                                  subtitle: S
+                                      .of(context)
+                                      .areYouSureYouWantToEndThisAd,
                                   onButtonTap: () {
                                     Navigator.of(context).pop();
                                     MyAdsController.closeAd(adDetail?.id ?? 0);

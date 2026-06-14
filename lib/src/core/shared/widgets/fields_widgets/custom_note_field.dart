@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../themes/colors.dart';
 import '../../../themes/text_styles.dart';
 
@@ -53,7 +54,7 @@ class CustomNoteField extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: Colors.red),
         ),
-        hintText: hint ?? 'أكتب رسالتك',
+        hintText: hint ?? S.of(context).writeYourMessage,
         hintStyle: AppTextStyles.hintTextStyle,
         fillColor: color ?? Colors.white,
         filled: true,

@@ -25,7 +25,6 @@ import '../features/profile/presentation/screens/profile_screen.dart';
 import '../features/static_pages/presentation/screens/about_app_screen.dart';
 import '../features/static_pages/presentation/screens/contact_us_screen.dart';
 import '../features/static_pages/presentation/screens/questions_screen.dart';
-import '../features/static_pages/presentation/screens/terms_screen.dart';
 
 class Routes {
   static const initialRoute = SplashScreen.routeName;
@@ -40,7 +39,6 @@ class Routes {
     ForgetPasswordScreen.routeName: (_) => const ForgetPasswordScreen(),
     ResetPasswordScreen.routeName: (_) => const ResetPasswordScreen(),
     HomeLayoutScreen.routeName: (_) => const HomeLayoutScreen(),
-    TermsScreen.routeName: (_) => const TermsScreen(),
     NotificationScreen.routeName: (_) => const NotificationScreen(),
     ChatScreen.routeName: (_) => const ChatScreen(),
     ConversationsScreen.routeName: (_) => const ConversationsScreen(),

@@ -94,7 +94,7 @@ class _FilterScreenState extends State<FilterScreen> {
             children: [
               20.heightSpace,
               Text(
-                'الفلتر',
+                S.of(context).filter,
                 style: AppTextStyles.headlineMedium.copyWith(
                   color: AppColors.titleTextColor,
                   fontSize: 16.sp,
@@ -111,7 +111,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     selectedColor: AppColors.primaryColor,
                   ),
                   14.widthSpace,
-                  Text('القسم', style: AppTextStyles.labelLarge),
+                  Text(S.of(context).category, style: AppTextStyles.labelLarge),
                 ],
               ),
               10.heightSpace,
@@ -126,7 +126,7 @@ class _FilterScreenState extends State<FilterScreen> {
                         selector: (context, provider) => provider.myCategories,
                         builder: (context, myCategories, child) {
                           return MyCustomDropdownFormField(
-                            hint: "اختر القسم",
+                            hint: S.of(context).selectCategory,
                             // items: myCities
                             items: myCategories
                                 ?.map<DropdownMenuItem<num>>(
@@ -173,7 +173,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     selectedColor: AppColors.primaryColor,
                   ),
                   14.widthSpace,
-                  Text('المدينة', style: AppTextStyles.labelLarge),
+                  Text(S.of(context).city, style: AppTextStyles.labelLarge),
                 ],
               ),
               10.heightSpace,
@@ -187,8 +187,7 @@ class _FilterScreenState extends State<FilterScreen> {
                         selector: (context, provider) => provider.myCities,
                         builder: (context, myCities, child) {
                           return MyCustomDropdownFormField(
-                            hint: "اختر المدينة",
-                            // items: myCities
+                            hint: S.of(context).selectCity,
                             items: myCities
                                 ?.map<DropdownMenuItem<num>>(
                                   (e) => DropdownMenuItem<num>(
@@ -227,7 +226,10 @@ class _FilterScreenState extends State<FilterScreen> {
                     selectedColor: AppColors.primaryColor,
                   ),
                   14.widthSpace,
-                  Text('قطاع الإستثمار', style: AppTextStyles.labelLarge),
+                  Text(
+                    S.of(context).investmentSector,
+                    style: AppTextStyles.labelLarge,
+                  ),
                 ],
               ),
               10.heightSpace,
@@ -242,8 +244,7 @@ class _FilterScreenState extends State<FilterScreen> {
                         selector: (context, provider) => provider.mySectors,
                         builder: (context, mySectors, child) {
                           return MyCustomDropdownFormField(
-                            hint: "اختر القطاع",
-                            // items: myCities
+                            hint: S.of(context).investmentSector,
                             items: mySectors
                                 ?.map<DropdownMenuItem<num>>(
                                   (e) => DropdownMenuItem<num>(
@@ -281,7 +282,10 @@ class _FilterScreenState extends State<FilterScreen> {
                     selectedColor: AppColors.primaryColor,
                   ),
                   14.widthSpace,
-                  Text('متوسط رأس المال ', style: AppTextStyles.labelLarge),
+                  Text(
+                    S.of(context).averageCapital,
+                    style: AppTextStyles.labelLarge,
+                  ),
                 ],
               ),
               10.heightSpace,
@@ -356,7 +360,6 @@ class _FilterScreenState extends State<FilterScreen> {
                       text: S.of(context).apply,
                       borderRadius: 12,
                       onPressed: () {
-                        // _send();
                         LocatorService.ads.setFilters(_formData);
                         Navigator.pop(context, _formData);
                       },

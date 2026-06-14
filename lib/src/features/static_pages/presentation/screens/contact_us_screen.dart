@@ -85,7 +85,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             children: [
               20.heightSpace,
               Text(
-                'اتصل بنا',
+                S.of(context).contactUs,
                 style: AppTextStyles.headlineMedium.copyWith(
                   color: AppColors.titleTextColor,
                   fontSize: 16.sp,
@@ -93,14 +93,14 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
               30.heightSpace,
               Text(
-                'الإسم',
+                S.of(context).name,
                 style: AppTextStyles.headlineSmall.copyWith(
                   color: AppColors.labelTextColor,
                 ),
               ),
               8.heightSpace,
               CustomTextField(
-                hintText: 'الإسم',
+                hintText: S.of(context).name,
                 controller: _nameController,
                 onSaved: (val) {
                   _formData['name'] = val;
@@ -110,7 +110,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                 validator: (value) {
                   return ValidationHelper.validateName(
                     value,
-                    emptyMessage: 'S.of(context).youMustEnterYourName',
+                    emptyMessage: S.of(context).youMustEnterYourName,
                     invalidMessage: S.of(context).pleaseEnterAValidName,
                   );
                 },
@@ -119,7 +119,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
               24.heightSpace,
               Text(
-                'رقم الجوال',
+                S.current.mobileNumber,
                 style: AppTextStyles.headlineSmall.copyWith(
                   color: AppColors.labelTextColor,
                 ),
@@ -135,7 +135,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                 keyboardType: TextInputType.phone,
                 textInputAction: TextInputAction.next,
                 controller: _phoneController,
-                hintText: "رقم الجوال",
+                hintText: S.current.mobileNumber,
                 // textDirection: TextDirection.ltr,
                 // suffixIcon: CountryCodeField(
                 //   focusNode: _phoneFocusNode,
@@ -149,14 +149,14 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
               24.heightSpace,
               Text(
-                'البريد الإلكتروني',
+                S.current.emailAddress,
                 style: AppTextStyles.headlineSmall.copyWith(
                   color: AppColors.labelTextColor,
                 ),
               ),
               8.heightSpace,
               CustomTextField(
-                hintText: 'أدخل بريدك الالكتروني',
+                hintText: S.current.enterYourEmail,
                 textInputAction: TextInputAction.next,
                 maxLines: 1,
                 keyboardType: TextInputType.emailAddress,
@@ -174,14 +174,14 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
               24.heightSpace,
               Text(
-                'موضوع الرسالة',
+                S.of(context).messageSubject,
                 style: AppTextStyles.headlineSmall.copyWith(
                   color: AppColors.labelTextColor,
                 ),
               ),
               8.heightSpace,
               CustomNoteField(
-                hint: 'أكتب رسالتك',
+                hint: S.of(context).writeYourMessage,
                 keyboardType: TextInputType.text,
 
                 validator: (value) {
@@ -197,7 +197,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
 
               24.heightSpace,
               CustomElevatedButton(
-                text: 'إرسال',
+                text: S.current.send,
                 icon: SvgAssets.assetsSvgArrowRight,
                 onPressed: () {
                   _send();

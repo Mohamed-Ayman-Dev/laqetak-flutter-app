@@ -6,6 +6,7 @@ import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/shared/widgets/app_logo.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/constant.dart';
 import '../../../../core/shared/controllers/settings_controller.dart';
 import '../../../../core/shared/models/settings_model.dart';
@@ -39,7 +40,7 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
     return Scaffold(
       appBar: CustomAppbar(
         icons: [AppbarIcons.drawer],
-        title: 'عن المنصة',
+        title: S.of(context).aboutThePlatform,
         flexLeft: 100,
       ),
       drawer: CustomDrawer(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
@@ -60,12 +61,12 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               height: 144.h,
             ),
             CustomText(
-              'إستعاده كلمة المرور',
+              S.of(context).resetPassword,
               style: AppTextStyles.headlineMedium,
             ),
             15.heightSpace,
             CustomText(
-              'الرجاء إدخال رقم هاتفك الجوال',
+              S.of(context).pleaseEnterYourMobileNumber,
               style: AppTextStyles.headlineSmall,
             ),
             24.heightSpace,
@@ -74,7 +75,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LabelWidget(text: 'رقم الجوال'),
+                  LabelWidget(text: S.of(context).mobileNumber),
                   CustomTextField(
                     onChanged: (value) {
                       setState(() {});
@@ -86,7 +87,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     keyboardType: TextInputType.phone,
                     textInputAction: TextInputAction.done,
                     controller: _phoneController,
-                    hintText: "رقم الجوال",
+                    hintText: S.of(context).mobileNumber,
                     // textDirection: TextDirection.ltr,
                     // suffixIcon: CountryCodeField(
                     //   focusNode: _phoneFocusNode,
@@ -103,7 +104,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   Hero(
                     tag: 'auth-button',
                     child: CustomElevatedButton(
-                      text: "التالي",
+                      text: S.of(context).next,
                       icon: SvgAssets.assetsSvgArrowRight,
 
                       onPressed: _submit,

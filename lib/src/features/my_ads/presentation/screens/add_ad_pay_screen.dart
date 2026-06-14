@@ -87,7 +87,7 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                   child: Row(
                     children: [
                       Text(
-                        'سعر العمولة',
+                        S.of(context).commissionPrice,
                         style: AppTextStyles.labelSmall.copyWith(
                           color: AppColors.labelBlackTextColor,
                           fontSize: 13.sp,
@@ -114,7 +114,7 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
               ),
               30.heightSpace,
               Text(
-                'أختر طريقة الدفع',
+                S.of(context).selectPaymentMethod,
                 style: AppTextStyles.labelSmall.copyWith(fontSize: 16.sp),
               ),
               20.heightSpace,
@@ -254,7 +254,7 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
               Row(
                 children: [
                   CustomElevatedButton(
-                    text: 'ادفع الان',
+                    text: S.of(context).payNow,
                     icon: SvgAssets.assetsSvgArrowRight,
                     size: Size(163.w, 48.h),
                     onPressed: () {
@@ -264,7 +264,7 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                   ),
                   16.widthSpace,
                   CustomElevatedButton(
-                    text: 'السابق',
+                    text: S.of(context).previous,
                     icon: SvgAssets.assetsSvgArrowLeft,
                     size: Size(163.w, 48.h),
                     backgroundColor: AppColors.buttonBackBKColor,

@@ -99,7 +99,7 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'إعلاناتي',
+                      S.of(context).myAds,
                       style: AppTextStyles.labelMedium.copyWith(
                         fontSize: 16.sp,
                       ),
@@ -167,9 +167,12 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
 
                                             onDelete: () {
                                               DialogHelpers.showYesNoDialog(
-                                                title: 'تأكيد الإجراء',
-                                                subtitle:
-                                                    'هل أنت متأكد من حذف هذا الاعلان؟',
+                                                title: S
+                                                    .of(context)
+                                                    .confirmAction,
+                                                subtitle: S
+                                                    .of(context)
+                                                    .areYouSureYouWantToDeleteThisAd,
                                                 onButtonTap: () {
                                                   Navigator.of(context).pop();
                                                   MyAdsController.deleteAd(

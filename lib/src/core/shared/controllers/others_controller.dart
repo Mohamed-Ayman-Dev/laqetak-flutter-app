@@ -63,22 +63,4 @@ abstract class OthersController {
       }
     }
   }
-
-  static Future<void> getRegions() async {
-    // try {
-    //   final response = await LocatorService.addressService.getRegions(
-    //     rethrowError: true,
-    //   );
-    //   LocatorService.addresses.setRegions(
-    //     response['data']
-    //         .map<DetailsModel>((e) => DetailsModel.fromJson(e))
-    //         .toList(),
-    //   );
-    // } catch (e) {
-    //   ApiService.handleApiError(e);
-    //   if (kDebugMode) {
-    //     print(e);
-    //   }
-    // }
-  }
 }

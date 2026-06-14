@@ -42,8 +42,8 @@ class MyAdsController {
       AdsController.getAds(refresh: true);
       EasyLoading.dismiss();
       DialogHelpers.showSuccessDialog(
-        title: 'تهانينا لقد تم الدفع بنجاح',
-        subtitle: 'وتم رفع الإعلان',
+        title: S.current.congratulationsPaymentCompletedSuccessfully,
+        subtitle: S.current.yourAdHasBeenPublishedSuccessfully,
       );
     } catch (e, s) {
       if (e is DioException) {
@@ -72,7 +72,7 @@ class MyAdsController {
       await getMyAds(refresh: true);
       AdsController.getAds(refresh: true);
       EasyLoading.dismiss();
-      DialogHelpers.showSuccessDialog(title: "تم حذف الاعلان بنجاح");
+      DialogHelpers.showSuccessDialog(title: S.current.adDeletedSuccessfully);
     } catch (e) {
       ErrorHelper.handleApiError(e);
     }
@@ -86,7 +86,7 @@ class MyAdsController {
       getMyAds(refresh: true);
       AdsController.getAds(refresh: true);
       EasyLoading.dismiss();
-      DialogHelpers.showSuccessDialog(title: "تم انهاء الاعلان بنجاح");
+      DialogHelpers.showSuccessDialog(title: S.current.adEndedSuccessfully);
     } catch (e) {
       ErrorHelper.handleApiError(e);
     }
@@ -169,9 +169,10 @@ class MyAdsController {
       await LocatorService.myAdsService.editAd(readyData, rethrowError: true);
       EasyLoading.dismiss();
       DialogHelpers.showSuccessDialog(
-        title: 'تهانينا لقد تم ارسال طلب تعديل الإعلان بنجاح',
-        subtitle:
-            'سيتم مراجعة طلبك من قبل الإدارة وإذا تم الموافقة عليه سيتم تعديل الإعلان',
+        title: S
+            .current
+            .congratulationsYourAdEditRequestHasBeenSubmittedSuccessfully,
+        subtitle: S.current.yourRequestWillBeReviewedByTheAdministrationAndIf,
       );
     } catch (e, s) {
       if (e is DioException) {

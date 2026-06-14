@@ -5,6 +5,7 @@ import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/features/auth/presentation/screens/login_screen.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/custom_g_radio_button.dart';
@@ -67,7 +68,7 @@ class _AuthChangeLangWidgetState extends State<AuthChangeLangWidget> {
           Hero(
             tag: 'auth-button',
             child: CustomElevatedButton(
-              text: 'تأكيد',
+              text: S.of(context).next,
               onPressed: () {
                 LocatorService.navigationService.currentState?.pushNamed(
                   LoginScreen.routeName,

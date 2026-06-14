@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../extension/space_extensions_helper.dart';
 import '../../themes/text_styles.dart';
 import 'custom_checkbox.dart';
@@ -11,13 +12,13 @@ class AgreeTermsWidget extends StatelessWidget {
   final void Function() onTextPressed;
 
   final bool isChecked;
-  final String text;
+  final String? text;
 
   const AgreeTermsWidget({
     super.key,
     required this.onTermsPressed,
     required this.isChecked,
-    this.text = 'الشروط والأحكام',
+    this.text,
     required this.onTextPressed,
   });
 
@@ -49,7 +50,7 @@ class AgreeTermsWidget extends StatelessWidget {
                     //   style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
                     // ),
                     TextSpan(
-                      text: text,
+                      text: text ?? S.current.termsConditions,
                       recognizer: TapGestureRecognizer()..onTap = onTextPressed,
                       style: AppTextStyles.labelSmall,
                     ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/shared/providers/timers.dart';
 import '../../../../core/themes/colors.dart';
@@ -61,7 +62,7 @@ class _TimerResendWidgetState extends State<TimerResendWidget> {
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-              text: "لم تستلم الرمز ؟",
+              text: S.of(context).didntReceiveTheCode,
               style: AppTextStyles.labelSmall.copyWith(
                 color: AppColors.labelGreyTextColor,
               ),
@@ -69,7 +70,7 @@ class _TimerResendWidgetState extends State<TimerResendWidget> {
                 TextSpan(text: '  '),
                 TextSpan(
                   text: timers.isResendButtonVisible
-                      ? "أعد إرسال الرمز"
+                      ? S.of(context).resendCode
                       : timeString,
                   style: AppTextStyles.headlineMedium.copyWith(
                     color: timers.isResendButtonVisible

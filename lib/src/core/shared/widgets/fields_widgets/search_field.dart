@@ -9,6 +9,7 @@ import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/home/presentation/providers/ads.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../fields_widgets/custom_textField.dart';
 import '../notify_circle.dart';
 
@@ -43,7 +44,7 @@ class SearchField extends StatelessWidget {
                 onChanged: onChanged,
                 focusNode: focusNode,
                 controller: searchController,
-                hintText: "البحث",
+                hintText: S.of(context).search,
                 borderRadius: 20,
                 fillColor: AppColors.searchBKColor,
                 suffixIcon: loadingAds

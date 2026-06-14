@@ -192,7 +192,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ],
                               )
                             : null,
-                        hintText: 'البريد الالكتروني',
+                        hintText: S.current.emailAddress,
                         borderColor: AppColors.questionBorderColor,
                         borderRadius: 16,
                         textInputAction: TextInputAction.next,
@@ -234,7 +234,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         borderRadius: 16,
                         keyboardType: TextInputType.phone,
                         textInputAction: TextInputAction.next,
-                        hintText: "رقم الجوال",
+                        hintText: S.current.mobileNumber,
                       ),
                       12.heightSpace,
 
@@ -242,7 +242,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         selector: (context, provider) => provider.myCities,
                         builder: (context, myCities, child) {
                           return MyCustomDropdownFormField(
-                            hint: "اختر المدينة",
+                            hint: S.current.selectCity,
                             enabled: isEditMode,
                             items: myCities
                                 ?.map<DropdownMenuItem<num>>(
@@ -281,7 +281,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Align(
                         alignment: AlignmentDirectional.centerStart,
                         child: Text(
-                          'كلمة المرور',
+                          S.current.password,
                           style: AppTextStyles.labelSmall.copyWith(
                             color: AppColors.titleTextColor,
                           ),
@@ -373,7 +373,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       25.heightSpace,
                       isEditMode
                           ? CustomElevatedButton(
-                              text: 'حفظ',
+                              text: S.current.save,
                               onPressed: () async {
                                 if (formKey.currentState!.validate()) {
                                   formKey.currentState!.save();
@@ -394,7 +394,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               children: [
                                 Expanded(
                                   child: CustomElevatedButton(
-                                    text: 'تعديل',
+                                    text: S.of(context).edit,
                                     icon: SvgAssets.assetsSvgArrowRight,
                                     onPressed: () {
                                       setState(() {
@@ -406,14 +406,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 16.widthSpace,
                                 Expanded(
                                   child: CustomOutlineButton(
-                                    text: 'حذف الحساب',
+                                    text: S.of(context).deleteAccount,
                                     borderRadius: 8,
                                     borderColor: AppColors.deleteBorderColor,
                                     icon: SvgAssets.assetsSvgDeleteIcon,
                                     onPressed: () {
                                       DialogHelpers.showYesNoDialog(
-                                        title: 'تأكيد الإجراء',
-                                        subtitle: 'هل انت متأكد من حذف الحساب؟',
+                                        title: S.current.confirmAction,
+                                        subtitle: S
+                                            .of(context)
+                                            .areYouSureYouWantToDeleteYourAccount,
                                         onButtonTap: () {
                                           Navigator.of(context).pop();
                                           AuthController.deleteAccount(

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
+import '../../../generated/l10n.dart';
 import '../shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../themes/colors.dart';
 import '../themes/text_styles.dart';
@@ -64,12 +65,12 @@ class _InternetConnectionState extends State<InternetConnection> {
               color: AppColors.primaryColor,
             ),
             Text(
-              'NoInternetConnection',
+              S.of(context).noInternetConnection,
               style: AppTextStyles.bodyLarge,
               textAlign: TextAlign.center,
             ),
             Text(
-              'CheckConnection',
+              S.of(context).checkConnection,
               style: AppTextStyles.bodyMedium,
               textAlign: TextAlign.center,
             ),
@@ -78,7 +79,7 @@ class _InternetConnectionState extends State<InternetConnection> {
               padding: const EdgeInsets.all(16.0),
               child: CustomElevatedButton(
                 onPressed: _retryConnection,
-                text: 'Retry',
+                text: S.of(context).retry,
               ),
             ),
           ],
@@ -94,8 +95,8 @@ class _InternetConnectionState extends State<InternetConnection> {
       } else {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Still no internet connection. Please try again.'),
+            SnackBar(
+              content: Text(S.current.stillNoInternetConnectionPleaseTryAgain),
             ),
           );
         }

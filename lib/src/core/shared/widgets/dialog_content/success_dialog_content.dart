@@ -5,6 +5,7 @@ import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/home/presentation/screens/home_layout_screen.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../constants/svg_assets.dart';
 import '../../../extension/space_extensions_helper.dart';
 import '../buttons_widgets/custom_elevated_button.dart';
@@ -61,7 +62,7 @@ class SuccessDialogContent extends StatelessWidget {
 
             // ─── Button ───
             CustomElevatedButton(
-              text: buttonText ?? 'الرئيسية',
+              text: buttonText ?? S.of(context).homeScreen,
               icon: SvgAssets.assetsSvgArrowRight,
               size: Size(163.w, 48.h),
               onPressed: onButtonTap != null

@@ -150,10 +150,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                           height: 40,
                                                           onTap: () {
                                                             DialogHelpers.showYesNoDialog(
-                                                              title:
-                                                                  'تأكيد الإجراء',
-                                                              subtitle:
-                                                                  'هل أنت متأكد من حذف هذا التنبيه؟',
+                                                              title: S
+                                                                  .current
+                                                                  .confirmAction,
+                                                              subtitle: S
+                                                                  .of(context)
+                                                                  .areYouSureYouWantToDeleteThisNotification,
                                                               onButtonTap: () {
                                                                 Navigator.pop(
                                                                   context,

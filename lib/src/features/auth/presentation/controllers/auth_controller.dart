@@ -103,7 +103,8 @@ abstract class AuthController {
       );
       EasyLoading.dismiss();
       await DialogHelpers.showSuccessDialog(
-        title: 'تهانينا لقد تم تسجيل حسابك بنجاح',
+        title:
+            S.current.congratulationsYourAccountHasBeenRegisteredSuccessfully,
         onButtonTap: () {
           LocatorService.navigationService.currentState?.pop();
         },
@@ -231,8 +232,8 @@ abstract class AuthController {
       await FirebaseCrashlytics.instance.setUserIdentifier('');
       EasyLoading.dismiss();
       DialogHelpers.showSuccessDialog(
-        title: "تم حذف الحساب بنجاح",
-        buttonText: 'تسجيل الدخول',
+        title: S.current.accountDeletedSuccessfully,
+        buttonText: S.current.login,
         onButtonTap: () {
           LocatorService.navigationService.currentState?.popUntil(
             (route) => route.settings.name == LoginScreen.routeName,
@@ -321,8 +322,8 @@ abstract class AuthController {
       // Password reset successful - navigate to success screen
       if (!context.mounted) return;
       await DialogHelpers.showSuccessDialog(
-        title: 'تم تغيير كلمة المرور بنجاح',
-        buttonText: 'تسجيل الدخول',
+        title: S.of(context).passwordChangedSuccessfully,
+        buttonText: S.of(context).login,
         onButtonTap: () {
           LocatorService.navigationService.currentState?.pop();
         },
@@ -510,7 +511,9 @@ abstract class AuthController {
       // );
       EasyLoading.dismiss();
       DialogHelpers.showSuccessDialog(
-        title: response['message'] ?? 'تهانينا لقد تم تعديل الملف الشخصي بنجاح',
+        title:
+            response['message'] ??
+            S.current.congratulationsYourProfileHasBeenUpdatedSuccessfully,
       );
       return true;
     } catch (e) {

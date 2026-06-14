@@ -103,7 +103,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'الإعلانات المفضلة',
+                            S.of(context).favoriteAds,
                             style: AppTextStyles.labelMedium.copyWith(
                               fontSize: 16.sp,
                             ),

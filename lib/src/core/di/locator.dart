@@ -46,18 +46,8 @@ Future<void> setupServices() async {
   locator.registerLazySingleton<AdDetailsService>(() => AdDetailsService());
   locator.registerLazySingleton<MyAdsService>(() => MyAdsService());
   locator.registerLazySingleton<AdsService>(() => AdsService());
-  // locator.registerLazySingleton<StoresService>(() => StoresService());
-  // locator.registerLazySingleton<AddressService>(() => AddressService());
-  // locator.registerLazySingleton<WalletService>(() => WalletService());
-  // locator.registerLazySingleton<PaymentsService>(() => PaymentsService());
   locator.registerLazySingleton<StaticPagesService>(() => StaticPagesService());
   locator.registerLazySingleton<ChatService>(() => ChatService());
-  // locator.registerLazySingleton<OrdersService>(() => OrdersService());
-  // locator.registerLazySingleton<SearchService>(() => SearchService());
-  // locator.registerLazySingleton<StorageService>(() => StorageService());
-  // locator.registerLazySingleton<SettingsService>(() => SettingsService());
-  //
-  // locator.registerLazySingleton<ChatService>(() => ChatService());
 
   /// register providers
   locator.registerLazySingleton<AppSettings>(() => AppSettings());
@@ -70,14 +60,5 @@ Future<void> setupServices() async {
   locator.registerLazySingleton<AdDetails>(() => AdDetails());
   locator.registerLazySingleton<MyAds>(() => MyAds());
   locator.registerLazySingleton<Chat>(() => Chat());
-  // locator.registerLazySingleton<Addresses>(() => Addresses());
-  // locator.registerLazySingleton<Wallets>(() => Wallets());
-  // locator.registerLazySingleton<Payments>(() => Payments());
   locator.registerLazySingleton<StaticPages>(() => StaticPages());
-  // locator.registerLazySingleton<Searches>(() => Searches());
-  // locator.registerLazySingleton<Settings>(() => Settings());
-  // locator.registerLazySingleton<Invoices>(() => Invoices());
-  // locator.registerLazySingleton<Complaints>(() => Complaints());
-  //
-  // locator.registerLazySingleton<Chat>(() => Chat());
 }
