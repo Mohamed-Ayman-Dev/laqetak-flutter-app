@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
+import 'package:invastro/src/features/auth/presentation/screens/auth_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/constants/images_assets.dart';
@@ -12,7 +13,6 @@ import '../../../../core/shared/providers/app_settings.dart';
 import '../../../../core/shared/widgets/app_logo.dart';
 import '../../../home/presentation/screens/home_layout_screen.dart';
 import '../controllers/auth_controller.dart';
-import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash';
@@ -53,8 +53,8 @@ class _SplashScreenState extends State<SplashScreen> {
       myScreen = const HomeLayoutScreen();
       myRoute = HomeLayoutScreen.routeName;
     } else {
-      myScreen = const LoginScreen();
-      myRoute = LoginScreen.routeName;
+      myScreen = const AuthScreen();
+      myRoute = AuthScreen.routeName;
     }
 
     Timer(const Duration(milliseconds: 1000), () async {

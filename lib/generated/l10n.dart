@@ -1229,14 +1229,14 @@ class S {
     );
   }
 
-  /// `second`
+  /// `sec`
   String get second {
-    return Intl.message('second', name: 'second', desc: '', args: []);
+    return Intl.message('sec', name: 'second', desc: '', args: []);
   }
 
-  /// `minute`
+  /// `min`
   String get minute {
-    return Intl.message('minute', name: 'minute', desc: '', args: []);
+    return Intl.message('min', name: 'minute', desc: '', args: []);
   }
 
   /// `hour`
@@ -2029,6 +2029,31 @@ class S {
     return Intl.message(
       'Message Subject',
       name: 'messageSubject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get skip {
+    return Intl.message('Skip', name: 'skip', desc: '', args: []);
+  }
+
+  /// `Verify Your Mobile Number`
+  String get verifyYourMobileNumber {
+    return Intl.message(
+      'Verify Your Mobile Number',
+      name: 'verifyYourMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the verification code sent to`
+  String get pleaseEnterTheVerificationCodeSentTo {
+    return Intl.message(
+      'Please enter the verification code sent to',
+      name: 'pleaseEnterTheVerificationCodeSentTo',
       desc: '',
       args: [],
     );

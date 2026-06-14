@@ -22,102 +22,98 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "aboutThePlatform": MessageLookupByLibrary.simpleMessage(
-      "About the Platform",
-    ),
+    "aboutThePlatform": MessageLookupByLibrary.simpleMessage("عن المنصة"),
     "accountDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
-      "Account deleted successfully",
+      "تم حذف الحساب بنجاح",
     ),
-    "activated": MessageLookupByLibrary.simpleMessage("Activated"),
+    "activated": MessageLookupByLibrary.simpleMessage("تم تفعيل"),
     "adDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
-      "Ad deleted successfully.",
+      "تم حذف الاعلان بنجاح",
     ),
-    "adDetails": MessageLookupByLibrary.simpleMessage("Ad Details"),
+    "adDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الإعلان"),
     "adEndedSuccessfully": MessageLookupByLibrary.simpleMessage(
-      "Ad ended successfully.",
+      "تم انهاء الاعلان بنجاح",
     ),
-    "adImages": MessageLookupByLibrary.simpleMessage("Ad Images"),
-    "addYourAd": MessageLookupByLibrary.simpleMessage("Add Your Ad"),
+    "adImages": MessageLookupByLibrary.simpleMessage("صور الإعلان"),
+    "addYourAd": MessageLookupByLibrary.simpleMessage("أضف إعلانك"),
     "added": MessageLookupByLibrary.simpleMessage("تمت الإضافة"),
     "adjustImage": MessageLookupByLibrary.simpleMessage("تعديل الصورة"),
-    "ads": MessageLookupByLibrary.simpleMessage("Ads"),
-    "advertiser": MessageLookupByLibrary.simpleMessage("Advertiser"),
-    "advertiserDetails": MessageLookupByLibrary.simpleMessage(
-      "Advertiser Details",
-    ),
+    "ads": MessageLookupByLibrary.simpleMessage("إعلانات"),
+    "advertiser": MessageLookupByLibrary.simpleMessage("المعلن"),
+    "advertiserDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المعلن"),
     "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
-      "Already have an account",
+      "لدي حساب بالفعل",
     ),
     "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
     "areYouSureYouWantToCloseTheApp": MessageLookupByLibrary.simpleMessage(
       "هل انت متاكد انك تريد اغلاق التطبيق؟",
     ),
     "areYouSureYouWantToDeleteThisAd": MessageLookupByLibrary.simpleMessage(
-      "Are you sure you want to delete this ad?",
+      "هل أنت متأكد من حذف هذا الاعلان؟",
     ),
     "areYouSureYouWantToDeleteThisNotification":
         MessageLookupByLibrary.simpleMessage(
-          "Are you sure you want to delete this notification?",
+          "هل أنت متأكد من حذف هذا التنبيه؟",
         ),
     "areYouSureYouWantToDeleteYourAccount":
         MessageLookupByLibrary.simpleMessage(
           "هل أنت متأكد أنك تريد حذف حسابك؟",
         ),
     "areYouSureYouWantToEndThisAd": MessageLookupByLibrary.simpleMessage(
-      "Are you sure you want to end this ad?",
+      "هل أنت متأكد من انهاء هذا الاعلان؟",
     ),
     "attachments": MessageLookupByLibrary.simpleMessage("المرفقات"),
-    "averageCapital": MessageLookupByLibrary.simpleMessage("Average Capital"),
+    "averageCapital": MessageLookupByLibrary.simpleMessage("متوسط رأس المال"),
     "byLoggingInYouCanAccessAllTheFeaturesOf": MessageLookupByLibrary.simpleMessage(
       "بتسجيل الدخول، يمكنك الوصول إلى جميع ميزات التطبيق، بما في ذلك إنشاء الإعلانات، وإدارة حسابك، والتواصل مع المستخدمين الآخرين. لا تفوت الفرصة للاستفادة الكاملة من تجربتك معنا!",
     ),
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "card": MessageLookupByLibrary.simpleMessage("البطاقة الائتمانية"),
     "cash": MessageLookupByLibrary.simpleMessage("كاش"),
-    "category": MessageLookupByLibrary.simpleMessage("Category"),
-    "changeNumber": MessageLookupByLibrary.simpleMessage("Change Number"),
+    "category": MessageLookupByLibrary.simpleMessage("القسم"),
+    "changeNumber": MessageLookupByLibrary.simpleMessage("تغيير الرقم"),
     "changesHaveBeenSavedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم حفظ التغييرات بنجاح",
     ),
-    "chat": MessageLookupByLibrary.simpleMessage("Chat"),
-    "chattingWith": MessageLookupByLibrary.simpleMessage("Chatting with"),
+    "chat": MessageLookupByLibrary.simpleMessage("مراسلة"),
+    "chattingWith": MessageLookupByLibrary.simpleMessage("تتحدث إلى"),
     "checkConnection": MessageLookupByLibrary.simpleMessage("تحقق من الاتصال"),
-    "checkOutThisAd": MessageLookupByLibrary.simpleMessage("check out this ad"),
-    "chooseLanguage": MessageLookupByLibrary.simpleMessage("Choose Language"),
+    "checkOutThisAd": MessageLookupByLibrary.simpleMessage("شاهد هذا الإعلان"),
+    "chooseLanguage": MessageLookupByLibrary.simpleMessage("إختر اللغة"),
     "city": MessageLookupByLibrary.simpleMessage("المدينة"),
     "closeApp": MessageLookupByLibrary.simpleMessage("اغلاق التطبيق"),
-    "commissionPrice": MessageLookupByLibrary.simpleMessage("Commission Price"),
+    "commissionPrice": MessageLookupByLibrary.simpleMessage("سعر العمولة"),
     "complaintReason": MessageLookupByLibrary.simpleMessage("سبب الشكوى"),
     "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
-    "confirmAction": MessageLookupByLibrary.simpleMessage("Confirm Action"),
-    "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
+    "confirmAction": MessageLookupByLibrary.simpleMessage("تأكيد الإجراء"),
+    "confirmPassword": MessageLookupByLibrary.simpleMessage(
+      "تأكيد كلمة المرور",
+    ),
     "congratulationsPaymentCompletedSuccessfully":
-        MessageLookupByLibrary.simpleMessage(
-          "Congratulations! Payment completed successfully.",
-        ),
+        MessageLookupByLibrary.simpleMessage("تهانينا لقد تم الدفع بنجاح"),
     "congratulationsYourAccountHasBeenRegisteredSuccessfully":
         MessageLookupByLibrary.simpleMessage(
-          "Congratulations! Your account has been registered successfully.",
+          "تهانينا لقد تم تسجيل حسابك بنجاح",
         ),
     "congratulationsYourAdEditRequestHasBeenSubmittedSuccessfully":
         MessageLookupByLibrary.simpleMessage(
-          "Congratulations! Your ad edit request has been submitted successfully.",
+          "تهانينا لقد تم ارسال طلب تعديل الإعلان بنجاح",
         ),
     "congratulationsYourProfileHasBeenUpdatedSuccessfully":
         MessageLookupByLibrary.simpleMessage(
-          "Congratulations! Your profile has been updated successfully.",
+          "تهانينا لقد تم تعديل الملف الشخصي بنجاح",
         ),
     "connectionErrorPleaseCheckYourInternetConnection":
         MessageLookupByLibrary.simpleMessage(
           "خطأ في الاتصال يرجى التحقق من اتصال الانترنت",
         ),
-    "contactNumber": MessageLookupByLibrary.simpleMessage("Contact Number"),
-    "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
+    "contactNumber": MessageLookupByLibrary.simpleMessage("رقم التواصل"),
+    "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
     "continueToSignIn": MessageLookupByLibrary.simpleMessage(
       "متابعة تسجيل الدخول إلى حسابك",
     ),
     "day": MessageLookupByLibrary.simpleMessage("يوم"),
-    "deactivated": MessageLookupByLibrary.simpleMessage("Deactivated"),
+    "deactivated": MessageLookupByLibrary.simpleMessage("تم تعطيل"),
     "deleteAccount": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
     "deletingAccount": MessageLookupByLibrary.simpleMessage(
       "جاري حذف الحساب...",
@@ -132,26 +128,28 @@ class MessageLookup extends MessageLookupByLibrary {
       "لم يصلك الرمز",
     ),
     "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
-    "edit": MessageLookupByLibrary.simpleMessage("Edit"),
-    "editAd": MessageLookupByLibrary.simpleMessage("Edit Ad"),
-    "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
+    "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
+    "editAd": MessageLookupByLibrary.simpleMessage("تعديل الإعلان"),
+    "emailAddress": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "emailOrMobileNumberOrUsername": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني أو رقم الجوال أو اسم المستخدم",
     ),
-    "enterAdTitle": MessageLookupByLibrary.simpleMessage("Enter Ad Title"),
-    "enterCapital": MessageLookupByLibrary.simpleMessage("Enter Capital"),
+    "enterAdTitle": MessageLookupByLibrary.simpleMessage("أدخل عنوان الإعلان"),
+    "enterCapital": MessageLookupByLibrary.simpleMessage("أدخل رأس المال"),
     "enterComplaintDetails": MessageLookupByLibrary.simpleMessage(
       "أدخل تفاصيل الشكوى",
     ),
-    "enterPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
+    "enterPassword": MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
     "enterTheReportReason": MessageLookupByLibrary.simpleMessage(
-      "Enter the report reason",
+      "أدخل سبب الابلاغ",
     ),
     "enterTheVerificationCodeWeSentTo": MessageLookupByLibrary.simpleMessage(
       "أدخل رمز التحقق الذي أرسلناه إلى",
     ),
-    "enterUsername": MessageLookupByLibrary.simpleMessage("Enter Username"),
-    "enterYourEmail": MessageLookupByLibrary.simpleMessage("Enter Your Email"),
+    "enterUsername": MessageLookupByLibrary.simpleMessage("اكتب اسم المستخدم"),
+    "enterYourEmail": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريدك الالكتروني",
+    ),
     "enterYourLoginDetails": MessageLookupByLibrary.simpleMessage(
       "أدخل بيانات الدخول الخاصة بك",
     ),
@@ -159,49 +157,47 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "أدخل رقم جوالك أو اسم المستخدم أو البريد الإلكتروني المسجل لإعادة تعيين كلمة المرور. سنرسل لك رمز تحقق عبر رسالة نصية.",
         ),
-    "expired": MessageLookupByLibrary.simpleMessage("Expired"),
-    "expiredAd": MessageLookupByLibrary.simpleMessage("Expired Ad"),
-    "favoriteAds": MessageLookupByLibrary.simpleMessage("Favorite Ads"),
-    "filter": MessageLookupByLibrary.simpleMessage("Filter"),
-    "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+    "expired": MessageLookupByLibrary.simpleMessage("منتهي"),
+    "expiredAd": MessageLookupByLibrary.simpleMessage("إعلان منتهي"),
+    "favoriteAds": MessageLookupByLibrary.simpleMessage("الإعلانات المفضلة"),
+    "filter": MessageLookupByLibrary.simpleMessage("الفلتر"),
+    "forgotPassword": MessageLookupByLibrary.simpleMessage(
+      "نسيت كلمة المرور ؟",
+    ),
     "forgotYourPassword": MessageLookupByLibrary.simpleMessage(
       "نسيت كلمة المرور؟",
     ),
     "frequentlyAskedQuestions": MessageLookupByLibrary.simpleMessage(
-      "Frequently Asked Questions",
+      "الأسئلة المتكررة",
     ),
     "fromFavoritesSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تمت الإزالة من المفضلة بنجاح",
     ),
     "hidePhoneNumber": MessageLookupByLibrary.simpleMessage("إخفاء رقم الهاتف"),
-    "homeScreen": MessageLookupByLibrary.simpleMessage("Home Screen"),
+    "homeScreen": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "hour": MessageLookupByLibrary.simpleMessage("ساعة"),
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "رقم الآيبان غير متطابق",
     ),
     "invastroUser": MessageLookupByLibrary.simpleMessage("مستخدم انفاسترو"),
-    "investmentCapital": MessageLookupByLibrary.simpleMessage(
-      "Investment Capital",
-    ),
-    "investmentSector": MessageLookupByLibrary.simpleMessage(
-      "Investment Sector",
-    ),
-    "language": MessageLookupByLibrary.simpleMessage("Language"),
+    "investmentCapital": MessageLookupByLibrary.simpleMessage("رأس المال"),
+    "investmentSector": MessageLookupByLibrary.simpleMessage("قطاع الإستثمار"),
+    "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "logIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
-    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "login": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
     "loginToContinue": MessageLookupByLibrary.simpleMessage(
       "قم بتسجيل الدخول لتتمكن من المتابعة",
     ),
-    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "logout": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
     "messageIsRequired": MessageLookupByLibrary.simpleMessage("الرسالة مطلوبة"),
-    "messageSubject": MessageLookupByLibrary.simpleMessage("Message Subject"),
-    "messages": MessageLookupByLibrary.simpleMessage("Messages"),
+    "messageSubject": MessageLookupByLibrary.simpleMessage("موضوع الرسالة"),
+    "messages": MessageLookupByLibrary.simpleMessage("الرسائل"),
     "minute": MessageLookupByLibrary.simpleMessage("دقيقة"),
-    "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
+    "mobileNumber": MessageLookupByLibrary.simpleMessage("رقم الجوال"),
     "month": MessageLookupByLibrary.simpleMessage("شهر"),
     "moreThan": MessageLookupByLibrary.simpleMessage("أكثر من"),
-    "myAds": MessageLookupByLibrary.simpleMessage("My Ads"),
-    "name": MessageLookupByLibrary.simpleMessage("Name"),
+    "myAds": MessageLookupByLibrary.simpleMessage("إعلاناتي"),
+    "name": MessageLookupByLibrary.simpleMessage("الإسم"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
     "noInternetConnection": MessageLookupByLibrary.simpleMessage(
       "لا يوجد اتصال بالإنترنت",
@@ -214,12 +210,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم التحقق من الرقم بنجاح",
     ),
     "openSettings": MessageLookupByLibrary.simpleMessage("فتح الإعدادات"),
-    "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "passwordCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
       " كلمة المرور لا يمكن ان تكون فارغة",
     ),
     "passwordChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
-      "Password changed successfully",
+      "تم تغيير كلمة المرور بنجاح",
     ),
     "passwordShouldBeAtLeast8Characters": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور يجب ان تكون على الاقل 8 احرف",
@@ -227,18 +223,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "كلمات المرور غير متطابقة",
     ),
-    "payNow": MessageLookupByLibrary.simpleMessage("Pay Now"),
+    "payNow": MessageLookupByLibrary.simpleMessage("ادفع الان"),
     "permissionRequired": MessageLookupByLibrary.simpleMessage(
       "الصلاحية مطلوبة",
     ),
     "phoneNumberHiddenSuccessfully": MessageLookupByLibrary.simpleMessage(
-      "Phone number hidden successfully",
+      "إخفاء رقم الهاتف بنجاح",
     ),
     "phoneNumberShouldBeAtLeast9Characters":
         MessageLookupByLibrary.simpleMessage(
           "رقم الجوال يجب ان يكون على الاقل 9 احرف",
         ),
-    "platformIdea": MessageLookupByLibrary.simpleMessage("Platform Idea"),
+    "platformIdea": MessageLookupByLibrary.simpleMessage("فكرة المنصة"),
     "pleaseAgreeToTheIdea": MessageLookupByLibrary.simpleMessage(
       "يرجى الموافقة على الفكرة",
     ),
@@ -278,20 +274,24 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى إدخال تأكيد رقم الآيبان",
     ),
     "pleaseEnterThe4digitCode": MessageLookupByLibrary.simpleMessage(
-      "Please enter the 4-digit code",
+      "الرجاء إدخال رمز التحقق المرسل إلى",
     ),
+    "pleaseEnterTheVerificationCodeSentTo":
+        MessageLookupByLibrary.simpleMessage(
+          "Please enter the verification code sent to",
+        ),
     "pleaseEnterYourDetails": MessageLookupByLibrary.simpleMessage(
-      "Please enter your details",
+      "الرجاء إدخال ادخل بياناتك",
     ),
     "pleaseEnterYourEmail": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال البريد الإلكتروني",
     ),
     "pleaseEnterYourMobileNumber": MessageLookupByLibrary.simpleMessage(
-      "Please enter your mobile number",
+      "الرجاء إدخال رقم هاتفك الجوال",
     ),
     "pleaseEnterYourMobileNumberAndPassword":
         MessageLookupByLibrary.simpleMessage(
-          "Please enter your mobile number and password",
+          "الرجاء إدخال رقم الجوال وكلمة المرور",
         ),
     "pleaseEnterYourName": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال الاسم",
@@ -322,28 +322,28 @@ class MessageLookup extends MessageLookupByLibrary {
       "يرجى اختيار قطاع",
     ),
     "pleaseSelectAtLeastOneImage": MessageLookupByLibrary.simpleMessage(
-      "Please select at least one image",
+      "الرجاء اختيار صورة علي الأقل",
     ),
     "pleaseVerifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "يرجى التحقق من رقم هاتفك",
     ),
     "pleaseWait": MessageLookupByLibrary.simpleMessage("الرجاء الانتظار..."),
     "pressToChat": MessageLookupByLibrary.simpleMessage("اضغط لبدء المحادثه"),
-    "previous": MessageLookupByLibrary.simpleMessage("Previous"),
-    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
-    "read": MessageLookupByLibrary.simpleMessage("Read"),
-    "registerNow": MessageLookupByLibrary.simpleMessage("Register Now!"),
+    "previous": MessageLookupByLibrary.simpleMessage("السابق"),
+    "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "read": MessageLookupByLibrary.simpleMessage("تم القراءة"),
+    "registerNow": MessageLookupByLibrary.simpleMessage("سجل الأن !"),
     "removed": MessageLookupByLibrary.simpleMessage("تم الإزالة"),
-    "report": MessageLookupByLibrary.simpleMessage("Report"),
-    "reportAd": MessageLookupByLibrary.simpleMessage("Report Ad"),
+    "report": MessageLookupByLibrary.simpleMessage("الإبلاغ"),
+    "reportAd": MessageLookupByLibrary.simpleMessage("الإبلاغ عن الإعلان"),
     "reportSentSuccessfully": MessageLookupByLibrary.simpleMessage(
-      "Report sent successfully",
+      "تم ارسال الابلاغ بنجاح",
     ),
     "reportSubmittedSuccessfully": MessageLookupByLibrary.simpleMessage(
-      "Report submitted successfully",
+      "تم ارسال الابلاغ بنجاح",
     ),
     "resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
-    "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
+    "resendCode": MessageLookupByLibrary.simpleMessage("أعد إرسال الرمز"),
     "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
     "resetPassword": MessageLookupByLibrary.simpleMessage(
       "إعادة تعيين كلمة المرور",
@@ -352,27 +352,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "sar": MessageLookupByLibrary.simpleMessage("ريال"),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
     "savePassword": MessageLookupByLibrary.simpleMessage("حفظ كلمة المرور"),
-    "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "search": MessageLookupByLibrary.simpleMessage("البحث"),
     "searchForALocation": MessageLookupByLibrary.simpleMessage(
       "ابحث عن موقع..",
     ),
     "second": MessageLookupByLibrary.simpleMessage("ثانية"),
-    "selectCategory": MessageLookupByLibrary.simpleMessage("Select Category"),
+    "selectCategory": MessageLookupByLibrary.simpleMessage("اختر القسم"),
     "selectCity": MessageLookupByLibrary.simpleMessage("اختر المدينة"),
     "selectComplaintReason": MessageLookupByLibrary.simpleMessage(
       "إختر سبب الشكوى",
     ),
     "selectInvestmentSector": MessageLookupByLibrary.simpleMessage(
-      "Select Investment Sector",
+      "إختر قطاع الإستثمار",
     ),
     "selectMainCategory": MessageLookupByLibrary.simpleMessage(
-      "Select Main Category",
+      "إختر القسم الرئيسي",
     ),
     "selectPaymentMethod": MessageLookupByLibrary.simpleMessage(
-      "Select Payment Method",
+      "أختر طريقة الدفع",
     ),
-    "selectSector": MessageLookupByLibrary.simpleMessage("Select Sector"),
-    "send": MessageLookupByLibrary.simpleMessage("Send"),
+    "selectSector": MessageLookupByLibrary.simpleMessage("اختر القطاع"),
+    "send": MessageLookupByLibrary.simpleMessage("إرسال"),
     "sendCode": MessageLookupByLibrary.simpleMessage("إرسال الرمز"),
     "sending": MessageLookupByLibrary.simpleMessage("جارٍ الإرسال..."),
     "sendingRequest": MessageLookupByLibrary.simpleMessage(
@@ -392,9 +392,7 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
     "submitComplaint": MessageLookupByLibrary.simpleMessage("تقديم شكوى"),
     "tapToRetry": MessageLookupByLibrary.simpleMessage("اضغط لإعادة المحاولة"),
-    "termsConditions": MessageLookupByLibrary.simpleMessage(
-      "Terms & Conditions",
-    ),
+    "termsConditions": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
     "thereAreNoAdsYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد إعلانات حتى الآن.",
     ),
@@ -448,8 +446,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "إلى المفضلة بنجاح",
     ),
     "toSignIn": MessageLookupByLibrary.simpleMessage("لتسجيل الدخول"),
-    "today": MessageLookupByLibrary.simpleMessage("Today"),
-    "username": MessageLookupByLibrary.simpleMessage("Username"),
+    "today": MessageLookupByLibrary.simpleMessage("اليوم"),
+    "username": MessageLookupByLibrary.simpleMessage("أسم المستخدم"),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "اسم المستخدم او كلمة المرور غير صحيحة",
     ),
@@ -457,30 +455,33 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage("تم إرسال رمز التحقق إلى هاتفك"),
     "verify": MessageLookupByLibrary.simpleMessage("تحقق"),
     "verifyYourIdentity": MessageLookupByLibrary.simpleMessage("تحقق من هويتك"),
+    "verifyYourMobileNumber": MessageLookupByLibrary.simpleMessage(
+      "Verify Your Mobile Number",
+    ),
     "verifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "تحقق من رقمك",
     ),
     "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
-    "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
-    "writeAMessage": MessageLookupByLibrary.simpleMessage("Write a message..."),
+    "welcome": MessageLookupByLibrary.simpleMessage("مرحبـــــاً"),
+    "writeAMessage": MessageLookupByLibrary.simpleMessage("اكتب رسالة ..."),
     "writeATitleForTheAd": MessageLookupByLibrary.simpleMessage(
-      "Write a Title for the Ad",
+      "اكتب عنوان للإعلان",
     ),
-    "writeAdDetails": MessageLookupByLibrary.simpleMessage("Write Ad Details"),
+    "writeAdDetails": MessageLookupByLibrary.simpleMessage(
+      "اكتب تفاصيل الإعلان",
+    ),
     "writeComplaintDetailsHere": MessageLookupByLibrary.simpleMessage(
       "اكتب تفاصيل الشكوى هنا..",
     ),
-    "writeTheReason": MessageLookupByLibrary.simpleMessage("Write the reason"),
-    "writeYourMessage": MessageLookupByLibrary.simpleMessage(
-      "Write your message",
-    ),
+    "writeTheReason": MessageLookupByLibrary.simpleMessage("أكتب السبب"),
+    "writeYourMessage": MessageLookupByLibrary.simpleMessage("أكتب رسالتك"),
     "year": MessageLookupByLibrary.simpleMessage("سنة"),
     "yes": MessageLookupByLibrary.simpleMessage("نعم"),
     "youLoggedInSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم تسجيل الدخول بنجاح",
     ),
     "youMustEnterYourName": MessageLookupByLibrary.simpleMessage(
-      "You must enter your name",
+      "يجب إدخال الإسم",
     ),
     "youNeedToSignInToViewThisPageIf": MessageLookupByLibrary.simpleMessage(
       "يجب عليك تسجيل الدخول لعرض هذه الصفحة. إذا لم يكن لديك حساب، يمكنك إنشاء واحد مجانًا",
@@ -488,7 +489,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "yourAccountHasBeenDeletedSuccessfully":
         MessageLookupByLibrary.simpleMessage("تم حذف الحساب بنجاح"),
     "yourAdHasBeenPublishedSuccessfully": MessageLookupByLibrary.simpleMessage(
-      "Your ad has been published successfully.",
+      "وتم رفع الإعلان",
     ),
     "yourAddressHasBeenAddedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم اضافة العنوان الخاص بك بنجاح",
@@ -503,7 +504,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "yourRequestWillBeReviewedByTheAdministrationAndIf":
         MessageLookupByLibrary.simpleMessage(
-          "Your request will be reviewed by the administration, and if approved, the ad will be updated.",
+          "سيتم مراجعة طلبك من قبل الإدارة وإذا تم الموافقة عليه سيتم تعديل الإعلان",
         ),
   };
 }

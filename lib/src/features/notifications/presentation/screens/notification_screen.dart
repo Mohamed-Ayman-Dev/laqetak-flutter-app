@@ -103,6 +103,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     child: notifications != null && notifications.isEmpty
                         ? EmptyListPlaceholderWidget(
                             text: S.of(context).thereAreNoNotificationsYet,
+                            paddingTop: 300,
                           )
                         : Column(
                             children: [

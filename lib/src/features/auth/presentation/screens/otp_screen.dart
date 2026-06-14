@@ -80,12 +80,12 @@ class _OtpScreenState extends State<OtpScreen> {
                 AuthAppbar(),
                 18.heightSpace,
                 CustomText(
-                  'تحقق من رقم هاتفك المحمول',
+                  S.of(context).verifyYourMobileNumber,
                   style: AppTextStyles.headlineMedium,
                 ),
                 16.heightSpace,
                 CustomText(
-                  'الرجاء إدخال رمز التحقق المرسل إلى',
+                  S.of(context).pleaseEnterTheVerificationCodeSentTo,
                   style: AppTextStyles.headlineSmall,
                 ),
                 16.heightSpace,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:invastro/src/core/constants/string_manager.dart';
+import 'package:invastro/src/features/home/presentation/controllers/ads_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../generated/l10n.dart';
@@ -72,8 +73,7 @@ class AppSettings with ChangeNotifier {
                   );
               //make to do
               // TODO:
-              // PackagesController.getOneWashPackages();
-              // PackagesController.getPackages();
+              AdsController.getAds(refresh: true);
             });
       } else {
         changeLanguage(languageCode);

@@ -130,8 +130,8 @@
   "checkConnection": "Check Connection",
   "retry": "Retry",
   "stillNoInternetConnectionPleaseTryAgain": "Still no internet connection. Please try again.",
-  "second": "second",
-  "minute": "minute",
+  "second": "sec",
+  "minute": "min",
   "hour": "hour",
   "day": "day",
   "month": "month",
@@ -230,5 +230,8 @@
   "edit": "Edit",
   "name": "Name",
   "youMustEnterYourName": "You must enter your name",
-  "messageSubject": "Message Subject"
+  "messageSubject": "Message Subject",
+  "skip": "Skip",
+  "verifyYourMobileNumber": "Verify Your Mobile Number",
+  "pleaseEnterTheVerificationCodeSentTo": "Please enter the verification code sent to"
 }

@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../constants/string_manager.dart';
 import '../../../di/locator_service.dart';
 import '../../../extension/space_extensions_helper.dart';
 import '../../../helpers/others_helper.dart';
@@ -37,6 +38,20 @@ class _LanguageBottomState extends State<LanguageBottom> {
     setState(() {
       groupValue = value;
     });
+    LocatorService.navigationService.currentState?.pop();
+    if (groupValue == 0) {
+      LocatorService.appSettings.changeLanguageInUi(
+        context,
+        StringManager.arLanguageCode,
+        showSplashScreen: true,
+      );
+    } else {
+      LocatorService.appSettings.changeLanguageInUi(
+        context,
+        StringManager.enLanguageCode,
+        showSplashScreen: true,
+      );
+    }
   }
 
   @override
@@ -103,7 +118,6 @@ class _LanguageBottomState extends State<LanguageBottom> {
                 label: 'English',
                 value: 1,
                 padding: EdgeInsets.zero,
-
                 groupValue: groupValue,
                 onChanged: _handleRadioValueChange,
               ),

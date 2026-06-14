@@ -304,8 +304,17 @@ abstract class AuthController {
         arguments: {'phone': data['phone'], 'code': data['code']},
       );
     } catch (e) {
-      EasyLoading.dismiss();
-      ErrorHelper.handleApiError(e);
+      if (e is DioException) {
+        final responseData = e.response?.data;
+        EasyLoading.dismiss();
+        LocatorService.authNavigations.setWrongVerificationCode(
+          responseData['message'],
+        );
+        Future.delayed(const Duration(milliseconds: 100), () {
+          LocatorService.authNavigations.activationFormKey.currentState
+              ?.validate();
+        });
+      }
     }
   }
 

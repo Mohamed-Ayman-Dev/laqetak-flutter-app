@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:invastro/src/core/shared/widgets/custom_direction_widget.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/home/presentation/screens/home_layout_screen.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_text_button.dart';
 import '../../../../core/shared/widgets/buttons_widgets/svg_button.dart';
@@ -24,7 +26,7 @@ class AuthAppbar extends StatelessWidget {
           children: [
             if (showGuestButton)
               CustomTextButton(
-                text: 'تخطي',
+                text: S.of(context).skip,
                 onPressed: () {
                   LocatorService.navigationService.currentState?.pushNamed(
                     HomeLayoutScreen.routeName,
@@ -33,11 +35,13 @@ class AuthAppbar extends StatelessWidget {
                 textColor: AppColors.primaryColor,
               ),
             Spacer(),
-            SvgButton(
-              icon: SvgAssets.assetsSvgArrowLeft,
-              onTap: () {
-                LocatorService.navigationService.currentState?.pop();
-              },
+            CustomDirectionWidget(
+              child: SvgButton(
+                icon: SvgAssets.assetsSvgArrowLeft,
+                onTap: () {
+                  LocatorService.navigationService.currentState?.pop();
+                },
+              ),
             ),
           ],
         ),

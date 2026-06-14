@@ -102,6 +102,7 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
                     return conversations != null && conversations.isEmpty
                         ? EmptyListPlaceholderWidget(
                             text: S.of(context).thereAreNoConversationsYet,
+                            paddingTop: 300,
                           )
                         : Column(
                             children: [

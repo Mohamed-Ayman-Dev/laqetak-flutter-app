@@ -201,7 +201,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "messageSubject": MessageLookupByLibrary.simpleMessage("Message Subject"),
     "messages": MessageLookupByLibrary.simpleMessage("Messages"),
-    "minute": MessageLookupByLibrary.simpleMessage("minute"),
+    "minute": MessageLookupByLibrary.simpleMessage("min"),
     "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
     "month": MessageLookupByLibrary.simpleMessage("month"),
     "moreThan": MessageLookupByLibrary.simpleMessage("More than"),
@@ -289,6 +289,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseEnterThe4digitCode": MessageLookupByLibrary.simpleMessage(
       "Please enter the 4-digit code",
     ),
+    "pleaseEnterTheVerificationCodeSentTo":
+        MessageLookupByLibrary.simpleMessage(
+          "Please enter the verification code sent to",
+        ),
     "pleaseEnterVerificationCode": MessageLookupByLibrary.simpleMessage(
       "Please enter verification code",
     ),
@@ -366,7 +370,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchForALocation": MessageLookupByLibrary.simpleMessage(
       "Search for a location",
     ),
-    "second": MessageLookupByLibrary.simpleMessage("second"),
+    "second": MessageLookupByLibrary.simpleMessage("sec"),
     "selectCategory": MessageLookupByLibrary.simpleMessage("Select Category"),
     "selectCity": MessageLookupByLibrary.simpleMessage("Select City"),
     "selectComplaintReason": MessageLookupByLibrary.simpleMessage(
@@ -395,6 +399,7 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Set a new password for your account. Choose a strong and memorable password.",
         ),
+    "skip": MessageLookupByLibrary.simpleMessage("Skip"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
     ),
@@ -472,6 +477,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "verify": MessageLookupByLibrary.simpleMessage("Verify"),
     "verifyYourIdentity": MessageLookupByLibrary.simpleMessage(
       "Verify your identity",
+    ),
+    "verifyYourMobileNumber": MessageLookupByLibrary.simpleMessage(
+      "Verify Your Mobile Number",
     ),
     "verifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Verify your phone number",

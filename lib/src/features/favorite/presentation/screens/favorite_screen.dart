@@ -112,8 +112,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           ads != null && ads.isEmpty
                               ? EmptyListPlaceholderWidget(
                                   text: S.of(context).thereAreNoFavoriteAdsYet,
-                                  paddingTop: 0,
-                                  paddingBottom: 100,
+                                  paddingTop: 230,
                                 )
                               : ListView.builder(
                                   physics: NeverScrollableScrollPhysics(),
