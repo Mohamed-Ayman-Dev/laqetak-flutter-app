@@ -184,10 +184,10 @@
   "registerNow": "سجل الأن !",
   "pleaseEnterThe4digitCode": "الرجاء إدخال رمز التحقق المرسل إلى",
   "changeNumber": "تغيير الرقم",
-  "pleaseEnterYourDetails": "الرجاء إدخال ادخل بياناتك",
+  "pleaseEnterYourDetails": "الرجاء إدخال بياناتك",
   "confirmPassword": "تأكيد كلمة المرور",
   "platformIdea": "فكرة المنصة",
-  "username": "أسم المستخدم",
+  "username": "إسم المستخدم",
   "enterUsername": "اكتب اسم المستخدم",
   "emailAddress": "البريد الإلكتروني",
   "enterYourEmail": "أدخل بريدك الالكتروني",
@@ -231,6 +231,8 @@
   "name": "الإسم",
   "youMustEnterYourName": "يجب إدخال الإسم",
   "messageSubject": "موضوع الرسالة",
-  "verifyYourMobileNumber": "Verify Your Mobile Number",
-  "pleaseEnterTheVerificationCodeSentTo": "Please enter the verification code sent to"
+  "verifyYourMobileNumber": "تحقق من رقم جوالك",
+  "skip": "تخطي",
+  "pleaseEnterTheVerificationCodeSentTo": "يرجى إدخال رمز التحقق المرسل إلى",
+  "editYourAd": "تعديل الإعلان"
 }

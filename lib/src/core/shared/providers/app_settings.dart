@@ -74,9 +74,12 @@ class AppSettings with ChangeNotifier {
               //make to do
               // TODO:
               AdsController.getAds(refresh: true);
+              SettingsController.getGeneralSettings();
             });
       } else {
-        changeLanguage(languageCode);
+        changeLanguage(
+          languageCode,
+        ).then((value) => SettingsController.getGeneralSettings());
       }
     }
   }

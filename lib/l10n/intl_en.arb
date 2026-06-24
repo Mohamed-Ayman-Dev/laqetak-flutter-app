@@ -233,5 +233,6 @@
   "messageSubject": "Message Subject",
   "skip": "Skip",
   "verifyYourMobileNumber": "Verify Your Mobile Number",
-  "pleaseEnterTheVerificationCodeSentTo": "Please enter the verification code sent to"
+  "pleaseEnterTheVerificationCodeSentTo": "Please enter the verification code sent to",
+  "editYourAd": "Edit Your Ad"
 }

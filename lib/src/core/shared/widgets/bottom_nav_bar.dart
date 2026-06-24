@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/helpers/bottom_helpers.dart';
 import 'package:invastro/src/core/themes/gradients.dart';
+import 'package:invastro/src/features/auth/presentation/providers/auth.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,7 @@ import '../../helpers/others_helper.dart';
 import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';
 import '../providers/app_settings.dart';
+import 'notify_circle.dart';
 
 // ── Bottom Navigation Bar Widget ────────────────────────────────────────────
 class BottomNavBar extends StatelessWidget {
@@ -90,30 +92,65 @@ class BottomNavBar extends StatelessWidget {
                       curve: Curves.easeOutBack,
                       builder: (context, scale, child) =>
                           Transform.scale(scale: scale, child: child),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      child: Stack(
+                        alignment: Alignment.center,
                         children: [
-                          SvgPicture.asset(
-                            isSelected
-                                ? item['activeIcon']
-                                : item['inactiveIcon'],
-                            width: 24.w,
-                            height: 24.h,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                isSelected
+                                    ? item['activeIcon']
+                                    : item['inactiveIcon'],
+                                width: 24.w,
+                                height: 24.h,
+                              ),
+                              4.heightSpace,
+                              Text(
+                                item['name'],
+                                textAlign: TextAlign.center,
+                                style: AppTextStyles.labelLarge.copyWith(
+                                  fontSize: isArabic ? 11.sp : 10.sp,
+                                  color: isSelected
+                                      ? AppColors.primaryColor
+                                      : AppColors.iconUnSelectedColor,
+                                  fontWeight: isSelected
+                                      ? FontWeight.w600
+                                      : FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
-                          4.heightSpace,
-                          Text(
-                            item['name'],
-                            textAlign: TextAlign.center,
-                            style: AppTextStyles.labelLarge.copyWith(
-                              fontSize: isArabic ? 11.sp : 10.sp,
-                              color: isSelected
-                                  ? AppColors.primaryColor
-                                  : AppColors.iconUnSelectedColor,
-                              fontWeight: isSelected
-                                  ? FontWeight.w600
-                                  : FontWeight.w400,
+                          if (index == 4 || index == 1)
+                            Consumer<Auth>(
+                              builder: (context, provider, child) {
+                                bool unReadNotifications =
+                                    provider.user != null &&
+                                        provider.user?.notificationCount !=
+                                            null &&
+                                        provider.user!.notificationCount!
+                                                .toInt() >
+                                            0
+                                    ? true
+                                    : false;
+                                bool unReadMessages =
+                                    provider.user != null &&
+                                        provider.user?.messagesCount != null &&
+                                        provider.user!.messagesCount!.toInt() >
+                                            0
+                                    ? true
+                                    : false;
+                                return Positioned(
+                                  top: 10.h,
+                                  left: 24.w,
+                                  child: NotifyCircle(
+                                    showNotify: index == 4
+                                        ? unReadNotifications
+                                        : unReadMessages,
+                                  ),
+                                );
+                              },
                             ),
-                          ),
                         ],
                       ),
                     ),

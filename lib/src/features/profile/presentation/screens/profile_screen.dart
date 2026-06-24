@@ -230,6 +230,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         validator: (value) {
                           return ValidationHelper.validatePhone(value, context);
                         },
+                        suffixIcon: isEditMode
+                            ? Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(
+                                    height: 25.h,
+                                    child: VerticalDivider(),
+                                  ),
+                                  15.widthSpace,
+                                  SvgPicture.asset(SvgAssets.assetsSvgEditIcon),
+                                  24.widthSpace,
+                                ],
+                              )
+                            : null,
                         borderColor: AppColors.questionBorderColor,
                         borderRadius: 16,
                         keyboardType: TextInputType.phone,

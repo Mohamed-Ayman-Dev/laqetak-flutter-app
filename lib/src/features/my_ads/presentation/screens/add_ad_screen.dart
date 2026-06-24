@@ -99,7 +99,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
             children: [
               20.heightSpace,
               Text(
-                S.of(context).addYourAd,
+                ad != null ? S.of(context).editYourAd : S.of(context).addYourAd,
                 style: AppTextStyles.headlineMedium.copyWith(
                   color: AppColors.titleTextColor,
                   fontSize: 16.sp,

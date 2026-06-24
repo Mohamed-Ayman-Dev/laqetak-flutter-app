@@ -130,6 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
     "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
     "editAd": MessageLookupByLibrary.simpleMessage("تعديل الإعلان"),
+    "editYourAd": MessageLookupByLibrary.simpleMessage("تعديل الإعلان"),
     "emailAddress": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "emailOrMobileNumberOrUsername": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني أو رقم الجوال أو اسم المستخدم",
@@ -278,10 +279,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pleaseEnterTheVerificationCodeSentTo":
         MessageLookupByLibrary.simpleMessage(
-          "Please enter the verification code sent to",
+          "يرجى إدخال رمز التحقق المرسل إلى",
         ),
     "pleaseEnterYourDetails": MessageLookupByLibrary.simpleMessage(
-      "الرجاء إدخال ادخل بياناتك",
+      "الرجاء إدخال بياناتك",
     ),
     "pleaseEnterYourEmail": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال البريد الإلكتروني",
@@ -385,6 +386,7 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "أنشئ كلمة مرور جديدة لحسابك، وتأكد من اختيار كلمة قوية وسهلة التذكر.",
         ),
+    "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
     "stillNoInternetConnectionPleaseTryAgain":
         MessageLookupByLibrary.simpleMessage(
@@ -447,7 +449,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "toSignIn": MessageLookupByLibrary.simpleMessage("لتسجيل الدخول"),
     "today": MessageLookupByLibrary.simpleMessage("اليوم"),
-    "username": MessageLookupByLibrary.simpleMessage("أسم المستخدم"),
+    "username": MessageLookupByLibrary.simpleMessage("إسم المستخدم"),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "اسم المستخدم او كلمة المرور غير صحيحة",
     ),
@@ -456,7 +458,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verify": MessageLookupByLibrary.simpleMessage("تحقق"),
     "verifyYourIdentity": MessageLookupByLibrary.simpleMessage("تحقق من هويتك"),
     "verifyYourMobileNumber": MessageLookupByLibrary.simpleMessage(
-      "Verify Your Mobile Number",
+      "تحقق من رقم جوالك",
     ),
     "verifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "تحقق من رقمك",

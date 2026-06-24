@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
 
-import '../../../../core/constants/app_feedback.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/widgets/app_logo.dart';
 import '../widgets/auth_change_lang_widget.dart';
@@ -46,7 +45,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 onLongPressUp: () {
                   pressedLong = true;
                 },
-                child: const AppLogo(),
+                child: const AppLogo(tag: 'splash-tag'),
               ),
               202.heightSpace,
               const AuthChangeLangWidget(),

@@ -17,6 +17,7 @@ class UserModel {
     this.phone,
     this.avatar,
     this.notificationCount,
+    this.messagesCount,
     this.city,
     this.token,
     this.createdAt,
@@ -31,6 +32,7 @@ class UserModel {
     city = json['city'] != null ? DetailsModel.fromJson(json['city']) : null;
     token = json['token'];
     notificationCount = json['unread_notifications_count'];
+    messagesCount = json['unread_messages_count'];
     createdAt = json['created_at'];
   }
 
@@ -43,6 +45,7 @@ class UserModel {
   String? token;
   String? createdAt;
   num? notificationCount;
+  num? messagesCount;
 
   UserModel copyWith({
     num? id,
@@ -53,6 +56,7 @@ class UserModel {
     DetailsModel? city,
     String? token,
     num? notificationCount,
+    num? messagesCount,
     String? createdAt,
   }) => UserModel(
     id: id ?? this.id,
@@ -63,6 +67,7 @@ class UserModel {
     city: city ?? this.city,
     token: token ?? this.token,
     notificationCount: notificationCount ?? this.notificationCount,
+    messagesCount: messagesCount ?? this.messagesCount,
     createdAt: createdAt ?? this.createdAt,
   );
 
@@ -77,6 +82,7 @@ class UserModel {
       map['city'] = city?.toJson();
     }
     map['unread_notifications_count'] = notificationCount;
+    map['unread_messages_count'] = messagesCount;
 
     map['token'] = token;
     map['created_at'] = createdAt;

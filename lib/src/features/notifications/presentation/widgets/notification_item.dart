@@ -6,7 +6,6 @@ import 'package:invastro/src/core/themes/text_styles.dart';
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/widgets/notify_circle.dart';
-import '../../../../core/shared/widgets/unread_messages_counter.dart';
 import '../../../../core/themes/colors.dart';
 
 class NotificationItem extends StatelessWidget {
@@ -91,11 +90,11 @@ class NotificationItem extends StatelessWidget {
                 height: 24.h,
                 width: 24.w,
               ),
-              if (isSeen) NotifyCircle(showNotify: true),
+              NotifyCircle(showNotify: !isSeen),
             ],
           ),
         ),
-        if (messageCount) UnreadMessagesCounter(),
+        // if (messageCount) UnreadMessagesCounter(),
       ],
     );
   }

@@ -2058,6 +2058,11 @@ class S {
       args: [],
     );
   }
+
+  /// `Edit Your Ad`
+  String get editYourAd {
+    return Intl.message('Edit Your Ad', name: 'editYourAd', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -137,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "editAd": MessageLookupByLibrary.simpleMessage("Edit Ad"),
+    "editYourAd": MessageLookupByLibrary.simpleMessage("Edit Your Ad"),
     "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
     "emailOrMobileNumberOrUsername": MessageLookupByLibrary.simpleMessage(
       "Email or mobile number or username",

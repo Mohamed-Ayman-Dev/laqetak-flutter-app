@@ -104,7 +104,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [const AppLogo()],
+                children: [const AppLogo(tag: 'splash-tag')],
               ),
             ],
           ),

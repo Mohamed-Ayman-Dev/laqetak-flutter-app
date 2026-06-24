@@ -110,23 +110,24 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                     11.heightSpace,
                     AdDetailsDesc(desc: adDetail?.description),
                     16.heightSpace,
-                    Align(
-                      alignment: AlignmentDirectional.centerEnd,
-                      child: CustomOutlineButton(
-                        text: S.of(context).reportAd,
-                        textStyle: AppTextStyles.buttonsTextStyle.copyWith(
-                          color: AppColors.labelTextColor,
-                          fontSize: 12.sp,
+                    if (!isMyAd)
+                      Align(
+                        alignment: AlignmentDirectional.centerEnd,
+                        child: CustomOutlineButton(
+                          text: S.of(context).reportAd,
+                          textStyle: AppTextStyles.buttonsTextStyle.copyWith(
+                            color: AppColors.labelTextColor,
+                            fontSize: 12.sp,
+                          ),
+                          size: Size(123.w, 36.h),
+                          borderColor: AppColors.reportBorderColor,
+                          onPressed: () {
+                            isAuth
+                                ? DialogHelpers.showReportDialog(ad?.id ?? 0)
+                                : BottomHelpers.showGuestBottomSheet(context);
+                          },
                         ),
-                        size: Size(123.w, 36.h),
-                        borderColor: AppColors.reportBorderColor,
-                        onPressed: () {
-                          isAuth
-                              ? DialogHelpers.showReportDialog(ad?.id ?? 0)
-                              : BottomHelpers.showGuestBottomSheet(context);
-                        },
                       ),
-                    ),
                     Text(
                       S.of(context).advertiserDetails,
                       style: AppTextStyles.labelMedium,
