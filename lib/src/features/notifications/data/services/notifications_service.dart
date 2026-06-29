@@ -287,6 +287,13 @@ class NotificationsService {
     );
   }
 
+  Future markAsRead({bool rethrowError = false}) async {
+    return await ApiService.post(
+      '/notifications/read-all',
+      rethrowError: rethrowError,
+    );
+  }
+
   Future setDeleteNotification({
     bool rethrowError = false,
     required num notificationId,

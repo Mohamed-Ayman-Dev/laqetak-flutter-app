@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/error/error_helper.dart';
 
@@ -24,6 +25,16 @@ class NotificationsController {
       ErrorHelper.handleApiError(e);
     } finally {
       LocatorService.notifications.setIsLoading(false);
+    }
+  }
+
+  static Future<void> markAllRead() async {
+    try {
+      await LocatorService.notificationService.markAsRead(rethrowError: false);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 

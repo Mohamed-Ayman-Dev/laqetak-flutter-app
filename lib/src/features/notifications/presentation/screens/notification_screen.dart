@@ -42,7 +42,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
       LocatorService.auth.clearNotificationsCount();
 
       if (isAuth) {
-        NotificationsController.getNotifications(refresh: true);
+        NotificationsController.getNotifications(
+          refresh: true,
+        ).then((value) => NotificationsController.markAllRead());
       }
       _scrollController.addListener(_onStoresListener);
     });

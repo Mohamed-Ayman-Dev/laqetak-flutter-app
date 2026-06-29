@@ -36,6 +36,7 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      LocatorService.auth.clearMessagesCount();
       if (isAuth) {
         ChatController.getConversations(refresh: true);
       }

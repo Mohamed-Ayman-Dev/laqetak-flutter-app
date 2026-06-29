@@ -73,6 +73,11 @@ class Auth with ChangeNotifier {
     notifyListeners();
   }
 
+  void clearMessagesCount() {
+    user?.messagesCount = 0;
+    notifyListeners();
+  }
+
   void resetUserForLogOut() {
     user = null;
     token = null;

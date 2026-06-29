@@ -110,7 +110,14 @@ class _HomeScreenState extends State<HomeScreen> {
     _refreshController.dispose();
     searchController.dispose();
     _debounce?.cancel();
+
     super.dispose();
+  }
+
+  void unfocus() {
+    if (focusNode.hasFocus) {
+      focusNode.unfocus();
+    }
   }
 
   @override
@@ -120,58 +127,84 @@ class _HomeScreenState extends State<HomeScreen> {
       isArabic ? 'إبحث عن فرصة' : 'Search for Opportunity',
       isArabic ? 'إبحث عن مستثمر' : 'Search for Investor',
     ];
-    return Scaffold(
-      appBar: CustomAppbar(
-        icons: [AppbarIcons.drawer, AppbarIcons.logo],
-        onSearch: () {
-          _scrollController.animateTo(
-            0,
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.easeOut,
-          );
-          focusNode.requestFocus();
-        },
-        ishHomeLayoutDrawer: true,
+    return GestureDetector(
+      onTap: () {
+        unfocus();
+      },
+      behavior: HitTestBehavior.translucent,
+      child: Scaffold(
+        appBar: CustomAppbar(
+          icons: [AppbarIcons.drawer, AppbarIcons.logo],
+          onSearch: () {
+            _scrollController.animateTo(
+              0,
+              duration: const Duration(milliseconds: 400),
+              curve: Curves.easeOut,
+            );
+            focusNode.requestFocus();
+          },
+          ishHomeLayoutDrawer: true,
+          showSearchIcon: _showSearchIcon,
+          dontShowBackButton: true,
+        ),
 
-        showSearchIcon: _showSearchIcon,
-        dontShowBackButton: true,
-      ),
+        body: SmartRefresher(
+          scrollController: _scrollController,
+          controller: _refreshController,
+          onRefresh: _refresh,
+          header: const SmartRefresherHeader(),
+          child: CustomScrollView(
+            slivers: [
+              // ── Search — يختفي/يظهر بـ animation ──────────────
+              SliverAppBar(
+                backgroundColor: Colors.white,
+                elevation: 0,
+                scrolledUnderElevation: 0,
+                automaticallyImplyLeading: false,
+                floating: true,
+                //  يرجع لما تسكرول لفوق
+                snap: true,
+                // يكمل الـ animation مش نص
+                expandedHeight: 64.h,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20.w,
+                    ).copyWith(bottom: 8.h),
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Selector<Ads, bool>(
+                        selector: (context, provider) =>
+                            provider.adsLoadingModel.loadingSearch,
+                        builder: (context, loadingAds, child) {
+                          return SearchField(
+                            searchController: searchController,
+                            focusNode: focusNode,
+                            loadingAds: loadingAds,
+                            onChanged: (val) {
+                              _searchDeBouncer.run(() {
+                                AdsController.getAds(
+                                  refresh: true,
+                                  showLoadingSearch: true,
+                                  filters: _filtersData,
+                                  search: searchController.text,
+                                  typeId: _selectedFilterIndex,
+                                );
+                              });
+                            },
+                            onFilterSearch: () async {
+                              final filters =
+                                  await LocatorService
+                                          .navigationService
+                                          .currentState
+                                          ?.pushNamed(
+                                            FilterScreen.routeName,
+                                            arguments: _filtersData,
+                                          )
+                                      as Map<String, dynamic>?;
 
-      body: SmartRefresher(
-        scrollController: _scrollController,
-        controller: _refreshController,
-        onRefresh: _refresh,
-        header: const SmartRefresherHeader(),
-        child: CustomScrollView(
-          slivers: [
-            // ── Search — يختفي/يظهر بـ animation ──────────────
-            SliverAppBar(
-              backgroundColor: Colors.white,
-              elevation: 0,
-              scrolledUnderElevation: 0,
-              automaticallyImplyLeading: false,
-              floating: true,
-              //  يرجع لما تسكرول لفوق
-              snap: true,
-              // يكمل الـ animation مش نص
-              expandedHeight: 64.h,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.w,
-                  ).copyWith(bottom: 8.h),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Selector<Ads, bool>(
-                      selector: (context, provider) =>
-                          provider.adsLoadingModel.loadingSearch,
-                      builder: (context, loadingAds, child) {
-                        return SearchField(
-                          searchController: searchController,
-                          focusNode: focusNode,
-                          loadingAds: loadingAds,
-                          onChanged: (val) {
-                            _searchDeBouncer.run(() {
+                              if (filters == null) return;
+                              _filtersData = filters;
                               AdsController.getAds(
                                 refresh: true,
                                 showLoadingSearch: true,
@@ -179,175 +212,165 @@ class _HomeScreenState extends State<HomeScreen> {
                                 search: searchController.text,
                                 typeId: _selectedFilterIndex,
                               );
-                            });
-                          },
-                          onFilterSearch: () async {
-                            final filters =
-                                await LocatorService
-                                        .navigationService
-                                        .currentState
-                                        ?.pushNamed(
-                                          FilterScreen.routeName,
-                                          arguments: _filtersData,
-                                        )
-                                    as Map<String, dynamic>?;
-
-                            if (filters == null) return;
-                            _filtersData = filters;
-                            AdsController.getAds(
-                              refresh: true,
-                              showLoadingSearch: true,
-                              filters: _filtersData,
-                              search: searchController.text,
-                              typeId: _selectedFilterIndex,
-                            );
-                          },
-                        );
-                      },
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
+                  collapseMode: CollapseMode.pin,
                 ),
-                collapseMode: CollapseMode.pin,
               ),
-            ),
 
-            // ── Filters — ثابتة دايماً ──────────────────────────
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: FilterHeaderDelegate(
-                filters: _filters,
-                selectedIndex: _selectedFilterIndex ?? 0,
-                onFilterTap: (index) {
-                  setState(() {
-                    if (index == 0) {
-                      _selectedFilterIndex = null;
-                    } else {
-                      _selectedFilterIndex = index;
-                    }
-                  });
-                  AdsController.getAds(
-                    refresh: true,
-                    filters: _filtersData,
+              // ── Filters — ثابتة دايماً ──────────────────────────
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: FilterHeaderDelegate(
+                  filters: _filters,
+                  selectedIndex: _selectedFilterIndex ?? 0,
+                  onFilterTap: (index) {
+                    unfocus();
 
-                    search: searchController.text,
-                    typeId: _selectedFilterIndex,
+                    setState(() {
+                      if (index == 0) {
+                        _selectedFilterIndex = null;
+                      } else {
+                        _selectedFilterIndex = index;
+                      }
+                    });
+                    AdsController.getAds(
+                      refresh: true,
+                      filters: _filtersData,
+
+                      search: searchController.text,
+                      typeId: _selectedFilterIndex,
+                    );
+                  },
+                ),
+              ),
+
+              SliverToBoxAdapter(child: SizedBox(height: 10.h)),
+
+              // ── Ads List ────────────────────────────────────────
+              SliverPadding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20,
+                ).r.copyWith(bottom: 30.h),
+                sliver: Selector<Ads, List<AdModel>?>(
+                  selector: (context, provider) => provider.ads?.data,
+                  shouldRebuild: (previous, next) => true,
+                  builder: (context, ads, child) {
+                    return ads != null && ads.isEmpty
+                        ? SliverToBoxAdapter(
+                            child: EmptyListPlaceholderWidget(
+                              text: S.of(context).thereAreNoAdsYet,
+                              paddingTop: 200,
+                            ),
+                          )
+                        : SliverList.builder(
+                            itemCount: ads?.length ?? 6,
+                            itemBuilder: (context, index) {
+                              return AnimationConfiguration.staggeredList(
+                                position: index,
+                                delay: const Duration(milliseconds: 10),
+                                child: SlideAnimation(
+                                  verticalOffset: 20,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.fastLinearToSlowEaseIn,
+                                  child: FadeInAnimation(
+                                    duration: const Duration(
+                                      milliseconds: 1000,
+                                    ),
+                                    curve: Curves.fastLinearToSlowEaseIn,
+                                    child: ads == null
+                                        ? AdItemShimmer()
+                                        : AdItem(
+                                            category:
+                                                ads[index].category?.name ?? '',
+                                            expired:
+                                                ads[index].status == 'closed',
+                                            image: ads[index].mainPhoto ?? '',
+                                            onTab: () {
+                                              unfocus();
+
+                                              LocatorService
+                                                  .navigationService
+                                                  .currentState
+                                                  ?.pushNamed(
+                                                    AdDetailsScreen.routeName,
+                                                    arguments: {
+                                                      'hero':
+                                                          '${ads[index].mainPhoto}-$index-home',
+                                                      'ad': ads[index],
+                                                    },
+                                                  );
+                                            },
+
+                                            hideDivider:
+                                                index == (ads.length - 1),
+                                            heroTag:
+                                                '${ads[index].mainPhoto}-$index-home',
+                                            customerName:
+                                                ads[index].customer?.name ?? '',
+                                            location:
+                                                ads[index].city?.name ?? '',
+                                            name: ads[index].title ?? '',
+                                            price:
+                                                ads[index].investmentAmount ??
+                                                '',
+                                            time: ads[index].publishedAt ?? '',
+                                            sector:
+                                                ads[index].sector?.name ?? '',
+                                            onLike: () {
+                                              unfocus();
+
+                                              if (isAuth) {
+                                                HapticFeedback.heavyImpact();
+                                                AdsController.addOrRemoveAdFromFavorites(
+                                                  ad: ads[index],
+                                                );
+                                              } else {
+                                                BottomHelpers.showGuestBottomSheet(
+                                                  context,
+                                                );
+                                              }
+                                            },
+
+                                            isLiked:
+                                                ads[index].isFavorite ?? false,
+                                          ),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                  },
+                ),
+              ),
+              Selector<Ads, PaginationList<AdModel>?>(
+                selector: (context, provider) => provider.ads,
+                shouldRebuild: (old, newData) => old != newData,
+
+                builder: (context, listProvider, child) {
+                  return Selector<Ads, bool>(
+                    selector: (context, provider) =>
+                        provider.adsLoadingModel.loadingAds,
+                    builder: (context, loadingAds, child) {
+                      return ListSliverLoadingEndWidget(
+                        lastPage: listProvider?.lastPage ?? 1,
+                        currentPage: listProvider?.currentPage ?? 1,
+                        isLoading: loadingAds,
+                        listLessThan:
+                            listProvider?.data != null &&
+                            listProvider!.data!.length > 4,
+                        title: S.of(context).thereAreNoMoreAds,
+                      );
+                    },
                   );
                 },
               ),
-            ),
-
-            SliverToBoxAdapter(child: SizedBox(height: 10.h)),
-
-            // ── Ads List ────────────────────────────────────────
-            SliverPadding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20,
-              ).r.copyWith(bottom: 30.h),
-              sliver: Selector<Ads, List<AdModel>?>(
-                selector: (context, provider) => provider.ads?.data,
-                shouldRebuild: (previous, next) => true,
-                builder: (context, ads, child) {
-                  return ads != null && ads.isEmpty
-                      ? SliverToBoxAdapter(
-                          child: EmptyListPlaceholderWidget(
-                            text: S.of(context).thereAreNoAdsYet,
-                            paddingTop: 200,
-                          ),
-                        )
-                      : SliverList.builder(
-                          itemCount: ads?.length ?? 6,
-                          itemBuilder: (context, index) {
-                            return AnimationConfiguration.staggeredList(
-                              position: index,
-                              delay: const Duration(milliseconds: 10),
-                              child: SlideAnimation(
-                                verticalOffset: 20,
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.fastLinearToSlowEaseIn,
-                                child: FadeInAnimation(
-                                  duration: const Duration(milliseconds: 1000),
-                                  curve: Curves.fastLinearToSlowEaseIn,
-                                  child: ads == null
-                                      ? AdItemShimmer()
-                                      : AdItem(
-                                          category:
-                                              ads[index].category?.name ?? '',
-                                          expired:
-                                              ads[index].status == 'closed',
-                                          image: ads[index].mainPhoto ?? '',
-                                          onTab: () {
-                                            LocatorService
-                                                .navigationService
-                                                .currentState
-                                                ?.pushNamed(
-                                                  AdDetailsScreen.routeName,
-                                                  arguments: {
-                                                    'hero':
-                                                        '${ads[index].mainPhoto}-$index-home',
-                                                    'ad': ads[index],
-                                                  },
-                                                );
-                                          },
-
-                                          hideDivider:
-                                              index == (ads.length - 1),
-                                          heroTag:
-                                              '${ads[index].mainPhoto}-$index-home',
-                                          customerName:
-                                              ads[index].customer?.name ?? '',
-                                          location: ads[index].city?.name ?? '',
-                                          name: ads[index].title ?? '',
-                                          price:
-                                              ads[index].investmentAmount ?? '',
-                                          time: ads[index].publishedAt ?? '',
-                                          sector: ads[index].sector?.name ?? '',
-                                          onLike: () {
-                                            if (isAuth) {
-                                              HapticFeedback.heavyImpact();
-                                              AdsController.addOrRemoveAdFromFavorites(
-                                                ad: ads[index],
-                                              );
-                                            } else {
-                                              BottomHelpers.showGuestBottomSheet(
-                                                context,
-                                              );
-                                            }
-                                          },
-
-                                          isLiked:
-                                              ads[index].isFavorite ?? false,
-                                        ),
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                },
-              ),
-            ),
-            Selector<Ads, PaginationList<AdModel>?>(
-              selector: (context, provider) => provider.ads,
-              shouldRebuild: (old, newData) => old != newData,
-
-              builder: (context, listProvider, child) {
-                return Selector<Ads, bool>(
-                  selector: (context, provider) =>
-                      provider.adsLoadingModel.loadingAds,
-                  builder: (context, loadingAds, child) {
-                    return ListSliverLoadingEndWidget(
-                      lastPage: listProvider?.lastPage ?? 1,
-                      currentPage: listProvider?.currentPage ?? 1,
-                      isLoading: loadingAds,
-                      listLessThan:
-                          listProvider?.data != null &&
-                          listProvider!.data!.length > 4,
-                      title: S.of(context).thereAreNoMoreAds,
-                    );
-                  },
-                );
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
