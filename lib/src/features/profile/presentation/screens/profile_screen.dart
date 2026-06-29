@@ -83,372 +83,388 @@ class _ProfileScreenState extends State<ProfileScreen> {
         flexRight: 8,
       ),
       drawer: CustomDrawer(),
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          SingleChildScrollView(
-            padding: EdgeInsets.symmetric(vertical: 28, horizontal: 23).r,
-            child: Selector<Auth, UserModel?>(
-              selector: (context, provider) => provider.user,
-              builder: (context, user, child) {
-                return Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Hero(
-                        tag: 'profile_image',
-                        child: Stack(
-                          alignment: Alignment(-0.9, 0.9),
-                          children: [
-                            GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: isEditMode
-                                  ? () async {
-                                      final XFile? pickedFile =
-                                          await ImageUtils.openPickingOptions(
-                                            context,
-                                            imageQuality: 70,
+      body: SafeArea(
+        top: false,
+        bottom: true,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            SingleChildScrollView(
+              padding: EdgeInsets.symmetric(vertical: 28, horizontal: 23).r,
+              child: Selector<Auth, UserModel?>(
+                selector: (context, provider) => provider.user,
+                builder: (context, user, child) {
+                  return Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Hero(
+                          tag: 'profile_image',
+                          child: Stack(
+                            alignment: Alignment(-0.9, 0.9),
+                            children: [
+                              GestureDetector(
+                                behavior: HitTestBehavior.opaque,
+                                onTap: isEditMode
+                                    ? () async {
+                                        final XFile? pickedFile =
+                                            await ImageUtils.openPickingOptions(
+                                              context,
+                                              imageQuality: 70,
+                                            );
+                                        if (pickedFile != null) {
+                                          LocatorService.auth.setImagePath(
+                                            pickedFile.path,
                                           );
-                                      if (pickedFile != null) {
-                                        LocatorService.auth.setImagePath(
-                                          pickedFile.path,
-                                        );
-                                        data['avatar'] = pickedFile;
+                                          data['avatar'] = pickedFile;
+                                        }
                                       }
-                                    }
-                                  : null,
-                              child: Selector<Auth, String?>(
-                                selector: (context, provider) =>
-                                    provider.imagePath,
-                                builder: (context, imagePath, child) {
-                                  return imagePath != null
-                                      ? ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                            100,
-                                          ),
-                                          child: Image.file(
-                                            File(imagePath),
+                                    : null,
+                                child: Selector<Auth, String?>(
+                                  selector: (context, provider) =>
+                                      provider.imagePath,
+                                  builder: (context, imagePath, child) {
+                                    return imagePath != null
+                                        ? ClipRRect(
+                                            borderRadius: BorderRadius.circular(
+                                              100,
+                                            ),
+                                            child: Image.file(
+                                              File(imagePath),
+                                              width: 122,
+                                              fit: BoxFit.cover,
+                                              height: 122,
+                                            ),
+                                          )
+                                        : CustomImage(
+                                            imageUrl: user?.avatar ?? '',
                                             width: 122,
-                                            fit: BoxFit.cover,
                                             height: 122,
-                                          ),
-                                        )
-                                      : CustomImage(
-                                          imageUrl: user?.avatar ?? '',
-                                          width: 122,
-                                          height: 122,
-                                          borderRadius: 100,
-                                        );
-                                },
+                                            borderRadius: 100,
+                                          );
+                                  },
+                                ),
                               ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
+                              Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white,
+                                ),
+                                child: Image.asset(
+                                  ImagesAssets.assetsImagesProfileEdit,
+                                  width: 26.w,
+                                  height: 26.h,
+                                ),
                               ),
-                              child: Image.asset(
-                                ImagesAssets.assetsImagesProfileEdit,
-                                width: 26.w,
-                                height: 26.h,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      17.heightSpace,
-                      Text(user?.name ?? '', style: AppTextStyles.labelLarge),
-                      12.heightSpace,
-                      Text(
-                        user?.email ?? '',
-                        style: AppTextStyles.labelMedium.copyWith(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 11.sp,
-                          color: AppColors.labelSmallGreyTextColor,
-                        ),
-                      ),
-                      25.heightSpace,
-                      CustomTextField(
-                        onChanged: (value) {
-                          setState(() {});
-                        },
-                        enabled: isEditMode,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 18,
-                          horizontal: 16,
-                        ).r,
-                        suffixIcon: isEditMode
-                            ? Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SizedBox(
-                                    height: 25.h,
-                                    child: VerticalDivider(),
-                                  ),
-                                  15.widthSpace,
-                                  SvgPicture.asset(SvgAssets.assetsSvgEditIcon),
-                                  24.widthSpace,
-                                ],
-                              )
-                            : null,
-                        hintText: S.current.emailAddress,
-                        borderColor: AppColors.questionBorderColor,
-                        borderRadius: 16,
-                        textInputAction: TextInputAction.next,
-                        maxLines: 1,
-                        keyboardType: TextInputType.emailAddress,
-                        controller: emailController,
-                        onSaved: (val) {
-                          data['email'] = val;
-                        },
-                        validator: (value) {
-                          return ValidationHelper.validateEmail(
-                            value,
-                            emptyMessage: S.of(context).pleaseEnterYourEmail,
-                            invalidMessage: S
-                                .of(context)
-                                .pleaseEnterAValidEmail,
-                          );
-                        },
-                      ),
-                      12.heightSpace,
-                      CustomTextField(
-                        onChanged: (value) {
-                          setState(() {});
-                        },
-                        enabled: isEditMode,
-
-                        controller: phoneController,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 18,
-                          horizontal: 16,
-                        ).r,
-                        onSaved: (val) {
-                          data['phone'] = val;
-                        },
-                        validator: (value) {
-                          return ValidationHelper.validatePhone(value, context);
-                        },
-                        suffixIcon: isEditMode
-                            ? Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SizedBox(
-                                    height: 25.h,
-                                    child: VerticalDivider(),
-                                  ),
-                                  15.widthSpace,
-                                  SvgPicture.asset(SvgAssets.assetsSvgEditIcon),
-                                  24.widthSpace,
-                                ],
-                              )
-                            : null,
-                        borderColor: AppColors.questionBorderColor,
-                        borderRadius: 16,
-                        keyboardType: TextInputType.phone,
-                        textInputAction: TextInputAction.next,
-                        hintText: S.current.mobileNumber,
-                      ),
-                      12.heightSpace,
-
-                      Selector<Others, List<DetailsModel>?>(
-                        selector: (context, provider) => provider.myCities,
-                        builder: (context, myCities, child) {
-                          return MyCustomDropdownFormField(
-                            hint: S.current.selectCity,
-                            enabled: isEditMode,
-                            items: myCities
-                                ?.map<DropdownMenuItem<num>>(
-                                  (e) => DropdownMenuItem<num>(
-                                    value: e.id,
-                                    child: Text(
-                                      e.name ?? '',
-                                      style: AppTextStyles.inputTextStyle,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                )
-                                .toList(),
-                            contentPadding: EdgeInsets.symmetric(
-                              vertical: 16,
-                              horizontal: 16,
-                            ).r,
-
-                            borderColor: AppColors.questionBorderColor,
-                            borderRadius: 16,
-                            value: data['city_id'],
-                            validator: (value) {
-                              if (value == null) {
-                                return S.of(context).pleaseSelectACity;
-                              }
-                              return null;
-                            },
-                            onChanged: (val) {
-                              data['city_id'] = val;
-                            },
-                            onSaved: (val) {},
-                          );
-                        },
-                      ),
-                      20.heightSpace,
-                      Align(
-                        alignment: AlignmentDirectional.centerStart,
-                        child: Text(
-                          S.current.password,
-                          style: AppTextStyles.labelSmall.copyWith(
-                            color: AppColors.titleTextColor,
+                            ],
                           ),
                         ),
-                      ),
-                      8.heightSpace,
-                      CustomTextField(
-                        hintText: '*********',
-                        borderColor: AppColors.questionBorderColor,
-                        borderRadius: 16,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 18,
-                          horizontal: 16,
-                        ).r,
-                        enabled: isEditMode,
-                        textInputAction: TextInputAction.done,
-                        onSaved: (val) {
-                          data['password'] = val;
-                        },
-                        controller: passwordController,
-                        // validator: (value) {
-                        //   return ValidationHelper.validatePassword(
-                        //     value,
-                        //     context,
-                        //   );
-                        // },
-                        suffixIcon: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(height: 25.h, child: VerticalDivider()),
-                            5.widthSpace,
-                            EyeToggleIcon(
-                              isHidden: hidePassword,
-                              onToggle: () {
-                                setState(() {
-                                  hidePassword = !hidePassword;
-                                });
-                              },
-                            ),
-                            10.widthSpace,
-                          ],
+                        17.heightSpace,
+                        Text(user?.name ?? '', style: AppTextStyles.labelLarge),
+                        12.heightSpace,
+                        Text(
+                          user?.email ?? '',
+                          style: AppTextStyles.labelMedium.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 11.sp,
+                            color: AppColors.labelSmallGreyTextColor,
+                          ),
                         ),
-                        maxLines: 1,
-                        obscureText: hidePassword,
-                      ),
-                      12.heightSpace,
-
-                      if (isEditMode)
+                        25.heightSpace,
                         CustomTextField(
-                          hintText: '*********',
-
-                          textInputAction: TextInputAction.done,
+                          onChanged: (value) {
+                            setState(() {});
+                          },
+                          enabled: isEditMode,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 18,
+                            horizontal: 16,
+                          ).r,
+                          suffixIcon: isEditMode
+                              ? Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(
+                                      height: 25.h,
+                                      child: VerticalDivider(),
+                                    ),
+                                    15.widthSpace,
+                                    SvgPicture.asset(
+                                      SvgAssets.assetsSvgEditIcon,
+                                    ),
+                                    24.widthSpace,
+                                  ],
+                                )
+                              : null,
+                          hintText: S.current.emailAddress,
+                          borderColor: AppColors.questionBorderColor,
+                          borderRadius: 16,
+                          textInputAction: TextInputAction.next,
+                          maxLines: 1,
+                          keyboardType: TextInputType.emailAddress,
+                          controller: emailController,
                           onSaved: (val) {
-                            data['password_confirmation'] = val;
+                            data['email'] = val;
                           },
                           validator: (value) {
-                            return ValidationHelper.validatePasswordConfirmation(
+                            return ValidationHelper.validateEmail(
                               value,
-                              passwordController.text,
-                              context,
-                              validateEmptyEnabled: false,
+                              emptyMessage: S.of(context).pleaseEnterYourEmail,
+                              invalidMessage: S
+                                  .of(context)
+                                  .pleaseEnterAValidEmail,
                             );
                           },
+                        ),
+                        12.heightSpace,
+                        CustomTextField(
+                          onChanged: (value) {
+                            setState(() {});
+                          },
+                          enabled: isEditMode,
+
+                          controller: phoneController,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 18,
+                            horizontal: 16,
+                          ).r,
+                          onSaved: (val) {
+                            data['phone'] = val;
+                          },
+                          validator: (value) {
+                            return ValidationHelper.validatePhone(
+                              value,
+                              context,
+                            );
+                          },
+                          suffixIcon: isEditMode
+                              ? Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(
+                                      height: 25.h,
+                                      child: VerticalDivider(),
+                                    ),
+                                    15.widthSpace,
+                                    SvgPicture.asset(
+                                      SvgAssets.assetsSvgEditIcon,
+                                    ),
+                                    24.widthSpace,
+                                  ],
+                                )
+                              : null,
+                          borderColor: AppColors.questionBorderColor,
+                          borderRadius: 16,
+                          keyboardType: TextInputType.phone,
+                          textInputAction: TextInputAction.next,
+                          hintText: S.current.mobileNumber,
+                        ),
+                        12.heightSpace,
+
+                        Selector<Others, List<DetailsModel>?>(
+                          selector: (context, provider) => provider.myCities,
+                          builder: (context, myCities, child) {
+                            return MyCustomDropdownFormField(
+                              hint: S.current.selectCity,
+                              enabled: isEditMode,
+                              items: myCities
+                                  ?.map<DropdownMenuItem<num>>(
+                                    (e) => DropdownMenuItem<num>(
+                                      value: e.id,
+                                      child: Text(
+                                        e.name ?? '',
+                                        style: AppTextStyles.inputTextStyle,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 16,
+                              ).r,
+
+                              borderColor: AppColors.questionBorderColor,
+                              borderRadius: 16,
+                              value: data['city_id'],
+                              validator: (value) {
+                                if (value == null) {
+                                  return S.of(context).pleaseSelectACity;
+                                }
+                                return null;
+                              },
+                              onChanged: (val) {
+                                data['city_id'] = val;
+                              },
+                              onSaved: (val) {},
+                            );
+                          },
+                        ),
+                        20.heightSpace,
+                        Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Text(
+                            S.current.password,
+                            style: AppTextStyles.labelSmall.copyWith(
+                              color: AppColors.titleTextColor,
+                            ),
+                          ),
+                        ),
+                        8.heightSpace,
+                        CustomTextField(
+                          hintText: '*********',
                           borderColor: AppColors.questionBorderColor,
                           borderRadius: 16,
                           contentPadding: EdgeInsets.symmetric(
                             vertical: 18,
                             horizontal: 16,
                           ).r,
-                          controller: passwordConfirmController,
+                          enabled: isEditMode,
+                          textInputAction: TextInputAction.done,
+                          onSaved: (val) {
+                            data['password'] = val;
+                          },
+                          controller: passwordController,
+                          // validator: (value) {
+                          //   return ValidationHelper.validatePassword(
+                          //     value,
+                          //     context,
+                          //   );
+                          // },
                           suffixIcon: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               SizedBox(height: 25.h, child: VerticalDivider()),
                               5.widthSpace,
                               EyeToggleIcon(
-                                isHidden: hidePasswordConfirm,
+                                isHidden: hidePassword,
                                 onToggle: () {
                                   setState(() {
-                                    hidePasswordConfirm = !hidePasswordConfirm;
+                                    hidePassword = !hidePassword;
                                   });
                                 },
                               ),
+                              10.widthSpace,
                             ],
                           ),
                           maxLines: 1,
-                          obscureText: hidePasswordConfirm,
+                          obscureText: hidePassword,
                         ),
-                      25.heightSpace,
-                      isEditMode
-                          ? CustomElevatedButton(
-                              text: S.current.save,
-                              onPressed: () async {
-                                if (formKey.currentState!.validate()) {
-                                  formKey.currentState!.save();
-                                  if ((data['phone'] ==
-                                      LocatorService.auth.user?.phone)) {
-                                    await AuthController.updateProfile(
-                                      context,
-                                      data,
-                                      hasMultipartData: data['avatar'] != null,
-                                    );
-                                  } else {
-                                    await AuthController.sendPhoneOtp(data);
-                                  }
-                                }
-                              },
-                            )
-                          : Row(
+                        12.heightSpace,
+
+                        if (isEditMode)
+                          CustomTextField(
+                            hintText: '*********',
+
+                            textInputAction: TextInputAction.done,
+                            onSaved: (val) {
+                              data['password_confirmation'] = val;
+                            },
+                            validator: (value) {
+                              return ValidationHelper.validatePasswordConfirmation(
+                                value,
+                                passwordController.text,
+                                context,
+                                validateEmptyEnabled: false,
+                              );
+                            },
+                            borderColor: AppColors.questionBorderColor,
+                            borderRadius: 16,
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 18,
+                              horizontal: 16,
+                            ).r,
+                            controller: passwordConfirmController,
+                            suffixIcon: Row(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                Expanded(
-                                  child: CustomElevatedButton(
-                                    text: S.of(context).edit,
-                                    icon: SvgAssets.assetsSvgArrowRight,
-                                    onPressed: () {
-                                      setState(() {
-                                        isEditMode = true;
-                                      });
-                                    },
-                                  ),
+                                SizedBox(
+                                  height: 25.h,
+                                  child: VerticalDivider(),
                                 ),
-                                16.widthSpace,
-                                Expanded(
-                                  child: CustomOutlineButton(
-                                    text: S.of(context).deleteAccount,
-                                    borderRadius: 8,
-                                    borderColor: AppColors.deleteBorderColor,
-                                    icon: SvgAssets.assetsSvgDeleteIcon,
-                                    onPressed: () {
-                                      DialogHelpers.showYesNoDialog(
-                                        title: S.current.confirmAction,
-                                        subtitle: S
-                                            .of(context)
-                                            .areYouSureYouWantToDeleteYourAccount,
-                                        onButtonTap: () {
-                                          Navigator.of(context).pop();
-                                          AuthController.deleteAccount(
-                                            context: context,
-                                          );
-                                        },
-                                      );
-                                    },
-                                  ),
+                                5.widthSpace,
+                                EyeToggleIcon(
+                                  isHidden: hidePasswordConfirm,
+                                  onToggle: () {
+                                    setState(() {
+                                      hidePasswordConfirm =
+                                          !hidePasswordConfirm;
+                                    });
+                                  },
                                 ),
                               ],
                             ),
-                    ],
-                  ),
-                );
-              },
+                            maxLines: 1,
+                            obscureText: hidePasswordConfirm,
+                          ),
+                        25.heightSpace,
+                        isEditMode
+                            ? CustomElevatedButton(
+                                text: S.current.save,
+                                onPressed: () async {
+                                  if (formKey.currentState!.validate()) {
+                                    formKey.currentState!.save();
+                                    if ((data['phone'] ==
+                                        LocatorService.auth.user?.phone)) {
+                                      await AuthController.updateProfile(
+                                        context,
+                                        data,
+                                        hasMultipartData:
+                                            data['avatar'] != null,
+                                      );
+                                    } else {
+                                      await AuthController.sendPhoneOtp(data);
+                                    }
+                                  }
+                                },
+                              )
+                            : Row(
+                                children: [
+                                  Expanded(
+                                    child: CustomElevatedButton(
+                                      text: S.of(context).edit,
+                                      icon: SvgAssets.assetsSvgArrowRight,
+                                      onPressed: () {
+                                        setState(() {
+                                          isEditMode = true;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  16.widthSpace,
+                                  Expanded(
+                                    child: CustomOutlineButton(
+                                      text: S.of(context).deleteAccount,
+                                      borderRadius: 8,
+                                      borderColor: AppColors.deleteBorderColor,
+                                      icon: SvgAssets.assetsSvgDeleteIcon,
+                                      onPressed: () {
+                                        DialogHelpers.showYesNoDialog(
+                                          title: S.current.confirmAction,
+                                          subtitle: S
+                                              .of(context)
+                                              .areYouSureYouWantToDeleteYourAccount,
+                                          onButtonTap: () {
+                                            Navigator.of(context).pop();
+                                            AuthController.deleteAccount(
+                                              context: context,
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

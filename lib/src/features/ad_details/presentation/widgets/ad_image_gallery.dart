@@ -122,7 +122,6 @@ class _AdImageGalleryState extends State<AdImageGallery> {
         SizedBox(
           height: 74.h,
           child: ListView.separated(
-            reverse: true,
             // RTL
             scrollDirection: Axis.horizontal,
             itemCount: widget.images.length,

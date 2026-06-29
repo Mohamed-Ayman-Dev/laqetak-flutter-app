@@ -90,187 +90,199 @@ class _AddAdScreenState extends State<AddAdScreen> {
         flexRight: 8,
       ),
       drawer: CustomDrawer(),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16).r,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              20.heightSpace,
-              Text(
-                ad != null ? S.of(context).editYourAd : S.of(context).addYourAd,
-                style: AppTextStyles.headlineMedium.copyWith(
-                  color: AppColors.titleTextColor,
-                  fontSize: 16.sp,
-                ),
-              ),
-              25.heightSpace,
-              Text(S.of(context).city, style: AppTextStyles.labelSmall),
-              8.heightSpace,
-              Selector<Others, List<DetailsModel>?>(
-                selector: (context, provider) => provider.myCities,
-                builder: (context, myCities, child) {
-                  return MyCustomDropdownFormField(
-                    hint: S.of(context).selectCity,
-                    items: myCities
-                        ?.map<DropdownMenuItem<num>>(
-                          (e) => DropdownMenuItem<num>(
-                            value: e.id,
-                            child: Text(
-                              e.name ?? '',
-                              style: AppTextStyles.inputTextStyle,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        )
-                        .toList(),
-                    value: _formData['city_id'],
-                    validator: (value) {
-                      if (value == null) {
-                        return S.of(context).pleaseSelectACity;
-                      }
-                      return null;
-                    },
-                    onChanged: (val) {
-                      _formData['city_id'] = val;
-                    },
-                    onSaved: (val) {},
-                  );
-                },
-              ),
-
-              28.heightSpace,
-              Text(S.of(context).enterAdTitle, style: AppTextStyles.labelSmall),
-              8.heightSpace,
-              CustomTextField(
-                hintText: S.of(context).writeATitleForTheAd,
-                onSaved: (val) {
-                  _formData['title'] = val;
-                },
-                controller: _titleController,
-                keyboardType: TextInputType.name,
-
-                validator: (value) {
-                  return ValidationHelper.validateEmpty(
-                    value,
-                    emptyMessage: S.of(context).pleaseEnterAdName,
-                  );
-                },
-                textInputAction: TextInputAction.next,
-                maxLines: 1,
-              ),
-              23.heightSpace,
-              Text(
-                S.of(context).selectMainCategory,
-                style: AppTextStyles.labelSmall,
-              ),
-              8.heightSpace,
-              Selector<Others, List<CategoryModel>?>(
-                selector: (context, provider) => provider.myCategories,
-                builder: (context, myCategories, child) {
-                  return MyCustomDropdownFormField(
-                    hint: S.of(context).selectCategory,
-                    items: myCategories
-                        ?.map<DropdownMenuItem<num>>(
-                          (e) => DropdownMenuItem<num>(
-                            value: e.id,
-                            child: Text(
-                              e.name ?? '',
-                              style: AppTextStyles.inputTextStyle,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        )
-                        .toList(),
-                    validator: (value) {
-                      if (value == null) {
-                        return S.of(context).pleaseSelectACategory;
-                      }
-                      return null;
-                    },
-                    value: _formData['category_id'],
-                    onChanged: (val) {
-                      _formData['category_id'] = val;
-                    },
-                    onSaved: (val) {},
-                  );
-                },
-              ),
-              7.heightSpace,
-              Text(
-                S.of(context).selectInvestmentSector,
-                style: AppTextStyles.labelSmall,
-              ),
-              8.heightSpace,
-              Selector<Others, List<DetailsModel>?>(
-                selector: (context, provider) => provider.mySectors,
-                builder: (context, mySectors, child) {
-                  return MyCustomDropdownFormField(
-                    hint: S.of(context).selectSector,
-                    // items: myCities
-                    items: mySectors
-                        ?.map<DropdownMenuItem<num>>(
-                          (e) => DropdownMenuItem<num>(
-                            value: e.id,
-                            child: Text(
-                              e.name ?? '',
-                              style: AppTextStyles.inputTextStyle,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        )
-                        .toList(),
-                    value: _formData['sector_id'],
-                    validator: (value) {
-                      if (value == null) {
-                        return S.of(context).pleaseSelectASector;
-                      }
-                      return null;
-                    },
-                    onChanged: (val) {
-                      _formData['sector_id'] = val;
-                    },
-                    onSaved: (val) {},
-                  );
-                },
-              ),
-              27.heightSpace,
-              Text(S.of(context).enterCapital, style: AppTextStyles.labelSmall),
-              8.heightSpace,
-              CustomTextField(
-                onSaved: (val) {
-                  _formData['investment_amount'] = val;
-                },
-                validator: (value) {
-                  return ValidationHelper.validateEmpty(
-                    value,
-                    emptyMessage: S.of(context).pleaseEnterYourPrice,
-                  );
-                },
-                controller: _investmentAmountController,
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.next,
-                hintText: "000.000",
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.all(17.0).r,
-                  child: SvgPicture.asset(
-                    SvgAssets.assetsSvgSarIcon,
-                    color: AppColors.primaryColor,
+      body: SafeArea(
+        top: false,
+        bottom: true,
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 16).r,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                20.heightSpace,
+                Text(
+                  ad != null
+                      ? S.of(context).editYourAd
+                      : S.of(context).addYourAd,
+                  style: AppTextStyles.headlineMedium.copyWith(
+                    color: AppColors.titleTextColor,
+                    fontSize: 16.sp,
                   ),
                 ),
-              ),
-              27.heightSpace,
-              CustomElevatedButton(
-                text: S.current.next,
-                icon: SvgAssets.assetsSvgArrowRight,
-                size: Size(163.w, 48.h),
-                onPressed: () {
-                  _send();
-                },
-              ),
-              100.heightSpace,
-            ],
+                25.heightSpace,
+                Text(S.of(context).city, style: AppTextStyles.labelSmall),
+                8.heightSpace,
+                Selector<Others, List<DetailsModel>?>(
+                  selector: (context, provider) => provider.myCities,
+                  builder: (context, myCities, child) {
+                    return MyCustomDropdownFormField(
+                      hint: S.of(context).selectCity,
+                      items: myCities
+                          ?.map<DropdownMenuItem<num>>(
+                            (e) => DropdownMenuItem<num>(
+                              value: e.id,
+                              child: Text(
+                                e.name ?? '',
+                                style: AppTextStyles.inputTextStyle,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                      value: _formData['city_id'],
+                      validator: (value) {
+                        if (value == null) {
+                          return S.of(context).pleaseSelectACity;
+                        }
+                        return null;
+                      },
+                      onChanged: (val) {
+                        _formData['city_id'] = val;
+                      },
+                      onSaved: (val) {},
+                    );
+                  },
+                ),
+
+                28.heightSpace,
+                Text(
+                  S.of(context).enterAdTitle,
+                  style: AppTextStyles.labelSmall,
+                ),
+                8.heightSpace,
+                CustomTextField(
+                  hintText: S.of(context).writeATitleForTheAd,
+                  onSaved: (val) {
+                    _formData['title'] = val;
+                  },
+                  controller: _titleController,
+                  keyboardType: TextInputType.name,
+
+                  validator: (value) {
+                    return ValidationHelper.validateEmpty(
+                      value,
+                      emptyMessage: S.of(context).pleaseEnterAdName,
+                    );
+                  },
+                  textInputAction: TextInputAction.next,
+                  maxLines: 1,
+                ),
+                23.heightSpace,
+                Text(
+                  S.of(context).selectMainCategory,
+                  style: AppTextStyles.labelSmall,
+                ),
+                8.heightSpace,
+                Selector<Others, List<CategoryModel>?>(
+                  selector: (context, provider) => provider.myCategories,
+                  builder: (context, myCategories, child) {
+                    return MyCustomDropdownFormField(
+                      hint: S.of(context).selectCategory,
+                      items: myCategories
+                          ?.map<DropdownMenuItem<num>>(
+                            (e) => DropdownMenuItem<num>(
+                              value: e.id,
+                              child: Text(
+                                e.name ?? '',
+                                style: AppTextStyles.inputTextStyle,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                      validator: (value) {
+                        if (value == null) {
+                          return S.of(context).pleaseSelectACategory;
+                        }
+                        return null;
+                      },
+                      value: _formData['category_id'],
+                      onChanged: (val) {
+                        _formData['category_id'] = val;
+                      },
+                      onSaved: (val) {},
+                    );
+                  },
+                ),
+                7.heightSpace,
+                Text(
+                  S.of(context).selectInvestmentSector,
+                  style: AppTextStyles.labelSmall,
+                ),
+                8.heightSpace,
+                Selector<Others, List<DetailsModel>?>(
+                  selector: (context, provider) => provider.mySectors,
+                  builder: (context, mySectors, child) {
+                    return MyCustomDropdownFormField(
+                      hint: S.of(context).selectSector,
+                      // items: myCities
+                      items: mySectors
+                          ?.map<DropdownMenuItem<num>>(
+                            (e) => DropdownMenuItem<num>(
+                              value: e.id,
+                              child: Text(
+                                e.name ?? '',
+                                style: AppTextStyles.inputTextStyle,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                      value: _formData['sector_id'],
+                      validator: (value) {
+                        if (value == null) {
+                          return S.of(context).pleaseSelectASector;
+                        }
+                        return null;
+                      },
+                      onChanged: (val) {
+                        _formData['sector_id'] = val;
+                      },
+                      onSaved: (val) {},
+                    );
+                  },
+                ),
+                27.heightSpace,
+                Text(
+                  S.of(context).enterCapital,
+                  style: AppTextStyles.labelSmall,
+                ),
+                8.heightSpace,
+                CustomTextField(
+                  onSaved: (val) {
+                    _formData['investment_amount'] = val;
+                  },
+                  validator: (value) {
+                    return ValidationHelper.validateEmpty(
+                      value,
+                      emptyMessage: S.of(context).pleaseEnterYourPrice,
+                    );
+                  },
+                  controller: _investmentAmountController,
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                  hintText: "000.000",
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.all(17.0).r,
+                    child: SvgPicture.asset(
+                      SvgAssets.assetsSvgSarIcon,
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                ),
+                27.heightSpace,
+                CustomElevatedButton(
+                  text: S.current.next,
+                  icon: SvgAssets.assetsSvgArrowRight,
+                  size: Size(163.w, 48.h),
+                  onPressed: () {
+                    _send();
+                  },
+                ),
+                100.heightSpace,
+              ],
+            ),
           ),
         ),
       ),

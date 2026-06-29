@@ -61,224 +61,233 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
         flexRight: 8,
       ),
       drawer: CustomDrawer(),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 15, right: 17).r,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              43.heightSpace,
-              DottedBorder(
-                options: RoundedRectDottedBorderOptions(
-                  dashPattern: const [3, 3],
-                  strokeWidth: 1,
-                  color: AppColors.priceBorderColor,
-                  radius: Radius.circular(10.r),
-                  padding: EdgeInsets.all(1).r,
-                ),
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(vertical: 18, horizontal: 30).r,
-                  decoration: BoxDecoration(
-                    color: AppColors.searchBKColor,
-                    borderRadius: BorderRadius.circular(10).r,
+      body: SafeArea(
+        top: false,
+        bottom: true,
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(left: 15, right: 17).r,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                43.heightSpace,
+                DottedBorder(
+                  options: RoundedRectDottedBorderOptions(
+                    dashPattern: const [3, 3],
+                    strokeWidth: 1,
+                    color: AppColors.priceBorderColor,
+                    radius: Radius.circular(10.r),
+                    padding: EdgeInsets.all(1).r,
                   ),
-                  child: Row(
-                    children: [
-                      Text(
-                        S.of(context).commissionPrice,
-                        style: AppTextStyles.labelSmall.copyWith(
-                          color: AppColors.labelBlackTextColor,
-                          fontSize: 13.sp,
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 18,
+                      horizontal: 30,
+                    ).r,
+                    decoration: BoxDecoration(
+                      color: AppColors.searchBKColor,
+                      borderRadius: BorderRadius.circular(10).r,
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          S.of(context).commissionPrice,
+                          style: AppTextStyles.labelSmall.copyWith(
+                            color: AppColors.labelBlackTextColor,
+                            fontSize: 13.sp,
+                          ),
                         ),
-                      ),
-                      Spacer(),
-                      Text(
-                        LocatorService.appSettings.mySettings?.costPerAd ?? '',
-                        style: AppTextStyles.labelLarge.copyWith(
-                          color: AppColors.priceTextColor,
-                          height: 1.2,
+                        Spacer(),
+                        Text(
+                          LocatorService.appSettings.mySettings?.costPerAd ??
+                              '',
+                          style: AppTextStyles.labelLarge.copyWith(
+                            color: AppColors.priceTextColor,
+                            height: 1.2,
+                          ),
                         ),
-                      ),
-                      7.widthSpace,
-                      SvgPicture.asset(
-                        SvgAssets.assetsSvgSarIcon,
-                        color: AppColors.primaryColor,
-                        width: 10.w,
-                        height: 10.h,
-                      ),
-                    ],
+                        7.widthSpace,
+                        SvgPicture.asset(
+                          SvgAssets.assetsSvgSarIcon,
+                          color: AppColors.primaryColor,
+                          width: 10.w,
+                          height: 10.h,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              30.heightSpace,
-              Text(
-                S.of(context).selectPaymentMethod,
-                style: AppTextStyles.labelSmall.copyWith(fontSize: 16.sp),
-              ),
-              20.heightSpace,
+                30.heightSpace,
+                Text(
+                  S.of(context).selectPaymentMethod,
+                  style: AppTextStyles.labelSmall.copyWith(fontSize: 16.sp),
+                ),
+                20.heightSpace,
 
-              PaymentMethodItem(
-                title: S.of(context).cash,
-                cardType: PaymentMethods.cash,
-                isSelected: _selectedCard == 0,
-                onTap: () => setState(() => _selectedCard = 0),
-              ),
-              // 12.heightSpace,
-              // PaymentMethodItem(
-              //   title: S.of(context).card,
-              //   cardType: PaymentMethods.card,
-              //   isSelected: _selectedCard == 1,
-              //   onTap: () => setState(() => _selectedCard = 1),
-              // ),
-              // Text(
-              //   'أدخل بيانات بطاقة الدفع',
-              //   style: AppTextStyles.labelSmall.copyWith(fontSize: 16.sp),
-              // ),
-              // 24.heightSpace,
-              // Container(
-              //   width: double.infinity,
-              //   padding: EdgeInsets.symmetric(vertical: 18, horizontal: 30).r,
-              //   decoration: BoxDecoration(
-              //     color: Colors.white,
-              //     borderRadius: BorderRadius.circular(10).r,
-              //   ),
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         'سعر العمولة',
-              //         style: AppTextStyles.labelSmall.copyWith(
-              //           color: AppColors.labelBlackTextColor,
-              //           fontSize: 13.sp,
-              //         ),
-              //       ),
-              //       Spacer(),
-              //       Text(
-              //         '5,000',
-              //         style: AppTextStyles.labelLarge.copyWith(
-              //           color: AppColors.priceTextColor,
-              //           height: 1.2,
-              //         ),
-              //       ),
-              //       7.widthSpace,
-              //       SvgPicture.asset(
-              //         SvgAssets.assetsSvgSarIcon,
-              //         color: AppColors.primaryColor,
-              //         width: 10.w,
-              //         height: 10.h,
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // Container(
-              //   decoration: BoxDecoration(
-              //     border: Border.all(color: AppColors.buttonBackBKColor),
-              //     borderRadius: BorderRadius.circular(10),
-              //   ),
-              //   padding: EdgeInsets.only(
-              //     left: 14,
-              //     right: 14,
-              //     top: 10,
-              //     bottom: 33,
-              //   ).r,
-              //   child: Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       Text('رقم بطاقة الدفع', style: AppTextStyles.labelSmall),
-              //       8.heightSpace,
-              //       SizedBox(
-              //         height: 44.h,
-              //         child: CustomTextField(
-              //           hintText: 'ادخل الرقم',
-              //           keyboardType: TextInputType.number,
-              //         ),
-              //       ),
-              //       17.heightSpace,
-              //       Text('اسم صاحب البطاقة', style: AppTextStyles.labelSmall),
-              //       8.heightSpace,
-              //       SizedBox(
-              //         height: 44.h,
-              //         child: CustomTextField(
-              //           hintText: 'ادخل اسم البطاقة',
-              //           keyboardType: TextInputType.name,
-              //         ),
-              //       ),
-              //       16.heightSpace,
-              //       Row(
-              //         children: [
-              //           Expanded(
-              //             child: Column(
-              //               crossAxisAlignment: CrossAxisAlignment.start,
-              //               children: [
-              //                 Text('التاريخ', style: AppTextStyles.labelSmall),
-              //                 8.heightSpace,
-              //
-              //                 SizedBox(
-              //                   height: 44.h,
-              //                   child: CustomTextField(
-              //                     hintText: 'YY/ MM',
-              //                     keyboardType: TextInputType.name,
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //           ),
-              //           14.widthSpace,
-              //           Expanded(
-              //             child: Column(
-              //               crossAxisAlignment: CrossAxisAlignment.start,
-              //               children: [
-              //                 Text(
-              //                   'الرقم السري',
-              //                   style: AppTextStyles.labelSmall,
-              //                 ),
-              //                 8.heightSpace,
-              //
-              //                 SizedBox(
-              //                   height: 44.h,
-              //                   child: CustomTextField(
-              //                     hintText: 'CVV',
-              //                     keyboardType: TextInputType.name,
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //           ),
-              //         ],
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              350.heightSpace,
-              Row(
-                children: [
-                  CustomElevatedButton(
-                    text: S.of(context).payNow,
-                    icon: SvgAssets.assetsSvgArrowRight,
-                    size: Size(163.w, 48.h),
-                    onPressed: () {
-                      _formData?['payment_method'] = 'cash';
-                      MyAdsController.sendAdOtp(_formData);
-                    },
-                  ),
-                  16.widthSpace,
-                  CustomElevatedButton(
-                    text: S.of(context).previous,
-                    icon: SvgAssets.assetsSvgArrowLeft,
-                    size: Size(163.w, 48.h),
-                    backgroundColor: AppColors.buttonBackBKColor,
-                    onPressed: () {
-                      LocatorService.navigationService.currentState?.popUntil(
-                        (route) =>
-                            route.settings.name == AddAdSecondScreen.routeName,
-                      );
-                    },
-                  ),
-                ],
-              ),
-              50.heightSpace,
-            ],
+                PaymentMethodItem(
+                  title: S.of(context).cash,
+                  cardType: PaymentMethods.cash,
+                  isSelected: _selectedCard == 0,
+                  onTap: () => setState(() => _selectedCard = 0),
+                ),
+                // 12.heightSpace,
+                // PaymentMethodItem(
+                //   title: S.of(context).card,
+                //   cardType: PaymentMethods.card,
+                //   isSelected: _selectedCard == 1,
+                //   onTap: () => setState(() => _selectedCard = 1),
+                // ),
+                // Text(
+                //   'أدخل بيانات بطاقة الدفع',
+                //   style: AppTextStyles.labelSmall.copyWith(fontSize: 16.sp),
+                // ),
+                // 24.heightSpace,
+                // Container(
+                //   width: double.infinity,
+                //   padding: EdgeInsets.symmetric(vertical: 18, horizontal: 30).r,
+                //   decoration: BoxDecoration(
+                //     color: Colors.white,
+                //     borderRadius: BorderRadius.circular(10).r,
+                //   ),
+                //   child: Row(
+                //     children: [
+                //       Text(
+                //         'سعر العمولة',
+                //         style: AppTextStyles.labelSmall.copyWith(
+                //           color: AppColors.labelBlackTextColor,
+                //           fontSize: 13.sp,
+                //         ),
+                //       ),
+                //       Spacer(),
+                //       Text(
+                //         '5,000',
+                //         style: AppTextStyles.labelLarge.copyWith(
+                //           color: AppColors.priceTextColor,
+                //           height: 1.2,
+                //         ),
+                //       ),
+                //       7.widthSpace,
+                //       SvgPicture.asset(
+                //         SvgAssets.assetsSvgSarIcon,
+                //         color: AppColors.primaryColor,
+                //         width: 10.w,
+                //         height: 10.h,
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // Container(
+                //   decoration: BoxDecoration(
+                //     border: Border.all(color: AppColors.buttonBackBKColor),
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                //   padding: EdgeInsets.only(
+                //     left: 14,
+                //     right: 14,
+                //     top: 10,
+                //     bottom: 33,
+                //   ).r,
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text('رقم بطاقة الدفع', style: AppTextStyles.labelSmall),
+                //       8.heightSpace,
+                //       SizedBox(
+                //         height: 44.h,
+                //         child: CustomTextField(
+                //           hintText: 'ادخل الرقم',
+                //           keyboardType: TextInputType.number,
+                //         ),
+                //       ),
+                //       17.heightSpace,
+                //       Text('اسم صاحب البطاقة', style: AppTextStyles.labelSmall),
+                //       8.heightSpace,
+                //       SizedBox(
+                //         height: 44.h,
+                //         child: CustomTextField(
+                //           hintText: 'ادخل اسم البطاقة',
+                //           keyboardType: TextInputType.name,
+                //         ),
+                //       ),
+                //       16.heightSpace,
+                //       Row(
+                //         children: [
+                //           Expanded(
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 Text('التاريخ', style: AppTextStyles.labelSmall),
+                //                 8.heightSpace,
+                //
+                //                 SizedBox(
+                //                   height: 44.h,
+                //                   child: CustomTextField(
+                //                     hintText: 'YY/ MM',
+                //                     keyboardType: TextInputType.name,
+                //                   ),
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //           14.widthSpace,
+                //           Expanded(
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 Text(
+                //                   'الرقم السري',
+                //                   style: AppTextStyles.labelSmall,
+                //                 ),
+                //                 8.heightSpace,
+                //
+                //                 SizedBox(
+                //                   height: 44.h,
+                //                   child: CustomTextField(
+                //                     hintText: 'CVV',
+                //                     keyboardType: TextInputType.name,
+                //                   ),
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                350.heightSpace,
+                Row(
+                  children: [
+                    CustomElevatedButton(
+                      text: S.of(context).payNow,
+                      icon: SvgAssets.assetsSvgArrowRight,
+                      size: Size(163.w, 48.h),
+                      onPressed: () {
+                        _formData?['payment_method'] = 'cash';
+                        MyAdsController.sendAdOtp(_formData);
+                      },
+                    ),
+                    16.widthSpace,
+                    CustomElevatedButton(
+                      text: S.of(context).previous,
+                      icon: SvgAssets.assetsSvgArrowLeft,
+                      size: Size(163.w, 48.h),
+                      backgroundColor: AppColors.buttonBackBKColor,
+                      onPressed: () {
+                        LocatorService.navigationService.currentState?.popUntil(
+                          (route) =>
+                              route.settings.name ==
+                              AddAdSecondScreen.routeName,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                50.heightSpace,
+              ],
+            ),
           ),
         ),
       ),

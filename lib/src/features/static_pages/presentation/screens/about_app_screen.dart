@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/helpers/others_helper.dart';
 import 'package:invastro/src/core/shared/widgets/app_logo.dart';
 import 'package:provider/provider.dart';
 
@@ -42,6 +43,7 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
         icons: [AppbarIcons.drawer],
         title: S.of(context).aboutThePlatform,
         flexLeft: 100,
+        paddingAround: isArabic ? null : 40,
       ),
       drawer: CustomDrawer(),
 

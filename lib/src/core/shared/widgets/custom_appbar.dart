@@ -20,6 +20,8 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final List<AppbarIcons> icons;
   final bool dontShowBackButton;
   final double? toolbarHeight;
+  final double? paddingAround;
+
   final Color? backgroundColor;
   final Color? titleColor;
   final int flexLeft;
@@ -35,6 +37,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.showSearchIcon = false,
     this.chatReceiver,
 
+    this.paddingAround,
     this.title,
     required this.icons,
     this.backgroundColor,
@@ -85,7 +88,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                     ? icons.isEmpty
                           ? MediaQuery.of(context).size.width * 0.1
                           : 0.0
-                    : 90.w,
+                    : paddingAround?.w ?? 90.w,
                 right: isArabic
                     ? 90.w
                     : icons.isEmpty

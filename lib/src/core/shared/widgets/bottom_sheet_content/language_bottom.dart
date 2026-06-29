@@ -66,65 +66,69 @@ class _LanguageBottomState extends State<LanguageBottom> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: const AlignmentDirectional(-0.9, -0.9),
-      children: [
-        Container(
-          height: 200.h,
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 24.0, bottom: 0).r,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    10.widthSpace,
+    return SafeArea(
+      top: false,
+      bottom: true,
+      child: Stack(
+        alignment: const AlignmentDirectional(-0.9, -0.9),
+        children: [
+          Container(
+            height: 200.h,
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 24.0, bottom: 0).r,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      10.widthSpace,
 
-                    const Spacer(),
-                    CustomText(
-                      S.of(context).chooseLanguage,
-                      style: AppTextStyles.titleMedium.copyWith(fontSize: 16),
-                    ),
-                    const Spacer(),
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      onTap: () {
-                        LocatorService.navigationService.currentState?.pop();
-                      },
-                      child: SvgPicture.asset(
-                        SvgAssets.assetsSvgCloseDrawerIcon,
-                        color: Colors.black,
-                        width: 24.w,
-                        height: 24.h,
+                      const Spacer(),
+                      CustomText(
+                        S.of(context).chooseLanguage,
+                        style: AppTextStyles.titleMedium.copyWith(fontSize: 16),
                       ),
-                    ),
-                  ],
+                      const Spacer(),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        onTap: () {
+                          LocatorService.navigationService.currentState?.pop();
+                        },
+                        child: SvgPicture.asset(
+                          SvgAssets.assetsSvgCloseDrawerIcon,
+                          color: Colors.black,
+                          width: 24.w,
+                          height: 24.h,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              32.heightSpace,
-              CustomGRadioButton(
-                label: 'العربية',
-                value: 0,
-                padding: EdgeInsets.zero,
-                groupValue: groupValue,
-                onChanged: _handleRadioValueChange,
-              ),
-              10.heightSpace,
-              CustomGRadioButton(
-                label: 'English',
-                value: 1,
-                padding: EdgeInsets.zero,
-                groupValue: groupValue,
-                onChanged: _handleRadioValueChange,
-              ),
-            ],
+                32.heightSpace,
+                CustomGRadioButton(
+                  label: 'العربية',
+                  value: 0,
+                  padding: EdgeInsets.zero,
+                  groupValue: groupValue,
+                  onChanged: _handleRadioValueChange,
+                ),
+                10.heightSpace,
+                CustomGRadioButton(
+                  label: 'English',
+                  value: 1,
+                  padding: EdgeInsets.zero,
+                  groupValue: groupValue,
+                  onChanged: _handleRadioValueChange,
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

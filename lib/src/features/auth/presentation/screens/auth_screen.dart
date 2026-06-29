@@ -21,37 +21,42 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset(
-            ImagesAssets.assetsImagesSplashImage,
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Spacer(),
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onDoubleTap: () {
-                  if (pressedLong) {
-                    // AlertUtils.showPassDialog(context, formKey);
-                    pressedLong = false;
-                  }
-                },
-                onLongPressUp: () {
-                  pressedLong = true;
-                },
-                child: const AppLogo(tag: 'splash-tag'),
-              ),
-              202.heightSpace,
-              const AuthChangeLangWidget(),
-            ],
-          ),
-        ],
+      body: SafeArea(
+        bottom: true,
+        top: false,
+
+        child: Stack(
+          children: [
+            Image.asset(
+              ImagesAssets.assetsImagesSplashImage,
+              fit: BoxFit.cover,
+              height: double.infinity,
+              width: double.infinity,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Spacer(),
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onDoubleTap: () {
+                    if (pressedLong) {
+                      // AlertUtils.showPassDialog(context, formKey);
+                      pressedLong = false;
+                    }
+                  },
+                  onLongPressUp: () {
+                    pressedLong = true;
+                  },
+                  child: const AppLogo(tag: 'splash-tag'),
+                ),
+                202.heightSpace,
+                const AuthChangeLangWidget(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

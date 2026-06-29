@@ -35,14 +35,15 @@ class AuthAppbar extends StatelessWidget {
                 textColor: AppColors.primaryColor,
               ),
             Spacer(),
-            CustomDirectionWidget(
-              child: SvgButton(
-                icon: SvgAssets.assetsSvgArrowLeft,
-                onTap: () {
-                  LocatorService.navigationService.currentState?.pop();
-                },
+            if (LocatorService.navigationService.currentState!.canPop())
+              CustomDirectionWidget(
+                child: SvgButton(
+                  icon: SvgAssets.assetsSvgArrowLeft,
+                  onTap: () {
+                    LocatorService.navigationService.currentState?.pop();
+                  },
+                ),
               ),
-            ),
           ],
         ),
       ),

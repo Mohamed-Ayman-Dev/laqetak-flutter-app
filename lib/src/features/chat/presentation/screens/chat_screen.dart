@@ -195,125 +195,141 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
         chatReceiver: _conversation?.otherUser,
         backgroundColor: Colors.white,
       ),
-      body: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              10.heightSpace,
-              if (_conversationId == null)
-                ChatListShimmer()
-              else
-                Expanded(
-                  child: Selector<Chat, PaginationList<MessageModel>?>(
-                    selector: (context, provider) =>
-                        provider.messagesMap[_conversationId],
-                    shouldRebuild: (previous, next) => true,
-                    builder: (context, list, child) {
-                      final scrollController = LocatorService.chat
-                          .getScrollController(_conversationId!);
-                      final messages = list?.data;
-                      return messages != null && messages.isEmpty
-                          ? EmptyListPlaceholderWidget(
-                              text: S
-                                  .of(context)
-                                  .thereAreNoMessagesYetStartAConversation,
-                            )
-                          : NotificationListener<ScrollNotification>(
-                              onNotification: (scrollInfo) {
-                                // Load more when scrolled to top (older messages)
-                                if (scrollInfo.metrics.pixels >=
-                                    scrollInfo.metrics.maxScrollExtent - 200) {
-                                  ChatController.getMessages(
-                                    conversationId: _conversationId!,
-                                  );
-                                }
-                                return false;
-                              },
-                              child: ListView.separated(
-                                padding: EdgeInsets.fromLTRB(18, 33, 18, 18).r,
-                                reverse: true,
-                                controller: scrollController,
+      body: SafeArea(
+        bottom: true,
+        top: false,
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                10.heightSpace,
+                if (_conversationId == null)
+                  ChatListShimmer()
+                else
+                  Expanded(
+                    child: Selector<Chat, PaginationList<MessageModel>?>(
+                      selector: (context, provider) =>
+                          provider.messagesMap[_conversationId],
+                      shouldRebuild: (previous, next) => true,
+                      builder: (context, list, child) {
+                        final scrollController = LocatorService.chat
+                            .getScrollController(_conversationId!);
+                        final messages = list?.data;
+                        return messages != null && messages.isEmpty
+                            ? EmptyListPlaceholderWidget(
+                                text: S
+                                    .of(context)
+                                    .thereAreNoMessagesYetStartAConversation,
+                              )
+                            : NotificationListener<ScrollNotification>(
+                                onNotification: (scrollInfo) {
+                                  // Load more when scrolled to top (older messages)
+                                  if (scrollInfo.metrics.pixels >=
+                                      scrollInfo.metrics.maxScrollExtent -
+                                          200) {
+                                    ChatController.getMessages(
+                                      conversationId: _conversationId!,
+                                    );
+                                  }
+                                  return false;
+                                },
+                                child: ListView.separated(
+                                  padding: EdgeInsets.fromLTRB(
+                                    18,
+                                    33,
+                                    18,
+                                    18,
+                                  ).r,
+                                  reverse: true,
+                                  controller: scrollController,
 
-                                itemBuilder: (context, index) =>
-                                    messages == null
-                                    ? MessageItemShimmer(isMine: index % 2 == 0)
-                                    : MessageItem(
-                                        message: messages[index].message ?? '',
-                                        isMine: messages[index].isMine ?? false,
-                                        heroImage: '$index-"messageBody"-chat',
+                                  itemBuilder: (context, index) =>
+                                      messages == null
+                                      ? MessageItemShimmer(
+                                          isMine: index % 2 == 0,
+                                        )
+                                      : MessageItem(
+                                          message:
+                                              messages[index].message ?? '',
+                                          isMine:
+                                              messages[index].isMine ?? false,
+                                          heroImage:
+                                              '$index-"messageBody"-chat',
 
-                                        images: messages[index].files,
-                                        createdAt:
-                                            messages[index].createdAt ?? '',
-                                        seenAt: messages[index].seenAtHuman,
-                                        status: messages[index].status,
-                                        onRetry:
-                                            messages[index].status ==
-                                                MessageStatus.failed
-                                            ? () => ChatController.retryMessage(
-                                                conversationId:
-                                                    _conversationId!,
-                                                message: messages[index],
-                                              )
-                                            : null,
-                                        isTemp: messages[index].isTemp,
-                                      ),
-                                separatorBuilder: (context, index) =>
-                                    16.heightSpace,
-                                itemCount: messages?.length ?? 9,
-                              ),
-                            );
-                    },
+                                          images: messages[index].files,
+                                          createdAt:
+                                              messages[index].createdAt ?? '',
+                                          seenAt: messages[index].seenAtHuman,
+                                          status: messages[index].status,
+                                          onRetry:
+                                              messages[index].status ==
+                                                  MessageStatus.failed
+                                              ? () =>
+                                                    ChatController.retryMessage(
+                                                      conversationId:
+                                                          _conversationId!,
+                                                      message: messages[index],
+                                                    )
+                                              : null,
+                                          isTemp: messages[index].isTemp,
+                                        ),
+                                  separatorBuilder: (context, index) =>
+                                      16.heightSpace,
+                                  itemCount: messages?.length ?? 9,
+                                ),
+                              );
+                      },
+                    ),
                   ),
-                ),
-              AttachmentPreview(
-                filePaths: attachmentPaths,
-                onClear: () {
-                  setState(() {
-                    attachmentPaths.clear();
-                  });
-                },
-                onRemoveAt: (index) {
-                  setState(() {
-                    attachmentPaths.removeAt(index);
-                  });
-                },
-              ),
-              ChatBottomField(
-                onSend: () async {
-                  final text = controller.text.trim();
-                  if (text.isNotEmpty || attachmentPaths.isNotEmpty) {
-                    ChatController.sendMessage(
-                      conversationId: _conversationId ?? 0,
-                      message: text.isNotEmpty ? text : null,
-                      filePaths: attachmentPaths.isNotEmpty
-                          ? attachmentPaths
-                          : null,
-                    );
-                    controller.clear();
+                AttachmentPreview(
+                  filePaths: attachmentPaths,
+                  onClear: () {
                     setState(() {
                       attachmentPaths.clear();
                     });
-                  }
-                },
-                onAttachment: () async {
-                  final pickedImage = await ImageUtils.openPickingOptions(
-                    context,
-                  );
-                  if (pickedImage != null) {
+                  },
+                  onRemoveAt: (index) {
                     setState(() {
-                      attachmentPaths.add(pickedImage.path);
+                      attachmentPaths.removeAt(index);
                     });
-                  }
-                },
-                controller: controller,
-              ),
-            ],
-          ),
-          Padding(padding: const EdgeInsets.all(16).r, child: ChatTime()),
-        ],
+                  },
+                ),
+                ChatBottomField(
+                  onSend: () async {
+                    final text = controller.text.trim();
+                    if (text.isNotEmpty || attachmentPaths.isNotEmpty) {
+                      ChatController.sendMessage(
+                        conversationId: _conversationId ?? 0,
+                        message: text.isNotEmpty ? text : null,
+                        filePaths: attachmentPaths.isNotEmpty
+                            ? attachmentPaths
+                            : null,
+                      );
+                      controller.clear();
+                      setState(() {
+                        attachmentPaths.clear();
+                      });
+                    }
+                  },
+                  onAttachment: () async {
+                    final pickedImage = await ImageUtils.openPickingOptions(
+                      context,
+                    );
+                    if (pickedImage != null) {
+                      setState(() {
+                        attachmentPaths.add(pickedImage.path);
+                      });
+                    }
+                  },
+                  controller: controller,
+                ),
+              ],
+            ),
+            Padding(padding: const EdgeInsets.all(16).r, child: ChatTime()),
+          ],
+        ),
       ),
     );
   }

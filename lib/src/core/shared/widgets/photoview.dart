@@ -118,7 +118,7 @@ class _PhotoViewState extends State<PhotoView> {
             Positioned(
               left: 0,
               right: 0,
-              bottom: 120,
+              bottom: 70,
               child: _ThumbnailStrip(
                 photoList: photoList,
                 activeIndex: _activeIndex,

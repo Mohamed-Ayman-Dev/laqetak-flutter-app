@@ -13,7 +13,8 @@ class ListLoadingEndWidget extends StatelessWidget {
   final bool isLoading;
   final bool listLessThan;
   final String noMoreText;
-  final double? padding;
+  final double? paddingBottom;
+  final double? paddingTop;
 
   const ListLoadingEndWidget({
     super.key,
@@ -22,7 +23,8 @@ class ListLoadingEndWidget extends StatelessWidget {
     required this.isLoading,
     required this.listLessThan,
     required this.noMoreText,
-    this.padding,
+    this.paddingBottom,
+    this.paddingTop,
   });
 
   @override
@@ -30,7 +32,10 @@ class ListLoadingEndWidget extends StatelessWidget {
     return Center(
       child: (lastPage == currentPage && !isLoading && listLessThan)
           ? Padding(
-              padding: EdgeInsets.only(bottom: padding ?? 100.0),
+              padding: EdgeInsets.only(
+                bottom: paddingBottom ?? 100.0,
+                top: paddingTop ?? 0.0,
+              ).r,
               child: CustomText(
                 noMoreText,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -41,7 +46,10 @@ class ListLoadingEndWidget extends StatelessWidget {
             )
           : (isLoading && listLessThan)
           ? Padding(
-              padding: EdgeInsets.only(bottom: padding ?? 150, top: 0),
+              padding: EdgeInsets.only(
+                bottom: paddingBottom ?? 150,
+                top: paddingTop ?? 0.0,
+              ),
               child: SizedBox(
                 height: 20,
                 width: 20,

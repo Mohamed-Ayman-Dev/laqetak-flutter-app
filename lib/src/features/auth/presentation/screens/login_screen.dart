@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: AppTextStyles.labelSmall,
                         children: [
                           TextSpan(
-                            text: S.of(context).registerNow,
+                            text: " ${S.of(context).registerNow}",
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 LocatorService.navigationService.currentState

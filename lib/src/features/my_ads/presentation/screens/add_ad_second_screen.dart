@@ -106,104 +106,108 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
         flexRight: 8,
       ),
       drawer: CustomDrawer(),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 15, right: 17).r,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              20.heightSpace,
-              Text(
-                S.of(context).addYourAd,
-                style: AppTextStyles.headlineMedium.copyWith(
-                  color: AppColors.titleTextColor,
-                  fontSize: 16.sp,
+      body: SafeArea(
+        top: false,
+        bottom: true,
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(left: 15, right: 17).r,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                20.heightSpace,
+                Text(
+                  S.of(context).addYourAd,
+                  style: AppTextStyles.headlineMedium.copyWith(
+                    color: AppColors.titleTextColor,
+                    fontSize: 16.sp,
+                  ),
                 ),
-              ),
-              25.heightSpace,
-              Text(S.of(context).adImages, style: AppTextStyles.labelSmall),
-              8.heightSpace,
-              // في الـ widget
-              AdImagePicker(
-                initialPhotos: ad?.photos ?? [],
-                onChanged: ({required newPhotos, required photosToRemove}) {
-                  _formData['photos[]'] = newPhotos;
-                  _formData['photos_to_remove[]'] = photosToRemove;
-                },
-              ),
-              17.heightSpace,
-              Text(S.of(context).adDetails, style: AppTextStyles.labelSmall),
-              8.heightSpace,
-              CustomNoteField(
-                hint: S.of(context).writeAdDetails,
-                keyboardType: TextInputType.text,
-                controller: _descController,
-                validator: (value) {
-                  return ValidationHelper.validateEmpty(
-                    value,
-                    emptyMessage: S.of(context).detailsAreRequired,
-                  );
-                },
-                onSaved: (val) {
-                  _formData['description'] = val;
-                },
-              ),
-              9.heightSpace,
-              Text(
-                S.of(context).contactNumber,
-                style: AppTextStyles.labelSmall,
-              ),
-              8.heightSpace,
-              CustomTextField(
-                onSaved: (val) {
-                  _formData['contact_phone'] = val;
-                },
-                controller: _phoneController,
+                25.heightSpace,
+                Text(S.of(context).adImages, style: AppTextStyles.labelSmall),
+                8.heightSpace,
+                // في الـ widget
+                AdImagePicker(
+                  initialPhotos: ad?.photos ?? [],
+                  onChanged: ({required newPhotos, required photosToRemove}) {
+                    _formData['photos[]'] = newPhotos;
+                    _formData['photos_to_remove[]'] = photosToRemove;
+                  },
+                ),
+                17.heightSpace,
+                Text(S.of(context).adDetails, style: AppTextStyles.labelSmall),
+                8.heightSpace,
+                CustomNoteField(
+                  hint: S.of(context).writeAdDetails,
+                  keyboardType: TextInputType.text,
+                  controller: _descController,
+                  validator: (value) {
+                    return ValidationHelper.validateEmpty(
+                      value,
+                      emptyMessage: S.of(context).detailsAreRequired,
+                    );
+                  },
+                  onSaved: (val) {
+                    _formData['description'] = val;
+                  },
+                ),
+                9.heightSpace,
+                Text(
+                  S.of(context).contactNumber,
+                  style: AppTextStyles.labelSmall,
+                ),
+                8.heightSpace,
+                CustomTextField(
+                  onSaved: (val) {
+                    _formData['contact_phone'] = val;
+                  },
+                  controller: _phoneController,
 
-                validator: (value) {
-                  return ValidationHelper.validatePhone(value, context);
-                },
-                keyboardType: TextInputType.phone,
-                textInputAction: TextInputAction.done,
-                hintText: S.of(context).mobileNumber,
-              ),
-              15.heightSpace,
-              Row(
-                children: [
-                  CustomSwitch(
-                    value: _formData['hide_phone'] == 1,
-                    onChanged: (val) =>
-                        setState(() => _formData['hide_phone'] = val ? 1 : 0),
-                  ),
-                  Text(S.of(context).hidePhoneNumber),
-                ],
-              ),
-              10.heightSpace,
-              Row(
-                children: [
-                  CustomElevatedButton(
-                    text: S.current.next,
-                    icon: SvgAssets.assetsSvgArrowRight,
-                    size: Size(163.w, 48.h),
-                    onPressed: () {
-                      _send();
-                    },
-                  ),
-                  12.widthSpace,
-                  CustomElevatedButton(
-                    text: S.of(context).previous,
-                    icon: SvgAssets.assetsSvgArrowLeft,
-                    size: Size(163.w, 48.h),
-                    backgroundColor: AppColors.buttonBackBKColor,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
-              ),
-              50.heightSpace,
-            ],
+                  validator: (value) {
+                    return ValidationHelper.validatePhone(value, context);
+                  },
+                  keyboardType: TextInputType.phone,
+                  textInputAction: TextInputAction.done,
+                  hintText: S.of(context).mobileNumber,
+                ),
+                15.heightSpace,
+                Row(
+                  children: [
+                    CustomSwitch(
+                      value: _formData['hide_phone'] == 1,
+                      onChanged: (val) =>
+                          setState(() => _formData['hide_phone'] = val ? 1 : 0),
+                    ),
+                    Text(S.of(context).hidePhoneNumber),
+                  ],
+                ),
+                10.heightSpace,
+                Row(
+                  children: [
+                    CustomElevatedButton(
+                      text: S.current.next,
+                      icon: SvgAssets.assetsSvgArrowRight,
+                      size: Size(163.w, 48.h),
+                      onPressed: () {
+                        _send();
+                      },
+                    ),
+                    12.widthSpace,
+                    CustomElevatedButton(
+                      text: S.of(context).previous,
+                      icon: SvgAssets.assetsSvgArrowLeft,
+                      size: Size(163.w, 48.h),
+                      backgroundColor: AppColors.buttonBackBKColor,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                ),
+                50.heightSpace,
+              ],
+            ),
           ),
         ),
       ),

@@ -42,7 +42,7 @@ class _AuthChangeLangWidgetState extends State<AuthChangeLangWidget> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOutCubic,
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(16, 40, 16, 50).r,
+      padding: EdgeInsets.fromLTRB(16, 40, 16, 30).r,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(50)),

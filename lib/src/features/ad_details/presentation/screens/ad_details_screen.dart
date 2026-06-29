@@ -73,119 +73,126 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
         flexRight: 8,
       ),
       drawer: CustomDrawer(),
-      body: Selector<Ads, AdModel?>(
-        selector: (context, provider) => provider.myAdDetails[ad?.id],
-        builder: (context, updatedAdDetail, child) {
-          final adDetail = updatedAdDetail ?? ad;
-          final isExpired = adDetail?.status == 'closed';
-          return Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 20).r,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AdDetailsHeader(isMyAd: isMyAd, ad: adDetail),
-                    20.heightSpace,
-                    adDetail?.photos == null
-                        ? AdImageGalleryShimmer()
-                        : AdImageGallery(
-                            images:
-                                adDetail?.photos
-                                    ?.map((e) => e.url ?? '')
-                                    .toList() ??
-                                [],
-                            type: adDetail?.category?.name ?? '',
-                            hero: adHero ?? '',
-                            isExpired: isExpired,
+      body: SafeArea(
+        bottom: true,
+        top: false,
+        child: Selector<Ads, AdModel?>(
+          selector: (context, provider) => provider.myAdDetails[ad?.id],
+          builder: (context, updatedAdDetail, child) {
+            final adDetail = updatedAdDetail ?? ad;
+            final isExpired = adDetail?.status == 'closed';
+            return Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                SingleChildScrollView(
+                  padding: EdgeInsets.symmetric(horizontal: 18, vertical: 20).r,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AdDetailsHeader(isMyAd: isMyAd, ad: adDetail),
+                      20.heightSpace,
+                      adDetail?.photos == null
+                          ? AdImageGalleryShimmer()
+                          : AdImageGallery(
+                              images:
+                                  adDetail?.photos
+                                      ?.map((e) => e.url ?? '')
+                                      .toList() ??
+                                  [],
+                              type: adDetail?.category?.name ?? '',
+                              hero: adHero ?? '',
+                              isExpired: isExpired,
+                            ),
+                      15.heightSpace,
+                      AdDetailsPoints(ad: adDetail),
+                      17.heightSpace,
+                      Text(
+                        S.of(context).adDetails,
+                        style: AppTextStyles.labelMedium,
+                      ),
+                      11.heightSpace,
+                      AdDetailsDesc(desc: adDetail?.description),
+                      16.heightSpace,
+                      if (!isMyAd)
+                        Align(
+                          alignment: AlignmentDirectional.centerEnd,
+                          child: CustomOutlineButton(
+                            text: S.of(context).reportAd,
+                            textStyle: AppTextStyles.buttonsTextStyle.copyWith(
+                              color: AppColors.labelTextColor,
+                              fontSize: 12.sp,
+                            ),
+                            size: Size(123.w, 36.h),
+                            borderColor: AppColors.reportBorderColor,
+                            onPressed: () {
+                              isAuth
+                                  ? DialogHelpers.showReportDialog(ad?.id ?? 0)
+                                  : BottomHelpers.showGuestBottomSheet(context);
+                            },
                           ),
-                    15.heightSpace,
-                    AdDetailsPoints(ad: adDetail),
-                    17.heightSpace,
-                    Text(
-                      S.of(context).adDetails,
-                      style: AppTextStyles.labelMedium,
-                    ),
-                    11.heightSpace,
-                    AdDetailsDesc(desc: adDetail?.description),
-                    16.heightSpace,
-                    if (!isMyAd)
-                      Align(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: CustomOutlineButton(
-                          text: S.of(context).reportAd,
-                          textStyle: AppTextStyles.buttonsTextStyle.copyWith(
-                            color: AppColors.labelTextColor,
-                            fontSize: 12.sp,
-                          ),
-                          size: Size(123.w, 36.h),
-                          borderColor: AppColors.reportBorderColor,
-                          onPressed: () {
-                            isAuth
-                                ? DialogHelpers.showReportDialog(ad?.id ?? 0)
-                                : BottomHelpers.showGuestBottomSheet(context);
-                          },
                         ),
+                      Text(
+                        S.of(context).advertiserDetails,
+                        style: AppTextStyles.labelMedium,
                       ),
-                    Text(
-                      S.of(context).advertiserDetails,
-                      style: AppTextStyles.labelMedium,
-                    ),
-                    12.heightSpace,
-                    AdDetailsSeller(
-                      customer: adDetail?.customer,
-                      phone: adDetail?.contactPhone,
-                      isMyAd: isMyAd,
-                      ad: adDetail,
-                      hidePhone: adDetail?.hidePhone == 1,
-                    ),
-                    if (isMyAd && !isExpired) 22.heightSpace,
-                    if (isMyAd && !isExpired)
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomElevatedButton(
-                              text: S.of(context).editAd,
-                              onPressed: () {
-                                LocatorService.navigationService.currentState
-                                    ?.pushNamed(
-                                      AddAdScreen.routeName,
-                                      arguments: adDetail,
-                                    );
-                              },
-                            ),
-                          ),
-                          11.widthSpace,
-                          Expanded(
-                            child: CustomOutlineButton(
-                              text: S.of(context).expiredAd,
-                              borderRadius: 8,
-                              borderColor: AppColors.reportBorderColor,
-                              onPressed: () {
-                                DialogHelpers.showYesNoDialog(
-                                  title: S.of(context).confirmAction,
-                                  subtitle: S
-                                      .of(context)
-                                      .areYouSureYouWantToEndThisAd,
-                                  onButtonTap: () {
-                                    Navigator.of(context).pop();
-                                    MyAdsController.closeAd(adDetail?.id ?? 0);
-                                  },
-                                );
-                              },
-                            ),
-                          ),
-                        ],
+                      12.heightSpace,
+                      AdDetailsSeller(
+                        customer: adDetail?.customer,
+                        phone: adDetail?.contactPhone,
+                        isMyAd: isMyAd,
+                        ad: adDetail,
+                        isExpired: isExpired,
+                        hidePhone: adDetail?.hidePhone == 1,
                       ),
-                    110.heightSpace,
-                  ],
+                      if (isMyAd && !isExpired) 22.heightSpace,
+                      if (isMyAd && !isExpired)
+                        Row(
+                          children: [
+                            Expanded(
+                              child: CustomElevatedButton(
+                                text: S.of(context).editAd,
+                                onPressed: () {
+                                  LocatorService.navigationService.currentState
+                                      ?.pushNamed(
+                                        AddAdScreen.routeName,
+                                        arguments: adDetail,
+                                      );
+                                },
+                              ),
+                            ),
+                            11.widthSpace,
+                            Expanded(
+                              child: CustomOutlineButton(
+                                text: S.of(context).expiredAd,
+                                borderRadius: 8,
+                                borderColor: AppColors.reportBorderColor,
+                                onPressed: () {
+                                  DialogHelpers.showYesNoDialog(
+                                    title: S.of(context).confirmAction,
+                                    subtitle: S
+                                        .of(context)
+                                        .areYouSureYouWantToEndThisAd,
+                                    onButtonTap: () {
+                                      Navigator.of(context).pop();
+                                      MyAdsController.closeAd(
+                                        adDetail?.id ?? 0,
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      110.heightSpace,
+                    ],
+                  ),
                 ),
-              ),
-              AdDetailsBottom(price: adDetail?.investmentAmount),
-            ],
-          );
-        },
+                AdDetailsBottom(price: adDetail?.investmentAmount),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

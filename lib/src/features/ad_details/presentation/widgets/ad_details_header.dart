@@ -78,7 +78,9 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
             5.widthSpace,
             if (widget.isMyAd)
               Text(
-                adDetail?.viewsCount.toString() ?? '0',
+                ((adDetail?.viewsCount != null)
+                    ? adDetail?.viewsCount.toString() ?? '0'
+                    : '0'),
                 style: AppTextStyles.labelSmall.copyWith(
                   fontSize: 13.sp,
                   color: AppColors.textGrey1Color,

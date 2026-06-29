@@ -29,6 +29,8 @@ class AdDetailsSeller extends StatelessWidget {
   final String? phone;
   final bool hidePhone;
   final bool isMyAd;
+  final bool isExpired;
+
   final AdModel? ad;
 
   const AdDetailsSeller({
@@ -37,6 +39,7 @@ class AdDetailsSeller extends StatelessWidget {
     this.phone,
     this.isMyAd = false,
     this.hidePhone = false,
+    this.isExpired = false,
     this.ad,
   });
 
@@ -44,7 +47,7 @@ class AdDetailsSeller extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isMe = (customer?.id == LocatorService.auth.user?.id) || isMyAd;
     return Container(
-      padding: EdgeInsets.fromLTRB(10, 8, 10, 20).r,
+      padding: EdgeInsets.fromLTRB(10, 8, 10, 10).r,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10).r,
         border: Border.all(
@@ -95,7 +98,7 @@ class AdDetailsSeller extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (isMe)
+                if (isMe && !isExpired)
                   Selector<Ads, AdModel?>(
                     selector: (context, provider) =>
                         provider.myAdDetails[ad?.id],
@@ -114,8 +117,8 @@ class AdDetailsSeller extends StatelessWidget {
               ],
             ),
           ),
-          13.heightSpace,
-          if (isMe || !hidePhone)
+          if (!isExpired) 13.heightSpace,
+          if ((isMe || !hidePhone) && !isExpired)
             GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
@@ -164,25 +167,28 @@ class AdDetailsSeller extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                CustomElevatedButton(
-                  text: S.of(context).chat,
-                  textStyle: AppTextStyles.labelLarge.copyWith(fontSize: 12.sp),
-                  borderRadius: 35,
-                  icon: SvgAssets.assetsSvgChatIcon,
-                  size: Size(97.w, 36.h),
-                  borderColor: AppColors.reportBorderColor,
-                  onPressed: () {
-                    isAuth
-                        ? LocatorService.navigationService.currentState
-                              ?.pushNamed(
-                                ChatScreen.routeName,
-                                arguments: {'receiver': customer},
-                              )
-                        : BottomHelpers.showGuestBottomSheet(context);
-                    ;
-                  },
-                ),
-                7.widthSpace,
+                if (!isExpired)
+                  CustomElevatedButton(
+                    text: S.of(context).chat,
+                    textStyle: AppTextStyles.labelLarge.copyWith(
+                      fontSize: 12.sp,
+                    ),
+                    borderRadius: 35,
+                    icon: SvgAssets.assetsSvgChatIcon,
+                    size: Size(97.w, 36.h),
+                    borderColor: AppColors.reportBorderColor,
+                    onPressed: () {
+                      isAuth
+                          ? LocatorService.navigationService.currentState
+                                ?.pushNamed(
+                                  ChatScreen.routeName,
+                                  arguments: {'receiver': customer},
+                                )
+                          : BottomHelpers.showGuestBottomSheet(context);
+                      ;
+                    },
+                  ),
+                if (!isExpired) 7.widthSpace,
                 CustomOutlineButton(
                   text: S.of(context).report,
                   textStyle: AppTextStyles.buttonsTextStyle.copyWith(

@@ -17,10 +17,10 @@ import '../../../themes/colors.dart';
 import '../../../themes/text_styles.dart';
 
 class TermsContent extends StatefulWidget {
-  final String? termsText;
   final String? title;
+  final bool isIdea;
 
-  const TermsContent({super.key, this.termsText, this.title});
+  const TermsContent({super.key, this.title, this.isIdea = false});
 
   @override
   State<TermsContent> createState() => _TermsContentState();
@@ -80,6 +80,9 @@ class _TermsContentState extends State<TermsContent> {
           Selector<AppSettings, SettingsModel?>(
             selector: (context, provider) => provider.mySettings,
             builder: (context, mySettings, child) {
+              String? content = widget.isIdea
+                  ? mySettings?.ideaOfCompany
+                  : mySettings?.termsAndConditions;
               return RawScrollbar(
                 controller: _scrollController,
                 interactive: false,
@@ -97,7 +100,7 @@ class _TermsContentState extends State<TermsContent> {
                       horizontal: 22.0,
                       vertical: 22,
                     ).r,
-                    child: mySettings?.termsAndConditions == null
+                    child: content == null
                         ? Column(
                             children: [
                               const StaticShimmer(),
@@ -108,7 +111,7 @@ class _TermsContentState extends State<TermsContent> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               HtmlWidget(
-                                mySettings?.termsAndConditions ?? '',
+                                content,
                                 textStyle: AppTextStyles.labelSmall.copyWith(
                                   color: AppColors.bodySmallGreyTextColor,
                                   fontFamily: Constant.fontFamily,

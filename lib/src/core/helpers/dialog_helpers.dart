@@ -380,7 +380,7 @@ class DialogHelpers {
 
   static Future<void>? showTermsDialog({
     String? title,
-    String? termsText,
+    bool isIdea = false,
   }) async {
     await showGeneralDialog(
       context: currentContext,
@@ -398,7 +398,7 @@ class DialogHelpers {
             horizontal: 20,
             vertical: 0,
           ).r,
-          content: TermsContent(termsText: termsText, title: title),
+          content: TermsContent(isIdea: isIdea, title: title),
         );
       },
       transitionBuilder: (_, anim, __, child) {

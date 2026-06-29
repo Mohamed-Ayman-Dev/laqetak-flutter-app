@@ -179,6 +179,7 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
                     onTextPressed: () {
                       DialogHelpers.showTermsDialog(
                         title: S.of(context).platformIdea,
+                        isIdea: true,
                       );
                     },
                   ),
