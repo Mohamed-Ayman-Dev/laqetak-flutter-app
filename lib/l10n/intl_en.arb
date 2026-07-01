@@ -234,5 +234,21 @@
   "skip": "Skip",
   "verifyYourMobileNumber": "Verify Your Mobile Number",
   "pleaseEnterTheVerificationCodeSentTo": "Please enter the verification code sent to",
-  "editYourAd": "Edit Your Ad"
+  "editYourAd": "Edit Your Ad",
+  "requestToShowNumber": "Request to Show Number",
+  "requestToViewThisPhoneNumber": "Request to view this phone number?",
+  "projectNeedsCapital": "Project needs capital",
+  "capitalNeedsAnIdea": "Capital needs an idea",
+  "all": "All",
+  "searchForOpportunity": "Search for Opportunity",
+  "searchForInvestor": "Search for Investor",
+  "home": "Home",
+  "chatnavbar": "Chat",
+  "favorites": "Favorites",
+  "notifications": "Notifications",
+  "accept": "Accept",
+  "reject": "Reject",
+  "respondingToRequest": "Responding to request",
+  "responseSentSuccessfully": "Response sent successfully",
+  "waitingForRequestApproval": "Waiting for request approval"
 }

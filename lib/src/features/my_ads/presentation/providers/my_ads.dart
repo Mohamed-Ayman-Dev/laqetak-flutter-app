@@ -24,6 +24,5 @@ class MyAds with ChangeNotifier {
   void resetForLogout() {
     myAds = null;
     loadingMyAds = false;
-    notifyListeners();
   }
 }

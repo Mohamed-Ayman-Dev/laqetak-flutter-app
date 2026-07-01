@@ -91,6 +91,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       backgroundColor: AppColors.greyScaffoldBKColor,
       body: Selector<Notifications, PaginationList<NotificationModel>?>(
         selector: (context, provider) => provider.myNotifications,
+        shouldRebuild: (previous, next) => true,
         builder: (context, listProvider, child) {
           List<NotificationModel>? notifications = listProvider?.data;
 
@@ -185,6 +186,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                 title:
                                                     notifications[index]
                                                         .alertText ??
+                                                    '',
+                                                index: index,
+                                                rawData:
+                                                    notifications[index].data ??
                                                     '',
                                                 desc:
                                                     notifications[index]

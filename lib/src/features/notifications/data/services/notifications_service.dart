@@ -30,6 +30,17 @@ class NotificationsService {
     );
   }
 
+  Future respondShowNumberRequest({
+    bool rethrowError = false,
+    Map<String, dynamic>? data,
+  }) async {
+    return await ApiService.post(
+      '/ads/contact-request/respond',
+      rethrowError: rethrowError,
+      data: data,
+    );
+  }
+
   Future<void> askNotificationPermission() async {
     if (permissionChecked) return;
     permissionChecked = true; // Mark as checked

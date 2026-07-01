@@ -36,6 +36,7 @@ class AdModel {
     this.city,
     this.customer,
     this.photos,
+    this.contactRequestStatus,
     this.mainPhoto,
     this.publishedAt,
   });
@@ -48,6 +49,7 @@ class AdModel {
     viewsCount = json['views_count'];
     contactPhone = json['contact_phone'];
     hidePhone = json['hide_phone'];
+    contactRequestStatus = json['contact_request_status'];
     status = json['status'];
     isFavorite = json['is_favorite'];
     category = json['category'] != null
@@ -78,6 +80,7 @@ class AdModel {
   String? investmentAmount;
   num? viewsCount;
   String? contactPhone;
+  String? contactRequestStatus;
   num? hidePhone;
   String? status;
   bool? isFavorite;
@@ -99,6 +102,7 @@ class AdModel {
     String? status,
     bool? isFavorite,
     String? mainPhoto,
+    String? contactRequestStatus,
     CategoryModel? category,
     SectorModel? sector,
     DetailsModel? city,
@@ -112,6 +116,7 @@ class AdModel {
     investmentAmount: investmentAmount ?? this.investmentAmount,
     viewsCount: viewsCount ?? this.viewsCount,
     contactPhone: contactPhone ?? this.contactPhone,
+    contactRequestStatus: contactRequestStatus ?? this.contactRequestStatus,
     hidePhone: hidePhone ?? this.hidePhone,
     mainPhoto: mainPhoto ?? this.mainPhoto,
     status: status ?? this.status,
@@ -132,6 +137,7 @@ class AdModel {
     map['investment_amount'] = investmentAmount;
     map['views_count'] = viewsCount;
     map['contact_phone'] = contactPhone;
+    map['contact_request_status'] = contactRequestStatus;
     map['hide_phone'] = hidePhone;
     map['status'] = status;
     map['is_favorite'] = isFavorite;

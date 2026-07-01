@@ -7,7 +7,6 @@ import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/shared/controllers/others_controller.dart';
 import 'package:invastro/src/core/shared/models/category_model.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_outline_button.dart';
-import 'package:invastro/src/core/shared/widgets/custom_checkbox.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:provider/provider.dart';
@@ -103,22 +102,21 @@ class _FilterScreenState extends State<FilterScreen> {
               25.heightSpace,
               Row(
                 children: [
-                  CustomCheckbox(
-                    isChecked: _formData['category_id'] != null,
-                    onTap: (value) {},
-                    size: 17,
-                    unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
-                    selectedColor: AppColors.primaryColor,
-                  ),
-                  14.widthSpace,
+                  // CustomCheckbox(
+                  //   isChecked: _formData['category_id'] != null,
+                  //   onTap: (value) {},
+                  //   size: 17,
+                  //   unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
+                  //   selectedColor: AppColors.primaryColor,
+                  // ),
+                  // 14.widthSpace,
                   Text(S.of(context).category, style: AppTextStyles.labelLarge),
                 ],
               ),
               10.heightSpace,
               Row(
                 children: [
-                  34.widthSpace,
-
+                  // 34.widthSpace,
                   Expanded(
                     child: SizedBox(
                       height: 44.h,
@@ -142,9 +140,9 @@ class _FilterScreenState extends State<FilterScreen> {
                                 .toList(),
                             value: _formData['category_id'],
                             onChanged: (val) {
-                              setState(() {
-                                _formData['category_id'] = val;
-                              });
+                              // setState(() {
+                              _formData['category_id'] = val;
+                              // });
                             },
                             onSaved: (val) {},
                           );
@@ -165,21 +163,21 @@ class _FilterScreenState extends State<FilterScreen> {
               Divider(height: 40.h),
               Row(
                 children: [
-                  CustomCheckbox(
-                    isChecked: _formData['city_id'] != null,
-                    onTap: (value) {},
-                    size: 17,
-                    unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
-                    selectedColor: AppColors.primaryColor,
-                  ),
-                  14.widthSpace,
+                  // CustomCheckbox(
+                  //   isChecked: _formData['city_id'] != null,
+                  //   onTap: (value) {},
+                  //   size: 17,
+                  //   unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
+                  //   selectedColor: AppColors.primaryColor,
+                  // ),
+                  // 14.widthSpace,
                   Text(S.of(context).city, style: AppTextStyles.labelLarge),
                 ],
               ),
               10.heightSpace,
               Row(
                 children: [
-                  34.widthSpace,
+                  // 34.widthSpace,
                   Expanded(
                     child: SizedBox(
                       height: 44.h,
@@ -203,9 +201,9 @@ class _FilterScreenState extends State<FilterScreen> {
                             value: _formData['city_id'],
 
                             onChanged: (val) {
-                              setState(() {
-                                _formData['city_id'] = val;
-                              });
+                              // setState(() {
+                              _formData['city_id'] = val;
+                              // });
                             },
                             onSaved: (val) {},
                           );
@@ -218,14 +216,14 @@ class _FilterScreenState extends State<FilterScreen> {
               Divider(height: 40.h),
               Row(
                 children: [
-                  CustomCheckbox(
-                    isChecked: _formData['sector_id'] != null,
-                    onTap: (value) {},
-                    size: 17,
-                    unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
-                    selectedColor: AppColors.primaryColor,
-                  ),
-                  14.widthSpace,
+                  // CustomCheckbox(
+                  //   isChecked: _formData['sector_id'] != null,
+                  //   onTap: (value) {},
+                  //   size: 17,
+                  //   unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
+                  //   selectedColor: AppColors.primaryColor,
+                  // ),
+                  // 14.widthSpace,
                   Text(
                     S.of(context).investmentSector,
                     style: AppTextStyles.labelLarge,
@@ -235,8 +233,7 @@ class _FilterScreenState extends State<FilterScreen> {
               10.heightSpace,
               Row(
                 children: [
-                  34.widthSpace,
-
+                  // 34.widthSpace,
                   Expanded(
                     child: SizedBox(
                       height: 44.h,
@@ -259,9 +256,9 @@ class _FilterScreenState extends State<FilterScreen> {
                                 .toList(),
                             value: _formData['sector_id'],
                             onChanged: (val) {
-                              setState(() {
-                                _formData['sector_id'] = val;
-                              });
+                              // setState(() {
+                              _formData['sector_id'] = val;
+                              // });
                             },
                             onSaved: (val) {},
                           );
@@ -274,14 +271,14 @@ class _FilterScreenState extends State<FilterScreen> {
               Divider(height: 40.h),
               Row(
                 children: [
-                  CustomCheckbox(
-                    isChecked: _formData['price_from'] != null,
-                    onTap: (value) {},
-                    size: 17,
-                    unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
-                    selectedColor: AppColors.primaryColor,
-                  ),
-                  14.widthSpace,
+                  // CustomCheckbox(
+                  //   isChecked: _formData['price_from'] != null,
+                  //   onTap: (value) {},
+                  //   size: 17,
+                  //   unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
+                  //   selectedColor: AppColors.primaryColor,
+                  // ),
+                  // 14.widthSpace,
                   Text(
                     S.of(context).averageCapital,
                     style: AppTextStyles.labelLarge,
@@ -291,7 +288,7 @@ class _FilterScreenState extends State<FilterScreen> {
               10.heightSpace,
               Row(
                 children: [
-                  34.widthSpace,
+                  // 34.widthSpace,
                   Expanded(
                     child: SizedBox(
                       height: 44.h,
@@ -311,26 +308,26 @@ class _FilterScreenState extends State<FilterScreen> {
                             .toList(),
                         value: selectedPriceId,
                         onChanged: (val) {
-                          setState(() {
-                            switch (val) {
-                              case 1:
-                                _formData['price_from'] = 100000;
-                                _formData['price_to'] = 500000;
-                                break;
+                          // setState(() {
+                          switch (val) {
+                            case 1:
+                              _formData['price_from'] = 100000;
+                              _formData['price_to'] = 500000;
+                              break;
 
-                              case 2:
-                                _formData['price_from'] = 500000;
-                                _formData['price_to'] = 1000000;
-                                break;
-                              case 3:
-                                _formData['price_from'] = 1000000;
-                                _formData['price_to'] = null;
-                                break;
-                              default:
-                                _formData['price_from'] = null;
-                                _formData['price_to'] = null;
-                            }
-                          });
+                            case 2:
+                              _formData['price_from'] = 500000;
+                              _formData['price_to'] = 1000000;
+                              break;
+                            case 3:
+                              _formData['price_from'] = 1000000;
+                              _formData['price_to'] = null;
+                              break;
+                            default:
+                              _formData['price_from'] = null;
+                              _formData['price_to'] = null;
+                          }
+                          // });
                         },
                         suffix: SvgPicture.asset(SvgAssets.assetsSvgSarIcon),
                         onSaved: (val) {},

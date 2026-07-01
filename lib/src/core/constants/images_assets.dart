@@ -77,4 +77,7 @@ class ImagesAssets {
   /// assets/images/splash_image.png
   static const String assetsImagesSplashImage = "assets/images/splash_image.png";
 
+  /// assets/images/time_waiting.png
+  static const String assetsImagesTimeWaiting = "assets/images/time_waiting.png";
+
 }

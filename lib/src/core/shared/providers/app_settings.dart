@@ -5,8 +5,6 @@ import 'package:invastro/src/features/home/presentation/controllers/ads_controll
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../generated/l10n.dart';
-import '../../../features/home/presentation/screens/home_layout_screen.dart';
-import '../../di/locator_service.dart';
 import '../../helpers/navigation_helper.dart';
 import '../../network/api_service.dart';
 import '../controllers/settings_controller.dart';
@@ -66,11 +64,7 @@ class AppSettings with ChangeNotifier {
             )
             .then((_) async {
               await changeLanguage(languageCode);
-              LocatorService.navigationService.currentState!
-                  .pushNamedAndRemoveUntil(
-                    HomeLayoutScreen.routeName,
-                    (route) => false,
-                  );
+
               //make to do
               // TODO:
               AdsController.getAds(refresh: true);

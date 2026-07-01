@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:invastro/src/features/home/presentation/screens/home_layout_screen.dart';
 
+import '../../di/locator_service.dart';
 import '../widgets/app_logo.dart';
 
 class TimeoutSplashScreen extends StatefulWidget {
@@ -37,7 +39,9 @@ class _TimeoutSplashScreenState extends State<TimeoutSplashScreen> {
         });
         timerStarted = true;
         Future.delayed(timeout, () {
-          Navigator.of(context).pop();
+          LocatorService.navigationService.currentState!.popUntil(
+            (route) => route.settings.name == HomeLayoutScreen.routeName,
+          );
         });
       }
     }

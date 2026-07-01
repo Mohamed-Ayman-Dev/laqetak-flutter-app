@@ -234,5 +234,22 @@
   "verifyYourMobileNumber": "تحقق من رقم جوالك",
   "skip": "تخطي",
   "pleaseEnterTheVerificationCodeSentTo": "يرجى إدخال رمز التحقق المرسل إلى",
-  "editYourAd": "تعديل الإعلان"
+  "editYourAd": "تعديل الإعلان",
+  "requestToShowNumber": "طلب إظهار الرقم",
+  "requestToViewThisPhoneNumber": "طلب عرض رقم الهاتف؟",
+  "projectNeedsCapital": "مشروع يحتاج لرأس المال",
+  "capitalNeedsAnIdea": "رأس المال يحتاج لفكرة",
+  "all": "الكل",
+  "searchForOpportunity": "إبحث عن فرصة",
+  "searchForInvestor": "إبحث عن مستثمر",
+  "home": "الرئيسية",
+  "chatnavbar": "الرسائل",
+  "favorites": "المفضلة",
+  "notifications": "الإشعارات",
+  "accept": "قبول",
+  "reject": "رفض",
+  "respondingToRequest": "جارٍ الرد على الطلب",
+  "responseSentSuccessfully": "تم إرسال الرد بنجاح",
+  "waitingForRequestApproval": "في انتظار قبول الطلب"
 }
+

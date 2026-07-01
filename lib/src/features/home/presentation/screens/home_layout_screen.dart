@@ -31,29 +31,6 @@ class HomeLayoutScreen extends StatefulWidget {
 }
 
 class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
-  final List<Map<String, dynamic>> _navItems = [
-    {
-      'name': isArabic ? 'الرئيسية' : 'Home',
-      'activeIcon': SvgAssets.assetsSvgHomeIconSelected, // ملون
-      'inactiveIcon': SvgAssets.assetsSvgHomeIconUnselected, // رمادي
-    },
-    {
-      'name': isArabic ? 'الرسائل' : 'Chat',
-      'activeIcon': SvgAssets.assetsSvgMessageIconSelected,
-      'inactiveIcon': SvgAssets.assetsSvgMessageIconUnselected,
-    },
-    {'name': 'add', 'activeIcon': null, 'inactiveIcon': null},
-    {
-      'name': isArabic ? 'المفضلة' : 'Favorites',
-      'activeIcon': SvgAssets.assetsSvgFavIconSelected,
-      'inactiveIcon': SvgAssets.assetsSvgFavIconUnselected,
-    },
-    {
-      'name': isArabic ? 'الإشعارات' : 'Notifications',
-      'activeIcon': SvgAssets.assetsSvgNotificationIconSelected,
-      'inactiveIcon': SvgAssets.assetsSvgNotificationIconUnselected,
-    },
-  ];
   final List<Widget> screens = [
     HomeScreen(),
     ConversationsScreen(),
@@ -83,6 +60,29 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> navItems = [
+      {
+        'name': S.of(context).home,
+        'activeIcon': SvgAssets.assetsSvgHomeIconSelected, // ملون
+        'inactiveIcon': SvgAssets.assetsSvgHomeIconUnselected, // رمادي
+      },
+      {
+        'name': S.of(context).chatnavbar,
+        'activeIcon': SvgAssets.assetsSvgMessageIconSelected,
+        'inactiveIcon': SvgAssets.assetsSvgMessageIconUnselected,
+      },
+      {'name': 'add', 'activeIcon': null, 'inactiveIcon': null},
+      {
+        'name': S.of(context).favorites,
+        'activeIcon': SvgAssets.assetsSvgFavIconSelected,
+        'inactiveIcon': SvgAssets.assetsSvgFavIconUnselected,
+      },
+      {
+        'name': S.of(context).notifications,
+        'activeIcon': SvgAssets.assetsSvgNotificationIconSelected,
+        'inactiveIcon': SvgAssets.assetsSvgNotificationIconUnselected,
+      },
+    ];
     return Selector<AppSettings, int>(
       selector: (_, p) => p.homeIndex,
       builder: (context, homeIndex, _) {
@@ -121,7 +121,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
             child: screens[homeIndex],
           ),
           // ── Bottom Nav ──────────────────────────────────────────────────
-          bottomNavigationBar: BottomNavBar(navItems: _navItems),
+          bottomNavigationBar: BottomNavBar(navItems: navItems),
         );
       },
     );

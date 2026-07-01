@@ -28,6 +28,25 @@ class NotificationsController {
     }
   }
 
+  static Future<void> respondShowNumberRequest({
+    required String status,
+    required num requestId,
+  }) async {
+    try {
+      AppFeedback.loadingMessage(message: S.current.respondingToRequest);
+      await LocatorService.notificationService.respondShowNumberRequest(
+        rethrowError: true,
+        data: {'status': status, 'contact_request_id': requestId},
+      );
+      await getNotifications(refresh: true);
+      AppFeedback.showToast(S.current.responseSentSuccessfully);
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
+    } finally {
+      LocatorService.adDetails.setLoadingRequestPhone(false);
+    }
+  }
+
   static Future<void> markAllRead() async {
     try {
       await LocatorService.notificationService.markAsRead(rethrowError: false);

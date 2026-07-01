@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:invastro/src/core/constants/images_assets.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
@@ -9,6 +11,7 @@ import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_elevated
 import 'package:invastro/src/core/shared/widgets/custom_image.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/ad_details/presentation/controllers/ad_details_controller.dart';
+import 'package:invastro/src/features/ad_details/presentation/providers/ad_details.dart';
 import 'package:invastro/src/features/ad_details/presentation/screens/seller_profile_screen.dart';
 import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
 import 'package:provider/provider.dart';
@@ -118,48 +121,114 @@ class AdDetailsSeller extends StatelessWidget {
             ),
           ),
           if (!isExpired) 13.heightSpace,
-          if ((isMe || !hidePhone) && !isExpired)
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () {
-                if (phone != null && phone!.isNotEmpty) {
-                  UrlHelper.openDialer(phone!);
-                }
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.sellerNumberBKColor.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(10),
-                ),
+          if (!isExpired)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 6.0).r,
+              child: Selector<AdDetails, bool>(
+                selector: (context, provider) => provider.loadingRequestPhone,
+                builder: (context, loadingRequestPhone, child) {
+                  bool showNumber =
+                      (isMe ||
+                      !hidePhone ||
+                      (ad?.contactRequestStatus == 'approved'));
+                  return CustomElevatedButton(
+                    onPressed: (!isAuth)
+                        ? () {
+                            BottomHelpers.showGuestBottomSheet(context);
+                          }
+                        : showNumber
+                        ? () {
+                            if (phone != null && phone!.isNotEmpty) {
+                              UrlHelper.openDialer(phone!);
+                            }
+                          }
+                        : (ad?.contactRequestStatus == 'pending')
+                        ? null
+                        : () {
+                            AdDetailsController.sendShowPhoneRequest(
+                              ad: ad ?? AdModel(),
+                            );
+                          },
 
-                margin: EdgeInsets.symmetric(horizontal: 6).r,
-                padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18).r,
-                child: Row(
-                  children: [
-                    Text(
-                      S.of(context).contactNumber,
-                      style: AppTextStyles.bodyMedium.copyWith(
-                        color: AppColors.numberLabelTextColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w300,
-                      ),
+                    backgroundColor: AppColors.sellerNumberBKColor.withOpacity(
+                      0.5,
                     ),
-                    Spacer(),
-                    Text(
-                      phone ?? '',
-                      style: AppTextStyles.labelSmall.copyWith(
-                        fontSize: 15.sp,
-                        color: AppColors.numberLabelTextColor,
-                      ),
+                    foregroundColor: Colors.transparent,
+                    borderRadius: 10,
+                    borderColor:
+                        (showNumber || (ad?.contactRequestStatus == 'pending'))
+                        ? null
+                        : AppColors.primaryColor,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: loadingRequestPhone ? 9 : 14,
+                        horizontal: 18,
+                      ).r,
+                      child: loadingRequestPhone
+                          ? SpinKitDoubleBounce(color: AppColors.primaryColor)
+                          : showNumber
+                          ? Row(
+                              children: [
+                                Text(
+                                  S.of(context).contactNumber,
+                                  style: AppTextStyles.bodyMedium.copyWith(
+                                    color: AppColors.numberLabelTextColor,
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                                Spacer(),
+                                Text(
+                                  phone ?? '',
+                                  style: AppTextStyles.labelSmall.copyWith(
+                                    fontSize: 15.sp,
+                                    color: AppColors.numberLabelTextColor,
+                                  ),
+                                ),
+                                12.widthSpace,
+                                SvgPicture.asset(
+                                  SvgAssets.assetsSvgCall,
+                                  height: 18.h,
+                                  width: 18.w,
+                                ),
+                              ],
+                            )
+                          : (ad?.contactRequestStatus == 'pending')
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  ImagesAssets.assetsImagesTimeWaiting,
+                                  height: 18.h,
+                                  width: 18.w,
+                                  color: AppColors.primaryColor,
+                                ),
+                                10.widthSpace,
+                                Text(
+                                  S.of(context).waitingForRequestApproval,
+                                  style: AppTextStyles.labelSmall.copyWith(
+                                    fontSize: 13.sp,
+
+                                    color: AppColors.numberLabelTextColor,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  S.of(context).requestToShowNumber,
+                                  style: AppTextStyles.labelSmall.copyWith(
+                                    fontSize: 13.sp,
+                                    color: AppColors.numberLabelTextColor,
+                                  ),
+                                ),
+                              ],
+                            ),
                     ),
-                    12.widthSpace,
-                    SvgPicture.asset(
-                      SvgAssets.assetsSvgCall,
-                      height: 18.h,
-                      width: 18.w,
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
           if (!isMe) Divider(height: 30.h),

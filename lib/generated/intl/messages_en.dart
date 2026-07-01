@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "aboutThePlatform": MessageLookupByLibrary.simpleMessage(
       "About the Platform",
     ),
+    "accept": MessageLookupByLibrary.simpleMessage("Accept"),
     "accountDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Account deleted successfully",
     ),
@@ -45,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "advertiserDetails": MessageLookupByLibrary.simpleMessage(
       "Advertiser Details",
     ),
+    "all": MessageLookupByLibrary.simpleMessage("All"),
     "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account",
     ),
@@ -75,6 +77,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancellationReasonIsRequired": MessageLookupByLibrary.simpleMessage(
       "Cancellation reason is required",
     ),
+    "capitalNeedsAnIdea": MessageLookupByLibrary.simpleMessage(
+      "Capital needs an idea",
+    ),
     "card": MessageLookupByLibrary.simpleMessage("Card"),
     "cash": MessageLookupByLibrary.simpleMessage("Cash"),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
@@ -83,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Changes have been saved successfully",
     ),
     "chat": MessageLookupByLibrary.simpleMessage("Chat"),
+    "chatnavbar": MessageLookupByLibrary.simpleMessage("Chat"),
     "chattingWith": MessageLookupByLibrary.simpleMessage("Chatting with"),
     "checkConnection": MessageLookupByLibrary.simpleMessage("Check Connection"),
     "checkOutThisAd": MessageLookupByLibrary.simpleMessage("check out this ad"),
@@ -166,6 +172,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "expired": MessageLookupByLibrary.simpleMessage("Expired"),
     "expiredAd": MessageLookupByLibrary.simpleMessage("Expired Ad"),
     "favoriteAds": MessageLookupByLibrary.simpleMessage("Favorite Ads"),
+    "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "forgotYourPassword": MessageLookupByLibrary.simpleMessage(
@@ -180,6 +187,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hidePhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Hide phone number",
     ),
+    "home": MessageLookupByLibrary.simpleMessage("Home"),
     "homeScreen": MessageLookupByLibrary.simpleMessage("Home Screen"),
     "hour": MessageLookupByLibrary.simpleMessage("hour"),
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage("Iban do not match"),
@@ -215,6 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "notificationDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Notification deleted successfully",
     ),
+    "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
     "now": MessageLookupByLibrary.simpleMessage("Now"),
     "numberHasBeenVerifiedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Number has been verified successfully.",
@@ -348,8 +357,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "pressToChat": MessageLookupByLibrary.simpleMessage("Press to chat"),
     "previous": MessageLookupByLibrary.simpleMessage("Previous"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "projectNeedsCapital": MessageLookupByLibrary.simpleMessage(
+      "Project needs capital",
+    ),
     "read": MessageLookupByLibrary.simpleMessage("Read"),
     "registerNow": MessageLookupByLibrary.simpleMessage("Register Now!"),
+    "reject": MessageLookupByLibrary.simpleMessage("Reject"),
     "removed": MessageLookupByLibrary.simpleMessage("Removed"),
     "report": MessageLookupByLibrary.simpleMessage("Report"),
     "reportAd": MessageLookupByLibrary.simpleMessage("Report Ad"),
@@ -359,10 +372,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "reportSubmittedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Report submitted successfully",
     ),
+    "requestToShowNumber": MessageLookupByLibrary.simpleMessage(
+      "Request to Show Number",
+    ),
+    "requestToViewThisPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "Request to view this phone number?",
+    ),
     "resend": MessageLookupByLibrary.simpleMessage("Resend"),
     "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
+    "respondingToRequest": MessageLookupByLibrary.simpleMessage(
+      "Responding to request",
+    ),
+    "responseSentSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Response sent successfully",
+    ),
     "retry": MessageLookupByLibrary.simpleMessage("Retry"),
     "sar": MessageLookupByLibrary.simpleMessage("SAR"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
@@ -370,6 +395,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "search": MessageLookupByLibrary.simpleMessage("Search"),
     "searchForALocation": MessageLookupByLibrary.simpleMessage(
       "Search for a location",
+    ),
+    "searchForInvestor": MessageLookupByLibrary.simpleMessage(
+      "Search for Investor",
+    ),
+    "searchForOpportunity": MessageLookupByLibrary.simpleMessage(
+      "Search for Opportunity",
     ),
     "second": MessageLookupByLibrary.simpleMessage("sec"),
     "selectCategory": MessageLookupByLibrary.simpleMessage("Select Category"),
@@ -486,6 +517,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Verify your phone number",
     ),
     "version": MessageLookupByLibrary.simpleMessage("Version"),
+    "waitingForRequestApproval": MessageLookupByLibrary.simpleMessage(
+      "Waiting for request approval",
+    ),
     "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
     "writeAMessage": MessageLookupByLibrary.simpleMessage("Write a message..."),
     "writeATitleForTheAd": MessageLookupByLibrary.simpleMessage(

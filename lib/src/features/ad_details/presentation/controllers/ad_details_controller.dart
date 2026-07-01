@@ -1,3 +1,5 @@
+import 'package:invastro/src/features/home/presentation/controllers/ads_controller.dart';
+
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/app_feedback.dart';
 import '../../../../core/di/locator_service.dart';
@@ -24,6 +26,21 @@ class AdDetailsController {
       );
     } catch (e) {
       ErrorHelper.handleApiError(e);
+    }
+  }
+
+  static Future<void> sendShowPhoneRequest({required AdModel ad}) async {
+    try {
+      LocatorService.adDetails.setLoadingRequestPhone(true);
+      await LocatorService.adDetailsService.sendShowPhoneRequest(
+        rethrowError: true,
+        data: {'ad_id': ad.id},
+      );
+      await AdsController.getAdDetails(ad.id!);
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
+    } finally {
+      LocatorService.adDetails.setLoadingRequestPhone(false);
     }
   }
 

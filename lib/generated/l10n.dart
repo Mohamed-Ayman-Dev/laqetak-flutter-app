@@ -2063,6 +2063,136 @@ class S {
   String get editYourAd {
     return Intl.message('Edit Your Ad', name: 'editYourAd', desc: '', args: []);
   }
+
+  /// `Request to Show Number`
+  String get requestToShowNumber {
+    return Intl.message(
+      'Request to Show Number',
+      name: 'requestToShowNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request to view this phone number?`
+  String get requestToViewThisPhoneNumber {
+    return Intl.message(
+      'Request to view this phone number?',
+      name: 'requestToViewThisPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Project needs capital`
+  String get projectNeedsCapital {
+    return Intl.message(
+      'Project needs capital',
+      name: 'projectNeedsCapital',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Capital needs an idea`
+  String get capitalNeedsAnIdea {
+    return Intl.message(
+      'Capital needs an idea',
+      name: 'capitalNeedsAnIdea',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message('All', name: 'all', desc: '', args: []);
+  }
+
+  /// `Search for Opportunity`
+  String get searchForOpportunity {
+    return Intl.message(
+      'Search for Opportunity',
+      name: 'searchForOpportunity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search for Investor`
+  String get searchForInvestor {
+    return Intl.message(
+      'Search for Investor',
+      name: 'searchForInvestor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message('Home', name: 'home', desc: '', args: []);
+  }
+
+  /// `Chat`
+  String get chatnavbar {
+    return Intl.message('Chat', name: 'chatnavbar', desc: '', args: []);
+  }
+
+  /// `Favorites`
+  String get favorites {
+    return Intl.message('Favorites', name: 'favorites', desc: '', args: []);
+  }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept`
+  String get accept {
+    return Intl.message('Accept', name: 'accept', desc: '', args: []);
+  }
+
+  /// `Reject`
+  String get reject {
+    return Intl.message('Reject', name: 'reject', desc: '', args: []);
+  }
+
+  /// `Responding to request`
+  String get respondingToRequest {
+    return Intl.message(
+      'Responding to request',
+      name: 'respondingToRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Response sent successfully`
+  String get responseSentSuccessfully {
+    return Intl.message(
+      'Response sent successfully',
+      name: 'responseSentSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Waiting for request approval`
+  String get waitingForRequestApproval {
+    return Intl.message(
+      'Waiting for request approval',
+      name: 'waitingForRequestApproval',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

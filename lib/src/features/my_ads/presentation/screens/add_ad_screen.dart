@@ -49,6 +49,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
       if (ad != null) {
         _formData['city_id'] = ad?.city?.id;
         _formData['category_id'] = ad?.category?.id;
+        _selectedCategory = ad?.category;
         _formData['sector_id'] = ad?.sector?.id;
         _titleController.text = ad?.title ?? '';
         _investmentAmountController.text =
@@ -81,6 +82,8 @@ class _AddAdScreenState extends State<AddAdScreen> {
     _investmentAmountController.dispose();
     super.dispose();
   }
+
+  CategoryModel? _selectedCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -200,12 +203,27 @@ class _AddAdScreenState extends State<AddAdScreen> {
                       value: _formData['category_id'],
                       onChanged: (val) {
                         _formData['category_id'] = val;
+                        _selectedCategory = myCategories?.firstWhere(
+                          (e) => e.id == val,
+                        );
                       },
                       onSaved: (val) {},
                     );
                   },
                 ),
                 7.heightSpace,
+                if (_selectedCategory != null)
+                  Text(
+                    _selectedCategory?.slug == 'investment'
+                        ? S.of(context).projectNeedsCapital
+                        : _selectedCategory?.slug == 'opportunity'
+                        ? S.of(context).capitalNeedsAnIdea
+                        : '',
+                    style: AppTextStyles.labelSmall.copyWith(
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                13.heightSpace,
                 Text(
                   S.of(context).selectInvestmentSector,
                   style: AppTextStyles.labelSmall,

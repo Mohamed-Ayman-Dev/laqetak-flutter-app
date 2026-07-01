@@ -19,4 +19,15 @@ class AdDetailsService {
       rethrowError: rethrowError,
     );
   }
+
+  Future sendShowPhoneRequest({
+    bool rethrowError = false,
+    Map<String, dynamic>? data,
+  }) async {
+    return await ApiService.post(
+      '/ads/request-contact',
+      rethrowError: rethrowError,
+      data: data,
+    );
+  }
 }

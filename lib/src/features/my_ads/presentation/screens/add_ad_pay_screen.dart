@@ -257,31 +257,37 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                 //     ],
                 //   ),
                 // ),
-                350.heightSpace,
+                300.heightSpace,
                 Row(
                   children: [
-                    CustomElevatedButton(
-                      text: S.of(context).payNow,
-                      icon: SvgAssets.assetsSvgArrowRight,
-                      size: Size(163.w, 48.h),
-                      onPressed: () {
-                        _formData?['payment_method'] = 'cash';
-                        MyAdsController.sendAdOtp(_formData);
-                      },
+                    Expanded(
+                      child: CustomElevatedButton(
+                        text: S.of(context).payNow,
+                        icon: SvgAssets.assetsSvgArrowRight,
+                        size: Size(163.w, 48.h),
+                        onPressed: () {
+                          _formData?['payment_method'] = 'cash';
+                          MyAdsController.sendAdOtp(_formData);
+                          MyAdsController.addAd(_formData);
+                        },
+                      ),
                     ),
                     16.widthSpace,
-                    CustomElevatedButton(
-                      text: S.of(context).previous,
-                      icon: SvgAssets.assetsSvgArrowLeft,
-                      size: Size(163.w, 48.h),
-                      backgroundColor: AppColors.buttonBackBKColor,
-                      onPressed: () {
-                        LocatorService.navigationService.currentState?.popUntil(
-                          (route) =>
-                              route.settings.name ==
-                              AddAdSecondScreen.routeName,
-                        );
-                      },
+                    Expanded(
+                      child: CustomElevatedButton(
+                        text: S.of(context).previous,
+                        icon: SvgAssets.assetsSvgArrowLeft,
+                        size: Size(163.w, 48.h),
+                        backgroundColor: AppColors.buttonBackBKColor,
+                        onPressed: () {
+                          LocatorService.navigationService.currentState
+                              ?.popUntil(
+                                (route) =>
+                                    route.settings.name ==
+                                    AddAdSecondScreen.routeName,
+                              );
+                        },
+                      ),
                     ),
                   ],
                 ),

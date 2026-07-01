@@ -18,6 +18,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.isLoading = false,
     this.gradient,
     this.backgroundColor,
+    this.foregroundColor,
     this.textStyle,
     this.borderRadius = 8,
     this.size,
@@ -32,6 +33,7 @@ class CustomElevatedButton extends StatelessWidget {
   final bool isLoading;
   final Gradient? gradient; // ← new
   final Color? backgroundColor;
+  final Color? foregroundColor;
   final TextStyle? textStyle;
   final double borderRadius;
   final Size? size;
@@ -53,6 +55,7 @@ class CustomElevatedButton extends StatelessWidget {
         maximumSize: size,
         backgroundColor: backgroundColor ?? Colors.transparent,
         disabledBackgroundColor: AppColors.disabledButtonColorBk,
+        foregroundColor: foregroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius).r,
           side: borderColor != null

@@ -122,10 +122,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> _filters = [
-      isArabic ? 'الكل' : 'All',
-      isArabic ? 'إبحث عن فرصة' : 'Search for Opportunity',
-      isArabic ? 'إبحث عن مستثمر' : 'Search for Investor',
+    final List<String> filters = [
+      S.of(context).all,
+      S.of(context).searchForOpportunity,
+      S.of(context).searchForInvestor,
     ];
     return GestureDetector(
       onTap: () {
@@ -226,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SliverPersistentHeader(
                 pinned: true,
                 delegate: FilterHeaderDelegate(
-                  filters: _filters,
+                  filters: filters,
                   selectedIndex: _selectedFilterIndex ?? 0,
                   onFilterTap: (index) {
                     unfocus();
