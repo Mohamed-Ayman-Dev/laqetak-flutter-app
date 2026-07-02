@@ -2193,6 +2193,41 @@ class S {
       args: [],
     );
   }
+
+  /// `Clear All`
+  String get clearAll {
+    return Intl.message('Clear All', name: 'clearAll', desc: '', args: []);
+  }
+
+  /// `Select All`
+  String get selectAll {
+    return Intl.message('Select All', name: 'selectAll', desc: '', args: []);
+  }
+
+  /// `Ad Publishing Fee`
+  String get adPublishingFee {
+    return Intl.message(
+      'Ad Publishing Fee',
+      name: 'adPublishingFee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Value Added Tax (15%)`
+  String get valueAddedTax15 {
+    return Intl.message(
+      'Value Added Tax (15%)',
+      name: 'valueAddedTax15',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get total {
+    return Intl.message('Total', name: 'total', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -250,6 +250,11 @@
   "reject": "رفض",
   "respondingToRequest": "جارٍ الرد على الطلب",
   "responseSentSuccessfully": "تم إرسال الرد بنجاح",
-  "waitingForRequestApproval": "في انتظار قبول الطلب"
+  "waitingForRequestApproval": "في انتظار قبول الطلب",
+  "clearAll": "Clear All",
+  "selectAll": "Select All",
+  "adPublishingFee": "رسوم نشر الإعلان",
+  "valueAddedTax15": "ضريبة القيمة المضافة (15%)",
+  "total": "الإجمالي"
 }
 

@@ -11,6 +11,7 @@ import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_second_
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
+import '../../../../core/helpers/vat_helper.dart';
 import '../../../../core/shared/controllers/settings_controller.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/custom_appbar.dart';
@@ -90,30 +91,111 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                       color: AppColors.searchBKColor,
                       borderRadius: BorderRadius.circular(10).r,
                     ),
-                    child: Row(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          S.of(context).commissionPrice,
-                          style: AppTextStyles.labelSmall.copyWith(
-                            color: AppColors.labelBlackTextColor,
-                            fontSize: 13.sp,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              S.of(context).adPublishingFee,
+                              style: AppTextStyles.labelSmall.copyWith(
+                                color: AppColors.labelBlackTextColor,
+                                fontSize: 13.sp,
+                              ),
+                            ),
+                            Spacer(),
+                            Text(
+                              VatHelper.priceBeforeVat(
+                                double.tryParse(
+                                      LocatorService
+                                              .appSettings
+                                              .mySettings
+                                              ?.costPerAd ??
+                                          '',
+                                    ) ??
+                                    0,
+                              ).toString(),
+                              style: AppTextStyles.labelLarge.copyWith(
+                                color: AppColors.priceTextColor,
+                                height: 1.2,
+                              ),
+                            ),
+                            7.widthSpace,
+                            SvgPicture.asset(
+                              SvgAssets.assetsSvgSarIcon,
+                              color: AppColors.primaryColor,
+                              width: 10.w,
+                              height: 10.h,
+                            ),
+                          ],
                         ),
-                        Spacer(),
-                        Text(
-                          LocatorService.appSettings.mySettings?.costPerAd ??
-                              '',
-                          style: AppTextStyles.labelLarge.copyWith(
-                            color: AppColors.priceTextColor,
-                            height: 1.2,
-                          ),
+                        10.heightSpace,
+                        Row(
+                          children: [
+                            Text(
+                              S.of(context).valueAddedTax15,
+                              style: AppTextStyles.labelSmall.copyWith(
+                                color: AppColors.labelBlackTextColor,
+                                fontSize: 13.sp,
+                              ),
+                            ),
+                            Spacer(),
+                            Text(
+                              VatHelper.vatAmount(
+                                double.tryParse(
+                                      LocatorService
+                                              .appSettings
+                                              .mySettings
+                                              ?.costPerAd ??
+                                          '',
+                                    ) ??
+                                    0,
+                              ).toString(),
+                              style: AppTextStyles.labelLarge.copyWith(
+                                color: AppColors.priceTextColor,
+                                height: 1.2,
+                              ),
+                            ),
+                            7.widthSpace,
+                            SvgPicture.asset(
+                              SvgAssets.assetsSvgSarIcon,
+                              color: AppColors.primaryColor,
+                              width: 10.w,
+                              height: 10.h,
+                            ),
+                          ],
                         ),
-                        7.widthSpace,
-                        SvgPicture.asset(
-                          SvgAssets.assetsSvgSarIcon,
-                          color: AppColors.primaryColor,
-                          width: 10.w,
-                          height: 10.h,
+
+                        Divider(height: 30.h),
+                        Row(
+                          children: [
+                            Text(
+                              S.of(context).total,
+                              style: AppTextStyles.labelSmall.copyWith(
+                                color: AppColors.labelBlackTextColor,
+                                fontSize: 13.sp,
+                              ),
+                            ),
+                            Spacer(),
+                            Text(
+                              LocatorService
+                                      .appSettings
+                                      .mySettings
+                                      ?.costPerAd ??
+                                  '',
+                              style: AppTextStyles.labelLarge.copyWith(
+                                color: AppColors.priceTextColor,
+                                height: 1.2,
+                              ),
+                            ),
+                            7.widthSpace,
+                            SvgPicture.asset(
+                              SvgAssets.assetsSvgSarIcon,
+                              color: AppColors.primaryColor,
+                              width: 10.w,
+                              height: 10.h,
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -267,8 +349,12 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                         size: Size(163.w, 48.h),
                         onPressed: () {
                           _formData?['payment_method'] = 'cash';
-                          MyAdsController.sendAdOtp(_formData);
-                          MyAdsController.addAd(_formData);
+                          bool checkOtp =
+                              _formData?['contact_phone'] !=
+                              LocatorService.auth.user?.phone;
+                          checkOtp
+                              ? MyAdsController.sendAdOtp(_formData)
+                              : MyAdsController.addAd(_formData);
                         },
                       ),
                     ),

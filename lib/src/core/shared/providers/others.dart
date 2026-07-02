@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:invastro/src/core/shared/models/budget_range_model.dart';
 import 'package:invastro/src/core/shared/models/category_model.dart';
 
 import '../models/details_model.dart';
@@ -7,6 +8,7 @@ import '../models/payment_method_model.dart';
 class Others with ChangeNotifier {
   List<DetailsModel>? myRegions;
   List<DetailsModel>? mySectors;
+  List<BudgetRangeModel>? myBudgetRanges;
   List<PaymentMethodModel>? myPaymentMethods;
   List<CategoryModel>? myCategories;
   List<DetailsModel>? myCities;
@@ -33,6 +35,11 @@ class Others with ChangeNotifier {
 
   void setSectors(List<DetailsModel> sectors) {
     mySectors = sectors;
+    notifyListeners();
+  }
+
+  void setBudgetRanges(List<BudgetRangeModel> budgets) {
+    myBudgetRanges = budgets;
     notifyListeners();
   }
 }

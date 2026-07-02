@@ -5,6 +5,7 @@ import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/shared/controllers/others_controller.dart';
+import 'package:invastro/src/core/shared/models/budget_range_model.dart';
 import 'package:invastro/src/core/shared/models/category_model.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_outline_button.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
@@ -12,7 +13,6 @@ import 'package:invastro/src/core/themes/colors.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../../core/constants/mock_data_for_loading.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/models/details_model.dart';
 import '../../../../core/shared/providers/others.dart';
@@ -53,28 +53,30 @@ class _FilterScreenState extends State<FilterScreen> {
       OthersController.getCategories();
       OthersController.getSectors();
       OthersController.getCities();
+      OthersController.getBudgetRanges();
     });
     super.initState();
   }
 
-  num? get selectedPriceId {
-    final priceFrom = _formData['price_from'];
-    final priceTo = _formData['price_to'];
-
-    if (priceFrom == 100000 && priceTo == 500000) {
-      return 1;
-    }
-
-    if (priceFrom == 500000 && priceTo == 1000000) {
-      return 2;
-    }
-
-    if (priceFrom == 1000000 && priceTo == null) {
-      return 3;
-    }
-
-    return null;
-  }
+  // num? get selectedPriceId {
+  //   final priceFrom = _formData['price_from'];
+  //   final priceTo = _formData['price_to'];
+  //
+  //   if (priceFrom == 100000 && priceTo == 500000) {
+  //     return 1;
+  //   }
+  //
+  //   if (priceFrom == 500000 && priceTo == 1000000) {
+  //     return 2;
+  //   }
+  //
+  //   if (priceFrom == 1000000 && priceTo == null) {
+  //     return 3;
+  //   }
+  //
+  //   return null;
+  // }
+  BudgetRangeModel? selectedPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -292,45 +294,52 @@ class _FilterScreenState extends State<FilterScreen> {
                   Expanded(
                     child: SizedBox(
                       height: 44.h,
-                      child: MyCustomDropdownFormField(
-                        hint: "500.000  :  100.000",
-                        items: MockDataForLoading.mockPrices
-                            .map<DropdownMenuItem<num>>(
-                              (e) => DropdownMenuItem<num>(
-                                value: e.id,
-                                child: Text(
-                                  e.name ?? '',
-                                  style: AppTextStyles.inputTextStyle,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            )
-                            .toList(),
-                        value: selectedPriceId,
-                        onChanged: (val) {
-                          // setState(() {
-                          switch (val) {
-                            case 1:
-                              _formData['price_from'] = 100000;
-                              _formData['price_to'] = 500000;
-                              break;
-
-                            case 2:
-                              _formData['price_from'] = 500000;
-                              _formData['price_to'] = 1000000;
-                              break;
-                            case 3:
-                              _formData['price_from'] = 1000000;
-                              _formData['price_to'] = null;
-                              break;
-                            default:
-                              _formData['price_from'] = null;
-                              _formData['price_to'] = null;
-                          }
-                          // });
+                      child: Selector<Others, List<BudgetRangeModel>?>(
+                        selector: (context, provider) =>
+                            provider.myBudgetRanges,
+                        builder: (context, myBudgetRanges, child) {
+                          return MyCustomDropdownFormField(
+                            hint: "500.000  :  100.000",
+                            items: myBudgetRanges
+                                ?.map<DropdownMenuItem<BudgetRangeModel?>>(
+                                  (e) => DropdownMenuItem<BudgetRangeModel?>(
+                                    value: e,
+                                    child: Text(
+                                      e.name ?? '',
+                                      style: AppTextStyles.inputTextStyle,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                            value:
+                                (myBudgetRanges?.any(
+                                      (e) =>
+                                          (e.amountFrom ==
+                                              _formData['price_from'] &&
+                                          e.amountTo == _formData['price_to']),
+                                    ) ==
+                                    true)
+                                ? myBudgetRanges?.firstWhere(
+                                    (e) =>
+                                        (e.amountFrom ==
+                                            _formData['price_from'] &&
+                                        e.amountTo == _formData['price_to']),
+                                  )
+                                : null,
+                            onChanged: (val) {
+                              _formData['price_from'] = val?.amountFrom;
+                              _formData['price_to'] = val?.amountTo;
+                            },
+                            suffix: SvgPicture.asset(
+                              SvgAssets.assetsSvgSarIcon,
+                            ),
+                            onSaved: (val) {
+                              _formData['price_from'] = val?.amountFrom;
+                              _formData['price_to'] = val?.amountTo;
+                            },
+                          );
                         },
-                        suffix: SvgPicture.asset(SvgAssets.assetsSvgSarIcon),
-                        onSaved: (val) {},
                       ),
                     ),
                   ),

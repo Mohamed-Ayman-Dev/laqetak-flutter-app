@@ -38,6 +38,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ad ended successfully.",
     ),
     "adImages": MessageLookupByLibrary.simpleMessage("Ad Images"),
+    "adPublishingFee": MessageLookupByLibrary.simpleMessage(
+      "Ad Publishing Fee",
+    ),
     "addYourAd": MessageLookupByLibrary.simpleMessage("Add Your Ad"),
     "added": MessageLookupByLibrary.simpleMessage("Added"),
     "adjustImage": MessageLookupByLibrary.simpleMessage("Adjust Image"),
@@ -94,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkOutThisAd": MessageLookupByLibrary.simpleMessage("check out this ad"),
     "chooseLanguage": MessageLookupByLibrary.simpleMessage("Choose Language"),
     "city": MessageLookupByLibrary.simpleMessage("City"),
+    "clearAll": MessageLookupByLibrary.simpleMessage("Clear All"),
     "closeApp": MessageLookupByLibrary.simpleMessage("Close App"),
     "commissionPrice": MessageLookupByLibrary.simpleMessage("Commission Price"),
     "complaintReason": MessageLookupByLibrary.simpleMessage("Complaint Reason"),
@@ -403,6 +407,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Search for Opportunity",
     ),
     "second": MessageLookupByLibrary.simpleMessage("sec"),
+    "selectAll": MessageLookupByLibrary.simpleMessage("Select All"),
     "selectCategory": MessageLookupByLibrary.simpleMessage("Select Category"),
     "selectCity": MessageLookupByLibrary.simpleMessage("Select City"),
     "selectComplaintReason": MessageLookupByLibrary.simpleMessage(
@@ -498,9 +503,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "toSignIn": MessageLookupByLibrary.simpleMessage("to sign in"),
     "today": MessageLookupByLibrary.simpleMessage("Today"),
+    "total": MessageLookupByLibrary.simpleMessage("Total"),
     "username": MessageLookupByLibrary.simpleMessage("Username"),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "Username Or Password Is Incorrect",
+    ),
+    "valueAddedTax15": MessageLookupByLibrary.simpleMessage(
+      "Value Added Tax (15%)",
     ),
     "verificationCodeHasBeenSentToYourPhone":
         MessageLookupByLibrary.simpleMessage(

@@ -25,6 +25,14 @@ class OthersService {
     );
   }
 
+  Future getBudgetRanges({bool rethrowError = false}) async {
+    return await ApiService.get(
+      '/budget-ranges',
+      useDefaultUrl: true,
+      rethrowError: rethrowError,
+    );
+  }
+
   Future getCities({
     bool rethrowError = false,
     Map<String, dynamic>? queryParameters,

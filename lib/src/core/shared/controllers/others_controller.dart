@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:invastro/src/core/error/error_helper.dart';
+import 'package:invastro/src/core/shared/models/budget_range_model.dart';
 import 'package:invastro/src/core/shared/models/category_model.dart';
 
 import '../../../../generated/l10n.dart';
@@ -36,6 +37,24 @@ abstract class OthersController {
       LocatorService.others.setSectors(
         response['data']
             .map<DetailsModel>((e) => DetailsModel.fromJson(e))
+            .toList(),
+      );
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
+  static Future<void> getBudgetRanges() async {
+    try {
+      final response = await LocatorService.othersService.getBudgetRanges(
+        rethrowError: true,
+      );
+      LocatorService.others.setBudgetRanges(
+        response['data']
+            .map<BudgetRangeModel>((e) => BudgetRangeModel.fromJson(e))
             .toList(),
       );
     } catch (e) {

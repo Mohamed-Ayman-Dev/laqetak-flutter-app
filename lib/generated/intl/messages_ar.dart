@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم انهاء الاعلان بنجاح",
     ),
     "adImages": MessageLookupByLibrary.simpleMessage("صور الإعلان"),
+    "adPublishingFee": MessageLookupByLibrary.simpleMessage("رسوم نشر الإعلان"),
     "addYourAd": MessageLookupByLibrary.simpleMessage("أضف إعلانك"),
     "added": MessageLookupByLibrary.simpleMessage("تمت الإضافة"),
     "adjustImage": MessageLookupByLibrary.simpleMessage("تعديل الصورة"),
@@ -87,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkOutThisAd": MessageLookupByLibrary.simpleMessage("شاهد هذا الإعلان"),
     "chooseLanguage": MessageLookupByLibrary.simpleMessage("إختر اللغة"),
     "city": MessageLookupByLibrary.simpleMessage("المدينة"),
+    "clearAll": MessageLookupByLibrary.simpleMessage("Clear All"),
     "closeApp": MessageLookupByLibrary.simpleMessage("اغلاق التطبيق"),
     "commissionPrice": MessageLookupByLibrary.simpleMessage("سعر العمولة"),
     "complaintReason": MessageLookupByLibrary.simpleMessage("سبب الشكوى"),
@@ -387,6 +389,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "إبحث عن فرصة",
     ),
     "second": MessageLookupByLibrary.simpleMessage("ثانية"),
+    "selectAll": MessageLookupByLibrary.simpleMessage("Select All"),
     "selectCategory": MessageLookupByLibrary.simpleMessage("اختر القسم"),
     "selectCity": MessageLookupByLibrary.simpleMessage("اختر المدينة"),
     "selectComplaintReason": MessageLookupByLibrary.simpleMessage(
@@ -478,9 +481,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "toSignIn": MessageLookupByLibrary.simpleMessage("لتسجيل الدخول"),
     "today": MessageLookupByLibrary.simpleMessage("اليوم"),
+    "total": MessageLookupByLibrary.simpleMessage("الإجمالي"),
     "username": MessageLookupByLibrary.simpleMessage("إسم المستخدم"),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "اسم المستخدم او كلمة المرور غير صحيحة",
+    ),
+    "valueAddedTax15": MessageLookupByLibrary.simpleMessage(
+      "ضريبة القيمة المضافة (15%)",
     ),
     "verificationCodeHasBeenSentToYourPhone":
         MessageLookupByLibrary.simpleMessage("تم إرسال رمز التحقق إلى هاتفك"),

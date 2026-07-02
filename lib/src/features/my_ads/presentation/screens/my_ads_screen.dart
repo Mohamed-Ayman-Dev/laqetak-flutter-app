@@ -24,6 +24,7 @@ import '../../../../core/shared/widgets/lists_widgets/list_loading_end_widget.da
 import '../../../../core/shared/widgets/lists_widgets/smart_refresher_header.dart';
 import '../../../../core/shared/widgets/shimmers/items/ad_item_shimmer.dart';
 import '../../../ad_details/presentation/screens/ad_details_screen.dart';
+import '../../../home/presentation/controllers/ads_controller.dart';
 
 class MyAdsScreen extends StatefulWidget {
   static const routeName = '/my_ads_screen';
@@ -181,13 +182,22 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                                                 },
                                               );
                                             },
-                                            onEdit: () {
+                                            onEdit: () async {
+                                              await AdsController.getAdDetails(
+                                                ads[index].id ?? 0,
+                                                showLoading: true,
+                                              );
+                                              AdModel?
+                                              adDetails = LocatorService
+                                                  .ads
+                                                  .myAdDetails[ads[index].id];
                                               LocatorService
                                                   .navigationService
                                                   .currentState
                                                   ?.pushNamed(
                                                     AddAdScreen.routeName,
-                                                    arguments: ads[index],
+                                                    arguments:
+                                                        adDetails ?? ads[index],
                                                   );
                                             },
                                             views:

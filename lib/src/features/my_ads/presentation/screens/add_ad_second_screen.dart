@@ -55,6 +55,8 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
               _formData['hide_phone'] = ad?.hidePhone ?? 0;
             });
           });
+        } else {
+          _phoneController.text = LocatorService.auth.user?.phone ?? '';
         }
 
         _formData = args['data'];
@@ -79,9 +81,16 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
     }
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      if (ad != null) {
+      bool isUpdate = ad != null;
+
+      if (isUpdate) {
         _formData['ad_id'] = ad?.id;
-        MyAdsController.sendAdOtp(_formData, edit: true);
+        if ((_formData['contact_phone'] == ad?.contactPhone) ||
+            (_formData['contact_phone'] == LocatorService.auth.user?.phone)) {
+          MyAdsController.editAd(_formData, checkOtp: false);
+        } else {
+          MyAdsController.sendAdOtp(_formData, edit: true);
+        }
       } else {
         LocatorService.navigationService.currentState?.pushNamed(
           AddAdPayScreen.routeName,

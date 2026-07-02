@@ -94,8 +94,11 @@ class AdsController {
     }
   }
 
-  static Future<void> getAdDetails(num adId) async {
+  static Future<void> getAdDetails(num adId, {bool showLoading = false}) async {
     try {
+      if (showLoading) {
+        AppFeedback.loadingMessage();
+      }
       LocatorService.ads.updateLoading('loadingAdDetails', true);
       final response = await LocatorService.adsService.getAdDetails(
         id: adId,
@@ -105,6 +108,9 @@ class AdsController {
     } catch (e) {
       ErrorHelper.handleApiError(e);
     } finally {
+      if (showLoading) {
+        EasyLoading.dismiss();
+      }
       LocatorService.ads.updateLoading('loadingAdDetails', false);
     }
   }

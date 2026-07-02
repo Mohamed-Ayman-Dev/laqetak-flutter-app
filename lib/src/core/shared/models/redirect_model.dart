@@ -14,7 +14,7 @@ class RedirectModel {
   RedirectModel.fromJson(dynamic json) {
     redirect = json['redirect'];
     customerId = json['customer_id'];
-    phone = json['phone'];
+    phone = json['phone'] ?? json['contact_phone'];
     remainingSeconds = json['remainingSeconds'];
   }
 

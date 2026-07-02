@@ -143,7 +143,10 @@ class MyAdsController {
     }
   }
 
-  static Future<void> editAd(Map<String, dynamic>? data) async {
+  static Future<void> editAd(
+    Map<String, dynamic>? data, {
+    bool checkOtp = true,
+  }) async {
     try {
       final readyData = Map<String, dynamic>.from(data ?? {});
       AppFeedback.loadingMessage(message: S.current.pleaseWait);
@@ -175,7 +178,7 @@ class MyAdsController {
         subtitle: S.current.yourRequestWillBeReviewedByTheAdministrationAndIf,
       );
     } catch (e, s) {
-      if (e is DioException) {
+      if (checkOtp && e is DioException) {
         final responseData = e.response?.data;
         EasyLoading.dismiss();
         LocatorService.authNavigations.setWrongVerificationCode(
@@ -186,6 +189,7 @@ class MyAdsController {
               ?.validate();
         });
       } else {
+        ErrorHelper.handleApiError(e);
         debugPrint(e.toString());
         debugPrintStack(stackTrace: s);
       }

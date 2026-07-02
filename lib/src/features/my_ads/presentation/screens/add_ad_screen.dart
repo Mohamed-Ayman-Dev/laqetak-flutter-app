@@ -224,10 +224,67 @@ class _AddAdScreenState extends State<AddAdScreen> {
                     ),
                   ),
                 13.heightSpace,
+                // Selector<Others, List<DetailsModel>?>(
+                //   selector: (context, provider) => provider.mySectors,
+                //   builder: (context, mySectors, child) {
+                //     return Row(
+                //       children: [
                 Text(
                   S.of(context).selectInvestmentSector,
                   style: AppTextStyles.labelSmall,
                 ),
+                // Spacer(),
+                // CustomOutlineButton(
+                //   size: Size(85.w, 30.h),
+                //   borderRadius: 8,
+                //   onPressed: selectedBrands.isNotEmpty
+                //       ? () {
+                //     setState(() {
+                //       selectedBrands = [];
+                //     });
+                //     LocatorService.cars.carModelsByBrands = null;
+                //     if (selectedBrands.isNotEmpty) {
+                //       CarsController.getCarModelsByBrands(
+                //         brandIds: selectedBrands
+                //             .map((e) => e.id ?? 0)
+                //             .toList(),
+                //       );
+                //     }
+                //   }
+                //       : null,
+                //
+                //   text: S.of(context).clearAll,
+                //   fontSize: 12,
+                // ),
+                // 5.widthSpace,
+                // CustomElevatedButton(
+                //   size: Size(85.w, 30.h),
+                //   borderRadius: 8,
+                //
+                //   onPressed: carBrands != null && carBrands.isNotEmpty
+                //       ? () {
+                //     setState(() {
+                //       selectedBrands = [];
+                //       selectedBrands.addAll(carBrands);
+                //       LocatorService.cars.carModelsByBrands = null;
+                //       CarsController.getCarModelsByBrands(
+                //         brandIds: selectedBrands
+                //             .map((e) => e.id ?? 0)
+                //             .toList(),
+                //       );
+                //     });
+                //   }
+                //       : null,
+                //
+                //   textStyle: AppTextStyles.buttonsTextStyle.copyWith(
+                //     fontSize: 12.sp,
+                //   ),
+                //   text: S.of(context).selectAll,
+                // ),
+                //       ],
+                //     );
+                //   },
+                // ),
                 8.heightSpace,
                 Selector<Others, List<DetailsModel>?>(
                   selector: (context, provider) => provider.mySectors,

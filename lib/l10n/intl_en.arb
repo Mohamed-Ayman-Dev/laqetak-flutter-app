@@ -250,5 +250,10 @@
   "reject": "Reject",
   "respondingToRequest": "Responding to request",
   "responseSentSuccessfully": "Response sent successfully",
-  "waitingForRequestApproval": "Waiting for request approval"
+  "waitingForRequestApproval": "Waiting for request approval",
+  "clearAll": "Clear All",
+  "selectAll": "Select All",
+  "adPublishingFee": "Ad Publishing Fee",
+  "valueAddedTax15": "Value Added Tax (15%)",
+  "total": "Total"
 }
