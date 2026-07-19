@@ -49,7 +49,8 @@ abstract class AuthController {
     } catch (e) {
       if (e is DioException) {
         final responseData = e.response?.data;
-        if (responseData['data'] != null) {
+        if (responseData['data'] != null &&
+            responseData['data']['redirect'] != 'login') {
           final redirect = RedirectModel.fromJson(responseData['data']);
           AppFeedback.showToast(S.current.pleaseVerifyYourPhoneNumber);
           LocatorService.navigationService.currentState?.pushNamed(

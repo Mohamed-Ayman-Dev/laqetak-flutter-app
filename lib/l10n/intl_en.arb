@@ -255,5 +255,6 @@
   "selectAll": "Select All",
   "adPublishingFee": "Ad Publishing Fee",
   "valueAddedTax15": "Value Added Tax (15%)",
-  "total": "Total"
+  "total": "Total",
+  "allCities": "All Cities"
 }

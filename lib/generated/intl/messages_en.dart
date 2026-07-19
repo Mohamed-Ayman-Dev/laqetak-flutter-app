@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Advertiser Details",
     ),
     "all": MessageLookupByLibrary.simpleMessage("All"),
+    "allCities": MessageLookupByLibrary.simpleMessage("All Cities"),
     "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account",
     ),

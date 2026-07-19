@@ -78,7 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
     await AdsController.getAds(
       refresh: true,
       filters: _filtersData,
-
       typeId: _selectedFilterIndex,
       search: searchController.text,
     );
@@ -350,7 +349,6 @@ class _HomeScreenState extends State<HomeScreen> {
               Selector<Ads, PaginationList<AdModel>?>(
                 selector: (context, provider) => provider.ads,
                 shouldRebuild: (old, newData) => old != newData,
-
                 builder: (context, listProvider, child) {
                   return Selector<Ads, bool>(
                     selector: (context, provider) =>

@@ -44,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "advertiser": MessageLookupByLibrary.simpleMessage("المعلن"),
     "advertiserDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المعلن"),
     "all": MessageLookupByLibrary.simpleMessage("الكل"),
+    "allCities": MessageLookupByLibrary.simpleMessage("All Cities"),
     "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "لدي حساب بالفعل",
     ),

@@ -2228,6 +2228,11 @@ class S {
   String get total {
     return Intl.message('Total', name: 'total', desc: '', args: []);
   }
+
+  /// `All Cities`
+  String get allCities {
+    return Intl.message('All Cities', name: 'allCities', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

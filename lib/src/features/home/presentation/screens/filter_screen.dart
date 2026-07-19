@@ -200,11 +200,11 @@ class _FilterScreenState extends State<FilterScreen> {
                                   ),
                                 )
                                 .toList(),
-                            value: _formData['city_id'],
+                            value: _formData['cities[]'],
 
                             onChanged: (val) {
                               // setState(() {
-                              _formData['city_id'] = val;
+                              _formData['cities[]'] = val;
                               // });
                             },
                             onSaved: (val) {},
@@ -256,10 +256,10 @@ class _FilterScreenState extends State<FilterScreen> {
                                   ),
                                 )
                                 .toList(),
-                            value: _formData['sector_id'],
+                            value: _formData['sectors[]'],
                             onChanged: (val) {
                               // setState(() {
-                              _formData['sector_id'] = val;
+                              _formData['sectors[]'] = val;
                               // });
                             },
                             onSaved: (val) {},
