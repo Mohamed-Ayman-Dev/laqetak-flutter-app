@@ -95,12 +95,12 @@ class NotificationItem extends StatelessWidget {
                     style: AppTextStyles.bodySmall.copyWith(fontSize: 10.sp),
                   ),
                   if (request?.requestedById != null &&
-                      request?.status != 'accepted' &&
+                      request?.status != 'approved' &&
                       request?.status != 'rejected')
                     5.heightSpace,
 
                   if (request?.requestedById != null &&
-                      request?.status != 'accepted' &&
+                      request?.status != 'approved' &&
                       request?.status != 'rejected')
                     Row(
                       children: [

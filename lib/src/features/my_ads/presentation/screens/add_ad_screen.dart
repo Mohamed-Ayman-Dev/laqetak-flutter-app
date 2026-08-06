@@ -21,6 +21,7 @@ import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.d
 import '../../../../core/shared/widgets/custom_appbar.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/shared/widgets/fields_widgets/my_custom_drop_down_menu.dart';
+import '../../../../core/shared/widgets/fields_widgets/sector_select_field.dart';
 import '../../../../core/themes/text_styles.dart';
 
 class AddAdScreen extends StatefulWidget {
@@ -119,21 +120,16 @@ class _AddAdScreenState extends State<AddAdScreen> {
                 Selector<Others, List<DetailsModel>?>(
                   selector: (context, provider) => provider.myCities,
                   builder: (context, myCities, child) {
-                    return MyCustomDropdownFormField(
+                    return MyCustomDropdownFormField<DetailsModel>(
                       hint: S.of(context).selectCity,
-                      items: myCities
-                          ?.map<DropdownMenuItem<num>>(
-                            (e) => DropdownMenuItem<num>(
-                              value: e.id,
-                              child: Text(
-                                e.name ?? '',
-                                style: AppTextStyles.inputTextStyle,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                      items: myCities,
+                      itemAsString: (item) => item.name ?? '',
+                      value: _formData['city_id'] == null
+                          ? null
+                          : myCities?.firstWhere(
+                              (e) => e.id == _formData['city_id'],
+                              orElse: () => DetailsModel(),
                             ),
-                          )
-                          .toList(),
-                      value: _formData['city_id'],
                       validator: (value) {
                         if (value == null) {
                           return S.of(context).pleaseSelectACity;
@@ -141,7 +137,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
                         return null;
                       },
                       onChanged: (val) {
-                        _formData['city_id'] = val;
+                        _formData['city_id'] = val?.id;
                       },
                       onSaved: (val) {},
                     );
@@ -180,32 +176,25 @@ class _AddAdScreenState extends State<AddAdScreen> {
                 Selector<Others, List<CategoryModel>?>(
                   selector: (context, provider) => provider.myCategories,
                   builder: (context, myCategories, child) {
-                    return MyCustomDropdownFormField(
+                    return MyCustomDropdownFormField<CategoryModel>(
                       hint: S.of(context).selectCategory,
-                      items: myCategories
-                          ?.map<DropdownMenuItem<num>>(
-                            (e) => DropdownMenuItem<num>(
-                              value: e.id,
-                              child: Text(
-                                e.name ?? '',
-                                style: AppTextStyles.inputTextStyle,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          )
-                          .toList(),
+                      items: myCategories,
+                      itemAsString: (item) => item.name ?? '',
                       validator: (value) {
                         if (value == null) {
                           return S.of(context).pleaseSelectACategory;
                         }
                         return null;
                       },
-                      value: _formData['category_id'],
+                      value: _formData['category_id'] == null
+                          ? null
+                          : myCategories?.firstWhere(
+                              (e) => e.id == _formData['category_id'],
+                              orElse: () => CategoryModel(),
+                            ),
                       onChanged: (val) {
-                        _formData['category_id'] = val;
-                        _selectedCategory = myCategories?.firstWhere(
-                          (e) => e.id == val,
-                        );
+                        _formData['category_id'] = val?.id;
+                        _selectedCategory = val;
                       },
                       onSaved: (val) {},
                     );
@@ -286,35 +275,38 @@ class _AddAdScreenState extends State<AddAdScreen> {
                 //   },
                 // ),
                 8.heightSpace,
+                // Selector<Others, List<DetailsModel>?>(
+                //   selector: (context, provider) => provider.mySectors,
+                //   builder: (context, mySectors, child) {
+                //     return MyCustomDropdownFormField<DetailsModel>(
+                //       hint: S.of(context).selectSector,
+                //       items: mySectors,
+                //       itemAsString: (item) => item.name ?? '',
+                //       value: _formData['sector_id'] == null
+                //           ? null
+                //           : mySectors?.firstWhere(
+                //               (e) => e.id == _formData['sector_id'],
+                //               orElse: () => DetailsModel(),
+                //             ),
+                //       validator: (value) {
+                //         if (value == null) {
+                //           return S.of(context).pleaseSelectASector;
+                //         }
+                //         return null;
+                //       },
+                //       onChanged: (val) {
+                //         _formData['sector_id'] = val?.id;
+                //       },
+                //       onSaved: (val) {},
+                //     );
+                //   },
+                // ),
                 Selector<Others, List<DetailsModel>?>(
                   selector: (context, provider) => provider.mySectors,
                   builder: (context, mySectors, child) {
-                    return MyCustomDropdownFormField(
-                      hint: S.of(context).selectSector,
-                      // items: myCities
-                      items: mySectors
-                          ?.map<DropdownMenuItem<num>>(
-                            (e) => DropdownMenuItem<num>(
-                              value: e.id,
-                              child: Text(
-                                e.name ?? '',
-                                style: AppTextStyles.inputTextStyle,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          )
-                          .toList(),
-                      value: _formData['sector_id'],
-                      validator: (value) {
-                        if (value == null) {
-                          return S.of(context).pleaseSelectASector;
-                        }
-                        return null;
-                      },
-                      onChanged: (val) {
-                        _formData['sector_id'] = val;
-                      },
-                      onSaved: (val) {},
+                    return SectorSelectField(
+                      sectors: mySectors,
+                      formData: _formData,
                     );
                   },
                 ),

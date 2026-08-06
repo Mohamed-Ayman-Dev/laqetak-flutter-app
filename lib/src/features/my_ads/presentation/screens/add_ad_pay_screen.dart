@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
+import 'package:invastro/src/core/shared/models/ad_model.dart';
 import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
@@ -33,15 +34,14 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
 
   int _selectedCard = 0;
   bool once = false;
-  Map<String, dynamic>? _formData = {};
+  AdModel? ad;
 
   @override
   void didChangeDependencies() {
     if (!once) {
-      final args =
-          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      final args = ModalRoute.of(context)?.settings.arguments as AdModel?;
       if (args != null) {
-        _formData = args;
+        ad = args;
       }
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (LocatorService.appSettings.mySettings == null) {
@@ -67,7 +67,7 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
         bottom: true,
         child: Form(
           key: _formKey,
-          child: SingleChildScrollView(
+          child: Padding(
             padding: EdgeInsets.only(left: 15, right: 17).r,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,16 +105,11 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                             ),
                             Spacer(),
                             Text(
-                              VatHelper.priceBeforeVat(
-                                double.tryParse(
-                                      LocatorService
-                                              .appSettings
-                                              .mySettings
-                                              ?.costPerAd ??
-                                          '',
-                                    ) ??
-                                    0,
-                              ).toString(),
+                              LocatorService
+                                      .appSettings
+                                      .mySettings
+                                      ?.costPerAd ??
+                                  '',
                               style: AppTextStyles.labelLarge.copyWith(
                                 color: AppColors.priceTextColor,
                                 height: 1.2,
@@ -178,11 +173,16 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                             ),
                             Spacer(),
                             Text(
-                              LocatorService
-                                      .appSettings
-                                      .mySettings
-                                      ?.costPerAd ??
-                                  '',
+                              VatHelper.totalWithVat(
+                                double.tryParse(
+                                      LocatorService
+                                              .appSettings
+                                              .mySettings
+                                              ?.costPerAd ??
+                                          '',
+                                    ) ??
+                                    0,
+                              ).toString(),
                               style: AppTextStyles.labelLarge.copyWith(
                                 color: AppColors.priceTextColor,
                                 height: 1.2,
@@ -207,20 +207,20 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                   style: AppTextStyles.labelSmall.copyWith(fontSize: 16.sp),
                 ),
                 20.heightSpace,
-
                 PaymentMethodItem(
                   title: S.of(context).cash,
                   cardType: PaymentMethods.cash,
                   isSelected: _selectedCard == 0,
                   onTap: () => setState(() => _selectedCard = 0),
                 ),
-                // 12.heightSpace,
-                // PaymentMethodItem(
-                //   title: S.of(context).card,
-                //   cardType: PaymentMethods.card,
-                //   isSelected: _selectedCard == 1,
-                //   onTap: () => setState(() => _selectedCard = 1),
-                // ),
+                12.heightSpace,
+                PaymentMethodItem(
+                  title: S.of(context).card,
+                  cardType: PaymentMethods.card,
+                  isSelected: _selectedCard == 1,
+                  onTap: () => setState(() => _selectedCard = 1),
+                ),
+                Expanded(child: SizedBox()),
                 // Text(
                 //   'أدخل بيانات بطاقة الدفع',
                 //   style: AppTextStyles.labelSmall.copyWith(fontSize: 16.sp),
@@ -339,7 +339,6 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                 //     ],
                 //   ),
                 // ),
-                300.heightSpace,
                 Row(
                   children: [
                     Expanded(
@@ -348,13 +347,12 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                         icon: SvgAssets.assetsSvgArrowRight,
                         size: Size(163.w, 48.h),
                         onPressed: () {
-                          _formData?['payment_method'] = 'cash';
-                          bool checkOtp =
-                              _formData?['contact_phone'] !=
-                              LocatorService.auth.user?.phone;
-                          checkOtp
-                              ? MyAdsController.sendAdOtp(_formData)
-                              : MyAdsController.addAd(_formData);
+                          MyAdsController.payAd({
+                            "ad_id": ad?.id,
+                            "payment_method": _selectedCard == 0
+                                ? 'cash'
+                                : 'my_fatoorah',
+                          });
                         },
                       ),
                     ),

@@ -75,7 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "capitalNeedsAnIdea": MessageLookupByLibrary.simpleMessage(
       "رأس المال يحتاج لفكرة",
     ),
-    "card": MessageLookupByLibrary.simpleMessage("البطاقة الائتمانية"),
+    "card": MessageLookupByLibrary.simpleMessage("الدفع الإلكتروني"),
     "cash": MessageLookupByLibrary.simpleMessage("كاش"),
     "category": MessageLookupByLibrary.simpleMessage("القسم"),
     "changeNumber": MessageLookupByLibrary.simpleMessage("تغيير الرقم"),
@@ -150,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "أدخل تفاصيل الشكوى",
     ),
     "enterPassword": MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
+    "enterSectorName": MessageLookupByLibrary.simpleMessage("أدخل اسم القطاع"),
     "enterTheReportReason": MessageLookupByLibrary.simpleMessage(
       "أدخل سبب الابلاغ",
     ),
@@ -237,6 +238,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "كلمات المرور غير متطابقة",
     ),
     "payNow": MessageLookupByLibrary.simpleMessage("ادفع الان"),
+    "paymentFailedPleaseTryAgainLater": MessageLookupByLibrary.simpleMessage(
+      "لم يكتمل الدفع، يرجى المحاولة مرة اخرى",
+    ),
+    "paymentGateway": MessageLookupByLibrary.simpleMessage("بوابة الدفع"),
     "permissionRequired": MessageLookupByLibrary.simpleMessage(
       "الصلاحية مطلوبة",
     ),
@@ -285,6 +290,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pleaseEnterIbanConfirmation": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال تأكيد رقم الآيبان",
+    ),
+    "pleaseEnterSectorName": MessageLookupByLibrary.simpleMessage(
+      "يرجى إدخال اسم القطاع",
     ),
     "pleaseEnterThe4digitCode": MessageLookupByLibrary.simpleMessage(
       "الرجاء إدخال رمز التحقق المرسل إلى",
@@ -337,6 +345,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseSelectAtLeastOneImage": MessageLookupByLibrary.simpleMessage(
       "الرجاء اختيار صورة علي الأقل",
     ),
+    "pleaseSpecifyTheSector": MessageLookupByLibrary.simpleMessage(
+      "يرجى تحديد القطاع",
+    ),
     "pleaseVerifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "يرجى التحقق من رقم هاتفك",
     ),
@@ -378,6 +389,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم إرسال الرد بنجاح",
     ),
     "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
+    "s": MessageLookupByLibrary.simpleMessage("ث"),
     "sar": MessageLookupByLibrary.simpleMessage("ريال"),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
     "savePassword": MessageLookupByLibrary.simpleMessage("حفظ كلمة المرور"),
@@ -470,6 +482,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "thisAdHasNoImages": MessageLookupByLibrary.simpleMessage(
       "هذا الإعلان لا يحتوي على صور",
+    ),
+    "timeoutReachedClosingPaymentScreen": MessageLookupByLibrary.simpleMessage(
+      "تم انتهاء الوقت جاري الغاء عملية الدفع",
     ),
     "toCompleteYourAccountCreation": MessageLookupByLibrary.simpleMessage(
       "لإكمال إنشاء حسابك",

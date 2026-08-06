@@ -45,10 +45,16 @@ class AdModel {
     id = json['id'];
     title = json['title'];
     description = json['description'];
-    investmentAmount = json['investment_amount'];
+    investmentAmount = json['investment_amount']?.toString();
     viewsCount = json['views_count'];
     contactPhone = json['contact_phone'];
-    hidePhone = json['hide_phone'];
+    hidePhone = json['hide_phone'] == null
+        ? null
+        : json['hide_phone'] is String
+        ? (json['hide_phone'] == 'true' ? 1 : 0)
+        : json['hide_phone'] is bool
+        ? (json['hide_phone'] == true ? 1 : 0)
+        : json['hide_phone'];
     contactRequestStatus = json['contact_request_status'];
     status = json['status'];
     isFavorite = json['is_favorite'];
@@ -75,7 +81,6 @@ class AdModel {
   num? id;
   String? title;
   String? mainPhoto;
-
   String? description;
   String? investmentAmount;
   num? viewsCount;

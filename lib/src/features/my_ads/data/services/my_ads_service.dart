@@ -34,6 +34,17 @@ class MyAdsService {
     );
   }
 
+  Future payAd({
+    bool rethrowError = false,
+    required Map<String, dynamic> data,
+  }) async {
+    return await ApiService.post(
+      '/my-ads/pay',
+      data: data,
+      rethrowError: rethrowError,
+    );
+  }
+
   Future closeAd(num id, {rethrowError = false}) async {
     return await ApiService.get(
       '/my-ads/close-ad/$id',

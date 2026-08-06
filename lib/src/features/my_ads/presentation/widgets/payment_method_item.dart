@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/enums.dart';
-import 'package:invastro/src/core/constants/images_assets.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 
@@ -80,12 +79,13 @@ class PaymentMethodItem extends StatelessWidget {
         width: 38.w,
         height: 28.h,
       ),
-      PaymentMethods.card => Image.asset(
-        ImagesAssets.assetsImagesCard,
-        width: 38.w,
-        fit: BoxFit.cover,
-        height: 28.h,
-      ),
+      // PaymentMethods.card => Image.asset(
+      //   ImagesAssets.assetsImagesCard,
+      //   width: 38.w,
+      //   fit: BoxFit.cover,
+      //   height: 28.h,
+      // ),
+      PaymentMethods.card => SizedBox(height: 28.h),
     };
   }
 }

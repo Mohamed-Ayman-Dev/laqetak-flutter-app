@@ -84,7 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "capitalNeedsAnIdea": MessageLookupByLibrary.simpleMessage(
       "Capital needs an idea",
     ),
-    "card": MessageLookupByLibrary.simpleMessage("Card"),
+    "card": MessageLookupByLibrary.simpleMessage("Online payment"),
     "cash": MessageLookupByLibrary.simpleMessage("Cash"),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
     "changeNumber": MessageLookupByLibrary.simpleMessage("Change Number"),
@@ -159,6 +159,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Enter complaint details",
     ),
     "enterPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
+    "enterSectorName": MessageLookupByLibrary.simpleMessage(
+      "Enter sector name",
+    ),
     "enterTheReportReason": MessageLookupByLibrary.simpleMessage(
       "Enter the report reason",
     ),
@@ -252,6 +255,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Passwords do not match",
     ),
     "payNow": MessageLookupByLibrary.simpleMessage("Pay Now"),
+    "paymentFailedPleaseTryAgainLater": MessageLookupByLibrary.simpleMessage(
+      "Payment was not completed, please try again later",
+    ),
+    "paymentGateway": MessageLookupByLibrary.simpleMessage("Payment Gateway"),
     "permissionRequired": MessageLookupByLibrary.simpleMessage(
       "Permission Required",
     ),
@@ -300,6 +307,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pleaseEnterIbanConfirmation": MessageLookupByLibrary.simpleMessage(
       "Please enter iban confirmation",
+    ),
+    "pleaseEnterSectorName": MessageLookupByLibrary.simpleMessage(
+      "Please enter sector name",
     ),
     "pleaseEnterThe4digitCode": MessageLookupByLibrary.simpleMessage(
       "Please enter the 4-digit code",
@@ -355,6 +365,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseSelectAtLeastOneImage": MessageLookupByLibrary.simpleMessage(
       "Please select at least one image",
     ),
+    "pleaseSpecifyTheSector": MessageLookupByLibrary.simpleMessage(
+      "Please specify the sector",
+    ),
     "pleaseVerifyYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Please verify your phone number",
     ),
@@ -394,6 +407,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Response sent successfully",
     ),
     "retry": MessageLookupByLibrary.simpleMessage("Retry"),
+    "s": MessageLookupByLibrary.simpleMessage("s"),
     "sar": MessageLookupByLibrary.simpleMessage("SAR"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "savePassword": MessageLookupByLibrary.simpleMessage("Save Password"),
@@ -492,6 +506,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "thisAdHasNoImages": MessageLookupByLibrary.simpleMessage(
       "This ad has no images",
+    ),
+    "timeoutReachedClosingPaymentScreen": MessageLookupByLibrary.simpleMessage(
+      "Timeout reached. Closing payment screen",
     ),
     "toCompleteYourAccountCreation": MessageLookupByLibrary.simpleMessage(
       "to complete your account creation",

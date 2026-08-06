@@ -1139,9 +1139,9 @@ class S {
     return Intl.message('Cash', name: 'cash', desc: '', args: []);
   }
 
-  /// `Card`
+  /// `Online payment`
   String get card {
-    return Intl.message('Card', name: 'card', desc: '', args: []);
+    return Intl.message('Online payment', name: 'card', desc: '', args: []);
   }
 
   /// `Login to continue`
@@ -2229,9 +2229,74 @@ class S {
     return Intl.message('Total', name: 'total', desc: '', args: []);
   }
 
+  /// `Timeout reached. Closing payment screen`
+  String get timeoutReachedClosingPaymentScreen {
+    return Intl.message(
+      'Timeout reached. Closing payment screen',
+      name: 'timeoutReachedClosingPaymentScreen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment was not completed, please try again later`
+  String get paymentFailedPleaseTryAgainLater {
+    return Intl.message(
+      'Payment was not completed, please try again later',
+      name: 'paymentFailedPleaseTryAgainLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Gateway`
+  String get paymentGateway {
+    return Intl.message(
+      'Payment Gateway',
+      name: 'paymentGateway',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `s`
+  String get s {
+    return Intl.message('s', name: 's', desc: '', args: []);
+  }
+
   /// `All Cities`
   String get allCities {
     return Intl.message('All Cities', name: 'allCities', desc: '', args: []);
+  }
+
+  /// `Please specify the sector`
+  String get pleaseSpecifyTheSector {
+    return Intl.message(
+      'Please specify the sector',
+      name: 'pleaseSpecifyTheSector',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter sector name`
+  String get enterSectorName {
+    return Intl.message(
+      'Enter sector name',
+      name: 'enterSectorName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter sector name`
+  String get pleaseEnterSectorName {
+    return Intl.message(
+      'Please enter sector name',
+      name: 'pleaseEnterSectorName',
+      desc: '',
+      args: [],
+    );
   }
 }
 

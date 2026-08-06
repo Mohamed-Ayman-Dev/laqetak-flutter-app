@@ -261,25 +261,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           hintText: S.current.mobileNumber,
                         ),
                         12.heightSpace,
-
                         Selector<Others, List<DetailsModel>?>(
                           selector: (context, provider) => provider.myCities,
                           builder: (context, myCities, child) {
-                            return MyCustomDropdownFormField(
+                            return MyCustomDropdownFormField<DetailsModel>(
                               hint: S.current.selectCity,
                               enabled: isEditMode,
-                              items: myCities
-                                  ?.map<DropdownMenuItem<num>>(
-                                    (e) => DropdownMenuItem<num>(
-                                      value: e.id,
-                                      child: Text(
-                                        e.name ?? '',
-                                        style: AppTextStyles.inputTextStyle,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
+                              items: myCities,
+                              itemAsString: (item) => item.name ?? '',
                               contentPadding: EdgeInsets.symmetric(
                                 vertical: 16,
                                 horizontal: 16,
@@ -287,7 +276,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                               borderColor: AppColors.questionBorderColor,
                               borderRadius: 16,
-                              value: data['city_id'],
+                              value: data['city_id'] == null
+                                  ? null
+                                  : myCities?.firstWhere(
+                                      (e) => e.id == data['city_id'],
+                                      orElse: () => DetailsModel(),
+                                    ),
                               validator: (value) {
                                 if (value == null) {
                                   return S.of(context).pleaseSelectACity;
@@ -295,7 +289,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 return null;
                               },
                               onChanged: (val) {
-                                data['city_id'] = val;
+                                data['city_id'] = val?.id;
                               },
                               onSaved: (val) {},
                             );

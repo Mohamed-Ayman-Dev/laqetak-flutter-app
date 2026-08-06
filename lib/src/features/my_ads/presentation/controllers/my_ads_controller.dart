@@ -12,7 +12,9 @@ import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/models/redirect_model.dart';
+import '../../../../core/shared/screens/payment_webview.dart';
 import '../../../auth/presentation/screens/otp_screen.dart';
+import '../screens/add_ad_pay_screen.dart';
 
 class MyAdsController {
   static Future<void> addAd(Map<String, dynamic>? data) async {
@@ -38,13 +40,18 @@ class MyAdsController {
           readyData['photos[]'] = files;
         }
       }
-      await LocatorService.myAdsService.addAd(readyData, rethrowError: true);
-      AdsController.getAds(refresh: true);
-      EasyLoading.dismiss();
-      DialogHelpers.showSuccessDialog(
-        title: S.current.congratulationsPaymentCompletedSuccessfully,
-        subtitle: S.current.yourAdHasBeenPublishedSuccessfully,
+      final res = await LocatorService.myAdsService.addAd(
+        readyData,
+        rethrowError: true,
       );
+      if (res['data'] != null) {
+        final ad = AdModel.fromJson(res['data']);
+
+        LocatorService.navigationService.currentState?.pushNamed(
+          AddAdPayScreen.routeName,
+          arguments: ad,
+        );
+      }
     } catch (e, s) {
       if (e is DioException) {
         final responseData = e.response?.data;
@@ -62,6 +69,55 @@ class MyAdsController {
       }
     } finally {
       EasyLoading.dismiss();
+    }
+  }
+
+  static Future<void> payAd(Map<String, dynamic> data) async {
+    try {
+      AppFeedback.loadingMessage(message: S.current.pleaseWait);
+      final response = await LocatorService.myAdsService.payAd(
+        data: data,
+        rethrowError: true,
+      );
+      EasyLoading.dismiss();
+      if (data['payment_method'] != 'cash') {
+        final redirectUrl = response['data']['checkout_url'];
+        if (redirectUrl != null) {
+          final result = await LocatorService.navigationService.currentState
+              ?.pushNamed(
+                PaymentWebView.routeName,
+                arguments: {
+                  'initialUrl': redirectUrl,
+                  'orderId': data['ad_id'],
+                  'time': response['data']['time'],
+                },
+              );
+          if (result == true) {
+            AdsController.getAds(refresh: true);
+            EasyLoading.dismiss();
+            DialogHelpers.showSuccessDialog(
+              title: S.current.congratulationsPaymentCompletedSuccessfully,
+              subtitle: S.current.yourAdHasBeenPublishedSuccessfully,
+            );
+          } else if (result == false) {
+            EasyLoading.showError(
+              S.current.paymentFailedPleaseTryAgainLater,
+              dismissOnTap: true,
+            );
+          } else {
+            print("User cancelled payment.");
+          }
+        }
+      } else {
+        AdsController.getAds(refresh: true);
+        EasyLoading.dismiss();
+        DialogHelpers.showSuccessDialog(
+          title: S.current.congratulationsPaymentCompletedSuccessfully,
+          subtitle: S.current.yourAdHasBeenPublishedSuccessfully,
+        );
+      }
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
     }
   }
 

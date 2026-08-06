@@ -117,7 +117,7 @@
   "numberHasBeenVerifiedSuccessfully": "تم التحقق من الرقم بنجاح",
   "hidePhoneNumber": "إخفاء رقم الهاتف",
   "cash": "كاش",
-  "card": "البطاقة الائتمانية",
+  "card": "الدفع الإلكتروني",
   "pleaseLogInFirstToViewTheContentOfThis": "قم بتسجيل الدخول أولا لعرض محتوي هذه الصفحة",
   "loginToContinue": "قم بتسجيل الدخول لتتمكن من المتابعة",
   "logIn": "تسجيل الدخول",
@@ -256,6 +256,13 @@
   "adPublishingFee": "رسوم نشر الإعلان",
   "valueAddedTax15": "ضريبة القيمة المضافة (15%)",
   "total": "الإجمالي",
-  "allCities": "All Cities"
+  "paymentGateway": "بوابة الدفع",
+  "timeoutReachedClosingPaymentScreen": "تم انتهاء الوقت جاري الغاء عملية الدفع",
+  "paymentFailedPleaseTryAgainLater": "لم يكتمل الدفع، يرجى المحاولة مرة اخرى",
+  "s": "ث",
+  "allCities": "All Cities",
+  "pleaseSpecifyTheSector": "يرجى تحديد القطاع",
+  "enterSectorName": "أدخل اسم القطاع",
+  "pleaseEnterSectorName": "يرجى إدخال اسم القطاع"
 }
 

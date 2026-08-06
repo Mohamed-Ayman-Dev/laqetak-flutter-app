@@ -119,7 +119,7 @@
   "numberHasBeenVerifiedSuccessfully": "Number has been verified successfully.",
   "hidePhoneNumber": "Hide phone number",
   "cash": "Cash",
-  "card": "Card",
+  "card": "Online payment",
   "loginToContinue": "Login to continue",
   "pleaseLogInFirstToViewTheContentOfThis": "Please log in first to view the content of this page",
   "youNeedToSignInToViewThisPageIf": "You need to sign in to view this page. If you dont have an account, you can create one for free.",
@@ -256,5 +256,12 @@
   "adPublishingFee": "Ad Publishing Fee",
   "valueAddedTax15": "Value Added Tax (15%)",
   "total": "Total",
-  "allCities": "All Cities"
+  "timeoutReachedClosingPaymentScreen": "Timeout reached. Closing payment screen",
+  "paymentFailedPleaseTryAgainLater": "Payment was not completed, please try again later",
+  "paymentGateway": "Payment Gateway",
+  "s": "s",
+  "allCities": "All Cities",
+  "pleaseSpecifyTheSector": "Please specify the sector",
+  "enterSectorName": "Enter sector name",
+  "pleaseEnterSectorName": "Please enter sector name"
 }

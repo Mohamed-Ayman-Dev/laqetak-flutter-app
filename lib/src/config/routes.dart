@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invastro/src/core/shared/screens/payment_webview.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 
 import '../core/shared/widgets/timeout_splashscreen.dart';
@@ -47,6 +48,7 @@ class Routes {
     MyAdsScreen.routeName: (_) => const MyAdsScreen(),
     AboutAppScreen.routeName: (_) => const AboutAppScreen(),
     ContactUsScreen.routeName: (_) => const ContactUsScreen(),
+    PaymentWebView.routeName: (_) => const PaymentWebView(),
     QuestionsScreen.routeName: (_) => const QuestionsScreen(),
     AdDetailsScreen.routeName: (_) => const AdDetailsScreen(),
     SellerProfileScreen.routeName: (_) => const SellerProfileScreen(),

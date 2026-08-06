@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
@@ -9,7 +8,6 @@ import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.da
 import 'package:invastro/src/core/shared/widgets/fields_widgets/custom_note_field.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/my_ads/presentation/controllers/my_ads_controller.dart';
-import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_pay_screen.dart';
 import 'package:invastro/src/features/my_ads/presentation/widgets/ad_image_picker.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -71,14 +69,13 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
     final removedIds = _formData['photos_to_remove[]'] as List<num>? ?? [];
     final existingCount = (ad?.photos?.length ?? 0) - removedIds.length;
     final totalPhotos = newPhotos.length + existingCount;
-
-    if (totalPhotos == 0) {
-      AppFeedback.showToast(
-        S.of(context).pleaseSelectAtLeastOneImage,
-        isError: true,
-      );
-      return;
-    }
+    // if (totalPhotos == 0) {
+    //   AppFeedback.showToast(
+    //     S.of(context).pleaseSelectAtLeastOneImage,
+    //     isError: true,
+    //   );
+    //   return;
+    // }
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       bool isUpdate = ad != null;
@@ -92,10 +89,13 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
           MyAdsController.sendAdOtp(_formData, edit: true);
         }
       } else {
-        LocatorService.navigationService.currentState?.pushNamed(
-          AddAdPayScreen.routeName,
-          arguments: _formData,
-        );
+        _formData['ad_id'] = ad?.id;
+        if ((_formData['contact_phone'] == ad?.contactPhone) ||
+            (_formData['contact_phone'] == LocatorService.auth.user?.phone)) {
+          MyAdsController.addAd(_formData);
+        } else {
+          MyAdsController.sendAdOtp(_formData, edit: true);
+        }
       }
     }
   }

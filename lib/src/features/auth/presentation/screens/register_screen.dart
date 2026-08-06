@@ -142,24 +142,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Selector<Others, List<DetailsModel>?>(
                     selector: (context, provider) => provider.myCities,
                     builder: (context, myCities, child) {
-                      return MyCustomDropdownFormField(
+                      return MyCustomDropdownFormField<DetailsModel>(
                         hint: S.of(context).city,
-                        items: myCities
-                            ?.map<DropdownMenuItem<num>>(
-                              (e) => DropdownMenuItem<num>(
-                                value: e.id,
-                                child: SizedBox(
-                                  width: 100.w,
-                                  child: Text(
-                                    e.name ?? '',
-                                    style: AppTextStyles.inputTextStyle,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
+                        items: myCities,
+                        itemAsString: (item) => item.name ?? '',
+                        value: data['city_id'] == null
+                            ? null
+                            : myCities?.firstWhere(
+                                (e) => e.id == data['city_id'],
+                                orElse: () => DetailsModel(),
                               ),
-                            )
-                            .toList(),
-                        value: data['city_id'],
                         validator: (value) {
                           if (value == null) {
                             return S.of(context).pleaseSelectACity;
@@ -167,10 +159,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return null;
                         },
                         onChanged: (val) {
-                          data['city_id'] = val;
+                          data['city_id'] = val?.id;
                         },
                         onSaved: (val) {
-                          data['city_id'] = val;
+                          data['city_id'] = val?.id;
                         },
                       );
                     },

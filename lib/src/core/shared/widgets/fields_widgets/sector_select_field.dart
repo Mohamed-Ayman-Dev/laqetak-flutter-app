@@ -1,0 +1,127 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/themes/text_styles.dart';
+
+import '../../../../../generated/l10n.dart';
+import '../../../themes/colors.dart';
+import '../../models/details_model.dart';
+import 'my_custom_drop_down_menu.dart';
+
+class SectorSelectField extends StatefulWidget {
+  final List<DetailsModel>? sectors;
+  final Map<String, dynamic> formData;
+
+  const SectorSelectField({
+    super.key,
+    required this.sectors,
+    required this.formData,
+  });
+
+  @override
+  State<SectorSelectField> createState() => _SectorSelectFieldState();
+}
+
+class _SectorSelectFieldState extends State<SectorSelectField> {
+  bool _requiresAdditionalInfo = false;
+  final TextEditingController _otherController = TextEditingController();
+
+  @override
+  void dispose() {
+    _otherController.dispose();
+    super.dispose();
+  }
+
+  // ← single source of truth for all borders
+  OutlineInputBorder _border(Color color) => OutlineInputBorder(
+    borderRadius: BorderRadius.circular(12).r,
+    borderSide: BorderSide(color: AppColors.borderColor, width: 1),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        MyCustomDropdownFormField<DetailsModel>(
+          hint: S.of(context).selectSector,
+          items: widget.sectors,
+          itemAsString: (item) => item.name ?? '',
+          value: widget.formData['sector_id'] == null
+              ? null
+              : widget.sectors?.firstWhere(
+                  (e) => e.id == widget.formData['sector_id'],
+                  orElse: () => DetailsModel(),
+                ),
+          validator: (value) {
+            if (value == null) {
+              return S.of(context).pleaseSelectASector;
+            }
+            // if ((value.requiresAdditionalInfo ?? false) &&
+            //     _otherController.text.trim().isEmpty) {
+            //   return S.of(context).pleaseSpecifyTheSector;
+            // }
+            return null;
+          },
+          onChanged: (val) {
+            setState(() {
+              _requiresAdditionalInfo = val?.requiresAdditionalInfo ?? false;
+            });
+
+            widget.formData['sector_id'] = val?.id;
+            widget.formData['requires_additional_info'] =
+                _requiresAdditionalInfo;
+
+            if (_requiresAdditionalInfo) {
+              widget.formData['sector_additional_info'] = _otherController.text;
+            } else {
+              widget.formData.remove('sector_additional_info');
+              _otherController.clear();
+            }
+          },
+          onSaved: (val) {},
+        ),
+
+        AnimatedCrossFade(
+          duration: const Duration(milliseconds: 280),
+          sizeCurve: Curves.easeInOut,
+          firstCurve: Curves.easeOut,
+          secondCurve: Curves.easeIn,
+          crossFadeState: _requiresAdditionalInfo
+              ? CrossFadeState.showSecond
+              : CrossFadeState.showFirst,
+          firstChild: const SizedBox(width: double.infinity, height: 0),
+          secondChild: Padding(
+            padding: EdgeInsets.only(top: 12.h),
+            child: TextFormField(
+              controller: _otherController,
+              decoration: InputDecoration(
+                fillColor: Colors.white,
+                hintStyle: AppTextStyles.hintTextStyle.copyWith(
+                  fontSize: 12.sp,
+                ),
+                filled: true,
+                hintText: S.of(context).enterSectorName,
+                border: _border(AppColors.fieldBorderColor),
+                enabledBorder: _border(AppColors.fieldBorderColor),
+                focusedBorder: _border(AppColors.primaryColor),
+                errorBorder: _border(AppColors.errorTextColor),
+                focusedErrorBorder: _border(AppColors.errorTextColor),
+              ),
+              maxLines: 2,
+              validator: (val) {
+                if (_requiresAdditionalInfo &&
+                    (val == null || val.trim().isEmpty)) {
+                  return S.of(context).pleaseEnterSectorName;
+                }
+                return null;
+              },
+              onChanged: (val) {
+                widget.formData['sector_additional_info'] = val;
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

@@ -98,7 +98,11 @@ class SearchField extends StatelessWidget {
                 builder: (context, filters, child) {
                   return NotifyCircle(
                     showNotify:
-                        filters != null && filters.values.any((e) => e != null),
+                        filters != null &&
+                        filters.values.any(
+                          (e) =>
+                              e != null && ((e is List) ? e.isNotEmpty : true),
+                        ),
                   );
                 },
               ),
