@@ -94,7 +94,7 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
             (_formData['contact_phone'] == LocatorService.auth.user?.phone)) {
           MyAdsController.addAd(_formData);
         } else {
-          MyAdsController.sendAdOtp(_formData, edit: true);
+          MyAdsController.sendAdOtp(_formData, edit: false);
         }
       }
     }

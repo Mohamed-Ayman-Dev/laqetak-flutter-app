@@ -1,11 +1,8 @@
 import 'dart:async'; // 👈 import this
-import 'dart:convert';
 
 // import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:invastro/src/core/network/api_service.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../generated/l10n.dart';
@@ -73,49 +70,61 @@ class _PaymentWebViewState extends State<PaymentWebView> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onNavigationRequest: (request) async {
-            if (kDebugMode) {
-              print(
-                '--------------------------------Navigating to: ${request.url}',
-              );
-            }
+            print(
+              '--------------------------------Navigating to: ${request.url}',
+            );
             if (_hasPopped) return NavigationDecision.prevent;
-
+            // final now = DateTime.now();
+            // final formattedDate = DateFormat('yyyy-MM-dd', 'en').format(now);
+            // final formattedTime = DateFormat('HH:mm:ss', 'en').format(now);
+            //
+            // await LocatorService.ordersService.sendPayLog(
+            //   queryParameters: {
+            //     'id': orderId,
+            //     'url': request.url,
+            //     'test':
+            //         'UserPaymentGatewaySteps-deviceData:$_deviceModel-nextUrl:$initialUrl- date:$formattedDate time:$formattedTime',
+            //   },
+            // );
             final url = request.url;
-
-            if (url.contains('myfatoorah/callback')) {
+            if (url.contains('myfatoorah/api-result')) {
               _hasPopped = true;
-              await _handlePaymentCallback(url);
-              return NavigationDecision
-                  .prevent; // امنع الـ WebView من عرض الـ JSON خالص
+              final params = Uri.parse(url).queryParameters;
+              paymentStatus = params['payment_status'] == 'paid';
+              Navigator.of(context).pop(paymentStatus);
+              return NavigationDecision.prevent;
             }
 
             return NavigationDecision.navigate;
-            // if (_hasPopped) return NavigationDecision.prevent;
-            // // final now = DateTime.now();
-            // // final formattedDate = DateFormat('yyyy-MM-dd', 'en').format(now);
-            // // final formattedTime = DateFormat('HH:mm:ss', 'en').format(now);
-            // //
-            // // await LocatorService.ordersService.sendPayLog(
-            // //   queryParameters: {
-            // //     'id': orderId,
-            // //     'url': request.url,
-            // //     'test':
-            // //         'UserPaymentGatewaySteps-deviceData:$_deviceModel-nextUrl:$initialUrl- date:$formattedDate time:$formattedTime',
-            // //   },
-            // // );
-            // final url = request.url;
-            // if (url.contains('my_fatoorah/return-status')) {
-            //   _hasPopped = true;
-            //   paymentStatus = url.contains('status=payment-success');
-            //   Navigator.of(context).pop(paymentStatus);
-            //   return NavigationDecision.prevent; // prevent further loading
-            // }
-            // return NavigationDecision.navigate;
           },
         ),
       );
   }
 
+  // Future<void> _handlePaymentCallback(String url) async {
+  //   try {
+  //     final response = await ApiService.get(url);
+  //     // أو Dio() عادي لو الـ endpoint ده مش تحت نفس الـ base/interceptors بتاعتك
+  //
+  //     final data = response.data is String
+  //         ? jsonDecode(response.data)
+  //         : response
+  //         .data; // Dio أحياناً بيعمل parse تلقائي لو الـ content-type JSON
+  //
+  //     final bool isSuccess = data['status'] == true;
+  //
+  //     if (mounted) {
+  //       paymentStatus = isSuccess;
+  //       Navigator.of(context).pop(paymentStatus);
+  //     }
+  //   } catch (e) {
+  //     debugPrint('Payment callback fetch failed: $e');
+  //     if (mounted) {
+  //       paymentStatus = false;
+  //       Navigator.of(context).pop(false);
+  //     }
+  //   }
+  // }
   @override
   void dispose() {
     _timeoutTimer.cancel();
@@ -124,31 +133,6 @@ class _PaymentWebViewState extends State<PaymentWebView> {
   }
 
   bool once = false;
-
-  Future<void> _handlePaymentCallback(String url) async {
-    try {
-      final response = await ApiService.get(url);
-      // أو Dio() عادي لو الـ endpoint ده مش تحت نفس الـ base/interceptors بتاعتك
-
-      final data = response.data is String
-          ? jsonDecode(response.data)
-          : response
-                .data; // Dio أحياناً بيعمل parse تلقائي لو الـ content-type JSON
-
-      final bool isSuccess = data['status'] == true;
-
-      if (mounted) {
-        paymentStatus = isSuccess;
-        Navigator.of(context).pop(paymentStatus);
-      }
-    } catch (e) {
-      debugPrint('Payment callback fetch failed: $e');
-      if (mounted) {
-        paymentStatus = false;
-        Navigator.of(context).pop(false);
-      }
-    }
-  }
 
   @override
   void didChangeDependencies() {
