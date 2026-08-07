@@ -8,17 +8,21 @@ import '../../../../core/constants/enums.dart';
 import '../../../../core/shared/providers/timers.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
+import '../../../my_ads/presentation/controllers/my_ads_controller.dart';
+import '../controllers/auth_controller.dart';
 
 class TimerResendWidget extends StatefulWidget {
   final String phone;
   final OtpFlow flow;
   final int? remainingSeconds;
+  final Map<String, dynamic>? argsFormData;
 
   const TimerResendWidget({
     super.key,
     required this.phone,
     required this.flow,
     this.remainingSeconds,
+    this.argsFormData,
   });
 
   @override
@@ -82,36 +86,59 @@ class _TimerResendWidgetState extends State<TimerResendWidget> {
                     fontSize: 14.sp,
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      timers.isResendButtonVisible
-                          ? () async {
-                              // if (widget.previousScreenName == 'forgetPassword') {
-                              //   // Resend forget password OTP
-                              //   await AuthController.forgetPassword(context, {
-                              //     'phone': widget.phone,
-                              //   }, isRefresh: true);
-                              //   // Note: forgetPassword now handles navigation, just restart timer
+                    ..onTap = timers.isResendButtonVisible
+                        ? () async {
+                            if (widget.flow == OtpFlow.forgetPassword) {
+                              // Resend forget password OTP
+                              await AuthController.forgetPassword(context, {
+                                'phone': widget.phone,
+                              }, isRefresh: true);
+                              // Note: forgetPassword now handles navigation, just restart timer
                               timerProvider.startTimer(
                                 initialSeconds: widget.remainingSeconds ?? 120,
                               );
-                              // } else {
-                              //   // Resend registration OTP
-                              //   final response = await AuthController.registerOtpResend({
-                              //     'phone': widget.phone,
-                              //   });
-                              //
-                              //   if (response != null && response['status'] == true) {
-                              //     // Restart the timer with remaining seconds from response
-                              final remainingSeconds = 120;
-                              //         response['data']?['remainingSeconds'] ?? 120;
-                              timerProvider.startTimer(
-                                initialSeconds: remainingSeconds,
+                            } else if (widget.flow == OtpFlow.login) {
+                              await AuthController.login(
+                                widget.argsFormData ?? {},
+                                isRefresh: true,
                               );
-                              //   }
-                              // }
+                              timerProvider.startTimer(
+                                initialSeconds: widget.remainingSeconds ?? 120,
+                              );
+                            } else if (widget.flow == OtpFlow.register) {
+                              await AuthController.registerOtpResend({
+                                'phone': widget.phone,
+                              });
+                              timerProvider.startTimer(
+                                initialSeconds: widget.remainingSeconds ?? 120,
+                              );
+                            } else if (widget.flow == OtpFlow.updatePhone) {
+                              await AuthController.sendPhoneOtp(
+                                widget.argsFormData ?? {},
+                                isRefresh: true,
+                              );
+                              timerProvider.startTimer(
+                                initialSeconds: widget.remainingSeconds ?? 120,
+                              );
+                            } else if (widget.flow == OtpFlow.addAd) {
+                              await MyAdsController.sendAdOtp(
+                                widget.argsFormData ?? {},
+                                isRefresh: true,
+                              );
+                              timerProvider.startTimer(
+                                initialSeconds: widget.remainingSeconds ?? 120,
+                              );
+                            } else if (widget.flow == OtpFlow.editAd) {
+                              await MyAdsController.sendAdOtp(
+                                widget.argsFormData ?? {},
+                                isRefresh: true,
+                              );
+                              timerProvider.startTimer(
+                                initialSeconds: widget.remainingSeconds ?? 120,
+                              );
                             }
-                          : null;
-                    },
+                          }
+                        : null,
                 ),
               ],
             ),

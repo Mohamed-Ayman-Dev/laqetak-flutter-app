@@ -211,6 +211,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 TimerResendWidget(
                   phone: _redirectData?.phone ?? '',
                   flow: _flow,
+                  argsFormData: _argsFormData,
                 ),
               ],
             );

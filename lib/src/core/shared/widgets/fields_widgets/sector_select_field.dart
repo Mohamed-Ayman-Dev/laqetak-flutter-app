@@ -10,11 +10,13 @@ import 'my_custom_drop_down_menu.dart';
 class SectorSelectField extends StatefulWidget {
   final List<DetailsModel>? sectors;
   final Map<String, dynamic> formData;
+  final TextEditingController? otherController;
 
   const SectorSelectField({
     super.key,
     required this.sectors,
     required this.formData,
+    this.otherController,
   });
 
   @override
@@ -23,19 +25,24 @@ class SectorSelectField extends StatefulWidget {
 
 class _SectorSelectFieldState extends State<SectorSelectField> {
   bool _requiresAdditionalInfo = false;
-  final TextEditingController _otherController = TextEditingController();
-
-  @override
-  void dispose() {
-    _otherController.dispose();
-    super.dispose();
-  }
 
   // ← single source of truth for all borders
   OutlineInputBorder _border(Color color) => OutlineInputBorder(
     borderRadius: BorderRadius.circular(12).r,
     borderSide: BorderSide(color: AppColors.borderColor, width: 1),
   );
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.otherController?.text.isNotEmpty ?? false) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        setState(() {
+          _requiresAdditionalInfo = true;
+        });
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,10 +79,11 @@ class _SectorSelectFieldState extends State<SectorSelectField> {
                 _requiresAdditionalInfo;
 
             if (_requiresAdditionalInfo) {
-              widget.formData['sector_additional_info'] = _otherController.text;
+              widget.formData['sector_additional_info'] =
+                  widget.otherController?.text;
             } else {
               widget.formData.remove('sector_additional_info');
-              _otherController.clear();
+              widget.otherController?.clear();
             }
           },
           onSaved: (val) {},
@@ -93,7 +101,8 @@ class _SectorSelectFieldState extends State<SectorSelectField> {
           secondChild: Padding(
             padding: EdgeInsets.only(top: 12.h),
             child: TextFormField(
-              controller: _otherController,
+              controller: widget.otherController,
+
               decoration: InputDecoration(
                 fillColor: Colors.white,
                 hintStyle: AppTextStyles.hintTextStyle.copyWith(

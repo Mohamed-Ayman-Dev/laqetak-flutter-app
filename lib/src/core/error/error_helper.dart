@@ -33,40 +33,23 @@ abstract class ErrorHelper {
 
   static void handleDioError(DioException error) {
     if (error.type == DioExceptionType.badResponse) {
-      if (error.response?.statusCode == 401) {
-        if (error.requestOptions.path.contains('login') ||
-            error.requestOptions.path.contains('register')) {
-          EasyLoading.showError(
-            S.current.usernameOrPasswordIsIncorrect,
-            dismissOnTap: true,
-          );
-        } else {
-          EasyLoading.showError(
-            S.current.sessionExpiredPleaseLoginAgain,
-            dismissOnTap: true,
-          );
-          if (NavigationHistoryObserver().top!.settings.name !=
-              LoginScreen.routeName) {
-            // TODO :2 if the user is already in login screen and his token is expired he will be logged out and show the error message but he is already in login screen so no need to log him out again
-            AuthController.logout(sessionExpired: true);
-          }
+      dynamic responseData = error.response?.data;
+      if (error.response?.statusCode == 401 &&
+          responseData['code'].contains('001')) {
+        EasyLoading.showError(
+          S.current.sessionExpiredPleaseLoginAgain,
+          dismissOnTap: true,
+        );
+        if (NavigationHistoryObserver().top!.settings.name !=
+            LoginScreen.routeName) {
+          AuthController.logout(sessionExpired: true);
         }
       }
-      dynamic responseData = error.response?.data;
       if (responseData != null && responseData['message'] != null) {
         // Check if 'msg' is a String
         if (responseData['message'] is String) {
-          if ((error.response?.statusCode == 401) &&
-              responseData['code'].contains('001')) {
-            // if (NavigationHistoryObserver().top!.settings.name !=
-            //     LoginScreen.routeName) {
-            //   AuthController.logout(sessionExpired: true);
-            // }
-            return;
-          } else {
-            EasyLoading.showError(responseData['message'], dismissOnTap: true);
-            return;
-          }
+          EasyLoading.showError(responseData['message'], dismissOnTap: true);
+          return;
         }
         // Check if 'msg' is a List and not empty
         else if (responseData['message'] is List &&

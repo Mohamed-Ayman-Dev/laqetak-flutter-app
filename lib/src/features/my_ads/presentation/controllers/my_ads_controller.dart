@@ -151,27 +151,34 @@ class MyAdsController {
   static Future<void> sendAdOtp(
     Map<String, dynamic>? data, {
     bool edit = false,
+    bool isRefresh = false,
   }) async {
     try {
       RedirectModel redirect = RedirectModel();
 
-      AppFeedback.loadingMessage(message: S.current.pleaseWait);
+      if (!isRefresh) {
+        AppFeedback.loadingMessage(message: S.current.pleaseWait);
+      }
       final response = await LocatorService.myAdsService.sendAdOtp({
         'contact_phone': data?['contact_phone'],
       }, rethrowError: true);
-      AppFeedback.showToast(response['message']);
-      if (response['data'] != null) {
-        redirect = RedirectModel.fromJson(response['data']);
-        redirect.phone = data?['contact_phone'];
+      if (!isRefresh) {
+        AppFeedback.showToast(response['message']);
+        if (response['data'] != null) {
+          redirect = RedirectModel.fromJson(response['data']);
+          redirect.phone = data?['contact_phone'];
+        }
+        LocatorService.navigationService.currentState?.pushNamed(
+          OtpScreen.routeName,
+          arguments: {
+            'redirectData': redirect,
+            'data': data,
+            'from': edit ? OtpFlow.editAd : OtpFlow.addAd,
+          },
+        );
+      } else {
+        AppFeedback.showToast(S.current.verificationCodeHasBeenSentToYourPhone);
       }
-      LocatorService.navigationService.currentState?.pushNamed(
-        OtpScreen.routeName,
-        arguments: {
-          'redirectData': redirect,
-          'data': data,
-          'from': edit ? OtpFlow.editAd : OtpFlow.addAd,
-        },
-      );
     } catch (e) {
       ErrorHelper.handleApiError(e);
     }

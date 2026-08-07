@@ -28,23 +28,32 @@ import '../screens/reset_password_screen.dart';
 abstract class AuthController {
   /// Login with phone and password
   /// Handles navigation to OTP screen or HomeLayoutScreen based on response
-  static Future<void> login(Map<String, dynamic> data) async {
+  static Future<void> login(
+    Map<String, dynamic> data, {
+    bool isRefresh = false,
+  }) async {
     try {
-      EasyLoading.show(status: S.current.pleaseWait);
+      if (!isRefresh) {
+        EasyLoading.show(status: S.current.pleaseWait);
+      }
       final response = await LocatorService.authService.login(
         data,
         rethrowError: true,
       );
       EasyLoading.dismiss();
-      // cache user data
-      _saveUserData(userData: response['data']);
-      // Navigate to home screen (replace all previous routes)
-      LocatorService.navigationService.currentState?.pushNamedAndRemoveUntil(
-        HomeLayoutScreen.routeName,
-        (route) => false,
-      );
-      if (LocatorService.appSettings.homeIndex != 0) {
-        LocatorService.appSettings.homeIndex = 0;
+      if (!isRefresh) {
+        // cache user data
+        _saveUserData(userData: response['data']);
+        // Navigate to home screen (replace all previous routes)
+        LocatorService.navigationService.currentState?.pushNamedAndRemoveUntil(
+          HomeLayoutScreen.routeName,
+          (route) => false,
+        );
+        if (LocatorService.appSettings.homeIndex != 0) {
+          LocatorService.appSettings.homeIndex = 0;
+        }
+      } else {
+        AppFeedback.showToast(S.current.verificationCodeHasBeenSentToYourPhone);
       }
     } catch (e) {
       if (e is DioException) {
@@ -55,7 +64,11 @@ abstract class AuthController {
           AppFeedback.showToast(S.current.pleaseVerifyYourPhoneNumber);
           LocatorService.navigationService.currentState?.pushNamed(
             OtpScreen.routeName,
-            arguments: {'redirectData': redirect, 'from': OtpFlow.login},
+            arguments: {
+              'redirectData': redirect,
+              'data': data,
+              'from': OtpFlow.login,
+            },
           );
         } else {
           ErrorHelper.handleApiError(e);
@@ -68,24 +81,34 @@ abstract class AuthController {
   /// Handles navigation to OTP screen on success
   static Future<void> register(
     BuildContext context,
-    Map<String, dynamic> data,
-  ) async {
+    Map<String, dynamic> data, {
+    bool isRefresh = false,
+  }) async {
     try {
-      EasyLoading.show(status: S.current.pleaseWait);
+      if (!isRefresh) {
+        EasyLoading.show(status: S.current.pleaseWait);
+      }
       final response = await LocatorService.authService.register(
         data,
         rethrowError: true,
         hasMultipartData: true,
       );
       EasyLoading.dismiss();
-
-      // Registration successful - navigate to OTP verification
-      final redirect = RedirectModel.fromJson(response['data']);
-      if (!context.mounted) return;
-      LocatorService.navigationService.currentState?.pushNamed(
-        OtpScreen.routeName,
-        arguments: {'redirectData': redirect, 'from': OtpFlow.register},
-      );
+      if (!isRefresh) {
+        // Registration successful - navigate to OTP verification
+        final redirect = RedirectModel.fromJson(response['data']);
+        if (!context.mounted) return;
+        LocatorService.navigationService.currentState?.pushNamed(
+          OtpScreen.routeName,
+          arguments: {
+            'redirectData': redirect,
+            'data': data,
+            'from': OtpFlow.register,
+          },
+        );
+      } else {
+        AppFeedback.showToast(S.current.verificationCodeHasBeenSentToYourPhone);
+      }
     } catch (e) {
       ErrorHelper.handleApiError(e);
     }
@@ -150,20 +173,52 @@ abstract class AuthController {
     Map<String, dynamic> data,
   ) async {
     try {
-      EasyLoading.show(status: S.current.pleaseWait);
       final response = await LocatorService.authService.registerOtpResend(
         data,
         rethrowError: true,
       );
-      EasyLoading.dismiss();
+      AppFeedback.showToast(S.current.verificationCodeHasBeenSentToYourPhone);
       return response;
     } catch (e) {
-      EasyLoading.dismiss();
       ErrorHelper.handleApiError(e);
-      if (kDebugMode) {
-        print(e);
-      }
       return null;
+    }
+  }
+
+  static Future<void> sendPhoneOtp(
+    Map<String, dynamic>? data, {
+    bool isRefresh = false,
+  }) async {
+    try {
+      RedirectModel redirect = RedirectModel();
+      if (!isRefresh) {
+        AppFeedback.loadingMessage(message: S.current.pleaseWait);
+      }
+      final response = await LocatorService.authService.sendPhoneOtp({
+        'phone': data?['phone'],
+      }, rethrowError: true);
+      if (!isRefresh) {
+        if (response['data'] != null) {
+          AppFeedback.showToast(response['message'] ?? '');
+          redirect = RedirectModel.fromJson(response['data']);
+          redirect.phone = data?['phone'];
+        } else {
+          EasyLoading.showError(response['message'], dismissOnTap: true);
+          return;
+        }
+        LocatorService.navigationService.currentState?.pushNamed(
+          OtpScreen.routeName,
+          arguments: {
+            'redirectData': redirect,
+            'data': data,
+            'from': OtpFlow.updatePhone,
+          },
+        );
+      } else {
+        AppFeedback.showToast(S.current.verificationCodeHasBeenSentToYourPhone);
+      }
+    } catch (e) {
+      ErrorHelper.handleApiError(e);
     }
   }
 
@@ -447,34 +502,6 @@ abstract class AuthController {
     } catch (e) {
       ErrorHelper.handleApiError(e);
       return null;
-    }
-  }
-
-  static Future<void> sendPhoneOtp(Map<String, dynamic>? data) async {
-    try {
-      RedirectModel redirect = RedirectModel();
-      AppFeedback.loadingMessage(message: S.current.pleaseWait);
-      final response = await LocatorService.authService.sendPhoneOtp({
-        'phone': data?['phone'],
-      }, rethrowError: true);
-      if (response['data'] != null) {
-        AppFeedback.showToast(response['message'] ?? '');
-        redirect = RedirectModel.fromJson(response['data']);
-        redirect.phone = data?['phone'];
-      } else {
-        EasyLoading.showError(response['message'], dismissOnTap: true);
-        return;
-      }
-      LocatorService.navigationService.currentState?.pushNamed(
-        OtpScreen.routeName,
-        arguments: {
-          'redirectData': redirect,
-          'data': data,
-          'from': OtpFlow.updatePhone,
-        },
-      );
-    } catch (e) {
-      ErrorHelper.handleApiError(e);
     }
   }
 

@@ -40,6 +40,9 @@ class _AddAdScreenState extends State<AddAdScreen> {
   bool once = false;
   AdModel? ad;
   final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _sectorAdditionalController =
+      TextEditingController();
+
   final TextEditingController _investmentAmountController =
       TextEditingController();
 
@@ -50,6 +53,9 @@ class _AddAdScreenState extends State<AddAdScreen> {
       if (ad != null) {
         _formData['city_id'] = ad?.city?.id;
         _formData['category_id'] = ad?.category?.id;
+        if (ad?.sectorAdditionalInfo != null) {
+          _sectorAdditionalController.text = ad?.sectorAdditionalInfo ?? '';
+        }
         _selectedCategory = ad?.category;
         _formData['sector_id'] = ad?.sector?.id;
         _titleController.text = ad?.title ?? '';
@@ -81,6 +87,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
   void dispose() {
     _titleController.dispose();
     _investmentAmountController.dispose();
+    _sectorAdditionalController.dispose();
     super.dispose();
   }
 
@@ -307,6 +314,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
                     return SectorSelectField(
                       sectors: mySectors,
                       formData: _formData,
+                      otherController: _sectorAdditionalController,
                     );
                   },
                 ),

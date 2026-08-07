@@ -39,6 +39,7 @@ class AdModel {
     this.contactRequestStatus,
     this.mainPhoto,
     this.publishedAt,
+    this.sectorAdditionalInfo,
   });
 
   AdModel.fromJson(dynamic json) {
@@ -76,6 +77,7 @@ class AdModel {
     }
     mainPhoto = json['main_photo'];
     publishedAt = json['published_at'];
+    sectorAdditionalInfo = json['sector_additional_info'];
   }
 
   num? id;
@@ -88,6 +90,7 @@ class AdModel {
   String? contactRequestStatus;
   num? hidePhone;
   String? status;
+  String? sectorAdditionalInfo;
   bool? isFavorite;
   CategoryModel? category;
   SectorModel? sector;
@@ -114,6 +117,7 @@ class AdModel {
     CustomerModel? customer,
     List<PhotoModel>? photos,
     String? publishedAt,
+    String? sectorAdditionalInfo,
   }) => AdModel(
     id: id ?? this.id,
     title: title ?? this.title,
@@ -132,6 +136,7 @@ class AdModel {
     customer: customer ?? this.customer,
     photos: photos ?? this.photos,
     publishedAt: publishedAt ?? this.publishedAt,
+    sectorAdditionalInfo: sectorAdditionalInfo ?? this.sectorAdditionalInfo,
   );
 
   Map<String, dynamic> toJson() {
@@ -147,6 +152,7 @@ class AdModel {
     map['status'] = status;
     map['is_favorite'] = isFavorite;
     map['main_photo'] = mainPhoto;
+    map['sector_additional_info'] = sectorAdditionalInfo;
     if (category != null) {
       map['category'] = category?.toJson();
     }
