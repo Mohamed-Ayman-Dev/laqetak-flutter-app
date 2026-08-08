@@ -7,15 +7,23 @@ class AppLogo extends StatelessWidget {
   final double? width;
   final String? tag;
   final BoxFit? fit;
+  final String? logo;
 
-  const AppLogo({super.key, this.height, this.width, this.tag, this.fit});
+  const AppLogo({
+    super.key,
+    this.height,
+    this.width,
+    this.tag,
+    this.fit,
+    this.logo,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Hero(
       tag: tag ?? 'logo',
       child: Image.asset(
-        ImagesAssets.assetsImagesLogo,
+        logo ?? ImagesAssets.assetsImagesLogo,
         fit: fit ?? BoxFit.cover,
         width: width ?? 289.w,
         height: height ?? 52.h,

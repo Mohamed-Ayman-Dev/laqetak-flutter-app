@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/core/shared/widgets/animations/animated_fade_scale_wrapper.dart';
 import 'package:invastro/src/features/auth/presentation/screens/auth_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +12,6 @@ import '../../../../core/constants/images_assets.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/shared/controllers/settings_controller.dart';
 import '../../../../core/shared/providers/app_settings.dart';
-import '../../../../core/shared/widgets/app_logo.dart';
 import '../../../home/presentation/screens/home_layout_screen.dart';
 import '../controllers/auth_controller.dart';
 
@@ -104,7 +105,18 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [const AppLogo(tag: 'splash-tag')],
+                children: [
+                  AnimatedFadeScaleWrapper(
+                    child: Hero(
+                      tag: 'logo',
+                      child: Image.asset(
+                        ImagesAssets.assetsImagesNewLogo,
+                        fit: BoxFit.cover,
+                        width: 289.w,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

@@ -68,6 +68,9 @@ class ImagesAssets {
   /// assets/images/mock_profile_image.png
   static const String assetsImagesMockProfileImage = "assets/images/mock_profile_image.png";
 
+  /// assets/images/new_logo.png
+  static const String assetsImagesNewLogo = "assets/images/new_logo.png";
+
   /// assets/images/profile_edit.png
   static const String assetsImagesProfileEdit = "assets/images/profile_edit.png";
 
