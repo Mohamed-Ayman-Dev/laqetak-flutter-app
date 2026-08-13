@@ -1,11 +1,10 @@
 import 'dart:async'; // 👈 import this
 
-// import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../../../generated/l10n.dart';
+import '../../../../../generated/l10n.dart';
 
 class PaymentWebView extends StatefulWidget {
   static const routeName = '/payment-webview';

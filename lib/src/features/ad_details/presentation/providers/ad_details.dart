@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:invastro/src/core/shared/models/customer_model.dart';
 
-import '../../../../core/shared/models/ad_model.dart';
-import '../../../../core/shared/models/pagination_list.dart';
+import '../../../../core/shared/data/models/ad_model.dart';
+import '../../../../core/shared/data/models/customer_model.dart';
+import '../../../../core/shared/data/models/pagination_list.dart';
 
 class AdDetails with ChangeNotifier {
   Map<num, PaginationList<AdModel>?> myCustomerAds = {};

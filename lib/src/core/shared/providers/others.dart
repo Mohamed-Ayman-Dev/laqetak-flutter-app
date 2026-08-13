@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:invastro/src/core/shared/models/budget_range_model.dart';
-import 'package:invastro/src/core/shared/models/category_model.dart';
 
-import '../models/details_model.dart';
-import '../models/payment_method_model.dart';
+import '../data/models/budget_range_model.dart';
+import '../data/models/category_model.dart';
+import '../data/models/details_model.dart';
+import '../data/models/payment_method_model.dart';
 
 class Others with ChangeNotifier {
   List<DetailsModel>? myRegions;

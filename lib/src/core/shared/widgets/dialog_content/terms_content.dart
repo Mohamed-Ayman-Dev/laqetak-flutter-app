@@ -6,7 +6,6 @@ import 'package:invastro/src/core/constants/constant.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/shared/controllers/settings_controller.dart';
-import 'package:invastro/src/core/shared/models/settings_model.dart';
 import 'package:invastro/src/core/shared/providers/app_settings.dart';
 import 'package:invastro/src/core/shared/widgets/custom_Text.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +14,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../features/static_pages/presentation/widgets/static_shimmer.dart';
 import '../../../themes/colors.dart';
 import '../../../themes/text_styles.dart';
+import '../../data/models/settings_model.dart';
 
 class TermsContent extends StatefulWidget {
   final String? title;

@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/shared/models/details_model.dart';
+import '../../../../core/shared/data/models/details_model.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_text_button.dart';
 import '../../../../core/shared/widgets/custom_Text.dart';

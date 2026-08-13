@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:invastro/src/core/shared/models/ad_model.dart';
 import 'package:invastro/src/features/home/data/models/loading_variables_models/ads_loading_model.dart';
 
-import '../../../../core/shared/models/pagination_list.dart';
+import '../../../../core/shared/data/models/ad_model.dart';
+import '../../../../core/shared/data/models/pagination_list.dart';
 
 class Ads with ChangeNotifier {
   AdsLoadingModel adsLoadingModel = AdsLoadingModel();

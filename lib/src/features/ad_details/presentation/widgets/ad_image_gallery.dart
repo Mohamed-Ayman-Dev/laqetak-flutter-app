@@ -7,7 +7,7 @@ import 'package:invastro/src/core/shared/widgets/photoview.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../../core/shared/models/photo_model.dart';
+import '../../../../core/shared/data/models/photo_model.dart';
 import '../../../../core/shared/widgets/labels_widgets/ad_expired_label.dart';
 import '../../../../core/shared/widgets/labels_widgets/ad_label.dart';
 

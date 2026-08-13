@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:invastro/src/core/shared/screens/payment_webview.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 
+import '../core/shared/presentation/screens/payment_webview.dart';
 import '../core/shared/widgets/timeout_splashscreen.dart';
 import '../features/ad_details/presentation/screens/ad_details_screen.dart';
 import '../features/ad_details/presentation/screens/seller_profile_screen.dart';

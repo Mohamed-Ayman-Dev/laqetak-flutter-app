@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:invastro/src/features/chat/data/models/conversations_model.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 
-import '../../../../core/shared/models/pagination_list.dart';
+import '../../../../core/shared/data/models/pagination_list.dart';
 import '../../data/models/message_model.dart';
 import '../../data/services/pusher_service.dart';
 

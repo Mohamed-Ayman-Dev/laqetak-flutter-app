@@ -25,7 +25,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/helpers/image_utils.dart';
 import '../../../../core/shared/controllers/others_controller.dart';
-import '../../../../core/shared/models/details_model.dart';
+import '../../../../core/shared/data/models/details_model.dart';
 import '../../../../core/shared/providers/others.dart';
 import '../../../../core/shared/widgets/custom_image.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';

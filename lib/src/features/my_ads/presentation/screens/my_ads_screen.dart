@@ -16,8 +16,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
-import '../../../../core/shared/models/ad_model.dart';
-import '../../../../core/shared/models/pagination_list.dart';
+import '../../../../core/shared/data/models/ad_model.dart';
+import '../../../../core/shared/data/models/pagination_list.dart';
 import '../../../../core/shared/widgets/items_widgets/ad_item.dart';
 import '../../../../core/shared/widgets/lists_widgets/empty_list_placeholder_widget.dart';
 import '../../../../core/shared/widgets/lists_widgets/list_loading_end_widget.dart';

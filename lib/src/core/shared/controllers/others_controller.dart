@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:invastro/src/core/error/error_helper.dart';
-import 'package:invastro/src/core/shared/models/budget_range_model.dart';
-import 'package:invastro/src/core/shared/models/category_model.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../di/locator_service.dart';
-import '../models/details_model.dart';
+import '../data/models/budget_range_model.dart';
+import '../data/models/category_model.dart';
+import '../data/models/details_model.dart';
 
 abstract class OthersController {
   /// Get list of cities

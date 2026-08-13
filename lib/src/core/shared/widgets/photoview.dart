@@ -5,9 +5,10 @@ import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/shared/models/photo_model.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+
+import '../data/models/photo_model.dart';
 
 class PhotoView extends StatefulWidget {
   static const routeName = '/photo-view';

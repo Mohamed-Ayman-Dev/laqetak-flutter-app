@@ -1,11 +1,11 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/error/error_helper.dart';
-import 'package:invastro/src/core/shared/models/ad_model.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
+import '../../../../core/shared/data/models/ad_model.dart';
 
 class AdsController {
   static Future<void> getAds({

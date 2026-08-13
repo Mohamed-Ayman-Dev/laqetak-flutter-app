@@ -4,7 +4,7 @@ import 'package:invastro/src/core/themes/text_styles.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../themes/colors.dart';
-import '../../models/details_model.dart';
+import '../../data/models/details_model.dart';
 import 'my_custom_drop_down_menu.dart';
 
 class SectorSelectField extends StatefulWidget {

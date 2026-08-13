@@ -1,4 +1,4 @@
-import 'package:invastro/src/core/shared/models/details_model.dart';
+import '../../../../core/shared/data/models/details_model.dart';
 
 /// id : 31
 /// name : "John Cuza"

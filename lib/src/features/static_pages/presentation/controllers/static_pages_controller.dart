@@ -4,7 +4,7 @@ import 'package:invastro/src/core/error/error_helper.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
-import '../../../../core/shared/models/faq_model.dart';
+import '../../../../core/shared/data/models/faq_model.dart';
 
 class StaticPagesController {
   static Future<void> sendContactUs(Map<String, dynamic> data) async {

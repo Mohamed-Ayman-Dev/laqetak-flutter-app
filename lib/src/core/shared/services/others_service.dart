@@ -1,14 +1,6 @@
 import '../../network/api_service.dart';
 
 class OthersService {
-  Future getRegions({bool rethrowError = false}) async {
-    return await ApiService.get(
-      '/regions',
-      useDefaultUrl: true,
-      rethrowError: rethrowError,
-    );
-  }
-
   Future getCategories({bool rethrowError = false}) async {
     return await ApiService.get(
       '/categories',

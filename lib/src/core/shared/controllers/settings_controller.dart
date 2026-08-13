@@ -1,7 +1,7 @@
 import 'package:invastro/src/core/error/error_helper.dart';
 
 import '../../di/locator_service.dart';
-import '../models/settings_model.dart';
+import '../data/models/settings_model.dart';
 
 abstract class SettingsController {
   ///get general settings

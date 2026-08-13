@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/shared/models/ad_model.dart';
 import 'package:invastro/src/core/shared/widgets/buttons_widgets/small_icon_button.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/home/presentation/providers/ads.dart';
@@ -14,6 +13,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
+import '../../../../core/shared/data/models/ad_model.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../home/presentation/controllers/ads_controller.dart';
 

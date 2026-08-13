@@ -1,6 +1,5 @@
-import 'package:invastro/src/core/shared/models/details_model.dart';
-
 import '../../../generated/l10n.dart';
+import '../shared/data/models/details_model.dart';
 
 final class MockDataForLoading {
   MockDataForLoading._();

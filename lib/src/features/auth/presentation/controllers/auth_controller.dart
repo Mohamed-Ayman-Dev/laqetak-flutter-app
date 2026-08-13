@@ -10,7 +10,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/error/error_helper.dart';
-import 'package:invastro/src/core/shared/models/redirect_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,6 +18,7 @@ import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/network/api_service.dart';
+import '../../../../core/shared/data/models/redirect_model.dart';
 import '../../../home/presentation/screens/home_layout_screen.dart';
 import '../providers/auth.dart';
 import '../screens/login_screen.dart';

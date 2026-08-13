@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/shared/models/pagination_list.dart';
+import '../../../../core/shared/data/models/pagination_list.dart';
 import '../../data/models/notification_model.dart';
 
 class Notifications with ChangeNotifier {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/shared/models/redirect_model.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
@@ -15,6 +14,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
+import '../../../../core/shared/data/models/redirect_model.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/custom_Text.dart';
 import '../../../../core/shared/widgets/fields_widgets/pin_code_widget.dart';

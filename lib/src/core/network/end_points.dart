@@ -19,8 +19,12 @@ final class EndPoints {
   static const String editAddresses = "/addresses/update";
   static const String selectDefaultAddresses = "/addresses/set-default";
   static const String deleteAddress = "/addresses/delete";
-  static const String getCites = "$baseUrl/cities";
-  static const String getRegions = "$baseUrl/regions";
+
+  /// Others
+  static const String getCategories = "$baseUrl/categories";
+  static const String getCities = "$baseUrl/cities";
+  static const String getBudgetRanges = "$baseUrl/budget-ranges";
+  static const String getSectors = "$baseUrl/sectors";
 
   // static const String baseUrl = String.fromEnvironment('LOGOUT');
 }
