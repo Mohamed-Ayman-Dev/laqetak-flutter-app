@@ -1,6 +1,7 @@
 // --------------------------- Bloc Enums ---------------------------
 
-enum CategoryState { loading, success, error, initial }
+/// Loading status of any remote resource held inside a cubit state.
+enum RequestStatus { initial, loading, success, error }
 
 enum AppbarIcons { logo, drawer, search, chat }
 
