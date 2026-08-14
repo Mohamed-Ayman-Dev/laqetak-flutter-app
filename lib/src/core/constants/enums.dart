@@ -1,6 +1,6 @@
 // --------------------------- Bloc Enums ---------------------------
 
-enum RequestState { loading, success, error, initial }
+enum CategoryState { loading, success, error, initial }
 
 enum AppbarIcons { logo, drawer, search, chat }
 
