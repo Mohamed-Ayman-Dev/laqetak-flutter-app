@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/constant.dart';
 import '../../../../core/shared/controllers/settings_controller.dart';
-import '../../../../core/shared/data/models/settings_model.dart';
+import '../../../../core/shared/models/settings_model.dart';
 import '../../../../core/shared/providers/app_settings.dart';
 import '../../../../core/shared/widgets/custom_appbar.dart';
 import '../../../../core/shared/widgets/drawer_widgets/custom_drawer.dart';

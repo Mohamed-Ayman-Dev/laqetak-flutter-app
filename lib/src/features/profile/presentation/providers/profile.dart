@@ -1,5 +1,3 @@
 import 'package:flutter/material.dart';
 
-class Profile with ChangeNotifier {
- 
-}
+class Profile with ChangeNotifier {}

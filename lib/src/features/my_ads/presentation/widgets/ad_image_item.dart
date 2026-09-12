@@ -1,6 +1,6 @@
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../core/shared/data/models/photo_model.dart';
+import '../../../../core/shared/models/photo_model.dart';
 
 sealed class AdImageItem {
   const AdImageItem();

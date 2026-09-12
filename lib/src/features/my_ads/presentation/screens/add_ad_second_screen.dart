@@ -13,7 +13,7 @@ import 'package:invastro/src/features/my_ads/presentation/widgets/ad_image_picke
 import '../../../../../generated/l10n.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/shared/data/models/ad_model.dart';
+import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/custom_appbar.dart';
 import '../../../../core/shared/widgets/custom_switch.dart';

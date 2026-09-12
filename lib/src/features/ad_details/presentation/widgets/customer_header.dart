@@ -7,7 +7,7 @@ import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
-import '../../../../core/shared/data/models/customer_model.dart';
+import '../../../../core/shared/models/customer_model.dart';
 import '../../../../core/shared/widgets/buttons_widgets/small_icon_button.dart';
 import '../../../../core/shared/widgets/custom_image.dart';
 import '../../../../core/themes/colors.dart';

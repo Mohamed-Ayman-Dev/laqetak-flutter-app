@@ -9,14 +9,15 @@
 
 class NotificationModel {
   NotificationModel({
-      this.id, 
-      this.alertText, 
-      this.alertBody, 
-      this.alertLink, 
-      this.type, 
-      this.data, 
-      this.createdAt, 
-      this.read,});
+    this.id,
+    this.alertText,
+    this.alertBody,
+    this.alertLink,
+    this.type,
+    this.data,
+    this.createdAt,
+    this.read,
+  });
 
   NotificationModel.fromJson(dynamic json) {
     id = json['id'];
@@ -36,23 +37,25 @@ class NotificationModel {
   dynamic data;
   String? createdAt;
   num? read;
-NotificationModel copyWith({  num? id,
-  String? alertText,
-  String? alertBody,
-  String? alertLink,
-  String? type,
-  dynamic data,
-  String? createdAt,
-  num? read,
-}) => NotificationModel(  id: id ?? this.id,
-  alertText: alertText ?? this.alertText,
-  alertBody: alertBody ?? this.alertBody,
-  alertLink: alertLink ?? this.alertLink,
-  type: type ?? this.type,
-  data: data ?? this.data,
-  createdAt: createdAt ?? this.createdAt,
-  read: read ?? this.read,
-);
+  NotificationModel copyWith({
+    num? id,
+    String? alertText,
+    String? alertBody,
+    String? alertLink,
+    String? type,
+    dynamic data,
+    String? createdAt,
+    num? read,
+  }) => NotificationModel(
+    id: id ?? this.id,
+    alertText: alertText ?? this.alertText,
+    alertBody: alertBody ?? this.alertBody,
+    alertLink: alertLink ?? this.alertLink,
+    type: type ?? this.type,
+    data: data ?? this.data,
+    createdAt: createdAt ?? this.createdAt,
+    read: read ?? this.read,
+  );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
@@ -65,5 +68,4 @@ NotificationModel copyWith({  num? id,
     map['read'] = read;
     return map;
   }
-
 }

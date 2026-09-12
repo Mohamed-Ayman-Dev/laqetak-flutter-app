@@ -8,7 +8,6 @@ import 'package:provider/single_child_widget.dart';
 import '../core/di/locator.dart';
 import '../core/di/locator_service.dart';
 import '../core/shared/providers/app_settings.dart';
-import '../core/shared/providers/others.dart';
 import '../features/ad_details/presentation/providers/ad_details.dart';
 import '../features/auth/presentation/providers/auth.dart';
 import '../features/auth/presentation/providers/auth_naviagtions.dart';
@@ -34,7 +33,6 @@ class AppProviders {
     ChangeNotifierProvider<AuthNavigations>(
       create: (_) => LocatorService.authNavigations,
     ),
-    ChangeNotifierProvider<Others>(create: (_) => LocatorService.others),
     ChangeNotifierProvider<Timers>(create: (_) => LocatorService.timers),
     ChangeNotifierProvider<StaticPages>(
       create: (_) => LocatorService.staticPages,

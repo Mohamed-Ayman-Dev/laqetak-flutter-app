@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,11 +23,12 @@ import 'package:invastro/src/features/auth/presentation/providers/auth.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../core/constants/app_feedback.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/helpers/image_utils.dart';
-import '../../../../core/shared/controllers/others_controller.dart';
 import '../../../../core/shared/data/models/details_model.dart';
-import '../../../../core/shared/providers/others.dart';
+import '../../../../core/shared/presentation/cubit/others_cubit.dart';
+import '../../../../core/shared/presentation/cubit/others_state.dart';
 import '../../../../core/shared/widgets/custom_image.dart';
 import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/shared/widgets/fields_widgets/my_custom_drop_down_menu.dart';
@@ -55,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     data['city_id'] = LocatorService.auth.user?.city?.id;
     data['name'] = LocatorService.auth.user?.name;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      OthersController.getCities();
+      context.read<OthersCubit>().getCities();
     });
     super.initState();
   }
@@ -261,39 +263,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           hintText: S.current.mobileNumber,
                         ),
                         12.heightSpace,
-                        Selector<Others, List<DetailsModel>?>(
-                          selector: (context, provider) => provider.myCities,
-                          builder: (context, myCities, child) {
-                            return MyCustomDropdownFormField<DetailsModel>(
-                              hint: S.current.selectCity,
-                              enabled: isEditMode,
-                              items: myCities,
-                              itemAsString: (item) => item.name ?? '',
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 16,
-                                horizontal: 16,
-                              ).r,
+                        BlocListener<OthersCubit, OthersState>(
+                          listenWhen: (previous, current) =>
+                              current.hasError && !previous.hasError,
+                          listener: (context, state) =>
+                              AppFeedback.errorMessage(state.errorMessage),
+                          child:
+                              BlocSelector<
+                                OthersCubit,
+                                OthersState,
+                                List<DetailsModel>
+                              >(
+                                selector: (state) => state.cities,
+                                builder: (context, myCities) {
+                                  return MyCustomDropdownFormField<
+                                    DetailsModel
+                                  >(
+                                    hint: S.current.selectCity,
+                                    enabled: isEditMode,
+                                    items: myCities,
+                                    itemAsString: (item) => item.name ?? '',
+                                    contentPadding: EdgeInsets.symmetric(
+                                      vertical: 16,
+                                      horizontal: 16,
+                                    ).r,
 
-                              borderColor: AppColors.questionBorderColor,
-                              borderRadius: 16,
-                              value: data['city_id'] == null
-                                  ? null
-                                  : myCities?.firstWhere(
-                                      (e) => e.id == data['city_id'],
-                                      orElse: () => DetailsModel(),
-                                    ),
-                              validator: (value) {
-                                if (value == null) {
-                                  return S.of(context).pleaseSelectACity;
-                                }
-                                return null;
-                              },
-                              onChanged: (val) {
-                                data['city_id'] = val?.id;
-                              },
-                              onSaved: (val) {},
-                            );
-                          },
+                                    borderColor: AppColors.questionBorderColor,
+                                    borderRadius: 16,
+                                    value: data['city_id'] == null
+                                        ? null
+                                        : myCities.firstWhere(
+                                            (e) => e.id == data['city_id'],
+                                            orElse: () => DetailsModel(),
+                                          ),
+                                    validator: (value) {
+                                      if (value == null) {
+                                        return S.of(context).pleaseSelectACity;
+                                      }
+                                      return null;
+                                    },
+                                    onChanged: (val) {
+                                      data['city_id'] = val?.id;
+                                    },
+                                    onSaved: (val) {},
+                                  );
+                                },
+                              ),
                         ),
                         20.heightSpace,
                         Align(

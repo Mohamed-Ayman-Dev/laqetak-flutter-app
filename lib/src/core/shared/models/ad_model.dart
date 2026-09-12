@@ -1,9 +1,9 @@
-import 'package:invastro/src/core/shared/data/models/photo_model.dart';
 import 'package:invastro/src/core/shared/data/models/sector_model.dart';
+import 'package:invastro/src/core/shared/models/photo_model.dart';
 
-import 'category_model.dart';
+import '../data/models/category_model.dart';
+import '../data/models/details_model.dart';
 import 'customer_model.dart';
-import 'details_model.dart';
 
 /// id : 63
 /// title : "مشروع تجاري كامل"

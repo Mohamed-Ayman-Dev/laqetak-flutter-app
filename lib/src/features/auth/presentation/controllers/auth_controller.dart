@@ -18,7 +18,7 @@ import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/network/api_service.dart';
-import '../../../../core/shared/data/models/redirect_model.dart';
+import '../../../../core/shared/models/redirect_model.dart';
 import '../../../home/presentation/screens/home_layout_screen.dart';
 import '../providers/auth.dart';
 import '../screens/login_screen.dart';

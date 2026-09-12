@@ -2,9 +2,9 @@ final class EndPoints {
   EndPoints._();
 
   /// Base URLs
-  static const String baseUrl = "https://ghiar-tech.dev4.wady.sa/api/v1";
+  static const String baseUrl = "https://invastro.dev4.wady.sa/api/v1";
   static const String userBaseUrl =
-      'https://ghiar-tech.dev4.wady.sa/api/v1/customer';
+      'https://invastro.dev4.wady.sa/api/v1/customer';
 
   /// Auth
   static const String refreshToken = "/refresh-token";

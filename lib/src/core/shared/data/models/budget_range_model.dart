@@ -6,11 +6,12 @@
 
 class BudgetRangeModel {
   BudgetRangeModel({
-      this.id, 
-      this.name, 
-      this.amountFrom, 
-      this.amountTo, 
-      this.order,});
+    this.id,
+    this.name,
+    this.amountFrom,
+    this.amountTo,
+    this.order,
+  });
 
   BudgetRangeModel.fromJson(dynamic json) {
     id = json['id'];
@@ -24,17 +25,19 @@ class BudgetRangeModel {
   String? amountFrom;
   String? amountTo;
   num? order;
-BudgetRangeModel copyWith({  num? id,
-  String? name,
-  String? amountFrom,
-  String? amountTo,
-  num? order,
-}) => BudgetRangeModel(  id: id ?? this.id,
-  name: name ?? this.name,
-  amountFrom: amountFrom ?? this.amountFrom,
-  amountTo: amountTo ?? this.amountTo,
-  order: order ?? this.order,
-);
+  BudgetRangeModel copyWith({
+    num? id,
+    String? name,
+    String? amountFrom,
+    String? amountTo,
+    num? order,
+  }) => BudgetRangeModel(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    amountFrom: amountFrom ?? this.amountFrom,
+    amountTo: amountTo ?? this.amountTo,
+    order: order ?? this.order,
+  );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
@@ -44,5 +47,4 @@ BudgetRangeModel copyWith({  num? id,
     map['order'] = order;
     return map;
   }
-
 }

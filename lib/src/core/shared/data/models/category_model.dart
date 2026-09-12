@@ -3,10 +3,7 @@
 /// slug : "investment"
 
 class CategoryModel {
-  CategoryModel({
-      this.id, 
-      this.name, 
-      this.slug,});
+  CategoryModel({this.id, this.name, this.slug});
 
   CategoryModel.fromJson(dynamic json) {
     id = json['id'];
@@ -16,13 +13,12 @@ class CategoryModel {
   num? id;
   String? name;
   String? slug;
-CategoryModel copyWith({  num? id,
-  String? name,
-  String? slug,
-}) => CategoryModel(  id: id ?? this.id,
-  name: name ?? this.name,
-  slug: slug ?? this.slug,
-);
+  CategoryModel copyWith({num? id, String? name, String? slug}) =>
+      CategoryModel(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        slug: slug ?? this.slug,
+      );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
@@ -30,5 +26,4 @@ CategoryModel copyWith({  num? id,
     map['slug'] = slug;
     return map;
   }
-
 }

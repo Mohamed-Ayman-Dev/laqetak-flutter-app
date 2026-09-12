@@ -2,7 +2,7 @@ import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/features/chat/data/models/message_file_model.dart';
 
 import '../../../../core/constants/enums.dart';
-import '../../../../core/shared/data/models/customer_model.dart';
+import '../../../../core/shared/models/customer_model.dart';
 
 /// id : 4
 /// message : "test"

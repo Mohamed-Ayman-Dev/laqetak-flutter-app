@@ -8,7 +8,7 @@ import '../../constants/enums.dart';
 import '../../di/locator_service.dart';
 import '../../helpers/others_helper.dart';
 import '../../themes/text_styles.dart';
-import '../data/models/customer_model.dart';
+import '../models/customer_model.dart';
 import 'app_logo.dart';
 import 'buttons_widgets/my_icon_button.dart';
 import 'custom_direction_widget.dart';

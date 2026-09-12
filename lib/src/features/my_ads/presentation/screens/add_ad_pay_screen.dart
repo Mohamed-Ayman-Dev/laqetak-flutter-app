@@ -13,7 +13,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/helpers/vat_helper.dart';
 import '../../../../core/shared/controllers/settings_controller.dart';
-import '../../../../core/shared/data/models/ad_model.dart';
+import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/shared/widgets/custom_appbar.dart';
 import '../../../../core/themes/text_styles.dart';

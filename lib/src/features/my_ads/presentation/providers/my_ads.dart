@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/shared/data/models/ad_model.dart';
-import '../../../../core/shared/data/models/pagination_list.dart';
+import '../../../../core/shared/models/ad_model.dart';
+import '../../../../core/shared/models/pagination_list.dart';
 
 class MyAds with ChangeNotifier {
   PaginationList<AdModel>? myAds;

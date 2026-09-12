@@ -3,10 +3,7 @@
 /// key : "cash"
 
 class PaymentMethodModel {
-  PaymentMethodModel({
-      this.id, 
-      this.name, 
-      this.key,});
+  PaymentMethodModel({this.id, this.name, this.key});
 
   PaymentMethodModel.fromJson(dynamic json) {
     id = json['id'];
@@ -16,13 +13,12 @@ class PaymentMethodModel {
   num? id;
   String? name;
   String? key;
-PaymentMethodModel copyWith({  num? id,
-  String? name,
-  String? key,
-}) => PaymentMethodModel(  id: id ?? this.id,
-  name: name ?? this.name,
-  key: key ?? this.key,
-);
+  PaymentMethodModel copyWith({num? id, String? name, String? key}) =>
+      PaymentMethodModel(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        key: key ?? this.key,
+      );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
@@ -30,5 +26,4 @@ PaymentMethodModel copyWith({  num? id,
     map['key'] = key;
     return map;
   }
-
 }

@@ -15,4 +15,3 @@ extension MediaQueryValue on BuildContext {
   bool get isKeyboardOpen => keyboardHeight > 0;
   double get keyboardHeight => View.of(this).viewInsets.bottom;
 }
-

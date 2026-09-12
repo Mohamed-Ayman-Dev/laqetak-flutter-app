@@ -13,7 +13,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
-import '../../../../core/shared/data/models/ad_model.dart';
+import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../home/presentation/controllers/ads_controller.dart';
 

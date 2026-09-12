@@ -13,7 +13,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../../generated/l10n.dart';
 import '../di/locator_service.dart';
-import '../shared/data/models/photo_model.dart';
+import '../shared/models/photo_model.dart';
 import '../shared/widgets/custom_Text.dart';
 import '../themes/colors.dart';
 

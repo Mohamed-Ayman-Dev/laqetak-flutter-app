@@ -14,7 +14,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../features/static_pages/presentation/widgets/static_shimmer.dart';
 import '../../../themes/colors.dart';
 import '../../../themes/text_styles.dart';
-import '../../data/models/settings_model.dart';
+import '../../models/settings_model.dart';
 
 class TermsContent extends StatefulWidget {
   final String? title;

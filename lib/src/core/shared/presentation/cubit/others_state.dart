@@ -16,6 +16,7 @@ class OthersState extends Equatable {
     this.sectorsStatus = RequestStatus.initial,
     this.budgetRanges = const [],
     this.budgetRangesStatus = RequestStatus.initial,
+    this.errorMessage,
   });
 
   final List<CategoryModel> categories;
@@ -30,6 +31,14 @@ class OthersState extends Equatable {
   final List<BudgetRangeModel> budgetRanges;
   final RequestStatus budgetRangesStatus;
 
+  final String? errorMessage;
+
+  bool get hasError =>
+      categoriesStatus == RequestStatus.error ||
+      citiesStatus == RequestStatus.error ||
+      sectorsStatus == RequestStatus.error ||
+      budgetRangesStatus == RequestStatus.error;
+
   OthersState copyWith({
     List<CategoryModel>? categories,
     RequestStatus? categoriesStatus,
@@ -39,6 +48,7 @@ class OthersState extends Equatable {
     RequestStatus? sectorsStatus,
     List<BudgetRangeModel>? budgetRanges,
     RequestStatus? budgetRangesStatus,
+    String? errorMessage,
   }) => OthersState(
     categories: categories ?? this.categories,
     categoriesStatus: categoriesStatus ?? this.categoriesStatus,
@@ -48,6 +58,7 @@ class OthersState extends Equatable {
     sectorsStatus: sectorsStatus ?? this.sectorsStatus,
     budgetRanges: budgetRanges ?? this.budgetRanges,
     budgetRangesStatus: budgetRangesStatus ?? this.budgetRangesStatus,
+    errorMessage: errorMessage ?? this.errorMessage,
   );
 
   @override
@@ -60,5 +71,6 @@ class OthersState extends Equatable {
     sectorsStatus,
     budgetRanges,
     budgetRangesStatus,
+    errorMessage,
   ];
 }

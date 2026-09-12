@@ -18,10 +18,8 @@ import '../../features/static_pages/presentation/providers/static_pages.dart';
 import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
 import '../shared/providers/app_settings.dart';
-import '../shared/providers/others.dart';
 import '../shared/providers/timers.dart';
 import '../shared/services/navigation_service.dart';
-import '../shared/services/others_service.dart';
 import 'locator.dart';
 
 abstract class LocatorService {
@@ -39,8 +37,6 @@ abstract class LocatorService {
   static MyAdsService get myAdsService => locator<MyAdsService>();
 
   static SettingsService get settingsService => locator<SettingsService>();
-
-  static OthersService get othersService => locator<OthersService>();
 
   static NotificationsService get notificationService =>
       locator<NotificationsService>();
@@ -60,8 +56,6 @@ abstract class LocatorService {
   static Auth get auth => locator<Auth>();
 
   static AuthNavigations get authNavigations => locator<AuthNavigations>();
-
-  static Others get others => locator<Others>();
 
   static MyAds get myAds => locator<MyAds>();
 

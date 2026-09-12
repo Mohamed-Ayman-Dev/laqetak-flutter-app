@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/shared/data/models/photo_model.dart';
+import '../../../../core/shared/models/photo_model.dart';
 import '../../../../core/themes/colors.dart';
 import 'ad_image_item.dart';
 

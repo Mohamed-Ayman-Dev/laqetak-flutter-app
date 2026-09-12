@@ -4,7 +4,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/app_feedback.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/error/error_helper.dart';
-import '../../../../core/shared/data/models/ad_model.dart';
+import '../../../../core/shared/models/ad_model.dart';
 
 class AdDetailsController {
   static Future<void> toggleHidePhone({required AdModel ad}) async {

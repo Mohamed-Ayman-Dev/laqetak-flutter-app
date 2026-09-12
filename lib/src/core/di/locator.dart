@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:invastro/src/core/shared/services/settings_service.dart';
 import 'package:invastro/src/features/ad_details/data/services/ad_details_service.dart';
@@ -19,11 +20,15 @@ import '../../features/static_pages/data/services/static_pages_service.dart';
 import '../../features/static_pages/presentation/providers/static_pages.dart';
 import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
+import '../network/api_client.dart';
+import '../network/app_interceptors.dart';
+import '../shared/data/datasources/others_remote_data_source.dart';
+import '../shared/data/repositories/others_repository.dart';
+import '../shared/data/repositories/others_repositoryImpl.dart';
+import '../shared/presentation/cubit/others_cubit.dart';
 import '../shared/providers/app_settings.dart';
-import '../shared/providers/others.dart';
 import '../shared/providers/timers.dart';
 import '../shared/services/navigation_service.dart';
-import '../shared/services/others_service.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -35,11 +40,17 @@ Future<void> setupServices() async {
   locator.registerLazySingleton<CacheManager>(() => CacheManager(locator()));
   await locator<CacheManager>().loadCachedData();
 
+  /// register network
+  locator.registerLazySingleton<Dio>(() => Dio());
+  locator.registerLazySingleton<AppInterceptors>(() => AppInterceptors());
+  locator.registerLazySingleton<ApiClient>(
+    () => ApiClient(dio: locator(), appInterceptors: locator()),
+  );
+
   /// register services
   locator.registerLazySingleton<NavigationService>(() => NavigationService());
   locator.registerLazySingleton<AuthService>(() => AuthService());
   locator.registerLazySingleton<SettingsService>(() => SettingsService());
-  locator.registerLazySingleton<OthersService>(() => OthersService());
   locator.registerLazySingleton<NotificationsService>(
     () => NotificationsService(),
   );
@@ -53,7 +64,6 @@ Future<void> setupServices() async {
   locator.registerLazySingleton<AppSettings>(() => AppSettings());
   locator.registerLazySingleton<Auth>(() => Auth());
   locator.registerLazySingleton<AuthNavigations>(() => AuthNavigations());
-  locator.registerLazySingleton<Others>(() => Others());
   locator.registerLazySingleton<Notifications>(() => Notifications());
   locator.registerLazySingleton<Timers>(() => Timers());
   locator.registerLazySingleton<Ads>(() => Ads());
@@ -61,4 +71,17 @@ Future<void> setupServices() async {
   locator.registerLazySingleton<MyAds>(() => MyAds());
   locator.registerLazySingleton<Chat>(() => Chat());
   locator.registerLazySingleton<StaticPages>(() => StaticPages());
+
+  /// register data sources
+  locator.registerLazySingleton<OthersRemoteDataSource>(
+    () => OthersRemoteDataSourceImpl(locator()),
+  );
+
+  /// register repositories
+  locator.registerLazySingleton<OthersRepository>(
+    () => OthersRepositoryImpl(remoteDataSource: locator()),
+  );
+
+  /// register cubits
+  locator.registerLazySingleton<OthersCubit>(() => OthersCubit(locator()));
 }

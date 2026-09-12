@@ -12,19 +12,20 @@ class PaginationList<T> {
   int? to;
   int? total;
 
-  PaginationList(
-      {this.data,
-      this.currentPage,
-      this.firstPageUrl,
-      this.from,
-      this.lastPage,
-      this.lastPageUrl,
-      this.nextPageUrl,
-      this.path,
-      this.perPage,
-      this.prevPageUrl,
-      this.to,
-      this.total});
+  PaginationList({
+    this.data,
+    this.currentPage,
+    this.firstPageUrl,
+    this.from,
+    this.lastPage,
+    this.lastPageUrl,
+    this.nextPageUrl,
+    this.path,
+    this.perPage,
+    this.prevPageUrl,
+    this.to,
+    this.total,
+  });
 
   factory PaginationList.fromJson(Map<String, dynamic> json) {
     return PaginationList<T>(

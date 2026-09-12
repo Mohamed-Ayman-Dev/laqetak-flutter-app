@@ -1,7 +1,6 @@
 import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
 import 'package:invastro/src/core/shared/data/repositories/others_repository.dart';
 
-import '../../../constants/app_feedback.dart';
 import '../../../constants/enums.dart';
 import 'others_state.dart';
 
@@ -25,10 +24,12 @@ class OthersCubit extends BaseCubit<OthersState> {
           categoriesStatus: RequestStatus.success,
         ),
       ),
-      failure: (error) {
-        emit(state.copyWith(categoriesStatus: RequestStatus.error));
-        AppFeedback.errorMessage(error.message);
-      },
+      failure: (error) => emit(
+        state.copyWith(
+          categoriesStatus: RequestStatus.error,
+          errorMessage: error.message,
+        ),
+      ),
     );
   }
 
@@ -44,10 +45,12 @@ class OthersCubit extends BaseCubit<OthersState> {
           citiesStatus: RequestStatus.success,
         ),
       ),
-      failure: (error) {
-        emit(state.copyWith(citiesStatus: RequestStatus.error));
-        AppFeedback.errorMessage(error.message);
-      },
+      failure: (error) => emit(
+        state.copyWith(
+          citiesStatus: RequestStatus.error,
+          errorMessage: error.message,
+        ),
+      ),
     );
   }
 
@@ -63,10 +66,12 @@ class OthersCubit extends BaseCubit<OthersState> {
           sectorsStatus: RequestStatus.success,
         ),
       ),
-      failure: (error) {
-        emit(state.copyWith(sectorsStatus: RequestStatus.error));
-        AppFeedback.errorMessage(error.message);
-      },
+      failure: (error) => emit(
+        state.copyWith(
+          sectorsStatus: RequestStatus.error,
+          errorMessage: error.message,
+        ),
+      ),
     );
   }
 
@@ -82,10 +87,12 @@ class OthersCubit extends BaseCubit<OthersState> {
           budgetRangesStatus: RequestStatus.success,
         ),
       ),
-      failure: (error) {
-        emit(state.copyWith(budgetRangesStatus: RequestStatus.error));
-        AppFeedback.errorMessage(error.message);
-      },
+      failure: (error) => emit(
+        state.copyWith(
+          budgetRangesStatus: RequestStatus.error,
+          errorMessage: error.message,
+        ),
+      ),
     );
   }
 

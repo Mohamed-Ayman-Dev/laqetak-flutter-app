@@ -7,21 +7,25 @@ class CustomText extends StatelessWidget {
   final TextAlign? textAlign;
   final int? maxLines;
   final TextOverflow? overflow;
-  const CustomText(this.text,
-      {super.key,
-      this.style,
-      this.textAlign,
-      this.softWrap,
-      this.maxLines,
-      this.overflow});
+  const CustomText(
+    this.text, {
+    super.key,
+    this.style,
+    this.textAlign,
+    this.softWrap,
+    this.maxLines,
+    this.overflow,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,
-        textAlign: textAlign,
-        softWrap: softWrap,
-        maxLines: maxLines,
-        overflow: overflow ?? TextOverflow.ellipsis,
-        style: style);
+    return Text(
+      text,
+      textAlign: textAlign,
+      softWrap: softWrap,
+      maxLines: maxLines,
+      overflow: overflow ?? TextOverflow.ellipsis,
+      style: style,
+    );
   }
 }

@@ -26,7 +26,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
-import '../../../../core/shared/data/models/ad_model.dart';
+import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/widgets/lists_widgets/smart_refresher_header.dart';
 import '../../../my_ads/presentation/controllers/my_ads_controller.dart';
 

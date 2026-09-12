@@ -4,11 +4,11 @@ import 'package:invastro/src/core/themes/text_styles.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../themes/colors.dart';
-import '../../data/models/details_model.dart';
+import '../../data/models/sector_model.dart';
 import 'my_custom_drop_down_menu.dart';
 
 class SectorSelectField extends StatefulWidget {
-  final List<DetailsModel>? sectors;
+  final List<SectorModel>? sectors;
   final Map<String, dynamic> formData;
   final TextEditingController? otherController;
 
@@ -49,7 +49,7 @@ class _SectorSelectFieldState extends State<SectorSelectField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MyCustomDropdownFormField<DetailsModel>(
+        MyCustomDropdownFormField<SectorModel>(
           hint: S.of(context).selectSector,
           items: widget.sectors,
           itemAsString: (item) => item.name ?? '',
@@ -57,7 +57,7 @@ class _SectorSelectFieldState extends State<SectorSelectField> {
               ? null
               : widget.sectors?.firstWhere(
                   (e) => e.id == widget.formData['sector_id'],
-                  orElse: () => DetailsModel(),
+                  orElse: () => SectorModel(),
                 ),
           validator: (value) {
             if (value == null) {

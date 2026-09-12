@@ -33,7 +33,7 @@ class _FilterButtonState extends State<FilterButton> {
         duration: Duration(milliseconds: 170),
         curve: Curves.easeIn,
         alignment: Alignment.center,
-        
+
         padding: const EdgeInsets.symmetric(horizontal: 16).r,
         decoration: BoxDecoration(
           border: widget.isSelected

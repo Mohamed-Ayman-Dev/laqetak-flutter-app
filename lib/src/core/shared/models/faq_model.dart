@@ -3,10 +3,7 @@
 /// answer : "Ut dicta autem consectetur quo vitae iure. Et sapiente et et ipsum ut. Est voluptatum rerum esse voluptate aut veniam eaque ipsa. Corrupti aut ut aperiam voluptas in vel ducimus. Ipsum optio perspiciatis neque cumque non."
 
 class FaqModel {
-  FaqModel({
-      this.id, 
-      this.question, 
-      this.answer,});
+  FaqModel({this.id, this.question, this.answer});
 
   FaqModel.fromJson(dynamic json) {
     id = json['id'];
@@ -16,13 +13,11 @@ class FaqModel {
   num? id;
   String? question;
   String? answer;
-FaqModel copyWith({  num? id,
-  String? question,
-  String? answer,
-}) => FaqModel(  id: id ?? this.id,
-  question: question ?? this.question,
-  answer: answer ?? this.answer,
-);
+  FaqModel copyWith({num? id, String? question, String? answer}) => FaqModel(
+    id: id ?? this.id,
+    question: question ?? this.question,
+    answer: answer ?? this.answer,
+  );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
@@ -30,5 +25,4 @@ FaqModel copyWith({  num? id,
     map['answer'] = answer;
     return map;
   }
-
 }

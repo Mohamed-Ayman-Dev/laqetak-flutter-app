@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
-import '../data/models/photo_model.dart';
+import '../models/photo_model.dart';
 
 class PhotoView extends StatefulWidget {
   static const routeName = '/photo-view';

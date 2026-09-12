@@ -15,20 +15,21 @@
 
 class SettingsModel {
   SettingsModel({
-      this.contactEmail, 
-      this.contactPhone, 
-      this.costPerAd, 
-      this.ideaOfCompany, 
-      this.aboutUs, 
-      this.termsAndConditions, 
-      this.facebook, 
-      this.instagram, 
-      this.twitter, 
-      this.linkedin, 
-      this.youtube, 
-      this.tiktok, 
-      this.snapchat, 
-      this.whatsapp,});
+    this.contactEmail,
+    this.contactPhone,
+    this.costPerAd,
+    this.ideaOfCompany,
+    this.aboutUs,
+    this.termsAndConditions,
+    this.facebook,
+    this.instagram,
+    this.twitter,
+    this.linkedin,
+    this.youtube,
+    this.tiktok,
+    this.snapchat,
+    this.whatsapp,
+  });
 
   SettingsModel.fromJson(dynamic json) {
     contactEmail = json['contact_email'];
@@ -60,35 +61,37 @@ class SettingsModel {
   String? tiktok;
   String? snapchat;
   String? whatsapp;
-SettingsModel copyWith({  String? contactEmail,
-  String? contactPhone,
-  String? costPerAd,
-  String? ideaOfCompany,
-  String? aboutUs,
-  String? termsAndConditions,
-  String? facebook,
-  String? instagram,
-  String? twitter,
-  String? linkedin,
-  String? youtube,
-  String? tiktok,
-  String? snapchat,
-  String? whatsapp,
-}) => SettingsModel(  contactEmail: contactEmail ?? this.contactEmail,
-  contactPhone: contactPhone ?? this.contactPhone,
-  costPerAd: costPerAd ?? this.costPerAd,
-  ideaOfCompany: ideaOfCompany ?? this.ideaOfCompany,
-  aboutUs: aboutUs ?? this.aboutUs,
-  termsAndConditions: termsAndConditions ?? this.termsAndConditions,
-  facebook: facebook ?? this.facebook,
-  instagram: instagram ?? this.instagram,
-  twitter: twitter ?? this.twitter,
-  linkedin: linkedin ?? this.linkedin,
-  youtube: youtube ?? this.youtube,
-  tiktok: tiktok ?? this.tiktok,
-  snapchat: snapchat ?? this.snapchat,
-  whatsapp: whatsapp ?? this.whatsapp,
-);
+  SettingsModel copyWith({
+    String? contactEmail,
+    String? contactPhone,
+    String? costPerAd,
+    String? ideaOfCompany,
+    String? aboutUs,
+    String? termsAndConditions,
+    String? facebook,
+    String? instagram,
+    String? twitter,
+    String? linkedin,
+    String? youtube,
+    String? tiktok,
+    String? snapchat,
+    String? whatsapp,
+  }) => SettingsModel(
+    contactEmail: contactEmail ?? this.contactEmail,
+    contactPhone: contactPhone ?? this.contactPhone,
+    costPerAd: costPerAd ?? this.costPerAd,
+    ideaOfCompany: ideaOfCompany ?? this.ideaOfCompany,
+    aboutUs: aboutUs ?? this.aboutUs,
+    termsAndConditions: termsAndConditions ?? this.termsAndConditions,
+    facebook: facebook ?? this.facebook,
+    instagram: instagram ?? this.instagram,
+    twitter: twitter ?? this.twitter,
+    linkedin: linkedin ?? this.linkedin,
+    youtube: youtube ?? this.youtube,
+    tiktok: tiktok ?? this.tiktok,
+    snapchat: snapchat ?? this.snapchat,
+    whatsapp: whatsapp ?? this.whatsapp,
+  );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['contact_email'] = contactEmail;
@@ -107,5 +110,4 @@ SettingsModel copyWith({  String? contactEmail,
     map['whatsapp'] = whatsapp;
     return map;
   }
-
 }

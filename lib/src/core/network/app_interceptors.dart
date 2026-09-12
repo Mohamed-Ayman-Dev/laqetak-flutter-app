@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-// import '../error/on_error_helper.dart';
+
+import '../di/locator_service.dart';
 
 class AppInterceptors extends Interceptor {
   // final OnErrorHelper _onErrorHelper;
@@ -15,21 +16,17 @@ class AppInterceptors extends Interceptor {
     // final token = LocatorService.authCubit.token;
     options.headers.addAll({
       'Accept': 'application/json',
-      // 'language': LocatorService.appSettingsCubit.langCode,
+      'language': LocatorService.appSettings.language,
       // if (token != null) 'Authorization': 'Bearer $token',
     });
 
     handler.next(options);
   }
 
-  // @override
-  // void onResponse(Response response, ResponseInterceptorHandler handler) {
-  //   // Describe the processing you want to insert with this interceptor
-  //   //...
-  //   handler.next(response); // Proceed to the next Interceptor
-  // }
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
+    // Describe the processing you want to insert with this interceptor
+
     handler.next(response);
   }
 
