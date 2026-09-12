@@ -8,12 +8,12 @@ import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart
 import '../../../../../generated/l10n.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/shared/widgets/agree_terms_widget.dart';
-import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
-import '../../../../core/shared/widgets/custom_Text.dart';
-import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
-import '../../../../core/shared/widgets/fields_widgets/password_eye_toggle.dart';
-import '../../../../core/shared/widgets/label_widget.dart';
+import '../../../../core/widgets/agree_terms_widget.dart';
+import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/custom_Text.dart';
+import '../../../../core/widgets/fields_widgets/custom_textField.dart';
+import '../../../../core/widgets/fields_widgets/password_eye_toggle.dart';
+import '../../../../core/widgets/label_widget.dart';
 import '../../../../core/themes/text_styles.dart';
 import '../controllers/auth_controller.dart';
 

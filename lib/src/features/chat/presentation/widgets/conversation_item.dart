@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/shared/widgets/custom_image.dart';
+import 'package:invastro/src/core/widgets/custom_image.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/shared/widgets/unread_messages_counter.dart';
+import '../../../../core/widgets/unread_messages_counter.dart';
 import '../../../../core/themes/colors.dart';
 
 class ConversationItem extends StatelessWidget {

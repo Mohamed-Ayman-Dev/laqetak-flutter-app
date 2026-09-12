@@ -12,7 +12,7 @@ import 'package:invastro/src/core/extension/format_date_time_on_date_time.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/models/photo_model.dart';
-import '../../../../core/shared/widgets/photoview.dart';
+import '../../../../core/widgets/photoview.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
 import '../../data/models/message_file_model.dart';

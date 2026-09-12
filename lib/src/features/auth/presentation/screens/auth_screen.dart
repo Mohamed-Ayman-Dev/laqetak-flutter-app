@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/shared/widgets/app_logo.dart';
+import '../../../../core/widgets/app_logo.dart';
 import '../widgets/auth_change_lang_widget.dart';
 
 class AuthScreen extends StatefulWidget {

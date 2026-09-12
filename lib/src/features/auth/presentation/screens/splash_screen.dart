@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/shared/widgets/animations/animated_fade_scale_wrapper.dart';
+import 'package:invastro/src/core/widgets/animations/animated_fade_scale_wrapper.dart';
 import 'package:invastro/src/features/auth/presentation/screens/auth_screen.dart';
 import 'package:provider/provider.dart';
 

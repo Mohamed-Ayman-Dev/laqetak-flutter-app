@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/enums.dart';
-import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/models/faq_model.dart';
-import '../../../../core/shared/widgets/custom_appbar.dart';
-import '../../../../core/shared/widgets/lists_widgets/empty_list_placeholder_widget.dart';
-import '../../../../core/shared/widgets/lists_widgets/smart_refresher_header.dart';
+import '../../../../core/widgets/custom_appbar.dart';
+import '../../../../core/widgets/lists_widgets/empty_list_placeholder_widget.dart';
+import '../../../../core/widgets/lists_widgets/smart_refresher_header.dart';
 import '../controllers/static_pages_controller.dart';
 import '../providers/static_pages.dart';
 import '../widgets/question_static_item.dart';

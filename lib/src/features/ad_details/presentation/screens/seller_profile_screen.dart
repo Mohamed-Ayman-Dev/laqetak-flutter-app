@@ -7,9 +7,9 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart'
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
-import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
-import 'package:invastro/src/core/shared/widgets/lists_widgets/list_loading_end_widget.dart';
+import 'package:invastro/src/core/widgets/custom_appbar.dart';
+import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:invastro/src/core/widgets/lists_widgets/list_loading_end_widget.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/ad_details/presentation/providers/ad_details.dart';
 import 'package:invastro/src/features/ad_details/presentation/screens/ad_details_screen.dart';
@@ -22,10 +22,10 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/models/customer_model.dart';
 import '../../../../core/shared/models/pagination_list.dart';
-import '../../../../core/shared/widgets/items_widgets/ad_item.dart';
-import '../../../../core/shared/widgets/lists_widgets/empty_list_placeholder_widget.dart';
-import '../../../../core/shared/widgets/lists_widgets/smart_refresher_header.dart';
-import '../../../../core/shared/widgets/shimmers/items/ad_item_shimmer.dart';
+import '../../../../core/widgets/items_widgets/ad_item.dart';
+import '../../../../core/widgets/lists_widgets/empty_list_placeholder_widget.dart';
+import '../../../../core/widgets/lists_widgets/smart_refresher_header.dart';
+import '../../../../core/widgets/shimmers/items/ad_item_shimmer.dart';
 import '../controllers/ad_details_controller.dart';
 
 class SellerProfileScreen extends StatefulWidget {

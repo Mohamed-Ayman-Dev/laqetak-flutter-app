@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/shared/widgets/buttons_widgets/small_icon_button.dart';
+import 'package:invastro/src/core/widgets/buttons_widgets/small_icon_button.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/home/presentation/providers/ads.dart';
 import 'package:provider/provider.dart';

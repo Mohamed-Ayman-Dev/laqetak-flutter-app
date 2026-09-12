@@ -7,8 +7,8 @@ import 'package:invastro/src/features/auth/presentation/screens/login_screen.dar
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/helpers/others_helper.dart';
-import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
-import '../../../../core/shared/widgets/custom_g_radio_button.dart';
+import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/custom_g_radio_button.dart';
 
 class AuthChangeLangWidget extends StatefulWidget {
   const AuthChangeLangWidget({super.key});

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../../../generated/l10n.dart';
-import '../shared/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../widgets/buttons_widgets/custom_elevated_button.dart';
 import '../themes/colors.dart';
 import '../themes/text_styles.dart';
 

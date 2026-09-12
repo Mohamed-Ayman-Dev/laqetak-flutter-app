@@ -6,7 +6,7 @@ import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/shared/widgets/custom_radio_button.dart';
+import '../../../../core/widgets/custom_radio_button.dart';
 import '../../../../core/themes/text_styles.dart';
 
 class PaymentMethodItem extends StatelessWidget {

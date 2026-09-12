@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../shared/widgets/bottom_sheet_content/guest_bottom_sheet.dart';
-import '../shared/widgets/bottom_sheet_content/language_bottom.dart';
+import '../widgets/bottom_sheet_content/guest_bottom_sheet.dart';
+import '../widgets/bottom_sheet_content/language_bottom.dart';
 
 class BottomHelpers {
   static void showLanguageBottomSheet(

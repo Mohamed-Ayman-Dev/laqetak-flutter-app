@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/shared/widgets/shimmer_wrapper.dart';
+import '../../../../core/widgets/shimmer_wrapper.dart';
 
 class StaticShimmer extends StatelessWidget {
   const StaticShimmer({super.key});

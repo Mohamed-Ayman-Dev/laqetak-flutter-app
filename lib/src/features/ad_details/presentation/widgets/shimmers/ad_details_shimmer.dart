@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/shared/widgets/shimmers/text_shimmer.dart';
+import '../../../../../core/widgets/shimmers/text_shimmer.dart';
 import '../../../../../core/themes/colors.dart';
 
 class AdDetailsDescShimmer extends StatelessWidget {

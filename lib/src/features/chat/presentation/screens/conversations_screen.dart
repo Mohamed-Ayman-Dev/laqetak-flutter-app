@@ -16,10 +16,10 @@ import '../../../../core/di/locator_service.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/models/pagination_list.dart';
-import '../../../../core/shared/widgets/lists_widgets/empty_list_placeholder_widget.dart';
-import '../../../../core/shared/widgets/lists_widgets/list_loading_end_widget.dart';
-import '../../../../core/shared/widgets/lists_widgets/smart_refresher_header.dart';
-import '../../../../core/shared/widgets/login_first_widget.dart';
+import '../../../../core/widgets/lists_widgets/empty_list_placeholder_widget.dart';
+import '../../../../core/widgets/lists_widgets/list_loading_end_widget.dart';
+import '../../../../core/widgets/lists_widgets/smart_refresher_header.dart';
+import '../../../../core/widgets/login_first_widget.dart';
 import '../../../../core/themes/colors.dart';
 import 'chat_screen.dart';
 

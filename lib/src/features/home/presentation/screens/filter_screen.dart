@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
-import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_outline_button.dart';
-import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:invastro/src/core/widgets/buttons_widgets/custom_outline_button.dart';
+import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -18,10 +18,10 @@ import '../../../../core/shared/data/models/details_model.dart';
 import '../../../../core/shared/data/models/sector_model.dart';
 import '../../../../core/shared/presentation/cubit/others_cubit.dart';
 import '../../../../core/shared/presentation/cubit/others_state.dart';
-import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
-import '../../../../core/shared/widgets/custom_appbar.dart';
-import '../../../../core/shared/widgets/fields_widgets/my_custom_drop_down_menu.dart';
-import '../../../../core/shared/widgets/fields_widgets/my_custom_multi_drop_down_menu.dart';
+import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/custom_appbar.dart';
+import '../../../../core/widgets/fields_widgets/my_custom_drop_down_menu.dart';
+import '../../../../core/widgets/fields_widgets/my_custom_multi_drop_down_menu.dart';
 import '../../../../core/themes/text_styles.dart';
 
 class FilterScreen extends StatefulWidget {

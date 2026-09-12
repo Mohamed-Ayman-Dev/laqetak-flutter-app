@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/shared/widgets/buttons_widgets/filter_button.dart';
+import 'package:invastro/src/core/widgets/buttons_widgets/filter_button.dart';
 
 class FilterHeaderDelegate extends SliverPersistentHeaderDelegate {
   final List<String> filters;

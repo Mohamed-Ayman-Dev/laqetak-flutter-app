@@ -2,13 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/shared/widgets/dialog_content/confirm_alert.dart';
-import 'package:invastro/src/core/shared/widgets/dialog_content/report_dialog_content.dart';
-import 'package:invastro/src/core/shared/widgets/dialog_content/terms_content.dart';
-import 'package:invastro/src/core/shared/widgets/dialog_content/yes_no_dialog_content.dart';
+import 'package:invastro/src/core/widgets/dialog_content/confirm_alert.dart';
+import 'package:invastro/src/core/widgets/dialog_content/report_dialog_content.dart';
+import 'package:invastro/src/core/widgets/dialog_content/terms_content.dart';
+import 'package:invastro/src/core/widgets/dialog_content/yes_no_dialog_content.dart';
 
 import '../di/locator_service.dart';
-import '../shared/widgets/dialog_content/success_dialog_content.dart';
+import '../widgets/dialog_content/success_dialog_content.dart';
 
 class DialogHelpers {
   static BuildContext currentContext =

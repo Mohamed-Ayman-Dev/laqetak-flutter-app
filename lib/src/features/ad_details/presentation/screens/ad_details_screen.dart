@@ -4,10 +4,10 @@ import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/helpers/dialog_helpers.dart';
-import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
-import 'package:invastro/src/core/shared/widgets/buttons_widgets/custom_outline_button.dart';
-import 'package:invastro/src/core/shared/widgets/custom_appbar.dart';
-import 'package:invastro/src/core/shared/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:invastro/src/core/widgets/buttons_widgets/custom_elevated_button.dart';
+import 'package:invastro/src/core/widgets/buttons_widgets/custom_outline_button.dart';
+import 'package:invastro/src/core/widgets/custom_appbar.dart';
+import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_bottom.dart';
@@ -27,7 +27,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
-import '../../../../core/shared/widgets/lists_widgets/smart_refresher_header.dart';
+import '../../../../core/widgets/lists_widgets/smart_refresher_header.dart';
 import '../../../my_ads/presentation/controllers/my_ads_controller.dart';
 
 class AdDetailsScreen extends StatefulWidget {

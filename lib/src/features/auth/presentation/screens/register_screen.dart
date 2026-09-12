@@ -13,12 +13,12 @@ import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/data/models/details_model.dart';
 import '../../../../core/shared/presentation/cubit/others_cubit.dart';
 import '../../../../core/shared/presentation/cubit/others_state.dart';
-import '../../../../core/shared/widgets/buttons_widgets/custom_elevated_button.dart';
-import '../../../../core/shared/widgets/buttons_widgets/custom_text_button.dart';
-import '../../../../core/shared/widgets/custom_Text.dart';
-import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
-import '../../../../core/shared/widgets/fields_widgets/my_custom_drop_down_menu.dart';
-import '../../../../core/shared/widgets/label_widget.dart';
+import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/buttons_widgets/custom_text_button.dart';
+import '../../../../core/widgets/custom_Text.dart';
+import '../../../../core/widgets/fields_widgets/custom_textField.dart';
+import '../../../../core/widgets/fields_widgets/my_custom_drop_down_menu.dart';
+import '../../../../core/widgets/label_widget.dart';
 import '../../../../core/themes/text_styles.dart';
 
 class RegisterScreen extends StatefulWidget {

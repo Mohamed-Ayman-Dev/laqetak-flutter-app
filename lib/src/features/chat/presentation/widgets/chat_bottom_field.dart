@@ -5,7 +5,7 @@ import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/helpers/others_helper.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../../core/shared/widgets/fields_widgets/custom_textField.dart';
+import '../../../../core/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/themes/colors.dart';
 
 class ChatBottomField extends StatelessWidget {

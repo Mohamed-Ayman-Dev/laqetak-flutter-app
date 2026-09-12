@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/extension/space_extensions_helper.dart';
-import '../../../../../core/shared/widgets/shimmer_wrapper.dart';
-import '../../../../../core/shared/widgets/shimmers/text_shimmer.dart';
+import '../../../../../core/widgets/shimmer_wrapper.dart';
+import '../../../../../core/widgets/shimmers/text_shimmer.dart';
 
 class CustomerHeaderShimmer extends StatelessWidget {
   const CustomerHeaderShimmer({super.key});

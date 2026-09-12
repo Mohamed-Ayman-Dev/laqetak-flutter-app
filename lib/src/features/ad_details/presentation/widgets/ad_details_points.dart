@@ -4,7 +4,7 @@ import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/shared/models/ad_model.dart';
-import '../../../../core/shared/widgets/items_widgets/detail_item.dart';
+import '../../../../core/widgets/items_widgets/detail_item.dart';
 import '../../../../core/themes/theme.dart';
 
 class AdDetailsPoints extends StatelessWidget {
