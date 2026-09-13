@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../constants/enums.dart';
+import '../../../../constants/enums.dart';
 import '../../data/models/budget_range_model.dart';
 import '../../data/models/category_model.dart';
 import '../../data/models/details_model.dart';

@@ -9,7 +9,7 @@ import '../../helpers/navigation_helper.dart';
 import '../../network/api_service.dart';
 import '../../widgets/timeout_splashscreen.dart';
 import '../controllers/settings_controller.dart';
-import '../models/settings_model.dart';
+import '../settings/data/models/settings_model.dart';
 
 class AppSettings with ChangeNotifier {
   String language = StringManager.arLanguageCode;

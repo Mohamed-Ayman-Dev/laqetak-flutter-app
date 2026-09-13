@@ -20,15 +20,15 @@ import '../../features/static_pages/data/services/static_pages_service.dart';
 import '../../features/static_pages/presentation/providers/static_pages.dart';
 import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
+import '../navigation_service.dart';
 import '../network/api_client.dart';
 import '../network/app_interceptors.dart';
-import '../shared/data/datasources/others_remote_data_source.dart';
-import '../shared/data/repositories/others_repository.dart';
-import '../shared/data/repositories/others_repositoryImpl.dart';
-import '../shared/presentation/cubit/others_cubit.dart';
+import '../shared/others/data/datasources/others_remote_data_source.dart';
+import '../shared/others/data/repositories/others_repository.dart';
+import '../shared/others/data/repositories/others_repositoryImpl.dart';
+import '../shared/others/presentation/cubit/others_cubit.dart';
 import '../shared/providers/app_settings.dart';
 import '../shared/providers/timers.dart';
-import '../shared/services/navigation_service.dart';
 
 GetIt locator = GetIt.instance;
 

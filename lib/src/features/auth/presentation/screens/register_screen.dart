@@ -10,9 +10,9 @@ import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart
 import '../../../../../generated/l10n.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/shared/data/models/details_model.dart';
-import '../../../../core/shared/presentation/cubit/others_cubit.dart';
-import '../../../../core/shared/presentation/cubit/others_state.dart';
+import '../../../../core/shared/others/data/models/details_model.dart';
+import '../../../../core/shared/others/presentation/cubit/others_cubit.dart';
+import '../../../../core/shared/others/presentation/cubit/others_state.dart';
 import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/buttons_widgets/custom_text_button.dart';
 import '../../../../core/widgets/custom_Text.dart';

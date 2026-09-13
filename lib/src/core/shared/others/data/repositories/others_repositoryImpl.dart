@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:invastro/src/core/shared/data/datasources/others_remote_data_source.dart';
-import 'package:invastro/src/core/shared/data/models/budget_range_model.dart';
-import 'package:invastro/src/core/shared/data/models/category_model.dart';
-import 'package:invastro/src/core/shared/data/models/details_model.dart';
-import 'package:invastro/src/core/shared/data/models/sector_model.dart';
-import 'package:invastro/src/core/shared/data/repositories/others_repository.dart';
+import 'package:invastro/src/core/shared/others/data/datasources/others_remote_data_source.dart';
+import 'package:invastro/src/core/shared/others/data/models/budget_range_model.dart';
+import 'package:invastro/src/core/shared/others/data/models/category_model.dart';
+import 'package:invastro/src/core/shared/others/data/models/details_model.dart';
+import 'package:invastro/src/core/shared/others/data/models/sector_model.dart';
+import 'package:invastro/src/core/shared/others/data/repositories/others_repository.dart';
 
-import '../../../../core/error/exceptions.dart';
-import '../../../../core/network/api_result.dart';
+import '../../../../error/exceptions.dart';
+import '../../../../network/api_result.dart';
 
 class OthersRepositoryImpl implements OthersRepository {
   OthersRepositoryImpl({required OthersRemoteDataSource remoteDataSource})

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:invastro/src/core/shared/presentation/cubit/others_cubit.dart';
+import 'package:invastro/src/core/shared/others/presentation/cubit/others_cubit.dart';
 import 'package:invastro/src/core/shared/providers/timers.dart';
 import 'package:invastro/src/features/my_ads/presentation/providers/my_ads.dart';
 import 'package:provider/provider.dart';

@@ -6,25 +6,25 @@ import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
-import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
+import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/shared/data/models/category_model.dart';
-import '../../../../core/shared/data/models/details_model.dart';
-import '../../../../core/shared/data/models/sector_model.dart';
 import '../../../../core/shared/models/ad_model.dart';
-import '../../../../core/shared/presentation/cubit/others_cubit.dart';
-import '../../../../core/shared/presentation/cubit/others_state.dart';
+import '../../../../core/shared/others/data/models/category_model.dart';
+import '../../../../core/shared/others/data/models/details_model.dart';
+import '../../../../core/shared/others/data/models/sector_model.dart';
+import '../../../../core/shared/others/presentation/cubit/others_cubit.dart';
+import '../../../../core/shared/others/presentation/cubit/others_state.dart';
+import '../../../../core/themes/text_styles.dart';
 import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/widgets/fields_widgets/my_custom_drop_down_menu.dart';
 import '../../../../core/widgets/fields_widgets/sector_select_field.dart';
-import '../../../../core/themes/text_styles.dart';
 
 class AddAdScreen extends StatefulWidget {
   static const routeName = '/add-ad-screen';

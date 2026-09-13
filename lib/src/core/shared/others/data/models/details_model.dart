@@ -1,4 +1,4 @@
-import '../../../helpers/others_helper.dart';
+import '../../../../helpers/others_helper.dart';
 
 /// id : 14
 /// name : "الرياض"

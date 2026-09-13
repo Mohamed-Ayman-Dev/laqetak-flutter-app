@@ -1,7 +1,7 @@
 import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
-import 'package:invastro/src/core/shared/data/repositories/others_repository.dart';
+import 'package:invastro/src/core/shared/others/data/repositories/others_repository.dart';
 
-import '../../../constants/enums.dart';
+import '../../../../constants/enums.dart';
 import 'others_state.dart';
 
 /// Holds the lookup lists shared between screens (categories, cities, sectors

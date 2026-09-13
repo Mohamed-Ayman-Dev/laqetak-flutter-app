@@ -6,9 +6,9 @@ import 'package:invastro/src/core/constants/images_assets.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/core/widgets/buttons_widgets/custom_elevated_button.dart';
 import 'package:invastro/src/core/widgets/custom_image.dart';
-import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/ad_details/presentation/controllers/ad_details_controller.dart';
 import 'package:invastro/src/features/ad_details/presentation/providers/ad_details.dart';
 import 'package:invastro/src/features/ad_details/presentation/screens/seller_profile_screen.dart';
@@ -22,9 +22,9 @@ import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/helpers/urlHelper.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/models/customer_model.dart';
+import '../../../../core/themes/theme.dart';
 import '../../../../core/widgets/buttons_widgets/custom_outline_button.dart';
 import '../../../../core/widgets/custom_switch.dart';
-import '../../../../core/themes/theme.dart';
 import '../../../home/presentation/providers/ads.dart';
 
 class AdDetailsSeller extends StatelessWidget {

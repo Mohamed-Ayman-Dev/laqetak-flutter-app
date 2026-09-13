@@ -1,4 +1,4 @@
-import '../../../../core/network/api_result.dart';
+import '../../../../network/api_result.dart';
 import '../models/budget_range_model.dart';
 import '../models/category_model.dart';
 import '../models/details_model.dart';

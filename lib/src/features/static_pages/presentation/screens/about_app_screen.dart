@@ -10,12 +10,12 @@ import 'package:provider/provider.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/constant.dart';
 import '../../../../core/shared/controllers/settings_controller.dart';
-import '../../../../core/shared/models/settings_model.dart';
 import '../../../../core/shared/providers/app_settings.dart';
-import '../../../../core/widgets/custom_appbar.dart';
-import '../../../../core/widgets/drawer_widgets/custom_drawer.dart';
+import '../../../../core/shared/settings/data/models/settings_model.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
+import '../../../../core/widgets/custom_appbar.dart';
+import '../../../../core/widgets/drawer_widgets/custom_drawer.dart';
 import '../widgets/static_shimmer.dart';
 
 class AboutAppScreen extends StatefulWidget {

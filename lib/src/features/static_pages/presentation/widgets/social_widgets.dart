@@ -4,8 +4,8 @@ import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/features/static_pages/presentation/widgets/social_button.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/shared/models/settings_model.dart';
 import '../../../../core/shared/providers/app_settings.dart';
+import '../../../../core/shared/settings/data/models/settings_model.dart';
 
 class SocialWidgets extends StatelessWidget {
   const SocialWidgets({super.key});

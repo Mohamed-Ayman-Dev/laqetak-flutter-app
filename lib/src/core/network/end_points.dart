@@ -13,7 +13,6 @@ final class EndPoints {
   static const String logout = "/logout";
 
   /// Addresses
-  static const String getSettings = "/settings";
   static const String getAddresses = "/addresses/list";
   static const String addAddresses = "/addresses/add";
   static const String editAddresses = "/addresses/update";
@@ -21,6 +20,7 @@ final class EndPoints {
   static const String deleteAddress = "/addresses/delete";
 
   /// Others
+  static const String getSettings = "$baseUrl/settings";
   static const String getCategories = "$baseUrl/categories";
   static const String getCities = "$baseUrl/cities";
   static const String getBudgetRanges = "$baseUrl/budget-ranges";

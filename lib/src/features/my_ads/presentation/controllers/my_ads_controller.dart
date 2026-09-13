@@ -12,7 +12,7 @@ import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/models/redirect_model.dart';
-import '../../../../core/shared/presentation/screens/payment_webview.dart';
+import '../../../../core/shared/others/presentation/screens/payment_webview.dart';
 import '../../../auth/presentation/screens/otp_screen.dart';
 import '../screens/add_ad_pay_screen.dart';
 

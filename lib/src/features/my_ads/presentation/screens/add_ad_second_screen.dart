@@ -4,9 +4,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
+import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/widgets/fields_widgets/custom_note_field.dart';
-import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/my_ads/presentation/controllers/my_ads_controller.dart';
 import 'package:invastro/src/features/my_ads/presentation/widgets/ad_image_picker.dart';
 
@@ -14,11 +14,11 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
+import '../../../../core/themes/text_styles.dart';
 import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/custom_switch.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
-import '../../../../core/themes/text_styles.dart';
 
 class AddAdSecondScreen extends StatefulWidget {
   static const routeName = '/add-ad-second-screen';

@@ -1,5 +1,5 @@
-import '../../../network/api_client.dart';
-import '../../../network/end_points.dart';
+import '../../../../network/api_client.dart';
+import '../../../../network/end_points.dart';
 import '../models/budget_range_model.dart';
 import '../models/category_model.dart';
 import '../models/details_model.dart';

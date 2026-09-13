@@ -1,5 +1,5 @@
 import '../../../generated/l10n.dart';
-import '../shared/data/models/details_model.dart';
+import '../shared/others/data/models/details_model.dart';
 
 final class MockDataForLoading {
   MockDataForLoading._();

@@ -7,10 +7,10 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart'
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/core/widgets/custom_appbar.dart';
 import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/widgets/lists_widgets/list_loading_end_widget.dart';
-import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/ad_details/presentation/providers/ad_details.dart';
 import 'package:invastro/src/features/ad_details/presentation/screens/ad_details_screen.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/customer_header.dart';
