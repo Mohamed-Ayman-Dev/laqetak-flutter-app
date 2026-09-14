@@ -18,9 +18,8 @@ import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/features/auth/data/models/user_model.dart';
-import 'package:invastro/src/features/auth/presentation/controllers/auth_controller.dart';
-import 'package:invastro/src/features/auth/presentation/providers/auth.dart';
-import 'package:provider/provider.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_state.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/app_feedback.dart';
@@ -52,10 +51,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
-    emailController.text = LocatorService.auth.user?.email ?? '';
-    phoneController.text = LocatorService.auth.user?.phone ?? '';
-    data['city_id'] = LocatorService.auth.user?.city?.id;
-    data['name'] = LocatorService.auth.user?.name;
+    final user = LocatorService.authCubit.state.user;
+    emailController.text = user?.email ?? '';
+    phoneController.text = user?.phone ?? '';
+    data['city_id'] = user?.city?.id;
+    data['name'] = user?.name;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<OthersCubit>().getCities();
     });
@@ -73,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     phoneController.dispose();
     passwordController.dispose();
     passwordConfirmController.dispose();
-    LocatorService.auth.imagePath = null;
+    LocatorService.authCubit.setImagePath(null);
     super.dispose();
   }
 
@@ -93,9 +93,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             SingleChildScrollView(
               padding: EdgeInsets.symmetric(vertical: 28, horizontal: 23).r,
-              child: Selector<Auth, UserModel?>(
-                selector: (context, provider) => provider.user,
-                builder: (context, user, child) {
+              child: BlocSelector<AuthCubit, AuthState, UserModel?>(
+                selector: (state) => state.user,
+                builder: (context, user) {
                   return Form(
                     key: formKey,
                     child: Column(
@@ -116,37 +116,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               imageQuality: 70,
                                             );
                                         if (pickedFile != null) {
-                                          LocatorService.auth.setImagePath(
+                                          LocatorService.authCubit.setImagePath(
                                             pickedFile.path,
                                           );
                                           data['avatar'] = pickedFile;
                                         }
                                       }
                                     : null,
-                                child: Selector<Auth, String?>(
-                                  selector: (context, provider) =>
-                                      provider.imagePath,
-                                  builder: (context, imagePath, child) {
-                                    return imagePath != null
-                                        ? ClipRRect(
-                                            borderRadius: BorderRadius.circular(
-                                              100,
-                                            ),
-                                            child: Image.file(
-                                              File(imagePath),
-                                              width: 122,
-                                              fit: BoxFit.cover,
-                                              height: 122,
-                                            ),
-                                          )
-                                        : CustomImage(
-                                            imageUrl: user?.avatar ?? '',
-                                            width: 122,
-                                            height: 122,
-                                            borderRadius: 100,
-                                          );
-                                  },
-                                ),
+                                child:
+                                    BlocSelector<AuthCubit, AuthState, String?>(
+                                      selector: (state) => state.imagePath,
+                                      builder: (context, imagePath) {
+                                        return imagePath != null
+                                            ? ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
+                                                child: Image.file(
+                                                  File(imagePath),
+                                                  width: 122,
+                                                  fit: BoxFit.cover,
+                                                  height: 122,
+                                                ),
+                                              )
+                                            : CustomImage(
+                                                imageUrl: user?.avatar ?? '',
+                                                width: 122,
+                                                height: 122,
+                                                borderRadius: 100,
+                                              );
+                                      },
+                                    ),
                               ),
                               Container(
                                 decoration: BoxDecoration(
@@ -415,15 +414,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   if (formKey.currentState!.validate()) {
                                     formKey.currentState!.save();
                                     if ((data['phone'] ==
-                                        LocatorService.auth.user?.phone)) {
-                                      await AuthController.updateProfile(
-                                        context,
-                                        data,
-                                        hasMultipartData:
-                                            data['avatar'] != null,
-                                      );
+                                        LocatorService
+                                            .authCubit
+                                            .state
+                                            .user
+                                            ?.phone)) {
+                                      await context
+                                          .read<AuthCubit>()
+                                          .updateProfile(
+                                            data,
+                                            hasMultipartData:
+                                                data['avatar'] != null,
+                                          );
                                     } else {
-                                      await AuthController.sendPhoneOtp(data);
+                                      await context
+                                          .read<AuthCubit>()
+                                          .sendPhoneOtp(data);
                                     }
                                   }
                                 },
@@ -456,9 +462,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               .areYouSureYouWantToDeleteYourAccount,
                                           onButtonTap: () {
                                             Navigator.of(context).pop();
-                                            AuthController.deleteAccount(
-                                              context: context,
-                                            );
+                                            context
+                                                .read<AuthCubit>()
+                                                .deleteAccount();
                                           },
                                         );
                                       },

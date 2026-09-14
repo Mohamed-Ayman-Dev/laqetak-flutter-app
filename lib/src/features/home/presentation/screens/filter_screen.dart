@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/constants/enums.dart';
-import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/widgets/buttons_widgets/custom_outline_button.dart';
 import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/themes/colors.dart';
@@ -23,6 +22,7 @@ import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/fields_widgets/my_custom_drop_down_menu.dart';
 import '../../../../core/widgets/fields_widgets/my_custom_multi_drop_down_menu.dart';
 import '../../../../core/themes/text_styles.dart';
+import '../../../home/presentation/cubit/ads_cubit.dart';
 
 class FilterScreen extends StatefulWidget {
   static const routeName = '/filter-screen';
@@ -423,7 +423,7 @@ class _FilterScreenState extends State<FilterScreen> {
 
                           onPressed: () {
                             _formData.clear();
-                            LocatorService.ads.setFilters(_formData);
+                            context.read<AdsCubit>().setFilters(_formData);
                             Navigator.pop(context, _formData);
                           },
                         ),
@@ -434,7 +434,7 @@ class _FilterScreenState extends State<FilterScreen> {
                           text: S.of(context).apply,
                           borderRadius: 12,
                           onPressed: () {
-                            LocatorService.ads.setFilters(_formData);
+                            context.read<AdsCubit>().setFilters(_formData);
                             Navigator.pop(context, _formData);
                           },
                         ),

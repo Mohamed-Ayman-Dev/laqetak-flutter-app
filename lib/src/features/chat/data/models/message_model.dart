@@ -61,7 +61,7 @@ class MessageModel {
       isTemp: json['isTemp'] ?? false,
       isMine:
           num.tryParse(json['customer_id'].toString()) ==
-          LocatorService.auth.user?.id,
+          LocatorService.authCubit.state.user?.id,
       isSeen: json['is_seen'] ?? false,
       seenAt: json['seen_at'],
       createdAt: json['created_at'],

@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/constants/constant.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/shared/controllers/settings_controller.dart';
-import 'package:invastro/src/core/shared/providers/app_settings.dart';
 import 'package:invastro/src/core/widgets/custom_Text.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../features/static_pages/presentation/widgets/static_shimmer.dart';
 import '../../shared/settings/data/models/settings_model.dart';
+import '../../shared/settings/presentation/cubit/settings_cubit.dart';
+import '../../shared/settings/presentation/cubit/settings_state.dart';
 import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';
 
 class TermsContent extends StatefulWidget {
   final String? title;
   final bool isIdea;
-
+   
   const TermsContent({super.key, this.title, this.isIdea = false});
 
   @override
@@ -34,7 +35,7 @@ class _TermsContentState extends State<TermsContent> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      SettingsController.getGeneralSettings();
+      context.read<SettingsCubit>().getSettings();
     });
     _scrollController.addListener(() {
       final atBottom =
@@ -77,52 +78,58 @@ class _TermsContentState extends State<TermsContent> {
             style: AppTextStyles.headlineMedium.copyWith(fontSize: 16.sp),
           ),
           10.heightSpace,
-          Selector<AppSettings, SettingsModel?>(
-            selector: (context, provider) => provider.mySettings,
-            builder: (context, mySettings, child) {
-              String? content = widget.isIdea
-                  ? mySettings?.ideaOfCompany
-                  : mySettings?.termsAndConditions;
-              return RawScrollbar(
-                controller: _scrollController,
-                interactive: false,
-                thumbColor: AppColors.primaryColor,
-                thickness: 5,
-                radius: const Radius.circular(15),
-                thumbVisibility: true,
-                child: SizedBox(
-                  height: 400.h,
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    scrollDirection: Axis.vertical,
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 22.0,
-                      vertical: 22,
-                    ).r,
-                    child: content == null
-                        ? Column(
-                            children: [
-                              const StaticShimmer(),
-                              const StaticShimmer(),
-                            ],
-                          )
-                        : Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              HtmlWidget(
-                                content,
-                                textStyle: AppTextStyles.labelSmall.copyWith(
-                                  color: AppColors.bodySmallGreyTextColor,
-                                  fontFamily: Constant.fontFamily,
+          BlocListener<SettingsCubit, SettingsState>(
+            listenWhen: (previous, current) =>
+                current.hasError && !previous.hasError,
+            listener: (context, state) =>
+                AppFeedback.errorMessage(state.errorMessage),
+            child: BlocSelector<SettingsCubit, SettingsState, SettingsModel?>(
+              selector: (state) => state.settings,
+              builder: (context, mySettings) {
+                String? content = widget.isIdea
+                    ? mySettings?.ideaOfCompany
+                    : mySettings?.termsAndConditions;
+                return RawScrollbar(
+                  controller: _scrollController,
+                  interactive: false,
+                  thumbColor: AppColors.primaryColor,
+                  thickness: 5,
+                  radius: const Radius.circular(15),
+                  thumbVisibility: true,
+                  child: SizedBox(
+                    height: 400.h,
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      scrollDirection: Axis.vertical,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 22.0,
+                        vertical: 22,
+                      ).r,
+                      child: content == null
+                          ? Column(
+                              children: [
+                                const StaticShimmer(),
+                                const StaticShimmer(),
+                              ],
+                            )
+                          : Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                HtmlWidget(
+                                  content,
+                                  textStyle: AppTextStyles.labelSmall.copyWith(
+                                    color: AppColors.bodySmallGreyTextColor,
+                                    fontFamily: Constant.fontFamily,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
           39.heightSpace,
           AnimatedOpacity(

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/widgets/custom_image.dart';
 import 'package:invastro/src/features/auth/data/models/user_model.dart';
-import 'package:provider/provider.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_state.dart';
 
 import '../../../../generated/l10n.dart';
-import '../../../features/auth/presentation/providers/auth.dart';
 import '../../extension/space_extensions_helper.dart';
 import '../../helpers/others_helper.dart';
 import '../../themes/colors.dart';
@@ -31,9 +32,9 @@ class CustomDrawerHeader extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               100.heightSpace,
-              Selector<Auth, UserModel?>(
-                selector: (context, provider) => provider.user,
-                builder: (context, user, child) {
+              BlocSelector<AuthCubit, AuthState, UserModel?>(
+                selector: (state) => state.user,
+                builder: (context, user) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [

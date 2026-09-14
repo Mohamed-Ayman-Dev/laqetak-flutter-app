@@ -74,13 +74,13 @@ class _AuthChangeLangWidgetState extends State<AuthChangeLangWidget> {
                   LoginScreen.routeName,
                 );
                 if (groupValue == 0) {
-                  LocatorService.appSettings.changeLanguageInUi(
+                  LocatorService.settingsCubit.changeLanguageInUi(
                     context,
                     StringManager.arLanguageCode,
                     showSplashScreen: false,
                   );
                 } else {
-                  LocatorService.appSettings.changeLanguageInUi(
+                  LocatorService.settingsCubit.changeLanguageInUi(
                     context,
                     StringManager.enLanguageCode,
                     showSplashScreen: false,

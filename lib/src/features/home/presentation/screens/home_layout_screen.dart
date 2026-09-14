@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/helpers/dialog_helpers.dart';
-import 'package:invastro/src/core/shared/controllers/settings_controller.dart';
 import 'package:invastro/src/core/widgets/custom_appbar.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/features/chat/presentation/screens/conversations_screen.dart';
 import 'package:invastro/src/features/favorite/presentation/screens/favorite_screen.dart';
 import 'package:invastro/src/features/notifications/presentation/screens/notification_screen.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/others_helper.dart';
-import '../../../../core/shared/providers/app_settings.dart';
+import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart';
+import '../../../../core/shared/settings/presentation/cubit/settings_state.dart';
 import '../../../../core/widgets/bottom_nav_bar.dart';
 import '../../../../core/widgets/drawer_widgets/custom_drawer.dart';
-import '../../../auth/presentation/controllers/auth_controller.dart';
 import 'home_screen.dart';
 
 class HomeLayoutScreen extends StatefulWidget {
@@ -45,10 +45,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     if (!once) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         if (isAuth) {
-          AuthController.getProfile();
+          LocatorService.authCubit.getProfile();
         }
-        if (LocatorService.appSettings.mySettings == null) {
-          SettingsController.getGeneralSettings();
+        if (context.read<SettingsCubit>().state.settings == null) {
+          context.read<SettingsCubit>().getSettings();
         }
         LocatorService.notificationService.initializeFCM();
       });
@@ -83,47 +83,52 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
         'inactiveIcon': SvgAssets.assetsSvgNotificationIconUnselected,
       },
     ];
-    return Selector<AppSettings, int>(
-      selector: (_, p) => p.homeIndex,
-      builder: (context, homeIndex, _) {
-        return Scaffold(
-          key: HomeLayoutScreen.scaffoldKey,
-          // ← أضف الـ key
-          appBar: homeIndex == 0
-              ? null
-              : CustomAppbar(
-                  ishHomeLayoutDrawer: true,
-                  icons: [AppbarIcons.drawer, AppbarIcons.logo],
-                  dontShowBackButton: true,
-                ),
-          extendBody: true,
-          drawer: const CustomDrawer(),
+    return BlocListener<SettingsCubit, SettingsState>(
+      listenWhen: (previous, current) => current.hasError && !previous.hasError,
+      listener: (context, state) =>
+          AppFeedback.errorMessage(state.errorMessage),
+      child: BlocSelector<SettingsCubit, SettingsState, int>(
+        selector: (state) => state.homeIndex,
+        builder: (context, homeIndex) {
+          return Scaffold(
+            key: HomeLayoutScreen.scaffoldKey,
+            // ← أضف الـ key
+            appBar: homeIndex == 0
+                ? null
+                : CustomAppbar(
+                    ishHomeLayoutDrawer: true,
+                    icons: [AppbarIcons.drawer, AppbarIcons.logo],
+                    dontShowBackButton: true,
+                  ),
+            extendBody: true,
+            drawer: const CustomDrawer(),
 
-          body: WillPopScope(
-            onWillPop: () async {
-              if (homeIndex == 0) {
-                bool? shouldClose = await DialogHelpers.showConfirmDialog(
-                  context: context,
-                  title: S.of(context).closeApp,
-                  description: S.of(context).areYouSureYouWantToCloseTheApp,
-                  buttonText: S.of(context).yes,
-                  color: AppColors.primaryColor,
-                  onYes: () {
-                    LocatorService.navigationService.currentState!.pop(true);
-                  },
-                );
-                return Future.value(shouldClose ?? false);
-              } else {
-                LocatorService.appSettings.changeHomeIndex(0);
-                return Future.value(false);
-              }
-            },
-            child: screens[homeIndex],
-          ),
-          // ── Bottom Nav ──────────────────────────────────────────────────
-          bottomNavigationBar: BottomNavBar(navItems: navItems),
-        );
-      },
+            body: WillPopScope(
+              onWillPop: () async {
+                if (homeIndex == 0) {
+                  bool? shouldClose = await DialogHelpers.showConfirmDialog(
+                    context: context,
+                    title: S.of(context).closeApp,
+                    description: S.of(context).areYouSureYouWantToCloseTheApp,
+                    buttonText: S.of(context).yes,
+                    color: AppColors.primaryColor,
+                    onYes: () {
+                      LocatorService.navigationService.currentState!.pop(true);
+                    },
+                  );
+                  return Future.value(shouldClose ?? false);
+                } else {
+                  context.read<SettingsCubit>().changeHomeIndex(0);
+                  return Future.value(false);
+                }
+              },
+              child: screens[homeIndex],
+            ),
+            // ── Bottom Nav ──────────────────────────────────────────────────
+            bottomNavigationBar: BottomNavBar(navItems: navItems),
+          );
+        },
+      ),
     );
   }
 }

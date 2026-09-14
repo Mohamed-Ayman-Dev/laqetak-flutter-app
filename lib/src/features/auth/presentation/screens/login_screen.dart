@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart';
 
@@ -15,7 +17,6 @@ import '../../../../core/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/widgets/fields_widgets/password_eye_toggle.dart';
 import '../../../../core/widgets/label_widget.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../controllers/auth_controller.dart';
 import 'forget_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _login() async {
     if (_loginFormKey.currentState!.validate()) {
       _loginFormKey.currentState!.save();
-      await AuthController.login(data);
+      await context.read<AuthCubit>().login(data);
     }
   }
 

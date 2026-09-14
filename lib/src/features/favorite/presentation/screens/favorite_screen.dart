@@ -2,14 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
-import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
@@ -21,8 +22,8 @@ import '../../../../core/widgets/lists_widgets/smart_refresher_header.dart';
 import '../../../../core/widgets/login_first_widget.dart';
 import '../../../../core/widgets/shimmers/items/ad_item_shimmer.dart';
 import '../../../ad_details/presentation/screens/ad_details_screen.dart';
-import '../../../home/presentation/controllers/ads_controller.dart';
-import '../../../home/presentation/providers/ads.dart';
+import '../../../home/presentation/cubit/ads_cubit.dart';
+import '../../../home/presentation/cubit/ads_state.dart';
 
 class FavoriteScreen extends StatefulWidget {
   static const routeName = '/favorite_screen';
@@ -38,7 +39,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (isAuth) {
-        AdsController.getFavAds(refresh: true);
+        context.read<AdsCubit>().getFavAds(refresh: true);
         _scrollController.addListener(_onFavListener);
       }
     });
@@ -55,7 +56,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Future<void> _refresh() async {
     final refreshController = _refreshController;
     if (isAuth) {
-      await AdsController.getFavAds(refresh: true);
+      await context.read<AdsCubit>().getFavAds(refresh: true);
     }
     refreshController.refreshCompleted();
   }
@@ -67,7 +68,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       _debounce?.cancel();
       _debounce = Timer(const Duration(milliseconds: 200), () async {
         _gettingData = true;
-        await AdsController.getFavAds(refresh: false);
+        await context.read<AdsCubit>().getFavAds(refresh: false);
         _gettingData = false;
       });
     }
@@ -97,10 +98,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   onRefresh: _refresh,
                   header: const SmartRefresherHeader(),
                   child: SingleChildScrollView(
-                    child: Selector<Ads, PaginationList<AdModel>?>(
-                      selector: (context, provider) => provider.myFavAds,
-                      shouldRebuild: (previous, next) => true,
-                      builder: (context, listProvider, child) {
+                    child: BlocSelector<AdsCubit, AdsState, PaginationList<AdModel>?>(
+                      selector: (state) => state.favAds,
+                      builder: (context, listProvider) {
                         final ads = listProvider?.data;
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -198,9 +198,11 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                                     onLike: () {
                                                       if (isAuth) {
                                                         HapticFeedback.heavyImpact();
-                                                        AdsController.addOrRemoveAdFromFavorites(
-                                                          ad: ads[index],
-                                                        );
+                                                        context
+                                                            .read<AdsCubit>()
+                                                            .toggleFavorite(
+                                                              ads[index],
+                                                            );
                                                       } else {
                                                         ///guest bottom sheet
                                                         ///
@@ -219,11 +221,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                     itemCount: ads?.length ?? 6,
                                     shrinkWrap: true,
                                   ),
-                            Selector<Ads, bool>(
-                              selector: (context, provider) =>
-                                  provider.adsLoadingModel.loadingFavAds,
-                              shouldRebuild: (old, newData) => old != newData,
-                              builder: (context, loadingAds, child) {
+                            BlocSelector<AdsCubit, AdsState, bool>(
+                              selector: (state) =>
+                                  state.favAdsStatus == RequestStatus.loading,
+                              builder: (context, loadingAds) {
                                 return ListLoadingEndWidget(
                                   lastPage: listProvider?.lastPage ?? 1,
                                   currentPage: listProvider?.currentPage ?? 1,

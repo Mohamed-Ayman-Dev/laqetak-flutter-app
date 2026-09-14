@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/svg_assets.dart';
@@ -11,7 +13,6 @@ import '../../../../core/widgets/custom_Text.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/widgets/label_widget.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../controllers/auth_controller.dart';
 import '../widgets/auth_appbar.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
   Future<void> _submit() async {
     if (_forgetPasswordFormKey.currentState!.validate()) {
-      await AuthController.forgetPassword(context, {
+      await context.read<AuthCubit>().forgetPassword({
         'phone': _phoneController.text,
       });
     }

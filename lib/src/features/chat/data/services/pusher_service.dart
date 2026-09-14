@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:invastro/src/core/di/locator_service.dart';
+import 'package:invastro/src/core/di/locator.dart';
+import 'package:invastro/src/features/chat/data/datasources/chat_remote_data_source.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 
 /// Centralized Pusher service for managing WebSocket connections
@@ -63,11 +64,8 @@ class PusherService {
     try {
       debugPrint('Authorizing channel: $channelName');
 
-      final response = await LocatorService.chatService.getPusherChannelAuth(
-        socketId: socketId,
-        channelName: channelName,
-        rethrowError: true,
-      );
+      final response = await locator<ChatRemoteDataSource>()
+          .getPusherChannelAuth(socketId: socketId, channelName: channelName);
       debugPrint('Channel authorized successfully: $channelName');
       return response;
     } catch (e) {

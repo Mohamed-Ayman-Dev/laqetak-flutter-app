@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/themes/colors.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_state.dart';
 import 'package:invastro/src/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:invastro/src/features/auth/presentation/screens/register_screen.dart';
-import 'package:invastro/src/features/my_ads/presentation/controllers/my_ads_controller.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 import 'package:invastro/src/features/profile/presentation/screens/profile_screen.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
@@ -19,8 +20,6 @@ import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/custom_Text.dart';
 import '../../../../core/widgets/fields_widgets/pin_code_widget.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../controllers/auth_controller.dart';
-import '../providers/auth_naviagtions.dart';
 import '../widgets/auth_appbar.dart';
 import '../widgets/timer_resend_widget.dart';
 
@@ -50,7 +49,7 @@ class _OtpScreenState extends State<OtpScreen> {
       _argsFormData = arguments?['data'];
 
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        LocatorService.timers.startTimer(
+        LocatorService.timerCubit.startTimer(
           initialSeconds: _redirectData?.remainingSeconds ?? 119,
         );
       });
@@ -61,10 +60,8 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   void dispose() {
-    LocatorService.timers.stopTimer();
-    LocatorService.authNavigations.activationFormKey.currentState?.dispose();
-    LocatorService.authNavigations.wrongVerificationError = null;
-    LocatorService.authNavigations.isNotValid = false;
+    LocatorService.timerCubit.stopTimer();
+    LocatorService.authCubit.clearVerification();
     super.dispose();
   }
 
@@ -73,8 +70,12 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16).r,
-        child: Consumer<AuthNavigations>(
-          builder: (context, navigationsProvider, child) {
+        child: BlocBuilder<AuthCubit, AuthState>(
+          buildWhen: (previous, current) =>
+              previous.verificationErrorMessage !=
+                  current.verificationErrorMessage ||
+              previous.isNotValid != current.isNotValid,
+          builder: (context, authState) {
             return Column(
               children: [
                 AuthAppbar(),
@@ -160,36 +161,24 @@ class _OtpScreenState extends State<OtpScreen> {
 
                 24.heightSpace,
                 Form(
-                  key: LocatorService.authNavigations.activationFormKey,
-                  child: Selector<AuthNavigations, String?>(
-                    selector: (context, provider) =>
-                        provider.wrongVerificationError,
-                    builder: (context, wrongVerificationError, child) {
-                      return PinCodeWidget(
-                        onSaved: (checkCode) {
-                          setState(() {
-                            otp = checkCode!;
-                          });
-                        },
-                        isNotValid: navigationsProvider.isNotValid,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return S.of(context).pleaseEnterVerificationCode;
-                          } else if (value.length < 4) {
-                            return S.of(context).pleaseEnterThe4digitCode;
-                          } else if (wrongVerificationError != null) {
-                            return wrongVerificationError;
-                          }
-                          // else if (value !=
-                          //     (navigationsProvider.newCode ??
-                          //         code.toString())) {
-                          //   return S.of(context).wrongVerificationCode;
-                          // }
-                          else {
-                            return null; // No error
-                          }
-                        },
-                      );
+                  key: LocatorService.authCubit.activationFormKey,
+                  child: PinCodeWidget(
+                    onSaved: (checkCode) {
+                      setState(() {
+                        otp = checkCode!;
+                      });
+                    },
+                    isNotValid: authState.isNotValid,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return S.of(context).pleaseEnterVerificationCode;
+                      } else if (value.length < 4) {
+                        return S.of(context).pleaseEnterThe4digitCode;
+                      } else if (authState.verificationErrorMessage != null) {
+                        return authState.verificationErrorMessage;
+                      } else {
+                        return null;
+                      }
                     },
                   ),
                 ),
@@ -201,9 +190,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         ? S.of(context).verify
                         : S.of(context).confirm,
                     onPressed: () {
-                      _onSubmit(
-                        LocatorService.authNavigations.activationFormKey,
-                      );
+                      _onSubmit(LocatorService.authCubit.activationFormKey);
                     },
                   ),
                 ),
@@ -222,23 +209,18 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   Future<void> _onSubmit(GlobalKey<FormState> formKey) async {
-    LocatorService.authNavigations.wrongVerificationError = null;
-    LocatorService.authNavigations.isNotValid = false;
+    final cubit = context.read<AuthCubit>();
+    cubit.clearVerification();
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      LocatorService.authNavigations.setIsNotValid(false);
+      cubit.setIsNotValid(false);
       switch (_flow) {
         case OtpFlow.register:
-          // Register OTP verification
-          await AuthController.registerOtp(context, {
-            'phone': _redirectData?.phone,
-            'code': otp,
-          }, isFromLogin: false);
+          await cubit.registerOtp({'phone': _redirectData?.phone, 'code': otp});
           break;
 
         case OtpFlow.forgetPassword:
-          // Forget password OTP verification
-          await AuthController.forgetPasswordOtp(context, {
+          await cubit.forgetPasswordOtp({
             'phone': _redirectData?.phone,
             'code': otp,
           });
@@ -246,31 +228,26 @@ class _OtpScreenState extends State<OtpScreen> {
 
         case OtpFlow.updatePhone:
           _argsFormData?['phone_otp'] = int.tryParse(otp);
-          AuthController.updateProfile(
-            context,
+          cubit.updateProfile(
             _argsFormData!,
             hasMultipartData: _argsFormData?['avatar'] != null,
           );
           break;
         case OtpFlow.addAd:
           _argsFormData?['contact_phone_otp'] = int.tryParse(otp);
-          MyAdsController.addAd(_argsFormData);
+          LocatorService.myAdsCubit.addAd(_argsFormData);
           break;
         case OtpFlow.editAd:
           _argsFormData?['contact_phone_otp'] = int.tryParse(otp);
-          MyAdsController.editAd(_argsFormData);
+          LocatorService.myAdsCubit.editAd(_argsFormData);
           break;
         case OtpFlow.login:
-          // // Login OTP verification (for non-activated accounts)
-          await AuthController.registerOtp(context, {
-            'phone': _redirectData?.phone,
-            'code': otp,
-          }, isFromLogin: true);
+          await cubit.registerOtp({'phone': _redirectData?.phone, 'code': otp});
           break;
       }
     } else {
       HapticFeedback.heavyImpact();
-      LocatorService.authNavigations.setIsNotValid(true);
+      cubit.setIsNotValid(true);
     }
   }
 }

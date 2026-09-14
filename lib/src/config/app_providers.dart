@@ -1,48 +1,30 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invastro/src/core/shared/others/presentation/cubit/others_cubit.dart';
-import 'package:invastro/src/core/shared/providers/timers.dart';
-import 'package:invastro/src/features/my_ads/presentation/providers/my_ads.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
+import 'package:invastro/src/core/shared/settings/presentation/cubit/settings_cubit.dart';
+import 'package:invastro/src/core/shared/timers/presentation/cubit/timer_cubit.dart';
+import 'package:invastro/src/features/ad_details/presentation/cubit/ad_details_cubit.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:invastro/src/features/chat/presentation/cubit/chat_cubit.dart';
+import 'package:invastro/src/features/home/presentation/cubit/ads_cubit.dart';
+import 'package:invastro/src/features/my_ads/presentation/cubit/my_ads_cubit.dart';
+import 'package:invastro/src/features/notifications/presentation/cubit/notifications_cubit.dart';
+import 'package:invastro/src/features/static_pages/presentation/cubit/static_pages_cubit.dart';
 
 import '../core/di/locator.dart';
-import '../core/di/locator_service.dart';
-import '../core/shared/providers/app_settings.dart';
-import '../features/ad_details/presentation/providers/ad_details.dart';
-import '../features/auth/presentation/providers/auth.dart';
-import '../features/auth/presentation/providers/auth_naviagtions.dart';
-import '../features/chat/presentation/providers/chat.dart';
-import '../features/home/presentation/providers/ads.dart';
-import '../features/notifications/presentation/providers/notifications.dart';
-import '../features/static_pages/presentation/providers/static_pages.dart';
 
 class AppBlocProviders {
   static List<BlocProvider> providers = [
-    // BlocProvider<AppSettingsCubit>.value(value: locator<AppSettingsCubit>()),
-    // BlocProvider<AppSettingsCubit>.value(value: locator<AppSettingsCubit>()),
+    BlocProvider<TimerCubit>.value(value: locator<TimerCubit>()),
     BlocProvider<OthersCubit>.value(value: locator<OthersCubit>()),
-  ];
-}
-
-class AppProviders {
-  static List<SingleChildWidget> providers = [
-    ChangeNotifierProvider<AppSettings>(
-      create: (_) => LocatorService.appSettings,
+    BlocProvider<SettingsCubit>.value(value: locator<SettingsCubit>()),
+    BlocProvider<AuthCubit>.value(value: locator<AuthCubit>()),
+    BlocProvider<StaticPagesCubit>.value(value: locator<StaticPagesCubit>()),
+    BlocProvider<NotificationsCubit>.value(
+      value: locator<NotificationsCubit>(),
     ),
-    ChangeNotifierProvider<Auth>(create: (_) => LocatorService.auth),
-    ChangeNotifierProvider<AuthNavigations>(
-      create: (_) => LocatorService.authNavigations,
-    ),
-    ChangeNotifierProvider<Timers>(create: (_) => LocatorService.timers),
-    ChangeNotifierProvider<StaticPages>(
-      create: (_) => LocatorService.staticPages,
-    ),
-    ChangeNotifierProvider<MyAds>(create: (_) => LocatorService.myAds),
-    ChangeNotifierProvider<Notifications>(
-      create: (_) => LocatorService.notifications,
-    ),
-    ChangeNotifierProvider<Ads>(create: (_) => LocatorService.ads),
-    ChangeNotifierProvider<AdDetails>(create: (_) => LocatorService.adDetails),
-    ChangeNotifierProvider<Chat>(create: (_) => LocatorService.chat),
+    BlocProvider<AdsCubit>.value(value: locator<AdsCubit>()),
+    BlocProvider<MyAdsCubit>.value(value: locator<MyAdsCubit>()),
+    BlocProvider<ChatCubit>.value(value: locator<ChatCubit>()),
+    BlocProvider<AdDetailsCubit>.value(value: locator<AdDetailsCubit>()),
   ];
 }

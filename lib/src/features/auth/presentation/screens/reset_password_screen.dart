@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/images_assets.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/svg_assets.dart';
@@ -10,7 +12,6 @@ import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/widgets/fields_widgets/password_eye_toggle.dart';
 import '../../../../core/widgets/label_widget.dart';
-import '../controllers/auth_controller.dart';
 import '../widgets/auth_appbar.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -49,7 +50,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     if (_resetPasswordFormKey.currentState!.validate()) {
       _resetPasswordFormKey.currentState!.save();
 
-      await AuthController.forgetPasswordReset(context, {
+      await context.read<AuthCubit>().resetPassword({
         'password': _formData['password'],
         'password_confirmation': _formData['password_confirmation'],
         'phone': _formData['phone'],

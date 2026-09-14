@@ -1,23 +1,36 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:invastro/src/core/shared/services/settings_service.dart';
-import 'package:invastro/src/features/ad_details/data/services/ad_details_service.dart';
-import 'package:invastro/src/features/ad_details/presentation/providers/ad_details.dart';
-import 'package:invastro/src/features/home/data/services/ads_service.dart';
-import 'package:invastro/src/features/home/presentation/providers/ads.dart';
-import 'package:invastro/src/features/my_ads/data/services/my_ads_service.dart';
-import 'package:invastro/src/features/my_ads/presentation/providers/my_ads.dart';
+import '../../features/ad_details/data/datasources/ad_details_remote_data_source.dart';
+import '../../features/ad_details/data/repositories/ad_details_repository.dart';
+import '../../features/ad_details/data/repositories/ad_details_repositoryImpl.dart';
+import '../../features/ad_details/presentation/cubit/ad_details_cubit.dart';
+import '../../features/home/data/datasources/ads_remote_data_source.dart';
+import '../../features/home/data/repositories/ads_repository.dart';
+import '../../features/home/data/repositories/ads_repositoryImpl.dart';
+import '../../features/home/presentation/cubit/ads_cubit.dart';
+import '../../features/my_ads/data/datasources/my_ads_remote_data_source.dart';
+import '../../features/my_ads/data/repositories/my_ads_repository.dart';
+import '../../features/my_ads/data/repositories/my_ads_repositoryImpl.dart';
+import '../../features/my_ads/presentation/cubit/my_ads_cubit.dart';
 import 'package:invastro/src/features/notifications/data/services/notifications_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../features/auth/data/services/auth_service.dart';
-import '../../features/auth/presentation/providers/auth.dart';
-import '../../features/auth/presentation/providers/auth_naviagtions.dart';
-import '../../features/chat/data/services/chat_service.dart';
-import '../../features/chat/presentation/providers/chat.dart';
-import '../../features/notifications/presentation/providers/notifications.dart';
-import '../../features/static_pages/data/services/static_pages_service.dart';
-import '../../features/static_pages/presentation/providers/static_pages.dart';
+import '../../features/auth/data/datasources/auth_remote_data_source.dart';
+import '../../features/auth/data/repositories/auth_repository.dart';
+import '../../features/auth/data/repositories/auth_repositoryImpl.dart';
+import '../../features/auth/presentation/cubit/auth_cubit.dart';
+import '../../features/chat/data/datasources/chat_remote_data_source.dart';
+import '../../features/chat/data/repositories/chat_repository.dart';
+import '../../features/chat/data/repositories/chat_repositoryImpl.dart';
+import '../../features/chat/presentation/cubit/chat_cubit.dart';
+import '../../features/notifications/data/datasources/notifications_remote_data_source.dart';
+import '../../features/notifications/data/repositories/notifications_repository.dart';
+import '../../features/notifications/data/repositories/notifications_repositoryImpl.dart';
+import '../../features/notifications/presentation/cubit/notifications_cubit.dart';
+import '../../features/static_pages/data/datasources/static_pages_remote_data_source.dart';
+import '../../features/static_pages/data/repositories/static_pages_repository.dart';
+import '../../features/static_pages/data/repositories/static_pages_repositoryImpl.dart';
+import '../../features/static_pages/presentation/cubit/static_pages_cubit.dart';
 import '../cache/cache_helper.dart';
 import '../cache/cache_manager.dart';
 import '../navigation_service.dart';
@@ -27,8 +40,11 @@ import '../shared/others/data/datasources/others_remote_data_source.dart';
 import '../shared/others/data/repositories/others_repository.dart';
 import '../shared/others/data/repositories/others_repositoryImpl.dart';
 import '../shared/others/presentation/cubit/others_cubit.dart';
-import '../shared/providers/app_settings.dart';
-import '../shared/providers/timers.dart';
+import '../shared/settings/data/datasources/settings_remote_data_source.dart';
+import '../shared/settings/data/repositories/settings_repository.dart';
+import '../shared/settings/data/repositories/settings_repositoryImpl.dart';
+import '../shared/settings/presentation/cubit/settings_cubit.dart';
+import '../shared/timers/presentation/cubit/timer_cubit.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -49,39 +65,87 @@ Future<void> setupServices() async {
 
   /// register services
   locator.registerLazySingleton<NavigationService>(() => NavigationService());
-  locator.registerLazySingleton<AuthService>(() => AuthService());
-  locator.registerLazySingleton<SettingsService>(() => SettingsService());
   locator.registerLazySingleton<NotificationsService>(
     () => NotificationsService(),
   );
-  locator.registerLazySingleton<AdDetailsService>(() => AdDetailsService());
-  locator.registerLazySingleton<MyAdsService>(() => MyAdsService());
-  locator.registerLazySingleton<AdsService>(() => AdsService());
-  locator.registerLazySingleton<StaticPagesService>(() => StaticPagesService());
-  locator.registerLazySingleton<ChatService>(() => ChatService());
-
-  /// register providers
-  locator.registerLazySingleton<AppSettings>(() => AppSettings());
-  locator.registerLazySingleton<Auth>(() => Auth());
-  locator.registerLazySingleton<AuthNavigations>(() => AuthNavigations());
-  locator.registerLazySingleton<Notifications>(() => Notifications());
-  locator.registerLazySingleton<Timers>(() => Timers());
-  locator.registerLazySingleton<Ads>(() => Ads());
-  locator.registerLazySingleton<AdDetails>(() => AdDetails());
-  locator.registerLazySingleton<MyAds>(() => MyAds());
-  locator.registerLazySingleton<Chat>(() => Chat());
-  locator.registerLazySingleton<StaticPages>(() => StaticPages());
 
   /// register data sources
   locator.registerLazySingleton<OthersRemoteDataSource>(
     () => OthersRemoteDataSourceImpl(locator()),
+  );
+  locator.registerLazySingleton<SettingsRemoteDataSource>(
+    () => SettingsRemoteDataSourceImpl(locator()),
+  );
+  locator.registerLazySingleton<AuthRemoteDataSource>(
+    () => AuthRemoteDataSourceImpl(locator()),
+  );
+  locator.registerLazySingleton<StaticPagesRemoteDataSource>(
+    () => StaticPagesRemoteDataSourceImpl(locator()),
+  );
+  locator.registerLazySingleton<NotificationsRemoteDataSource>(
+    () => NotificationsRemoteDataSourceImpl(locator()),
+  );
+  locator.registerLazySingleton<AdsRemoteDataSource>(
+    () => AdsRemoteDataSourceImpl(locator()),
+  );
+  locator.registerLazySingleton<MyAdsRemoteDataSource>(
+    () => MyAdsRemoteDataSourceImpl(locator()),
+  );
+  locator.registerLazySingleton<ChatRemoteDataSource>(
+    () => ChatRemoteDataSourceImpl(locator()),
+  );
+  locator.registerLazySingleton<AdDetailsRemoteDataSource>(
+    () => AdDetailsRemoteDataSourceImpl(locator()),
   );
 
   /// register repositories
   locator.registerLazySingleton<OthersRepository>(
     () => OthersRepositoryImpl(remoteDataSource: locator()),
   );
+  locator.registerLazySingleton<SettingsRepository>(
+    () => SettingsRepositoryImpl(remoteDataSource: locator()),
+  );
+  locator.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(remoteDataSource: locator()),
+  );
+  locator.registerLazySingleton<StaticPagesRepository>(
+    () => StaticPagesRepositoryImpl(remoteDataSource: locator()),
+  );
+  locator.registerLazySingleton<NotificationsRepository>(
+    () => NotificationsRepositoryImpl(remoteDataSource: locator()),
+  );
+  locator.registerLazySingleton<AdsRepository>(
+    () => AdsRepositoryImpl(remoteDataSource: locator()),
+  );
+  locator.registerLazySingleton<MyAdsRepository>(
+    () => MyAdsRepositoryImpl(remoteDataSource: locator()),
+  );
+  locator.registerLazySingleton<ChatRepository>(
+    () => ChatRepositoryImpl(remoteDataSource: locator()),
+  );
+  locator.registerLazySingleton<AdDetailsRepository>(
+    () => AdDetailsRepositoryImpl(remoteDataSource: locator()),
+  );
 
   /// register cubits
+  locator.registerLazySingleton<TimerCubit>(() => TimerCubit());
   locator.registerLazySingleton<OthersCubit>(() => OthersCubit(locator()));
+  locator.registerLazySingleton<SettingsCubit>(
+    () => SettingsCubit(locator(), locator()),
+  );
+  locator.registerLazySingleton<AuthCubit>(
+    () => AuthCubit(locator(), locator()),
+  );
+  locator.registerLazySingleton<StaticPagesCubit>(
+    () => StaticPagesCubit(locator()),
+  );
+  locator.registerLazySingleton<NotificationsCubit>(
+    () => NotificationsCubit(locator()),
+  );
+  locator.registerLazySingleton<AdsCubit>(() => AdsCubit(locator()));
+  locator.registerLazySingleton<MyAdsCubit>(() => MyAdsCubit(locator()));
+  locator.registerLazySingleton<ChatCubit>(() => ChatCubit(locator()));
+  locator.registerLazySingleton<AdDetailsCubit>(
+    () => AdDetailsCubit(locator(), locator()),
+  );
 }

@@ -16,8 +16,9 @@ class AppInterceptors extends Interceptor {
     // final token = LocatorService.authCubit.token;
     options.headers.addAll({
       'Accept': 'application/json',
-      'language': LocatorService.appSettings.language,
-      // if (token != null) 'Authorization': 'Bearer $token',
+      'language': LocatorService.settingsCubit.state.language,
+      if (LocatorService.authCubit.state.token != null)
+        'Authorization': 'Bearer ${LocatorService.authCubit.state.token}',
     });
 
     handler.next(options);

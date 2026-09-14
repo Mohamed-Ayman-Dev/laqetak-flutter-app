@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
@@ -14,7 +15,7 @@ import '../../../../core/shared/models/contact_request_model.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/widgets/notify_circle.dart';
 import '../../../ad_details/presentation/screens/ad_details_screen.dart';
-import '../controllers/notifications_controller.dart';
+import '../cubit/notifications_cubit.dart';
 
 class NotificationItem extends StatelessWidget {
   final String title;
@@ -113,10 +114,12 @@ class NotificationItem extends StatelessWidget {
                             fontSize: 12.sp,
                           ),
                           onPressed: () {
-                            NotificationsController.respondShowNumberRequest(
-                              status: 'approved',
-                              requestId: request!.contactRequestId!,
-                            );
+                            context
+                                .read<NotificationsCubit>()
+                                .respondShowNumberRequest(
+                                  status: 'approved',
+                                  requestId: request!.contactRequestId!,
+                                );
                           },
                         ),
                         10.widthSpace,
@@ -128,10 +131,12 @@ class NotificationItem extends StatelessWidget {
                             color: AppColors.primaryColor,
                           ),
                           onPressed: () {
-                            NotificationsController.respondShowNumberRequest(
-                              status: 'rejected',
-                              requestId: request!.contactRequestId!,
-                            );
+                            context
+                                .read<NotificationsCubit>()
+                                .respondShowNumberRequest(
+                                  status: 'rejected',
+                                  requestId: request!.contactRequestId!,
+                                );
                           },
                         ),
                       ],

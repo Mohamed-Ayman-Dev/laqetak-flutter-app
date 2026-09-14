@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
 import 'package:invastro/src/core/widgets/buttons_widgets/small_icon_button.dart';
-import 'package:invastro/src/features/home/presentation/providers/ads.dart';
-import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -15,7 +14,8 @@ import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/themes/colors.dart';
-import '../../../home/presentation/controllers/ads_controller.dart';
+import '../../../home/presentation/cubit/ads_cubit.dart';
+import '../../../home/presentation/cubit/ads_state.dart';
 
 class AdDetailsHeader extends StatefulWidget {
   final bool isMyAd;
@@ -28,13 +28,13 @@ class AdDetailsHeader extends StatefulWidget {
 }
 
 class _AdDetailsHeaderState extends State<AdDetailsHeader> {
-  Widget _buildLike() => InkWell(
+  Widget _buildLike(AdModel? ad) => InkWell(
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     onTap: () {
       if (isAuth) {
         HapticFeedback.heavyImpact();
-        AdsController.addOrRemoveAdFromFavorites(ad: widget.ad ?? AdModel());
+        context.read<AdsCubit>().toggleFavorite(ad ?? AdModel());
       } else {
         BottomHelpers.showGuestBottomSheet(context);
       }
@@ -48,10 +48,10 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
         transitionBuilder: (child, animation) =>
             ScaleTransition(scale: animation, child: child),
         child: SvgPicture.asset(
-          (widget.ad?.isFavorite ?? false)
+          (ad?.isFavorite ?? false)
               ? SvgAssets.assetsSvgFavFillIcon
               : SvgAssets.assetsSvgFavIconUnselected,
-          // ← required for AnimatedSwitcher to detect change
+          key: ValueKey(ad?.isFavorite),
           width: 24.w,
           height: 24.h,
         ),
@@ -61,10 +61,9 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<Ads, AdModel?>(
-      selector: (context, provider) => provider.myAdDetails[widget.ad?.id],
-      shouldRebuild: (previous, next) => true,
-      builder: (context, myAdDetail, child) {
+    return BlocSelector<AdsCubit, AdsState, AdModel?>(
+      selector: (state) => state.adDetails[widget.ad?.id],
+      builder: (context, myAdDetail) {
         final adDetail = myAdDetail ?? widget.ad;
         return Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -109,7 +108,7 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
               width: 20,
               height: 20,
             ),
-            _buildLike(),
+            _buildLike(adDetail),
           ],
         );
       },

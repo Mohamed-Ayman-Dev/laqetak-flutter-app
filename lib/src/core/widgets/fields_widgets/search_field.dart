@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/widgets/buttons_widgets/my_icon_button.dart';
 import 'package:invastro/src/core/themes/colors.dart';
-import 'package:invastro/src/features/home/presentation/providers/ads.dart';
-import 'package:provider/provider.dart';
+import 'package:invastro/src/features/home/presentation/cubit/ads_cubit.dart';
+import 'package:invastro/src/features/home/presentation/cubit/ads_state.dart';
 
 import '../../../../generated/l10n.dart';
 import '../notify_circle.dart';
@@ -93,16 +94,13 @@ class SearchField extends StatelessWidget {
                 borderRadius: 20,
                 bkColor: AppColors.searchBKColor,
               ),
-              Selector<Ads, Map?>(
-                selector: (context, provider) => provider.filters,
-                builder: (context, filters, child) {
+              BlocSelector<AdsCubit, AdsState, Map<String, dynamic>>(
+                selector: (state) => state.filters,
+                builder: (context, filters) {
                   return NotifyCircle(
-                    showNotify:
-                        filters != null &&
-                        filters.values.any(
-                          (e) =>
-                              e != null && ((e is List) ? e.isNotEmpty : true),
-                        ),
+                    showNotify: filters.values.any(
+                      (e) => e != null && ((e is List) ? e.isNotEmpty : true),
+                    ),
                   );
                 },
               ),

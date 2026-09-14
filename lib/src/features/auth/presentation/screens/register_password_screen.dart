@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/helpers/dialog_helpers.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -15,7 +17,6 @@ import '../../../../core/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/widgets/fields_widgets/password_eye_toggle.dart';
 import '../../../../core/widgets/label_widget.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../controllers/auth_controller.dart';
 
 class RegisterPasswordScreen extends StatefulWidget {
   static const routeName = '/register_password_screen';
@@ -52,7 +53,7 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
         );
         return;
       }
-      await AuthController.register(context, _formData);
+      await context.read<AuthCubit>().register(_formData);
     }
   }
 

@@ -21,7 +21,7 @@ class CustomerHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isMe = customer?.id == LocatorService.auth.user?.id;
+    bool isMe = customer?.id == LocatorService.authCubit.state.user?.id;
 
     return Column(
       children: [

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/core/helpers/others_helper.dart';
 import 'package:invastro/src/core/widgets/app_logo.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/constant.dart';
-import '../../../../core/shared/controllers/settings_controller.dart';
-import '../../../../core/shared/providers/app_settings.dart';
 import '../../../../core/shared/settings/data/models/settings_model.dart';
+import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart';
+import '../../../../core/shared/settings/presentation/cubit/settings_state.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
 import '../../../../core/widgets/custom_appbar.dart';
@@ -31,7 +32,7 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      SettingsController.getGeneralSettings();
+      context.read<SettingsCubit>().getSettings();
     });
     super.initState();
   }
@@ -52,70 +53,71 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
         top: false,
         right: false,
         left: false,
-        child: Selector<AppSettings, SettingsModel?>(
-          selector: (context, provider) => provider.mySettings,
-          builder: (context, mySettings, child) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 12.0, left: 20).r,
-              child: Column(
-                children: [
-                  30.heightSpace,
-                  AppLogo(height: 43, width: 239),
-                  30.heightSpace,
-                  Expanded(
-                    child: Selector<AppSettings, SettingsModel?>(
-                      selector: (context, provider) => provider.mySettings,
-                      builder: (context, mySettings, child) {
-                        return RawScrollbar(
-                          interactive: false,
-                          thumbColor: AppColors.primaryColor,
-                          thickness: 5,
+        child: BlocListener<SettingsCubit, SettingsState>(
+          listenWhen: (previous, current) =>
+              current.hasError && !previous.hasError,
+          listener: (context, state) =>
+              AppFeedback.errorMessage(state.errorMessage),
+          child: BlocSelector<SettingsCubit, SettingsState, SettingsModel?>(
+            selector: (state) => state.settings,
+            builder: (context, mySettings) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 12.0, left: 20).r,
+                child: Column(
+                  children: [
+                    30.heightSpace,
+                    AppLogo(height: 43, width: 239),
+                    30.heightSpace,
+                    Expanded(
+                      child: RawScrollbar(
+                        interactive: false,
+                        thumbColor: AppColors.primaryColor,
+                        thickness: 5,
 
-                          radius: const Radius.circular(15),
-                          thumbVisibility: true,
-                          child: SizedBox(
-                            height: 400.h,
-                            width: double.infinity,
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              physics: const AlwaysScrollableScrollPhysics(),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 22.0,
-                                vertical: 22,
-                              ).r,
-                              child: mySettings?.termsAndConditions == null
-                                  ? Column(
-                                      children: [
-                                        const StaticShimmer(),
-                                        const StaticShimmer(),
-                                      ],
-                                    )
-                                  : Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        HtmlWidget(
-                                          mySettings?.aboutUs ?? '',
-                                          textStyle: AppTextStyles.labelSmall
-                                              .copyWith(
-                                                color: AppColors
-                                                    .bodySmallGreyTextColor,
-                                                fontFamily: Constant.fontFamily,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                            ),
+                        radius: const Radius.circular(15),
+                        thumbVisibility: true,
+                        child: SizedBox(
+                          height: 400.h,
+                          width: double.infinity,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 22.0,
+                              vertical: 22,
+                            ).r,
+                            child: mySettings?.termsAndConditions == null
+                                ? Column(
+                                    children: [
+                                      const StaticShimmer(),
+                                      const StaticShimmer(),
+                                    ],
+                                  )
+                                : Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      HtmlWidget(
+                                        mySettings?.aboutUs ?? '',
+                                        textStyle: AppTextStyles.labelSmall
+                                            .copyWith(
+                                              color: AppColors
+                                                  .bodySmallGreyTextColor,
+                                              fontFamily: Constant.fontFamily,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
                           ),
-                        );
-                      },
+                        ),
+                      ),
                     ),
-                  ),
-                  30.heightSpace,
-                ],
-              ),
-            );
-          },
+                    30.heightSpace,
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

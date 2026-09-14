@@ -1,14 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:invastro/src/core/constants/app_feedback.dart';
+import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/features/chat/data/models/conversations_model.dart';
-import 'package:invastro/src/features/chat/presentation/controllers/chat_controller.dart';
-import 'package:invastro/src/features/chat/presentation/providers/chat.dart';
+import 'package:invastro/src/features/chat/presentation/cubit/chat_cubit.dart';
+import 'package:invastro/src/features/chat/presentation/cubit/chat_state.dart';
 import 'package:invastro/src/features/chat/presentation/widgets/conversation_item.dart';
 import 'package:invastro/src/features/chat/presentation/widgets/shimmers/convesation_item_shimmer.dart';
-import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -36,9 +38,9 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      LocatorService.auth.clearMessagesCount();
+      LocatorService.authCubit.clearMessagesCount();
       if (isAuth) {
-        ChatController.getConversations(refresh: true);
+        context.read<ChatCubit>().getConversations(refresh: true);
       }
       _scrollController.addListener(_onStoresListener);
     });
@@ -55,7 +57,7 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
   Future<void> _refresh() async {
     final refreshController = _refreshController;
     if (isAuth) {
-      await ChatController.getConversations(refresh: true);
+      await context.read<ChatCubit>().getConversations(refresh: true);
     }
     refreshController.refreshCompleted();
   }
@@ -67,7 +69,7 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
       _debounce?.cancel();
       _debounce = Timer(const Duration(milliseconds: 200), () async {
         _gettingData = true;
-        await ChatController.getConversations(refresh: false);
+        await context.read<ChatCubit>().getConversations(refresh: false);
         _gettingData = false;
       });
     }
@@ -87,114 +89,137 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
       backgroundColor: AppColors.greyScaffoldBKColor,
       body: !isAuth
           ? const LoginFirstWidget()
-          : SmartRefresher(
-              scrollController: _scrollController,
-              controller: _refreshController,
-              onRefresh: _refresh,
-              header: const SmartRefresherHeader(),
-              child: SingleChildScrollView(
-                child: Selector<Chat, PaginationList<ConversationsModel>?>(
-                  selector: (context, provider) => provider.myConversations,
-                  shouldRebuild: (oldWidget, newWidget) => true,
-                  builder: (context, listProvider, child) {
-                    List<ConversationsModel>? conversations =
-                        listProvider?.data;
+          : BlocListener<ChatCubit, ChatState>(
+              listenWhen: (previous, current) =>
+                  current.hasConversationsError &&
+                  !previous.hasConversationsError,
+              listener: (context, state) {
+                AppFeedback.errorMessage(state.errorMessage);
+              },
+              child: SmartRefresher(
+                scrollController: _scrollController,
+                controller: _refreshController,
+                onRefresh: _refresh,
+                header: const SmartRefresherHeader(),
+                child: SingleChildScrollView(
+                  child:
+                      BlocSelector<
+                        ChatCubit,
+                        ChatState,
+                        PaginationList<ConversationsModel>?
+                      >(
+                        selector: (state) => state.conversations,
+                        builder: (context, listProvider) {
+                          List<ConversationsModel>? conversations =
+                              listProvider?.data;
 
-                    return conversations != null && conversations.isEmpty
-                        ? EmptyListPlaceholderWidget(
-                            text: S.of(context).thereAreNoConversationsYet,
-                            paddingTop: 300,
-                          )
-                        : Column(
-                            children: [
-                              ListView.separated(
-                                shrinkWrap: true,
-                                padding: EdgeInsets.only(
-                                  top: 30,
-                                  bottom: 100,
-                                ).r,
-                                physics: NeverScrollableScrollPhysics(),
-                                itemBuilder: (context, index) =>
-                                    AnimationConfiguration.staggeredList(
-                                      position: index,
-                                      delay: const Duration(milliseconds: 10),
-                                      child: SlideAnimation(
-                                        verticalOffset: 10,
-                                        duration: const Duration(
-                                          milliseconds: 800,
-                                        ),
-                                        curve: Curves.fastLinearToSlowEaseIn,
-                                        child: FadeInAnimation(
-                                          duration: const Duration(
-                                            milliseconds: 1000,
-                                          ),
-                                          curve: Curves.fastLinearToSlowEaseIn,
-                                          child: conversations == null
-                                              ? ConversationItemShimmer()
-                                              : ConversationItem(
-                                                  title:
-                                                      conversations[index]
-                                                          .otherUser
-                                                          ?.name ??
-                                                      '',
-                                                  onTab: () {
-                                                    LocatorService
-                                                        .navigationService
-                                                        .currentState
-                                                        ?.pushNamed(
-                                                          ChatScreen.routeName,
-                                                          arguments: {
-                                                            'conversation':
-                                                                conversations[index],
-                                                          },
-                                                        );
-                                                  },
-                                                  desc:
-                                                      conversations[index]
-                                                          .latestMessage
-                                                          ?.message ??
-                                                      S.of(context).pressToChat,
-                                                  date:
-                                                      conversations[index]
-                                                          .updatedAtHuman ??
-                                                      '',
-                                                  image:
-                                                      conversations[index]
-                                                          .otherUser
-                                                          ?.avatar ??
-                                                      '',
-                                                  messageCount:
-                                                      conversations[index]
-                                                          .unseenCount ??
-                                                      0,
+                          return conversations != null && conversations.isEmpty
+                              ? EmptyListPlaceholderWidget(
+                                  text: S
+                                      .of(context)
+                                      .thereAreNoConversationsYet,
+                                  paddingTop: 300,
+                                )
+                              : Column(
+                                  children: [
+                                    ListView.separated(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.only(
+                                        top: 30,
+                                        bottom: 100,
+                                      ).r,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemBuilder: (context, index) =>
+                                          AnimationConfiguration.staggeredList(
+                                            position: index,
+                                            delay: const Duration(
+                                              milliseconds: 10,
+                                            ),
+                                            child: SlideAnimation(
+                                              verticalOffset: 10,
+                                              duration: const Duration(
+                                                milliseconds: 800,
+                                              ),
+                                              curve:
+                                                  Curves.fastLinearToSlowEaseIn,
+                                              child: FadeInAnimation(
+                                                duration: const Duration(
+                                                  milliseconds: 1000,
                                                 ),
-                                        ),
-                                      ),
+                                                curve: Curves
+                                                    .fastLinearToSlowEaseIn,
+                                                child: conversations == null
+                                                    ? ConversationItemShimmer()
+                                                    : ConversationItem(
+                                                        title:
+                                                            conversations[index]
+                                                                .otherUser
+                                                                ?.name ??
+                                                            '',
+                                                        onTab: () {
+                                                          LocatorService
+                                                              .navigationService
+                                                              .currentState
+                                                              ?.pushNamed(
+                                                                ChatScreen
+                                                                    .routeName,
+                                                                arguments: {
+                                                                  'conversation':
+                                                                      conversations[index],
+                                                                },
+                                                              );
+                                                        },
+                                                        desc:
+                                                            conversations[index]
+                                                                .latestMessage
+                                                                ?.message ??
+                                                            S
+                                                                .of(context)
+                                                                .pressToChat,
+                                                        date:
+                                                            conversations[index]
+                                                                .updatedAtHuman ??
+                                                            '',
+                                                        image:
+                                                            conversations[index]
+                                                                .otherUser
+                                                                ?.avatar ??
+                                                            '',
+                                                        messageCount:
+                                                            conversations[index]
+                                                                .unseenCount ??
+                                                            0,
+                                                      ),
+                                              ),
+                                            ),
+                                          ),
+                                      separatorBuilder: (context, index) =>
+                                          22.heightSpace,
+                                      itemCount: conversations?.length ?? 10,
                                     ),
-                                separatorBuilder: (context, index) =>
-                                    22.heightSpace,
-                                itemCount: conversations?.length ?? 10,
-                              ),
-                              Selector<Chat, bool>(
-                                selector: (context, provider) =>
-                                    provider.isLoadingConversations,
-                                builder: (context, isLoading, child) {
-                                  return ListLoadingEndWidget(
-                                    lastPage: listProvider?.lastPage ?? 1,
-                                    currentPage: listProvider?.currentPage ?? 1,
-                                    isLoading: isLoading,
-                                    listLessThan:
-                                        conversations != null &&
-                                        conversations.length > 6,
-                                    noMoreText: S
-                                        .of(context)
-                                        .thereAreNoMoreConversations,
-                                  );
-                                },
-                              ),
-                            ],
-                          );
-                  },
+                                    BlocSelector<ChatCubit, ChatState, bool>(
+                                      selector: (state) =>
+                                          state.conversationsStatus ==
+                                          RequestStatus.loading,
+                                      builder: (context, isLoading) {
+                                        return ListLoadingEndWidget(
+                                          lastPage: listProvider?.lastPage ?? 1,
+                                          currentPage:
+                                              listProvider?.currentPage ?? 1,
+                                          isLoading: isLoading,
+                                          listLessThan:
+                                              conversations != null &&
+                                              conversations.length > 6,
+                                          noMoreText: S
+                                              .of(context)
+                                              .thereAreNoMoreConversations,
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                );
+                        },
+                      ),
                 ),
               ),
             ),

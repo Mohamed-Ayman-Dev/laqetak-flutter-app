@@ -11,8 +11,6 @@ import 'package:vibration/vibration.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/others_helper.dart';
-import '../../../../core/network/api_service.dart';
-import '../../../auth/presentation/controllers/auth_controller.dart';
 
 class NotificationsService {
   bool permissionChecked = false;
@@ -27,17 +25,6 @@ class NotificationsService {
       criticalAlert: false,
       provisional: false,
       sound: true,
-    );
-  }
-
-  Future respondShowNumberRequest({
-    bool rethrowError = false,
-    Map<String, dynamic>? data,
-  }) async {
-    return await ApiService.post(
-      '/ads/contact-request/respond',
-      rethrowError: rethrowError,
-      data: data,
     );
   }
 
@@ -236,7 +223,7 @@ class NotificationsService {
   String? lastMessageId;
 
   Future<void> initializeFCM() async {
-    final token = await AuthController.getDeviceToken();
+    final token = await LocatorService.authCubit.getDeviceToken();
     // ✅ Subscribe to topic
     await FirebaseMessaging.instance.subscribeToTopic('home_topic');
     print('✅ Subscribed to topic: home_topic');
@@ -250,7 +237,7 @@ class NotificationsService {
 
     if (isAuth) {
       if (token != null) {
-        AuthController.sendDeviceToken(token);
+        LocatorService.authCubit.sendDeviceToken(token);
       }
     }
     initPermission();
@@ -261,8 +248,8 @@ class NotificationsService {
       if (message.messageId != null && message.messageId == lastMessageId) {
         return;
       }
-      if (LocatorService.auth.isAuth) {
-        // AuthController.getProfile(isLogin: true);
+      if (isAuth) {
+        // LocatorService.authCubit.getProfile();
       }
       lastMessageId = message.messageId;
       print('Got a message whilst in the foreground!');
@@ -286,37 +273,4 @@ class NotificationsService {
       }
     });
   }
-
-  Future getNotifications(
-    Map<String, dynamic> queryParameters, {
-    rethrowError = false,
-  }) async {
-    return await ApiService.get(
-      '/notifications/list',
-      queryParameters: queryParameters,
-      rethrowError: rethrowError,
-    );
-  }
-
-  Future markAsRead({bool rethrowError = false}) async {
-    return await ApiService.post(
-      '/notifications/read-all',
-      rethrowError: rethrowError,
-    );
-  }
-
-  Future setDeleteNotification({
-    bool rethrowError = false,
-    required num notificationId,
-  }) async {
-    return await ApiService.get(
-      '/notifications/delete/$notificationId',
-      rethrowError: rethrowError,
-    );
-  }
-
-  // Future setDeleteAllNotification({rethrowError = false}) async {
-  //   return await ApiService.get('/deleteNotifications',
-  //       rethrowError: rethrowError);
-  // }
 }

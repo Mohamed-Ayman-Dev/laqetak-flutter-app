@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invastro/src/core/constants/svg_assets.dart';
 import 'package:invastro/src/core/extension/space_extensions_helper.dart';
 import 'package:invastro/src/features/static_pages/presentation/widgets/social_button.dart';
-import 'package:provider/provider.dart';
 
-import '../../../../core/shared/providers/app_settings.dart';
 import '../../../../core/shared/settings/data/models/settings_model.dart';
+import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart';
+import '../../../../core/shared/settings/presentation/cubit/settings_state.dart';
 
 class SocialWidgets extends StatelessWidget {
   const SocialWidgets({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Selector<AppSettings, SettingsModel?>(
-      selector: (context, provider) => provider.mySettings,
-      builder: (context, socialLinks, child) {
+    return BlocSelector<SettingsCubit, SettingsState, SettingsModel?>(
+      selector: (state) => state.settings,
+      builder: (context, socialLinks) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

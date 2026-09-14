@@ -68,9 +68,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "attachments": MessageLookupByLibrary.simpleMessage("المرفقات"),
     "averageCapital": MessageLookupByLibrary.simpleMessage("متوسط رأس المال"),
-    "byLoggingInYouCanAccessAllTheFeaturesOf": MessageLookupByLibrary.simpleMessage(
-      "بتسجيل الدخول، يمكنك الوصول إلى جميع ميزات التطبيق، بما في ذلك إنشاء الإعلانات، وإدارة حسابك، والتواصل مع المستخدمين الآخرين. لا تفوت الفرصة للاستفادة الكاملة من تجربتك معنا!",
-    ),
+    "byLoggingInYouCanAccessAllTheFeaturesOf":
+        MessageLookupByLibrary.simpleMessage(
+          "بتسجيل الدخول، يمكنك الوصول إلى جميع ميزات التطبيق، بما في ذلك إنشاء الإعلانات، وإدارة حسابك، والتواصل مع المستخدمين الآخرين. لا تفوت الفرصة للاستفادة الكاملة من تجربتك معنا!",
+        ),
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "capitalNeedsAnIdea": MessageLookupByLibrary.simpleMessage(
       "رأس المال يحتاج لفكرة",

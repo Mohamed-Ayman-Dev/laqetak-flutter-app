@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/widgets/fields_widgets/custom_note_field.dart';
+import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/themes/text_styles.dart';
-import 'package:invastro/src/features/home/presentation/controllers/ads_controller.dart';
+import 'package:invastro/src/core/widgets/fields_widgets/custom_note_field.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../constants/svg_assets.dart';
@@ -38,15 +38,14 @@ class _ReportDialogContentState extends State<ReportDialogContent> {
       _formKey.currentState!.save();
       Navigator.pop(context);
       widget.isCustomerReport
-          ? AdsController.sendCustomerComplaint(
-              data: {
-                'customer_id': widget.id,
-                'reason': _reasonController.text,
-              },
-            )
-          : AdsController.sendAdComplaint(
-              data: {'ad_id': widget.id, 'reason': _reasonController.text},
-            );
+          ? LocatorService.adsCubit.sendCustomerComplaint({
+              'customer_id': widget.id,
+              'reason': _reasonController.text,
+            })
+          : LocatorService.adsCubit.sendAdComplaint({
+              'ad_id': widget.id,
+              'reason': _reasonController.text,
+            });
     }
   }
 

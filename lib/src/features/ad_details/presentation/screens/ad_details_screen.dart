@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/constants/enums.dart';
 import 'package:invastro/src/core/di/locator_service.dart';
@@ -17,10 +18,10 @@ import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_details_seller.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/ad_image_gallery.dart';
 import 'package:invastro/src/features/ad_details/presentation/widgets/shimmers/ad_image_gallery_shimmer.dart';
-import 'package:invastro/src/features/home/presentation/controllers/ads_controller.dart';
-import 'package:invastro/src/features/home/presentation/providers/ads.dart';
+import 'package:invastro/src/features/home/presentation/cubit/ads_cubit.dart';
+import 'package:invastro/src/features/home/presentation/cubit/ads_state.dart';
+import 'package:invastro/src/features/my_ads/presentation/cubit/my_ads_cubit.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_screen.dart';
-import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -28,7 +29,6 @@ import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/widgets/lists_widgets/smart_refresher_header.dart';
-import '../../../my_ads/presentation/controllers/my_ads_controller.dart';
 
 class AdDetailsScreen extends StatefulWidget {
   static const routeName = '/ad_details_screen';
@@ -55,11 +55,11 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
         ad = args['ad'];
         isMyAd = args['isMyAd'] ?? false;
         if (isMyAd != true) {
-          isMyAd = (LocatorService.auth.user?.id == ad?.customer?.id);
+          isMyAd = (LocatorService.authCubit.state.user?.id == ad?.customer?.id);
         }
       }
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        AdsController.getAdDetails(ad?.id ?? 0);
+        context.read<AdsCubit>().getAdDetails(ad?.id ?? 0);
       });
       once = true;
     }
@@ -79,7 +79,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
 
   Future<void> _refresh() async {
     final refreshController = _refreshController;
-    await AdsController.getAdDetails(ad?.id ?? 0);
+    await context.read<AdsCubit>().getAdDetails(ad?.id ?? 0);
     refreshController.refreshCompleted();
   }
 
@@ -94,9 +94,9 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
       body: SafeArea(
         bottom: true,
         top: false,
-        child: Selector<Ads, AdModel?>(
-          selector: (context, provider) => provider.myAdDetails[ad?.id],
-          builder: (context, updatedAdDetail, child) {
+        child: BlocSelector<AdsCubit, AdsState, AdModel?>(
+          selector: (state) => state.adDetails[ad?.id],
+          builder: (context, updatedAdDetail) {
             final adDetail = updatedAdDetail ?? ad;
             final isExpired = adDetail?.status == 'closed';
             return Stack(
@@ -206,7 +206,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                                           .areYouSureYouWantToEndThisAd,
                                       onButtonTap: () {
                                         Navigator.of(context).pop();
-                                        MyAdsController.closeAd(
+                                        context.read<MyAdsCubit>().closeAd(
                                           adDetail?.id ?? 0,
                                         );
                                       },

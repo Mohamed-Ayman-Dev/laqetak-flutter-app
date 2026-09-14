@@ -40,13 +40,13 @@ class _LanguageBottomState extends State<LanguageBottom> {
     });
     LocatorService.navigationService.currentState?.pop();
     if (groupValue == 0) {
-      LocatorService.appSettings.changeLanguageInUi(
+      LocatorService.settingsCubit.changeLanguageInUi(
         context,
         StringManager.arLanguageCode,
         showSplashScreen: true,
       );
     } else {
-      LocatorService.appSettings.changeLanguageInUi(
+      LocatorService.settingsCubit.changeLanguageInUi(
         context,
         StringManager.enLanguageCode,
         showSplashScreen: true,

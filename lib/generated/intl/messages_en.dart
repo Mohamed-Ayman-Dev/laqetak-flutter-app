@@ -74,9 +74,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "attachments": MessageLookupByLibrary.simpleMessage("Attachments"),
     "averageCapital": MessageLookupByLibrary.simpleMessage("Average Capital"),
-    "byLoggingInYouCanAccessAllTheFeaturesOf": MessageLookupByLibrary.simpleMessage(
-      "By logging in, you can access all the features of the app and enjoy a personalized experience.",
-    ),
+    "byLoggingInYouCanAccessAllTheFeaturesOf":
+        MessageLookupByLibrary.simpleMessage(
+          "By logging in, you can access all the features of the app and enjoy a personalized experience.",
+        ),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancellationReasonIsRequired": MessageLookupByLibrary.simpleMessage(
       "Cancellation reason is required",

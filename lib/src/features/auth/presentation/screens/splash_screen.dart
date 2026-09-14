@@ -2,18 +2,16 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:invastro/src/core/widgets/animations/animated_fade_scale_wrapper.dart';
 import 'package:invastro/src/features/auth/presentation/screens/auth_screen.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../core/constants/images_assets.dart';
 import '../../../../core/di/locator_service.dart';
-import '../../../../core/shared/controllers/settings_controller.dart';
-import '../../../../core/shared/providers/app_settings.dart';
+import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart';
 import '../../../home/presentation/screens/home_layout_screen.dart';
-import '../controllers/auth_controller.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash';
@@ -43,14 +41,14 @@ class _SplashScreenState extends State<SplashScreen> {
     // await auth.getStoredMode();
     Widget myScreen;
     String myRoute;
-    final appSettings = Provider.of<AppSettings>(context, listen: false);
-    await appSettings.getStoredLanguageAndTheme();
-    final auth = LocatorService.auth;
+    final settingsCubit = context.read<SettingsCubit>();
+    await settingsCubit.loadStoredPrefs();
+    final authCubit = LocatorService.authCubit;
 
-    if (auth.isAuth) {
+    if (authCubit.state.isAuth) {
       myScreen = const HomeLayoutScreen();
       myRoute = HomeLayoutScreen.routeName;
-    } else if (await AuthController.tryAutoLogin()) {
+    } else if (await authCubit.tryAutoLogin()) {
       myScreen = const HomeLayoutScreen();
       myRoute = HomeLayoutScreen.routeName;
     } else {
@@ -78,7 +76,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      SettingsController.getGeneralSettings();
+      context.read<SettingsCubit>().getSettings();
       // BannersController.getPopUps();
       // BannersController.getSliders();
     });

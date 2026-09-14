@@ -5,4 +5,4 @@ import '../di/locator_service.dart';
 
 bool get isArabic => Intl.getCurrentLocale() == StringManager.arLanguageCode;
 
-bool get isAuth => LocatorService.auth.isAuth;
+bool get isAuth => LocatorService.authCubit.state.isAuth;

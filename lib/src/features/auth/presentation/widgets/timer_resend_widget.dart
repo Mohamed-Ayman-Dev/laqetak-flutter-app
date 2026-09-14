@@ -1,15 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
-import '../../../../core/shared/providers/timers.dart';
+import '../../../../core/di/locator_service.dart';
+import '../../../../core/shared/timers/presentation/cubit/timer_cubit.dart';
+import '../../../../core/shared/timers/presentation/cubit/timer_state.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../../../my_ads/presentation/controllers/my_ads_controller.dart';
-import '../controllers/auth_controller.dart';
 
 class TimerResendWidget extends StatefulWidget {
   final String phone;
@@ -30,36 +30,28 @@ class TimerResendWidget extends StatefulWidget {
 }
 
 class _TimerResendWidgetState extends State<TimerResendWidget> {
-  bool once = false;
-  late Timers timerProvider;
-
   @override
-  void didChangeDependencies() {
-    if (!once) {
-      timerProvider = Provider.of<Timers>(context, listen: true);
-      // Start the timer with the initial seconds from the backend if available
-      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        timerProvider.startTimer(initialSeconds: widget.remainingSeconds ?? 60);
-      });
-      once = true;
-    }
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      LocatorService.timerCubit.startTimer(
+        initialSeconds: widget.remainingSeconds ?? 60,
+      );
+    });
   }
 
   @override
   void dispose() {
-    // Stop the timer when the widget is disposed to avoid memory leaks
-    timerProvider.stopTimer();
+    LocatorService.timerCubit.stopTimer();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Timers>(
-      builder: (context, timers, child) {
-        // Calculate minutes and seconds for display
-        final minutes = timers.timer ~/ 60;
-        final seconds = timers.timer % 60;
+    return BlocBuilder<TimerCubit, TimerState>(
+      builder: (context, timerState) {
+        final minutes = timerState.remainingSeconds ~/ 60;
+        final seconds = timerState.remainingSeconds % 60;
         final timeString =
             '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
         return Center(
@@ -73,67 +65,66 @@ class _TimerResendWidgetState extends State<TimerResendWidget> {
               children: [
                 TextSpan(text: '  '),
                 TextSpan(
-                  text: timers.isResendButtonVisible
+                  text: timerState.isResendButtonVisible
                       ? S.of(context).resendCode
                       : timeString,
                   style: AppTextStyles.headlineMedium.copyWith(
-                    color: timers.isResendButtonVisible
+                    color: timerState.isResendButtonVisible
                         ? AppColors.primaryColor
                         : Colors.black,
-                    fontWeight: timers.isResendButtonVisible
+                    fontWeight: timerState.isResendButtonVisible
                         ? null
                         : FontWeight.w700,
                     fontSize: 14.sp,
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = timers.isResendButtonVisible
+                    ..onTap = timerState.isResendButtonVisible
                         ? () async {
                             if (widget.flow == OtpFlow.forgetPassword) {
-                              // Resend forget password OTP
-                              await AuthController.forgetPassword(context, {
+                              await LocatorService.authCubit.forgetPassword({
                                 'phone': widget.phone,
                               }, isRefresh: true);
-                              // Note: forgetPassword now handles navigation, just restart timer
-                              timerProvider.startTimer(
+                              LocatorService.timerCubit.startTimer(
                                 initialSeconds: widget.remainingSeconds ?? 120,
                               );
                             } else if (widget.flow == OtpFlow.login) {
-                              await AuthController.login(
+                              await LocatorService.authCubit.login(
                                 widget.argsFormData ?? {},
                                 isRefresh: true,
                               );
-                              timerProvider.startTimer(
+                              LocatorService.timerCubit.startTimer(
                                 initialSeconds: widget.remainingSeconds ?? 120,
                               );
                             } else if (widget.flow == OtpFlow.register) {
-                              await AuthController.registerOtpResend({
+                              await LocatorService.authCubit.registerOtpResend({
                                 'phone': widget.phone,
                               });
-                              timerProvider.startTimer(
+                              LocatorService.timerCubit.startTimer(
                                 initialSeconds: widget.remainingSeconds ?? 120,
                               );
                             } else if (widget.flow == OtpFlow.updatePhone) {
-                              await AuthController.sendPhoneOtp(
+                              await LocatorService.authCubit.sendPhoneOtp(
                                 widget.argsFormData ?? {},
                                 isRefresh: true,
                               );
-                              timerProvider.startTimer(
+                              LocatorService.timerCubit.startTimer(
                                 initialSeconds: widget.remainingSeconds ?? 120,
                               );
                             } else if (widget.flow == OtpFlow.addAd) {
-                              await MyAdsController.sendAdOtp(
+                              await LocatorService.myAdsCubit.sendAdOtp(
                                 widget.argsFormData ?? {},
                                 isRefresh: true,
                               );
-                              timerProvider.startTimer(
+                              LocatorService.timerCubit.startTimer(
                                 initialSeconds: widget.remainingSeconds ?? 120,
                               );
                             } else if (widget.flow == OtpFlow.editAd) {
-                              await MyAdsController.sendAdOtp(
+                              await LocatorService.myAdsCubit.sendAdOtp(
                                 widget.argsFormData ?? {},
+                                edit: true,
                                 isRefresh: true,
                               );
-                              timerProvider.startTimer(
+                              LocatorService.timerCubit.startTimer(
                                 initialSeconds: widget.remainingSeconds ?? 120,
                               );
                             }

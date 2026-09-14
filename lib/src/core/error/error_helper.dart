@@ -6,8 +6,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:navigation_history_observer/navigation_history_observer.dart';
 
 import '../../../generated/l10n.dart';
-import '../../features/auth/presentation/controllers/auth_controller.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
+import '../di/locator_service.dart';
 
 abstract class ErrorHelper {
   static void handleApiError(dynamic e) {
@@ -42,7 +42,7 @@ abstract class ErrorHelper {
         );
         if (NavigationHistoryObserver().top!.settings.name !=
             LoginScreen.routeName) {
-          AuthController.logout(sessionExpired: true);
+          LocatorService.authCubit.logout(sessionExpired: true);
         }
       }
       if (responseData != null && responseData['message'] != null) {

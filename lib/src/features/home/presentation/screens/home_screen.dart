@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -10,9 +11,8 @@ import 'package:invastro/src/core/widgets/lists_widgets/empty_list_placeholder_w
 import 'package:invastro/src/core/widgets/lists_widgets/list_sliver_loading_end_widget.dart';
 import 'package:invastro/src/core/widgets/shimmers/items/ad_item_shimmer.dart';
 import 'package:invastro/src/features/ad_details/presentation/screens/ad_details_screen.dart';
-import 'package:invastro/src/features/home/presentation/controllers/ads_controller.dart';
-import 'package:invastro/src/features/home/presentation/providers/ads.dart';
-import 'package:provider/provider.dart';
+import 'package:invastro/src/features/home/presentation/cubit/ads_cubit.dart';
+import 'package:invastro/src/features/home/presentation/cubit/ads_state.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      AdsController.getAds(
+      context.read<AdsCubit>().getAds(
         refresh: true,
         filters: _filtersData,
         typeId: _selectedFilterIndex,
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _refresh() async {
     final refreshController = _refreshController;
-    await AdsController.getAds(
+    await context.read<AdsCubit>().getAds(
       refresh: true,
       filters: _filtersData,
       typeId: _selectedFilterIndex,
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _debounce?.cancel();
       _debounce = Timer(const Duration(milliseconds: 200), () async {
         _gettingData = true;
-        await AdsController.getAds(
+        await context.read<AdsCubit>().getAds(
           refresh: false,
           typeId: _selectedFilterIndex,
           filters: _filtersData,
@@ -172,17 +172,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     ).copyWith(bottom: 8.h),
                     child: Align(
                       alignment: Alignment.bottomCenter,
-                      child: Selector<Ads, bool>(
-                        selector: (context, provider) =>
-                            provider.adsLoadingModel.loadingSearch,
-                        builder: (context, loadingAds, child) {
+                      child: BlocSelector<AdsCubit, AdsState, bool>(
+                        selector: (state) => state.loadingSearch,
+                        builder: (context, loadingAds) {
                           return SearchField(
                             searchController: searchController,
                             focusNode: focusNode,
                             loadingAds: loadingAds,
                             onChanged: (val) {
                               _searchDeBouncer.run(() {
-                                AdsController.getAds(
+                                context.read<AdsCubit>().getAds(
                                   refresh: true,
                                   showLoadingSearch: true,
                                   filters: _filtersData,
@@ -204,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                               if (filters == null) return;
                               _filtersData = filters;
-                              AdsController.getAds(
+                              context.read<AdsCubit>().getAds(
                                 refresh: true,
                                 showLoadingSearch: true,
                                 filters: _filtersData,
@@ -237,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         _selectedFilterIndex = index;
                       }
                     });
-                    AdsController.getAds(
+                    context.read<AdsCubit>().getAds(
                       refresh: true,
                       filters: _filtersData,
 
@@ -255,10 +254,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(
                   horizontal: 20,
                 ).r.copyWith(bottom: 30.h),
-                sliver: Selector<Ads, List<AdModel>?>(
-                  selector: (context, provider) => provider.ads?.data,
-                  shouldRebuild: (previous, next) => true,
-                  builder: (context, ads, child) {
+                sliver: BlocSelector<AdsCubit, AdsState, List<AdModel>?>(
+                  selector: (state) => state.ads?.data,
+                  builder: (context, ads) {
                     return ads != null && ads.isEmpty
                         ? SliverToBoxAdapter(
                             child: EmptyListPlaceholderWidget(
@@ -325,9 +323,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                               if (isAuth) {
                                                 HapticFeedback.heavyImpact();
-                                                AdsController.addOrRemoveAdFromFavorites(
-                                                  ad: ads[index],
-                                                );
+                                                context
+                                                    .read<AdsCubit>()
+                                                    .toggleFavorite(ads[index]);
                                               } else {
                                                 BottomHelpers.showGuestBottomSheet(
                                                   context,
@@ -346,14 +344,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-              Selector<Ads, PaginationList<AdModel>?>(
-                selector: (context, provider) => provider.ads,
-                shouldRebuild: (old, newData) => old != newData,
-                builder: (context, listProvider, child) {
-                  return Selector<Ads, bool>(
-                    selector: (context, provider) =>
-                        provider.adsLoadingModel.loadingAds,
-                    builder: (context, loadingAds, child) {
+              BlocSelector<AdsCubit, AdsState, PaginationList<AdModel>?>(
+                selector: (state) => state.ads,
+                builder: (context, listProvider) {
+                  return BlocSelector<AdsCubit, AdsState, bool>(
+                    selector: (state) =>
+                        state.adsStatus == RequestStatus.loading,
+                    builder: (context, loadingAds) {
                       return ListSliverLoadingEndWidget(
                         lastPage: listProvider?.lastPage ?? 1,
                         currentPage: listProvider?.currentPage ?? 1,

@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:invastro/src/core/helpers/bottom_helpers.dart';
 import 'package:invastro/src/core/themes/gradients.dart';
-import 'package:invastro/src/features/auth/presentation/providers/auth.dart';
+import 'package:invastro/src/features/auth/data/models/user_model.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:invastro/src/features/auth/presentation/cubit/auth_state.dart';
 import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_screen.dart';
-import 'package:provider/provider.dart';
 
 import '../di/locator_service.dart';
 import '../extension/space_extensions_helper.dart';
 import '../helpers/others_helper.dart';
 import '../themes/colors.dart';
 import '../themes/text_styles.dart';
-import '../shared/providers/app_settings.dart';
+import '../shared/settings/presentation/cubit/settings_cubit.dart';
+import '../shared/settings/presentation/cubit/settings_state.dart';
 import 'notify_circle.dart';
 
 // ── Bottom Navigation Bar Widget ────────────────────────────────────────────
@@ -31,9 +34,9 @@ class BottomNavBar extends StatelessWidget {
           border: Border(top: BorderSide(color: Color(0xFFF3F2F8), width: 1)),
         ),
         padding: EdgeInsets.only(bottom: 5).r,
-        child: Selector<AppSettings, int>(
-          selector: (_, p) => p.homeIndex,
-          builder: (context, homeIndex, _) {
+        child: BlocSelector<SettingsCubit, SettingsState, int>(
+          selector: (state) => state.homeIndex,
+          builder: (context, homeIndex) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: List.generate(navItems.length, (index) {
@@ -82,7 +85,7 @@ class BottomNavBar extends StatelessWidget {
                 return GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () =>
-                      LocatorService.appSettings.changeHomeIndex(index),
+                      context.read<SettingsCubit>().changeHomeIndex(index),
                   child: SizedBox(
                     width: 71.w,
                     child: TweenAnimationBuilder<double>(
@@ -122,22 +125,19 @@ class BottomNavBar extends StatelessWidget {
                             ],
                           ),
                           if (index == 4 || index == 1)
-                            Consumer<Auth>(
-                              builder: (context, provider, child) {
+                            BlocSelector<AuthCubit, AuthState, UserModel?>(
+                              selector: (state) => state.user,
+                              builder: (context, user) {
                                 bool unReadNotifications =
-                                    provider.user != null &&
-                                        provider.user?.notificationCount !=
-                                            null &&
-                                        provider.user!.notificationCount!
-                                                .toInt() >
-                                            0
+                                    user != null &&
+                                        user.notificationCount != null &&
+                                        user.notificationCount!.toInt() > 0
                                     ? true
                                     : false;
                                 bool unReadMessages =
-                                    provider.user != null &&
-                                        provider.user?.messagesCount != null &&
-                                        provider.user!.messagesCount!.toInt() >
-                                            0
+                                    user != null &&
+                                        user.messagesCount != null &&
+                                        user.messagesCount!.toInt() > 0
                                     ? true
                                     : false;
                                 return Positioned(

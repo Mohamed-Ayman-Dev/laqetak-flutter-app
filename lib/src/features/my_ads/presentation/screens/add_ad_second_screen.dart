@@ -7,7 +7,6 @@ import 'package:invastro/src/core/di/locator_service.dart';
 import 'package:invastro/src/core/themes/colors.dart';
 import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:invastro/src/core/widgets/fields_widgets/custom_note_field.dart';
-import 'package:invastro/src/features/my_ads/presentation/controllers/my_ads_controller.dart';
 import 'package:invastro/src/features/my_ads/presentation/widgets/ad_image_picker.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -54,7 +53,7 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
             });
           });
         } else {
-          _phoneController.text = LocatorService.auth.user?.phone ?? '';
+          _phoneController.text = LocatorService.authCubit.state.user?.phone ?? '';
         }
 
         _formData = args['data'];
@@ -83,18 +82,18 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
       if (isUpdate) {
         _formData['ad_id'] = ad?.id;
         if ((_formData['contact_phone'] == ad?.contactPhone) ||
-            (_formData['contact_phone'] == LocatorService.auth.user?.phone)) {
-          MyAdsController.editAd(_formData, checkOtp: false);
+            (_formData['contact_phone'] == LocatorService.authCubit.state.user?.phone)) {
+          LocatorService.myAdsCubit.editAd(_formData, checkOtp: false);
         } else {
-          MyAdsController.sendAdOtp(_formData, edit: true);
+          LocatorService.myAdsCubit.sendAdOtp(_formData, edit: true);
         }
       } else {
         _formData['ad_id'] = ad?.id;
         if ((_formData['contact_phone'] == ad?.contactPhone) ||
-            (_formData['contact_phone'] == LocatorService.auth.user?.phone)) {
-          MyAdsController.addAd(_formData);
+            (_formData['contact_phone'] == LocatorService.authCubit.state.user?.phone)) {
+          LocatorService.myAdsCubit.addAd(_formData);
         } else {
-          MyAdsController.sendAdOtp(_formData, edit: false);
+          LocatorService.myAdsCubit.sendAdOtp(_formData, edit: false);
         }
       }
     }
