@@ -92,11 +92,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
         );
       });
 
-      LocatorService.chatCubit.initPusher(
-        conversationId: _conversationId!,
-        pusherKey: '18e688d12badb9fd7978',
-        cluster: 'eu',
-      );
+      LocatorService.chatCubit.initPusher(conversationId: _conversationId!);
 
       _startPresenceTimer();
     }

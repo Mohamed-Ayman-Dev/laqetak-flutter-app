@@ -1,7 +1,7 @@
 /// id : 35
-/// name : "Karim Taha"
-/// email : "karimtaha494@gmail.com"
-/// avatar : "https://invastro.dev4.wady.sa/storage/5/6a1ed9e365f7d_person1.jpeg"
+/// name : "John Doe"
+/// email : "user@example.com"
+/// avatar : "https://example.com/avatar.png"
 
 class CustomerModel {
   CustomerModel({this.id, this.name, this.email, this.avatar});

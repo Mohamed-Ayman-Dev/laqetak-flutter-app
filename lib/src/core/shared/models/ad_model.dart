@@ -17,7 +17,7 @@ import 'customer_model.dart';
 /// category : {"id":2,"name":"أستثمار","slug":"investment"}
 /// sector : {"id":10,"name":"عقاري"}
 /// city : {"id":6,"name":"الرياض"}
-/// customer : {"id":35,"name":"Karim Taha","email":"karimtaha494@gmail.com","avatar":"https://invastro.dev4.wady.sa/storage/5/6a1ed9e365f7d_person1.jpeg"}
+/// customer : {"id":35,"name":"John Doe","email":"user@example.com","avatar":"https://example.com/avatar.png"}
 /// photos : [{"id":17,"name":"a4a08a44e954050e9940aa09470bca9c6fc4c0f6 (1)","url":"https://invastro.dev4.wady.sa/storage/17/a4a08a44e954050e9940aa09470bca9c6fc4c0f6-(1).jpg","preview":"https://invastro.dev4.wady.sa/storage/17/conversions/a4a08a44e954050e9940aa09470bca9c6fc4c0f6-(1)-preview.jpg"}]
 /// published_at : "4 دقائق"
 

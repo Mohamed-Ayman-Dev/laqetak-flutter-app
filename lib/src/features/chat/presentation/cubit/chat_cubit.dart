@@ -7,6 +7,7 @@ import 'package:invastro/src/features/chat/data/repositories/chat_repository.dar
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../core/config/app_env.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/shared/models/pagination_list.dart';
 import '../../data/models/conversations_model.dart';
@@ -210,15 +211,20 @@ class ChatCubit extends BaseCubit<ChatState> {
     emit(state.copyWith(conversations: _copyConversations(current, data)));
   }
 
-  Future<void> initPusher({
-    required num conversationId,
-    required String pusherKey,
-    required String cluster,
-  }) async {
+  Future<void> initPusher({required num conversationId}) async {
+    if (!AppEnv.hasPusherKey) {
+      debugPrint(
+        'Pusher key missing. Copy env.example.json to env.json and run with --dart-define-from-file=env.json',
+      );
+      return;
+    }
     try {
       final pusherService = PusherService.instance;
       if (!pusherService.isInitialized) {
-        await pusherService.init(apiKey: pusherKey, cluster: cluster);
+        await pusherService.init(
+          apiKey: AppEnv.pusherKey,
+          cluster: AppEnv.pusherCluster,
+        );
       }
       void listener(PusherEvent event) {
         _handlePusherEvent(conversationId, event);

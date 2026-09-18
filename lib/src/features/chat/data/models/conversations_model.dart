@@ -3,7 +3,7 @@ import 'package:invastro/src/features/chat/data/models/message_model.dart';
 import '../../../../core/shared/models/customer_model.dart';
 
 /// id : 3
-/// other_user : {"id":35,"name":"Karim Taha","avatar":"https://invastro.dev4.wady.sa/storage/5/6a1ed9e365f7d_person1.jpeg"}
+/// other_user : {"id":35,"name":"John Doe","avatar":"https://example.com/avatar.png"}
 /// latest_message : {"id":3,"message":"test","has_files":false,"created_at":"2026-06-08T19:21:02.000000Z","created_at_human":"6 ثواني"}
 /// unseen_count : 0
 /// updated_at : "2026-06-08T19:21:02.000000Z"

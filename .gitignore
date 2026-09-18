@@ -43,3 +43,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/android/build/
+
+# Local secrets (copy from env.example.json)
+env.json
+.env
+.env.*
+!.env.example
+!env.example.json
