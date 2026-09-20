@@ -1,10 +1,10 @@
+import '../config/app_env.dart';
+
 final class EndPoints {
   EndPoints._();
 
-  /// Base URLs
-  static const String baseUrl = "https://invastro.dev4.wady.sa/api/v1";
-  static const String userBaseUrl =
-      'https://invastro.dev4.wady.sa/api/v1/customer';
+  static const String baseUrl = AppEnv.baseUrl;
+  static const String userBaseUrl = AppEnv.userBaseUrl;
 
   /// Auth (customer)
   static const String login = "$userBaseUrl/login";
@@ -82,8 +82,5 @@ final class EndPoints {
   static const String markConversationRead =
       "$userBaseUrl/conversations/mark-as-read";
   static const String openConversation = "$userBaseUrl/conversations/open";
-  static const String pusherAuth =
-      "http://invastro.dev4.wady.sa/broadcasting/auth";
-
-  // static const String baseUrl = String.fromEnvironment('LOGOUT');
+  static const String pusherAuth = AppEnv.pusherAuthUrl;
 }

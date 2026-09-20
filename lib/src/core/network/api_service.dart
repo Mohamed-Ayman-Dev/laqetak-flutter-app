@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 
+import '../config/app_env.dart';
 import '../error/error_helper.dart';
 
 abstract class ApiService {
-  static String apiUrl = 'https://invastro.dev4.wady.sa/api/v1/customer';
+  static const String apiUrl = AppEnv.userBaseUrl;
 
   // static final ApiService _singleton = ApiService._();
   // static const String apiUrl = '$url/api/v1/customer';
@@ -79,9 +80,7 @@ abstract class ApiService {
         formData.files.addAll(newFiles);
       }
       final response = await dio.post(
-        useDefaultUrl
-            ? 'https://invastro.dev4.wady.sa/api/v1$endPoint'
-            : endPoint,
+        useDefaultUrl ? '${AppEnv.baseUrl}$endPoint' : endPoint,
         queryParameters: queryParameters,
         onSendProgress: onSendProgress,
         options: Options(
@@ -122,9 +121,7 @@ abstract class ApiService {
         });
       }
       final response = await dio.get(
-        useDefaultUrl
-            ? '${customUrl ?? 'https://invastro.dev4.wady.sa/api/v1'}$endPoint'
-            : endPoint,
+        useDefaultUrl ? '${customUrl ?? AppEnv.baseUrl}$endPoint' : endPoint,
         queryParameters: queryParameters,
         options: Options(
           headers: myHeaders,

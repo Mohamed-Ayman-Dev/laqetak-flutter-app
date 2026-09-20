@@ -16,7 +16,9 @@ migrate_working_dir/
 *.iml
 *.ipr
 *.iws
-.idea/
+.idea/*
+!.idea/runConfigurations/
+!.idea/runConfigurations/*
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -45,9 +47,8 @@ app.*.map.json
 /android/app/release
 /android/build/
 
-# Local secrets (copy from env.example.json)
+# Local compile-time config (copy env.example.json → env.json)
 env.json
 .env
 .env.*
 !.env.example
-!env.example.json

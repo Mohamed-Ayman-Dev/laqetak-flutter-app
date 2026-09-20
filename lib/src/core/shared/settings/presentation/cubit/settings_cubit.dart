@@ -5,6 +5,7 @@ import 'package:invastro/src/core/shared/settings/data/repositories/settings_rep
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../config/app_env.dart';
 import '../../../../constants/enums.dart';
 import '../../../../constants/string_manager.dart';
 import '../../../../di/locator_service.dart';
@@ -61,9 +62,8 @@ class SettingsCubit extends BaseCubit<SettingsState> {
     var urlType = state.urlType;
     if (_prefs.containsKey('urlType')) {
       urlType = _prefs.getString('urlType') ?? 'production';
-      ApiService.baseOptions.baseUrl = urlType == 'develop'
-          ? 'https://invastro.dev4.wady.sa/api/v1/customer'
-          : 'https://invastro.dev4.wady.sa/api/v1/customer';
+      ApiService.baseOptions.baseUrl = AppEnv.userBaseUrl;
+      ApiService.dio.options.baseUrl = AppEnv.userBaseUrl;
     }
 
     emit(

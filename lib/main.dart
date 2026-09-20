@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:invastro/src/config/app.dart';
+import 'package:invastro/src/core/config/app_env.dart';
 import 'package:invastro/src/core/constants/app_feedback.dart';
 import 'package:invastro/src/core/di/locator.dart';
 
@@ -25,6 +26,7 @@ void main() async {
   runZonedGuarded<Future<void>>(() async {
     // start existing code
     WidgetsFlutterBinding.ensureInitialized();
+    AppEnv.assertConfigured();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     // deeplink using apps flyer
     await Firebase.initializeApp(
