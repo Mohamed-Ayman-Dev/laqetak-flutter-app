@@ -15,7 +15,7 @@ mkdir -p $BASE/presentation/widgets
 
 # ─── Service ─────────────────────────────────────────────
 cat > $BASE/data/services/${FEATURE}_service.dart << EOF
-import 'package:${PACKAGE}/src/core/network/api_service.dart';
+import 'package:${PACKAGE}/src/core/network/api_client.dart';
 
 class ${FEATURE_PASCAL}Service {
 

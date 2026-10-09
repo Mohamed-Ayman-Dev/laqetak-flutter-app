@@ -4,7 +4,7 @@ import '../../../../core/shared/others/data/models/details_model.dart';
 /// name : "John Cuza"
 /// email : "test@test.com"
 /// phone : "0581687277"
-/// avatar : "https://invastro.dev4.wady.sa/no-image.png"
+/// avatar : "https://example.com/avatar.png"
 /// city : {"id":1,"name":"الحدود الشمالية"}
 /// token : "dasdasads"
 /// created_at : "2026-05-18T18:19:47.000000Z"

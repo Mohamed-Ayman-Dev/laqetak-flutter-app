@@ -60,19 +60,19 @@ EOF
 
 # ─── Remote Data Source Impl ─────────────────────────────
 cat > $BASE/data/datasources/${FEATURE}_remote_data_source_impl.dart << EOF
-import 'package:${PACKAGE}/src/core/network/api_service.dart';
+import 'package:${PACKAGE}/src/core/network/api_client.dart';
 import 'package:${PACKAGE}/src/core/network/end_points.dart';
 import '../models/${FEATURE}_model.dart';
 import '${FEATURE}_remote_data_source.dart';
 
 class ${FEATURE_PASCAL}RemoteDataSourceImpl implements ${FEATURE_PASCAL}RemoteDataSource {
-  final ApiRemoteService _apiService;
+  final ApiClient _apiClient;
 
-  ${FEATURE_PASCAL}RemoteDataSourceImpl(this._apiService);
+  ${FEATURE_PASCAL}RemoteDataSourceImpl(this._apiClient);
 
   @override
   Future<List<${FEATURE_PASCAL}Model>> get${FEATURE_PASCAL}s() async {
-    final response = await _apiService.get("EndPoints.get${FEATURE_PASCAL}s");
+    final response = await _apiClient.get("EndPoints.get${FEATURE_PASCAL}s");
     return response.dataOrThrow(
       (data) => data['data']
           .map<${FEATURE_PASCAL}Model>((e) => ${FEATURE_PASCAL}Model.fromJson(e))
@@ -81,7 +81,7 @@ class ${FEATURE_PASCAL}RemoteDataSourceImpl implements ${FEATURE_PASCAL}RemoteDa
   }
   @override
   Future<String?> add${FEATURE_PASCAL}(Map<String, dynamic> data) async {
-    final response = await _apiService.post("EndPoints.add${FEATURE_PASCAL}s", data: data);
+    final response = await _apiClient.post("EndPoints.add${FEATURE_PASCAL}s", data: data);
     return response.dataOrThrow((data) => data['message']);
   }
 }

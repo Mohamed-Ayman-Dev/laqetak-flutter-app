@@ -18,7 +18,7 @@ import 'customer_model.dart';
 /// sector : {"id":10,"name":"عقاري"}
 /// city : {"id":6,"name":"الرياض"}
 /// customer : {"id":35,"name":"John Doe","email":"user@example.com","avatar":"https://example.com/avatar.png"}
-/// photos : [{"id":17,"name":"a4a08a44e954050e9940aa09470bca9c6fc4c0f6 (1)","url":"https://invastro.dev4.wady.sa/storage/17/a4a08a44e954050e9940aa09470bca9c6fc4c0f6-(1).jpg","preview":"https://invastro.dev4.wady.sa/storage/17/conversions/a4a08a44e954050e9940aa09470bca9c6fc4c0f6-(1)-preview.jpg"}]
+/// photos : [{"id":17,"name":"photo","url":"https://example.com/storage/17/photo.jpg","preview":"https://example.com/storage/17/conversions/photo-preview.jpg"}]
 /// published_at : "4 دقائق"
 
 class AdModel {

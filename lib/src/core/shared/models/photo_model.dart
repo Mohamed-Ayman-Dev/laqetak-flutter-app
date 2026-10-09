@@ -1,7 +1,7 @@
 /// id : 17
-/// name : "a4a08a44e954050e9940aa09470bca9c6fc4c0f6 (1)"
-/// url : "https://invastro.dev4.wady.sa/storage/17/a4a08a44e954050e9940aa09470bca9c6fc4c0f6-(1).jpg"
-/// preview : "https://invastro.dev4.wady.sa/storage/17/conversions/a4a08a44e954050e9940aa09470bca9c6fc4c0f6-(1)-preview.jpg"
+/// name : "photo"
+/// url : "https://example.com/storage/17/photo.jpg"
+/// preview : "https://example.com/storage/17/conversions/photo-preview.jpg"
 
 class PhotoModel {
   PhotoModel({this.id, this.name, this.url, this.preview, this.source});

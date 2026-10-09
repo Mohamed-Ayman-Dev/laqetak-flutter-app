@@ -1,23 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:invastro/src/features/notifications/data/services/notifications_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../features/ad_details/data/datasources/ad_details_remote_data_source.dart';
 import '../../features/ad_details/data/datasources/ad_details_remote_data_source_impl.dart';
 import '../../features/ad_details/data/repositories/ad_details_repository.dart';
 import '../../features/ad_details/data/repositories/ad_details_repositoryImpl.dart';
 import '../../features/ad_details/presentation/cubit/ad_details_cubit.dart';
-import '../../features/home/data/datasources/ads_remote_data_source.dart';
-import '../../features/home/data/datasources/ads_remote_data_source_impl.dart';
-import '../../features/home/data/repositories/ads_repository.dart';
-import '../../features/home/data/repositories/ads_repositoryImpl.dart';
-import '../../features/home/presentation/cubit/ads_cubit.dart';
-import '../../features/my_ads/data/datasources/my_ads_remote_data_source.dart';
-import '../../features/my_ads/data/datasources/my_ads_remote_data_source_impl.dart';
-import '../../features/my_ads/data/repositories/my_ads_repository.dart';
-import '../../features/my_ads/data/repositories/my_ads_repositoryImpl.dart';
-import '../../features/my_ads/presentation/cubit/my_ads_cubit.dart';
-import 'package:invastro/src/features/notifications/data/services/notifications_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../features/auth/data/datasources/auth_remote_data_source.dart';
 import '../../features/auth/data/datasources/auth_remote_data_source_impl.dart';
 import '../../features/auth/data/repositories/auth_repository.dart';
@@ -28,6 +18,16 @@ import '../../features/chat/data/datasources/chat_remote_data_source_impl.dart';
 import '../../features/chat/data/repositories/chat_repository.dart';
 import '../../features/chat/data/repositories/chat_repositoryImpl.dart';
 import '../../features/chat/presentation/cubit/chat_cubit.dart';
+import '../../features/home/data/datasources/ads_remote_data_source.dart';
+import '../../features/home/data/datasources/ads_remote_data_source_impl.dart';
+import '../../features/home/data/repositories/ads_repository.dart';
+import '../../features/home/data/repositories/ads_repositoryImpl.dart';
+import '../../features/home/presentation/cubit/ads_cubit.dart';
+import '../../features/my_ads/data/datasources/my_ads_remote_data_source.dart';
+import '../../features/my_ads/data/datasources/my_ads_remote_data_source_impl.dart';
+import '../../features/my_ads/data/repositories/my_ads_repository.dart';
+import '../../features/my_ads/data/repositories/my_ads_repositoryImpl.dart';
+import '../../features/my_ads/presentation/cubit/my_ads_cubit.dart';
 import '../../features/notifications/data/datasources/notifications_remote_data_source.dart';
 import '../../features/notifications/data/datasources/notifications_remote_data_source_impl.dart';
 import '../../features/notifications/data/repositories/notifications_repository.dart';
@@ -39,7 +39,6 @@ import '../../features/static_pages/data/repositories/static_pages_repository.da
 import '../../features/static_pages/data/repositories/static_pages_repositoryImpl.dart';
 import '../../features/static_pages/presentation/cubit/static_pages_cubit.dart';
 import '../cache/cache_helper.dart';
-import '../cache/cache_manager.dart';
 import '../navigation_service.dart';
 import '../network/api_client.dart';
 import '../network/app_interceptors.dart';
@@ -62,8 +61,6 @@ Future<void> setupServices() async {
   final pref = await SharedPreferences.getInstance();
   locator.registerLazySingleton<SharedPreferences>(() => pref);
   locator.registerLazySingleton<CacheHelper>(() => CacheHelper(locator()));
-  locator.registerLazySingleton<CacheManager>(() => CacheManager(locator()));
-  await locator<CacheManager>().loadCachedData();
 
   /// register network
   locator.registerLazySingleton<Dio>(() => Dio());

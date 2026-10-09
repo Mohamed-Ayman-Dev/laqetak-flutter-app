@@ -6,12 +6,12 @@ import '../../../../core/shared/models/customer_model.dart';
 
 /// id : 4
 /// message : "test"
-/// files : [{"id":28,"name":"rrrr","url":"https://invastro.dev4.wady.sa/storage/28/rrrr.png","preview":"https://invastro.dev4.wady.sa/storage/28/conversions/rrrr-preview.jpg"}]
+/// files : [{"id":28,"name":"file","url":"https://example.com/storage/28/file.png","preview":"https://example.com/storage/28/conversions/file-preview.jpg"}]
 /// is_mine : true
 /// is_seen : false
 /// seen_at : null
 /// seen_at_human : null
-/// sender : {"id":31,"name":"John Cuza","avatar":"https://invastro.dev4.wady.sa/no-image.png"}
+/// sender : {"id":31,"name":"John Doe","avatar":"https://example.com/avatar.png"}
 /// created_at : "2026-06-08T19:21:40.000000Z"
 /// created_at_human : "12 ثانية"
 

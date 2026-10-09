@@ -1,7 +1,7 @@
 /// id : 28
 /// name : "rrrr"
-/// url : "https://invastro.dev4.wady.sa/storage/28/rrrr.png"
-/// preview : "https://invastro.dev4.wady.sa/storage/28/conversions/rrrr-preview.jpg"
+/// url : "https://example.com/storage/28/file.png"
+/// preview : "https://example.com/storage/28/conversions/file-preview.jpg"
 
 class MessageFileModel {
   MessageFileModel({

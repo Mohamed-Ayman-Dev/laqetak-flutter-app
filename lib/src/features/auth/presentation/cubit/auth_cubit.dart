@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
 import 'package:invastro/src/core/error/exceptions.dart';
-import 'package:invastro/src/core/network/api_service.dart';
 import 'package:invastro/src/features/auth/data/models/user_model.dart';
 import 'package:invastro/src/features/auth/data/repositories/auth_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -486,7 +485,6 @@ class AuthCubit extends BaseCubit<AuthState> {
         return false;
       }
       final userData = json.decode(storedUserData) as Map<String, dynamic>;
-      ApiService.setToken(token);
       emit(state.copyWith(token: token, user: UserModel.fromJson(userData)));
       return true;
     } catch (e) {
@@ -540,7 +538,6 @@ class AuthCubit extends BaseCubit<AuthState> {
     final user = UserModel.fromJson(userData);
     final token = (userData['token'] ?? user.token)?.toString();
     if (token != null && token.isNotEmpty) {
-      ApiService.setToken(token);
       await _prefs.setString('token', token);
     }
     await _prefs.setString('user', json.encode(userData));
@@ -561,7 +558,6 @@ class AuthCubit extends BaseCubit<AuthState> {
   Future<void> _clearLocalSession() async {
     await _prefs.remove('token');
     await _prefs.remove('user');
-    ApiService.removeToken();
   }
 
   RedirectModel? _loginOtpRedirect(ApiException error) {
