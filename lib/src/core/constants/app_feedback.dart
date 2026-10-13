@@ -5,8 +5,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:invastro/src/core/constants/constant.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/constants/constant.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
 
 import '../../../generated/l10n.dart';
 import '../di/locator_service.dart';

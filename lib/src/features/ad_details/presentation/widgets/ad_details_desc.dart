@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:invastro/src/core/themes/text_styles.dart';
-import 'package:invastro/src/features/ad_details/presentation/widgets/shimmers/ad_details_shimmer.dart';
+import 'package:laqetak/src/core/themes/text_styles.dart';
+import 'package:laqetak/src/features/ad_details/presentation/widgets/shimmers/ad_details_shimmer.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/themes/theme.dart';

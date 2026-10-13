@@ -1,4 +1,4 @@
-import 'package:invastro/src/features/notifications/data/services/notifications_service.dart';
+import 'package:laqetak/src/features/notifications/data/services/notifications_service.dart';
 
 import '../../features/ad_details/presentation/cubit/ad_details_cubit.dart';
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
@@ -40,4 +40,13 @@ abstract class LocatorService {
   static ChatCubit get chatCubit => locator<ChatCubit>();
 
   static AdDetailsCubit get adDetailsCubit => locator<AdDetailsCubit>();
+
+  static void resetSessionCubits() {
+    settingsCubit.resetOnLogout();
+    adsCubit.resetOnLogout();
+    myAdsCubit.resetOnLogout();
+    adDetailsCubit.resetOnLogout();
+    chatCubit.resetOnLogout();
+    notificationsCubit.clear();
+  }
 }

@@ -8,7 +8,7 @@ import 'package:image_cropper/image_cropper.dart'
         AndroidUiSettings,
         IOSUiSettings;
 import 'package:image_picker/image_picker.dart';
-import 'package:invastro/src/core/widgets/photoview.dart';
+import 'package:laqetak/src/core/widgets/photoview.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../generated/l10n.dart';

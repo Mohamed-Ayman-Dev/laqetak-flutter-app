@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/di/locator_service.dart';
-import 'package:invastro/src/features/ad_details/presentation/screens/seller_profile_screen.dart';
+import 'package:laqetak/src/core/di/locator_service.dart';
+import 'package:laqetak/src/features/ad_details/presentation/screens/seller_profile_screen.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/extension/space_extensions_helper.dart';

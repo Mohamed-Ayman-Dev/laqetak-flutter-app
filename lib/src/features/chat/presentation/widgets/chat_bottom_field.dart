@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/helpers/others_helper.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/helpers/others_helper.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';

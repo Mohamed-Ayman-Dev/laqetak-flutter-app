@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
+import 'package:laqetak/src/core/bloc_helpers/base_cubit.dart';
 
 import 'timer_state.dart';
 

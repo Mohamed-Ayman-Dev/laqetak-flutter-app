@@ -1,5 +1,5 @@
-import 'package:invastro/src/core/di/locator_service.dart';
-import 'package:invastro/src/features/chat/data/models/message_file_model.dart';
+import 'package:laqetak/src/core/di/locator_service.dart';
+import 'package:laqetak/src/features/chat/data/models/message_file_model.dart';
 
 import '../../../../core/constants/enums.dart';
 import '../../../../core/shared/models/customer_model.dart';

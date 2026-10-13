@@ -7,10 +7,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:invastro/src/config/app.dart';
-import 'package:invastro/src/core/config/app_env.dart';
-import 'package:invastro/src/core/constants/app_feedback.dart';
-import 'package:invastro/src/core/di/locator.dart';
+import 'package:laqetak/src/config/app.dart';
+import 'package:laqetak/src/core/config/app_env.dart';
+import 'package:laqetak/src/core/constants/app_feedback.dart';
+import 'package:laqetak/src/core/di/locator.dart';
 
 import 'firebase_options.dart';
 

@@ -1,5 +1,5 @@
-import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
-import 'package:invastro/src/core/shared/others/data/repositories/others_repository.dart';
+import 'package:laqetak/src/core/bloc_helpers/base_cubit.dart';
+import 'package:laqetak/src/core/shared/others/data/repositories/others_repository.dart';
 
 import '../../../../constants/enums.dart';
 import 'others_state.dart';

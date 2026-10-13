@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
-import 'package:invastro/src/features/chat/data/repositories/chat_repository.dart';
+import 'package:laqetak/src/core/bloc_helpers/base_cubit.dart';
+import 'package:laqetak/src/features/chat/data/repositories/chat_repository.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 
 import '../../../../../generated/l10n.dart';

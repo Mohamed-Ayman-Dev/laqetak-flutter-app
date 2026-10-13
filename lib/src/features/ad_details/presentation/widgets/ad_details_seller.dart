@@ -3,18 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:invastro/src/core/constants/app_feedback.dart';
-import 'package:invastro/src/core/constants/images_assets.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/di/locator_service.dart';
-import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/themes/text_styles.dart';
-import 'package:invastro/src/core/widgets/buttons_widgets/custom_elevated_button.dart';
-import 'package:invastro/src/core/widgets/custom_image.dart';
-import 'package:invastro/src/features/ad_details/presentation/cubit/ad_details_cubit.dart';
-import 'package:invastro/src/features/ad_details/presentation/cubit/ad_details_state.dart';
-import 'package:invastro/src/features/ad_details/presentation/screens/seller_profile_screen.dart';
-import 'package:invastro/src/features/chat/presentation/screens/chat_screen.dart';
+import 'package:laqetak/src/core/constants/app_feedback.dart';
+import 'package:laqetak/src/core/constants/images_assets.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/di/locator_service.dart';
+import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
+import 'package:laqetak/src/core/themes/text_styles.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/custom_elevated_button.dart';
+import 'package:laqetak/src/core/widgets/custom_image.dart';
+import 'package:laqetak/src/features/ad_details/presentation/cubit/ad_details_cubit.dart';
+import 'package:laqetak/src/features/ad_details/presentation/cubit/ad_details_state.dart';
+import 'package:laqetak/src/features/ad_details/presentation/screens/seller_profile_screen.dart';
+import 'package:laqetak/src/features/chat/presentation/screens/chat_screen.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
@@ -51,7 +51,8 @@ class AdDetailsSeller extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isMe = (customer?.id == LocatorService.authCubit.state.user?.id) || isMyAd;
+    bool isMe =
+        (customer?.id == LocatorService.authCubit.state.user?.id) || isMyAd;
     return MultiBlocListener(
       listeners: [
         BlocListener<AdDetailsCubit, AdDetailsState>(

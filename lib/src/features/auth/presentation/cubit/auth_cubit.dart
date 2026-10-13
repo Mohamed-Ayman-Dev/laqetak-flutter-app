@@ -5,12 +5,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
-import 'package:invastro/src/core/error/exceptions.dart';
-import 'package:invastro/src/features/auth/data/models/user_model.dart';
-import 'package:invastro/src/features/auth/data/repositories/auth_repository.dart';
+import 'package:laqetak/src/core/bloc_helpers/base_cubit.dart';
+import 'package:laqetak/src/core/error/exceptions.dart';
+import 'package:laqetak/src/features/auth/data/models/user_model.dart';
+import 'package:laqetak/src/features/auth/data/repositories/auth_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../core/constants/app_feedback.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/shared/models/redirect_model.dart';
 import 'auth_state.dart';
@@ -384,7 +385,9 @@ class AuthCubit extends BaseCubit<AuthState> {
   Future<void> getProfile() async {
     final result = await _authRepository.getProfile();
     if (result.isFailure) {
-      emit(state.copyWith(errorMessage: result.errorOrNull?.message));
+      final message = result.errorOrNull?.message;
+      emit(state.copyWith(errorMessage: message));
+      AppFeedback.errorMessage(message);
       return;
     }
     await _persistUser(result.dataOrNull ?? {}, emitSuccess: false);

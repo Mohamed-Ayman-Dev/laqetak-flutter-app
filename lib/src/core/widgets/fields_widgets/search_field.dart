@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/widgets/buttons_widgets/my_icon_button.dart';
-import 'package:invastro/src/core/themes/colors.dart';
-import 'package:invastro/src/features/home/presentation/cubit/ads_cubit.dart';
-import 'package:invastro/src/features/home/presentation/cubit/ads_state.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/my_icon_button.dart';
+import 'package:laqetak/src/core/themes/colors.dart';
+import 'package:laqetak/src/features/home/presentation/cubit/ads_cubit.dart';
+import 'package:laqetak/src/features/home/presentation/cubit/ads_state.dart';
 
 import '../../../../generated/l10n.dart';
 import '../notify_circle.dart';

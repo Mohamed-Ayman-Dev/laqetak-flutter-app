@@ -2,7 +2,7 @@
 FEATURE=$1
 FEATURE_PASCAL=$(python3 -c "print(''.join(w.capitalize() for w in '${FEATURE}'.split('_')))")
 BASE="lib/src/features/$FEATURE"
-PACKAGE="invastro"
+PACKAGE="laqetak"
 
 mkdir -p $BASE/data/models
 mkdir -p $BASE/data/services

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/themes/colors.dart';
+import 'package:laqetak/src/core/themes/colors.dart';
 
 class CustomRadioButton extends StatelessWidget {
   const CustomRadioButton({

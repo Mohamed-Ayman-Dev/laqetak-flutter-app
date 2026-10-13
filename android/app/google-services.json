@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "130582594168",
-    "project_id": "invastro",
-    "storage_bucket": "invastro.firebasestorage.app"
+    "project_number": "802870983685",
+    "project_id": "laqetak-app",
+    "storage_bucket": "laqetak-app.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:130582594168:android:53ed23dca6dc813b02a38d",
+        "mobilesdk_app_id": "1:802870983685:android:c794cf666fb86b0c03306c",
         "android_client_info": {
-          "package_name": "com.wady.invastro"
+          "package_name": "com.example.laqetak"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA1s0w7ikEtg7lSwuuz6UUx8G_XaRywnnQ"
+          "current_key": "AIzaSyC7Zim1siaakMhiOgBw4vArFVYOfG6HTFo"
         }
       ],
       "services": {

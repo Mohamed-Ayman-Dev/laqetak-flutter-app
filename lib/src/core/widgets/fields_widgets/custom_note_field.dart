@@ -36,15 +36,15 @@ class CustomNoteField extends StatelessWidget {
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: color ?? AppColors.fieldBorderColor),
+          borderSide: BorderSide(color: color ?? AppColors.inputBorderColor),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: color ?? AppColors.fieldBorderColor),
+          borderSide: BorderSide(color: color ?? AppColors.inputBorderColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.fieldBorderColor),
+          borderSide: const BorderSide(color: AppColors.inputBorderColor),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

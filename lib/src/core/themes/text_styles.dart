@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/constants/constant.dart';
-import 'package:invastro/src/core/themes/theme.dart';
+import 'package:laqetak/src/core/constants/constant.dart';
+import 'package:laqetak/src/core/themes/theme.dart';
 
 /// All the text styles used in the application are defined here
 

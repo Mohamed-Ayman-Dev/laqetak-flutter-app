@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/widgets/custom_direction_widget.dart';
-import 'package:invastro/src/core/themes/colors.dart';
-import 'package:invastro/src/features/home/presentation/screens/home_layout_screen.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/widgets/custom_direction_widget.dart';
+import 'package:laqetak/src/core/themes/colors.dart';
+import 'package:laqetak/src/features/home/presentation/screens/home_layout_screen.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';

@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/helpers/others_helper.dart';
-import 'package:invastro/src/core/widgets/custom_image.dart';
-import 'package:invastro/src/core/widgets/items_widgets/detail_item.dart';
-import 'package:invastro/src/core/widgets/labels_widgets/ad_expired_label.dart';
-import 'package:invastro/src/core/widgets/labels_widgets/ad_label.dart';
-import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
+import 'package:laqetak/src/core/helpers/others_helper.dart';
+import 'package:laqetak/src/core/widgets/custom_image.dart';
+import 'package:laqetak/src/core/widgets/items_widgets/detail_item.dart';
+import 'package:laqetak/src/core/widgets/labels_widgets/ad_expired_label.dart';
+import 'package:laqetak/src/core/widgets/labels_widgets/ad_label.dart';
+import 'package:laqetak/src/core/themes/text_styles.dart';
 
 import '../../helpers/bottom_helpers.dart';
+import '../../themes/colors.dart';
 
 class AdItem extends StatelessWidget {
   final String image;
@@ -58,138 +59,147 @@ class AdItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTab,
-      splashColor: Colors.transparent,
-
-      child: Column(
-        children: [
-          Row(
-            children: [
-              _buildImage(),
-              20.widthSpace,
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            name ?? '',
-                            style: AppTextStyles.labelMedium,
-                          ),
-                        ),
-                        2.widthSpace,
-                        isMyAd
-                            ? _buildButton(
-                                onTap: () {
-                                  onEdit!();
-                                },
-                                icon: SvgAssets.assetsSvgEditIcon,
-                              )
-                            : _buildLike(context),
-                        if (isMyAd)
-                          _buildButton(
-                            onTap: () {
-                              onDelete!();
-                            },
-                            icon: SvgAssets.assetsSvgDeleteIcon,
-                          ),
-                      ],
-                    ),
-                    9.heightSpace,
-                    Row(
-                      children: [
-                        Expanded(
-                          child: DetailItem(
-                            icon: SvgAssets.assetsSvgUserFilledIcon,
-                            text: customerName ?? ';',
-                            maxLines: 2,
-                          ),
-                        ),
-                        if (isMyAd) 5.widthSpace,
-                        if (isMyAd)
-                          DetailItem(
-                            icon: SvgAssets.assetsSvgView,
-                            iconSize: 21,
-                            text: (views ?? 0).toString(),
-                            maxLines: 2,
-                          ),
-                        if (isMyAd) 37.widthSpace,
-                      ],
-                    ),
-                    4.heightSpace,
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              DetailItem(
-                                icon: SvgAssets.assetsSvgPinFillIcon,
-                                iconSize: 18,
-                                maxLines: 2,
-                                text: location ?? '',
-                              ),
-                              4.heightSpace,
-
-                              DetailItem(
-                                icon: SvgAssets.assetsSvgCategoryIcon,
-                                iconSize: 14,
-                                text: sector ?? '',
-                                maxLines: 2,
-                              ),
-                            ],
-                          ),
-                        ),
-                        5.widthSpace,
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 70.w,
-                              child: DetailItem(
-                                icon: SvgAssets.assetsSvgTimeFillIcon,
-                                text: time ?? '',
-                                maxLines: 2,
+    return Padding(
+      padding: EdgeInsets.only(bottom: hideDivider ? 0 : 12.h),
+      child: Material(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+          side: const BorderSide(color: AppColors.inputBorderColor),
+        ),
+        child: InkWell(
+          onTap: onTab,
+          borderRadius: BorderRadius.circular(16.r),
+          child: Padding(
+            padding: EdgeInsets.all(12.r),
+            child: Row(
+              children: [
+                _buildImage(),
+                12.widthSpace,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              name ?? '',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyles.labelMedium.copyWith(
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
-                            4.heightSpace,
-
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-
+                          ),
+                          2.widthSpace,
+                          isMyAd
+                              ? _buildButton(
+                                  onTap: () {
+                                    onEdit!();
+                                  },
+                                  icon: SvgAssets.assetsSvgEditIcon,
+                                )
+                              : _buildLike(context),
+                          if (isMyAd)
+                            _buildButton(
+                              onTap: () {
+                                onDelete!();
+                              },
+                              icon: SvgAssets.assetsSvgDeleteIcon,
+                            ),
+                        ],
+                      ),
+                      9.heightSpace,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: DetailItem(
+                              icon: SvgAssets.assetsSvgUserFilledIcon,
+                              text: customerName ?? ';',
+                              maxLines: 2,
+                            ),
+                          ),
+                          if (isMyAd) 5.widthSpace,
+                          if (isMyAd)
+                            DetailItem(
+                              icon: SvgAssets.assetsSvgView,
+                              iconSize: 21,
+                              text: (views ?? 0).toString(),
+                              maxLines: 2,
+                            ),
+                          if (isMyAd) 37.widthSpace,
+                        ],
+                      ),
+                      4.heightSpace,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(
-                                  width: 70.w,
-
-                                  child: Text(
-                                    price ?? '',
-                                    style: AppTextStyles.labelMedium.copyWith(
-                                      fontSize: 15.sp,
-                                    ),
-                                    maxLines: 2,
-                                  ),
+                                DetailItem(
+                                  icon: SvgAssets.assetsSvgPinFillIcon,
+                                  iconSize: 18,
+                                  maxLines: 2,
+                                  text: location ?? '',
                                 ),
-                                SvgPicture.asset(
-                                  SvgAssets.assetsSvgSarIcon,
-                                  width: 12.w,
-                                  height: 12.h,
+                                4.heightSpace,
+                                DetailItem(
+                                  icon: SvgAssets.assetsSvgCategoryIcon,
+                                  iconSize: 14,
+                                  text: sector ?? '',
+                                  maxLines: 2,
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                          ),
+                          5.widthSpace,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 70.w,
+                                child: DetailItem(
+                                  icon: SvgAssets.assetsSvgTimeFillIcon,
+                                  text: time ?? '',
+                                  maxLines: 2,
+                                ),
+                              ),
+                              4.heightSpace,
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(
+                                    width: 70.w,
+                                    child: Text(
+                                      price ?? '',
+                                      style: AppTextStyles.labelMedium.copyWith(
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.primaryColor,
+                                      ),
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                  SvgPicture.asset(
+                                    SvgAssets.assetsSvgSarIcon,
+                                    width: 12.w,
+                                    height: 12.h,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          if (!hideDivider) Divider(height: 20.h, thickness: 1),
-        ],
+        ),
       ),
     );
   }
@@ -238,9 +248,9 @@ class AdItem extends StatelessWidget {
   Widget _buildImage() => Stack(
     alignment: Alignment.topCenter,
     children: [
-      CustomImage(imageUrl: image, height: 108, width: 133, borderRadius: 10),
+      CustomImage(imageUrl: image, height: 108, width: 120, borderRadius: 12),
 
-      AdLabel(labelText: category ?? ''),
+      AdLabel(labelText: category),
       if (expired) Positioned(top: 82.h, left: 72.w, child: AdExpiredLabel()),
     ],
   );

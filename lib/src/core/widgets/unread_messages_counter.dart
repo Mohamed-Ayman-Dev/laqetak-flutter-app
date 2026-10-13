@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:laqetak/src/core/themes/text_styles.dart';
 
 import '../themes/colors.dart';
 

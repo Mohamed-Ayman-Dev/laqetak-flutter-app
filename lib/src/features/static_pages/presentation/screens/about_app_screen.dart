@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:invastro/src/core/constants/app_feedback.dart';
-import 'package:invastro/src/core/constants/enums.dart';
-import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/helpers/others_helper.dart';
-import 'package:invastro/src/core/widgets/app_logo.dart';
+import 'package:laqetak/src/core/constants/app_feedback.dart';
+import 'package:laqetak/src/core/constants/enums.dart';
+import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
+import 'package:laqetak/src/core/helpers/others_helper.dart';
+import 'package:laqetak/src/core/widgets/app_logo.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/constant.dart';

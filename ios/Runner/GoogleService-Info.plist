@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyBh0eSEChTogMkM2ORe2ajQqXSU7ujuDv8</string>
+	<string>AIzaSyCcl-I7iFaQV8t1jZGcLSvW8orGLWkj9QE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>130582594168</string>
+	<string>802870983685</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.wady.invastro</string>
+	<string>com.example.laqetak</string>
 	<key>PROJECT_ID</key>
-	<string>invastro</string>
+	<string>laqetak-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>invastro.firebasestorage.app</string>
+	<string>laqetak-app.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:130582594168:ios:8e12592f92c4997a02a38d</string>
+	<string>1:802870983685:ios:f9fe77b8f957f43003306c</string>
 </dict>
 </plist>

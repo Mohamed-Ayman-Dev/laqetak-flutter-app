@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/constants/app_feedback.dart';
-import 'package:invastro/src/core/constants/enums.dart';
-import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:laqetak/src/core/constants/app_feedback.dart';
+import 'package:laqetak/src/core/constants/enums.dart';
+import 'package:laqetak/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../generated/l10n.dart';

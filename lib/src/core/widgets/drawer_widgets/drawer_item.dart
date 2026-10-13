@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
 
 import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';

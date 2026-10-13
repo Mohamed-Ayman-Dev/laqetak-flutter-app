@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/features/static_pages/presentation/widgets/social_button.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
+import 'package:laqetak/src/features/static_pages/presentation/widgets/social_button.dart';
 
 import '../../../../core/shared/settings/data/models/settings_model.dart';
 import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart';

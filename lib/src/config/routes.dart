@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
+import 'package:laqetak/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 
 import '../core/shared/others/presentation/screens/payment_webview.dart';
 import '../core/widgets/timeout_splashscreen.dart';

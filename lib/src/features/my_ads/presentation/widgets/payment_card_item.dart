@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/constants/enums.dart';
-import 'package:invastro/src/core/constants/images_assets.dart';
-import 'package:invastro/src/core/themes/colors.dart';
+import 'package:laqetak/src/core/constants/enums.dart';
+import 'package:laqetak/src/core/constants/images_assets.dart';
+import 'package:laqetak/src/core/themes/colors.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/widgets/custom_radio_button.dart';

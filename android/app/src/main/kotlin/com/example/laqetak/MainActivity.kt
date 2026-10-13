@@ -1,4 +1,4 @@
-package com.wady.invastro
+package com.example.laqetak
 
 import io.flutter.embedding.android.FlutterActivity
 

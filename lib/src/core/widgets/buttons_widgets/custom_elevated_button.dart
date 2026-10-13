@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:invastro/src/core/widgets/custom_direction_widget.dart';
+import 'package:laqetak/src/core/widgets/custom_direction_widget.dart';
 
 import '../../extension/space_extensions_helper.dart';
 import '../../themes/colors.dart';
-import '../../themes/gradients.dart';
 import '../../themes/text_styles.dart';
 
 class CustomElevatedButton extends StatelessWidget {
@@ -16,11 +15,10 @@ class CustomElevatedButton extends StatelessWidget {
     this.text,
     this.child,
     this.isLoading = false,
-    this.gradient,
     this.backgroundColor,
     this.foregroundColor,
     this.textStyle,
-    this.borderRadius = 8,
+    this.borderRadius = 12,
     this.size,
     this.borderColor,
     this.icon,
@@ -31,7 +29,6 @@ class CustomElevatedButton extends StatelessWidget {
   final String? text;
   final Widget? child;
   final bool isLoading;
-  final Gradient? gradient; // ← new
   final Color? backgroundColor;
   final Color? foregroundColor;
   final TextStyle? textStyle;
@@ -53,9 +50,9 @@ class CustomElevatedButton extends StatelessWidget {
         // let Ink handle padding
         minimumSize: size,
         maximumSize: size,
-        backgroundColor: backgroundColor ?? Colors.transparent,
+        backgroundColor: backgroundColor ?? AppColors.primaryColor,
         disabledBackgroundColor: AppColors.disabledButtonColorBk,
-        foregroundColor: foregroundColor,
+        foregroundColor: foregroundColor ?? Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius).r,
           side: borderColor != null
@@ -63,47 +60,48 @@ class CustomElevatedButton extends StatelessWidget {
               : BorderSide.none,
         ),
       ),
-      child: Ink(
-        decoration: isDisabled
-            ? null
-            : BoxDecoration(
-                gradient: backgroundColor != null
-                    ? null
-                    : AppGradients.buttonGradient,
-                borderRadius: BorderRadius.circular(borderRadius).r,
-              ),
-        child: Container(
-          width: size?.width ?? double.infinity,
-          height: size?.height ?? 48.h,
-          alignment: Alignment.center,
-          child: isLoading
-              ? const CupertinoActivityIndicator()
-              : child ??
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (icon != null) ...[
-                          CustomDirectionWidget(
-                            child: SvgPicture.asset(
-                              icon!,
-                              width: iconSize,
-                              height: iconSize,
-                            ),
+      child: Container(
+        width: size?.width ?? double.infinity,
+        height: size?.height ?? 48.h,
+        alignment: Alignment.center,
+        child: isLoading
+            ? const CupertinoActivityIndicator()
+            : child ??
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (icon != null) ...[
+                        CustomDirectionWidget(
+                          child: SvgPicture.asset(
+                            icon!,
+                            width: iconSize,
+                            height: iconSize,
+                            colorFilter: backgroundColor == null
+                                ? const ColorFilter.mode(
+                                    Colors.white,
+                                    BlendMode.srcIn,
+                                  )
+                                : null,
                           ),
-                          8.widthSpace,
-                        ],
-                        Text(
-                          text ?? '',
-                          style:
-                              textStyle ??
-                              AppTextStyles.buttonsTextStyle.copyWith(
-                                color: isDisabled ? Colors.grey[400] : null,
-                              ),
                         ),
+                        8.widthSpace,
                       ],
-                    ),
-        ),
+                      Text(
+                        text ?? '',
+                        style: (textStyle ?? AppTextStyles.buttonsTextStyle)
+                            .copyWith(
+                              color:
+                                  textStyle?.color ??
+                                  (isDisabled
+                                      ? Colors.grey[400]
+                                      : backgroundColor == null
+                                      ? Colors.white
+                                      : AppColors.buttonTextColor),
+                            ),
+                      ),
+                    ],
+                  ),
       ),
     );
   }

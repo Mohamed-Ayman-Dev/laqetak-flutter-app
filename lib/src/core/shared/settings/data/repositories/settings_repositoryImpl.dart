@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:invastro/src/core/shared/settings/data/datasources/settings_remote_data_source.dart';
-import 'package:invastro/src/core/shared/settings/data/models/settings_model.dart';
-import 'package:invastro/src/core/shared/settings/data/repositories/settings_repository.dart';
+import 'package:laqetak/src/core/shared/settings/data/datasources/settings_remote_data_source.dart';
+import 'package:laqetak/src/core/shared/settings/data/models/settings_model.dart';
+import 'package:laqetak/src/core/shared/settings/data/repositories/settings_repository.dart';
 
 import '../../../../error/exceptions.dart';
 import '../../../../network/api_result.dart';

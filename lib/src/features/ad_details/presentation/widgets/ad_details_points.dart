@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/extension/space_extensions_helper.dart';
+import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
 
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/shared/models/ad_model.dart';

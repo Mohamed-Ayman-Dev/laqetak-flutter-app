@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invastro/src/core/constants/images_assets.dart';
+import 'package:laqetak/src/core/constants/images_assets.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/widgets/app_logo.dart';

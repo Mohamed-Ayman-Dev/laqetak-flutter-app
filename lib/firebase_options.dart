@@ -50,19 +50,18 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA1s0w7ikEtg7lSwuuz6UUx8G_XaRywnnQ',
-    appId: '1:130582594168:android:53ed23dca6dc813b02a38d',
-    messagingSenderId: '130582594168',
-    projectId: 'invastro',
-    storageBucket: 'invastro.firebasestorage.app',
+    apiKey: 'AIzaSyC7Zim1siaakMhiOgBw4vArFVYOfG6HTFo',
+    appId: '1:802870983685:android:c794cf666fb86b0c03306c',
+    messagingSenderId: '802870983685',
+    projectId: 'laqetak-app',
+    storageBucket: 'laqetak-app.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBh0eSEChTogMkM2ORe2ajQqXSU7ujuDv8',
-    appId: '1:130582594168:ios:8e12592f92c4997a02a38d',
-    messagingSenderId: '130582594168',
-    projectId: 'invastro',
-    storageBucket: 'invastro.firebasestorage.app',
-    iosBundleId: 'com.wady.invastro',
+    apiKey: 'AIzaSyCcl-I7iFaQV8t1jZGcLSvW8orGLWkj9QE',
+    appId: '1:802870983685:ios:f9fe77b8f957f43003306c',
+    messagingSenderId: '802870983685',
+    projectId: 'laqetak-app',
+    storageBucket: 'laqetak-app.firebasestorage.app',
+    iosBundleId: 'com.example.laqetak',
   );
 }

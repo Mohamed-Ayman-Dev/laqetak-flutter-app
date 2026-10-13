@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:invastro/src/core/helpers/bottom_helpers.dart';
-import 'package:invastro/src/core/themes/gradients.dart';
-import 'package:invastro/src/features/auth/data/models/user_model.dart';
-import 'package:invastro/src/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:invastro/src/features/auth/presentation/cubit/auth_state.dart';
-import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_screen.dart';
+import 'package:laqetak/src/core/helpers/bottom_helpers.dart';
+import 'package:laqetak/src/features/auth/data/models/user_model.dart';
+import 'package:laqetak/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:laqetak/src/features/auth/presentation/cubit/auth_state.dart';
+import 'package:laqetak/src/features/my_ads/presentation/screens/add_ad_screen.dart';
 
 import '../di/locator_service.dart';
 import '../extension/space_extensions_helper.dart';
@@ -59,16 +58,9 @@ class BottomNavBar extends StatelessWidget {
                         child: Container(
                           width: 52.w,
                           height: 52.h,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            gradient: AppGradients.buttonGradient,
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.primaryColor.withOpacity(0.35),
-                                blurRadius: 12,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
+                            color: AppColors.primaryColor,
                           ),
                           child: Icon(
                             Icons.add_outlined,
@@ -93,7 +85,7 @@ class BottomNavBar extends StatelessWidget {
                       // scaleFactor: 0.3
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.easeOutBack,
-                      builder: (context, scale, child) =>
+                      builder: (context, scale, child) => 
                           Transform.scale(scale: scale, child: child),
                       child: Stack(
                         alignment: Alignment.center,

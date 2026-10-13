@@ -120,7 +120,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     final activeBorderColor = widget.focusBorderColor ?? AppColors.primaryColor;
-    final defaultBorderColor = widget.borderColor ?? AppColors.fieldBorderColor;
+    final defaultBorderColor = widget.borderColor ?? AppColors.inputBorderColor;
 
     return TextFormField(
       controller: widget.controller,

@@ -4,7 +4,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/themes/theme.dart';
+import 'package:laqetak/src/core/themes/theme.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../themes/text_styles.dart';
@@ -91,8 +91,8 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
                 vertical: 12,
               ).r,
 
-              border: _border(AppColors.fieldBorderColor),
-              enabledBorder: _border(AppColors.fieldBorderColor),
+              border: _border(AppColors.inputBorderColor),
+              enabledBorder: _border(AppColors.inputBorderColor),
               focusedBorder: _border(AppColors.primaryColor),
               errorBorder: _border(AppColors.errorTextColor),
               focusedErrorBorder: _border(AppColors.errorTextColor),
@@ -135,10 +135,10 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
             fillColor: color,
             filled: color != null,
             hintStyle: AppTextStyles.hintTextStyle,
-            border: _border(AppColors.fieldBorderColor),
-            enabledBorder: _border(AppColors.fieldBorderColor),
+            border: _border(AppColors.inputBorderColor),
+            enabledBorder: _border(AppColors.inputBorderColor),
             focusedBorder: _border(AppColors.primaryColor),
-            disabledBorder: _border(AppColors.fieldBorderColor),
+            disabledBorder: _border(AppColors.inputBorderColor),
             errorBorder: _border(AppColors.errorTextColor),
             focusedErrorBorder: _border(AppColors.errorTextColor),
           ),
@@ -245,8 +245,8 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
 //
 //         filled: color != null,
 //         hintStyle: AppTextStyles.hintTextStyle,
-//         border: _border(AppColors.fieldBorderColor),
-//         enabledBorder: _border(AppColors.fieldBorderColor),
+//         border: _border(AppColors.inputBorderColor),
+//         enabledBorder: _border(AppColors.inputBorderColor),
 //         focusedBorder: _border(AppColors.primaryColor),
 //         errorBorder: _border(AppColors.errorTextColor),
 //         focusedErrorBorder: _border(AppColors.errorTextColor),

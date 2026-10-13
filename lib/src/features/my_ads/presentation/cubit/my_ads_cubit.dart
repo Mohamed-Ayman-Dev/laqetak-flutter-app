@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
-import 'package:invastro/src/features/my_ads/data/repositories/my_ads_repository.dart';
+import 'package:laqetak/src/core/bloc_helpers/base_cubit.dart';
+import 'package:laqetak/src/features/my_ads/data/repositories/my_ads_repository.dart';
 
 import '../../../../core/constants/enums.dart';
 import '../../../../core/shared/models/pagination_list.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/constants/app_feedback.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/di/locator_service.dart';
-import 'package:invastro/src/features/auth/presentation/screens/register_password_screen.dart';
-import 'package:invastro/src/features/auth/presentation/widgets/auth_appbar.dart';
+import 'package:laqetak/src/core/constants/app_feedback.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/di/locator_service.dart';
+import 'package:laqetak/src/features/auth/presentation/screens/register_password_screen.dart';
+import 'package:laqetak/src/features/auth/presentation/widgets/auth_appbar.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/error/validation_helper.dart';

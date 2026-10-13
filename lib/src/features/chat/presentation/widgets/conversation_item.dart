@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/widgets/custom_image.dart';
-import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:laqetak/src/core/widgets/custom_image.dart';
+import 'package:laqetak/src/core/themes/text_styles.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/widgets/unread_messages_counter.dart';

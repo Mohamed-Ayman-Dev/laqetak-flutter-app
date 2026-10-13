@@ -2,20 +2,24 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/di/locator_service.dart';
-import 'package:invastro/src/core/helpers/bottom_helpers.dart';
-import 'package:invastro/src/core/helpers/dialog_helpers.dart';
-import 'package:invastro/src/core/themes/colors.dart';
-import 'package:invastro/src/features/auth/presentation/screens/login_screen.dart';
-import 'package:invastro/src/features/my_ads/presentation/screens/my_ads_screen.dart';
-import 'package:invastro/src/features/profile/presentation/screens/profile_screen.dart';
-import 'package:invastro/src/features/static_pages/presentation/screens/about_app_screen.dart';
-import 'package:invastro/src/features/static_pages/presentation/screens/contact_us_screen.dart';
-import 'package:invastro/src/features/static_pages/presentation/screens/questions_screen.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/di/locator_service.dart';
+import 'package:laqetak/src/core/helpers/bottom_helpers.dart';
+import 'package:laqetak/src/core/helpers/dialog_helpers.dart';
+import 'package:laqetak/src/core/themes/colors.dart';
+import 'package:laqetak/src/features/auth/presentation/screens/login_screen.dart';
+import 'package:laqetak/src/features/my_ads/presentation/screens/my_ads_screen.dart';
+import 'package:laqetak/src/features/profile/presentation/screens/profile_screen.dart';
+import 'package:laqetak/src/features/static_pages/presentation/screens/about_app_screen.dart';
+import 'package:laqetak/src/features/static_pages/presentation/screens/contact_us_screen.dart';
+import 'package:laqetak/src/features/static_pages/presentation/screens/questions_screen.dart';
 
 import '../../../../generated/l10n.dart';
+import '../../../features/auth/presentation/cubit/auth_state.dart';
 import '../../../features/home/presentation/screens/home_layout_screen.dart';
+import '../../constants/app_feedback.dart';
+import '../../constants/enums.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../../helpers/others_helper.dart';
 import 'custom_drawer_header.dart';
 import 'drawer_item.dart';
@@ -161,15 +165,37 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           title: isAuth
                               ? S.of(context).logout
                               : S.of(context).login,
-                          onTap: () {
-                            isAuth
-                                ? LocatorService.authCubit.logout()
-                                : LocatorService.navigationService.currentState
-                                      ?.popUntil(
-                                        (route) =>
-                                            route.settings.name ==
-                                            LoginScreen.routeName,
-                                      );
+                          onTap: () async {
+                            if (!isAuth) {
+                              LocatorService.navigationService.currentState
+                                  ?.popUntil(
+                                    (route) =>
+                                        route.settings.name ==
+                                        LoginScreen.routeName,
+                                  );
+                              return;
+                            }
+                            AppFeedback.loadingMessage();
+                            await LocatorService.authCubit.logout();
+                            EasyLoading.dismiss();
+                            final authState = LocatorService.authCubit.state;
+                            if (authState.lastMutation != AuthMutation.logout) {
+                              return;
+                            }
+                            if (authState.actionStatus == RequestStatus.error) {
+                              AppFeedback.errorMessage(authState.errorMessage);
+                              return;
+                            }
+                            if (authState.actionStatus !=
+                                RequestStatus.success) {
+                              return;
+                            }
+                            LocatorService.resetSessionCubits();
+                            LocatorService.navigationService.currentState
+                                ?.pushNamedAndRemoveUntil(
+                                  LoginScreen.routeName,
+                                  (route) => false,
+                                );
                           },
                           image: SvgAssets.assetsSvgDrawerSignout,
                         ),

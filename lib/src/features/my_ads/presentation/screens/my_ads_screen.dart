@@ -5,14 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:invastro/src/core/constants/enums.dart';
-import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/helpers/dialog_helpers.dart';
-import 'package:invastro/src/core/themes/text_styles.dart';
-import 'package:invastro/src/core/widgets/custom_appbar.dart';
-import 'package:invastro/src/features/my_ads/presentation/cubit/my_ads_cubit.dart';
-import 'package:invastro/src/features/my_ads/presentation/cubit/my_ads_state.dart';
-import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_screen.dart';
+import 'package:laqetak/src/core/constants/enums.dart';
+import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
+import 'package:laqetak/src/core/helpers/dialog_helpers.dart';
+import 'package:laqetak/src/core/themes/text_styles.dart';
+import 'package:laqetak/src/core/widgets/custom_appbar.dart';
+import 'package:laqetak/src/features/my_ads/presentation/cubit/my_ads_cubit.dart';
+import 'package:laqetak/src/features/my_ads/presentation/cubit/my_ads_state.dart';
+import 'package:laqetak/src/features/my_ads/presentation/screens/add_ad_screen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -82,176 +82,210 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppbar(icons: [AppbarIcons.logo], flexRight: 9),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15).r,
-        child: BlocListener<MyAdsCubit, MyAdsState>(
-          listenWhen: (previous, current) =>
-              current.hasListError && !previous.hasListError,
-          listener: (context, state) {
-            if (state.actionStatus == RequestStatus.loading) return;
-            AppFeedback.errorMessage(state.errorMessage);
-          },
-          child: SmartRefresher(
-            scrollController: _scrollController,
-            controller: _refreshController,
-            onRefresh: _refresh,
-            header: const SmartRefresherHeader(),
-            child: SingleChildScrollView(
-              child: BlocSelector<MyAdsCubit, MyAdsState, PaginationList<AdModel>?>(
-                selector: (state) => state.ads,
-                builder: (context, listProvider) {
-                  final ads = listProvider?.data;
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        S.of(context).myAds,
-                        style: AppTextStyles.labelMedium.copyWith(
-                          fontSize: 16.sp,
+    return BlocListener<MyAdsCubit, MyAdsState>(
+      listenWhen: (previous, current) =>
+          previous.actionStatus != current.actionStatus &&
+          current.lastMutation == MyAdsMutation.delete,
+      listener: _onDeleteAd,
+      child: Scaffold(
+        appBar: CustomAppbar(icons: [AppbarIcons.logo], flexRight: 9),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15).r,
+          child: BlocListener<MyAdsCubit, MyAdsState>(
+            listenWhen: (previous, current) =>
+                current.hasListError && !previous.hasListError,
+            listener: (context, state) {
+              if (state.actionStatus == RequestStatus.loading) return;
+              AppFeedback.errorMessage(state.errorMessage);
+            },
+            child: SmartRefresher(
+              scrollController: _scrollController,
+              controller: _refreshController,
+              onRefresh: _refresh,
+              header: const SmartRefresherHeader(),
+              child: SingleChildScrollView(
+                child: BlocSelector<MyAdsCubit, MyAdsState, PaginationList<AdModel>?>(
+                  selector: (state) => state.ads,
+                  builder: (context, listProvider) {
+                    final ads = listProvider?.data;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          S.of(context).myAds,
+                          style: AppTextStyles.labelMedium.copyWith(
+                            fontSize: 16.sp,
+                          ),
                         ),
-                      ),
-                      16.heightSpace,
-                      ads != null && ads.isEmpty
-                          ? EmptyListPlaceholderWidget(
-                              text: S.of(context).thereAreNoAdsYet,
-                              paddingTop: 0,
-                              paddingBottom: 100,
-                            )
-                          : ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return AnimationConfiguration.staggeredList(
-                                  position: index,
-                                  delay: const Duration(milliseconds: 10),
-                                  child: SlideAnimation(
-                                    verticalOffset: 10,
-                                    duration: const Duration(milliseconds: 800),
-                                    curve: Curves.fastLinearToSlowEaseIn,
-                                    child: FadeInAnimation(
+                        16.heightSpace,
+                        ads != null && ads.isEmpty
+                            ? EmptyListPlaceholderWidget(
+                                text: S.of(context).thereAreNoAdsYet,
+                                paddingTop: 0,
+                                paddingBottom: 100,
+                              )
+                            : ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return AnimationConfiguration.staggeredList(
+                                    position: index,
+                                    delay: const Duration(milliseconds: 10),
+                                    child: SlideAnimation(
+                                      verticalOffset: 10,
                                       duration: const Duration(
-                                        milliseconds: 1000,
+                                        milliseconds: 800,
                                       ),
                                       curve: Curves.fastLinearToSlowEaseIn,
-                                      child: ads == null
-                                          ? AdItemShimmer()
-                                          : AdItem(
-                                              category:
-                                                  ads[index].category?.name ??
-                                                  '',
-                                              expired:
-                                                  ads[index].status == 'closed',
-                                              image: ads[index].mainPhoto ?? '',
-                                              onTab: () {
-                                                LocatorService
-                                                    .navigationService
-                                                    .currentState
-                                                    ?.pushNamed(
-                                                      AdDetailsScreen.routeName,
-                                                      arguments: {
-                                                        'hero':
-                                                            '${ads[index].mainPhoto}-$index-my-ads',
-                                                        'isMyAd': true,
-                                                        'ad': ads[index],
-                                                      },
-                                                    );
-                                              },
+                                      child: FadeInAnimation(
+                                        duration: const Duration(
+                                          milliseconds: 1000,
+                                        ),
+                                        curve: Curves.fastLinearToSlowEaseIn,
+                                        child: ads == null
+                                            ? AdItemShimmer()
+                                            : AdItem(
+                                                category:
+                                                    ads[index].category?.name ??
+                                                    '',
+                                                expired:
+                                                    ads[index].status ==
+                                                    'closed',
+                                                image:
+                                                    ads[index].mainPhoto ?? '',
+                                                onTab: () {
+                                                  LocatorService
+                                                      .navigationService
+                                                      .currentState
+                                                      ?.pushNamed(
+                                                        AdDetailsScreen
+                                                            .routeName,
+                                                        arguments: {
+                                                          'hero':
+                                                              '${ads[index].mainPhoto}-$index-my-ads',
+                                                          'isMyAd': true,
+                                                          'ad': ads[index],
+                                                        },
+                                                      );
+                                                },
 
-                                              hideDivider:
-                                                  index == (ads.length - 1),
-                                              heroTag:
-                                                  '${ads[index].mainPhoto}-$index-my-ads',
-                                              customerName:
-                                                  ads[index].customer?.name ??
-                                                  '',
-                                              location:
-                                                  ads[index].city?.name ?? '',
-                                              name: ads[index].title ?? '',
-                                              price:
-                                                  ads[index].investmentAmount ??
-                                                  '',
-                                              time:
-                                                  ads[index].publishedAt ?? '',
-                                              sector:
-                                                  ads[index].sector?.name ?? '',
+                                                hideDivider:
+                                                    index == (ads.length - 1),
+                                                heroTag:
+                                                    '${ads[index].mainPhoto}-$index-my-ads',
+                                                customerName:
+                                                    ads[index].customer?.name ??
+                                                    '',
+                                                location:
+                                                    ads[index].city?.name ?? '',
+                                                name: ads[index].title ?? '',
+                                                price:
+                                                    ads[index]
+                                                        .investmentAmount ??
+                                                    '',
+                                                time:
+                                                    ads[index].publishedAt ??
+                                                    '',
+                                                sector:
+                                                    ads[index].sector?.name ??
+                                                    '',
 
-                                              onDelete: () {
-                                                DialogHelpers.showYesNoDialog(
-                                                  title: S
-                                                      .of(context)
-                                                      .confirmAction,
-                                                  subtitle: S
-                                                      .of(context)
-                                                      .areYouSureYouWantToDeleteThisAd,
-                                                  onButtonTap: () {
-                                                    Navigator.of(context).pop();
-                                                    context
-                                                        .read<MyAdsCubit>()
-                                                        .deleteAd(
-                                                          ads[index].id ?? 0,
-                                                        );
-                                                  },
-                                                );
-                                              },
-                                              onEdit: () async {
-                                                AppFeedback.loadingMessage();
-                                                await LocatorService.adsCubit
-                                                    .getAdDetails(
-                                                      ads[index].id ?? 0,
-                                                    );
-                                                EasyLoading.dismiss();
-                                                final adDetails = LocatorService
-                                                    .adsCubit
-                                                    .state
-                                                    .adDetails[ads[index].id];
-                                                LocatorService
-                                                    .navigationService
-                                                    .currentState
-                                                    ?.pushNamed(
-                                                      AddAdScreen.routeName,
-                                                      arguments:
-                                                          adDetails ??
-                                                          ads[index],
-                                                    );
-                                              },
-                                              views:
-                                                  ads[index].viewsCount
-                                                      ?.toInt() ??
-                                                  0,
-                                              isMyAd: true,
-                                            ),
+                                                onDelete: () {
+                                                  DialogHelpers.showYesNoDialog(
+                                                    title: S
+                                                        .of(context)
+                                                        .confirmAction,
+                                                    subtitle: S
+                                                        .of(context)
+                                                        .areYouSureYouWantToDeleteThisAd,
+                                                    onButtonTap: () {
+                                                      Navigator.of(
+                                                        context,
+                                                      ).pop();
+                                                      context
+                                                          .read<MyAdsCubit>()
+                                                          .deleteAd(
+                                                            ads[index].id ?? 0,
+                                                          );
+                                                    },
+                                                  );
+                                                },
+                                                onEdit: () async {
+                                                  AppFeedback.loadingMessage();
+                                                  await LocatorService.adsCubit
+                                                      .getAdDetails(
+                                                        ads[index].id ?? 0,
+                                                      );
+                                                  EasyLoading.dismiss();
+                                                  final adDetails =
+                                                      LocatorService
+                                                          .adsCubit
+                                                          .state
+                                                          .adDetails[ads[index]
+                                                          .id];
+                                                  LocatorService
+                                                      .navigationService
+                                                      .currentState
+                                                      ?.pushNamed(
+                                                        AddAdScreen.routeName,
+                                                        arguments:
+                                                            adDetails ??
+                                                            ads[index],
+                                                      );
+                                                },
+                                                views:
+                                                    ads[index].viewsCount
+                                                        ?.toInt() ??
+                                                    0,
+                                                isMyAd: true,
+                                              ),
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
+                                  );
+                                },
 
-                              itemCount: ads?.length ?? 6,
-                              shrinkWrap: true,
-                            ),
-                      BlocSelector<MyAdsCubit, MyAdsState, bool>(
-                        selector: (state) =>
-                            state.listStatus == RequestStatus.loading,
-                        builder: (context, loadingAds) {
-                          return ListLoadingEndWidget(
-                            lastPage: listProvider?.lastPage ?? 1,
-                            currentPage: listProvider?.currentPage ?? 1,
-                            isLoading: loadingAds,
-                            listLessThan:
-                                listProvider?.data != null &&
-                                listProvider!.data!.length > 4,
-                            noMoreText: S.of(context).thereAreNoMoreAds,
-                          );
-                        },
-                      ),
-                    ],
-                  );
-                },
+                                itemCount: ads?.length ?? 6,
+                                shrinkWrap: true,
+                              ),
+                        BlocSelector<MyAdsCubit, MyAdsState, bool>(
+                          selector: (state) =>
+                              state.listStatus == RequestStatus.loading,
+                          builder: (context, loadingAds) {
+                            return ListLoadingEndWidget(
+                              lastPage: listProvider?.lastPage ?? 1,
+                              currentPage: listProvider?.currentPage ?? 1,
+                              isLoading: loadingAds,
+                              listLessThan:
+                                  listProvider?.data != null &&
+                                  listProvider!.data!.length > 4,
+                              noMoreText: S.of(context).thereAreNoMoreAds,
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  void _onDeleteAd(BuildContext context, MyAdsState myAdsState) {
+    if (ModalRoute.of(context)?.isCurrent != true) return;
+    switch (myAdsState.actionStatus) {
+      case RequestStatus.loading:
+        AppFeedback.loadingMessage();
+      case RequestStatus.success:
+        EasyLoading.dismiss();
+        LocatorService.adsCubit.getAds(refresh: true);
+        DialogHelpers.showSuccessDialog(title: S.current.adDeletedSuccessfully);
+      case RequestStatus.error:
+        AppFeedback.errorMessage(myAdsState.errorMessage);
+      case RequestStatus.initial:
+        break;
+    }
   }
 }

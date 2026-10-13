@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../extension/space_extensions_helper.dart';
 import '../../shimmer_wrapper.dart';
 import '../../shimmers/text_shimmer.dart';
+import '../../../themes/colors.dart';
 
 class AdItemShimmer extends StatelessWidget {
   final bool hideDivider;
@@ -17,9 +18,16 @@ class AdItemShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
+    return Padding(
+      padding: EdgeInsets.only(bottom: hideDivider ? 0 : 12.h),
+      child: Container(
+        padding: EdgeInsets.all(12.r),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.r),
+          border: Border.all(color: AppColors.inputBorderColor),
+        ),
+        child: Row(
           children: [
             ShimmerWrapper(
               child: Stack(
@@ -27,10 +35,10 @@ class AdItemShimmer extends StatelessWidget {
                 children: [
                   Container(
                     height: 108.h,
-                    width: 133.w,
+                    width: 120.w,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
 
@@ -47,7 +55,7 @@ class AdItemShimmer extends StatelessWidget {
               ),
             ),
 
-            20.widthSpace,
+            12.widthSpace,
 
             Expanded(
               child: Column(
@@ -154,9 +162,7 @@ class AdItemShimmer extends StatelessWidget {
             ),
           ],
         ),
-
-        if (!hideDivider) Divider(height: 24.h, thickness: 1),
-      ],
+      ),
     );
   }
 }

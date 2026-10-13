@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:invastro/src/core/constants/app_feedback.dart';
-import 'package:invastro/src/core/constants/constant.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/core/widgets/custom_Text.dart';
+import 'package:laqetak/src/core/constants/app_feedback.dart';
+import 'package:laqetak/src/core/constants/constant.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
+import 'package:laqetak/src/core/widgets/custom_Text.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../features/static_pages/presentation/widgets/static_shimmer.dart';
@@ -20,7 +20,7 @@ import '../../themes/text_styles.dart';
 class TermsContent extends StatefulWidget {
   final String? title;
   final bool isIdea;
-   
+
   const TermsContent({super.key, this.title, this.isIdea = false});
 
   @override

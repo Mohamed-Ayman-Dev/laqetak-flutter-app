@@ -1,5 +1,5 @@
-import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
-import 'package:invastro/src/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:laqetak/src/core/bloc_helpers/base_cubit.dart';
+import 'package:laqetak/src/features/notifications/data/repositories/notifications_repository.dart';
 
 import '../../../../core/constants/enums.dart';
 import '../../../../core/shared/models/pagination_list.dart';

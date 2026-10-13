@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:invastro/src/core/constants/app_feedback.dart';
-import 'package:invastro/src/core/constants/enums.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/di/locator_service.dart';
-import 'package:invastro/src/core/themes/colors.dart';
-import 'package:invastro/src/core/widgets/drawer_widgets/custom_drawer.dart';
-import 'package:invastro/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
+import 'package:laqetak/src/core/constants/app_feedback.dart';
+import 'package:laqetak/src/core/constants/enums.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/di/locator_service.dart';
+import 'package:laqetak/src/core/themes/colors.dart';
+import 'package:laqetak/src/core/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:laqetak/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
@@ -75,6 +75,18 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
               previous.actionStatus != current.actionStatus &&
               current.lastMutation == MyAdsMutation.pay,
           listener: (context, state) async {
+            switch (state.actionStatus) {
+              case RequestStatus.loading:
+                AppFeedback.loadingMessage();
+                return;
+              case RequestStatus.error:
+                AppFeedback.errorMessage(state.errorMessage);
+                return;
+              case RequestStatus.success:
+                EasyLoading.dismiss();
+              case RequestStatus.initial:
+                return;
+            }
             if (state.actionStatus != RequestStatus.success) return;
             if (state.checkoutUrl != null) {
               final result = await LocatorService.navigationService.currentState

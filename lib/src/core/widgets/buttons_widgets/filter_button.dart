@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/themes/gradients.dart';
 
 import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';
@@ -36,11 +35,11 @@ class _FilterButtonState extends State<FilterButton> {
 
         padding: const EdgeInsets.symmetric(horizontal: 16).r,
         decoration: BoxDecoration(
+          color: widget.isSelected ? AppColors.primaryColor : Colors.white,
           border: widget.isSelected
               ? null
-              : Border.all(color: AppColors.buttonBorderColor),
+              : Border.all(color: AppColors.inputBorderColor),
           borderRadius: BorderRadius.circular(20),
-          gradient: widget.isSelected ? AppGradients.buttonGradient : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

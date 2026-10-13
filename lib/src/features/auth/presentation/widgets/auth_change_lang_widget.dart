@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/constants/string_manager.dart';
-import 'package:invastro/src/core/di/locator_service.dart';
-import 'package:invastro/src/core/extension/space_extensions_helper.dart';
-import 'package:invastro/src/features/auth/presentation/screens/login_screen.dart';
+import 'package:laqetak/src/core/constants/string_manager.dart';
+import 'package:laqetak/src/core/di/locator_service.dart';
+import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
+import 'package:laqetak/src/features/auth/presentation/screens/login_screen.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/helpers/others_helper.dart';

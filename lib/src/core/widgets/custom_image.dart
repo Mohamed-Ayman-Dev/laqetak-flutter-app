@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/constants/images_assets.dart';
-import 'package:invastro/src/core/widgets/shimmer_wrapper.dart';
+import 'package:laqetak/src/core/constants/images_assets.dart';
+import 'package:laqetak/src/core/widgets/shimmer_wrapper.dart';
 
 class CustomImage extends StatelessWidget {
   final String imageUrl;

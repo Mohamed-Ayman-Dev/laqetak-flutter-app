@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:invastro/src/features/notifications/data/services/notifications_service.dart';
+import 'package:laqetak/src/features/notifications/data/services/notifications_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/ad_details/data/datasources/ad_details_remote_data_source.dart';

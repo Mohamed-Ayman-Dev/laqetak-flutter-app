@@ -1,6 +1,6 @@
-import 'package:invastro/src/features/notifications/data/datasources/notifications_remote_data_source.dart';
-import 'package:invastro/src/features/notifications/data/models/notification_model.dart';
-import 'package:invastro/src/features/notifications/data/repositories/notifications_repository.dart';
+import 'package:laqetak/src/features/notifications/data/datasources/notifications_remote_data_source.dart';
+import 'package:laqetak/src/features/notifications/data/models/notification_model.dart';
+import 'package:laqetak/src/features/notifications/data/repositories/notifications_repository.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/network/api_result.dart';

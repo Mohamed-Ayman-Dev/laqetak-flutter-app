@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:laqetak/src/core/themes/text_styles.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../themes/colors.dart';
@@ -110,8 +110,8 @@ class _SectorSelectFieldState extends State<SectorSelectField> {
                 ),
                 filled: true,
                 hintText: S.of(context).enterSectorName,
-                border: _border(AppColors.fieldBorderColor),
-                enabledBorder: _border(AppColors.fieldBorderColor),
+                border: _border(AppColors.inputBorderColor),
+                enabledBorder: _border(AppColors.inputBorderColor),
                 focusedBorder: _border(AppColors.primaryColor),
                 errorBorder: _border(AppColors.errorTextColor),
                 focusedErrorBorder: _border(AppColors.errorTextColor),

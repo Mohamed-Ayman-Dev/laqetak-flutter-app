@@ -1,5 +1,5 @@
-import 'package:invastro/src/features/home/data/datasources/ads_remote_data_source.dart';
-import 'package:invastro/src/features/home/data/repositories/ads_repository.dart';
+import 'package:laqetak/src/features/home/data/datasources/ads_remote_data_source.dart';
+import 'package:laqetak/src/features/home/data/repositories/ads_repository.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/network/api_result.dart';

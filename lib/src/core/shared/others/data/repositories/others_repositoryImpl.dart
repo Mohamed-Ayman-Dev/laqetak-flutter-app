@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:invastro/src/core/shared/others/data/datasources/others_remote_data_source.dart';
-import 'package:invastro/src/core/shared/others/data/models/budget_range_model.dart';
-import 'package:invastro/src/core/shared/others/data/models/category_model.dart';
-import 'package:invastro/src/core/shared/others/data/models/details_model.dart';
-import 'package:invastro/src/core/shared/others/data/models/sector_model.dart';
-import 'package:invastro/src/core/shared/others/data/repositories/others_repository.dart';
+import 'package:laqetak/src/core/shared/others/data/datasources/others_remote_data_source.dart';
+import 'package:laqetak/src/core/shared/others/data/models/budget_range_model.dart';
+import 'package:laqetak/src/core/shared/others/data/models/category_model.dart';
+import 'package:laqetak/src/core/shared/others/data/models/details_model.dart';
+import 'package:laqetak/src/core/shared/others/data/models/sector_model.dart';
+import 'package:laqetak/src/core/shared/others/data/repositories/others_repository.dart';
 
 import '../../../../error/exceptions.dart';
 import '../../../../network/api_result.dart';

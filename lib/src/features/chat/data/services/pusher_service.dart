@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:invastro/src/core/di/locator.dart';
-import 'package:invastro/src/features/chat/data/datasources/chat_remote_data_source.dart';
+import 'package:laqetak/src/core/di/locator.dart';
+import 'package:laqetak/src/features/chat/data/datasources/chat_remote_data_source.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 
 /// Centralized Pusher service for managing WebSocket connections

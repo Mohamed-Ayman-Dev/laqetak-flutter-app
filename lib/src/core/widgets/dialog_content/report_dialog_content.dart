@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/di/locator_service.dart';
-import 'package:invastro/src/core/themes/text_styles.dart';
-import 'package:invastro/src/core/widgets/fields_widgets/custom_note_field.dart';
+import 'package:laqetak/src/core/di/locator_service.dart';
+import 'package:laqetak/src/core/themes/text_styles.dart';
+import 'package:laqetak/src/core/widgets/fields_widgets/custom_note_field.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../constants/svg_assets.dart';

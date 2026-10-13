@@ -12,7 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/themes/text_styles.dart';
+import 'package:laqetak/src/core/themes/text_styles.dart';
 
 import '../constants/constant.dart';
 import 'colors.dart';
@@ -30,23 +30,23 @@ abstract class CustomTheme {
     focusColor: AppColors.primaryColor,
     fillColor: Colors.white,
     border: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(7)),
-      borderSide: BorderSide(color: AppColors.fieldBorderColor),
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+      borderSide: BorderSide(color: AppColors.inputBorderColor),
     ),
     enabledBorder: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(7)),
-      borderSide: BorderSide(color: AppColors.fieldBorderColor),
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+      borderSide: BorderSide(color: AppColors.inputBorderColor),
     ),
     disabledBorder: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(7)),
-      borderSide: BorderSide(color: AppColors.fieldBorderColor),
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+      borderSide: BorderSide(color: AppColors.inputBorderColor),
     ),
     focusedBorder: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(7)),
+      borderRadius: BorderRadius.all(Radius.circular(12)),
       borderSide: BorderSide(color: AppColors.primaryColor),
     ),
     errorBorder: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(7)),
+      borderRadius: BorderRadius.all(Radius.circular(12)),
       borderSide: BorderSide(color: AppColors.errorTextColor),
     ),
   );
@@ -148,7 +148,7 @@ abstract class CustomTheme {
         maximumSize: Size(double.infinity, 48.h),
         minimumSize: Size(double.infinity, 48.h),
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
       ),
     ),
@@ -164,7 +164,7 @@ abstract class CustomTheme {
         maximumSize: Size(double.infinity, 48.h),
         minimumSize: Size(double.infinity, 48.h),
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         side: BorderSide(color: AppColors.primaryColor),
       ),

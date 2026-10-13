@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:invastro/src/features/home/presentation/screens/home_layout_screen.dart';
+import 'package:laqetak/src/features/home/presentation/screens/home_layout_screen.dart';
 
 import '../di/locator_service.dart';
 import 'app_logo.dart';

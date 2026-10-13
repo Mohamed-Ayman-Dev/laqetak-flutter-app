@@ -1,4 +1,4 @@
-name: invastro
+name: laqetak
 description: "A new Flutter project"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -45,6 +45,8 @@ dependencies:
   pull_to_refresh: ^2.0.0
   flutter_secure_storage: ^10.1.0
   internet_connection_checker: ^3.0.1
+  rename: ^3.1.0
+
   flutter_slidable: ^3.1.2
   roundcheckbox:
     git: https://github.com/Mohamed-Ayman-Dev/round_check_box_updated.git

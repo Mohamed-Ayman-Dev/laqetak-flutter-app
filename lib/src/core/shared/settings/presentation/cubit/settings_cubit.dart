@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
-import 'package:invastro/src/core/shared/settings/data/repositories/settings_repository.dart';
+import 'package:laqetak/src/core/bloc_helpers/base_cubit.dart';
+import 'package:laqetak/src/core/shared/settings/data/repositories/settings_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../generated/l10n.dart';

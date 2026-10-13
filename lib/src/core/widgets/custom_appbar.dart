@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/features/chat/presentation/widgets/chat_header_widget.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/features/chat/presentation/widgets/chat_header_widget.dart';
 
 import '../../features/home/presentation/screens/home_layout_screen.dart';
 import '../constants/enums.dart';

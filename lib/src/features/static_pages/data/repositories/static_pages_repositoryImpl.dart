@@ -1,6 +1,6 @@
-import 'package:invastro/src/features/static_pages/data/datasources/static_pages_remote_data_source.dart';
-import 'package:invastro/src/features/static_pages/data/models/faq_model.dart';
-import 'package:invastro/src/features/static_pages/data/repositories/static_pages_repository.dart';
+import 'package:laqetak/src/features/static_pages/data/datasources/static_pages_remote_data_source.dart';
+import 'package:laqetak/src/features/static_pages/data/models/faq_model.dart';
+import 'package:laqetak/src/features/static_pages/data/repositories/static_pages_repository.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/network/api_result.dart';

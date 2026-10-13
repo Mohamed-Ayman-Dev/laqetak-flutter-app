@@ -1,6 +1,6 @@
-import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
-import 'package:invastro/src/features/ad_details/data/repositories/ad_details_repository.dart';
-import 'package:invastro/src/features/home/presentation/cubit/ads_cubit.dart';
+import 'package:laqetak/src/core/bloc_helpers/base_cubit.dart';
+import 'package:laqetak/src/features/ad_details/data/repositories/ad_details_repository.dart';
+import 'package:laqetak/src/features/home/presentation/cubit/ads_cubit.dart';
 
 import '../../../../core/constants/enums.dart';
 import '../../../../core/shared/models/ad_model.dart';

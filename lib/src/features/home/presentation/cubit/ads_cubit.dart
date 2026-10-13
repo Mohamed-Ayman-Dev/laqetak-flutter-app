@@ -1,7 +1,11 @@
-import 'package:invastro/src/core/bloc_helpers/base_cubit.dart';
-import 'package:invastro/src/features/home/data/repositories/ads_repository.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:laqetak/src/core/bloc_helpers/base_cubit.dart';
+import 'package:laqetak/src/features/home/data/repositories/ads_repository.dart';
 
+import '../../../../../generated/l10n.dart';
+import '../../../../core/constants/app_feedback.dart';
 import '../../../../core/constants/enums.dart';
+import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/models/pagination_list.dart';
 import 'ads_state.dart';
@@ -101,10 +105,16 @@ class AdsCubit extends BaseCubit<AdsState> {
         favoriteAdded: newState,
       ),
     );
+    AppFeedback.showToast(
+      "${ad.title ?? ''} ${newState ? S.current.added : S.current.removed} ${newState ? S.current.toFavoritesSuccessfully : S.current.fromFavoritesSuccessfully}",
+    );
     final result = await _adsRepository.toggleFav(id);
     result.when(
       success: (_) {},
-      failure: (error) => emit(state.copyWith(errorMessage: error.message)),
+      failure: (error) {
+        emit(state.copyWith(errorMessage: error.message));
+        AppFeedback.errorMessage(error.message);
+      },
     );
   }
 
@@ -139,16 +149,25 @@ class AdsCubit extends BaseCubit<AdsState> {
         complaintTarget: ComplaintTarget.ad,
       ),
     );
+    AppFeedback.loadingMessage();
     final result = await _adsRepository.sendAdComplaint(data);
     result.when(
-      success: (_) =>
-          emit(state.copyWith(complaintStatus: RequestStatus.success)),
-      failure: (error) => emit(
-        state.copyWith(
-          complaintStatus: RequestStatus.error,
-          errorMessage: error.message,
-        ),
-      ),
+      success: (_) {
+        emit(state.copyWith(complaintStatus: RequestStatus.success));
+        EasyLoading.dismiss();
+        DialogHelpers.showSuccessDialog(
+          title: S.current.reportSubmittedSuccessfully,
+        );
+      },
+      failure: (error) {
+        emit(
+          state.copyWith(
+            complaintStatus: RequestStatus.error,
+            errorMessage: error.message,
+          ),
+        );
+        AppFeedback.errorMessage(error.message);
+      },
     );
   }
 
@@ -160,16 +179,25 @@ class AdsCubit extends BaseCubit<AdsState> {
         complaintTarget: ComplaintTarget.customer,
       ),
     );
+    AppFeedback.loadingMessage();
     final result = await _adsRepository.sendCustomerComplaint(data);
     result.when(
-      success: (_) =>
-          emit(state.copyWith(complaintStatus: RequestStatus.success)),
-      failure: (error) => emit(
-        state.copyWith(
-          complaintStatus: RequestStatus.error,
-          errorMessage: error.message,
-        ),
-      ),
+      success: (_) {
+        emit(state.copyWith(complaintStatus: RequestStatus.success));
+        EasyLoading.dismiss();
+        DialogHelpers.showSuccessDialog(
+          title: S.current.reportSentSuccessfully,
+        );
+      },
+      failure: (error) {
+        emit(
+          state.copyWith(
+            complaintStatus: RequestStatus.error,
+            errorMessage: error.message,
+          ),
+        );
+        AppFeedback.errorMessage(error.message);
+      },
     );
   }
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:invastro/src/core/constants/app_feedback.dart';
-import 'package:invastro/src/core/constants/svg_assets.dart';
-import 'package:invastro/src/core/helpers/dialog_helpers.dart';
-import 'package:invastro/src/core/widgets/custom_appbar.dart';
-import 'package:invastro/src/core/themes/colors.dart';
-import 'package:invastro/src/features/chat/presentation/screens/conversations_screen.dart';
-import 'package:invastro/src/features/favorite/presentation/screens/favorite_screen.dart';
-import 'package:invastro/src/features/notifications/presentation/screens/notification_screen.dart';
+import 'package:laqetak/src/core/constants/app_feedback.dart';
+import 'package:laqetak/src/core/constants/svg_assets.dart';
+import 'package:laqetak/src/core/helpers/dialog_helpers.dart';
+import 'package:laqetak/src/core/widgets/custom_appbar.dart';
+import 'package:laqetak/src/core/themes/colors.dart';
+import 'package:laqetak/src/features/chat/presentation/screens/conversations_screen.dart';
+import 'package:laqetak/src/features/favorite/presentation/screens/favorite_screen.dart';
+import 'package:laqetak/src/features/notifications/presentation/screens/notification_screen.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
