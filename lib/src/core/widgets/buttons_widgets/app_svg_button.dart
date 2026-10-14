@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-class SvgButton extends StatelessWidget {
-  const SvgButton({
+class AppSvgButton extends StatelessWidget {
+  const AppSvgButton({
     super.key,
     required this.icon,
     this.onTap,

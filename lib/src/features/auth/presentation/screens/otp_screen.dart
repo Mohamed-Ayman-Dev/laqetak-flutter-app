@@ -20,7 +20,7 @@ import '../../../../core/di/locator_service.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/models/redirect_model.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
 import '../../../../core/widgets/custom_Text.dart';
 import '../../../../core/widgets/fields_widgets/pin_code_widget.dart';
 import '../../../home/presentation/screens/home_layout_screen.dart';
@@ -216,7 +216,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   15.heightSpace,
                   Hero(
                     tag: 'auth-button',
-                    child: CustomElevatedButton(
+                    child: AppElevatedButton(
                       text: _flow == OtpFlow.forgetPassword
                           ? S.of(context).verify
                           : S.of(context).confirm,

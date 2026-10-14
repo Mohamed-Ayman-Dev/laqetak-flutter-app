@@ -7,19 +7,19 @@ import 'package:laqetak/src/core/constants/enums.dart';
 import 'package:laqetak/src/core/constants/svg_assets.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
 import 'package:laqetak/src/core/widgets/fields_widgets/custom_note_field.dart';
 import 'package:laqetak/src/features/my_ads/presentation/widgets/ad_image_picker.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/app_feedback.dart';
 import '../../../../core/error/validation_helper.dart';
-import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
+import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/models/redirect_model.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/custom_switch.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
@@ -132,7 +132,7 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
           icons: [AppbarIcons.logo, AppbarIcons.drawer],
           flexRight: 8,
         ),
-        drawer: CustomDrawer(),
+        drawer: AppDrawer(),
         body: SafeArea(
           top: false,
           bottom: true,
@@ -216,7 +216,7 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
                   10.heightSpace,
                   Row(
                     children: [
-                      CustomElevatedButton(
+                      AppElevatedButton(
                         text: S.current.next,
                         icon: SvgAssets.assetsSvgArrowRight,
                         size: Size(163.w, 48.h),
@@ -225,7 +225,7 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
                         },
                       ),
                       12.widthSpace,
-                      CustomElevatedButton(
+                      AppElevatedButton(
                         text: S.of(context).previous,
                         icon: SvgAssets.assetsSvgArrowLeft,
                         size: Size(163.w, 48.h),

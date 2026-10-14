@@ -9,7 +9,7 @@ import 'package:laqetak/src/core/themes/theme.dart';
 import '../../../../generated/l10n.dart';
 import '../../themes/text_styles.dart';
 
-class MyCustomDropdownFormField<T> extends StatelessWidget {
+class CustomDropdownFormField<T> extends StatelessWidget {
   final List<T>? items;
   final T? value;
   final String Function(T)? itemAsString;
@@ -29,7 +29,7 @@ class MyCustomDropdownFormField<T> extends StatelessWidget {
 
   final bool isLoading;
 
-  const MyCustomDropdownFormField({
+  const CustomDropdownFormField({
     super.key,
     this.items,
     this.value,

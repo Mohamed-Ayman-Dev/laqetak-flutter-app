@@ -5,16 +5,16 @@ import '../../../../generated/l10n.dart';
 import '../../../features/auth/presentation/screens/login_screen.dart';
 import '../../di/locator_service.dart';
 import '../../themes/text_styles.dart';
-import '../buttons_widgets/custom_elevated_button.dart';
+import '../buttons_widgets/app_elevated_button.dart';
 
-class GuestBottom extends StatefulWidget {
-  const GuestBottom({super.key});
+class GuestBottomContent extends StatefulWidget {
+  const GuestBottomContent({super.key});
 
   @override
-  State<GuestBottom> createState() => _GuestBottomState();
+  State<GuestBottomContent> createState() => _GuestBottomContentState();
 }
 
-class _GuestBottomState extends State<GuestBottom> {
+class _GuestBottomContentState extends State<GuestBottomContent> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -50,7 +50,7 @@ class _GuestBottomState extends State<GuestBottom> {
                   ),
                 ),
                 SizedBox(height: 45.h),
-                CustomElevatedButton(
+                AppElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
                     LocatorService.navigationService.currentState?.pushNamed(

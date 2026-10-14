@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SmallIconButton extends StatelessWidget {
+class AppSmallIconButton extends StatelessWidget {
   final String icon;
   final void Function() onTab;
   final double width;
 
   final double height;
 
-  const SmallIconButton({
+  const AppSmallIconButton({
     super.key,
     required this.icon,
     required this.onTab,

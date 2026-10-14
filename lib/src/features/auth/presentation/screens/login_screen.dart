@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:laqetak/src/features/auth/presentation/cubit/auth_state.dart';
 import 'package:laqetak/src/features/auth/presentation/screens/register_screen.dart';
@@ -14,13 +14,13 @@ import '../../../../core/constants/enums.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
-import '../../../../core/widgets/buttons_widgets/custom_text_button.dart';
+import '../../../../core/themes/text_styles.dart';
+import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
+import '../../../../core/widgets/buttons_widgets/app_text_button.dart';
 import '../../../../core/widgets/custom_Text.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/widgets/fields_widgets/password_eye_toggle.dart';
 import '../../../../core/widgets/label_widget.dart';
-import '../../../../core/themes/text_styles.dart';
 import '../../../home/presentation/screens/home_layout_screen.dart';
 import 'forget_password_screen.dart';
 import 'otp_screen.dart';
@@ -144,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        CustomTextButton(
+                        AppTextButton(
                           text: S.of(context).forgotPassword,
                           onPressed: () {
                             LocatorService.navigationService.currentState
@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     24.heightSpace,
                     Hero(
                       tag: 'auth-button',
-                      child: CustomElevatedButton(
+                      child: AppElevatedButton(
                         text: S.of(context).login,
                         onPressed: _login,
                       ),

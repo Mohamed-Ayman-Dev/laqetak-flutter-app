@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/constants/images_assets.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
@@ -14,7 +14,7 @@ import '../../../../core/constants/enums.dart';
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/widgets/fields_widgets/password_eye_toggle.dart';
 import '../../../../core/widgets/label_widget.dart';
@@ -153,7 +153,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     24.heightSpace,
                     Hero(
                       tag: 'auth-button',
-                      child: CustomElevatedButton(
+                      child: AppElevatedButton(
                         text: S.of(context).next,
                         icon: SvgAssets.assetsSvgArrowRight,
 

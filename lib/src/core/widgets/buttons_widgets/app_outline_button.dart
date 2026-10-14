@@ -7,8 +7,8 @@ import '../../extension/space_extensions_helper.dart';
 import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';
 
-class CustomOutlineButton extends StatelessWidget {
-  const CustomOutlineButton({
+class AppOutlineButton extends StatelessWidget {
+  const AppOutlineButton({
     super.key,
     this.onPressed,
     this.text,

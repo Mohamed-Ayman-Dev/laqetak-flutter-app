@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/constants/svg_assets.dart';
-import 'package:laqetak/src/core/widgets/custom_direction_widget.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
+import 'package:laqetak/src/core/widgets/custom_direction_widget.dart';
 import 'package:laqetak/src/features/home/presentation/screens/home_layout_screen.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
-import '../../../../core/widgets/buttons_widgets/custom_text_button.dart';
-import '../../../../core/widgets/buttons_widgets/svg_button.dart';
+import '../../../../core/widgets/buttons_widgets/app_svg_button.dart';
+import '../../../../core/widgets/buttons_widgets/app_text_button.dart';
 
 class AuthAppbar extends StatelessWidget {
   final bool showGuestButton;
@@ -25,7 +25,7 @@ class AuthAppbar extends StatelessWidget {
         child: Row(
           children: [
             if (showGuestButton)
-              CustomTextButton(
+              AppTextButton(
                 text: S.of(context).skip,
                 onPressed: () {
                   LocatorService.navigationService.currentState?.pushNamed(
@@ -37,7 +37,7 @@ class AuthAppbar extends StatelessWidget {
             Spacer(),
             if (LocatorService.navigationService.currentState!.canPop())
               CustomDirectionWidget(
-                child: SvgButton(
+                child: AppSvgButton(
                   icon: SvgAssets.assetsSvgArrowLeft,
                   onTap: () {
                     LocatorService.navigationService.currentState?.pop();

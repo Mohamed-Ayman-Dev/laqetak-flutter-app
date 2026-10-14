@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/constants/enums.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/custom_outline_button.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_outline_button.dart';
+import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/svg_assets.dart';
@@ -17,11 +17,11 @@ import '../../../../core/shared/others/data/models/details_model.dart';
 import '../../../../core/shared/others/data/models/sector_model.dart';
 import '../../../../core/shared/others/presentation/cubit/others_cubit.dart';
 import '../../../../core/shared/others/presentation/cubit/others_state.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
-import '../../../../core/widgets/custom_appbar.dart';
-import '../../../../core/widgets/fields_widgets/my_custom_drop_down_menu.dart';
-import '../../../../core/widgets/fields_widgets/my_custom_multi_drop_down_menu.dart';
 import '../../../../core/themes/text_styles.dart';
+import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
+import '../../../../core/widgets/custom_appbar.dart';
+import '../../../../core/widgets/fields_widgets/custom_drop_down_menu.dart';
+import '../../../../core/widgets/fields_widgets/custom_multi_drop_down_menu.dart';
 import '../../../home/presentation/cubit/ads_cubit.dart';
 
 class FilterScreen extends StatefulWidget {
@@ -89,7 +89,7 @@ class _FilterScreenState extends State<FilterScreen> {
           icons: [AppbarIcons.logo, AppbarIcons.drawer],
           flexRight: 8,
         ),
-        drawer: CustomDrawer(),
+        drawer: AppDrawer(),
         body: SafeArea(
           child: Form(
             key: _formKey,
@@ -147,9 +147,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                   final currentCategoryId =
                                       _formData['category_id'] ?? -1;
 
-                                  return MyCustomDropdownFormField<
-                                    CategoryModel
-                                  >(
+                                  return CustomDropdownFormField<CategoryModel>(
                                     hint: S.of(context).selectCategory,
                                     items: items,
                                     itemAsString: (item) => item.name ?? '',
@@ -225,7 +223,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                             )
                                             .toList();
 
-                                  return MyCustomMultiDropdownFormField<
+                                  return CustomMultiDropdownFormField<
                                     DetailsModel
                                   >(
                                     hint: S.of(context).selectCity,
@@ -301,7 +299,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                             )
                                             .toList();
 
-                                  return MyCustomMultiDropdownFormField<
+                                  return CustomMultiDropdownFormField<
                                     SectorModel
                                   >(
                                     hint: S.of(context).investmentSector,
@@ -375,7 +373,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                     orElse: () => allOption,
                                   );
 
-                                  return MyCustomDropdownFormField<
+                                  return CustomDropdownFormField<
                                     BudgetRangeModel
                                   >(
                                     hint: "500.000  :  100.000",
@@ -417,7 +415,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   Row(
                     children: [
                       Expanded(
-                        child: CustomOutlineButton(
+                        child: AppOutlineButton(
                           text: S.of(context).reset,
                           borderRadius: 12,
 
@@ -430,7 +428,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       ),
                       10.widthSpace,
                       Expanded(
-                        child: CustomElevatedButton(
+                        child: AppElevatedButton(
                           text: S.of(context).apply,
                           borderRadius: 12,
                           onPressed: () {

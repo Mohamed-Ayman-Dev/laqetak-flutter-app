@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/small_icon_button.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_small_icon_button.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -96,7 +96,7 @@ class _AdDetailsHeaderState extends State<AdDetailsHeader> {
               7.widthSpace,
             ],
 
-            SmallIconButton(
+            AppSmallIconButton(
               icon: SvgAssets.assetsSvgShareIcon,
               onTab: () {
                 SharePlus.instance.share(

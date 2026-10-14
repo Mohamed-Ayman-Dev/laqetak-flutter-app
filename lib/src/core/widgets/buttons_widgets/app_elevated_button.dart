@@ -8,8 +8,8 @@ import '../../extension/space_extensions_helper.dart';
 import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';
 
-class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton({
+class AppElevatedButton extends StatelessWidget {
+  const AppElevatedButton({
     super.key,
     this.onPressed,
     this.text,
@@ -47,7 +47,6 @@ class CustomElevatedButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         elevation: 0,
         padding: EdgeInsets.zero,
-        // let Ink handle padding
         minimumSize: size,
         maximumSize: size,
         backgroundColor: backgroundColor ?? AppColors.primaryColor,

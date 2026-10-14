@@ -7,7 +7,7 @@ import 'package:laqetak/src/core/widgets/fields_widgets/custom_note_field.dart';
 import '../../../../generated/l10n.dart';
 import '../../constants/svg_assets.dart';
 import '../../extension/space_extensions_helper.dart';
-import '../buttons_widgets/custom_elevated_button.dart';
+import '../buttons_widgets/app_elevated_button.dart';
 
 class ReportDialogContent extends StatefulWidget {
   final num id;
@@ -81,7 +81,7 @@ class _ReportDialogContentState extends State<ReportDialogContent> {
             24.heightSpace,
 
             // ─── Button ───
-            CustomElevatedButton(
+            AppElevatedButton(
               text: S.of(context).send,
               icon: SvgAssets.assetsSvgArrowRight,
               size: Size(163.w, 48.h),

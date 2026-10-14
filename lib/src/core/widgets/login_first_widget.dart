@@ -5,7 +5,7 @@ import '../../../generated/l10n.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../di/locator_service.dart';
 import '../themes/text_styles.dart';
-import 'buttons_widgets/custom_elevated_button.dart';
+import 'buttons_widgets/app_elevated_button.dart';
 
 class LoginFirstWidget extends StatelessWidget {
   const LoginFirstWidget({super.key});
@@ -49,7 +49,7 @@ class LoginFirstWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20.h),
-              CustomElevatedButton(
+              AppElevatedButton(
                 onPressed: () {
                   LocatorService.navigationService.currentState?.pushNamed(
                     LoginScreen.routeName,

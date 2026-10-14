@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:laqetak/src/core/widgets/dialog_content/confirm_alert.dart';
+import 'package:laqetak/src/core/widgets/dialog_content/confirm_dialog_content.dart';
 import 'package:laqetak/src/core/widgets/dialog_content/report_dialog_content.dart';
-import 'package:laqetak/src/core/widgets/dialog_content/terms_content.dart';
+import 'package:laqetak/src/core/widgets/dialog_content/terms_dialog_content.dart';
 import 'package:laqetak/src/core/widgets/dialog_content/yes_no_dialog_content.dart';
 
 import '../di/locator_service.dart';
@@ -99,7 +99,7 @@ class DialogHelpers {
             horizontal: 0,
             vertical: 0,
           ).r,
-          content: ConfirmAlert(
+          content: ConfirmDialogContent(
             title: title,
             description: description,
             yesText: buttonText,
@@ -398,7 +398,7 @@ class DialogHelpers {
             horizontal: 20,
             vertical: 0,
           ).r,
-          content: TermsContent(isIdea: isIdea, title: title),
+          content: TermsDialogContent(isIdea: isIdea, title: title),
         );
       },
       transitionBuilder: (_, anim, __, child) {

@@ -11,7 +11,7 @@ import 'package:laqetak/src/core/di/locator_service.dart';
 import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
 import 'package:laqetak/src/core/widgets/custom_appbar.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
 import 'package:laqetak/src/core/widgets/lists_widgets/list_loading_end_widget.dart';
 import 'package:laqetak/src/features/ad_details/presentation/cubit/ad_details_cubit.dart';
 import 'package:laqetak/src/features/ad_details/presentation/cubit/ad_details_state.dart';
@@ -121,7 +121,7 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
         icons: [AppbarIcons.logo, AppbarIcons.drawer],
         flexRight: 8,
       ),
-      drawer: CustomDrawer(),
+      drawer: AppDrawer(),
       body: BlocListener<AdDetailsCubit, AdDetailsState>(
         listenWhen: (previous, current) =>
             current.hasCustomerAdsError(customerId) &&

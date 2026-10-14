@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/custom_elevated_button.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/custom_outline_button.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_elevated_button.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_outline_button.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/svg_assets.dart';
@@ -105,7 +105,7 @@ class NotificationItem extends StatelessWidget {
                       request?.status != 'rejected')
                     Row(
                       children: [
-                        CustomElevatedButton(
+                        AppElevatedButton(
                           text: S.of(context).accept,
                           size: Size(100.w, 35.h),
                           borderRadius: 35,
@@ -123,7 +123,7 @@ class NotificationItem extends StatelessWidget {
                           },
                         ),
                         10.widthSpace,
-                        CustomOutlineButton(
+                        AppOutlineButton(
                           text: S.of(context).reject,
                           size: Size(100.w, 35.h),
                           textStyle: AppTextStyles.buttonsTextStyle.copyWith(

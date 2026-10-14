@@ -8,9 +8,9 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/constants/enums.dart';
 import 'package:laqetak/src/core/constants/svg_assets.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/my_icon_button.dart';
-import 'package:laqetak/src/core/widgets/lists_widgets/empty_list_placeholder_widget.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_icon_button.dart';
+import 'package:laqetak/src/core/widgets/lists_widgets/empty_list_placeholder_widget.dart';
 import 'package:laqetak/src/features/notifications/data/models/notification_model.dart';
 import 'package:laqetak/src/features/notifications/presentation/widgets/notification_item.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -192,7 +192,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                       child: Row(
                                                         children: [
                                                           10.widthSpace,
-                                                          MyIconButton(
+                                                          AppIconButton(
                                                             width: 40,
                                                             height: 40,
                                                             onTap: () {

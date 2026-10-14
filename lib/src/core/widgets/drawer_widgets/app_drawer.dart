@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/constants/svg_assets.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
@@ -19,19 +20,18 @@ import '../../../features/auth/presentation/cubit/auth_state.dart';
 import '../../../features/home/presentation/screens/home_layout_screen.dart';
 import '../../constants/app_feedback.dart';
 import '../../constants/enums.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../../helpers/others_helper.dart';
-import 'custom_drawer_header.dart';
+import 'app_drawer_header.dart';
 import 'drawer_item.dart';
 
-class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({super.key});
+class AppDrawer extends StatefulWidget {
+  const AppDrawer({super.key});
 
   @override
-  State<CustomDrawer> createState() => _CustomDrawerState();
+  State<AppDrawer> createState() => _AppDrawerState();
 }
 
-class _CustomDrawerState extends State<CustomDrawer> {
+class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -70,7 +70,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               color: Colors.white,
               child: Column(
                 children: [
-                  CustomDrawerHeader(),
+                  AppDrawerHeader(),
                   Divider(
                     height: 40.h,
                     endIndent: 20.w,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class MyIconButton extends StatelessWidget {
+class AppIconButton extends StatelessWidget {
   final String icon;
   final double? iconSize;
   final void Function()? onTap;
@@ -15,7 +15,7 @@ class MyIconButton extends StatelessWidget {
   final Color? borderColor;
   final Color? bkColor;
 
-  const MyIconButton({
+  const AppIconButton({
     super.key,
     required this.icon,
     this.iconSize,

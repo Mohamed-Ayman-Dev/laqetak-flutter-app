@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
 
 import '../../../../generated/l10n.dart';
-import '../../themes/colors.dart';
 import '../../shared/others/data/models/sector_model.dart';
-import 'my_custom_drop_down_menu.dart';
+import '../../themes/colors.dart';
+import 'custom_drop_down_menu.dart';
 
 class SectorSelectField extends StatefulWidget {
   final List<SectorModel>? sectors;
@@ -49,7 +49,7 @@ class _SectorSelectFieldState extends State<SectorSelectField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MyCustomDropdownFormField<SectorModel>(
+        CustomDropdownFormField<SectorModel>(
           hint: S.of(context).selectSector,
           items: widget.sectors,
           itemAsString: (item) => item.name ?? '',

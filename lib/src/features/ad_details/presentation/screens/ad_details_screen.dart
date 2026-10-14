@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/constants/enums.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
 import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
 import 'package:laqetak/src/core/helpers/dialog_helpers.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/custom_elevated_button.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/custom_outline_button.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_elevated_button.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_outline_button.dart';
 import 'package:laqetak/src/core/widgets/custom_appbar.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/custom_drawer.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:laqetak/src/core/constants/app_feedback.dart';
+import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
 import 'package:laqetak/src/features/ad_details/presentation/widgets/ad_details_bottom.dart';
 import 'package:laqetak/src/features/ad_details/presentation/widgets/ad_details_desc.dart';
 import 'package:laqetak/src/features/ad_details/presentation/widgets/ad_details_header.dart';
@@ -112,7 +112,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
           icons: [AppbarIcons.logo, AppbarIcons.drawer],
           flexRight: 8,
         ),
-        drawer: CustomDrawer(),
+        drawer: AppDrawer(),
         body: SafeArea(
           bottom: true,
           top: false,
@@ -163,7 +163,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                           if (!isMyAd)
                             Align(
                               alignment: AlignmentDirectional.centerEnd,
-                              child: CustomOutlineButton(
+                              child: AppOutlineButton(
                                 text: S.of(context).reportAd,
                                 textStyle: AppTextStyles.buttonsTextStyle
                                     .copyWith(
@@ -201,7 +201,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                             Row(
                               children: [
                                 Expanded(
-                                  child: CustomElevatedButton(
+                                  child: AppElevatedButton(
                                     text: S.of(context).editAd,
                                     onPressed: () {
                                       LocatorService
@@ -216,7 +216,7 @@ class _AdDetailsScreenState extends State<AdDetailsScreen> {
                                 ),
                                 11.widthSpace,
                                 Expanded(
-                                  child: CustomOutlineButton(
+                                  child: AppOutlineButton(
                                     text: S.of(context).expiredAd,
                                     borderRadius: 8,
                                     borderColor: AppColors.reportBorderColor,

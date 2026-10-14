@@ -12,16 +12,16 @@ import '../../themes/text_styles.dart';
 import '../custom_Text.dart';
 import '../custom_g_radio_button.dart';
 
-class LanguageBottom extends StatefulWidget {
+class LanguageBottomContent extends StatefulWidget {
   final bool showSplash;
 
-  const LanguageBottom({super.key, required this.showSplash});
+  const LanguageBottomContent({super.key, required this.showSplash});
 
   @override
-  State<LanguageBottom> createState() => _LanguageBottomState();
+  State<LanguageBottomContent> createState() => _LanguageBottomContentState();
 }
 
-class _LanguageBottomState extends State<LanguageBottom> {
+class _LanguageBottomContentState extends State<LanguageBottomContent> {
   // @override
   // void initState() {
   //   super.initState();

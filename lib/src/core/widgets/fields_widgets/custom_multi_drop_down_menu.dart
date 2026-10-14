@@ -9,7 +9,7 @@ import '../../../../generated/l10n.dart';
 import '../../themes/text_styles.dart';
 import '../../themes/theme.dart';
 
-class MyCustomMultiDropdownFormField<T> extends StatefulWidget {
+class CustomMultiDropdownFormField<T> extends StatefulWidget {
   final List<T> items;
   final List<T> selectedItems;
   final String Function(T) itemAsString;
@@ -24,7 +24,7 @@ class MyCustomMultiDropdownFormField<T> extends StatefulWidget {
   final double borderRadius;
   final bool isLoading;
 
-  const MyCustomMultiDropdownFormField({
+  const CustomMultiDropdownFormField({
     super.key,
     required this.items,
     required this.selectedItems,
@@ -42,12 +42,12 @@ class MyCustomMultiDropdownFormField<T> extends StatefulWidget {
   });
 
   @override
-  State<MyCustomMultiDropdownFormField<T>> createState() =>
-      _MyCustomMultiDropdownFormFieldState<T>();
+  State<CustomMultiDropdownFormField<T>> createState() =>
+      _CustomMultiDropdownFormFieldState<T>();
 }
 
-class _MyCustomMultiDropdownFormFieldState<T>
-    extends State<MyCustomMultiDropdownFormField<T>> {
+class _CustomMultiDropdownFormFieldState<T>
+    extends State<CustomMultiDropdownFormField<T>> {
   // ← بيتعمل مرة واحدة بس هنا، مش في كل build
   final GlobalKey<DropdownSearchState<T>> _dropdownKey =
       GlobalKey<DropdownSearchState<T>>();

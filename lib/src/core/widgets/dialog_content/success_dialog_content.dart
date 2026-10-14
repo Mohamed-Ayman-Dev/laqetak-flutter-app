@@ -8,7 +8,7 @@ import 'package:laqetak/src/features/home/presentation/screens/home_layout_scree
 import '../../../../generated/l10n.dart';
 import '../../constants/svg_assets.dart';
 import '../../extension/space_extensions_helper.dart';
-import '../buttons_widgets/custom_elevated_button.dart';
+import '../buttons_widgets/app_elevated_button.dart';
 
 class SuccessDialogContent extends StatelessWidget {
   final String title;
@@ -61,7 +61,7 @@ class SuccessDialogContent extends StatelessWidget {
             24.heightSpace,
 
             // ─── Button ───
-            CustomElevatedButton(
+            AppElevatedButton(
               text: buttonText ?? S.of(context).homeScreen,
               icon: SvgAssets.assetsSvgArrowRight,
               size: Size(163.w, 48.h),

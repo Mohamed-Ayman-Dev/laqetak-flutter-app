@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 /// Update the colors as desired with their dark mode variations below them.
 abstract class AppColors {
   // objects Colors
-  static const Color primaryColor = Color(0xFF0F6E6B);
-  static const Color secondaryColor = Color(0xFFD7F3F1);
+  static const Color primaryColor = Color(0xFF1A1A1A);
+  static const Color secondaryColor = Color(0xFFF7F4EE);
   static const Color thirdColor = Color(0xFFE5E5E5);
 
   static const Color iconButtonIconColor = primaryColor;
@@ -23,10 +23,10 @@ abstract class AppColors {
   static const Color sellerNumberBKColor = Color(0XFFF0F0F0);
   static const Color buttonBackBKColor = Color(0xFFE4E4E4);
   static const Color uploadImageBKColor = Color(0xFFEFEFEF);
-  static const Color appFeedbackBKColor = Color(0xFF0B5552);
+  static const Color appFeedbackBKColor = Color(0xFF111111);
   static const Color appFeedSuccessBKColor = Color(0xFF2E7D32);
 
-  static const Color otherMessageBKColor = Color.fromRGBO(15, 110, 107, 0.16);
+  static const Color otherMessageBKColor = Color.fromRGBO(26, 26, 26, 0.08);
 
   static const Color notificationBk = Color(0XFFE0E0E0);
   static const Color appBarBackGroundColor = Colors.white;

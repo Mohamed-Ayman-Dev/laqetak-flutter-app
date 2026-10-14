@@ -8,10 +8,10 @@ import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/models/customer_model.dart';
-import '../../../../core/widgets/buttons_widgets/small_icon_button.dart';
-import '../../../../core/widgets/custom_image.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
+import '../../../../core/widgets/buttons_widgets/app_small_icon_button.dart';
+import '../../../../core/widgets/custom_image.dart';
 import '../../../chat/presentation/screens/chat_screen.dart';
 
 class CustomerHeader extends StatelessWidget {
@@ -48,7 +48,7 @@ class CustomerHeader extends StatelessWidget {
           Row(
             children: [
               45.widthSpace,
-              SmallIconButton(
+              AppSmallIconButton(
                 icon: SvgAssets.assetsSvgChatDotsIcon,
                 height: 34.h,
                 width: 34.w,
@@ -63,7 +63,7 @@ class CustomerHeader extends StatelessWidget {
                 },
               ),
               Spacer(),
-              SmallIconButton(
+              AppSmallIconButton(
                 icon: SvgAssets.assetsSvgReportCircle,
                 height: 34.h,
                 width: 34.w,

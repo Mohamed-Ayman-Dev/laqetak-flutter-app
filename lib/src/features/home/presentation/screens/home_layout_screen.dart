@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/constants/svg_assets.dart';
 import 'package:laqetak/src/core/helpers/dialog_helpers.dart';
-import 'package:laqetak/src/core/widgets/custom_appbar.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
+import 'package:laqetak/src/core/widgets/custom_appbar.dart';
 import 'package:laqetak/src/features/chat/presentation/screens/conversations_screen.dart';
 import 'package:laqetak/src/features/favorite/presentation/screens/favorite_screen.dart';
 import 'package:laqetak/src/features/notifications/presentation/screens/notification_screen.dart';
@@ -16,7 +16,7 @@ import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart';
 import '../../../../core/shared/settings/presentation/cubit/settings_state.dart';
 import '../../../../core/widgets/bottom_nav_bar.dart';
-import '../../../../core/widgets/drawer_widgets/custom_drawer.dart';
+import '../../../../core/widgets/drawer_widgets/app_drawer.dart';
 import 'home_screen.dart';
 
 class HomeLayoutScreen extends StatefulWidget {
@@ -101,7 +101,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                     dontShowBackButton: true,
                   ),
             extendBody: true,
-            drawer: const CustomDrawer(),
+            drawer: const AppDrawer(),
 
             body: WillPopScope(
               onWillPop: () async {

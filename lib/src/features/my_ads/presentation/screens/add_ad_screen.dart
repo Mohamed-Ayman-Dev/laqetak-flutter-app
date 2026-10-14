@@ -7,7 +7,7 @@ import 'package:laqetak/src/core/constants/enums.dart';
 import 'package:laqetak/src/core/constants/svg_assets.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
 import 'package:laqetak/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -20,10 +20,10 @@ import '../../../../core/shared/others/data/models/sector_model.dart';
 import '../../../../core/shared/others/presentation/cubit/others_cubit.dart';
 import '../../../../core/shared/others/presentation/cubit/others_state.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
 import '../../../../core/widgets/custom_appbar.dart';
+import '../../../../core/widgets/fields_widgets/custom_drop_down_menu.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
-import '../../../../core/widgets/fields_widgets/my_custom_drop_down_menu.dart';
 import '../../../../core/widgets/fields_widgets/sector_select_field.dart';
 
 class AddAdScreen extends StatefulWidget {
@@ -106,7 +106,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
           icons: [AppbarIcons.logo, AppbarIcons.drawer],
           flexRight: 8,
         ),
-        drawer: CustomDrawer(),
+        drawer: AppDrawer(),
         body: SafeArea(
           top: false,
           bottom: true,
@@ -133,7 +133,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
                   BlocSelector<OthersCubit, OthersState, List<DetailsModel>>(
                     selector: (state) => state.cities,
                     builder: (context, myCities) {
-                      return MyCustomDropdownFormField<DetailsModel>(
+                      return CustomDropdownFormField<DetailsModel>(
                         hint: S.of(context).selectCity,
                         items: myCities,
                         itemAsString: (item) => item.name ?? '',
@@ -189,7 +189,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
                   BlocSelector<OthersCubit, OthersState, List<CategoryModel>>(
                     selector: (state) => state.categories,
                     builder: (context, myCategories) {
-                      return MyCustomDropdownFormField<CategoryModel>(
+                      return CustomDropdownFormField<CategoryModel>(
                         hint: S.of(context).selectCategory,
                         items: myCategories,
                         itemAsString: (item) => item.name ?? '',
@@ -353,7 +353,7 @@ class _AddAdScreenState extends State<AddAdScreen> {
                     ),
                   ),
                   27.heightSpace,
-                  CustomElevatedButton(
+                  AppElevatedButton(
                     text: S.current.next,
                     icon: SvgAssets.assetsSvgArrowRight,
                     size: Size(163.w, 48.h),

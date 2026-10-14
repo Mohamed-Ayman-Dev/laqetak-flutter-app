@@ -9,7 +9,7 @@ import 'package:laqetak/src/core/constants/svg_assets.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
 import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/custom_elevated_button.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_elevated_button.dart';
 import 'package:laqetak/src/core/widgets/custom_image.dart';
 import 'package:laqetak/src/features/ad_details/presentation/cubit/ad_details_cubit.dart';
 import 'package:laqetak/src/features/ad_details/presentation/cubit/ad_details_state.dart';
@@ -25,7 +25,7 @@ import '../../../../core/helpers/urlHelper.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/models/customer_model.dart';
 import '../../../../core/themes/theme.dart';
-import '../../../../core/widgets/buttons_widgets/custom_outline_button.dart';
+import '../../../../core/widgets/buttons_widgets/app_outline_button.dart';
 import '../../../../core/widgets/custom_switch.dart';
 import '../../../home/presentation/cubit/ads_cubit.dart';
 import '../../../home/presentation/cubit/ads_state.dart';
@@ -153,7 +153,7 @@ class AdDetailsSeller extends StatelessWidget {
                         (isMe ||
                         !hidePhone ||
                         (ad?.contactRequestStatus == 'approved'));
-                    return CustomElevatedButton(
+                    return AppElevatedButton(
                       onPressed: (!isAuth)
                           ? () {
                               BottomHelpers.showGuestBottomSheet(context);
@@ -259,7 +259,7 @@ class AdDetailsSeller extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   if (!isExpired)
-                    CustomElevatedButton(
+                    AppElevatedButton(
                       text: S.of(context).chat,
                       textStyle: AppTextStyles.labelLarge.copyWith(
                         fontSize: 12.sp,
@@ -280,7 +280,7 @@ class AdDetailsSeller extends StatelessWidget {
                       },
                     ),
                   if (!isExpired) 7.widthSpace,
-                  CustomOutlineButton(
+                  AppOutlineButton(
                     text: S.of(context).report,
                     textStyle: AppTextStyles.buttonsTextStyle.copyWith(
                       color: AppColors.labelTextColor,

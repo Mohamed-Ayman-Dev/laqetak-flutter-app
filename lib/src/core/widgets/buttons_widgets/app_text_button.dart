@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';
 
-class CustomTextButton extends StatelessWidget {
+class AppTextButton extends StatelessWidget {
   final String? text;
   final Color? textColor;
   final bool underline;
@@ -13,7 +13,7 @@ class CustomTextButton extends StatelessWidget {
   final Widget? child;
   final double? width;
 
-  const CustomTextButton({
+  const AppTextButton({
     super.key,
     this.text,
     this.onPressed,

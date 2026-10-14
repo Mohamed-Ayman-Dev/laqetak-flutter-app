@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/constants/svg_assets.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
@@ -14,13 +14,13 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
+import '../../../../core/themes/text_styles.dart';
 import '../../../../core/widgets/agree_terms_widget.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
 import '../../../../core/widgets/custom_Text.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
 import '../../../../core/widgets/fields_widgets/password_eye_toggle.dart';
 import '../../../../core/widgets/label_widget.dart';
-import '../../../../core/themes/text_styles.dart';
 import 'otp_screen.dart';
 
 class RegisterPasswordScreen extends StatefulWidget {
@@ -201,7 +201,7 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
                     24.heightSpace,
                     Hero(
                       tag: 'auth-button',
-                      child: CustomElevatedButton(
+                      child: AppElevatedButton(
                         text: S.current.next,
                         icon: SvgAssets.assetsSvgArrowRight,
                         onPressed: _register,

@@ -17,17 +17,17 @@ import '../../shared/settings/presentation/cubit/settings_state.dart';
 import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';
 
-class TermsContent extends StatefulWidget {
+class TermsDialogContent extends StatefulWidget {
   final String? title;
   final bool isIdea;
 
-  const TermsContent({super.key, this.title, this.isIdea = false});
+  const TermsDialogContent({super.key, this.title, this.isIdea = false});
 
   @override
-  State<TermsContent> createState() => _TermsContentState();
+  State<TermsDialogContent> createState() => _TermsDialogContentState();
 }
 
-class _TermsContentState extends State<TermsContent> {
+class _TermsDialogContentState extends State<TermsDialogContent> {
   final ScrollController _scrollController = ScrollController();
   bool _showFab = true;
 

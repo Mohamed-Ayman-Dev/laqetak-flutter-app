@@ -16,7 +16,7 @@ import '../../../../core/shared/settings/presentation/cubit/settings_state.dart'
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
 import '../../../../core/widgets/custom_appbar.dart';
-import '../../../../core/widgets/drawer_widgets/custom_drawer.dart';
+import '../../../../core/widgets/drawer_widgets/app_drawer.dart';
 import '../widgets/static_shimmer.dart';
 
 class AboutAppScreen extends StatefulWidget {
@@ -46,7 +46,7 @@ class _AboutAppScreenState extends State<AboutAppScreen> {
         flexLeft: 100,
         paddingAround: isArabic ? null : 40,
       ),
-      drawer: CustomDrawer(),
+      drawer: AppDrawer(),
 
       body: SafeArea(
         bottom: true,

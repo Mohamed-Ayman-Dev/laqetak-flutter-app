@@ -5,12 +5,12 @@ import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';
 import '../custom_Text.dart';
 
-class FilterButton extends StatefulWidget {
+class AppFilterButton extends StatefulWidget {
   final String title;
   final void Function()? onTap;
   final bool isSelected;
 
-  const FilterButton({
+  const AppFilterButton({
     super.key,
     required this.title,
     this.onTap,
@@ -18,10 +18,10 @@ class FilterButton extends StatefulWidget {
   });
 
   @override
-  State<FilterButton> createState() => _FilterButtonState();
+  State<AppFilterButton> createState() => _AppFilterButtonState();
 }
 
-class _FilterButtonState extends State<FilterButton> {
+class _AppFilterButtonState extends State<AppFilterButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(

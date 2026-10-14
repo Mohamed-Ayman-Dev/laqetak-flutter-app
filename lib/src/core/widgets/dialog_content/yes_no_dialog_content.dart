@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/custom_outline_button.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_outline_button.dart';
 import 'package:laqetak/src/features/home/presentation/screens/home_layout_screen.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../constants/svg_assets.dart';
 import '../../extension/space_extensions_helper.dart';
-import '../buttons_widgets/custom_elevated_button.dart';
+import '../buttons_widgets/app_elevated_button.dart';
 
 class YesNoDialogContent extends StatelessWidget {
   final String title;
@@ -87,7 +87,7 @@ class YesNoDialogContent extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: CustomElevatedButton(
+                  child: AppElevatedButton(
                     text: buttonText ?? S.of(context).confirm,
                     onPressed: onButtonTap != null
                         ? () {
@@ -105,7 +105,7 @@ class YesNoDialogContent extends StatelessWidget {
                 ),
                 11.widthSpace,
                 Expanded(
-                  child: CustomOutlineButton(
+                  child: AppOutlineButton(
                     text: S.of(context).cancel,
                     borderRadius: 8,
                     borderColor: AppColors.reportBorderColor,

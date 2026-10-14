@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/filter_button.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_filter_button.dart';
 
 class FilterHeaderDelegate extends SliverPersistentHeaderDelegate {
   final List<String> filters;
@@ -37,7 +37,7 @@ class FilterHeaderDelegate extends SliverPersistentHeaderDelegate {
           itemCount: filters.length,
           separatorBuilder: (_, __) => SizedBox(width: 9.w),
           itemBuilder: (context, index) {
-            return FilterButton(
+            return AppFilterButton(
               title: filters[index],
               isSelected: selectedIndex == index,
               onTap: () => onFilterTap(index),

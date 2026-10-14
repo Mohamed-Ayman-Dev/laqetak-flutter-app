@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/constants/enums.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -56,7 +56,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         icons: [AppbarIcons.logo, AppbarIcons.drawer],
         flexRight: 8,
       ),
-      drawer: CustomDrawer(),
+      drawer: AppDrawer(),
       body: BlocListener<StaticPagesCubit, StaticPagesState>(
         listenWhen: (previous, current) =>
             current.hasFaqsError && !previous.hasFaqsError,

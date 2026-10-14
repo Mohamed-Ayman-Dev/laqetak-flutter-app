@@ -15,8 +15,8 @@ import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';
 import '../custom_Text.dart';
 
-class CustomDrawerHeader extends StatelessWidget {
-  const CustomDrawerHeader({super.key});
+class AppDrawerHeader extends StatelessWidget {
+  const AppDrawerHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import 'package:laqetak/src/features/auth/presentation/screens/login_screen.dart
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/helpers/others_helper.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
 import '../../../../core/widgets/custom_g_radio_button.dart';
 
 class AuthChangeLangWidget extends StatefulWidget {
@@ -67,7 +67,7 @@ class _AuthChangeLangWidgetState extends State<AuthChangeLangWidget> {
           25.heightSpace,
           Hero(
             tag: 'auth-button',
-            child: CustomElevatedButton(
+            child: AppElevatedButton(
               text: S.of(context).next,
               onPressed: () {
                 LocatorService.navigationService.currentState?.pushNamed(

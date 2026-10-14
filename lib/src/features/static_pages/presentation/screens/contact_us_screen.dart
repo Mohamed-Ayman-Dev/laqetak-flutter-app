@@ -5,21 +5,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/constants/enums.dart';
 import 'package:laqetak/src/core/constants/svg_assets.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/custom_drawer.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
+import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/helpers/dialog_helpers.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart';
+import '../../../../core/shared/settings/presentation/cubit/settings_state.dart';
+import '../../../../core/themes/text_styles.dart';
+import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/fields_widgets/custom_note_field.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
-import '../../../../core/themes/text_styles.dart';
-import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart';
-import '../../../../core/shared/settings/presentation/cubit/settings_state.dart';
 import '../cubit/static_pages_cubit.dart';
 import '../cubit/static_pages_state.dart';
 import '../widgets/social_widgets.dart';
@@ -82,7 +82,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
         icons: [AppbarIcons.logo, AppbarIcons.drawer],
         flexRight: 8,
       ),
-      drawer: CustomDrawer(),
+      drawer: AppDrawer(),
       body: MultiBlocListener(
         listeners: [
           BlocListener<SettingsCubit, SettingsState>(
@@ -231,7 +231,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                 ),
 
                 24.heightSpace,
-                CustomElevatedButton(
+                AppElevatedButton(
                   text: S.current.send,
                   icon: SvgAssets.assetsSvgArrowRight,
                   onPressed: () {

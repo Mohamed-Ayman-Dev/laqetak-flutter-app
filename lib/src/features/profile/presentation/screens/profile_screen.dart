@@ -16,10 +16,10 @@ import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
 import 'package:laqetak/src/core/helpers/dialog_helpers.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/custom_elevated_button.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/custom_outline_button.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_elevated_button.dart';
+import 'package:laqetak/src/core/widgets/buttons_widgets/app_outline_button.dart';
 import 'package:laqetak/src/core/widgets/custom_appbar.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
 import 'package:laqetak/src/features/auth/data/models/user_model.dart';
 import 'package:laqetak/src/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:laqetak/src/features/auth/presentation/cubit/auth_state.dart';
@@ -34,8 +34,8 @@ import '../../../../core/shared/others/data/models/details_model.dart';
 import '../../../../core/shared/others/presentation/cubit/others_cubit.dart';
 import '../../../../core/shared/others/presentation/cubit/others_state.dart';
 import '../../../../core/widgets/custom_image.dart';
+import '../../../../core/widgets/fields_widgets/custom_drop_down_menu.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
-import '../../../../core/widgets/fields_widgets/my_custom_drop_down_menu.dart';
 import '../../../../core/widgets/fields_widgets/password_eye_toggle.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -96,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           icons: [AppbarIcons.logo, AppbarIcons.drawer],
           flexRight: 8,
         ),
-        drawer: CustomDrawer(),
+        drawer: AppDrawer(),
         body: SafeArea(
           top: false,
           bottom: true,
@@ -297,7 +297,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 >(
                                   selector: (state) => state.cities,
                                   builder: (context, myCities) {
-                                    return MyCustomDropdownFormField<
+                                    return CustomDropdownFormField<
                                       DetailsModel
                                     >(
                                       hint: S.current.selectCity,
@@ -436,7 +436,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           25.heightSpace,
                           isEditMode
-                              ? CustomElevatedButton(
+                              ? AppElevatedButton(
                                   text: S.current.save,
                                   onPressed: () async {
                                     if (formKey.currentState!.validate()) {
@@ -465,7 +465,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               : Row(
                                   children: [
                                     Expanded(
-                                      child: CustomElevatedButton(
+                                      child: AppElevatedButton(
                                         text: S.of(context).edit,
                                         icon: SvgAssets.assetsSvgArrowRight,
                                         onPressed: () {
@@ -477,7 +477,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ),
                                     16.widthSpace,
                                     Expanded(
-                                      child: CustomOutlineButton(
+                                      child: AppOutlineButton(
                                         text: S.of(context).deleteAccount,
                                         borderRadius: 8,
                                         borderColor:

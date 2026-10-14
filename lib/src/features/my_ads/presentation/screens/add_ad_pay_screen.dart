@@ -9,7 +9,7 @@ import 'package:laqetak/src/core/constants/enums.dart';
 import 'package:laqetak/src/core/constants/svg_assets.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/custom_drawer.dart';
+import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
 import 'package:laqetak/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -21,7 +21,7 @@ import '../../../../core/shared/others/presentation/screens/payment_webview.dart
 import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart';
 import '../../../../core/shared/settings/presentation/cubit/settings_state.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../../../../core/widgets/buttons_widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../cubit/my_ads_cubit.dart';
 import '../cubit/my_ads_state.dart';
@@ -129,7 +129,7 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
 
               flexRight: 8,
             ),
-            drawer: CustomDrawer(),
+            drawer: AppDrawer(),
             body: SafeArea(
               top: false,
               bottom: true,
@@ -394,7 +394,7 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                       Row(
                         children: [
                           Expanded(
-                            child: CustomElevatedButton(
+                            child: AppElevatedButton(
                               text: S.of(context).payNow,
                               icon: SvgAssets.assetsSvgArrowRight,
                               size: Size(163.w, 48.h),
@@ -410,7 +410,7 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
                           ),
                           16.widthSpace,
                           Expanded(
-                            child: CustomElevatedButton(
+                            child: AppElevatedButton(
                               text: S.of(context).previous,
                               icon: SvgAssets.assetsSvgArrowLeft,
                               size: Size(163.w, 48.h),

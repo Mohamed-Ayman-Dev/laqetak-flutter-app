@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/bottom_sheet_content/guest_bottom_sheet.dart';
-import '../widgets/bottom_sheet_content/language_bottom.dart';
+import '../widgets/bottom_sheet_content/guest_bottom_content.dart';
+import '../widgets/bottom_sheet_content/language_bottom_content.dart';
 
 class BottomHelpers {
   static void showLanguageBottomSheet(
@@ -15,7 +15,7 @@ class BottomHelpers {
         borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
       ),
       builder: (context) {
-        return LanguageBottom(showSplash: showSplash);
+        return LanguageBottomContent(showSplash: showSplash);
       },
     );
   }
@@ -28,7 +28,7 @@ class BottomHelpers {
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       builder: (context) {
-        return GuestBottom();
+        return GuestBottomContent();
       },
     );
   }

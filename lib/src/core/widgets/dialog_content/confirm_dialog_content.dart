@@ -5,18 +5,18 @@ import '../../../../generated/l10n.dart';
 import '../../extension/space_extensions_helper.dart';
 import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';
-import '../buttons_widgets/custom_elevated_button.dart';
-import '../buttons_widgets/custom_outline_button.dart';
+import '../buttons_widgets/app_elevated_button.dart';
+import '../buttons_widgets/app_outline_button.dart';
 import '../custom_Text.dart';
 
-class ConfirmAlert extends StatelessWidget {
+class ConfirmDialogContent extends StatelessWidget {
   final String title;
   final String description;
   final String yesText;
   final Color? yesColor;
   final void Function() onYes;
 
-  const ConfirmAlert({
+  const ConfirmDialogContent({
     super.key,
     required this.title,
     required this.description,
@@ -69,7 +69,7 @@ class ConfirmAlert extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: CustomOutlineButton(
+                    child: AppOutlineButton(
                       size: Size(double.infinity, 45.h),
                       text: S.of(context).cancel,
                       textStyle: AppTextStyles.buttonsTextStyle.copyWith(
@@ -84,7 +84,7 @@ class ConfirmAlert extends StatelessWidget {
                   ),
                   16.widthSpace,
                   Expanded(
-                    child: CustomElevatedButton(
+                    child: AppElevatedButton(
                       size: Size(double.infinity, 45.h),
                       text: yesText,
                       textStyle: AppTextStyles.buttonsTextStyle.copyWith(
