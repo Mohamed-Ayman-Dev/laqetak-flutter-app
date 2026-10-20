@@ -65,23 +65,7 @@ class _MyAppState extends State<MyApp> {
             return MaterialApp(
               navigatorKey: LocatorService.navigationService.navigatorKey,
               debugShowCheckedModeBanner: false,
-              builder: (context, child) {
-                return Stack(
-                  children: [
-                    EasyLoading.init(
-                      builder: state.urlType == 'production'
-                          ? null
-                          : (context, child) {
-                              return Banner(
-                                message: 'Develop',
-                                location: BannerLocation.topEnd,
-                                child: child,
-                              );
-                            },
-                    )(context, child),
-                  ],
-                );
-              },
+              builder: EasyLoading.init(),
               localizationsDelegates: const [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,
