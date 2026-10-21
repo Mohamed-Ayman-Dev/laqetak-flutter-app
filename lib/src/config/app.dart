@@ -58,9 +58,9 @@ class _MyAppState extends State<MyApp> {
         providers: AppBlocProviders.providers,
         child: BlocBuilder<SettingsCubit, SettingsState>(
           buildWhen: (previous, current) =>
-              previous.language != current.language ||
+              (previous.language != current.language ||
               previous.themeMode != current.themeMode ||
-              previous.urlType != current.urlType,
+              previous.urlType != current.urlType),
           builder: (BuildContext context, state) {
             return MaterialApp(
               navigatorKey: LocatorService.navigationService.navigatorKey,
