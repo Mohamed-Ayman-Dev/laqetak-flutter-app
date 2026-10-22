@@ -39,7 +39,7 @@ class _AdImageGalleryState extends State<AdImageGallery> {
         height: 237.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.grey.shade200,
+          color: AppColors.imagePlaceholderBKColor,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +51,7 @@ class _AdImageGalleryState extends State<AdImageGallery> {
             Text(
               S.of(context).thisAdHasNoImages,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black54, fontSize: 14.sp),
+              style: TextStyle(color: AppColors.bodyGreyTextColor, fontSize: 14.sp),
             ),
           ],
         ),

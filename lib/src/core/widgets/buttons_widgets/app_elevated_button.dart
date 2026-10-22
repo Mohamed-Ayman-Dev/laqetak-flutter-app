@@ -93,7 +93,7 @@ class AppElevatedButton extends StatelessWidget {
                               color:
                                   textStyle?.color ??
                                   (isDisabled
-                                      ? Colors.grey[400]
+                                      ? AppColors.disabledTextColor
                                       : backgroundColor == null
                                       ? Colors.white
                                       : AppColors.buttonTextColor),

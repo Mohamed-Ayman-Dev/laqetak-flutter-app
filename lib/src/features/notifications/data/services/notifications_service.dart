@@ -11,6 +11,7 @@ import 'package:vibration/vibration.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/helpers/others_helper.dart';
+import '../../../../core/themes/colors.dart';
 
 class NotificationsService {
   bool permissionChecked = false;
@@ -144,7 +145,7 @@ class NotificationsService {
               fit: BoxFit.fitWidth,
             ),
             boxShadow: [
-              BoxShadow(color: Colors.grey.withOpacity(0.2), blurRadius: 10),
+              BoxShadow(color: AppColors.cardShadowColor, blurRadius: 10),
             ],
           ),
         ),
@@ -152,18 +153,18 @@ class NotificationsService {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.close, size: 14, color: Colors.black),
+          icon: const Icon(Icons.close, size: 14, color: AppColors.labelTextColor),
         ),
         title: message.notification?.title ?? '',
         message: message.notification?.body ?? '',
-        messageColor: Colors.black,
-        titleColor: Colors.black,
+        messageColor: AppColors.bodyTextColor,
+        titleColor: AppColors.titleTextColor,
         messageSize: 14.sp,
         dismissDirection: FlushbarDismissDirection.VERTICAL,
         isDismissible: true,
         boxShadows: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: AppColors.barrierColorLight,
             blurRadius: 5.0,
             spreadRadius: 5.0,
             offset: const Offset(0.0, 0.0),

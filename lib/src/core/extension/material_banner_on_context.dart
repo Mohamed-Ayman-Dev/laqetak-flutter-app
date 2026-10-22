@@ -32,7 +32,7 @@ MaterialBanner _sessionExpired(BuildContext context) => const MaterialBanner(
         Flexible(
           child: Text(
             'Your session has been expired, please login again',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: AppColors.labelTextColor),
           ),
         ),
       ],

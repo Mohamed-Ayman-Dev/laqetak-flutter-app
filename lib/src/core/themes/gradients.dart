@@ -8,4 +8,10 @@ abstract class AppGradients {
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
+
+  static const brandGradient = LinearGradient(
+    colors: [AppColors.primaryColor, AppColors.secondaryColor],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
 }

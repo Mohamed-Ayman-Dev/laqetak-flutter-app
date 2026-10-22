@@ -93,7 +93,7 @@ class AppDrawerHeader extends StatelessWidget {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.12),
+                    color: AppColors.barrierColorLight,
                     offset: Offset(0, 1),
                     blurRadius: 8,
                     spreadRadius: 0,

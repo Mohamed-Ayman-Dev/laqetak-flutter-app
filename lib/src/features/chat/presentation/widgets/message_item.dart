@@ -115,7 +115,7 @@ class MessageItem extends StatelessWidget {
                         S.of(context).sending,
                         style: AppTextStyles.labelSmall.copyWith(
                           fontSize: 8.sp,
-                          color: Colors.grey,
+                          color: AppColors.iconMutedColor,
                         ),
                       ),
                     ],
@@ -132,14 +132,14 @@ class MessageItem extends StatelessWidget {
                         Icon(
                           Icons.error_outline,
                           size: 12.sp,
-                          color: Colors.red,
+                          color: AppColors.errorColor,
                         ),
                         4.widthSpace,
                         Text(
                           S.of(context).tapToRetry,
                           style: AppTextStyles.labelSmall.copyWith(
                             fontSize: 8.sp,
-                            color: Colors.red,
+                            color: AppColors.errorColor,
                           ),
                         ),
                       ],
@@ -160,8 +160,8 @@ class MessageItem extends StatelessWidget {
                           height: 15.h,
                           width: 15.w,
                           color: seenAt == null
-                              ? Colors.grey
-                              : AppColors.primaryColor,
+                              ? AppColors.iconMutedColor
+                              : AppColors.secondaryColor,
                         ),
                       if (isMine) 7.widthSpace,
                       Text(
@@ -259,7 +259,7 @@ class MessageItem extends StatelessWidget {
                 placeholder: (context, url) => Container(
                   width: 140.w,
                   height: 137.h,
-                  color: Colors.grey.shade200,
+                  color: AppColors.imagePlaceholderBKColor,
                   child: const Center(
                     child: CircularProgressIndicator(strokeWidth: 2),
                   ),
@@ -276,8 +276,8 @@ class MessageItem extends StatelessWidget {
     return Container(
       width: 140.w,
       height: 137.h,
-      color: Colors.grey.shade300,
-      child: const Icon(Icons.broken_image, color: Colors.grey),
+      color: AppColors.imagePlaceholderBKColor,
+      child: const Icon(Icons.broken_image, color: AppColors.iconMutedColor),
     );
   }
 }

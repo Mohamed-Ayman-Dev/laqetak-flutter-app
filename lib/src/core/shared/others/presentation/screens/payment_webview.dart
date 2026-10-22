@@ -6,6 +6,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../themes/colors.dart';
 
 class PaymentWebView extends StatefulWidget {
   static const routeName = '/payment-webview';
@@ -151,7 +152,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
                         text: ' $_secondsLeft ',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: AppColors.labelTextColor,
                         ),
                       ),
                       TextSpan(

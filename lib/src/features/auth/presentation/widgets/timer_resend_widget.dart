@@ -70,8 +70,8 @@ class _TimerResendWidgetState extends State<TimerResendWidget> {
                       : timeString,
                   style: AppTextStyles.headlineMedium.copyWith(
                     color: timerState.isResendButtonVisible
-                        ? AppColors.primaryColor
-                        : Colors.black,
+                        ? AppColors.secondaryColor
+                        : AppColors.labelTextColor,
                     fontWeight: timerState.isResendButtonVisible
                         ? null
                         : FontWeight.w700,

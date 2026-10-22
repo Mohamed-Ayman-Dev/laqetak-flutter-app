@@ -92,7 +92,7 @@ class AppOutlineButton extends StatelessWidget {
                             textStyle ??
                             AppTextStyles.buttonsTextStyle.copyWith(
                               color: isDisabled
-                                  ? Colors.grey[400]
+                                  ? AppColors.disabledTextColor
                                   : borderColor ?? AppColors.primaryColor,
                               fontSize: fontSize,
                             ),

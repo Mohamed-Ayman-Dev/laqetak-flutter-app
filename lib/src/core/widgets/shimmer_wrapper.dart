@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../constants/string_manager.dart';
+import '../themes/colors.dart';
 
 class ShimmerWrapper extends StatelessWidget {
   final Widget child;
@@ -17,11 +18,11 @@ class ShimmerWrapper extends StatelessWidget {
           : ShimmerDirection.ltr,
       period: const Duration(milliseconds: 1400),
       baseColor: Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF2A2A2A)
-          : const Color(0xFFEAEAEA),
+          ? AppColors.shimmerDarkBase
+          : AppColors.shimmerBase,
       highlightColor: Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF3A3A3A)
-          : const Color(0xFFF7F7F7),
+          ? AppColors.shimmerDarkHighlight
+          : AppColors.shimmerHighlight,
       child: child,
     );
   }

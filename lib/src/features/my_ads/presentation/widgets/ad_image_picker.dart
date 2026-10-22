@@ -324,7 +324,7 @@ class _DeleteButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8).r,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.08),
+              color: AppColors.cardShadowColor,
               blurRadius: 4,
               offset: const Offset(0, 2),
             ),

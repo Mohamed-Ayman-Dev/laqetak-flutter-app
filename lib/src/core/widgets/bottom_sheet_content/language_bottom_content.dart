@@ -8,6 +8,7 @@ import '../../constants/string_manager.dart';
 import '../../di/locator_service.dart';
 import '../../extension/space_extensions_helper.dart';
 import '../../helpers/others_helper.dart';
+import '../../themes/colors.dart';
 import '../../themes/text_styles.dart';
 import '../custom_Text.dart';
 import '../custom_g_radio_button.dart';
@@ -100,7 +101,7 @@ class _LanguageBottomContentState extends State<LanguageBottomContent> {
                         },
                         child: SvgPicture.asset(
                           SvgAssets.assetsSvgCloseDrawerIcon,
-                          color: Colors.black,
+                          color: AppColors.labelTextColor,
                           width: 24.w,
                           height: 24.h,
                         ),

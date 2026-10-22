@@ -53,11 +53,11 @@ class AttachmentPreview extends StatelessWidget {
                 onTap: onClear,
                 child: Container(
                   padding: EdgeInsets.all(4).r,
-                  decoration: BoxDecoration(
-                    color: Colors.red.shade100,
+                  decoration: const BoxDecoration(
+                    color: AppColors.errorLightColor,
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(Icons.close, size: 16.sp, color: Colors.red),
+                  child: Icon(Icons.close, size: 16.sp, color: AppColors.errorColor),
                 ),
               ),
             ],
@@ -83,8 +83,8 @@ class AttachmentPreview extends StatelessWidget {
                           return Container(
                             width: 90.w,
                             height: 80.h,
-                            color: Colors.grey.shade300,
-                            child: Icon(Icons.broken_image, color: Colors.grey),
+                            color: AppColors.imagePlaceholderBKColor,
+                            child: const Icon(Icons.broken_image, color: AppColors.iconMutedColor),
                           );
                         },
                       ),
@@ -96,8 +96,8 @@ class AttachmentPreview extends StatelessWidget {
                             onTap: () => onRemoveAt!(index),
                             child: Container(
                               padding: EdgeInsets.all(2).r,
-                              decoration: BoxDecoration(
-                                color: Colors.black54,
+                              decoration: const BoxDecoration(
+                                color: AppColors.overlayBlack54,
                                 shape: BoxShape.circle,
                               ),
                               child: Icon(

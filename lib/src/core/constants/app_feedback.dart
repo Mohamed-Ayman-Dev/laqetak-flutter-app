@@ -151,7 +151,7 @@ class _ToastWidgetState extends State<_ToastWidget>
   @override
   Widget build(BuildContext context) {
     final isError = widget.isError;
-    final bgColor = isError ? const Color(0xFFB00020) : AppColors.primaryColor;
+    final bgColor = isError ? AppColors.errorDeepColor : AppColors.primaryColor;
     final icon = isError
         ? Icons.error_outline_rounded
         : Icons.check_circle_outline_rounded;

@@ -8,6 +8,7 @@ import 'package:laqetak/src/core/widgets/dialog_content/terms_dialog_content.dar
 import 'package:laqetak/src/core/widgets/dialog_content/yes_no_dialog_content.dart';
 
 import '../di/locator_service.dart';
+import '../themes/colors.dart';
 import '../widgets/dialog_content/success_dialog_content.dart';
 
 class DialogHelpers {
@@ -25,7 +26,7 @@ class DialogHelpers {
       context: LocatorService.navigationService.currentState!.context,
       barrierLabel: "Barrier",
       barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.2),
+      barrierColor: AppColors.barrierColor,
       transitionDuration: const Duration(milliseconds: 400),
       pageBuilder: (_, __, ___) {
         return Stack(
@@ -86,7 +87,7 @@ class DialogHelpers {
       context: context,
       barrierLabel: "Barrier",
       barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.2),
+      barrierColor: AppColors.barrierColor,
       transitionDuration: const Duration(milliseconds: 400),
       pageBuilder: (_, __, ___) {
         return AlertDialog(
@@ -132,7 +133,7 @@ class DialogHelpers {
       context: LocatorService.navigationService.currentState!.context,
       barrierLabel: "Barrier",
       barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.2),
+      barrierColor: AppColors.barrierColor,
       transitionDuration: const Duration(milliseconds: 400),
       pageBuilder: (_, __, ___) {
         return Stack(
@@ -189,7 +190,7 @@ class DialogHelpers {
       context: LocatorService.navigationService.currentState!.context,
       barrierLabel: "Barrier",
       barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.2),
+      barrierColor: AppColors.barrierColor,
       transitionDuration: const Duration(milliseconds: 400),
       pageBuilder: (_, __, ___) {
         return Stack(
@@ -386,7 +387,7 @@ class DialogHelpers {
       context: currentContext,
       barrierLabel: "Barrier",
       barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.2),
+      barrierColor: AppColors.barrierColor,
       transitionDuration: const Duration(milliseconds: 400),
       pageBuilder: (_, __, ___) {
         return AlertDialog(

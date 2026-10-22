@@ -8,7 +8,7 @@ import 'package:laqetak/src/core/themes/theme.dart';
 abstract class AppTextStyles {
   static TextStyle langLabel = TextStyle(
     fontSize: 14.sp,
-    color: Colors.black,
+    color: AppColors.labelTextColor,
     fontWeight: FontWeight.w500,
     fontFamily: Constant.fontFamily,
   );
@@ -90,13 +90,13 @@ abstract class AppTextStyles {
   );
 
   static TextStyle titleMedium = TextStyle(
-    color: Colors.black,
+    color: AppColors.titleTextColor,
     fontSize: 18.sp,
     fontWeight: FontWeight.w500,
     fontFamily: Constant.fontFamily,
   );
   static TextStyle titleSmall = TextStyle(
-    color: Colors.black,
+    color: AppColors.titleTextColor,
     fontSize: 18.sp,
     fontWeight: FontWeight.w500,
     fontFamily: Constant.fontFamily,

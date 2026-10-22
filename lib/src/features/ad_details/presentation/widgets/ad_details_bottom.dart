@@ -90,7 +90,7 @@ class _AdDetailsBottomState extends State<AdDetailsBottom>
               10.widthSpace,
               SvgPicture.asset(
                 SvgAssets.assetsSvgSarIcon,
-                color: AppColors.primaryColor,
+                color: AppColors.priceTextColor,
                 height: 17.h,
                 width: 17.w,
               ),

@@ -122,7 +122,7 @@ class CustomDropdownFormField<T> extends StatelessWidget {
             prefixIcon: isRequired
                 ? Padding(
                     padding: EdgeInsets.only(right: 10.0).r,
-                    child: Text('*', style: TextStyle(color: Colors.red)),
+                    child: Text('*', style: TextStyle(color: AppColors.errorColor)),
                   )
                 : null,
             enabled: dropEnabled,
@@ -154,7 +154,7 @@ class CustomDropdownFormField<T> extends StatelessWidget {
                       )
               : Icon(
                   Icons.keyboard_arrow_down_rounded,
-                  color: !dropEnabled ? Colors.grey.shade400 : null,
+                  color: !dropEnabled ? AppColors.disabledTextColor : null,
                 ),
         ),
       ),

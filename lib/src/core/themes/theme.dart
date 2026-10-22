@@ -53,31 +53,35 @@ abstract class CustomTheme {
   static ThemeData lightTheme = ThemeData(
     // visualDensity: VisualDensity.adaptivePlatformDensity,
     fontFamily: Constant.fontFamily,
-    highlightColor: AppColors.primaryColor.withOpacity(0.2),
+    highlightColor: AppColors.secondaryColor.withOpacity(0.08),
     primaryColor: AppColors.primaryColor,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      selectedItemColor: AppColors.primaryColor,
-      unselectedItemColor: AppColors.backgroundColor,
+      selectedItemColor: AppColors.secondaryColor,
+      unselectedItemColor: AppColors.iconUnSelectedColor,
       elevation: 0,
       showSelectedLabels: false,
       type: BottomNavigationBarType.fixed,
       showUnselectedLabels: false,
       backgroundColor: AppColors.navBarBackgroundColor,
-      selectedIconTheme: IconThemeData(color: AppColors.primaryColor),
-      unselectedIconTheme: IconThemeData(color: AppColors.backgroundColor),
+      selectedIconTheme: IconThemeData(color: AppColors.secondaryColor),
+      unselectedIconTheme: IconThemeData(color: AppColors.iconUnSelectedColor),
     ),
     scrollbarTheme: ScrollbarThemeData(
-      trackColor: WidgetStateProperty.all(AppColors.primaryColor),
+      trackColor: WidgetStateProperty.all(AppColors.secondaryColor.withOpacity(0.1)),
       thumbColor: WidgetStateProperty.all(
-        AppColors.primaryColor.withOpacity(0.7),
+        AppColors.secondaryColor.withOpacity(0.7),
       ),
-      trackBorderColor: WidgetStateProperty.all(AppColors.primaryColor),
+      trackBorderColor: WidgetStateProperty.all(Colors.transparent),
     ),
-    splashColor: AppColors.primaryColor,
-    colorScheme: const ColorScheme.light(primary: AppColors.primaryColor),
+    splashColor: AppColors.secondaryColor.withOpacity(0.08),
+    colorScheme: const ColorScheme.light(
+      primary: AppColors.primaryColor,
+      secondary: AppColors.secondaryColor,
+      surface: AppColors.backgroundColor,
+    ),
     scaffoldBackgroundColor: AppColors.backgroundColor,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: AppColors.secondaryColor,
       foregroundColor: Colors.white,
     ),
     appBarTheme: const AppBarTheme(
@@ -103,7 +107,9 @@ abstract class CustomTheme {
       titleSmall: AppTextStyles.titleSmall,
     ),
     textSelectionTheme: const TextSelectionThemeData(
-      cursorColor: Color(0xFF8B8B8B),
+      cursorColor: AppColors.secondaryColor,
+      selectionColor: AppColors.tealLight,
+      selectionHandleColor: AppColors.secondaryColor,
     ),
     iconButtonTheme: IconButtonThemeData(
       style: ButtonStyle(

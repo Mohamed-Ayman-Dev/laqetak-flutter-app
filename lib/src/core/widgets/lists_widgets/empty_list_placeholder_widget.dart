@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:laqetak/src/core/themes/colors.dart';
 
 class EmptyListPlaceholderWidget extends StatelessWidget {
   final String? text;
@@ -28,7 +29,7 @@ class EmptyListPlaceholderWidget extends StatelessWidget {
         child: Text(
           text ?? '',
           textAlign: TextAlign.center,
-          style: style ?? TextStyle(color: Colors.black54, fontSize: 14.sp),
+          style: style ?? TextStyle(color: AppColors.bodyGreyTextColor, fontSize: 14.sp),
         ),
       ),
     );

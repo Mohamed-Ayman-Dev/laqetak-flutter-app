@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/helpers/urlHelper.dart';
+import '../../../../core/themes/colors.dart';
 
 class SocialButton extends StatelessWidget {
   final String link;
@@ -30,7 +31,7 @@ class SocialButton extends StatelessWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Color(0x29000000),
+              color: AppColors.socialButtonShadowColor,
               offset: Offset(0, 0),
               blurRadius: 40,
               spreadRadius: 0,

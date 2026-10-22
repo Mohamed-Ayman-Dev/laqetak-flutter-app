@@ -32,10 +32,10 @@ class PaymentMethodItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12).r,
-          border: Border.all(color: const Color(0xFFF0F0F0), width: 1),
+          border: Border.all(color: AppColors.cardBorderColor, width: 1),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF04060F).withOpacity(0.05),
+              color: AppColors.cardShadowColor,
               offset: const Offset(0, 4),
               blurRadius: 60,
               spreadRadius: 0,

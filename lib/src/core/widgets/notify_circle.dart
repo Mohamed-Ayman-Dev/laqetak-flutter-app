@@ -15,7 +15,7 @@ class NotifyCircle extends StatelessWidget {
       alignment: Alignment.center,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.primaryColor,
+        color: AppColors.secondaryColor,
         border: Border.fromBorderSide(
           BorderSide(width: showNotify ? 1.1 : 0, color: Colors.white),
         ),

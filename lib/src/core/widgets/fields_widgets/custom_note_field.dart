@@ -28,7 +28,7 @@ class CustomNoteField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: AppTextStyles.bodyLarge.copyWith(color: Colors.black),
+      style: AppTextStyles.bodyLarge.copyWith(color: AppColors.labelTextColor),
       keyboardType: keyboardType,
       onSaved: onSaved,
       validator: validator,
@@ -48,11 +48,11 @@ class CustomNoteField extends StatelessWidget {
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.red),
+          borderSide: const BorderSide(color: AppColors.errorTextColor),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.red),
+          borderSide: const BorderSide(color: AppColors.errorTextColor),
         ),
         hintText: hint ?? S.of(context).writeYourMessage,
         hintStyle: AppTextStyles.hintTextStyle,

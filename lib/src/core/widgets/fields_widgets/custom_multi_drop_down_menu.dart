@@ -201,7 +201,7 @@ class _CustomMultiDropdownFormFieldState<T>
                 border: isFirstItem
                     ? Border(
                         bottom: BorderSide(
-                          color: Colors.grey.shade300,
+                          color: AppColors.dividerColor,
                           width: 1,
                         ),
                       )
@@ -240,7 +240,7 @@ class _CustomMultiDropdownFormFieldState<T>
             prefixIcon: widget.isRequired
                 ? Padding(
                     padding: EdgeInsets.only(right: 10.0).r,
-                    child: Text('*', style: TextStyle(color: Colors.red)),
+                    child: Text('*', style: TextStyle(color: AppColors.errorColor)),
                   )
                 : null,
             enabled: dropEnabled,
@@ -270,7 +270,7 @@ class _CustomMultiDropdownFormFieldState<T>
                       )
               : Icon(
                   Icons.keyboard_arrow_down_rounded,
-                  color: !dropEnabled ? Colors.grey.shade400 : null,
+                  color: !dropEnabled ? AppColors.disabledTextColor : null,
                 ),
         ),
       ),

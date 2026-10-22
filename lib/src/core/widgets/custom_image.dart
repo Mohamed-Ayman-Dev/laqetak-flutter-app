@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/constants/images_assets.dart';
+import 'package:laqetak/src/core/themes/colors.dart';
 import 'package:laqetak/src/core/widgets/shimmer_wrapper.dart';
 
 class CustomImage extends StatelessWidget {
@@ -45,7 +46,7 @@ class CustomImage extends StatelessWidget {
                 child: Container(
                   height: height.h,
                   width: width.w,
-                  color: Colors.grey.shade200,
+                  color: AppColors.imagePlaceholderBKColor,
                 ),
               )
             : null,

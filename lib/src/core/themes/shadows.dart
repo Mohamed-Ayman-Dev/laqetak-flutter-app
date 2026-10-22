@@ -1,18 +1,19 @@
 import 'package:flutter/cupertino.dart';
+import 'colors.dart';
 
 abstract class AppShadows {
   static const languageButtonBoxShadow = BoxShadow(
-    color: Color.fromRGBO(64, 75, 81, 0.04),
+    color: AppColors.shadowLanguageButton,
     blurRadius: 18,
   );
   static const walletBalanceShadow = BoxShadow(
-    color: Color(0x14040F60),
+    color: AppColors.shadowWallet,
     offset: Offset(0, 4),
     blurRadius: 60,
     spreadRadius: 0,
   );
   static const mapAppbarBoxShadow = BoxShadow(
-    color: Color.fromRGBO(0, 0, 0, 0.09),
+    color: AppColors.shadowMapAppbar,
     blurRadius: 6,
     offset: Offset(0, 3),
   );

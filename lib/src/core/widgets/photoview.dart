@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
+import '../themes/colors.dart';
 import '../shared/models/photo_model.dart';
 
 class PhotoView extends StatefulWidget {
@@ -167,7 +168,7 @@ class _TopBar extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Colors.black54, Colors.transparent],
+          colors: [AppColors.overlayBlack54, Colors.transparent],
         ),
       ),
       padding: EdgeInsets.only(
@@ -236,8 +237,8 @@ class _ThumbnailStrip extends StatelessWidget {
         return CachedNetworkImage(
           imageUrl: photo.url ?? '',
           fit: BoxFit.cover,
-          placeholder: (_, __) => Container(color: Colors.white12),
-          errorWidget: (_, __, ___) => Container(color: Colors.white10),
+          placeholder: (_, __) => Container(color: AppColors.imagePlaceholderBKColor),
+          errorWidget: (_, __, ___) => Container(color: AppColors.imagePlaceholderBKColor),
         );
     }
   }
@@ -246,7 +247,7 @@ class _ThumbnailStrip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 85.h,
-      color: Colors.black.withOpacity(0.75),
+      color: AppColors.barrierColorDark,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10).r,
       child: ListView.separated(
         controller: scrollController,

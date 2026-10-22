@@ -29,8 +29,8 @@ class BottomNavBar extends StatelessWidget {
       child: Container(
         height: 68.h, // Figma: 87px total; SafeArea handles the rest
         decoration: const BoxDecoration(
-          color: Colors.white,
-          border: Border(top: BorderSide(color: Color(0xFFF3F2F8), width: 1)),
+          color: AppColors.navBarBackgroundColor,
+          border: Border(top: BorderSide(color: AppColors.navBarBorderColor, width: 1)),
         ),
         padding: EdgeInsets.only(bottom: 5).r,
         child: BlocSelector<SettingsCubit, SettingsState, int>(
@@ -60,7 +60,7 @@ class BottomNavBar extends StatelessWidget {
                           height: 52.h,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            color: AppColors.primaryColor,
+                            color: AppColors.secondaryColor,
                           ),
                           child: Icon(
                             Icons.add_outlined,
@@ -107,7 +107,7 @@ class BottomNavBar extends StatelessWidget {
                                 style: AppTextStyles.labelLarge.copyWith(
                                   fontSize: isArabic ? 11.sp : 10.sp,
                                   color: isSelected
-                                      ? AppColors.primaryColor
+                                      ? AppColors.secondaryColor
                                       : AppColors.iconUnSelectedColor,
                                   fontWeight: isSelected
                                       ? FontWeight.w600

@@ -50,7 +50,7 @@ class ConfirmDialogContent extends StatelessWidget {
               CustomText(
                 title,
                 style: AppTextStyles.headlineMedium.copyWith(
-                  color: Colors.black,
+                  color: AppColors.labelTextColor,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -73,10 +73,10 @@ class ConfirmDialogContent extends StatelessWidget {
                       size: Size(double.infinity, 45.h),
                       text: S.of(context).cancel,
                       textStyle: AppTextStyles.buttonsTextStyle.copyWith(
-                        color: Colors.black,
+                        color: AppColors.labelTextColor,
                       ),
                       borderRadius: 8,
-                      borderColor: Colors.black,
+                      borderColor: AppColors.labelTextColor,
                       onPressed: () {
                         Navigator.pop(context);
                       },

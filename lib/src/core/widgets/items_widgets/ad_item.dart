@@ -177,7 +177,7 @@ class AdItem extends StatelessWidget {
                                       style: AppTextStyles.labelMedium.copyWith(
                                         fontSize: 15.sp,
                                         fontWeight: FontWeight.w700,
-                                        color: AppColors.primaryColor,
+                                        color: AppColors.priceTextColor,
                                       ),
                                       maxLines: 2,
                                     ),

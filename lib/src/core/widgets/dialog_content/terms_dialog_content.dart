@@ -147,7 +147,7 @@ class _TermsDialogContentState extends State<TermsDialogContent> {
                     borderRadius: BorderRadius.circular(20.r),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.13),
+                        color: AppColors.barrierColorLight,
                         offset: const Offset(0, 4),
                         blurRadius: 20.7,
                         spreadRadius: 0,

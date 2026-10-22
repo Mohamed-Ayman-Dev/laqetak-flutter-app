@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../generated/l10n.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../di/locator_service.dart';
+import '../themes/colors.dart';
 import '../themes/text_styles.dart';
 import 'buttons_widgets/app_elevated_button.dart';
 
@@ -22,7 +23,7 @@ class LoginFirstWidget extends StatelessWidget {
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: AppColors.cardShadowColor,
                 blurRadius: 10,
                 offset: const Offset(0, -2),
               ),
@@ -45,7 +46,7 @@ class LoginFirstWidget extends StatelessWidget {
                 //fontChanged
                 style: AppTextStyles.bodySmall.copyWith(
                   fontSize: 12.sp,
-                  color: Colors.grey.shade600,
+                  color: AppColors.bodyGreyTextColor,
                 ),
               ),
               SizedBox(height: 20.h),
