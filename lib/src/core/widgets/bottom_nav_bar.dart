@@ -9,15 +9,17 @@ import 'package:laqetak/src/features/auth/presentation/cubit/auth_state.dart';
 import 'package:laqetak/src/features/my_ads/presentation/screens/add_ad_screen.dart';
 
 import '../di/locator_service.dart';
-import '../extension/space_extensions_helper.dart';
 import '../helpers/others_helper.dart';
 import '../themes/colors.dart';
-import '../themes/text_styles.dart';
+import '../themes/gradients.dart';
+import '../themes/shadows.dart';
 import '../shared/settings/presentation/cubit/settings_cubit.dart';
 import '../shared/settings/presentation/cubit/settings_state.dart';
 import 'notify_circle.dart';
 
-// ── Bottom Navigation Bar Widget ────────────────────────────────────────────
+// ── Modern Floating Bottom Navigation Bar ──────────────────────────────────
+/// A sleek, floating bottom navigation bar with a raised center FAB,
+/// animated active indicator, and brand-consistent color scheme.
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key, required this.navItems});
 
@@ -25,132 +27,185 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        height: 68.h, // Figma: 87px total; SafeArea handles the rest
-        decoration: const BoxDecoration(
-          color: AppColors.navBarBackgroundColor,
-          border: Border(top: BorderSide(color: AppColors.navBarBorderColor, width: 1)),
-        ),
-        padding: EdgeInsets.only(bottom: 5).r,
-        child: BlocSelector<SettingsCubit, SettingsState, int>(
-          selector: (state) => state.homeIndex,
-          builder: (context, homeIndex) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return BlocSelector<SettingsCubit, SettingsState, int>(
+      selector: (state) => state.homeIndex,
+      builder: (context, homeIndex) {
+        return SafeArea(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+            height: 64.h,
+            decoration: BoxDecoration(
+              color: AppColors.navBarBackgroundColor,
+              borderRadius: BorderRadius.circular(24.r),
+              boxShadow: AppShadows.floatingNavBarShadow,
+            ),
+            child: Row(
               children: List.generate(navItems.length, (index) {
                 final item = navItems[index];
                 final bool isFab = item['name'] == 'add';
                 final bool isSelected = homeIndex == index;
 
-                // ── Center FAB ────────────────────────────────────────
                 if (isFab) {
-                  return GestureDetector(
-                    onTap: () {
-                      !isAuth
-                          ? BottomHelpers.showGuestBottomSheet(context)
-                          : LocatorService.navigationService.currentState
-                                ?.pushNamed(AddAdScreen.routeName);
-                    },
-                    child: SizedBox(
-                      width: 71.w,
-                      child: Center(
-                        child: Container(
-                          width: 52.w,
-                          height: 52.h,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.secondaryColor,
-                          ),
-                          child: Icon(
-                            Icons.add_outlined,
-                            size: 26.sp,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
+                  return _CenterFab(item: item);
                 }
 
-                // ── Regular nav item ──────────────────────────────────
-                return GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () =>
-                      context.read<SettingsCubit>().changeHomeIndex(index),
-                  child: SizedBox(
-                    width: 71.w,
-                    child: TweenAnimationBuilder<double>(
-                      tween: Tween(begin: 1.0, end: isSelected ? 1.05 : 1.0),
-                      // scaleFactor: 0.3
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeOutBack,
-                      builder: (context, scale, child) => 
-                          Transform.scale(scale: scale, child: child),
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                isSelected
-                                    ? item['activeIcon']
-                                    : item['inactiveIcon'],
-                                width: 24.w,
-                                height: 24.h,
-                              ),
-                              4.heightSpace,
-                              Text(
-                                item['name'],
-                                textAlign: TextAlign.center,
-                                style: AppTextStyles.labelLarge.copyWith(
-                                  fontSize: isArabic ? 11.sp : 10.sp,
-                                  color: isSelected
-                                      ? AppColors.secondaryColor
-                                      : AppColors.iconUnSelectedColor,
-                                  fontWeight: isSelected
-                                      ? FontWeight.w600
-                                      : FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-                          if (index == 4 || index == 1)
-                            BlocSelector<AuthCubit, AuthState, UserModel?>(
-                              selector: (state) => state.user,
-                              builder: (context, user) {
-                                bool unReadNotifications =
-                                    user != null &&
-                                        user.notificationCount != null &&
-                                        user.notificationCount!.toInt() > 0
-                                    ? true
-                                    : false;
-                                bool unReadMessages =
-                                    user != null &&
-                                        user.messagesCount != null &&
-                                        user.messagesCount!.toInt() > 0
-                                    ? true
-                                    : false;
-                                return Positioned(
-                                  top: 10.h,
-                                  left: 24.w,
-                                  child: NotifyCircle(
-                                    showNotify: index == 4
-                                        ? unReadNotifications
-                                        : unReadMessages,
-                                  ),
-                                );
-                              },
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
+                return _NavItem(
+                  item: item,
+                  index: index,
+                  isSelected: isSelected,
+                  onTap: () => context
+                      .read<SettingsCubit>()
+                      .changeHomeIndex(index),
                 );
               }),
-            );
-          },
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ── Center FAB (Add Button) ────────────────────────────────────────────────
+class _CenterFab extends StatelessWidget {
+  const _CenterFab({required this.item});
+
+  final Map<String, dynamic> item;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          !isAuth
+              ? BottomHelpers.showGuestBottomSheet(context)
+              : LocatorService.navigationService.currentState
+                  ?.pushNamed(AddAdScreen.routeName);
+        },
+        child: Center(
+          child: Transform.translate(
+            offset: Offset(0, -20.h),
+            child: Container(
+              width: 56.w,
+              height: 56.h,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: AppGradients.brandGradient,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.secondaryColor.withValues(alpha: 0.35),
+                    blurRadius: 16,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.add_rounded,
+                size: 28.sp,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ── Regular Nav Item ───────────────────────────────────────────────────────
+class _NavItem extends StatelessWidget {
+  const _NavItem({
+    required this.item,
+    required this.index,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final Map<String, dynamic> item;
+  final int index;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: onTap,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // ── Icon + Label + Indicator ──────────────────────────────
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Icon with animated color transition
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 250),
+                  switchInCurve: Curves.easeOutCubic,
+                  switchOutCurve: Curves.easeInCubic,
+                  child: SvgPicture.asset(
+                    item['activeIcon'] ?? '',
+                    key: ValueKey('nav_icon_${index}_$isSelected'),
+                    width: 22.w,
+                    height: 22.h,
+                    colorFilter: ColorFilter.mode(
+                      isSelected
+                          ? AppColors.secondaryColor
+                          : AppColors.iconUnSelectedColor,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 4.h),
+                // Label
+                Text(
+                  item['name'],
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontFamily: 'Almarai',
+                    fontSize: isArabic ? 10.sp : 9.sp,
+                    color: isSelected
+                        ? AppColors.secondaryColor
+                        : AppColors.iconUnSelectedColor,
+                    fontWeight:
+                        isSelected ? FontWeight.w700 : FontWeight.w400,
+                    letterSpacing: 0.1,
+                  ),
+                ),
+                SizedBox(height: 4.h),
+                // Active indicator dot
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOutCubic,
+                  width: isSelected ? 5.w : 0,
+                  height: isSelected ? 5.h : 0,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.secondaryColor,
+                  ),
+                ),
+              ],
+            ),
+            // ── Notification badge ───────────────────────────────────
+            if (index == 4 || index == 1)
+              BlocSelector<AuthCubit, AuthState, UserModel?>(
+                selector: (state) => state.user,
+                builder: (context, user) {
+                  final bool hasUnread = (index == 4)
+                      ? (user?.notificationCount?.toInt() ?? 0) > 0
+                      : (user?.messagesCount?.toInt() ?? 0) > 0;
+                  return Positioned(
+                    top: 8.h,
+                    right: isArabic ? null : 16.w,
+                    left: isArabic ? 16.w : null,
+                    child: NotifyCircle(showNotify: hasUnread),
+                  );
+                },
+              ),
+          ],
         ),
       ),
     );

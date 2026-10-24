@@ -137,6 +137,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "deletingNotification": MessageLookupByLibrary.simpleMessage(
       "Deleting notification...",
     ),
+    "demoModeTitle": MessageLookupByLibrary.simpleMessage("Demo Version"),
+    "demoPaymentMessage": MessageLookupByLibrary.simpleMessage(
+      "Payment is not available in the demo version.\nThis project is for review and showcase purposes only.",
+    ),
     "detailsAreRequired": MessageLookupByLibrary.simpleMessage(
       "Details are required",
     ),
@@ -199,7 +203,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "homeScreen": MessageLookupByLibrary.simpleMessage("Home Screen"),
     "hour": MessageLookupByLibrary.simpleMessage("hour"),
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage("Iban do not match"),
-    "invastroUser": MessageLookupByLibrary.simpleMessage("Invastro User"),
     "investmentCapital": MessageLookupByLibrary.simpleMessage(
       "Investment Capital",
     ),
@@ -207,6 +210,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Investment Sector",
     ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
+    "laqetakUser": MessageLookupByLibrary.simpleMessage("Laqetak User"),
     "logIn": MessageLookupByLibrary.simpleMessage("Log In"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "loginToContinue": MessageLookupByLibrary.simpleMessage(
@@ -522,6 +526,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "toSignIn": MessageLookupByLibrary.simpleMessage("to sign in"),
     "today": MessageLookupByLibrary.simpleMessage("Today"),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
+    "understood": MessageLookupByLibrary.simpleMessage("Got it"),
     "username": MessageLookupByLibrary.simpleMessage("Username"),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "Username Or Password Is Incorrect",

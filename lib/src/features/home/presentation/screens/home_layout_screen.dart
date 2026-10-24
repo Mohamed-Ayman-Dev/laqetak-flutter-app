@@ -63,24 +63,20 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     final List<Map<String, dynamic>> navItems = [
       {
         'name': S.of(context).home,
-        'activeIcon': SvgAssets.assetsSvgHomeIconSelected, // ملون
-        'inactiveIcon': SvgAssets.assetsSvgHomeIconUnselected, // رمادي
+        'activeIcon': SvgAssets.assetsSvgHomeIconSelected,
       },
       {
         'name': S.of(context).chatnavbar,
         'activeIcon': SvgAssets.assetsSvgMessageIconSelected,
-        'inactiveIcon': SvgAssets.assetsSvgMessageIconUnselected,
       },
-      {'name': 'add', 'activeIcon': null, 'inactiveIcon': null},
+      {'name': 'add', 'activeIcon': null},
       {
         'name': S.of(context).favorites,
         'activeIcon': SvgAssets.assetsSvgFavIconSelected,
-        'inactiveIcon': SvgAssets.assetsSvgFavIconUnselected,
       },
       {
         'name': S.of(context).notifications,
         'activeIcon': SvgAssets.assetsSvgNotificationIconSelected,
-        'inactiveIcon': SvgAssets.assetsSvgNotificationIconUnselected,
       },
     ];
     return BlocListener<SettingsCubit, SettingsState>(

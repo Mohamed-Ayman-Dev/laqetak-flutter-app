@@ -769,11 +769,11 @@ class S {
     return Intl.message('Attachments', name: 'attachments', desc: '', args: []);
   }
 
-  /// `Invastro User`
-  String get invastroUser {
+  /// `Laqetak User`
+  String get laqetakUser {
     return Intl.message(
-      'Invastro User',
-      name: 'invastroUser',
+      'Laqetak User',
+      name: 'laqetakUser',
       desc: '',
       args: [],
     );
@@ -2297,6 +2297,31 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Demo Version`
+  String get demoModeTitle {
+    return Intl.message(
+      'Demo Version',
+      name: 'demoModeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment is not available in the demo version.\nThis project is for review and showcase purposes only.`
+  String get demoPaymentMessage {
+    return Intl.message(
+      'Payment is not available in the demo version.\nThis project is for review and showcase purposes only.',
+      name: 'demoPaymentMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Got it`
+  String get understood {
+    return Intl.message('Got it', name: 'understood', desc: '', args: []);
   }
 }
 

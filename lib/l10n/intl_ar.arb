@@ -83,7 +83,7 @@
   "setANewPasswordForYourAccountChooseAStrong": "أنشئ كلمة مرور جديدة لحسابك، وتأكد من اختيار كلمة قوية وسهلة التذكر.",
   "savePassword": "حفظ كلمة المرور",
   "city": "المدينة",
-  "invastroUser": "مستخدم انفاسترو",
+  "laqetakUser": "مستخدم لقطتك",
   "pleaseAllowNotificationsPermissionToGetUpdatesInSettings": "من فضلك قم بتفعيل اذن الاشعارات في الاعدادات للحصول على التحديثات.",
   "pleaseAgreeToTheTermsAndConditions": "يرجى الموافقة على الشروط والأحكام",
   "pleaseAgreeToTheIdea": "يرجى الموافقة على الفكرة",
@@ -263,6 +263,9 @@
   "allCities": "All Cities",
   "pleaseSpecifyTheSector": "يرجى تحديد القطاع",
   "enterSectorName": "أدخل اسم القطاع",
-  "pleaseEnterSectorName": "يرجى إدخال اسم القطاع"
+  "pleaseEnterSectorName": "يرجى إدخال اسم القطاع",
+  "demoModeTitle": "نسخة تجريبية",
+  "demoPaymentMessage": "الدفع غير متاح في النسخة التجريبية.\nهذا المشروع للمراجعة والعرض فقط.",
+  "understood": "فهمت"
 }
 

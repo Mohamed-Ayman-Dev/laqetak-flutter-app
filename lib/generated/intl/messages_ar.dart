@@ -130,6 +130,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "deletingNotification": MessageLookupByLibrary.simpleMessage(
       "جاري حذف الإشعار...",
     ),
+    "demoModeTitle": MessageLookupByLibrary.simpleMessage("نسخة تجريبية"),
+    "demoPaymentMessage": MessageLookupByLibrary.simpleMessage(
+      "الدفع غير متاح في النسخة التجريبية.\nهذا المشروع للمراجعة والعرض فقط.",
+    ),
     "detailsAreRequired": MessageLookupByLibrary.simpleMessage(
       "التفاصيل مطلوبة",
     ),
@@ -192,10 +196,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "ibanDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "رقم الآيبان غير متطابق",
     ),
-    "invastroUser": MessageLookupByLibrary.simpleMessage("مستخدم انفاسترو"),
     "investmentCapital": MessageLookupByLibrary.simpleMessage("رأس المال"),
     "investmentSector": MessageLookupByLibrary.simpleMessage("قطاع الإستثمار"),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+    "laqetakUser": MessageLookupByLibrary.simpleMessage("مستخدم لقطتك"),
     "logIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
     "loginToContinue": MessageLookupByLibrary.simpleMessage(
@@ -498,6 +502,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "toSignIn": MessageLookupByLibrary.simpleMessage("لتسجيل الدخول"),
     "today": MessageLookupByLibrary.simpleMessage("اليوم"),
     "total": MessageLookupByLibrary.simpleMessage("الإجمالي"),
+    "understood": MessageLookupByLibrary.simpleMessage("فهمت"),
     "username": MessageLookupByLibrary.simpleMessage("إسم المستخدم"),
     "usernameOrPasswordIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "اسم المستخدم او كلمة المرور غير صحيحة",

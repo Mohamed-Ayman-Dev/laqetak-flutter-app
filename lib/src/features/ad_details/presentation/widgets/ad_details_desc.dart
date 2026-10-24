@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
 import 'package:laqetak/src/features/ad_details/presentation/widgets/shimmers/ad_details_shimmer.dart';
 

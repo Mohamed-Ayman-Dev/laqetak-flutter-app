@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laqetak/src/features/my_ads/presentation/screens/my_ads_screen.dart';
 
-import '../core/shared/others/presentation/screens/payment_webview.dart';
 import '../core/widgets/timeout_splashscreen.dart';
 import '../features/ad_details/presentation/screens/ad_details_screen.dart';
 import '../features/ad_details/presentation/screens/seller_profile_screen.dart';
@@ -45,10 +43,8 @@ class Routes {
     ConversationsScreen.routeName: (_) => const ConversationsScreen(),
     ProfileScreen.routeName: (_) => const ProfileScreen(),
     FavoriteScreen.routeName: (_) => const FavoriteScreen(),
-    MyAdsScreen.routeName: (_) => const MyAdsScreen(),
     AboutAppScreen.routeName: (_) => const AboutAppScreen(),
     ContactUsScreen.routeName: (_) => const ContactUsScreen(),
-    PaymentWebView.routeName: (_) => const PaymentWebView(),
     QuestionsScreen.routeName: (_) => const QuestionsScreen(),
     AdDetailsScreen.routeName: (_) => const AdDetailsScreen(),
     SellerProfileScreen.routeName: (_) => const SellerProfileScreen(),

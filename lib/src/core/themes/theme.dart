@@ -67,7 +67,9 @@ abstract class CustomTheme {
       unselectedIconTheme: IconThemeData(color: AppColors.iconUnSelectedColor),
     ),
     scrollbarTheme: ScrollbarThemeData(
-      trackColor: WidgetStateProperty.all(AppColors.secondaryColor.withOpacity(0.1)),
+      trackColor: WidgetStateProperty.all(
+        AppColors.secondaryColor.withOpacity(0.1),
+      ),
       thumbColor: WidgetStateProperty.all(
         AppColors.secondaryColor.withOpacity(0.7),
       ),
@@ -199,113 +201,5 @@ abstract class CustomTheme {
   );
 
   // Contains the information about the dark theme
-  // static ThemeData darkTheme = ThemeData.dark().copyWith(
-  //   colorScheme: const ColorScheme.dark(
-  //     primary: AppColors.primaryDark,
-  //     secondary: AppColors.accentDark,
-  //     background: AppColors.backgroundDark,
-  //     brightness: Brightness.dark,
-  //   ),
-  //   primaryColor: AppColors.primaryDark,
-  //   primaryColorLight: AppColors.primaryDark.withAlpha(150),
-  //   splashColor: AppColors.backgroundDark,
-  //   highlightColor: AppColors.backgroundDark,
-  //   scaffoldBackgroundColor: const Color(0xFF303030),
-  //   backgroundColor: AppColors.backgroundDark,
-  //   toggleableActiveColor: AppColors.accentDark,
-  //   textSelectionTheme: const TextSelectionThemeData(cursorColor: _cursorColor),
-  //   sliderTheme: SliderThemeData(
-  //     thumbColor: AppColors.accentDark,
-  //     activeTrackColor: AppColors.accentDark.withAlpha(180),
-  //     activeTickMarkColor: AppColors.primaryDark,
-  //     inactiveTrackColor: AppColors.accentDark.withAlpha(100),
-  //     inactiveTickMarkColor: AppColors.primaryDark,
-  //   ),
-  //   appBarTheme: const AppBarTheme(
-  //     systemOverlayStyle: SystemUiOverlayStyle.light,
-  //     color: Color(0xFF303030),
-  //     elevation: 0,
-  //     titleTextStyle: TextStyle(
-  //       fontSize: 20,
-  //       color: Colors.white,
-  //       fontWeight: FontWeight.w600,
-  //     ),
-  //     iconTheme: IconThemeData(
-  //       color: Colors.white,
-  //     ),
-  //   ),
-  //   iconTheme: const IconThemeData(
-  //     color: Colors.white,
-  //   ),
-  //   indicatorColor: Colors.white,
-  //   elevatedButtonTheme: ElevatedButtonThemeData(
-  //     style: ElevatedButton.styleFrom(
-  //       primary: AppColors.accentDark,
-  //       padding: const EdgeInsets.symmetric(
-  //         horizontal: 20,
-  //         vertical: 10,
-  //       ),
-  //       shape: const RoundedRectangleBorder(
-  //         borderRadius: ThemeGuide.borderRadius,
-  //       ),
-  //     ),
-  //   ),
-  //   outlinedButtonTheme: OutlinedButtonThemeData(
-  //     style: OutlinedButton.styleFrom(
-  //       primary: AppColors.accentDark,
-  //       backgroundColor: AppColors.accentDark.withAlpha(20),
-  //       side: const BorderSide(width: 0, color: Colors.transparent),
-  //     ),
-  //   ),
-  //   inputDecorationTheme: const InputDecorationTheme(
-  //     filled: true,
-  //     contentPadding: EdgeInsets.symmetric(
-  //       vertical: 12,
-  //       horizontal: 16,
-  //     ),
-  //     focusedErrorBorder: OutlineInputBorder(
-  //       borderRadius: ThemeGuide.borderRadius,
-  //       borderSide: BorderSide(width: 2, color: AppColors.accentDark),
-  //     ),
-  //     focusedBorder: OutlineInputBorder(
-  //       borderRadius: ThemeGuide.borderRadius,
-  //       borderSide: BorderSide(width: 2, color: AppColors.accentDark),
-  //     ),
-  //     errorBorder: OutlineInputBorder(
-  //       borderRadius: ThemeGuide.borderRadius,
-  //       borderSide: BorderSide(width: 2, color: Colors.red),
-  //     ),
-  //     enabledBorder: OutlineInputBorder(
-  //       borderRadius: ThemeGuide.borderRadius,
-  //       borderSide: BorderSide(width: 2, color: Colors.transparent),
-  //     ),
-  //     disabledBorder: OutlineInputBorder(
-  //       borderRadius: ThemeGuide.borderRadius,
-  //       borderSide: BorderSide(width: 2, color: Colors.transparent),
-  //     ),
-  //     errorMaxLines: 3,
-  //     hintStyle: TextStyle(
-  //       fontWeight: FontWeight.w600,
-  //     ),
-  //     errorStyle: TextStyle(
-  //       fontWeight: FontWeight.w600,
-  //     ),
-  //   ),
-  //   buttonTheme: const ButtonThemeData(
-  //     highlightColor: AppColors.buttonHighlightColorDark,
-  //     splashColor: AppColors.buttonSplashColorDark,
-  //     disabledColor: AppColors.mDisabledColor,
-  //     padding: EdgeInsets.all(12),
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: ThemeGuide.borderRadius,
-  //       side: BorderSide(
-  //         width: 2,
-  //         color: AppColors.accentDark,
-  //       ),
-  //     ),
-  //   ),
-  //   textTheme: ThemeData.dark().textTheme.copyWith(
-  //         button: const TextStyle(color: AppColors.accentDark),
-  //       ),
-  // );
+  static ThemeData darkTheme = ThemeData.dark().copyWith();
 }

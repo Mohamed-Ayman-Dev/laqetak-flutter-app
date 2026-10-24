@@ -8,6 +8,7 @@ import 'package:laqetak/src/config/routes.dart';
 import 'package:navigation_history_observer/navigation_history_observer.dart';
 
 import '../../generated/l10n.dart';
+import '../core/constants/constant.dart';
 import '../core/constants/images_assets.dart';
 import '../core/di/locator_service.dart';
 import '../core/shared/settings/presentation/cubit/settings_cubit.dart';
@@ -74,7 +75,7 @@ class _MyAppState extends State<MyApp> {
               ],
               supportedLocales: S.delegate.supportedLocales,
               locale: Locale(state.language, ''),
-              title: 'Laqetak',
+              title: Constant.appName,
               color: Colors.white,
               themeMode: state.themeMode,
               theme: CustomTheme.lightTheme,

@@ -78,7 +78,7 @@
   "verificationCodeHasBeenSentToYourPhone": "Verification code has been sent to your phone",
   "city": "City",
   "attachments": "Attachments",
-  "invastroUser": "Invastro User",
+  "laqetakUser": "Laqetak User",
   "openSettings": "Open Settings",
   "tapToRetry": "Tap to retry",
   "removed": "Removed",
@@ -263,5 +263,8 @@
   "allCities": "All Cities",
   "pleaseSpecifyTheSector": "Please specify the sector",
   "enterSectorName": "Enter sector name",
-  "pleaseEnterSectorName": "Please enter sector name"
+  "pleaseEnterSectorName": "Please enter sector name",
+  "demoModeTitle": "Demo Version",
+  "demoPaymentMessage": "Payment is not available in the demo version.\nThis project is for review and showcase purposes only.",
+  "understood": "Got it"
 }

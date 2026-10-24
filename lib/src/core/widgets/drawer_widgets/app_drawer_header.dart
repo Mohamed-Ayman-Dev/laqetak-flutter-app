@@ -64,7 +64,7 @@ class AppDrawerHeader extends StatelessWidget {
                           SizedBox(
                             width: 150.w,
                             child: CustomText(
-                              user?.name ?? S.of(context).invastroUser,
+                              user?.name ?? S.of(context).laqetakUser,
                               style: AppTextStyles.headlineMedium.copyWith(
                                 color: AppColors.drawerHeaderTextColor,
                                 fontSize: 12.sp,

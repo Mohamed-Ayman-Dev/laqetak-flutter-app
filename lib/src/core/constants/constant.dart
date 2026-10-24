@@ -4,7 +4,7 @@ final class Constant {
   const Constant._();
 
   static const String fontFamily = 'Almarai';
-  static const String appName = 'Invastro';
+  static const String appName = 'Laqetak';
   static const pageTransitionDuration = Duration(milliseconds: 400);
   static const Curve pageTransitionCurve = Curves.easeInOut;
   static const loadingDuration = Duration(milliseconds: 700);
