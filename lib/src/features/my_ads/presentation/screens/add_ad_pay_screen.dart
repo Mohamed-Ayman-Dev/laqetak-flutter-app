@@ -12,6 +12,7 @@ import 'package:laqetak/src/features/my_ads/presentation/screens/add_ad_second_s
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
+import '../../../../core/helpers/dialog_helpers.dart';
 import '../../../../core/helpers/vat_helper.dart';
 import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart';
 import '../../../../core/shared/settings/presentation/cubit/settings_state.dart';
@@ -48,58 +49,8 @@ class _AddAdPayScreenState extends State<AddAdPayScreen> {
 
   // ── Demo Mode: show info dialog instead of real payment ──────────────
   void _showDemoPaymentDialog() {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.r),
-        ),
-        icon: Icon(
-          Icons.info_outline_rounded,
-          size: 48.sp,
-          color: AppColors.secondaryColor,
-        ),
-        title: Text(
-          S.of(context).demoModeTitle,
-          style: AppTextStyles.headlineMedium.copyWith(
-            color: AppColors.primaryColor,
-            fontSize: 18.sp,
-          ),
-        ),
-        content: Text(
-          S.of(context).demoPaymentMessage,
-          textAlign: TextAlign.center,
-          style: AppTextStyles.labelSmall.copyWith(
-            color: AppColors.bodyGreyTextColor,
-            fontSize: 14.sp,
-            height: 1.6,
-          ),
-        ),
-        actions: [
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () => Navigator.pop(ctx),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryColor,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                padding: EdgeInsets.symmetric(vertical: 12.h),
-              ),
-              child: Text(
-                S.of(context).understood,
-                style: TextStyle(
-                  fontFamily: 'Almarai',
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+    DialogHelpers.showDemoDialog(
+      message: S.of(context).demoPaymentMessage,
     );
   }
 

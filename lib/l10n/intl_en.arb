@@ -266,5 +266,6 @@
   "pleaseEnterSectorName": "Please enter sector name",
   "demoModeTitle": "Demo Version",
   "demoPaymentMessage": "Payment is not available in the demo version.\nThis project is for review and showcase purposes only.",
+  "demoReportMessage": "Submitting reports and complaints is not available in the demo version.\nThis project is for review and showcase purposes only.",
   "understood": "Got it"
 }

@@ -141,6 +141,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "demoPaymentMessage": MessageLookupByLibrary.simpleMessage(
       "Payment is not available in the demo version.\nThis project is for review and showcase purposes only.",
     ),
+    "demoReportMessage": MessageLookupByLibrary.simpleMessage(
+      "Submitting reports and complaints is not available in the demo version.\nThis project is for review and showcase purposes only.",
+    ),
     "detailsAreRequired": MessageLookupByLibrary.simpleMessage(
       "Details are required",
     ),

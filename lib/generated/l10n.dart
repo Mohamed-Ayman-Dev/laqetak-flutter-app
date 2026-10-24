@@ -2319,6 +2319,16 @@ class S {
     );
   }
 
+  /// `Submitting reports and complaints is not available in the demo version.\nThis project is for review and showcase purposes only.`
+  String get demoReportMessage {
+    return Intl.message(
+      'Submitting reports and complaints is not available in the demo version.\nThis project is for review and showcase purposes only.',
+      name: 'demoReportMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Got it`
   String get understood {
     return Intl.message('Got it', name: 'understood', desc: '', args: []);
