@@ -359,12 +359,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               data['password'] = val;
                             },
                             controller: passwordController,
-                            // validator: (value) {
-                            //   return ValidationHelper.validatePassword(
-                            //     value,
-                            //     context,
-                            //   );
-                            // },
                             suffixIcon: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [

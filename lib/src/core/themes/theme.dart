@@ -1,15 +1,3 @@
-// Copyright (c) 2020 Aniket Malik [aniketmalikwork@gmail.com]
-// All Rights Reserved.
-//
-// NOTICE: All information contained herein is, and remains the
-// property of Aniket Malik. The intellectual and technical concepts
-// contained herein are proprietary to Aniket Malik and are protected
-// by trade secret or copyright law.
-//
-// Dissemination of this information or reproduction of this material
-// is strictly forbidden unless prior written permission is obtained from
-// Aniket Malik.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
@@ -24,7 +12,6 @@ abstract class CustomTheme {
   // Contains the information about the light theme
 
   static InputDecoration outlinedBorderInputDecoration = InputDecoration(
-    // contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
     hintStyle: AppTextStyles.hintTextStyle,
     filled: true,
     focusColor: AppColors.primaryColor,
@@ -51,7 +38,6 @@ abstract class CustomTheme {
     ),
   );
   static ThemeData lightTheme = ThemeData(
-    // visualDensity: VisualDensity.adaptivePlatformDensity,
     fontFamily: Constant.fontFamily,
     highlightColor: AppColors.secondaryColor.withOpacity(0.08),
     primaryColor: AppColors.primaryColor,

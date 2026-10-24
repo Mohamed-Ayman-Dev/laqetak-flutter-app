@@ -168,19 +168,4 @@ class _AdImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomImage(imageUrl: url, borderRadius: borderRadius);
   }
-
-  // return CachedNetworkImage(
-  // imageUrl: url,
-  // fit: BoxFit.cover,
-  // placeholder: (context, url) => Container(
-  // color: Colors.grey[200],
-  // child: const Center(
-  // child: CircularProgressIndicator(
-  // strokeWidth: 2.5,
-  // color: AppColors.primaryColor,
-  // ),
-  // ),
-  // ),
-  // errorWidget: (context, url, error) => const Icon(Icons.error),
-  // );
 }

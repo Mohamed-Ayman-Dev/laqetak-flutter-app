@@ -85,17 +85,6 @@ class MessageItem extends StatelessWidget {
                     if (images != null && images!.isNotEmpty) 8.heightSpace,
                     if (images != null && images!.isNotEmpty)
                       _buildImagesSection(context),
-                    // if (image != null) 8.heightSpace,
-                    // if (image != null)
-                    //   Hero(
-                    //     tag: heroImage!,
-                    //     child: Image.asset(
-                    //       image!,
-                    //       width: 140.w,
-                    //       height: 137.h,
-                    //       fit: BoxFit.cover,
-                    //     ),
-                    //   ),
                   ],
                 ),
               ),

@@ -24,16 +24,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   runZonedGuarded<Future<void>>(() async {
-    // start existing code
     WidgetsFlutterBinding.ensureInitialized();
     AppEnv.assertConfigured();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    // deeplink using apps flyer
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
     await FirebaseMessaging.instance.getAPNSToken();
-    // end existing code
     configLoading();
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
       !kDebugMode,
@@ -48,11 +45,9 @@ void main() async {
         );
       }).sendPort,
     );
-    // start existing code
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     await setupServices();
 
     return runApp(MyApp());
-    // end existing code
   }, (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack));
 }

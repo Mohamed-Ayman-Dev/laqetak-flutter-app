@@ -130,6 +130,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "deletingNotification": MessageLookupByLibrary.simpleMessage(
       "جاري حذف الإشعار...",
     ),
+    "demoContactUsMessage": MessageLookupByLibrary.simpleMessage(
+      "إرسال الرسائل غير متاح في النسخة التجريبية.\nهذا المشروع للمراجعة والعرض فقط.",
+    ),
     "demoModeTitle": MessageLookupByLibrary.simpleMessage("نسخة تجريبية"),
     "demoPaymentMessage": MessageLookupByLibrary.simpleMessage(
       "الدفع غير متاح في النسخة التجريبية.\nهذا المشروع للمراجعة والعرض فقط.",

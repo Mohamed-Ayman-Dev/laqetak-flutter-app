@@ -42,7 +42,6 @@ class _AuthScreenState extends State<AuthScreen> {
                   behavior: HitTestBehavior.translucent,
                   onDoubleTap: () {
                     if (pressedLong) {
-                      // AlertUtils.showPassDialog(context, formKey);
                       pressedLong = false;
                     }
                   },

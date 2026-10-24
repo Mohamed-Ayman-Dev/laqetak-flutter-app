@@ -11,12 +11,6 @@ class VatHelper {
     return double.parse((basePrice * vatPercentage / 100).toStringAsFixed(2));
   }
 
-  // static double vatAmount(double totalPrice) {
-  //   return double.parse(
-  //     (totalPrice - priceBeforeVat(totalPrice)).toStringAsFixed(2),
-  //   );
-  // }
-
   static double totalWithVat(double basePrice) {
     return double.parse((basePrice + vatAmount(basePrice)).toStringAsFixed(2));
   }

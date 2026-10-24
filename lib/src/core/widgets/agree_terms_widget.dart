@@ -45,19 +45,11 @@ class AgreeTermsWidget extends StatelessWidget {
                 text: TextSpan(
                   style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
                   children: [
-                    // TextSpan(
-                    //   text: S.of(context).iAgreeTo,
-                    //   style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
-                    // ),
                     TextSpan(
                       text: text ?? S.current.termsConditions,
                       recognizer: TapGestureRecognizer()..onTap = onTextPressed,
                       style: AppTextStyles.labelSmall,
                     ),
-                    // TextSpan(
-                    //   text: S.of(context).platformSpecific,
-                    //   style: AppTextStyles.labelSmall.copyWith(fontSize: 12.sp),
-                    // ),
                   ],
                 ),
               ),

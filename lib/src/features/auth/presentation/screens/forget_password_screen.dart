@@ -97,21 +97,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       validator: (value) {
                         return ValidationHelper.validatePhone(value, context);
                       },
-                      // focusNode: _phoneFocusNode,
                       keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.done,
                       controller: _phoneController,
                       hintText: S.of(context).mobileNumber,
-                      // textDirection: TextDirection.ltr,
-                      // suffixIcon: CountryCodeField(
-                      //   focusNode: _phoneFocusNode,
-                      //   onChanged: (val) {
-                      //     data['country_code'] = val.toString();
-                      //   },
-                      //   onInit: (val) {
-                      //     data['country_code'] = val.toString();
-                      //   },
-                      // ),
                     ),
 
                     24.heightSpace,

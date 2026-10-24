@@ -23,14 +23,6 @@ class LanguageBottomContent extends StatefulWidget {
 }
 
 class _LanguageBottomContentState extends State<LanguageBottomContent> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // Initialize the selected index based on the current locale.
-  //   String langName = Intl.getCurrentLocale() == 'ar' ? 'العربية' : 'English';
-  //   selectedIndex = (langName == 'العربية' ? 1 : 0);
-  // }
-
   List<String> languages = ['English', 'العربية'];
   int selectedIndex = 0;
   int groupValue = 0;

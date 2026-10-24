@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/constants/enums.dart';
@@ -20,8 +19,6 @@ import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
 import '../../../../core/widgets/custom_appbar.dart';
 import '../../../../core/widgets/fields_widgets/custom_note_field.dart';
 import '../../../../core/widgets/fields_widgets/custom_textField.dart';
-import '../cubit/static_pages_cubit.dart';
-import '../cubit/static_pages_state.dart';
 import '../widgets/social_widgets.dart';
 
 class ContactUsScreen extends StatefulWidget {
@@ -44,7 +41,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
   Future<void> _send() async {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState!.save();
-      context.read<StaticPagesCubit>().sendContactUs(_formData);
+      DialogHelpers.showDemoDialog(
+        message: S.of(context).demoContactUsMessage,
+      );
     }
   }
 
@@ -83,34 +82,11 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
         flexRight: 8,
       ),
       drawer: AppDrawer(),
-      body: MultiBlocListener(
-        listeners: [
-          BlocListener<SettingsCubit, SettingsState>(
-            listenWhen: (previous, current) =>
-                current.hasError && !previous.hasError,
-            listener: (context, state) =>
-                AppFeedback.errorMessage(state.errorMessage),
-          ),
-          BlocListener<StaticPagesCubit, StaticPagesState>(
-            listenWhen: (previous, current) =>
-                previous.contactStatus != current.contactStatus,
-            listener: (context, state) {
-              switch (state.contactStatus) {
-                case RequestStatus.loading:
-                  AppFeedback.loadingMessage();
-                case RequestStatus.success:
-                  EasyLoading.dismiss();
-                  DialogHelpers.showSuccessDialog(
-                    title: S.current.yourMessageHasBeenSentSuccessfully,
-                  );
-                case RequestStatus.error:
-                  AppFeedback.errorMessage(state.errorMessage);
-                case RequestStatus.initial:
-                  break;
-              }
-            },
-          ),
-        ],
+      body: BlocListener<SettingsCubit, SettingsState>(
+        listenWhen: (previous, current) =>
+            current.hasError && !previous.hasError,
+        listener: (context, state) =>
+            AppFeedback.errorMessage(state.errorMessage),
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
@@ -171,16 +147,6 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                   textInputAction: TextInputAction.next,
                   controller: _phoneController,
                   hintText: S.current.mobileNumber,
-                  // textDirection: TextDirection.ltr,
-                  // suffixIcon: CountryCodeField(
-                  //   focusNode: _phoneFocusNode,
-                  //   onChanged: (val) {
-                  //     _formData['country_code'] = val.toString();
-                  //   },
-                  //   onInit: (val) {
-                  //     _formData['country_code'] = val.toString();
-                  //   },
-                  // ),
                 ),
                 24.heightSpace,
                 Text(

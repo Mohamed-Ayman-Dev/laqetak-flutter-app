@@ -65,23 +65,6 @@ class SearchField extends StatelessWidget {
                           ),
                         ),
                       ),
-                // suffix: InkWell(
-                //   splashColor: Colors.transparent,
-                //   onTap: () {
-                //     BottomUtils.showFilterBottomSheet(
-                //       context,
-                //       onFilterSearch: onFilterSearch,
-                //     );
-                //   },
-                //   child: Padding(
-                //     padding: const EdgeInsets.all(17.0).r,
-                //     child: SvgPicture.asset(
-                //       'assets/images/filter-vertical.svg',
-                //       height: 20.h,
-                //       width: 20.w,
-                //     ),
-                //   ),
-                // ),
               ),
             ),
           ),

@@ -137,6 +137,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "deletingNotification": MessageLookupByLibrary.simpleMessage(
       "Deleting notification...",
     ),
+    "demoContactUsMessage": MessageLookupByLibrary.simpleMessage(
+      "Sending messages is not available in the demo version.\nThis project is for review and showcase purposes only.",
+    ),
     "demoModeTitle": MessageLookupByLibrary.simpleMessage("Demo Version"),
     "demoPaymentMessage": MessageLookupByLibrary.simpleMessage(
       "Payment is not available in the demo version.\nThis project is for review and showcase purposes only.",

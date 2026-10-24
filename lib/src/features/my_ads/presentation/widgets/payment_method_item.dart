@@ -79,12 +79,6 @@ class PaymentMethodItem extends StatelessWidget {
         width: 38.w,
         height: 28.h,
       ),
-      // PaymentMethods.card => Image.asset(
-      //   ImagesAssets.assetsImagesCard,
-      //   width: 38.w,
-      //   fit: BoxFit.cover,
-      //   height: 28.h,
-      // ),
       PaymentMethods.card => SizedBox(height: 28.h),
     };
   }

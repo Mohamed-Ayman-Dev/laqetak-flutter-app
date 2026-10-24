@@ -36,9 +36,6 @@ class _SplashScreenState extends State<SplashScreen> {
         logoOpacity = 1;
       });
     });
-    // final auth = Provider.of<Auth>(context, listen: false);
-    // uncomment this to enable mode switching
-    // await auth.getStoredMode();
     Widget myScreen;
     String myRoute;
     final settingsCubit = context.read<SettingsCubit>();
@@ -77,8 +74,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<SettingsCubit>().getSettings();
-      // BannersController.getPopUps();
-      // BannersController.getSliders();
     });
     setOptimalDisplayMode();
     _hideScreen();

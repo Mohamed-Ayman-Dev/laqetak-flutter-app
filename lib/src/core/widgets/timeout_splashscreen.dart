@@ -28,8 +28,6 @@ class _TimeoutSplashScreenState extends State<TimeoutSplashScreen> {
 
   @override
   void didChangeDependencies() {
-    //    Provider.of<GlobalData>(context, listen: false).getCountriesAndCategories();
-    //    Provider.of<GlobalData>(context, listen: false).getCountriesAndCategories();
     final args = ModalRoute.of(context)!.settings.arguments as Map?;
     if (args != null) {
       timeout = args['timeout'];

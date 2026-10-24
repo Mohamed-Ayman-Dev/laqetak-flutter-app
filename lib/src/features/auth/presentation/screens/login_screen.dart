@@ -55,9 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final TextEditingController _phoneController = TextEditingController();
   final _loginFormKey = GlobalKey<FormState>();
-  Map<String, dynamic> data = {
-    // 'country_code': '+966'
-  };
+  Map<String, dynamic> data = {};
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -100,20 +98,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: (value) {
                         return ValidationHelper.validatePhone(value, context);
                       },
-                      // focusNode: _phoneFocusNode,
                       keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.next,
                       controller: _phoneController,
                       hintText: S.of(context).mobileNumber,
-                      // suffixIcon: CountryCodeField(
-                      //   focusNode: _phoneFocusNode,
-                      //   onChanged: (val) {
-                      //     data['country_code'] = val.toString();
-                      //   },
-                      //   onInit: (val) {
-                      //     data['country_code'] = val.toString();
-                      //   },
-                      // ),
                     ),
                     24.heightSpace,
                     LabelWidget(text: S.of(context).password),

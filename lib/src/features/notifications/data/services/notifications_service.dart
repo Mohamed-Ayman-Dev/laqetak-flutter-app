@@ -43,58 +43,17 @@ class NotificationsService {
       if (newStatus.isGranted) {
         initPermission();
       } else if (newStatus.isDenied) {
-        // if (mounted) {
         EasyLoading.showToast(
           S.current.pleaseAllowNotificationsPermissionToGetUpdatesInSettings,
           dismissOnTap: true,
           toastPosition: EasyLoadingToastPosition.bottom,
           duration: const Duration(seconds: 3),
         );
-        // }
       } else if (newStatus.isPermanentlyDenied) {
-        // if (mounted) {
-        //   EasyLoading.showToast(
-        //     S
-        //         .of(context)
-        //         .pleaseAllowNotificationsPermissionToGetUpdatesInSettings,
-        //     dismissOnTap: true,
-        //     toastPosition: EasyLoadingToastPosition.bottom,
-        //     duration: const Duration(seconds: 3),
-        //   );
-        // }
-        // Remove `openAppSettings();` so the app doesn’t navigate automatically
       }
     }
   }
 
-  ///Doesn't play a notification(banner, ring, and vibrate) if the current screen is the chat screen AND chatting with the same user.
-  // bool preventShowingNotification(RemoteMessage remoteMessage) {
-  //   final data = remoteMessage.data;
-  //   int type = (data['notification_type'] is String
-  //       ? int.tryParse(data['notification_type'])
-  //       : data['notification_type']);
-  //   if (data['notification_details'] != null) {
-  //     final details = json.decode(data['notification_details']);
-  //     if (details['videocall_order_id'] != null && type == 1) {
-  //       type = 2;
-  //     }
-  //   }
-  //   // if (type == 1) {
-  //   //   final details = json.decode(data['notification_details']);
-  //   //   final Message message = Message.fromJson(details);
-  //   //   final otherUserId = message.from!.id;
-  //   //   final messagesReference = LocatorService.messages;
-  //   //   return (otherUserId == messagesReference.currentActiveChatId &&
-  //   //       NavigationHistoryObserver().top!.settings.name ==
-  //   //           ChatScreen.routeName);
-  //   // } else if (type == 3) {
-  //   //   final details = json.decode(data['notification_details']);
-  //   //   final VideoCallOrder order = VideoCallOrder.fromJson(details);
-  //   //   showRingNotification(order, remoteMessage.notification?.title ?? '');
-  //   //   return true;
-  //   // }
-  //   return false;
-  // }
   _handleReceivedNotification(RemoteMessage message) async {
     final data = message.data;
     String? type = data['item_type'];
@@ -102,24 +61,11 @@ class NotificationsService {
         type == 'quote_offer_updated' ||
         type == 'quote_request_updated') {
       if (isAuth) {
-        // if (NavigationHistoryObserver().top!.settings.name ==
-        //     OrdersOffersScreen.routeName) {
-        //   QuoteRequestsController.listOffers(
-        //     requestId: data['quote_request_id'],
-        //     refresh: true,
-        //     sort: LocatorService.quoteRequests.selectedOffersSort,
-        //   );
-        // }
       }
     } else if (type != null && type == 'delivery_status_updated') {
       if (isAuth) {
-        // if (NavigationHistoryObserver().top!.settings.name ==
-        //     OrderDetailsScreen.routeName) {
-        //   QuoteRequestsController.getDetails(id: data['quote_request_id']);
-        // }
       }
     }
-    //quote_offer_id , order_num ,
     final context = LocatorService.navigationService.currentState!.context;
     if (message.notification != null) {
       FlutterRingtonePlayer().playNotification();
@@ -195,30 +141,6 @@ class NotificationsService {
 
     if (type == 1) {
     } else if (type == 2) {
-      // if (NavigationHistoryObserver().top!.settings.name !=
-      //     OrdersScreen.routeName) {
-      //   LocatorService.navigationService.currentState!
-      //       .pushNamed(OrdersScreen.routeName);
-      // }
-    }
-    // } else if (type == 3) {
-    //   if (NavigationHistoryObserver().top!.settings.name !=
-    //           HomeLayoutScreen.routeName &&
-    //       LocatorService.appSettings.homeIndex != 1) {
-    //     LocatorService.navigationService.currentState!.popUntil(
-    //       (route) => route.settings.name == HomeLayoutScreen.routeName,
-    //     );
-    //     LocatorService.appSettings.changeHomeIndex(1);
-    //   }
-    // } else if (type == 4) {
-    //   if (NavigationHistoryObserver().top!.settings.name !=
-    //       HomeLayoutScreen.routeName) {
-    //     LocatorService.navigationService.currentState!.popUntil(
-    //       (route) => route.settings.name == HomeLayoutScreen.routeName,
-    //     );
-    //     LocatorService.appSettings.changeHomeIndex(4);
-    //   }
-    // }
   }
 
   String? lastMessageId;
@@ -248,9 +170,6 @@ class NotificationsService {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       if (message.messageId != null && message.messageId == lastMessageId) {
         return;
-      }
-      if (isAuth) {
-        // LocatorService.authCubit.getProfile();
       }
       lastMessageId = message.messageId;
       print('Got a message whilst in the foreground!');

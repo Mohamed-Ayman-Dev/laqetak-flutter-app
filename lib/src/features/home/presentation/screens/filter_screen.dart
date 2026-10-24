@@ -58,24 +58,6 @@ class _FilterScreenState extends State<FilterScreen> {
     super.initState();
   }
 
-  // num? get selectedPriceId {
-  //   final priceFrom = _formData['price_from'];
-  //   final priceTo = _formData['price_to'];
-  //
-  //   if (priceFrom == 100000 && priceTo == 500000) {
-  //     return 1;
-  //   }
-  //
-  //   if (priceFrom == 500000 && priceTo == 1000000) {
-  //     return 2;
-  //   }
-  //
-  //   if (priceFrom == 1000000 && priceTo == null) {
-  //     return 3;
-  //   }
-  //
-  //   return null;
-  // }
   BudgetRangeModel? selectedPrice;
 
   @override
@@ -109,14 +91,6 @@ class _FilterScreenState extends State<FilterScreen> {
                   25.heightSpace,
                   Row(
                     children: [
-                      // CustomCheckbox(
-                      //   isChecked: _formData['category_id'] != null,
-                      //   onTap: (value) {},
-                      //   size: 17,
-                      //   unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
-                      //   selectedColor: AppColors.primaryColor,
-                      // ),
-                      // 14.widthSpace,
                       Text(
                         S.of(context).category,
                         style: AppTextStyles.labelLarge,
@@ -126,7 +100,6 @@ class _FilterScreenState extends State<FilterScreen> {
                   10.heightSpace,
                   Row(
                     children: [
-                      // 34.widthSpace,
                       Expanded(
                         child: SizedBox(
                           height: 44.h,
@@ -170,32 +143,15 @@ class _FilterScreenState extends State<FilterScreen> {
                       ),
                     ],
                   ),
-                  // Divider(height: 60.h),
-                  // Row(
-                  //   children: [
-                  //     CustomRadioButton(onChanged: (p0) {}, isSelected: true),
-                  //     14.widthSpace,
-                  //     Text('الأحدث', style: AppTextStyles.labelLarge),
-                  //   ],
-                  // ),
                   Divider(height: 40.h),
                   Row(
                     children: [
-                      // CustomCheckbox(
-                      //   isChecked: _formData['city_id'] != null,
-                      //   onTap: (value) {},
-                      //   size: 17,
-                      //   unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
-                      //   selectedColor: AppColors.primaryColor,
-                      // ),
-                      // 14.widthSpace,
                       Text(S.of(context).city, style: AppTextStyles.labelLarge),
                     ],
                   ),
                   10.heightSpace,
                   Row(
                     children: [
-                      // 34.widthSpace,
                       Expanded(
                         child: SizedBox(
                           height: 44.h,
@@ -253,14 +209,6 @@ class _FilterScreenState extends State<FilterScreen> {
                   Divider(height: 40.h),
                   Row(
                     children: [
-                      // CustomCheckbox(
-                      //   isChecked: _formData['sector_id'] != null,
-                      //   onTap: (value) {},
-                      //   size: 17,
-                      //   unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
-                      //   selectedColor: AppColors.primaryColor,
-                      // ),
-                      // 14.widthSpace,
                       Text(
                         S.of(context).investmentSector,
                         style: AppTextStyles.labelLarge,
@@ -270,7 +218,6 @@ class _FilterScreenState extends State<FilterScreen> {
                   10.heightSpace,
                   Row(
                     children: [
-                      // 34.widthSpace,
                       Expanded(
                         child: SizedBox(
                           height: 44.h,
@@ -330,14 +277,6 @@ class _FilterScreenState extends State<FilterScreen> {
                   Divider(height: 40.h),
                   Row(
                     children: [
-                      // CustomCheckbox(
-                      //   isChecked: _formData['price_from'] != null,
-                      //   onTap: (value) {},
-                      //   size: 17,
-                      //   unSelectedBorderColor: AppColors.unSelectedRadioBKColor,
-                      //   selectedColor: AppColors.primaryColor,
-                      // ),
-                      // 14.widthSpace,
                       Text(
                         S.of(context).averageCapital,
                         style: AppTextStyles.labelLarge,

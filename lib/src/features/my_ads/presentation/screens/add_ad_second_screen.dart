@@ -78,13 +78,6 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
     final removedIds = _formData['photos_to_remove[]'] as List<num>? ?? [];
     final existingCount = (ad?.photos?.length ?? 0) - removedIds.length;
     final totalPhotos = newPhotos.length + existingCount;
-    // if (totalPhotos == 0) {
-    //   AppFeedback.showToast(
-    //     S.of(context).pleaseSelectAtLeastOneImage,
-    //     isError: true,
-    //   );
-    //   return;
-    // }
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       bool isUpdate = ad != null;

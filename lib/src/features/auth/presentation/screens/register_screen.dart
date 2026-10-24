@@ -112,15 +112,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.next,
                       hintText: S.current.mobileNumber,
-                      // suffixIcon: CountryCodeField(
-                      //   focusNode: _phoneFocusNode,
-                      //   onChanged: (val) {
-                      //     data['country_code'] = val.toString();
-                      //   },
-                      //   onInit: (val) {
-                      //     data['country_code'] = val.toString();
-                      //   },
-                      // ),
                     ),
                     24.heightSpace,
                     LabelWidget(text: S.of(context).emailAddress),

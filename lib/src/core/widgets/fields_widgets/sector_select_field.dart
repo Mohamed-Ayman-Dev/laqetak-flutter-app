@@ -63,10 +63,6 @@ class _SectorSelectFieldState extends State<SectorSelectField> {
             if (value == null) {
               return S.of(context).pleaseSelectASector;
             }
-            // if ((value.requiresAdditionalInfo ?? false) &&
-            //     _otherController.text.trim().isEmpty) {
-            //   return S.of(context).pleaseSpecifyTheSector;
-            // }
             return null;
           },
           onChanged: (val) {

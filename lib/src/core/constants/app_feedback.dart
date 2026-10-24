@@ -23,19 +23,6 @@ final class AppFeedback {
     _AppToast.show(_ctx, message: message, isError: isError);
   }
 
-  // static void successPopUp(String message, {String? desc}) {
-  //   EasyLoading.dismiss();
-  //   AlertUtils.showSuccessDialog(
-  //     title: message,
-  //     oneButton: true,
-  //     pop: false,
-  //     desc: desc,
-  //     onTab: () {
-  //       LocatorService.navigationService.currentState?.pop();
-  //     },
-  //   );
-  // }
-
   static void loadingMessage({String? message}) {
     EasyLoading.show(status: message ?? S.current.pleaseWait);
   }
@@ -68,16 +55,11 @@ void configLoading() {
       color: Colors.white,
       fontFamily: Constant.fontFamily,
     )
-    // ..progressColor = Colors.yellow
-    // ..backgroundColor = Colors.green
     ..indicatorWidget = SizedBox(
       width: 40,
       height: 40,
       child: SpinKitDoubleBounce(color: Colors.white),
     )
-    // ..indicatorColor = Colors.yellow
-    // ..textColor = Colors.yellow
-    // ..maskColor = Colors.blue.withOpacity(0.5)
     ..userInteractions = false
     ..dismissOnTap = false;
 }
@@ -185,7 +167,6 @@ class _ToastWidgetState extends State<_ToastWidget>
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Icon(icon, color: Colors.white, size: 22),
                   !isError
                       ? SvgPicture.asset(
                           SvgAssets.assetsSvgSuccessIcon,

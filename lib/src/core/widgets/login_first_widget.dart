@@ -42,8 +42,6 @@ class LoginFirstWidget extends StatelessWidget {
               Text(
                 S.of(context).youNeedToSignInToViewThisPageIf,
                 textAlign: TextAlign.center,
-
-                //fontChanged
                 style: AppTextStyles.bodySmall.copyWith(
                   fontSize: 12.sp,
                   color: AppColors.bodyGreyTextColor,

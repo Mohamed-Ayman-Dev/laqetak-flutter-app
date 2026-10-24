@@ -65,27 +65,6 @@ class ImageUtils {
     );
   }
 
-  // // static Future<List<AssetEntity>?> pickGalleryAsset({
-  // //   requestType = RequestType.common,
-  // //   bool selectAssets = true,
-  // // }) async {
-  // //   final context = LocatorService.navigationService.currentState!.context;
-  // //   final List<AssetEntity>? result = await AssetPicker.pickAssets(
-  // //     context,
-  // //     pickerConfig: AssetPickerConfig(
-  // //       maxAssets: selectAssets ? 6 : 1,
-  // //       requestType: requestType,
-  // //       specialPickerType: SpecialPickerType.noPreview,
-  // //     ),
-  // //   );
-  // //
-  // //   if (result != null && result.isNotEmpty) {
-  // //     return result;
-  // //   } else {
-  // //     return null;
-  // //   }
-  // // }
-  //
   static Future<XFile?> _cropImage(
     XFile pickedFile, {
     CropAspectRatio? aspectRatio,
@@ -160,20 +139,6 @@ class ImageUtils {
                   if (myFile != null && context.mounted) {
                     LocatorService.navigationService.currentState!.pop(myFile);
                   }
-                  // final PermissionStatus galleryStatus = await Permission.photos
-                  //     .request();
-                  // if (galleryStatus.isPermanentlyDenied) {
-                  //   _showSettingsDialog(context);
-                  // } else if (galleryStatus.isGranted || galleryStatus.isLimited) {
-                  //   XFile? myFile = await getImageFromGallery(
-                  //     imageQuality: imageQuality,
-                  //   );
-                  //   if (myFile != null && context.mounted) {
-                  //     LocatorService.navigationService.currentState!.pop(
-                  //       myFile,
-                  //     );
-                  //   }
-                  // }
                 },
                 icon: const Icon(
                   Icons.photo_library,
@@ -223,57 +188,4 @@ class ImageUtils {
     return null;
   }
 
-  //
-  // static Future<String> compressImage({required XFile pickedFile}) async {
-  //   Configuration config = const Configuration(
-  //     outputType: ImageOutputType.jpg,
-  //     // can only be true for Android and iOS while using ImageOutputType.jpg or ImageOutputType.pngÏ
-  //     useJpgPngNativeCompressor: false,
-  //
-  //     // set quality between 0-100
-  //     quality: 70,
-  //   );
-  //   final param = ImageFileConfiguration(
-  //     input: ImageFile(
-  //       filePath: pickedFile.path,
-  //       rawBytes: await pickedFile.readAsBytes(),
-  //     ),
-  //     config: config,
-  //   );
-  //   final output = await compressor.compress(param);
-  //   print(
-  //     "Input size : ${ImageFile(filePath: pickedFile.path, rawBytes: await pickedFile.readAsBytes()).sizeInBytes}",
-  //   );
-  //   print("Output size : ${output.sizeInBytes}");
-  //   return File(pickedFile.path).path;
-  // }
-  //
-  // // static Future<MediaInfo?> compressVideo(String path,
-  // //     [Function(double)? progressCallback]) async {
-  // //   MediaInfo? mediaInfo;
-  // //   if (progressCallback != null) {
-  // //     final subscription =
-  // //     VideoCompress.compressProgress$.subscribe((progress) {
-  // //       progressCallback(progress / 100.0);
-  // //     });
-  // //     try {
-  // //       mediaInfo = await VideoCompress.compressVideo(
-  // //         path,
-  // //         includeAudio: true,
-  // //         quality: VideoQuality.MediumQuality,
-  // //       );
-  // //     } finally {
-  // //       subscription.unsubscribe();
-  // //     }
-  // //   } else {
-  // //     // If no progress callback provided, compress the video without progress tracking
-  // //     mediaInfo = await VideoCompress.compressVideo(
-  // //       path,
-  // //       includeAudio: true,
-  // //       quality: VideoQuality.MediumQuality,
-  // //     );
-  // //   }
-  // //
-  // //   return mediaInfo;
-  // // }
 }

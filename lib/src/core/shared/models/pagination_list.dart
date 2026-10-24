@@ -55,16 +55,6 @@ class PaginationList<T> {
     prevPageUrl = json['prev_page_url'];
     to = json['meta']['to'];
   }
-  // addItemsToList({List<T> data = const [], int? currentPage, int? lastPage}) {
-  //   this.data ??= [];
-  //   this.data!.addAll(data);
-  //   if (currentPage != null) {
-  //     this.currentPage = currentPage;
-  //   }
-  //   if (lastPage != null) {
-  //     this.lastPage = lastPage;
-  //   }
-  // }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

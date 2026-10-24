@@ -32,15 +32,6 @@ class CustomImage extends StatelessWidget {
         height: height.h,
         width: width.w,
         fit: BoxFit.cover,
-
-        // placeholder: showLoading
-        //     ? (context, url) => Container(
-        //         height: height.h,
-        //         width: width.w,
-        //         color: Colors.grey[200],
-        //         child: const Center(child: AppLoadingIndicator()),
-        //       )
-        //     : null,
         placeholder: showLoading
             ? (context, url) => ShimmerWrapper(
                 child: Container(

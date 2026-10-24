@@ -2329,6 +2329,16 @@ class S {
     );
   }
 
+  /// `Sending messages is not available in the demo version.\nThis project is for review and showcase purposes only.`
+  String get demoContactUsMessage {
+    return Intl.message(
+      'Sending messages is not available in the demo version.\nThis project is for review and showcase purposes only.',
+      name: 'demoContactUsMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Got it`
   String get understood {
     return Intl.message('Got it', name: 'understood', desc: '', args: []);

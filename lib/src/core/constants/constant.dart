@@ -12,11 +12,4 @@ final class Constant {
   static const progressTimerDuration = Duration(seconds: 11);
   static const Duration screenTimeOut = Duration(seconds: 60);
   static const List<double> profits = [10, 15, 17, 22, 12];
-
-  // static const driverGridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
-  //   crossAxisCount: 2,
-  //   crossAxisSpacing: 16,
-  //   mainAxisSpacing: 16,
-  //   childAspectRatio: 0.6,
-  // );
 }

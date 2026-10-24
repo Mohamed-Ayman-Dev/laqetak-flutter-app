@@ -173,7 +173,6 @@ class NotificationItem extends StatelessWidget {
             ],
           ),
         ),
-        // if (messageCount) UnreadMessagesCounter(),
       ],
     );
   }
