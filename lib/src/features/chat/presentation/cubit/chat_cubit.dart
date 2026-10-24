@@ -7,7 +7,7 @@ import 'package:laqetak/src/features/chat/data/repositories/chat_repository.dart
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../../core/config/app_env.dart';
+import '../../../../core/env/app_env.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/shared/models/pagination_list.dart';
 import '../../data/models/conversations_model.dart';

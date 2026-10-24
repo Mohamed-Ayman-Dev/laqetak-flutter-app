@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:laqetak/src/core/constants/enums.dart';
 import 'package:laqetak/src/core/constants/svg_assets.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
@@ -74,10 +73,6 @@ class _AddAdSecondScreenState extends State<AddAdSecondScreen> {
   }
 
   Future<void> _send() async {
-    final newPhotos = _formData['photos[]'] as List<XFile>? ?? [];
-    final removedIds = _formData['photos_to_remove[]'] as List<num>? ?? [];
-    final existingCount = (ad?.photos?.length ?? 0) - removedIds.length;
-    final totalPhotos = newPhotos.length + existingCount;
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       bool isUpdate = ad != null;

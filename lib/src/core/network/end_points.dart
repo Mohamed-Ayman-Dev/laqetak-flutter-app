@@ -1,4 +1,4 @@
-import '../config/app_env.dart';
+import '../env/app_env.dart';
 
 final class EndPoints {
   EndPoints._();
@@ -21,13 +21,6 @@ final class EndPoints {
   static const String profilePhoneOtp = "$userBaseUrl/profile/phone-otp";
   static const String updateLanguage = "$userBaseUrl/profile/update-language";
   static const String deviceToken = "$userBaseUrl/profile/device-token";
-
-  /// Addresses
-  static const String getAddresses = "/addresses/list";
-  static const String addAddresses = "/addresses/add";
-  static const String editAddresses = "/addresses/update";
-  static const String selectDefaultAddresses = "/addresses/set-default";
-  static const String deleteAddress = "/addresses/delete";
 
   /// Others
   static const String getSettings = "$baseUrl/settings";

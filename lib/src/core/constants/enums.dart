@@ -5,8 +5,6 @@ enum RequestStatus { initial, loading, success, error }
 
 enum AppbarIcons { logo, drawer, search, chat }
 
-enum CardType { mastercard, visa }
-
 enum PaymentMethods { card, cash }
 
 enum OtpFlow { register, forgetPassword, updatePhone, addAd, editAd, login }

@@ -7,8 +7,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laqetak/src/config/app.dart';
-import 'package:laqetak/src/core/config/app_env.dart';
+import 'package:laqetak/src/core/bloc_helpers/bloc_observer.dart';
+import 'package:laqetak/src/core/env/app_env.dart';
 import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/di/locator.dart';
 
@@ -26,6 +28,7 @@ void main() async {
   runZonedGuarded<Future<void>>(() async {
     WidgetsFlutterBinding.ensureInitialized();
     AppEnv.assertConfigured();
+    Bloc.observer = AppBlocObserver();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,

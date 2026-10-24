@@ -9,7 +9,7 @@ import 'package:laqetak/src/core/widgets/buttons_widgets/app_small_icon_button.d
 import 'package:share_plus/share_plus.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../../core/config/app_env.dart';
+import '../../../../core/env/app_env.dart';
 import '../../../../core/constants/svg_assets.dart';
 import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';

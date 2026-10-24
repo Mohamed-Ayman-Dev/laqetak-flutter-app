@@ -158,9 +158,9 @@ class NotificationsService {
 
   Future<void> _playAlertFeedback() async {
     FlutterRingtonePlayer().playNotification();
-    final hasVibrator = (await Vibration.hasVibrator()) ?? false;
+    final hasVibrator = await Vibration.hasVibrator();
     if (!hasVibrator) return;
-    final hasAmplitude = (await Vibration.hasAmplitudeControl()) ?? false;
+    final hasAmplitude = await Vibration.hasAmplitudeControl();
     Vibration.vibrate(duration: 500, amplitude: hasAmplitude ? 128 : -1);
   }
 

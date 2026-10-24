@@ -39,7 +39,7 @@ lib/src/
   config/            app, routes, BlocProviders
   core/
     network/         ApiClient, endpoints, ApiResult
-    config/          AppEnv (compile-time)
+    env/             AppEnv (compile-time)
     di/              GetIt
     shared/          others, settings, timers, AdModel
     widgets/
