@@ -20,11 +20,16 @@ class AppInterceptors extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
+    LocatorService.networkCubit.markConnected();
     handler.next(response);
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
+    if (err.type == DioExceptionType.connectionError ||
+        err.type == DioExceptionType.connectionTimeout) {
+      LocatorService.networkCubit.markDisconnected();
+    }
     handler.next(err);
   }
 }

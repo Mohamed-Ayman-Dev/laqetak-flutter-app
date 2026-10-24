@@ -11,6 +11,7 @@ import '../../generated/l10n.dart';
 import '../core/constants/constant.dart';
 import '../core/constants/images_assets.dart';
 import '../core/di/locator_service.dart';
+import '../core/shared/network/presentation/widgets/offline_banner.dart';
 import '../core/shared/settings/presentation/cubit/settings_cubit.dart';
 import '../core/shared/settings/presentation/cubit/settings_state.dart';
 import '../core/themes/theme.dart';
@@ -66,7 +67,11 @@ class _MyAppState extends State<MyApp> {
             return MaterialApp(
               navigatorKey: LocatorService.navigationService.navigatorKey,
               debugShowCheckedModeBanner: false,
-              builder: EasyLoading.init(),
+              builder: EasyLoading.init(
+                builder: (context, child) => OfflineBanner(
+                  child: child ?? const SizedBox.shrink(),
+                ),
+              ),
               localizationsDelegates: const [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,

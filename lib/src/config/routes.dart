@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../core/shared/network/presentation/screens/no_internet_connection_page.dart';
 import '../core/widgets/timeout_splashscreen.dart';
 import '../features/ad_details/presentation/screens/ad_details_screen.dart';
 import '../features/ad_details/presentation/screens/seller_profile_screen.dart';
@@ -53,5 +54,6 @@ class Routes {
     AddAdPayScreen.routeName: (_) => const AddAdPayScreen(),
     FilterScreen.routeName: (_) => const FilterScreen(),
     TimeoutSplashScreen.routeName: (_) => const TimeoutSplashScreen(),
+    InternetConnection.routeName: (_) => const InternetConnection(),
   };
 }

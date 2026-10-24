@@ -15,7 +15,7 @@ UI  →  Cubit  →  Repository  →  Remote data source  →  ApiClient
 - `ApiClient` is the only Dio stack. An interceptor attaches the language and the bearer token from cubit state on every request.
 - Cubits are GetIt singletons, provided once with `BlocProvider.value`.
 
-`core/` is infrastructure: network, cache, DI, errors, theme, and shared widgets. `core/shared/` is only state used by more than one feature (cities and categories, app settings, OTP timers). `AdModel` lives there because home, details, my ads, and favorites all use the same object.
+`core/` is infrastructure: network, cache, DI, errors, theme, and shared widgets. `core/shared/` is only state used by more than one feature (cities and categories, app settings, OTP timers, network connectivity). `AdModel` lives there because home, details, my ads, and favorites all use the same object.
 
 ## State in the UI
 
@@ -38,10 +38,10 @@ Favorites and profile are screens over shared cubits (`AdsCubit`, `AuthCubit`). 
 lib/src/
   config/            app, routes, BlocProviders
   core/
-    network/         ApiClient, endpoints, ApiResult
+    network/         ApiClient, endpoints, ApiResult, NetworkInfo
     env/             AppEnv (compile-time)
     di/              GetIt
-    shared/          others, settings, timers, AdModel
+    shared/          others, settings, timers, network, AdModel
     widgets/
   features/
     auth/  home/  ad_details/  my_ads/  favorite/
@@ -75,6 +75,46 @@ flutter build appbundle --release --dart-define-from-file=env.json
 ```
 
 `String.fromEnvironment` reads the host, the site URL, and the Pusher client key. Endpoint paths stay in `EndPoints`. Nothing in the binary is a real secret; a privileged key would stay on the server.
+
+## Connectivity & Offline Handling
+
+Network awareness uses three complementary layers so no single check is a false positive:
+
+```
+┌─────────────────────────────────────────────────────┐
+│              Layer 1 — DNS Lookup                   │
+│  InternetAddress.lookup('google.com')               │
+│  OS-level resolve, ~15 ms, zero HTTP overhead       │
+├─────────────────────────────────────────────────────┤
+│         Layer 2 — Connection Stream                 │
+│  InternetConnectionChecker (connectivity_plus)      │
+│  Polls Google captive-portal & Cloudflare every 5 s │
+├─────────────────────────────────────────────────────┤
+│       Layer 3 — Real Traffic (Dio Interceptor)      │
+│  onResponse → markConnected()                       │
+│  connectionError / timeout → markDisconnected()     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Why not `http.head()` against dummy APIs alone?**  The default addresses shipped with `internet_connection_checker` (`dummyapi.online`, `fakestoreapi.com`) are free hobby servers that frequently go offline, causing false "no internet" reports even though the device is connected. The DNS lookup (`dart:io InternetAddress.lookup`) resolves at the OS kernel level in milliseconds, consumes no data, and never hits a flaky third-party server. The Dio interceptor is the most truthful signal: if the app's own API responded, the connection is real.
+
+**What the user sees:**
+
+| Scenario | UX |
+|---|---|
+| Internet drops mid-session | A red pill banner slides in from the top: *"No Internet Connection"*. The user keeps browsing cached data. |
+| Internet returns | The banner turns green: *"Internet connection restored"*, then auto-dismisses after 3 seconds. |
+| Cold start with no connection and no cache | Full-screen retry page (`InternetConnection`) with a Retry button. |
+
+Key files:
+
+| File | Role |
+|---|---|
+| `core/network/network_info.dart` | `NetworkInfo` interface + `NetworkInfoImpl` (DNS + checker) |
+| `core/shared/network/presentation/cubit/` | `NetworkCubit` + `NetworkState` |
+| `core/shared/network/presentation/widgets/offline_banner.dart` | Non-intrusive animated banner |
+| `core/shared/network/presentation/screens/no_internet_connection_page.dart` | Full-screen fallback for critical flows |
+| `core/network/app_interceptors.dart` | Dio `onResponse` / `onError` wired to the cubit |
 
 ## What is intentional
 

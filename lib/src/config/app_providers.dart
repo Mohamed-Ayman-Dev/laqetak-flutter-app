@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:laqetak/src/core/shared/network/presentation/cubit/network_cubit.dart';
 import 'package:laqetak/src/core/shared/others/presentation/cubit/others_cubit.dart';
 import 'package:laqetak/src/core/shared/settings/presentation/cubit/settings_cubit.dart';
 import 'package:laqetak/src/core/shared/timers/presentation/cubit/timer_cubit.dart';
@@ -14,6 +15,7 @@ import '../core/di/locator.dart';
 
 class AppBlocProviders {
   static List<BlocProvider> providers = [
+    BlocProvider<NetworkCubit>.value(value: locator<NetworkCubit>()),
     BlocProvider<TimerCubit>.value(value: locator<TimerCubit>()),
     BlocProvider<OthersCubit>.value(value: locator<OthersCubit>()),
     BlocProvider<SettingsCubit>.value(value: locator<SettingsCubit>()),

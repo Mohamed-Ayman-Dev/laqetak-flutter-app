@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:laqetak/src/features/notifications/data/services/notifications_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -42,6 +43,8 @@ import '../cache/cache_helper.dart';
 import '../navigation_service.dart';
 import '../network/api_client.dart';
 import '../network/app_interceptors.dart';
+import '../network/network_info.dart';
+import '../shared/network/presentation/cubit/network_cubit.dart';
 import '../shared/others/data/datasources/others_remote_data_source.dart';
 import '../shared/others/data/datasources/others_remote_data_source_impl.dart';
 import '../shared/others/data/repositories/others_repository.dart';
@@ -63,6 +66,29 @@ Future<void> setupServices() async {
   locator.registerLazySingleton<CacheHelper>(() => CacheHelper(locator()));
 
   /// register network
+  locator.registerLazySingleton<InternetConnectionChecker>(
+    () => InternetConnectionChecker.createInstance(
+      checkTimeout: const Duration(seconds: 3),
+      checkInterval: const Duration(seconds: 5),
+      addresses: [
+        AddressCheckOption(
+          uri: Uri.parse('https://clients3.google.com/generate_204'),
+          timeout: const Duration(seconds: 3),
+        ),
+        AddressCheckOption(
+          uri: Uri.parse('https://1.1.1.1'),
+          timeout: const Duration(seconds: 3),
+        ),
+        AddressCheckOption(
+          uri: Uri.parse('https://www.google.com'),
+          timeout: const Duration(seconds: 3),
+        ),
+      ],
+    ),
+  );
+  locator.registerLazySingleton<NetworkInfo>(
+    () => NetworkInfoImpl(locator()),
+  );
   locator.registerLazySingleton<Dio>(() => Dio());
   locator.registerLazySingleton<AppInterceptors>(() => AppInterceptors());
   locator.registerLazySingleton<ApiClient>(
@@ -134,6 +160,7 @@ Future<void> setupServices() async {
   );
 
   /// register cubits
+  locator.registerLazySingleton<NetworkCubit>(() => NetworkCubit(locator()));
   locator.registerLazySingleton<TimerCubit>(() => TimerCubit());
   locator.registerLazySingleton<OthersCubit>(() => OthersCubit(locator()));
   locator.registerLazySingleton<SettingsCubit>(

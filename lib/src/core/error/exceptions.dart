@@ -13,6 +13,9 @@ class ApiException implements Exception {
   /// code, so cached data can be used as a fallback.
   bool get shouldFallbackToCache => statusCode == null;
 
+  /// Whether the error was caused by a network connection failure.
+  bool get isConnectionError => statusCode == null;
+
   /// Creates an [ApiException] from a [DioException].
   factory ApiException.fromDioException(DioException exception) {
     final statusCode = exception.response?.statusCode;

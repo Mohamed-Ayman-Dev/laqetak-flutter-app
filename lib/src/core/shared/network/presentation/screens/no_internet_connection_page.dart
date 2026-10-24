@@ -1,51 +1,43 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-import '../../../generated/l10n.dart';
-import '../themes/colors.dart';
-import '../themes/text_styles.dart';
-import '../widgets/buttons_widgets/app_elevated_button.dart';
+import '../../../../../../generated/l10n.dart';
+import '../../../../di/locator.dart';
+import '../../../../network/network_info.dart';
+import '../../../../themes/colors.dart';
+import '../../../../themes/text_styles.dart';
+import '../../../../widgets/buttons_widgets/app_elevated_button.dart';
 
-/// continue here later
+/// Full-screen offline fallback for critical screens or cold-start network loss.
 class InternetConnection extends StatefulWidget {
   static const String routeName = 'InternetConnection/';
-  final InternetConnectionChecker internetConnectionChecker;
+  final NetworkInfo? networkInfo;
 
-  const InternetConnection({
-    super.key,
-    required this.internetConnectionChecker,
-  });
+  const InternetConnection({super.key, this.networkInfo});
 
   @override
   State<InternetConnection> createState() => _InternetConnectionState();
 }
 
 class _InternetConnectionState extends State<InternetConnection> {
-  late StreamSubscription<InternetConnectionStatus> listener;
+  late final NetworkInfo _networkInfo =
+      widget.networkInfo ?? locator<NetworkInfo>();
+  late final StreamSubscription<bool> _listener;
 
   @override
   void initState() {
     super.initState();
-
-    listener = widget.internetConnectionChecker.onStatusChange.listen((status) {
-      switch (status) {
-        case InternetConnectionStatus.connected:
-          _pop();
-          break;
-        case InternetConnectionStatus.disconnected:
-          break;
-        case InternetConnectionStatus.slow:
-          break;
+    _listener = _networkInfo.onConnectivityChanged.listen((isConnected) {
+      if (isConnected) {
+        _pop();
       }
     });
   }
 
   @override
   void dispose() {
-    listener.cancel();
-
+    _listener.cancel();
     super.dispose();
   }
 
@@ -88,23 +80,24 @@ class _InternetConnectionState extends State<InternetConnection> {
     );
   }
 
-  void _retryConnection() {
-    widget.internetConnectionChecker.hasConnection.then((isConnected) {
-      if (isConnected) {
-        _pop();
-      } else {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(S.current.stillNoInternetConnectionPleaseTryAgain),
-            ),
-          );
-        }
+  Future<void> _retryConnection() async {
+    final isConnected = await _networkInfo.isConnected;
+    if (isConnected) {
+      _pop();
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(S.current.stillNoInternetConnectionPleaseTryAgain),
+          ),
+        );
       }
-    });
+    }
   }
 
   void _pop() {
-    Navigator.of(context).pop(true);
+    if (mounted && Navigator.of(context).canPop()) {
+      Navigator.of(context).pop(true);
+    }
   }
 }

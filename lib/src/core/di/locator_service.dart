@@ -8,6 +8,8 @@ import '../../features/my_ads/presentation/cubit/my_ads_cubit.dart';
 import '../../features/notifications/presentation/cubit/notifications_cubit.dart';
 import '../cache/cache_helper.dart';
 import '../navigation_service.dart';
+import '../network/network_info.dart';
+import '../shared/network/presentation/cubit/network_cubit.dart';
 import '../shared/settings/presentation/cubit/settings_cubit.dart';
 import '../shared/timers/presentation/cubit/timer_cubit.dart';
 import 'locator.dart';
@@ -23,7 +25,11 @@ abstract class LocatorService {
   static NotificationsService get notificationService =>
       locator<NotificationsService>();
 
+  static NetworkInfo get networkInfo => locator<NetworkInfo>();
+
   /// Cubits
+  static NetworkCubit get networkCubit => locator<NetworkCubit>();
+
   static TimerCubit get timerCubit => locator<TimerCubit>();
 
   static SettingsCubit get settingsCubit => locator<SettingsCubit>();
