@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../shimmer_wrapper.dart';
+import 'shimmer_wrapper.dart';
 
 class TextShimmer extends StatelessWidget {
   final double? width;

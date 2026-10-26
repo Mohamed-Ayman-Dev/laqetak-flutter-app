@@ -6,7 +6,7 @@ import 'package:laqetak/src/features/ad_details/presentation/screens/seller_prof
 import '../../../../../generated/l10n.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/models/customer_model.dart';
-import '../../../../core/widgets/custom_image.dart';
+import '../../../../core/widgets/images/custom_image.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
 

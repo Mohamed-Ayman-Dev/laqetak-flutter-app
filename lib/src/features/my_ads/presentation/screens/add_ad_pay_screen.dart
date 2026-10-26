@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laqetak/src/core/constants/enums.dart';
 import 'package:laqetak/src/core/constants/svg_assets.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
+import 'package:laqetak/src/core/widgets/drawer/app_drawer.dart';
 import 'package:laqetak/src/features/my_ads/presentation/screens/add_ad_second_screen.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -17,8 +17,8 @@ import '../../../../core/helpers/vat_helper.dart';
 import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart';
 import '../../../../core/shared/settings/presentation/cubit/settings_state.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
-import '../../../../core/widgets/custom_appbar.dart';
+import '../../../../core/widgets/buttons/app_elevated_button.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import '../widgets/payment_method_item.dart';
 
 class AddAdPayScreen extends StatefulWidget {

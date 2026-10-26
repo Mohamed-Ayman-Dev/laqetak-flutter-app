@@ -8,14 +8,14 @@ import 'package:image_cropper/image_cropper.dart'
         AndroidUiSettings,
         IOSUiSettings;
 import 'package:image_picker/image_picker.dart';
-import 'package:laqetak/src/core/widgets/photoview.dart';
+import 'package:laqetak/src/core/widgets/images/photo_view.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../generated/l10n.dart';
 import '../di/locator_service.dart';
 import '../shared/models/photo_model.dart';
 import '../themes/colors.dart';
-import '../widgets/custom_Text.dart';
+import '../widgets/custom_text.dart';
 
 class ImageUtils {
   static void _showSettingsDialog(BuildContext context) {

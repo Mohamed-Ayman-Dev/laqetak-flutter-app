@@ -9,7 +9,7 @@ import 'package:laqetak/src/core/constants/enums.dart';
 import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
 import 'package:laqetak/src/core/helpers/dialog_helpers.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
-import 'package:laqetak/src/core/widgets/custom_appbar.dart';
+import 'package:laqetak/src/core/widgets/custom_app_bar.dart';
 import 'package:laqetak/src/features/my_ads/presentation/cubit/my_ads_cubit.dart';
 import 'package:laqetak/src/features/my_ads/presentation/cubit/my_ads_state.dart';
 import 'package:laqetak/src/features/my_ads/presentation/screens/add_ad_screen.dart';
@@ -20,11 +20,11 @@ import '../../../../core/di/locator_service.dart';
 import '../../../../core/constants/app_feedback.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/models/pagination_list.dart';
-import '../../../../core/widgets/items_widgets/ad_item.dart';
-import '../../../../core/widgets/lists_widgets/empty_list_placeholder_widget.dart';
-import '../../../../core/widgets/lists_widgets/list_loading_end_widget.dart';
-import '../../../../core/widgets/lists_widgets/smart_refresher_header.dart';
-import '../../../../core/widgets/shimmers/items/ad_item_shimmer.dart';
+import '../../../../core/widgets/cards/ad_item.dart';
+import '../../../../core/widgets/lists/empty_list_placeholder_widget.dart';
+import '../../../../core/widgets/lists/list_loading_end_widget.dart';
+import '../../../../core/widgets/lists/smart_refresher_header.dart';
+import '../../../../core/widgets/shimmers/ad_item_shimmer.dart';
 import '../../../ad_details/presentation/screens/ad_details_screen.dart';
 
 class MyAdsScreen extends StatefulWidget {

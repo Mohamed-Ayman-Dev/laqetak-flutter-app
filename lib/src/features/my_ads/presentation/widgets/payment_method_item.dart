@@ -6,7 +6,7 @@ import 'package:laqetak/src/core/constants/svg_assets.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
 
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/widgets/custom_radio_button.dart';
+import '../../../../core/widgets/selection/custom_radio_button.dart';
 import '../../../../core/themes/text_styles.dart';
 
 class PaymentMethodItem extends StatelessWidget {

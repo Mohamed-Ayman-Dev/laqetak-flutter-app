@@ -10,9 +10,9 @@ import 'package:laqetak/src/core/constants/enums.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
 import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
-import 'package:laqetak/src/core/widgets/custom_appbar.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
-import 'package:laqetak/src/core/widgets/lists_widgets/list_loading_end_widget.dart';
+import 'package:laqetak/src/core/widgets/custom_app_bar.dart';
+import 'package:laqetak/src/core/widgets/drawer/app_drawer.dart';
+import 'package:laqetak/src/core/widgets/lists/list_loading_end_widget.dart';
 import 'package:laqetak/src/features/ad_details/presentation/cubit/ad_details_cubit.dart';
 import 'package:laqetak/src/features/ad_details/presentation/cubit/ad_details_state.dart';
 import 'package:laqetak/src/features/ad_details/presentation/screens/ad_details_screen.dart';
@@ -24,10 +24,10 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/models/customer_model.dart';
 import '../../../../core/shared/models/pagination_list.dart';
-import '../../../../core/widgets/items_widgets/ad_item.dart';
-import '../../../../core/widgets/lists_widgets/empty_list_placeholder_widget.dart';
-import '../../../../core/widgets/lists_widgets/smart_refresher_header.dart';
-import '../../../../core/widgets/shimmers/items/ad_item_shimmer.dart';
+import '../../../../core/widgets/cards/ad_item.dart';
+import '../../../../core/widgets/lists/empty_list_placeholder_widget.dart';
+import '../../../../core/widgets/lists/smart_refresher_header.dart';
+import '../../../../core/widgets/shimmers/ad_item_shimmer.dart';
 
 class SellerProfileScreen extends StatefulWidget {
   static const routeName = '/seller_profile_screen';

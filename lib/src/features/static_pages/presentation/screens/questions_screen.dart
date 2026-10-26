@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/constants/enums.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
+import 'package:laqetak/src/core/widgets/drawer/app_drawer.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
-import '../../../../core/widgets/custom_appbar.dart';
-import '../../../../core/widgets/lists_widgets/empty_list_placeholder_widget.dart';
-import '../../../../core/widgets/lists_widgets/smart_refresher_header.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/lists/empty_list_placeholder_widget.dart';
+import '../../../../core/widgets/lists/smart_refresher_header.dart';
 import '../cubit/static_pages_cubit.dart';
 import '../cubit/static_pages_state.dart';
 import '../widgets/question_static_item.dart';

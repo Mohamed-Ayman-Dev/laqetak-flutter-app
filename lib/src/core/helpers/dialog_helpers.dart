@@ -2,15 +2,15 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:laqetak/src/core/widgets/dialog_content/confirm_dialog_content.dart';
-import 'package:laqetak/src/core/widgets/dialog_content/terms_dialog_content.dart';
-import 'package:laqetak/src/core/widgets/dialog_content/yes_no_dialog_content.dart';
+import 'package:laqetak/src/core/widgets/dialogs/confirm_dialog_content.dart';
+import 'package:laqetak/src/core/widgets/dialogs/terms_dialog_content.dart';
+import 'package:laqetak/src/core/widgets/dialogs/yes_no_dialog_content.dart';
 
 import '../../../../generated/l10n.dart';
 import '../di/locator_service.dart';
 import '../themes/colors.dart';
 import '../themes/text_styles.dart';
-import '../widgets/dialog_content/success_dialog_content.dart';
+import '../widgets/dialogs/success_dialog_content.dart';
 
 class DialogHelpers {
   static BuildContext currentContext =

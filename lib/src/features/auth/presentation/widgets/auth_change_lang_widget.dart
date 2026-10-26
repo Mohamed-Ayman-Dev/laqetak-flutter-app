@@ -7,8 +7,8 @@ import 'package:laqetak/src/features/auth/presentation/screens/login_screen.dart
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/helpers/others_helper.dart';
-import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
-import '../../../../core/widgets/custom_g_radio_button.dart';
+import '../../../../core/widgets/buttons/app_elevated_button.dart';
+import '../../../../core/widgets/selection/custom_g_radio_button.dart';
 
 class AuthChangeLangWidget extends StatefulWidget {
   const AuthChangeLangWidget({super.key});

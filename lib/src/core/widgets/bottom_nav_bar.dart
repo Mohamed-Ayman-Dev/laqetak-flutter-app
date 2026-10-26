@@ -15,7 +15,7 @@ import '../themes/gradients.dart';
 import '../themes/shadows.dart';
 import '../shared/settings/presentation/cubit/settings_cubit.dart';
 import '../shared/settings/presentation/cubit/settings_state.dart';
-import 'notify_circle.dart';
+import 'badges/notify_circle.dart';
 
 // ── Modern Floating Bottom Navigation Bar ──────────────────────────────────
 /// A sleek, floating bottom navigation bar with a raised center FAB,

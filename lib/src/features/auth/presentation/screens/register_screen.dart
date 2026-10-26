@@ -14,12 +14,12 @@ import '../../../../core/shared/others/data/models/details_model.dart';
 import '../../../../core/shared/others/presentation/cubit/others_cubit.dart';
 import '../../../../core/shared/others/presentation/cubit/others_state.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
-import '../../../../core/widgets/buttons_widgets/app_text_button.dart';
-import '../../../../core/widgets/custom_Text.dart';
-import '../../../../core/widgets/fields_widgets/custom_drop_down_menu.dart';
-import '../../../../core/widgets/fields_widgets/custom_textField.dart';
-import '../../../../core/widgets/label_widget.dart';
+import '../../../../core/widgets/buttons/app_elevated_button.dart';
+import '../../../../core/widgets/buttons/app_text_button.dart';
+import '../../../../core/widgets/custom_text.dart';
+import '../../../../core/widgets/fields/custom_drop_down_menu.dart';
+import '../../../../core/widgets/fields/custom_text_field.dart';
+import '../../../../core/widgets/fields/label_widget.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const routeName = '/register_screen';

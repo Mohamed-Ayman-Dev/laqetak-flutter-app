@@ -9,7 +9,7 @@ import '../../../../constants/enums.dart';
 import '../../../../constants/string_manager.dart';
 import '../../../../di/locator_service.dart';
 import '../../../../helpers/navigation_helper.dart';
-import '../../../../widgets/timeout_splashscreen.dart';
+import '../../../../widgets/timeout_splash_screen.dart';
 import 'settings_state.dart';
 
 class SettingsCubit extends BaseCubit<SettingsState> {

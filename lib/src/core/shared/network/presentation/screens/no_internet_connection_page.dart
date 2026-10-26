@@ -7,7 +7,7 @@ import '../../../../di/locator.dart';
 import '../../../../network/network_info.dart';
 import '../../../../themes/colors.dart';
 import '../../../../themes/text_styles.dart';
-import '../../../../widgets/buttons_widgets/app_elevated_button.dart';
+import '../../../../widgets/buttons/app_elevated_button.dart';
 
 /// Full-screen offline fallback for critical screens or cold-start network loss.
 class InternetConnection extends StatefulWidget {

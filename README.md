@@ -78,43 +78,15 @@ flutter build appbundle --release --dart-define-from-file=env.json
 
 ## Connectivity & Offline Handling
 
-Network awareness uses three complementary layers so no single check is a false positive:
+Three layers detect connectivity so no single check produces a false positive:
 
-```
-┌─────────────────────────────────────────────────────┐
-│              Layer 1 — DNS Lookup                   │
-│  InternetAddress.lookup('google.com')               │
-│  OS-level resolve, ~15 ms, zero HTTP overhead       │
-├─────────────────────────────────────────────────────┤
-│         Layer 2 — Connection Stream                 │
-│  InternetConnectionChecker (connectivity_plus)      │
-│  Polls Google captive-portal & Cloudflare every 5 s │
-├─────────────────────────────────────────────────────┤
-│       Layer 3 — Real Traffic (Dio Interceptor)      │
-│  onResponse → markConnected()                       │
-│  connectionError / timeout → markDisconnected()     │
-└─────────────────────────────────────────────────────┘
-```
+1. **DNS lookup** (`InternetAddress.lookup`) — OS-level, ~15 ms, no HTTP overhead.
+2. **`InternetConnectionChecker`** stream — polls Google captive-portal & Cloudflare every 5 s.
+3. **Dio interceptor** — `onResponse` marks connected, `connectionError` marks disconnected. This is the most truthful signal because it reflects real API traffic.
 
-**Why not `http.head()` against dummy APIs alone?**  The default addresses shipped with `internet_connection_checker` (`dummyapi.online`, `fakestoreapi.com`) are free hobby servers that frequently go offline, causing false "no internet" reports even though the device is connected. The DNS lookup (`dart:io InternetAddress.lookup`) resolves at the OS kernel level in milliseconds, consumes no data, and never hits a flaky third-party server. The Dio interceptor is the most truthful signal: if the app's own API responded, the connection is real.
+When the connection drops mid-session a red banner slides in; the user keeps browsing cached data. When it returns the banner turns green for 3 seconds then auto-dismisses. A full-screen retry page is reserved for cold starts with no cache.
 
-**What the user sees:**
-
-| Scenario | UX |
-|---|---|
-| Internet drops mid-session | A red pill banner slides in from the top: *"No Internet Connection"*. The user keeps browsing cached data. |
-| Internet returns | The banner turns green: *"Internet connection restored"*, then auto-dismisses after 3 seconds. |
-| Cold start with no connection and no cache | Full-screen retry page (`InternetConnection`) with a Retry button. |
-
-Key files:
-
-| File | Role |
-|---|---|
-| `core/network/network_info.dart` | `NetworkInfo` interface + `NetworkInfoImpl` (DNS + checker) |
-| `core/shared/network/presentation/cubit/` | `NetworkCubit` + `NetworkState` |
-| `core/shared/network/presentation/widgets/offline_banner.dart` | Non-intrusive animated banner |
-| `core/shared/network/presentation/screens/no_internet_connection_page.dart` | Full-screen fallback for critical flows |
-| `core/network/app_interceptors.dart` | Dio `onResponse` / `onError` wired to the cubit |
+`NetworkInfo` (interface + impl) lives in `core/network/`. `NetworkCubit` and the banner widget live in `core/shared/network/`.
 
 ## What is intentional
 

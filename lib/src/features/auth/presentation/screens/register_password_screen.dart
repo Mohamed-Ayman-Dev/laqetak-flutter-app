@@ -15,12 +15,12 @@ import '../../../../core/constants/enums.dart';
 import '../../../../core/error/validation_helper.dart';
 import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../../../../core/widgets/agree_terms_widget.dart';
-import '../../../../core/widgets/buttons_widgets/app_elevated_button.dart';
-import '../../../../core/widgets/custom_Text.dart';
-import '../../../../core/widgets/fields_widgets/custom_textField.dart';
-import '../../../../core/widgets/fields_widgets/password_eye_toggle.dart';
-import '../../../../core/widgets/label_widget.dart';
+import '../../../../core/widgets/selection/agree_terms_widget.dart';
+import '../../../../core/widgets/buttons/app_elevated_button.dart';
+import '../../../../core/widgets/custom_text.dart';
+import '../../../../core/widgets/fields/custom_text_field.dart';
+import '../../../../core/widgets/fields/password_eye_toggle.dart';
+import '../../../../core/widgets/fields/label_widget.dart';
 import 'otp_screen.dart';
 
 class RegisterPasswordScreen extends StatefulWidget {

@@ -7,8 +7,8 @@ import 'package:laqetak/src/features/home/presentation/screens/home_layout_scree
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/di/locator_service.dart';
-import '../../../../core/widgets/buttons_widgets/app_svg_button.dart';
-import '../../../../core/widgets/buttons_widgets/app_text_button.dart';
+import '../../../../core/widgets/buttons/app_svg_button.dart';
+import '../../../../core/widgets/buttons/app_text_button.dart';
 
 class AuthAppbar extends StatelessWidget {
   final bool showGuestButton;

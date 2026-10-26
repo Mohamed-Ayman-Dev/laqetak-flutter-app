@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:laqetak/src/core/di/locator_service.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/app_elevated_button.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/app_outline_button.dart';
+import 'package:laqetak/src/core/widgets/buttons/app_elevated_button.dart';
+import 'package:laqetak/src/core/widgets/buttons/app_outline_button.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/svg_assets.dart';
@@ -13,7 +13,7 @@ import '../../../../core/extension/space_extensions_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
 import '../../../../core/shared/models/contact_request_model.dart';
 import '../../../../core/themes/colors.dart';
-import '../../../../core/widgets/notify_circle.dart';
+import '../../../../core/widgets/badges/notify_circle.dart';
 import '../../../ad_details/presentation/screens/ad_details_screen.dart';
 import '../cubit/notifications_cubit.dart';
 

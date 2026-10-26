@@ -9,10 +9,10 @@ import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
 import 'package:laqetak/src/core/helpers/dialog_helpers.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
 import 'package:laqetak/src/core/themes/text_styles.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/app_elevated_button.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/app_outline_button.dart';
-import 'package:laqetak/src/core/widgets/custom_appbar.dart';
-import 'package:laqetak/src/core/widgets/drawer_widgets/app_drawer.dart';
+import 'package:laqetak/src/core/widgets/buttons/app_elevated_button.dart';
+import 'package:laqetak/src/core/widgets/buttons/app_outline_button.dart';
+import 'package:laqetak/src/core/widgets/custom_app_bar.dart';
+import 'package:laqetak/src/core/widgets/drawer/app_drawer.dart';
 import 'package:laqetak/src/features/ad_details/presentation/widgets/ad_details_bottom.dart';
 import 'package:laqetak/src/features/ad_details/presentation/widgets/ad_details_desc.dart';
 import 'package:laqetak/src/features/ad_details/presentation/widgets/ad_details_header.dart';
@@ -31,7 +31,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../core/helpers/bottom_helpers.dart';
 import '../../../../core/helpers/others_helper.dart';
 import '../../../../core/shared/models/ad_model.dart';
-import '../../../../core/widgets/lists_widgets/smart_refresher_header.dart';
+import '../../../../core/widgets/lists/smart_refresher_header.dart';
 
 class AdDetailsScreen extends StatefulWidget {
   static const routeName = '/ad_details_screen';

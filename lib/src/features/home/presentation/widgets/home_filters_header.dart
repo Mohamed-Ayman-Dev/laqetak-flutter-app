@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:laqetak/src/core/widgets/buttons_widgets/app_filter_button.dart';
+import 'package:laqetak/src/core/widgets/buttons/app_filter_button.dart';
 
 class FilterHeaderDelegate extends SliverPersistentHeaderDelegate {
   final List<String> filters;

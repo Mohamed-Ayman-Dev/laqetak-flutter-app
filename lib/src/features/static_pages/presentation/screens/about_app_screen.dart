@@ -6,7 +6,7 @@ import 'package:laqetak/src/core/constants/app_feedback.dart';
 import 'package:laqetak/src/core/constants/enums.dart';
 import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
 import 'package:laqetak/src/core/helpers/others_helper.dart';
-import 'package:laqetak/src/core/widgets/app_logo.dart';
+import 'package:laqetak/src/core/widgets/images/app_logo.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/constants/constant.dart';
@@ -15,8 +15,8 @@ import '../../../../core/shared/settings/presentation/cubit/settings_cubit.dart'
 import '../../../../core/shared/settings/presentation/cubit/settings_state.dart';
 import '../../../../core/themes/colors.dart';
 import '../../../../core/themes/text_styles.dart';
-import '../../../../core/widgets/custom_appbar.dart';
-import '../../../../core/widgets/drawer_widgets/app_drawer.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/drawer/app_drawer.dart';
 import '../widgets/static_shimmer.dart';
 
 class AboutAppScreen extends StatefulWidget {

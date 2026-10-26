@@ -2,14 +2,14 @@ import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laqetak/src/core/extension/space_extensions_helper.dart';
-import 'package:laqetak/src/core/widgets/custom_image.dart';
-import 'package:laqetak/src/core/widgets/photoview.dart';
+import 'package:laqetak/src/core/widgets/images/custom_image.dart';
+import 'package:laqetak/src/core/widgets/images/photo_view.dart';
 import 'package:laqetak/src/core/themes/colors.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../core/shared/models/photo_model.dart';
-import '../../../../core/widgets/labels_widgets/ad_expired_label.dart';
-import '../../../../core/widgets/labels_widgets/ad_label.dart';
+import '../../../../core/widgets/badges/ad_expired_label.dart';
+import '../../../../core/widgets/badges/ad_label.dart';
 
 class AdImageGallery extends StatefulWidget {
   final String type;

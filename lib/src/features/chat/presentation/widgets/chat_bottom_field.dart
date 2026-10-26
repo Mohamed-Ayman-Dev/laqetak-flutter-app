@@ -5,7 +5,7 @@ import 'package:laqetak/src/core/constants/svg_assets.dart';
 import 'package:laqetak/src/core/helpers/others_helper.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../../core/widgets/fields_widgets/custom_textField.dart';
+import '../../../../core/widgets/fields/custom_text_field.dart';
 import '../../../../core/themes/colors.dart';
 
 class ChatBottomField extends StatelessWidget {

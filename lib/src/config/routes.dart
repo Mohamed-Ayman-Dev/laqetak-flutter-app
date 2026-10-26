@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/shared/network/presentation/screens/no_internet_connection_page.dart';
-import '../core/widgets/timeout_splashscreen.dart';
+import '../core/widgets/timeout_splash_screen.dart';
 import '../features/ad_details/presentation/screens/ad_details_screen.dart';
 import '../features/ad_details/presentation/screens/seller_profile_screen.dart';
 import '../features/auth/presentation/screens/auth_screen.dart';
