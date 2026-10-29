@@ -6,7 +6,7 @@ import 'api_response.dart';
 import 'app_interceptors.dart';
 import 'end_points.dart';
 import 'pretty_dio_logger.dart';
-
+  
 class ApiClient {
   final Dio dio;
   final AppInterceptors appInterceptors;
